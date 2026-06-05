@@ -1,0 +1,39 @@
+# ---- Models / weights / exports (never commit; too big, not the contribution) ----
+*.pth
+*.pt
+*.onnx
+*.tflite
+*.ckpt
+*.safetensors
+models/
+
+# ---- Data & embedding caches (live on Kaggle Datasets, not git) ----
+data/
+dataset_cleaned/
+*.parquet
+*.npy
+*.npz
+embeddings/
+cache/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+.pytest_cache/
+
+# ---- Secrets / creds ----
+.env
+*.key
+kaggle.json
+.cache/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
