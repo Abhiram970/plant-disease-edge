@@ -1,0 +1,16 @@
+# Plant-Disease-Edge — Phase A dependencies.
+# For the RTX 4060 (local), install PyTorch with CUDA FIRST, then this file:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements.txt
+# On Kaggle, torch/torchvision are preinstalled — just `pip install -q` the rest.
+
+datasets>=2.18.0          # streaming SAGE from HuggingFace
+huggingface_hub>=0.23.0
+timm>=1.0.3               # EdgeNeXt student + DINOv2; needs >=1.0 for edgenext_xx_small.in1k
+open_clip_torch>=2.24.0   # CLIP / OpenCLIP teachers
+pillow>=10.0.0
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm>=4.66.0
+# Optional (only if you generate descriptors with Claude locally; see build_descriptors.py):
+# anthropic>=0.34.0
