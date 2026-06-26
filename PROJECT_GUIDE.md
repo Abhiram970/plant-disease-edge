@@ -31,8 +31,9 @@ foundation model.**
 
 Frontier vision-language models (VLMs) — e.g. the **SAGE** agentic diagnoser — reach high in-the-wild
 disease accuracy but cost **~$0.21–0.42 per image** and **cannot run on a phone or a Raspberry Pi**.
-We **distill that foundation-model symptom knowledge into a ~1.3M-parameter INT8 EdgeNeXt-XX-Small
-student** that runs on a $35 device at zero marginal inference cost.
+We **distill that foundation-model symptom knowledge into a family of INT8 edge students — ~5M / ~10M / ~20M
+params** (EMOv2-5M → iFormer-M → iFormer-L/FastViT) that run at zero marginal inference cost across device
+classes (NPU smart-camera & Raspberry Pi → phone → laptop CPU).
 
 **PRIMARY HEADLINE — cross-crop zero-shot generalization.** The tiny student, anchored on
 LLM-authored symptom-descriptor *text prototypes*, diagnoses crops it **never saw during training**
@@ -53,6 +54,12 @@ efficiency and abstention are the support. The journal has accepted closely rela
 **One-line positioning vs SAGE:** SAGE is an accurate but ~$0.30/image **cloud** agent that needs
 reference images per crop; we are the deployable **edge** student that generalizes to unseen crops via
 text prototypes at $0/image.
+
+**Positioning vs the 2025 agricultural foundation models (SCOLD, BioCLIP 2):** these are accurate but
+cloud-scale VLMs trained with image–caption contrastive learning; we *distill them* into deployable
+5–20M edge students, add **source-grounded** (auditable) descriptors, and prove **cross-crop** zero-shot
+to unseen crops. SCOLD is therefore both a candidate **teacher** and the **baseline we beat on
+deployability + cross-crop transfer** — not a competitor we ignore.
 
 ---
 
@@ -137,6 +144,19 @@ beat a plain student; mirrors SAGE's own large Tomato gain from adding symptom k
 classifies these using **only** the LLM-descriptor text prototypes (zero training images). This table
 is the headline of the paper.
 
+### Generalization axis & defensibility (answers the #1 reviewer attack)
+We claim **cross-crop (unseen-host)** transfer mediated by descriptors — *not* "unseen disease." State this
+explicitly so the reviewer can't redefine it. To pre-empt "you cherry-picked the held-out crops":
+- **Stratify held-out results by pathogen novelty:** *familiar-type* (Coffee Leaf Rust — rust morphology
+  also seen in Corn/Apple) vs *novel-type* (Citrus HLB — distinctive, unseen). Reporting both is far
+  stronger than one blended number and kills "you just memorized rust."
+- **Leave-one-crop-out (LOCO):** rotate which crops are held out; show the result is stable, not specific
+  to one lucky split. (Phase C — the single best answer to "cherry-picked.")
+- **Lead with economic impact:** Coffee Leaf Rust and Citrus HLB are globally catastrophic, visually
+  distinctive diseases — "diagnosed without ever training on coffee or citrus" is the editor-facing story.
+- **Own the scoping:** 11 of SAGE's 300+ crops = a focused deployable model + statistical validity
+  (≥50 imgs/class), not maximal coverage.
+
 ### OOD / ABSTAIN set
 The SAGE long-tail ("+315 more" crops) + any class with **< 50 images**. The abstain gate must say
 "unknown" on these. No external weed/insect datasets needed — SAGE's own long tail is the OOD source.
@@ -165,28 +185,48 @@ CLIP-family teachers have it; **DINOv2 is vision-only and CANNOT do zero-shot.**
 rests on the CLIP-family alignment, and **DINOv2 is an auxiliary teacher for trained-crop robustness
 only.** State this explicitly in the paper — it pre-empts the obvious reviewer question.
 
-### Teachers (all FROZEN — never trained)
-- **Text-aligned (the zero-shot engine) — we BENCHMARK 3 and pick the winner (Phase C0):**
-  - **CLIP ViT-B/16** — 512-d, smallest cache, baseline.
-  - **OpenCLIP ViT-L/14 (LAION-2B)** — 768-d, strong, zero availability risk.
-  - **SigLIP2** (2025) — SOTA open zero-shot. **Verify weights load on Kaggle/timm in Phase A.**
-  - The comparison *"which foundation model distills best into an edge student for zero-shot?"* is
-    itself a paper contribution.
-- **Auxiliary (trained crops only):** **DINOv2-small** — vision-only structure/robustness signal.
+### Teachers (all FROZEN — never trained) — bake-off picks the winner (Phase C0)
+The zero-shot engine needs an **image–text aligned** space. We benchmark four and pick the best:
+- **SCOLD** (2025) — domain **leaf-disease** VLM (186K image–caption pairs, 97 concepts; HF `enalis/scold`);
+  reported to beat CLIP-L / BioCLIP / SigLIP2 on zero-shot leaf disease. **Likely winner; also the cloud
+  baseline we beat on edge + cross-crop.** Verify load on Kaggle in Phase A.
+- **BioCLIP 2** (2025) — biological foundation model (TreeOfLife-200M); biologically meaningful embedding
+  (healthy leaves of different species cluster). Strong domain-adjacent teacher.
+- **SigLIP2** (2025) — best **generic** open zero-shot VLM.
+- **CLIP ViT-B/16** — baseline floor / smallest cache.
+- (Optional 5th: **MobileCLIP2**, low-latency teacher.)
+- The comparison *"which foundation model — generic vs biological vs domain-specific — distills best into
+  an edge student for cross-crop zero-shot?"* is itself a paper contribution.
+- **Auxiliary (trained crops only):** **DINOv2-small** — vision-only structure/robustness signal (no
+  zero-shot; droppable at inference).
 
-### Student — EdgeNeXt-XX-Small (~1.3M params), TWO heads
-1. **Text-projection head** → projects the student's image features into the winning teacher's
-   text-aligned space. **THIS IS THE ZERO-SHOT ENGINE:** descriptors → text prototypes → cosine
-   nearest-neighbor classifies any crop, seen or unseen. *A student without descriptors has no
-   prototypes → 0% zero-shot → the descriptor anchoring is provably the load-bearing component.*
-2. **DINOv2-alignment head** (auxiliary) → regularizes visual structure; improves trained-crop and
-   "harder-conditions" accuracy. Droppable at inference.
+### Student — a 3-tier edge family (LOCKED), each with TWO heads
+We ship a **model-scaling Pareto sweep** — one distillation recipe at three operating points:
 
-**Fallback if 1.3M underfits ~110 classes:** MobileNetV4-Conv-S (~2–3M) or TinyViT-5M. Decide
-empirically in Phase C — do **not** pre-commit to a struggling backbone.
+| Tier | Backbone (public, timm-compatible) | Params | Device target |
+|---|---|---|---|
+| **Small** | **EMOv2-5M** | ~5.1M | NPU smart-camera / Raspberry Pi |
+| **Mid**   | **iFormer-M** | ~8.9M | phone |
+| **Large** | **iFormer-L** / FastViT-SA24 | ~15–20M | laptop CPU |
 
-**Story to tell:** text-aligned FM → generalization; DINOv2 → robustness; distillation → a 1.3M INT8
-model that has both, on a $35 device. Clean three-way ablation: text-teacher-only vs +DINOv2 vs neither.
+(Backbones are convolution+attention hybrids designed for edge; finalize tier-3 on bake-off + Kaggle/timm
+availability.) Each tier has:
+1. **Text-projection head** → projects student image features into the winning teacher's text-aligned
+   space. **THIS IS THE ZERO-SHOT ENGINE:** descriptors → text prototypes → cosine nearest-neighbor
+   classifies any crop, seen or unseen. *No descriptors → no prototypes → 0% zero-shot → descriptor
+   anchoring is provably load-bearing.*
+2. **DINOv2-alignment head** (auxiliary) → regularizes visual structure; improves trained-crop accuracy.
+   Droppable at inference.
+
+### Distillation method (LOCKED)
+Not naive cosine matching: adopt **MobileCLIP2-style multi-modal reinforced training** + the loss findings
+of **CLIP-KD** (CVPR 2024) / **TinyCLIP** affinity-mimicking. 3-stage curriculum: (i) feature alignment to
+the winning teacher (+DINOv2 aux); (ii) **source-grounded descriptor prototype anchoring** (enables
+zero-shot); (iii) fine-tune on trained crops.
+
+**Story to tell:** 2025 agricultural FM (SCOLD/BioCLIP2) → generalization; DINOv2 → robustness;
+distillation → a 5–20M INT8 family that has both, deployable from smart-camera to laptop. Clean ablations:
+±descriptor, ±source-grounding, single- vs multi-teacher, across tiers.
 
 ---
 
@@ -231,6 +271,9 @@ model that has both, on a $35 device. Clean three-way ablation: text-teacher-onl
   **Done when:** a hash check proves **zero image leakage** across roles.
 - **A4** — Smoke test on the RTX 4060: full data build + 1-epoch student run end-to-end.
   **Done when:** it runs start→finish with no path/format errors and produces a loss curve.
+- **A5** — `scripts/check_teachers.py`: load-check ALL teachers (SCOLD, BioCLIP 2, SigLIP2, CLIP) and ALL
+  student backbones (EMOv2-5M, iFormer-M/L) on Kaggle/timm/HF. **Availability is the #1 risk — fail fast.**
+  **Done when:** every teacher returns image+text embeddings and every backbone instantiates on Kaggle.
 
 ### Phase B — Teacher embedding cache (Week 2–3) · owner: MODEL (+ DATA for publishing)
 - **B1** — Kaggle notebook: embed all subset images ONCE with the **3 frozen text teachers**
@@ -247,11 +290,11 @@ model that has both, on a $35 device. Clean three-way ablation: text-teacher-onl
 - **C0 — Teacher bake-off.** Train the lightweight student head against each cached text teacher;
   measure zero-shot held-out accuracy; pick the winner as primary teacher. (DINOv2 stays aux.)
   **Deliverable:** a 3-row table (CLIP / OpenCLIP / SigLIP2 → zero-shot acc) → goes in the paper.
-- **C1 — Student training.** EdgeNeXt-XX-Small, two heads (§4). **3-stage curriculum:**
-  (i) feature alignment to teacher embeddings (winning text teacher + DINOv2 aux);
-  (ii) **text-prototype anchoring** on LLM descriptors (this is what enables zero-shot);
-  (iii) fine-tune on trained crops. Fallback backbone if it underfits.
-  **Done when:** trained-crop test accuracy is competitive and the run fits the 9-hr Kaggle window.
+- **C1 — Student training (3 tiers).** Train EMOv2-5M, iFormer-M, iFormer-L — two heads each (§4), same
+  MobileCLIP2/CLIP-KD recipe. **3-stage curriculum:** (i) feature alignment to the winning teacher
+  (+DINOv2 aux); (ii) **source-grounded descriptor prototype anchoring** (enables zero-shot);
+  (iii) fine-tune on trained crops.
+  **Done when:** each tier's trained-crop accuracy is competitive and every run fits the 9-hr Kaggle window.
 - **C2 — PRIMARY EXPERIMENT: zero-shot held-out crops.** Classify the 4 unseen crops by nearest
   descriptor text prototype (no training images). Compare against (a) the SAGE cloud agent's reported
   accuracy and (b) a **no-descriptor student** (which is structurally incapable of zero-shot).
@@ -264,11 +307,12 @@ model that has both, on a $35 device. Clean three-way ablation: text-teacher-onl
   descriptor.
 
 ### Phase D — Edge optimization + on-device benchmark (Week 6–8) · owner: EDGE
-- **D1** — INT8 quantization (PTQ first; QAT if accuracy drops too far). Export ONNX → TFLite.
-  **Done when:** INT8 model runs and matches FP accuracy within an acceptable margin (record the delta).
-- **D2** — Real-device benchmark on **BOTH** Android (TFLite) **and** Raspberry Pi: params, GFLOPs,
-  INT8 size, **p50/p95 latency, RAM, energy/inference**. Frame tiny-model efficiency *as a contribution*
-  (precedent: a 1.98M-param model with CPU-only FPS was accepted as a result in this venue family).
+- **D1** — INT8 quantization (PTQ first; QAT if accuracy drops too far), **per tier**. Export ONNX → TFLite.
+  **Done when:** each INT8 tier runs and matches FP accuracy within an acceptable margin (record the delta).
+- **D2** — Real-device benchmark, **each tier on its target device** (EMOv2-5M → NPU smart-cam/Pi;
+  iFormer-M → phone/TFLite; iFormer-L → laptop CPU): params, GFLOPs, INT8 size, **p50/p95 latency, RAM,
+  energy/inference** → an **accuracy↔params↔latency Pareto plot**. Frame the scaling sweep *as a
+  contribution* (precedent: a 1.98M-param CPU-only model was accepted in this venue family).
   **Deliverable:** an efficiency table + on-device latency plot.
 
 ### Phase E — Writing & submission (Week 8–10) · owner: WRITE + LEAD
@@ -290,11 +334,11 @@ model that has both, on a $35 device. Clean three-way ablation: text-teacher-onl
 | # | Experiment | Role | Headline? | Goes in paper as |
 |---|---|---|---|---|
 | E-ZS | Zero-shot accuracy on 4 held-out crops (vs no-descriptor=chance, vs SAGE cloud) | MODEL | **YES** | Main results table |
-| E-TB | Teacher bake-off: CLIP-B/16 vs OpenCLIP-L/14 vs SigLIP2 | MODEL | secondary contribution | Ablation table |
+| E-TB | Teacher bake-off: SCOLD vs BioCLIP 2 vs SigLIP2 vs CLIP-B/16 (domain vs biological vs generic) | MODEL | secondary contribution | Ablation table |
 | E-IW | In-the-wild accuracy on the 7 trained crops (+ harder-conditions slice) | MODEL | support | Per-crop table |
 | E-OOD | Abstain gate: risk-coverage curve on OOD set | MODEL | support | Risk-coverage figure |
 | E-ABL | Ablations: ±descriptor, ±DINOv2, naive-prompt vs grounded | MODEL | support | Ablation table |
-| E-EDGE | INT8 size + p50/p95 latency + RAM + energy on phone & Pi | EDGE | support (key for SI) | Efficiency table + plot |
+| E-EDGE | Pareto sweep: INT8 size + p50/p95 latency + RAM + energy for 5M/10M/20M on cam·Pi / phone / laptop | EDGE | support (key for SI) | Efficiency table + Pareto plot |
 | E-XAI | Grad-CAM panels (clean + corrupted) | WRITE | optional | Qualitative figure |
 
 ---
@@ -361,3 +405,19 @@ the README/issue.
   helps disease vision.
 - **Edge precedent:** a ~1.98M-param model benchmarked CPU-only was accepted in this venue family —
   precedent that "tiny model + real on-device latency" counts as a contribution.
+- **2025 agricultural / bio foundation models (teachers + positioning):**
+  - **SCOLD** (Soft-target COntrastive learning for Leaf Disease, arXiv 2505.07019, 2025) — domain
+    leaf-disease VLM; our primary teacher candidate AND the cloud baseline we beat on edge + cross-crop.
+  - **BioCLIP 2** (arXiv 2505.23883, 2025) — TreeOfLife-200M biological foundation model.
+  - **MobileCLIP2** (Apple, arXiv 2508.20691, 2025) — SOTA CLIP→edge via multi-modal reinforced training
+    (our distillation recipe).
+- **Distillation method anchors:** **CLIP-KD** (CVPR 2024) · **TinyCLIP** (ICCV 2023, affinity mimicking +
+  weight inheritance) · **ComKD-CLIP** (2024).
+- **Descriptor-classification lineage (MUST cite):** **DCLIP** "Visual Classification via Description from
+  LLMs" (Menon & Vondrick, ICLR 2023) · **CuPL** "Customized Prompts via Language models" (ICLR 2023).
+  Our novelty over them = *source-grounded* (auditable, anti-hallucination) + *distilled to edge* + *cross-crop ag*.
+- **Edge backbones (students):** **EMOv2** (5M frontier, arXiv 2412.06674) · **iFormer** (mobile hybrid,
+  arXiv 2501.15369).
+- **Agriculture eval / framing:** **AgroBench** (agriculture VLM benchmark, 2025) for an external number;
+  **Dong Chen et al., *Foundation models in smart agriculture: Basics, opportunities, and challenges*** (CEA
+  2024) — **guest editor's own survey; align the gap statement to its taxonomy.** SI deadline **30 Sep 2026**.

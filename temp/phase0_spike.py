@@ -3,10 +3,10 @@ Phase 0 — DE-RISK SPIKE  (self-contained Kaggle script)
 =======================================================
 ONE question this answers, before we build the full pipeline:
 
-    Does a ~1.3M-param EdgeNeXt student, distilled from a frozen CLIP teacher on a
-    handful of TRAIN crops, still do ZERO-SHOT diagnosis on crops it NEVER saw —
-    via text prototypes — meaningfully above chance, and how much of the teacher's
-    zero-shot does it RETAIN?
+    Does a ~5M-param edge student (EMOv2-class, our tier-1), distilled from a frozen
+    CLIP teacher on a handful of TRAIN crops, still do ZERO-SHOT diagnosis on crops it
+    NEVER saw — via text prototypes — meaningfully above chance, and how much of the
+    teacher's zero-shot does it RETAIN?
 
 This is the load-bearing claim of the whole paper. If the answer is "yes, clearly,"
 we proceed to the full Phase A-E build. If "weak," we apply the Gate-1 pivots
@@ -173,17 +173,30 @@ def run_experiment(rows):
         p.requires_grad = False
     tdim = teacher.text_projection.shape[1] if hasattr(teacher, "text_projection") else 512
 
-    # student: EdgeNeXt-XX-Small + projection head into teacher space
-    backbone = None
-    for n in ("edgenext_xx_small.in1k", "edgenext_xx_small"):
+    # student: a ~5M-tier edge backbone (matches the new tier-1) + projection head into
+    # teacher space. Try the paper's tier-1 (EMOv2-5M) first, then reliable ~5M timm
+    # fallbacks, then the old 1.3M floor — so this RUNS regardless of Kaggle's timm build.
+    STUDENT_CANDIDATES = [
+        "emov2_5m",                  # paper tier-1, if this timm build registers it
+        "edgenext_small.usi_in1k",   # ~5.6M, reliably in timm
+        "edgenext_small",
+        "tiny_vit_5m_224.in1k",      # ~5.4M
+        "efficientvit_b1.r224_in1k", # ~9M, hybrid
+        "edgenext_xx_small.in1k",    # ~1.3M last-resort (old floor)
+        "edgenext_xx_small",
+    ]
+    backbone = student_name = None
+    for n in STUDENT_CANDIDATES:
         try:
-            backbone = timm.create_model(n, pretrained=True, num_classes=0); break
+            backbone = timm.create_model(n, pretrained=True, num_classes=0)
+            student_name = n
+            break
         except Exception:
-            pass
-    assert backbone is not None, "upgrade timm (>=1.0.3) for edgenext_xx_small"
+            continue
+    assert backbone is not None, "no candidate student backbone loaded; upgrade timm (>=1.0.3)"
     student = nn.Sequential(backbone, nn.Linear(backbone.num_features, tdim)).to(dev)
     nparams = sum(p.numel() for p in student.parameters())
-    print(f"    student params: {nparams/1e6:.2f}M  -> teacher dim {tdim}")
+    print(f"    student: {student_name}  ({nparams/1e6:.2f}M params)  -> teacher dim {tdim}")
 
     class DS(Dataset):
         def __init__(self, rs): self.rs = rs
@@ -258,6 +271,7 @@ def run_experiment(rows):
         "n_train_imgs": len(train_rows),
         "n_heldout_imgs": len(held_rows),
         "n_heldout_classes": len(held_classes),
+        "student_backbone": student_name,
         "student_params_M": round(nparams / 1e6, 3),
         "chance_acc": chance,
         "teacher_zeroshot_acc": t_acc,
