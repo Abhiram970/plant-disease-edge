@@ -14,9 +14,10 @@ storage (Kaggle Datasets / HF). Nothing here is canonical yet.
 
 ## Phase 0: the one question
 
-> Does a ~1.3M-param EdgeNeXt student, distilled from a frozen CLIP teacher on a few
-> **train** crops, still do **zero-shot** diagnosis on crops it **never saw**, via text
-> prototypes — above chance, and how much of the teacher's zero-shot does it **retain**?
+> Does a ~5M-param edge student (EMOv2-class, our tier-1), distilled from a frozen CLIP
+> teacher on a few **train** crops, still do **zero-shot** diagnosis on crops it **never
+> saw**, via text prototypes — above chance, and how much of the teacher's zero-shot does
+> it **retain**?
 
 This is the load-bearing claim of the paper. We answer it on a tiny budget BEFORE the
 full Phase A–E build.
