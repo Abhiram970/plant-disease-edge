@@ -27,8 +27,9 @@ HOW TO RUN ON KAGGLE
    and the per-class caps.
 4. Read the RESULT BLOCK printed at the end + the saved /kaggle/working/phase0_result.json.
 
-Internet must be ON: we STREAM SAGE from HuggingFace (never download the 114GB) and
-pull CLIP / EdgeNeXt weights.
+Internet must be ON: we download a few SAGE parquet SHARDS from HuggingFace (never the
+full ~133GB) and filter them locally with pyarrow -- row-by-row streaming is ~2.5s/row
+(139h ETA) and unusable. We also pull CLIP / timm weights.
 """
 from __future__ import annotations
 import io, json, time, hashlib, random
@@ -45,6 +46,14 @@ ROW_LIMIT            = 200_000   # max SAGE rows to stream (raise if held-out cr
 CAP_TRAIN_PER_CLASS  = 250       # distill images per (train crop, disease)
 CAP_HELD_PER_CLASS   = 120       # eval images per (held-out crop, disease)
 MIN_CLASS_IMAGES     = 25        # ignore ultra-rare classes in the spike
+
+# Data access: row-by-row HF streaming is ~2.5s/row (139h ETA) -> UNUSABLE. Instead we
+# download a few auto-converted parquet SHARDS locally and filter with pyarrow. SAGE has
+# 13 shards (0000..0012); 0000 is smallest (~264MB). We pull shards in this order and
+# auto-stop as soon as every crop is covered, so we rarely fetch more than 1-2.
+SHARD_ORDER          = [0, 1, 2, 3, 4, 5]   # smallest-first; auto-stops early
+MAX_SHARDS           = 6                     # hard cap on shards to download
+MIN_KEPT_TO_STOP     = 1500                  # stop once we have this many imgs + all crops present
 
 EPOCHS               = 12
 BATCH                = 64
@@ -87,7 +96,8 @@ def safe(s):
 # STAGE 1 — stream + filter SAGE (no 114GB download)
 # --------------------------------------------------------------------------- #
 def build_subset():
-    from datasets import load_dataset
+    import pyarrow.parquet as pq
+    from huggingface_hub import hf_hub_download
     from PIL import Image
     from tqdm.auto import tqdm
 
@@ -97,56 +107,84 @@ def build_subset():
     rows = []
     stats = Counter()
 
-    print(f"[1] streaming {ROW_LIMIT:,} rows max from tirtho149/SAGE (train {SPIKE_TRAIN_CROPS}, "
-          f"held-out {SPIKE_HELDOUT_CROPS}) ...")
-    ds = load_dataset("tirtho149/SAGE", split="train", streaming=True)
-    for i, row in enumerate(tqdm(ds, total=ROW_LIMIT, desc="scan")):
-        if i >= ROW_LIMIT:
-            break
-        crop = canonical_crop(row.get("crop"))
-        if crop is None:
-            continue
-        held = crop in SPIKE_HELDOUT_CROPS
-        cap = CAP_HELD_PER_CLASS if held else CAP_TRAIN_PER_CLASS
-        disease = str(row.get("disease", "Unknown"))
-        key = (crop, disease)
-        if kept[key] >= cap:
-            continue
+    print(f"[1] SAGE via parquet shards (train {SPIKE_TRAIN_CROPS}, held-out {SPIKE_HELDOUT_CROPS}) ...")
+    for si in SHARD_ORDER[:MAX_SHARDS]:
+        fn = f"default/train/{si:04d}.parquet"
+        print(f"    downloading shard {si:04d}  ({fn}) ...")
         try:
-            img = row.get("image")
-            if isinstance(img, dict) and img.get("bytes"):
-                img = Image.open(io.BytesIO(img["bytes"]))
-            img = img.convert("RGB")
-            buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
-            jpg = buf.getvalue()
+            path = hf_hub_download(repo_id="tirtho149/SAGE", repo_type="dataset",
+                                   filename=fn, revision="refs/convert/parquet")
+        except Exception as e:
+            print(f"    !! could not fetch shard {si:04d}: {e}")
+            continue
+        pf = pq.ParquetFile(path)
+        try:
+            names = set(pf.schema_arrow.names)
+            cols = [c for c in ("image", "crop", "disease") if c in names]
         except Exception:
-            stats["unreadable"] += 1
-            continue
-        h = hashlib.sha1(jpg).hexdigest()
-        if h in hashes:
-            stats["dup"] += 1
-            continue
-        hashes.add(h)
-        cls = DATA_DIR / f"{safe(crop)}___{safe(disease)}"
-        cls.mkdir(parents=True, exist_ok=True)
-        fn = f"{h[:16]}.jpg"
-        (cls / fn).write_bytes(jpg)
-        kept[key] += 1
-        stats["kept"] += 1
-        rows.append({"path": str(cls / fn), "crop": crop, "disease": disease,
-                     "role": "heldout" if held else "train"})
+            cols = None  # read all columns
+        nrows = pf.metadata.num_rows
+        print(f"    reading {nrows:,} rows (cols={cols}) ...")
+        for batch in tqdm(pf.iter_batches(batch_size=512, columns=cols),
+                          total=nrows // 512 + 1, desc=f"shard{si:04d}"):
+            d = batch.to_pydict()
+            imgs = d.get("image", [])
+            crops = d.get("crop", [])
+            diss = d.get("disease", [None] * len(crops))
+            for img_obj, craw, draw in zip(imgs, crops, diss):
+                crop = canonical_crop(craw)
+                if crop is None:
+                    continue
+                held = crop in SPIKE_HELDOUT_CROPS
+                cap = CAP_HELD_PER_CLASS if held else CAP_TRAIN_PER_CLASS
+                disease = str(draw if draw is not None else "Unknown")
+                key = (crop, disease)
+                if kept[key] >= cap:
+                    continue
+                try:
+                    raw = img_obj["bytes"] if isinstance(img_obj, dict) else img_obj
+                    img = Image.open(io.BytesIO(raw)).convert("RGB")
+                    buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
+                    jpg = buf.getvalue()
+                except Exception:
+                    stats["unreadable"] += 1
+                    continue
+                h = hashlib.sha1(jpg).hexdigest()
+                if h in hashes:
+                    stats["dup"] += 1
+                    continue
+                hashes.add(h)
+                cls = DATA_DIR / f"{safe(crop)}___{safe(disease)}"
+                cls.mkdir(parents=True, exist_ok=True)
+                fp = cls / f"{h[:16]}.jpg"
+                fp.write_bytes(jpg)
+                kept[key] += 1
+                stats["kept"] += 1
+                rows.append({"path": str(fp), "crop": crop, "disease": disease,
+                             "role": "heldout" if held else "train"})
+        # free disk: drop the parquet we just consumed (best effort)
+        try:
+            Path(path).unlink()
+        except Exception:
+            pass
+        got = Counter(r["crop"] for r in rows)
+        print(f"    after shard {si:04d}: kept={stats['kept']:,}  "
+              + ", ".join(f"{c}={got.get(c, 0)}" for c in sorted(WANT)))
+        if all(got.get(c, 0) > 0 for c in WANT) and stats["kept"] >= MIN_KEPT_TO_STOP:
+            print("    all crops covered + enough images -> stop pulling shards.")
+            break
 
     # drop ultra-rare classes
     cc = Counter((r["crop"], r["disease"]) for r in rows)
     rows = [r for r in rows if cc[(r["crop"], r["disease"])] >= MIN_CLASS_IMAGES]
-    print(f"    kept={stats['kept']:,}  dup={stats['dup']:,}  unreadable={stats['unreadable']:,}")
+    print(f"    TOTAL kept={stats['kept']:,}  dup={stats['dup']:,}  unreadable={stats['unreadable']:,}")
     by_crop = Counter(r["crop"] for r in rows)
     for c in sorted(WANT):
         tag = "HELDOUT" if c in SPIKE_HELDOUT_CROPS else "train"
         print(f"      {c:<9} [{tag:<7}] {by_crop.get(c,0):,}")
     missing = [c for c in WANT if by_crop.get(c, 0) == 0]
     if missing:
-        print(f"    WARNING: 0 images for {missing} -> raise ROW_LIMIT or check CROP_ALIASES.")
+        print(f"    WARNING: 0 images for {missing} -> raise MAX_SHARDS or extend SHARD_ORDER.")
     return rows
 
 
