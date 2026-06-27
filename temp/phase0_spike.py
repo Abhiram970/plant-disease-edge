@@ -14,8 +14,9 @@ we proceed to the full Phase A-E build. If "weak," we apply the Gate-1 pivots
 we pivot the headline (few-shot / retention story) BEFORE sinking 8 more weeks.
 
 It is intentionally SMALL (a few thousand images, a single Kaggle GPU session, <2h).
-It is a spike, not the final experiment — naive class-name text prototypes are fine
-here; source-grounded descriptors come in Phase A/C.
+It is a spike, not the final experiment — it uses LIGHT keyword-based symptom descriptors
+as a cheap stand-in (bare class names leave even the teacher at ~chance); the full
+source-grounded descriptors come in Phase A/C.
 
 -------------------------------------------------------------------------------
 HOW TO RUN ON KAGGLE
@@ -32,7 +33,7 @@ full ~133GB) and filter them locally with pyarrow -- row-by-row streaming is ~2.
 (139h ETA) and unusable. We also pull CLIP / timm weights.
 """
 from __future__ import annotations
-import io, json, time, hashlib, random
+import io, json, time, hashlib, random, sys
 from collections import defaultdict, Counter
 from pathlib import Path
 
@@ -40,20 +41,21 @@ from pathlib import Path
 # CONFIG  (edit these for the spike; everything else flows from here)
 # --------------------------------------------------------------------------- #
 SPIKE_TRAIN_CROPS   = ["Tomato", "Apple", "Corn", "Grape", "Potato"]  # distilled on
-SPIKE_HELDOUT_CROPS = ["Coffee", "Peach"]                             # NEVER trained -> zero-shot test
+SPIKE_HELDOUT_CROPS = ["Coffee", "Orange", "Peach"]  # NEVER trained -> zero-shot test (need >=2 to survive)
+MIN_HELDOUT_CROPS   = 2                               # HARD requirement: a valid spike tests >=2 unseen crops
 
 ROW_LIMIT            = 200_000   # max SAGE rows to stream (raise if held-out crops come up short)
 CAP_TRAIN_PER_CLASS  = 250       # distill images per (train crop, disease)
 CAP_HELD_PER_CLASS   = 120       # eval images per (held-out crop, disease)
-MIN_CLASS_IMAGES     = 25        # ignore ultra-rare classes in the spike
+MIN_CLASS_IMAGES     = 15        # ignore ultra-rare classes (lowered so a 2nd held-out crop survives)
 
 # Data access: row-by-row HF streaming is ~2.5s/row (139h ETA) -> UNUSABLE. Instead we
 # download a few auto-converted parquet SHARDS locally and filter with pyarrow. SAGE has
 # 13 shards (0000..0012); 0000 is smallest (~264MB). We pull shards in this order and
 # auto-stop as soon as every crop is covered, so we rarely fetch more than 1-2.
-SHARD_ORDER          = [0, 1, 2, 3, 4, 5]   # smallest-first; auto-stops early
-MAX_SHARDS           = 6                     # hard cap on shards to download
-MIN_KEPT_TO_STOP     = 1500                  # stop once we have this many imgs + all crops present
+SHARD_ORDER          = [0, 1, 2, 3, 4, 5, 6, 7]  # smallest-first; auto-stops once >=2 held crops covered
+MAX_SHARDS           = 8                     # hard cap on shards to download
+MIN_KEPT_TO_STOP     = 1500                  # stop once we have this many imgs + >=2 held crops present
 
 EPOCHS               = 12
 BATCH                = 64
@@ -168,10 +170,13 @@ def build_subset():
         except Exception:
             pass
         got = Counter(r["crop"] for r in rows)
+        held_ok = [c for c in SPIKE_HELDOUT_CROPS if got.get(c, 0) >= MIN_CLASS_IMAGES]
+        train_ok = all(got.get(c, 0) > 0 for c in SPIKE_TRAIN_CROPS)
         print(f"    after shard {si:04d}: kept={stats['kept']:,}  "
-              + ", ".join(f"{c}={got.get(c, 0)}" for c in sorted(WANT)))
-        if all(got.get(c, 0) > 0 for c in WANT) and stats["kept"] >= MIN_KEPT_TO_STOP:
-            print("    all crops covered + enough images -> stop pulling shards.")
+              + ", ".join(f"{c}={got.get(c, 0)}" for c in sorted(WANT))
+              + f"  | held_ok={held_ok}")
+        if train_ok and len(held_ok) >= MIN_HELDOUT_CROPS and stats["kept"] >= MIN_KEPT_TO_STOP:
+            print(f"    >= {MIN_HELDOUT_CROPS} held-out crops covered + enough images -> stop.")
             break
 
     # drop ultra-rare classes
@@ -182,9 +187,15 @@ def build_subset():
     for c in sorted(WANT):
         tag = "HELDOUT" if c in SPIKE_HELDOUT_CROPS else "train"
         print(f"      {c:<9} [{tag:<7}] {by_crop.get(c,0):,}")
-    missing = [c for c in WANT if by_crop.get(c, 0) == 0]
-    if missing:
-        print(f"    WARNING: 0 images for {missing} -> raise MAX_SHARDS or extend SHARD_ORDER.")
+    # GUARD (defense-in-depth): a valid spike MUST test >=2 unseen crops. Never silently
+    # evaluate a single crop again (that is what voided the first run).
+    held_present = [c for c in SPIKE_HELDOUT_CROPS if by_crop.get(c, 0) > 0]
+    if len(held_present) < MIN_HELDOUT_CROPS:
+        sys.exit(
+            f"\nINVALID SPIKE: need >= {MIN_HELDOUT_CROPS} held-out crops with surviving classes; "
+            f"got {held_present}.\n  per-crop found: {dict(by_crop)}\n"
+            f"  FIX: raise MAX_SHARDS / extend SHARD_ORDER to later shards, lower MIN_CLASS_IMAGES, "
+            f"or swap held-out crops to denser ones.")
     return rows
 
 
@@ -265,17 +276,38 @@ def run_experiment(rows):
             run += loss.item()
         print(f"    epoch {ep+1:2d}/{EPOCHS}  distill_loss={run/len(tdl):.4f}  ({time.time()-t0:.0f}s)")
 
-    # ---- text prototypes for HELD-OUT classes (naive class-name ensemble) ----
-    held_classes = sorted({f'{r["crop"]}|{r["disease"]}' for r in held_rows})
-    templates = ["a photo of {} leaf", "a leaf showing {}", "{} symptoms on a leaf",
-                 "a close-up photo of {}"]
-    def class_phrase(lbl):
+    # ---- text prototypes for HELD-OUT classes (LIGHT DESCRIPTOR proxy, not bare names) ----
+    # Root cause of the prior NO-GO: bare class-name prompts left the TEACHER at ~chance
+    # (SAGE shows symptom text adds +14-16pp). So we attach a short symptom sentence via
+    # keyword match -> a cheap stand-in for the Phase-A source-grounded descriptors.
+    SYMPTOM_HINTS = {
+        "rust": "orange to brown powdery pustules on the underside of the leaf",
+        "blight": "rapidly spreading brown necrotic lesions and dead leaf tissue",
+        "spot": "small dark circular spots with concentric rings on the leaf",
+        "mildew": "a white or grey powdery fungal coating on the leaf surface",
+        "canker": "sunken corky lesions with yellow halos on the leaf",
+        "greening": "blotchy asymmetric yellow mottling of the leaf",
+        "huanglongbing": "blotchy asymmetric yellow mottling of the leaf",
+        "curl": "puckered, thickened, distorted and reddened curled leaves",
+        "brown rot": "brown spreading rot with tan fungal spore masses",
+        "scab": "olive-green to black velvety scabby lesions on the leaf",
+        "mosaic": "a mottled light-and-dark green mosaic pattern on the leaf",
+        "cercospora": "brown spots with grey centers and yellow halos on the leaf",
+        "deficiency": "interveinal yellowing of the leaf from nutrient deficiency",
+        "healthy": "a healthy green leaf with no disease symptoms",
+    }
+    def descriptor_text(lbl):
         crop, dis = lbl.split("|")
-        return f"{dis} on {crop}".replace("_", " ")
+        k = dis.lower()
+        hint = next((v for kw, v in SYMPTOM_HINTS.items() if kw in k), "")
+        base = f"{dis} on {crop} leaf".replace("_", " ")
+        return f"{base}: {hint}" if hint else base
+    held_classes = sorted({f'{r["crop"]}|{r["disease"]}' for r in held_rows})
+    templates = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
     protos = []
     with torch.no_grad():
         for lbl in held_classes:
-            phrase = class_phrase(lbl)
+            phrase = descriptor_text(lbl)
             toks = tok([t.format(phrase) for t in templates]).to(dev)
             emb = Fn.normalize(teacher.encode_text(toks), dim=-1).mean(0)
             protos.append(Fn.normalize(emb, dim=-1))
@@ -309,6 +341,7 @@ def run_experiment(rows):
         "n_train_imgs": len(train_rows),
         "n_heldout_imgs": len(held_rows),
         "n_heldout_classes": len(held_classes),
+        "n_heldout_crops": len({c.split("|")[0] for c in held_classes}),
         "student_backbone": student_name,
         "student_params_M": round(nparams / 1e6, 3),
         "chance_acc": chance,
@@ -326,17 +359,22 @@ def run_experiment(rows):
 
 
 def verdict(r):
-    chance, s, t = r["chance_acc"], r["student_zeroshot_acc"], r["teacher_zeroshot_acc"]
+    chance = r["chance_acc"]; s = r["student_zeroshot_acc"]; t = r["teacher_zeroshot_acc"]
     ret = r["retention_student_over_teacher"]
-    above_chance = s >= 3 * chance
-    good_retention = ret >= 0.70
-    if above_chance and good_retention:
-        return "GO", "student preserves teacher zero-shot at edge scale -> proceed to full Phase A-E."
-    if above_chance and ret >= 0.45:
-        return "WEAK", ("clearly beats chance but loses too much vs teacher -> apply Gate-1 pivots "
-                        "(bigger/more-diverse distill set, 5M student, SigLIP2) and re-spike.")
-    return "NO-GO", ("mechanism does not survive distillation here -> pivot the headline "
-                     "(few-shot cross-crop, or retention/efficiency story) before the full build.")
+    teacher_signal = (t - chance) >= 0.08     # is there ANY zero-shot in the TEACHER to retain?
+    student_signal = (s - chance) >= 0.08
+    if not teacher_signal:
+        return "INVALID", ("the TEACHER itself is ~chance even with descriptor text -> there is no "
+                           "zero-shot signal to distill. This is NOT a method NO-GO. Use a stronger/"
+                           "domain teacher (SigLIP2 / BioCLIP2 / SCOLD) or richer source-grounded "
+                           "descriptors, then re-spike.")
+    if student_signal and ret >= 0.70:
+        return "GO", "student preserves the teacher's descriptor zero-shot at 5M -> proceed to Phase A-E."
+    if student_signal and ret >= 0.45:
+        return "WEAK", ("beats chance but loses too much vs a teacher that HAS signal -> Gate-1 pivots "
+                        "(stronger teacher, more/better descriptors) and re-spike.")
+    return "NO-GO", ("student collapses despite a teacher with real signal -> the distillation recipe "
+                     "needs work (loss, curriculum, longer training) before the full build.")
 
 
 def main():
@@ -350,7 +388,7 @@ def main():
     print("PHASE 0 SPIKE — RESULT")
     print("=" * 64)
     print(f"  held-out crops      : {res['spike_heldout_crops']}  "
-          f"({res['n_heldout_classes']} classes, {res['n_heldout_imgs']:,} imgs)")
+          f"({res['n_heldout_crops']} crops, {res['n_heldout_classes']} classes, {res['n_heldout_imgs']:,} imgs)")
     print(f"  student params      : {res['student_params_M']}M")
     print(f"  chance accuracy     : {res['chance_acc']:.1%}")
     print(f"  TEACHER zero-shot   : {res['teacher_zeroshot_acc']:.1%}   (upper bound)")
