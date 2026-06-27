@@ -43,6 +43,8 @@ from pathlib import Path
 SPIKE_TRAIN_CROPS   = ["Tomato", "Apple", "Corn", "Grape", "Potato"]  # distilled on
 SPIKE_HELDOUT_CROPS = ["Coffee", "Orange", "Peach"]  # NEVER trained -> zero-shot test (need >=2 to survive)
 MIN_HELDOUT_CROPS   = 2                               # HARD requirement: a valid spike tests >=2 unseen crops
+MIN_TRAIN_CROPS     = 4                               # need >=4 train crops for a fair cross-crop test
+#                                                       (SAGE shards are crop-clustered -> pull until covered)
 
 ROW_LIMIT            = 200_000   # max SAGE rows to stream (raise if held-out crops come up short)
 CAP_TRAIN_PER_CLASS  = 250       # distill images per (train crop, disease)
@@ -53,9 +55,9 @@ MIN_CLASS_IMAGES     = 15        # ignore ultra-rare classes (lowered so a 2nd h
 # download a few auto-converted parquet SHARDS locally and filter with pyarrow. SAGE has
 # 13 shards (0000..0012); 0000 is smallest (~264MB). We pull shards in this order and
 # auto-stop as soon as every crop is covered, so we rarely fetch more than 1-2.
-SHARD_ORDER          = [0, 1, 2, 3, 4, 5, 6, 7]  # smallest-first; auto-stops once >=2 held crops covered
-MAX_SHARDS           = 8                     # hard cap on shards to download
-MIN_KEPT_TO_STOP     = 1500                  # stop once we have this many imgs + >=2 held crops present
+SHARD_ORDER          = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # all 13; incremental, auto-stops
+MAX_SHARDS           = 13                    # hard cap on shards to download
+MIN_KEPT_TO_STOP     = 1500                  # stop once this many imgs + >=4 train & >=2 held crops present
 
 EPOCHS               = 12
 BATCH                = 64
@@ -63,7 +65,13 @@ LR                   = 1e-3
 MIMIC_W              = 1.0       # weight: student image-emb mimics teacher image-emb (cosine)
 ANCHOR_W             = 1.0       # weight: student image-emb -> correct TRAIN text prototype (zero-shot driver)
 TAU                  = 0.07      # temperature for the text-anchoring contrastive loss
-TEACHER              = ("ViT-B-16", "openai")   # frozen CLIP teacher (image+text aligned)
+# Frozen teacher: try SigLIP2 (stronger) first, fall back to SigLIP, then CLIP (always available).
+TEACHER_CANDIDATES = [
+    ("ViT-B-16-SigLIP2", "webli"),
+    ("ViT-B-16-SigLIP2-256", "webli"),
+    ("ViT-B-16-SigLIP", "webli"),
+    ("ViT-B-16", "openai"),
+]
 SEED                 = 42
 
 OUT_DIR  = Path("/kaggle/working") if Path("/kaggle/working").exists() else Path("./phase0_out")
@@ -115,6 +123,20 @@ def _load_existing():
     return rows
 
 
+def _load_done():
+    p = DATA_DIR / ".shards_done.json"
+    if p.exists():
+        try:
+            return set(json.loads(p.read_text()))
+        except Exception:
+            return set()
+    return set()
+
+
+def _save_done(done):
+    (DATA_DIR / ".shards_done.json").write_text(json.dumps(sorted(done)))
+
+
 def _finalize(rows):
     """Drop ultra-rare classes, print the per-crop summary, and HARD-GUARD on >=2 held crops."""
     cc = Counter((r["crop"], r["disease"]) for r in rows)
@@ -140,28 +162,35 @@ def build_subset():
     from PIL import Image
     from tqdm.auto import tqdm
 
-    # RESUME: reuse images already on disk from a previous run (a late crash, e.g. a missing
-    # dependency in run_experiment, must not force re-downloading shards).
-    existing = _load_existing()
-    if existing:
-        by = Counter(r["crop"] for r in existing)
-        held_ok = [c for c in SPIKE_HELDOUT_CROPS if by.get(c, 0) >= MIN_CLASS_IMAGES]
-        if all(by.get(c, 0) > 0 for c in SPIKE_TRAIN_CROPS) and \
-           len(held_ok) >= MIN_HELDOUT_CROPS and len(existing) >= MIN_KEPT_TO_STOP:
-            print(f"[1] reusing {len(existing):,} imgs already on disk ({DATA_DIR}) -> skip download.")
-            return _finalize(existing)
-        print(f"[1] {len(existing):,} imgs on disk but insufficient (held_ok={held_ok}) -> pulling more shards.")
-
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    kept = defaultdict(int)
-    hashes = set()
-    rows = []
+    # RESUME + INCREMENTAL: seed state from disk and only download shards not done yet, so
+    # adding more train crops never re-pulls shards we already processed.
+    rows = _load_existing()
+    done = _load_done()
+    kept = Counter((r["crop"], r["disease"]) for r in rows)      # per-class counts so far
+    hashes = {Path(r["path"]).stem for r in rows}                # 16-char stems for dedup
     stats = Counter()
+
+    def covered():
+        by = Counter(r["crop"] for r in rows)
+        ntrain = sum(1 for c in SPIKE_TRAIN_CROPS if by.get(c, 0) >= MIN_CLASS_IMAGES)
+        nheld = sum(1 for c in SPIKE_HELDOUT_CROPS if by.get(c, 0) >= MIN_CLASS_IMAGES)
+        return ntrain >= MIN_TRAIN_CROPS and nheld >= MIN_HELDOUT_CROPS and len(rows) >= MIN_KEPT_TO_STOP
+
+    if rows:
+        by = Counter(r["crop"] for r in rows)
+        print(f"[1] resume: {len(rows):,} imgs on disk, shards done={sorted(done)}  "
+              + ", ".join(f"{c}={by.get(c,0)}" for c in sorted(WANT)))
+    if covered():
+        print(f"[1] on-disk data already covers >= {MIN_TRAIN_CROPS} train + {MIN_HELDOUT_CROPS} held -> skip download.")
+        return _finalize(rows)
 
     print(f"[1] SAGE via parquet shards (train {SPIKE_TRAIN_CROPS}, held-out {SPIKE_HELDOUT_CROPS}) ...")
     for si in SHARD_ORDER[:MAX_SHARDS]:
+        if si in done:
+            continue
         fn = f"default/train/{si:04d}.parquet"
-        print(f"    downloading shard {si:04d}  ({fn}) ...")
+        print(f"    downloading shard {si:04d} ...")
         try:
             path = hf_hub_download(repo_id="tirtho149/SAGE", repo_type="dataset",
                                    filename=fn, revision="refs/convert/parquet")
@@ -175,7 +204,7 @@ def build_subset():
         except Exception:
             cols = None  # read all columns
         nrows = pf.metadata.num_rows
-        print(f"    reading {nrows:,} rows (cols={cols}) ...")
+        print(f"    reading {nrows:,} rows ...")
         for batch in tqdm(pf.iter_batches(batch_size=512, columns=cols),
                           total=nrows // 512 + 1, desc=f"shard{si:04d}"):
             d = batch.to_pydict()
@@ -200,14 +229,14 @@ def build_subset():
                 except Exception:
                     stats["unreadable"] += 1
                     continue
-                h = hashlib.sha1(jpg).hexdigest()
-                if h in hashes:
+                h16 = hashlib.sha1(jpg).hexdigest()[:16]
+                if h16 in hashes:
                     stats["dup"] += 1
                     continue
-                hashes.add(h)
+                hashes.add(h16)
                 cls = DATA_DIR / f"{safe(crop)}___{safe(disease)}"
                 cls.mkdir(parents=True, exist_ok=True)
-                fp = cls / f"{h[:16]}.jpg"
+                fp = cls / f"{h16}.jpg"
                 fp.write_bytes(jpg)
                 kept[key] += 1
                 stats["kept"] += 1
@@ -218,17 +247,15 @@ def build_subset():
             Path(path).unlink()
         except Exception:
             pass
-        got = Counter(r["crop"] for r in rows)
-        held_ok = [c for c in SPIKE_HELDOUT_CROPS if got.get(c, 0) >= MIN_CLASS_IMAGES]
-        train_ok = all(got.get(c, 0) > 0 for c in SPIKE_TRAIN_CROPS)
-        print(f"    after shard {si:04d}: kept={stats['kept']:,}  "
-              + ", ".join(f"{c}={got.get(c, 0)}" for c in sorted(WANT))
-              + f"  | held_ok={held_ok}")
-        if train_ok and len(held_ok) >= MIN_HELDOUT_CROPS and stats["kept"] >= MIN_KEPT_TO_STOP:
-            print(f"    >= {MIN_HELDOUT_CROPS} held-out crops covered + enough images -> stop.")
+        done.add(si); _save_done(done)
+        by = Counter(r["crop"] for r in rows)
+        print(f"    after shard {si:04d}: total={len(rows):,}  "
+              + ", ".join(f"{c}={by.get(c,0)}" for c in sorted(WANT)))
+        if covered():
+            print(f"    >= {MIN_TRAIN_CROPS} train + {MIN_HELDOUT_CROPS} held crops covered -> stop.")
             break
 
-    print(f"    TOTAL kept={stats['kept']:,}  dup={stats['dup']:,}  unreadable={stats['unreadable']:,}")
+    print(f"    new this run: kept={stats['kept']:,}  dup={stats['dup']:,}  unreadable={stats['unreadable']:,}")
     return _finalize(rows)
 
 
@@ -247,13 +274,22 @@ def run_experiment(rows):
           + (f" ({torch.cuda.get_device_name(0)})" if dev == "cuda" else " (CPU)"))
 
     # frozen CLIP teacher
-    name, pre = TEACHER
-    teacher, _, preprocess = open_clip.create_model_and_transforms(name, pretrained=pre)
-    tok = open_clip.get_tokenizer(name)
+    teacher = preprocess = tok = teacher_name = None
+    for nm, pre in TEACHER_CANDIDATES:
+        try:
+            teacher, _, preprocess = open_clip.create_model_and_transforms(nm, pretrained=pre)
+            tok = open_clip.get_tokenizer(nm)
+            teacher_name = f"{nm}/{pre}"
+            break
+        except Exception as e:
+            print(f"    teacher {nm}/{pre} unavailable ({type(e).__name__}) -> next")
+    assert teacher is not None, "no teacher loaded; check open_clip version / pretrained tags"
     teacher.eval().to(dev)
     for p in teacher.parameters():
         p.requires_grad = False
-    tdim = teacher.text_projection.shape[1] if hasattr(teacher, "text_projection") else 512
+    with torch.no_grad():
+        tdim = teacher.encode_text(tok(["a leaf"]).to(dev)).shape[-1]
+    print(f"    teacher: {teacher_name}  (embed dim {tdim})")
 
     # student: a ~5M-tier edge backbone (matches the new tier-1) + projection head into
     # teacher space. Try the paper's tier-1 (EMOv2-5M) first, then reliable ~5M timm
@@ -395,7 +431,7 @@ def run_experiment(rows):
         "retention_student_over_teacher": retention,
         "teacher_by_crop": t_by,
         "student_by_crop": s_by,
-        "config": {"epochs": EPOCHS, "batch": BATCH, "lr": LR, "teacher": TEACHER,
+        "config": {"epochs": EPOCHS, "batch": BATCH, "lr": LR, "teacher": teacher_name,
                    "mimic_w": MIMIC_W, "anchor_w": ANCHOR_W, "tau": TAU,
                    "cap_train": CAP_TRAIN_PER_CLASS, "cap_held": CAP_HELD_PER_CLASS,
                    "row_limit": ROW_LIMIT},
