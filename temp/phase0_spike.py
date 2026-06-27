@@ -60,6 +60,9 @@ MIN_KEPT_TO_STOP     = 1500                  # stop once we have this many imgs 
 EPOCHS               = 12
 BATCH                = 64
 LR                   = 1e-3
+MIMIC_W              = 1.0       # weight: student image-emb mimics teacher image-emb (cosine)
+ANCHOR_W             = 1.0       # weight: student image-emb -> correct TRAIN text prototype (zero-shot driver)
+TAU                  = 0.07      # temperature for the text-anchoring contrastive loss
 TEACHER              = ("ViT-B-16", "openai")   # frozen CLIP teacher (image+text aligned)
 SEED                 = 42
 
@@ -291,25 +294,7 @@ def run_experiment(rows):
     tdl = DataLoader(DS(train_rows), batch_size=BATCH, shuffle=True, num_workers=2)
     hdl = DataLoader(DS(held_rows),  batch_size=BATCH, num_workers=2)
 
-    # ---- distill: student image emb -> teacher image emb (cosine) ----
-    opt = torch.optim.AdamW(student.parameters(), lr=LR)
-    print(f"[3] distilling {len(train_rows):,} imgs x {EPOCHS} epochs ...")
-    for ep in range(EPOCHS):
-        student.train(); run = 0.0; t0 = time.time()
-        for imgs, _ in tdl:
-            imgs = imgs.to(dev)
-            with torch.no_grad():
-                t_emb = Fn.normalize(teacher.encode_image(imgs), dim=-1)
-            s_emb = Fn.normalize(student(imgs), dim=-1)
-            loss = (1 - (s_emb * t_emb).sum(-1)).mean()
-            opt.zero_grad(); loss.backward(); opt.step()
-            run += loss.item()
-        print(f"    epoch {ep+1:2d}/{EPOCHS}  distill_loss={run/len(tdl):.4f}  ({time.time()-t0:.0f}s)")
-
-    # ---- text prototypes for HELD-OUT classes (LIGHT DESCRIPTOR proxy, not bare names) ----
-    # Root cause of the prior NO-GO: bare class-name prompts left the TEACHER at ~chance
-    # (SAGE shows symptom text adds +14-16pp). So we attach a short symptom sentence via
-    # keyword match -> a cheap stand-in for the Phase-A source-grounded descriptors.
+    # ---- descriptor text prototypes (LIGHT keyword proxy for Phase-A source-grounded ones) ----
     SYMPTOM_HINTS = {
         "rust": "orange to brown powdery pustules on the underside of the leaf",
         "blight": "rapidly spreading brown necrotic lesions and dead leaf tissue",
@@ -326,22 +311,52 @@ def run_experiment(rows):
         "deficiency": "interveinal yellowing of the leaf from nutrient deficiency",
         "healthy": "a healthy green leaf with no disease symptoms",
     }
+    templates = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
     def descriptor_text(lbl):
         crop, dis = lbl.split("|")
         k = dis.lower()
         hint = next((v for kw, v in SYMPTOM_HINTS.items() if kw in k), "")
         base = f"{dis} on {crop} leaf".replace("_", " ")
         return f"{base}: {hint}" if hint else base
+    def build_protos(classes):
+        out = []
+        with torch.no_grad():
+            for lbl in classes:
+                toks = tok([t.format(descriptor_text(lbl)) for t in templates]).to(dev)
+                emb = Fn.normalize(teacher.encode_text(toks), dim=-1).mean(0)
+                out.append(Fn.normalize(emb, dim=-1))
+        return torch.stack(out).to(dev)
+
+    # TRAIN-class text prototypes -> ANCHOR the student in the text space. This is the half
+    # the previous spike was missing: plain image-mimicry on 5 crops does NOT transfer zero-shot.
+    train_classes = sorted({f'{r["crop"]}|{r["disease"]}' for r in train_rows})
+    train_idx = {c: i for i, c in enumerate(train_classes)}
+    train_protos = build_protos(train_classes)      # [Ctrain, dim]
+
+    # ---- distill: image-mimic (cosine to teacher) + text-anchor (contrastive to train protos) ----
+    opt = torch.optim.AdamW(student.parameters(), lr=LR)
+    print(f"[3] distilling {len(train_rows):,} imgs x {EPOCHS} epochs "
+          f"(mimic_w={MIMIC_W}, anchor_w={ANCHOR_W}, tau={TAU}) ...")
+    for ep in range(EPOCHS):
+        student.train(); run = run_m = run_a = 0.0; t0 = time.time()
+        for imgs, labels in tdl:
+            imgs = imgs.to(dev)
+            with torch.no_grad():
+                t_emb = Fn.normalize(teacher.encode_image(imgs), dim=-1)
+            s_emb = Fn.normalize(student(imgs), dim=-1)
+            mimic = (1 - (s_emb * t_emb).sum(-1)).mean()
+            tgt = torch.tensor([train_idx[l] for l in labels], device=dev)
+            anchor = Fn.cross_entropy((s_emb @ train_protos.T) / TAU, tgt)
+            loss = MIMIC_W * mimic + ANCHOR_W * anchor
+            opt.zero_grad(); loss.backward(); opt.step()
+            run += loss.item(); run_m += mimic.item(); run_a += anchor.item()
+        n = len(tdl)
+        print(f"    epoch {ep+1:2d}/{EPOCHS}  loss={run/n:.4f}  mimic={run_m/n:.4f}  "
+              f"anchor={run_a/n:.4f}  ({time.time()-t0:.0f}s)")
+
+    # ---- text prototypes for HELD-OUT classes (zero-shot eval targets) ----
     held_classes = sorted({f'{r["crop"]}|{r["disease"]}' for r in held_rows})
-    templates = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
-    protos = []
-    with torch.no_grad():
-        for lbl in held_classes:
-            phrase = descriptor_text(lbl)
-            toks = tok([t.format(phrase) for t in templates]).to(dev)
-            emb = Fn.normalize(teacher.encode_text(toks), dim=-1).mean(0)
-            protos.append(Fn.normalize(emb, dim=-1))
-    protos = torch.stack(protos).to(dev)            # [C, dim]
+    protos = build_protos(held_classes)             # [C, dim]
     chance = 1.0 / len(held_classes)
 
     # ---- evaluate: teacher (upper bound) vs student (the real question) ----
@@ -381,6 +396,7 @@ def run_experiment(rows):
         "teacher_by_crop": t_by,
         "student_by_crop": s_by,
         "config": {"epochs": EPOCHS, "batch": BATCH, "lr": LR, "teacher": TEACHER,
+                   "mimic_w": MIMIC_W, "anchor_w": ANCHOR_W, "tau": TAU,
                    "cap_train": CAP_TRAIN_PER_CLASS, "cap_held": CAP_HELD_PER_CLASS,
                    "row_limit": ROW_LIMIT},
     }
