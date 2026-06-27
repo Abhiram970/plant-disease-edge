@@ -97,11 +97,57 @@ def safe(s):
 # --------------------------------------------------------------------------- #
 # STAGE 1 — stream + filter SAGE (no 114GB download)
 # --------------------------------------------------------------------------- #
+def _load_existing():
+    """Reconstruct rows from JPEGs already on disk (resume after a late crash)."""
+    if not DATA_DIR.exists():
+        return []
+    rows = []
+    for cls_dir in DATA_DIR.iterdir():
+        if not cls_dir.is_dir() or "___" not in cls_dir.name:
+            continue
+        crop, disease = cls_dir.name.split("___", 1)
+        role = "heldout" if crop in SPIKE_HELDOUT_CROPS else "train"
+        for jpg in cls_dir.glob("*.jpg"):
+            rows.append({"path": str(jpg), "crop": crop, "disease": disease, "role": role})
+    return rows
+
+
+def _finalize(rows):
+    """Drop ultra-rare classes, print the per-crop summary, and HARD-GUARD on >=2 held crops."""
+    cc = Counter((r["crop"], r["disease"]) for r in rows)
+    rows = [r for r in rows if cc[(r["crop"], r["disease"])] >= MIN_CLASS_IMAGES]
+    by_crop = Counter(r["crop"] for r in rows)
+    print(f"    final kept={len(rows):,}")
+    for c in sorted(WANT):
+        tag = "HELDOUT" if c in SPIKE_HELDOUT_CROPS else "train"
+        print(f"      {c:<9} [{tag:<7}] {by_crop.get(c,0):,}")
+    held_present = [c for c in SPIKE_HELDOUT_CROPS if by_crop.get(c, 0) > 0]
+    if len(held_present) < MIN_HELDOUT_CROPS:
+        sys.exit(
+            f"\nINVALID SPIKE: need >= {MIN_HELDOUT_CROPS} held-out crops with surviving classes; "
+            f"got {held_present}.\n  per-crop found: {dict(by_crop)}\n"
+            f"  FIX: raise MAX_SHARDS / extend SHARD_ORDER to later shards, lower MIN_CLASS_IMAGES, "
+            f"or swap held-out crops to denser ones.")
+    return rows
+
+
 def build_subset():
     import pyarrow.parquet as pq
     from huggingface_hub import hf_hub_download
     from PIL import Image
     from tqdm.auto import tqdm
+
+    # RESUME: reuse images already on disk from a previous run (a late crash, e.g. a missing
+    # dependency in run_experiment, must not force re-downloading shards).
+    existing = _load_existing()
+    if existing:
+        by = Counter(r["crop"] for r in existing)
+        held_ok = [c for c in SPIKE_HELDOUT_CROPS if by.get(c, 0) >= MIN_CLASS_IMAGES]
+        if all(by.get(c, 0) > 0 for c in SPIKE_TRAIN_CROPS) and \
+           len(held_ok) >= MIN_HELDOUT_CROPS and len(existing) >= MIN_KEPT_TO_STOP:
+            print(f"[1] reusing {len(existing):,} imgs already on disk ({DATA_DIR}) -> skip download.")
+            return _finalize(existing)
+        print(f"[1] {len(existing):,} imgs on disk but insufficient (held_ok={held_ok}) -> pulling more shards.")
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     kept = defaultdict(int)
@@ -179,24 +225,8 @@ def build_subset():
             print(f"    >= {MIN_HELDOUT_CROPS} held-out crops covered + enough images -> stop.")
             break
 
-    # drop ultra-rare classes
-    cc = Counter((r["crop"], r["disease"]) for r in rows)
-    rows = [r for r in rows if cc[(r["crop"], r["disease"])] >= MIN_CLASS_IMAGES]
     print(f"    TOTAL kept={stats['kept']:,}  dup={stats['dup']:,}  unreadable={stats['unreadable']:,}")
-    by_crop = Counter(r["crop"] for r in rows)
-    for c in sorted(WANT):
-        tag = "HELDOUT" if c in SPIKE_HELDOUT_CROPS else "train"
-        print(f"      {c:<9} [{tag:<7}] {by_crop.get(c,0):,}")
-    # GUARD (defense-in-depth): a valid spike MUST test >=2 unseen crops. Never silently
-    # evaluate a single crop again (that is what voided the first run).
-    held_present = [c for c in SPIKE_HELDOUT_CROPS if by_crop.get(c, 0) > 0]
-    if len(held_present) < MIN_HELDOUT_CROPS:
-        sys.exit(
-            f"\nINVALID SPIKE: need >= {MIN_HELDOUT_CROPS} held-out crops with surviving classes; "
-            f"got {held_present}.\n  per-crop found: {dict(by_crop)}\n"
-            f"  FIX: raise MAX_SHARDS / extend SHARD_ORDER to later shards, lower MIN_CLASS_IMAGES, "
-            f"or swap held-out crops to denser ones.")
-    return rows
+    return _finalize(rows)
 
 
 # --------------------------------------------------------------------------- #
@@ -377,7 +407,26 @@ def verdict(r):
                      "needs work (loss, curriculum, longer training) before the full build.")
 
 
+def ensure_deps():
+    """Self-contained: install the few deps not always on the Kaggle image, BEFORE the
+    expensive data download, so a missing module never crashes us mid-run."""
+    import importlib, subprocess
+    need = []
+    for mod, pkg in [("datasets", "datasets>=2.19"), ("open_clip", "open_clip_torch>=2.24"),
+                     ("timm", "timm>=1.0.3"), ("pyarrow", "pyarrow"),
+                     ("huggingface_hub", "huggingface_hub")]:
+        try:
+            importlib.import_module(mod)
+        except Exception:
+            need.append(pkg)
+    if need:
+        print(f"[0] installing missing deps: {need}")
+        subprocess.run([sys.executable, "-m", "pip", "install", "-q", *need], check=True)
+        print("[0] deps installed.")
+
+
 def main():
+    ensure_deps()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
     rows = build_subset()
