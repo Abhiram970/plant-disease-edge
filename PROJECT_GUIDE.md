@@ -200,33 +200,43 @@ The zero-shot engine needs an **image–text aligned** space. We benchmark four 
 - **Auxiliary (trained crops only):** **DINOv2-small** — vision-only structure/robustness signal (no
   zero-shot; droppable at inference).
 
-### Student — a 3-tier edge family (LOCKED), each with TWO heads
-We ship a **model-scaling Pareto sweep** — one distillation recipe at three operating points:
+### Student — a PRETRAINED small-CLIP family, specialized (REVISED 2026-06-28 from Phase-0 evidence)
 
-| Tier | Backbone (public, timm-compatible) | Params | Device target |
-|---|---|---|---|
-| **Small** | **EMOv2-5M** | ~5.1M | NPU smart-camera / Raspberry Pi |
-| **Mid**   | **iFormer-M** | ~8.9M | phone |
-| **Large** | **iFormer-L** / FastViT-SA24 | ~15–20M | laptop CPU |
+> **Phase-0 finding (4 distill runs + a probe, Jun 2026):** training an ImageNet backbone
+> (EMOv2/iFormer/EdgeNeXt) to learn image–text alignment *from scratch* on ~10K images **does not
+> work** — the 5M student stayed at ~chance on unseen crops (11% vs 5.9% chance, 17 classes) even with a
+> SigLIP2 teacher + text-prototype anchoring; a stronger teacher did **not** help. **A small model cannot
+> absorb cross-modal alignment from 10K images — it must INHERIT it from pretraining.** A frozen
+> **pretrained** small CLIP, by contrast, already does the task: **MobileCLIP2-S0 (~11M) → 19.9% zero-shot
+> (3.4× chance, ~78% of the 93M SigLIP2 teacher), no training, crude descriptors.** And the accuracy curve
+> is **flat from 11M→300M (all 17–22%)** → *model size is not the bottleneck* (the "lower compute" pillar,
+> now data-backed).
 
-(Backbones are convolution+attention hybrids designed for edge; finalize tier-3 on bake-off + Kaggle/timm
-availability.) Each tier has:
-1. **Text-projection head** → projects student image features into the winning teacher's text-aligned
-   space. **THIS IS THE ZERO-SHOT ENGINE:** descriptors → text prototypes → cosine nearest-neighbor
-   classifies any crop, seen or unseen. *No descriptors → no prototypes → 0% zero-shot → descriptor
-   anchoring is provably load-bearing.*
-2. **DINOv2-alignment head** (auxiliary) → regularizes visual structure; improves trained-crop accuracy.
-   Droppable at inference.
+So the students are **pretrained image–text models that we agriculturally SPECIALIZE** — not ImageNet
+backbones distilled from scratch. The "flavours" (the deployable family):
 
-### Distillation method (LOCKED)
-Not naive cosine matching: adopt **MobileCLIP2-style multi-modal reinforced training** + the loss findings
-of **CLIP-KD** (CVPR 2024) / **TinyCLIP** affinity-mimicking. 3-stage curriculum: (i) feature alignment to
-the winning teacher (+DINOv2 aux); (ii) **source-grounded descriptor prototype anchoring** (enables
-zero-shot); (iii) fine-tune on trained crops.
+| Tier | Pretrained base (open_clip) | Image-enc params (deploys) | Probe zero-shot (crude desc.) | Device target |
+|---|---|---|---|---|
+| **Small** | **MobileCLIP2-S0** | ~11.4M | 19.9% | small NPU / phone |
+| **Mid**   | **MobileCLIP-S1** | ~21.5M | 20.8% | laptop CPU |
+| **Large** | **MobileCLIP2-S2** | ~35.8M | 20.3% | laptop / workstation |
 
-**Story to tell:** 2025 agricultural FM (SCOLD/BioCLIP2) → generalization; DINOv2 → robustness;
-distillation → a 5–20M INT8 family that has both, deployable from smart-camera to laptop. Clean ablations:
-±descriptor, ±source-grounding, single- vs multi-teacher, across tiers.
+(Only the **image encoder** ships to the device; the text encoder runs offline to precompute descriptor
+prototypes. A ~5M tier is a stretch — sub-10M aligned models aren't off-the-shelf; reaching it via
+weight-inherited distillation, à la TinyCLIP, is an optional extra contribution, not the core.)
+
+### Method — agricultural specialization (REVISED, LOCKED)
+We **continue-train / distill the pretrained small CLIP on SAGE trained-crop data with source-grounded
+descriptors** (MobileCLIP2-style reinforced training + CLIP-KD/TinyCLIP losses), distilling from the
+winning teacher (SigLIP2 / BioCLIP2 / SCOLD). **The contribution is the SPECIALIZATION LIFT:** base
+cross-crop zero-shot (≈20%) → specialized (target meaningfully higher), measured on the held-out crops.
+*If specialization doesn't lift the base, the headline is weak — this is the load-bearing experiment.*
+DINOv2-small remains an optional auxiliary for trained-crop robustness.
+
+**Story to tell:** a **compact agricultural VLM family** (≈11–36M), specialized from foundation VLMs via
+source-grounded symptom-descriptor distillation, doing **cross-crop disease zero-shot** on laptops/NPUs at
+$0/image — and a flat size–accuracy curve proving the small flavour is ~90% of a 300M model. Ablations:
+±specialization, ±source-grounding (vs crude prompts), teacher bake-off, across tiers.
 
 ---
 
