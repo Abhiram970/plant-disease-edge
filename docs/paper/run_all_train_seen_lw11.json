@@ -1,0 +1,12 @@
+{
+  "tier": "lw11",
+  "seen_classes": 80,
+  "unseen_classes": 8,
+  "seen_probe_acc": 0.6705173279758915,
+  "seen_zeroshot_acc": 0.08488196885986941,
+  "unseen_zeroshot_acc": 0.37142857142857144,
+  "unseen_by_crop": {
+    "Peach": 0.21212121212121213,
+    "Orange": 0.9555555555555556
+  }
+}
