@@ -40,6 +40,18 @@ SPEC_EPOCH = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 SPEC_HELD = [.121, .176, .122, .142, .140, .138, .150, .138, .150, .148, .154]
 SPEC_BASE = 0.199
 
+# ---- EXP1 bake-off: encoder rich-descriptor zero-shot (held 8 classes, chance 12.5%) ----
+BAKEOFF = [  # (label, img params M, rich zero-shot)
+    ("MobileCLIP2-S0", 11.4, 0.371),
+    ("MobileCLIP-S1", 21.5, 0.402),
+    ("MobileCLIP2-S2", 35.8, 0.346),
+    ("BioCLIP2", 304.0, 0.254),
+    ("SigLIP2", 92.9, 0.498),
+]
+BAKEOFF_CHANCE = 0.125
+# ---- EXP2 hybrid (MobileCLIP2-S0, 11M): trained seen vs zero-shot seen vs zero-shot unseen ----
+HYBRID = {"seen_trained": 0.671, "seen_zeroshot": 0.085, "unseen_zeroshot": 0.371}
+
 
 def fig_efficiency_curve():
     fig, ax = plt.subplots(figsize=(7, 4.5))
@@ -117,10 +129,43 @@ def fig_descriptors():
     fig.tight_layout(); fig.savefig(FIG / "fig_descriptors.png", dpi=160); plt.close(fig)
 
 
+def fig_bakeoff():
+    fig, ax = plt.subplots(figsize=(6.5, 4))
+    items = sorted(BAKEOFF, key=lambda x: x[2])
+    names = [f"{n}\n{p:.0f}M" for n, p, _ in items]
+    vals = [a for _, _, a in items]
+    colors = ["#2ca02c" if "SigLIP" in n else ("#bbbbbb" if "BioCLIP" in n else "#1f77b4")
+              for n, _, _ in items]
+    ax.barh(names, vals, color=colors)
+    for i, v in enumerate(vals):
+        ax.text(v + 0.005, i, f"{v:.1%}", va="center", fontsize=8)
+    ax.axvline(BAKEOFF_CHANCE, ls="--", color="grey", lw=1, label=f"chance ({BAKEOFF_CHANCE:.1%})")
+    ax.set_xlabel("rich-descriptor zero-shot accuracy (held-out crops)")
+    ax.set_title("Encoder bake-off: SigLIP2 best; MobileCLIP-S1 best lightweight; BioCLIP2 poor")
+    ax.legend(fontsize=8)
+    fig.tight_layout(); fig.savefig(FIG / "fig_bakeoff.png", dpi=160); plt.close(fig)
+
+
+def fig_hybrid():
+    fig, ax = plt.subplots(figsize=(6, 4))
+    labels = ["SEEN\ntrained head", "SEEN\nzero-shot", "UNSEEN\nzero-shot"]
+    vals = [HYBRID["seen_trained"], HYBRID["seen_zeroshot"], HYBRID["unseen_zeroshot"]]
+    colors = ["#2ca02c", "#bbbbbb", "#1f77b4"]
+    ax.bar(labels, vals, color=colors)
+    for i, v in enumerate(vals):
+        ax.text(i, v + 0.01, f"{v:.1%}", ha="center", fontsize=10)
+    ax.set_ylabel("accuracy")
+    ax.set_ylim(0, 0.8)
+    ax.set_title("Hybrid (11M MobileCLIP2-S0): train for seen, zero-shot for unseen")
+    fig.tight_layout(); fig.savefig(FIG / "fig_hybrid.png", dpi=160); plt.close(fig)
+
+
 def main():
     fig_efficiency_curve()
     fig_arch_comparison()
     fig_specialization_forgetting()
+    fig_bakeoff()
+    fig_hybrid()
     try:
         fig_descriptors()
     except Exception as e:

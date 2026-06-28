@@ -12,6 +12,8 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 | 5 | Probe pretrained CLIPs | frozen, no training | **MobileCLIP2-S0 (11M) 19.9%**, flat 11–300M @17–22%, SigLIP2 25.6% | **FORK A: feasible** ⇒ pivot to pretrained CLIPs |
 | 6 | Specialize (adapter) | MobileCLIP2-S0 + residual adapter + SigLIP2 KD | base 19.9% → **15.4% (−4.5pp)** | NO LIFT — catastrophic forgetting |
 | 7 | Descriptor quality | bare/crude/**rich** on frozen models, 8 classes (Orange+Peach), chance 12.5% | **rich best on all**: S0 29.5→**37.5%** (+8), S1 24.8→**39.8%** (+15), SigLIP2 34.8→**49.5%** (+14.7); Orange/HLB 8.9→**95.6%** on 11M | **POSITIVE — descriptor lever validated** |
+| 8 | Encoder bake-off | rich zero-shot, held 8 classes | **SigLIP2 49.8%** (best) > **MobileCLIP-S1 40.2%** (best lightweight, 21M) > S0 37.1% (11M) > S2 34.6% (36M, dominated) > BioCLIP2 25.4% (poor). SCOLD/AgriCLIP load-failed | SigLIP2=teacher; S1=deploy; drop BioCLIP2/S2 |
+| 9 | Train seen / keep unseen | MobileCLIP2-S0 11M, linear probe on 80 seen classes | **SEEN trained 67.1% vs zero-shot 8.5%** (8× win); **UNSEEN zero-shot 37.1% preserved** | **HYBRID VALIDATED** — train seen, zero-shot unseen, one frozen 11M model |
 
 ## What is established
 - **Works:** frozen compact pretrained CLIP + descriptors does cross-crop zero-shot (~20% @ 11M, 3.4× chance, ~78% of 93M SigLIP2).
