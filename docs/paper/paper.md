@@ -86,30 +86,36 @@ make near-duplicate classes collide). Taxonomy cleaning + real source-grounded d
 INT8 size, p50/p95 latency, RAM on laptop + small NPU per tier.
 
 ### 5.6 Encoder bake-off — Fig. `fig_bakeoff.png`
-Rich-descriptor zero-shot on the held-out crops (8 classes, chance 12.5%):
+Rich-descriptor zero-shot on the **3 held-out crops** (Coffee+Orange+Peach, 17 classes, chance 5.9%):
 
 | Encoder | Params | Zero-shot |
 |---|---|---|
-| **SigLIP2** | 93M | **49.8%** |
-| **MobileCLIP-S1** | 21M | **40.2%** |
-| MobileCLIP2-S0 | 11M | 37.1% |
-| MobileCLIP2-S2 | 36M | 34.6% |
-| BioCLIP2 | 304M | 25.4% |
+| **SigLIP2** | 93M | **31.5%** |
+| MobileCLIP2-S2 | 36M | 28.7% |
+| MobileCLIP2-S0 | 11M | 26.9% |
+| MobileCLIP-S1 | 21M | 22.5% |
+| BioCLIP2 | 304M | 9.6% |
+| *SCOLD* | *~238M* | *5.3% (adapter issue — see note)* |
 
-SigLIP2 is the best teacher/reference. **MobileCLIP-S1 (21M) is the best *deployable* encoder** —
-and notably **MobileCLIP2-S2 (36M) is dominated by it** (bigger, worse), so the family anchors at
-**11M (S0) + 21M (S1) + 93M (SigLIP2)**. **BioCLIP2 underperforms an 11M model** — the biological FM
-does not transfer to leaf disease; dropped as a teacher. *(SCOLD/AgriCLIP need their custom loaders —
-`transformers` AutoModel rejects SCOLD's `scold` model type; pending.)*
+SigLIP2 is the best teacher/reference. The lightweight tiers cluster at **22–29%** (ranking is within
+noise across eval sets; the flat-curve story holds). **BioCLIP2 underperforms an 11M model** (9.6%) — the
+biological FM does not transfer to leaf disease; **dropped as a teacher.** Interestingly MobileCLIP beats
+SigLIP2 *on Coffee* (35% vs 21%) — it is crop-dependent.
+
+*SCOLD note:* it loads (custom `LVL` class), but our best-effort adapter scores below chance (5.3%) — the
+RoBERTa text tower loads from base `roberta-base` and the image preprocessing may not match SCOLD's, so
+this is **not a valid measure of SCOLD**; a faithful number needs their `inference.py` pipeline. *(open
+item.)*
 
 ### 5.7 The hybrid works — Fig. `fig_hybrid.png`
-One frozen 11M backbone (MobileCLIP2-S0), two heads, on real SAGE data:
-- **SEEN crops (80 classes): trained linear-probe head 67.1% vs zero-shot 8.5%** — training is ~8× better
-  on known crops (the supervised-beats-zero-shot result, at the edge).
-- **UNSEEN crops: zero-shot 37.1%, preserved** (the frozen backbone is untouched by the seen-crop head).
+One frozen 11M backbone (MobileCLIP2-S0), two heads, on real SAGE data (3 held-out crops):
+- **SEEN crops (80 classes): trained linear-probe head 67.0% vs zero-shot 8.5%** — training is ~8× better
+  on known crops (supervised-beats-zero-shot, at the edge).
+- **UNSEEN crops: zero-shot 26.9%, preserved** (frozen backbone untouched by the seen-crop head).
 
 This validates the architecture: **train thoroughly for seen crops (high real-time accuracy) and keep
-descriptor zero-shot for unseen crops — from a single 11M model.**
+descriptor zero-shot for unseen crops — from a single 11M model.** *(EXP3 full fine-tune + WiSE-FT: a
+theta0-aliasing bug was fixed; a clean WiSE-FT sweep re-run is pending.)*
 
 ## 6. Discussion
 - The headline is **descriptor-driven cross-crop zero-shot on frozen compact VLMs + radical parameter efficiency**, not a trained tiny model.
