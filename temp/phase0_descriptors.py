@@ -34,6 +34,7 @@ RESULT_JSON = Path("/kaggle/working/phase0_descriptors_result.json")
 SHARD_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]
 MAX_SHARDS = 13
 CAP_HELD_PER_CLASS = 120
+MIN_HELD_CROPS = 2     # stop once >=2 of 3 held crops are covered (don't hunt rare Coffee across 10GB shards)
 CROP_ALIASES = {"coffee": "Coffee", "orange": "Orange", "citrus": "Orange",
                 "sweet orange": "Orange", "peach": "Peach"}
 
@@ -172,7 +173,8 @@ def ensure_held_data():
 
     def covered(rs):
         by = Counter(crop_of(r["label"]) for r in rs)
-        return all(by.get(c, 0) >= MIN_CLASS_IMAGES for c in HELDOUT_CROPS)
+        n = sum(1 for c in HELDOUT_CROPS if by.get(c, 0) >= MIN_CLASS_IMAGES)
+        return n >= MIN_HELD_CROPS
 
     rows = load_rows(HELDOUT_CROPS, min_imgs=1)
     if covered(rows):
@@ -240,10 +242,10 @@ def ensure_held_data():
         done.add(si); _save_done(done)
         by = Counter(crop_of(r["label"]) for r in rows)
         print(f"    after shard {si:04d}: " + ", ".join(f"{c}={by.get(c,0)}" for c in HELDOUT_CROPS))
+    by = Counter(crop_of(r["label"]) for r in rows)
+    print("    held-crop counts: " + ", ".join(f"{c}={by.get(c,0)}" for c in HELDOUT_CROPS))
     if not covered(rows):
-        by = Counter(crop_of(r["label"]) for r in rows)
-        print(f"    WARNING: held crops under {MIN_CLASS_IMAGES} imgs: "
-              + ", ".join(f"{c}={by.get(c,0)}" for c in HELDOUT_CROPS))
+        print(f"    WARNING: fewer than {MIN_HELD_CROPS} held crops reached {MIN_CLASS_IMAGES} imgs.")
 
 
 def text_for(lbl, strategy, coverage=None):
