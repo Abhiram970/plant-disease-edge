@@ -60,17 +60,33 @@ IMG_SIZE = 224  # student/teacher input resolution
 # to learn the alignment -- from scratch OR by specializing on seen crops -- was shown NOT to
 # improve unseen-crop zero-shot (4 runs, catastrophic forgetting). We use frozen backbones +
 # descriptor text prototypes. Only the image encoder deploys; text encoder runs offline.
+# Deployable LIGHTWEIGHT family (off-the-shelf, FROZEN, probe-validated). Only the image encoder
+# ships to the device; the text encoder runs offline to precompute prototypes.
 MODEL_TIERS = {
-    "small": ("MobileCLIP2-S0", "dfndr2b"),     # ~11.4M image enc -> small NPU / phone
-    "mid":   ("MobileCLIP-S1",  "datacompdr"),  # ~21.5M           -> laptop CPU
-    "large": ("MobileCLIP2-S2", "dfndr2b"),     # ~35.8M           -> laptop / workstation
+    "lw11": ("MobileCLIP2-S0", "dfndr2b"),      # ~11.4M  lightweight  -> small NPU / phone
+    "lw21": ("MobileCLIP-S1",  "datacompdr"),   # ~21.5M  lightweight  -> laptop CPU
+    "lw35": ("MobileCLIP2-S2", "dfndr2b"),      # ~35.8M  lightweight  -> laptop
 }
-# Frozen reference / teacher VLMs for the bake-off (verify availability on Kaggle open_clip).
+HEAVYWEIGHT = ("MobileCLIP-B", "datacompdr")    # ~86.3M  heavyweight (best MobileCLIP-family zero-shot)
+REFERENCE   = ("ViT-B-16-SigLIP2", "webli")     # ~92.9M  cloud ceiling / distillation teacher (~25.6%)
+
+# Frozen teacher VLMs for the bake-off (verify availability on Kaggle open_clip).
 TEACHERS = [
-    ("ViT-B-16-SigLIP2", "webli"),    # best in our probe (~25.6%)
+    REFERENCE,
     # ("hf-hub:imageomics/bioclip-2", None),  # BioCLIP 2  -- verify load
     # ("hf-hub:enalis/scold", None),          # SCOLD leaf-disease VLM -- verify load
 ]
+
+# STRETCH tiers = NOT off-the-shelf. There is no aligned model below ~11M, and a gap at ~50M
+# (36M -> 86M). Closing the sub-10M gap is framed as a PoC + contribution: TinyCLIP-style
+# weight-INHERITED distillation of a lightweight tier down to ~5M. WEAKNESS (honest): a tiny model
+# cannot learn cross-modal alignment from limited data (our Phase-0 from-scratch/specialize runs
+# confirm); inheritance + a strong teacher is the only credible route, and even then sub-10M
+# alignment is an open problem. We ship 11-86M now and PoC the 5M tier as future work.
+STRETCH_TIERS = {
+    "poc5":  ("distill MobileCLIP2-S0 -> ~5M", "weight-inherited distillation; PoC / future work"),
+    "mid50": ("distill MobileCLIP-B -> ~50M",  "fills the 36M->86M gap; optional"),
+}
 PROMPT_TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
 
 # --- SAGE parquet-shard fetch (the working data path; NOT row-streaming) ----
