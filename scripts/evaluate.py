@@ -43,6 +43,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strategies", nargs="+", default=["bare", "crude", "rich"])
     ap.add_argument("--tiers", nargs="+", default=list(C.MODEL_TIERS))
+    ap.add_argument("--heavy", action="store_true", help="also evaluate the heavyweight (~86M) tier")
     ap.add_argument("--teachers", action="store_true", help="also evaluate the reference/teacher VLMs")
     args = ap.parse_args()
 
@@ -60,8 +61,10 @@ def main():
     print(f"[eval] held={len(rows):,} imgs  {len(classes)} classes  crops={crops}  chance={chance:.1%}\n")
 
     models = [(C.MODEL_TIERS[t][0], C.MODEL_TIERS[t][1]) for t in args.tiers if t in C.MODEL_TIERS]
+    if args.heavy:
+        models.append(C.HEAVYWEIGHT)
     if args.teachers:
-        models += list(C.TEACHERS)
+        models += [m for m in C.TEACHERS if m not in models]
 
     results, coverage = {}, {}
     for name, pretrained in models:
