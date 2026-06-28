@@ -44,7 +44,7 @@ CROP_ALIASES = {
     "peach": "Peach",
 }
 CAP_TRAIN, CAP_HELD = 250, 120
-MIN_CLASS_IMAGES, MIN_HELD_CROPS, MIN_TRAIN_CROPS = 15, 2, 4
+MIN_CLASS_IMAGES, MIN_HELD_CROPS, MIN_TRAIN_CROPS = 15, 3, 4   # held=3 -> include Coffee (in shard ~5)
 
 MODEL_TIERS = {"lw11": ("MobileCLIP2-S0", "dfndr2b"),
                "lw21": ("MobileCLIP-S1", "datacompdr"),
@@ -295,49 +295,86 @@ class OpenClipEnc:
 
 
 class ScoldEnc:
+    """SCOLD is a CUSTOM model (model card: clone repo, see inference.py). Per the card:
+    preprocess = Resize((224,224))+ToTensor; RobertaTokenizer('roberta-base');
+    forward(image, input_ids, attention_mask) -> (image_emb, text_emb). We snapshot the repo, import
+    its nn.Module, load weights, and drive it. Raises with diagnostics if no class can be built."""
     def __init__(self, repo, device):
-        import torch
-        from transformers import AutoModel, AutoTokenizer
+        import os, glob, importlib, torch
+        import torch.nn as nn
+        from huggingface_hub import snapshot_download
+        from transformers import RobertaTokenizer
         from torchvision import transforms as T
         self.device = device
-        self.model = AutoModel.from_pretrained(repo, trust_remote_code=True).eval().to(device)
-        self.tok = AutoTokenizer.from_pretrained(repo)
-        try:
-            from transformers import AutoImageProcessor
-            self.proc = AutoImageProcessor.from_pretrained(repo)
-        except Exception:
-            self.proc = None
-        self.preprocess = (self._proc if self.proc else
-                           T.Compose([T.Resize(224), T.CenterCrop(224), T.ToTensor(),
-                                      T.Normalize([0.481, 0.458, 0.408], [0.269, 0.261, 0.276])]))
-        self.img_params_m = sum(p.numel() for p in self.model.parameters()) / 1e6
-
-    def _proc(self, pil):
-        return self.proc(pil, return_tensors="pt")["pixel_values"][0]
+        local = snapshot_download(repo)
+        if local not in sys.path:
+            sys.path.insert(0, local)
+        wpath = next((os.path.join(local, f) for f in
+                      ("model.safetensors", "pytorch_model.bin", "scold.pt", "model.pt", "weights.pt")
+                      if os.path.exists(os.path.join(local, f))), None)
+        sd = None
+        if wpath:
+            if wpath.endswith(".safetensors"):
+                from safetensors.torch import load_file
+                sd = load_file(wpath)
+            else:
+                sd = torch.load(wpath, map_location="cpu")
+                sd = sd.get("state_dict", sd) if isinstance(sd, dict) else sd
+        pyfiles = [os.path.splitext(os.path.basename(p))[0] for p in glob.glob(os.path.join(local, "*.py"))]
+        model, tried = None, []
+        for modname in pyfiles:
+            try:
+                mod = importlib.import_module(modname)
+            except Exception as e:
+                tried.append(f"{modname}:imp:{type(e).__name__}"); continue
+            for attr in dir(mod):
+                obj = getattr(mod, attr)
+                if isinstance(obj, type) and issubclass(obj, nn.Module) and obj is not nn.Module:
+                    try:
+                        m = obj()
+                        if sd is not None:
+                            m.load_state_dict(sd, strict=False)
+                        model = m; break
+                    except Exception as e:
+                        tried.append(f"{modname}.{attr}:{type(e).__name__}")
+            if model is not None:
+                break
+        if model is None:
+            raise RuntimeError(f"no buildable nn.Module in {pyfiles} (tried {tried[:8]})")
+        self.model = model.eval().to(device)
+        self.tok = RobertaTokenizer.from_pretrained("roberta-base")
+        self.preprocess = T.Compose([T.Resize((224, 224)), T.ToTensor()])
+        self.img_params_m = sum(p.numel() for p in model.parameters()) / 1e6
 
     def encode_image(self, px):
         import torch, torch.nn.functional as F
         px = px.to(self.device)
+        m = self.model
         with torch.no_grad():
-            for fn in ("get_image_features", "encode_image"):
-                if hasattr(self.model, fn):
-                    return F.normalize(getattr(self.model, fn)(px), dim=-1)
-            out = self.model(pixel_values=px)
-            return F.normalize(getattr(out, "image_embeds", out), dim=-1)
+            if hasattr(m, "encode_image"):
+                return F.normalize(m.encode_image(px), dim=-1)
+            if hasattr(m, "visual"):
+                return F.normalize(m.visual(px), dim=-1)
+            t = self.tok([""] * px.shape[0], return_tensors="pt", padding=True).to(self.device)
+            out = m(px, t["input_ids"], t["attention_mask"])
+            emb = out[0] if isinstance(out, (tuple, list)) else getattr(out, "image_embeds", out)
+            return F.normalize(emb, dim=-1)
 
     def encode_text(self, texts):
         import torch, torch.nn.functional as F
-        t = self.tok(texts, padding=True, truncation=True, return_tensors="pt").to(self.device)
+        t = self.tok(list(texts), return_tensors="pt", padding=True, truncation=True).to(self.device)
+        ids, attn = t["input_ids"], t.get("attention_mask")
+        m = self.model
         with torch.no_grad():
-            for fn in ("get_text_features", "encode_text"):
-                if hasattr(self.model, fn):
-                    try:
-                        emb = getattr(self.model, fn)(input_ids=t["input_ids"], attention_mask=t.get("attention_mask"))
-                    except TypeError:
-                        emb = getattr(self.model, fn)(t["input_ids"])
-                    return F.normalize(emb, dim=-1)
-            out = self.model(input_ids=t["input_ids"], attention_mask=t.get("attention_mask"))
-            return F.normalize(getattr(out, "text_embeds", out), dim=-1)
+            if hasattr(m, "encode_text"):
+                try:
+                    return F.normalize(m.encode_text(ids, attn), dim=-1)
+                except TypeError:
+                    return F.normalize(m.encode_text(ids), dim=-1)
+            dummy = torch.zeros(ids.shape[0], 3, 224, 224, device=self.device)
+            out = m(dummy, ids, attn)
+            emb = out[1] if isinstance(out, (tuple, list)) else getattr(out, "text_embeds", out)
+            return F.normalize(emb, dim=-1)
 
 
 def embed_images(enc, rows, batch=64):
@@ -454,11 +491,119 @@ def exp2_train_seen(tier, seen, unseen, device, epochs=40):
     print(f"  saved {ROOT/('run_all_train_seen_'+tier+'.json')}")
 
 
+def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0.5, 1.0)):
+    """Full backbone fine-tune on SEEN crops, then WiSE-FT (weight-ensemble the fine-tuned and original
+    image encoders) to recover UNSEEN zero-shot. Reports the seen/unseen tradeoff across alpha."""
+    import copy
+    import open_clip
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    from torch.utils.data import Dataset, DataLoader
+    from PIL import Image
+
+    name, pre = MODEL_TIERS[tier]
+    print(f"\n===== EXP3: fine-tune + WiSE-FT  (tier {tier} = {name}, ft_epochs={ft_epochs}) =====")
+    model, _, preprocess = open_clip.create_model_and_transforms(name, pretrained=pre)
+    tok = open_clip.get_tokenizer(name)
+    model.to(device)
+
+    seen_classes = sorted({r["label"] for r in seen})
+    sidx = {c: i for i, c in enumerate(seen_classes)}
+    uns_classes = sorted({r["label"] for r in unseen})
+    random.seed(42)
+    by_cls = defaultdict(list)
+    for i, r in enumerate(seen):
+        by_cls[r["label"]].append(i)
+    tr_rows, te_rows = [], []
+    for l, idxs in by_cls.items():
+        random.shuffle(idxs); k = max(1, int(0.2 * len(idxs)))
+        te_rows += [seen[i] for i in idxs[:k]]; tr_rows += [seen[i] for i in idxs[k:]]
+
+    class TrainDS(Dataset):
+        def __len__(self): return len(tr_rows)
+        def __getitem__(self, i):
+            return preprocess(Image.open(tr_rows[i]["path"]).convert("RGB")), sidx[tr_rows[i]["label"]]
+
+    def embed_rows(rows):
+        class E(Dataset):
+            def __len__(self): return len(rows)
+            def __getitem__(self, i):
+                return preprocess(Image.open(rows[i]["path"]).convert("RGB")), rows[i]["label"]
+        dl = DataLoader(E(), batch_size=128, num_workers=2)
+        embs, labs = [], []
+        model.eval()
+        with torch.no_grad():
+            for px, lab in dl:
+                embs.append(F.normalize(model.encode_image(px.to(device)), dim=-1).cpu()); labs += list(lab)
+        return torch.cat(embs), labs
+
+    def protos_for(classes):
+        model.eval()
+        with torch.no_grad():
+            ps = [F.normalize(model.encode_text(
+                tok([t.format(text_for(c, "rich")) for t in PROMPT_TEMPLATES]).to(device)), dim=-1).mean(0)
+                  for c in classes]
+        return F.normalize(torch.stack(ps), dim=-1).cpu()
+
+    with torch.no_grad():
+        d = model.encode_image(preprocess(Image.open(tr_rows[0]["path"]).convert("RGB")).unsqueeze(0).to(device)).shape[-1]
+    head = nn.Linear(d, len(seen_classes)).to(device)
+    theta0 = copy.deepcopy(model.visual.state_dict())
+
+    dl = DataLoader(TrainDS(), batch_size=64, shuffle=True, num_workers=2)
+    opt = torch.optim.AdamW([{"params": model.visual.parameters(), "lr": 1e-5},
+                             {"params": head.parameters(), "lr": 1e-3}], weight_decay=1e-4)
+    print(f"  fine-tuning visual+head on {len(tr_rows):,} seen imgs x {ft_epochs} epochs ...")
+    for ep in range(ft_epochs):
+        model.train(); run = 0.0; nb = 0
+        for px, y in dl:
+            px, y = px.to(device), y.to(device)
+            loss = F.cross_entropy(head(F.normalize(model.encode_image(px), dim=-1)), y)
+            opt.zero_grad(); loss.backward(); opt.step()
+            run += loss.item(); nb += 1
+        print(f"    epoch {ep+1}/{ft_epochs}  loss={run/max(nb,1):.3f}")
+    theta_ft = copy.deepcopy(model.visual.state_dict())
+
+    summary = []
+    for a in alphas:
+        model.visual.load_state_dict({k: (1 - a) * theta0[k] + a * theta_ft[k] for k in theta0})
+        Etr, Ltr = embed_rows(tr_rows)
+        clf = nn.Linear(d, len(seen_classes)).to(device)
+        o2 = torch.optim.AdamW(clf.parameters(), lr=1e-3, weight_decay=1e-4)
+        Xtr = Etr.to(device); ytr = torch.tensor([sidx[l] for l in Ltr], device=device)
+        for _ in range(30):
+            perm = torch.randperm(len(Ltr), device=device)
+            for s in range(0, len(perm), 256):
+                b = perm[s:s + 256]
+                lo = F.cross_entropy(clf(Xtr[b]), ytr[b]); o2.zero_grad(); lo.backward(); o2.step()
+        Ete, Lte = embed_rows(te_rows)
+        with torch.no_grad():
+            pred = clf(Ete.to(device)).argmax(1).cpu().tolist()
+        seen_acc = sum(seen_classes[p] == gt for p, gt in zip(pred, Lte)) / len(Lte)
+        Eun, Lun = embed_rows(unseen)
+        un_acc, _ = acc_of(Eun, protos_for(uns_classes), Lun, uns_classes)
+        summary.append((a, seen_acc, un_acc))
+        print(f"  alpha={a:.2f}  SEEN={seen_acc:.1%}  UNSEEN_zs={un_acc:.1%}")
+
+    best = max(summary, key=lambda r: r[1] + r[2])
+    print("  " + "-" * 56)
+    print("  WiSE-FT tradeoff:  " + "   ".join(f"a{a:.2f}={s:.0%}/{u:.0%}" for a, s, u in summary)
+          + "   (SEEN/UNSEEN)")
+    print(f"  alpha=1.00 = naive fine-tune (seen up, unseen forgets); alpha=0.0 = frozen.")
+    print(f"  BEST balance @ alpha={best[0]:.2f}:  SEEN {best[1]:.1%}, UNSEEN {best[2]:.1%}")
+    torch.save({"tier": tier, "theta_ft_visual": theta_ft}, ROOT / f"run_all_ft_{tier}.pt")
+    (ROOT / f"run_all_exp3_{tier}.json").write_text(json.dumps(
+        {"tier": tier, "sweep": [{"alpha": a, "seen": s, "unseen": u} for a, s, u in summary]}, indent=2))
+    print(f"  saved {ROOT/('run_all_exp3_'+tier+'.json')}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tier", default="lw11", choices=list(MODEL_TIERS))
     ap.add_argument("--epochs", type=int, default=40)
-    ap.add_argument("--only", choices=["exp1", "exp2"], default=None)
+    ap.add_argument("--ft-epochs", type=int, default=5)
+    ap.add_argument("--only", choices=["exp1", "exp2", "exp3"], default=None)
     args, _ = ap.parse_known_args()   # tolerate Jupyter's -f kernel arg if pasted into a cell
 
     ensure_deps()
@@ -467,11 +612,15 @@ def main():
     print(f"[*] device={device}")
 
     held = fetch(HELDOUT_CROPS, MIN_HELD_CROPS)
-    if args.only != "exp2":
+    if args.only in (None, "exp1"):
         exp1_bakeoff(held, device)
-    if args.only != "exp1":
+    seen = None
+    if args.only in (None, "exp2", "exp3"):
         seen = fetch(TRAIN_CROPS, MIN_TRAIN_CROPS)
+    if args.only in (None, "exp2"):
         exp2_train_seen(args.tier, seen, held, device, args.epochs)
+    if args.only in (None, "exp3"):
+        exp3_finetune_wiseft(args.tier, seen, held, device, args.ft_epochs)
     print("\n[done] result JSONs in /kaggle/working/ (run_all_*.json)")
 
 
