@@ -572,7 +572,10 @@ def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0
     with torch.no_grad():
         d = model.encode_image(preprocess(Image.open(tr_rows[0]["path"]).convert("RGB")).unsqueeze(0).to(device)).shape[-1]
     head = nn.Linear(d, len(seen_classes)).to(device)
-    theta0 = copy.deepcopy(model.visual.state_dict())
+    # pristine original visual weights: reload a fresh model (deepcopy can alias live params)
+    _orig, _, _ = open_clip.create_model_and_transforms(name, pretrained=pre)
+    theta0 = {k: v.detach().clone().to(device) for k, v in _orig.visual.state_dict().items()}
+    del _orig
 
     dl = DataLoader(TrainDS(), batch_size=BATCH, shuffle=True, num_workers=2)
     opt = torch.optim.AdamW([{"params": model.visual.parameters(), "lr": 1e-5},
@@ -586,7 +589,7 @@ def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0
             opt.zero_grad(); loss.backward(); opt.step()
             run += loss.item(); nb += 1
         print(f"    epoch {ep+1}/{ft_epochs}  loss={run/max(nb,1):.3f}")
-    theta_ft = copy.deepcopy(model.visual.state_dict())
+    theta_ft = {k: v.detach().clone().to(device) for k, v in model.visual.state_dict().items()}
 
     summary = []
     for a in alphas:
@@ -595,7 +598,7 @@ def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0
         clf = nn.Linear(d, len(seen_classes)).to(device)
         o2 = torch.optim.AdamW(clf.parameters(), lr=1e-3, weight_decay=1e-4)
         Xtr = Etr.to(device); ytr = torch.tensor([sidx[l] for l in Ltr], device=device)
-        for _ in range(30):
+        for _ in range(40):
             perm = torch.randperm(len(Ltr), device=device)
             for s in range(0, len(perm), 256):
                 b = perm[s:s + 256]
