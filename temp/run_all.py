@@ -459,7 +459,7 @@ def main():
     ap.add_argument("--tier", default="lw11", choices=list(MODEL_TIERS))
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--only", choices=["exp1", "exp2"], default=None)
-    args = ap.parse_args()
+    args, _ = ap.parse_known_args()   # tolerate Jupyter's -f kernel arg if pasted into a cell
 
     ensure_deps()
     import torch
