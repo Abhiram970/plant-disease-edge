@@ -11,7 +11,7 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 | 4 | Fair-shot distill | **SigLIP2** teacher, 4 train crops, anchoring | **student 11.0%, teacher 25.6%** | NO-GO — stronger teacher didn't help ⇒ **architecture** |
 | 5 | Probe pretrained CLIPs | frozen, no training | **MobileCLIP2-S0 (11M) 19.9%**, flat 11–300M @17–22%, SigLIP2 25.6% | **FORK A: feasible** ⇒ pivot to pretrained CLIPs |
 | 6 | Specialize (adapter) | MobileCLIP2-S0 + residual adapter + SigLIP2 KD | base 19.9% → **15.4% (−4.5pp)** | NO LIFT — catastrophic forgetting |
-| 7 | Descriptor quality | bare vs crude vs **rich** on frozen models | **pending (morning)** | decides headline strength |
+| 7 | Descriptor quality | bare/crude/**rich** on frozen models, 8 classes (Orange+Peach), chance 12.5% | **rich best on all**: S0 29.5→**37.5%** (+8), S1 24.8→**39.8%** (+15), SigLIP2 34.8→**49.5%** (+14.7); Orange/HLB 8.9→**95.6%** on 11M | **POSITIVE — descriptor lever validated** |
 
 ## What is established
 - **Works:** frozen compact pretrained CLIP + descriptors does cross-crop zero-shot (~20% @ 11M, 3.4× chance, ~78% of 93M SigLIP2).
