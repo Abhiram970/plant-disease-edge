@@ -56,8 +56,8 @@ ENCODERS = [   # (label, kind, name, pretrained)
     ("SigLIP2",        "openclip", "ViT-B-16-SigLIP2", "webli"),
     ("BioCLIP2",       "openclip", "hf-hub:imageomics/bioclip-2", None),
     ("SCOLD",          "scold",    "enalis/scold",   None),
-    ("AgriCLIP",       "openclip", "hf-hub:MBZUAI/AgriCLIP", None),
 ]
+BATCH = 64   # eval/train batch; lower via --batch for an 8GB GPU (e.g. RTX 4060 -> --batch 32)
 PROMPT_TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
 
 
@@ -320,8 +320,9 @@ class ScoldEnc:
             else:
                 sd = torch.load(wpath, map_location="cpu")
                 sd = sd.get("state_dict", sd) if isinstance(sd, dict) else sd
+        import inspect
         pyfiles = [os.path.splitext(os.path.basename(p))[0] for p in glob.glob(os.path.join(local, "*.py"))]
-        model, tried = None, []
+        cands, tried = [], []
         for modname in pyfiles:
             try:
                 mod = importlib.import_module(modname)
@@ -329,18 +330,40 @@ class ScoldEnc:
                 tried.append(f"{modname}:imp:{type(e).__name__}"); continue
             for attr in dir(mod):
                 obj = getattr(mod, attr)
-                if isinstance(obj, type) and issubclass(obj, nn.Module) and obj is not nn.Module:
+                if not (isinstance(obj, type) and issubclass(obj, nn.Module) and obj is not nn.Module):
+                    continue
+                try:
+                    m = obj()
+                except Exception as e:
+                    tried.append(f"{attr}:{type(e).__name__}"); continue
+                if sd is not None:
                     try:
-                        m = obj()
-                        if sd is not None:
-                            m.load_state_dict(sd, strict=False)
-                        model = m; break
-                    except Exception as e:
-                        tried.append(f"{modname}.{attr}:{type(e).__name__}")
-            if model is not None:
-                break
-        if model is None:
+                        m.load_state_dict(sd, strict=False)
+                    except Exception:
+                        pass
+                nm, score = attr.lower(), 0
+                if hasattr(m, "encode_image") and hasattr(m, "encode_text"):
+                    score += 100
+                if any(k in nm for k in ("scold", "clip", "dual", "cross")):
+                    score += 30
+                if "encoder" in nm:
+                    score -= 25                       # avoid sub-encoders (ImageEncoder/TextEncoder)
+                subs = [s.lower() for s, _ in m.named_children()]
+                if any(("text" in s or "rob" in s or "lang" in s) for s in subs) and \
+                   any(("vis" in s or "image" in s or "swin" in s or "img" in s) for s in subs):
+                    score += 60                       # has BOTH towers -> the full model
+                try:
+                    if len(inspect.signature(m.forward).parameters) >= 3:
+                        score += 30                   # forward(image, ids, attn)
+                except Exception:
+                    pass
+                cands.append((score, attr, m))
+        if not cands:
             raise RuntimeError(f"no buildable nn.Module in {pyfiles} (tried {tried[:8]})")
+        cands.sort(key=lambda x: -x[0])
+        print(f"    [SCOLD] picked '{cands[0][1]}' (score {cands[0][0]}); options: "
+              + ", ".join(f"{a}({s})" for s, a, _ in cands[:6]))
+        model = cands[0][2]
         self.model = model.eval().to(device)
         self.tok = RobertaTokenizer.from_pretrained("roberta-base")
         self.preprocess = T.Compose([T.Resize((224, 224)), T.ToTensor()])
@@ -353,8 +376,7 @@ class ScoldEnc:
         with torch.no_grad():
             if hasattr(m, "encode_image"):
                 return F.normalize(m.encode_image(px), dim=-1)
-            if hasattr(m, "visual"):
-                return F.normalize(m.visual(px), dim=-1)
+            # aligned joint forward with a matched-batch dummy text -> take the image embedding
             t = self.tok([""] * px.shape[0], return_tensors="pt", padding=True).to(self.device)
             out = m(px, t["input_ids"], t["attention_mask"])
             emb = out[0] if isinstance(out, (tuple, list)) else getattr(out, "image_embeds", out)
@@ -377,7 +399,8 @@ class ScoldEnc:
             return F.normalize(emb, dim=-1)
 
 
-def embed_images(enc, rows, batch=64):
+def embed_images(enc, rows, batch=None):
+    batch = batch or BATCH
     import torch
     from torch.utils.data import Dataset, DataLoader
     from PIL import Image
@@ -530,7 +553,7 @@ def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0
             def __len__(self): return len(rows)
             def __getitem__(self, i):
                 return preprocess(Image.open(rows[i]["path"]).convert("RGB")), rows[i]["label"]
-        dl = DataLoader(E(), batch_size=128, num_workers=2)
+        dl = DataLoader(E(), batch_size=BATCH, num_workers=2)
         embs, labs = [], []
         model.eval()
         with torch.no_grad():
@@ -551,7 +574,7 @@ def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0
     head = nn.Linear(d, len(seen_classes)).to(device)
     theta0 = copy.deepcopy(model.visual.state_dict())
 
-    dl = DataLoader(TrainDS(), batch_size=64, shuffle=True, num_workers=2)
+    dl = DataLoader(TrainDS(), batch_size=BATCH, shuffle=True, num_workers=2)
     opt = torch.optim.AdamW([{"params": model.visual.parameters(), "lr": 1e-5},
                              {"params": head.parameters(), "lr": 1e-3}], weight_decay=1e-4)
     print(f"  fine-tuning visual+head on {len(tr_rows):,} seen imgs x {ft_epochs} epochs ...")
@@ -599,13 +622,15 @@ def exp3_finetune_wiseft(tier, seen, unseen, device, ft_epochs=5, alphas=(0.0, 0
 
 
 def main():
+    global BATCH
     ap = argparse.ArgumentParser()
     ap.add_argument("--tier", default="lw11", choices=list(MODEL_TIERS))
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--ft-epochs", type=int, default=5)
+    ap.add_argument("--batch", type=int, default=BATCH, help="lower for an 8GB GPU (e.g. 32)")
     ap.add_argument("--only", choices=["exp1", "exp2", "exp3"], default=None)
     args, _ = ap.parse_known_args()   # tolerate Jupyter's -f kernel arg if pasted into a cell
-
+    BATCH = args.batch
     ensure_deps()
     import torch
     device = "cuda" if torch.cuda.is_available() else "cpu"
