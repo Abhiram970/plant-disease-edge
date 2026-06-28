@@ -22,9 +22,9 @@ import json, sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-DATA_DIR = Path("/kaggle/working/spike_data")
-if not DATA_DIR.exists():
-    DATA_DIR = Path("./phase0_out/spike_data")
+# Detect Kaggle by the WORKING dir (spike_data may not exist yet -> we create it on fetch).
+DATA_DIR = (Path("/kaggle/working/spike_data") if Path("/kaggle/working").exists()
+            else Path("./phase0_out/spike_data"))
 HELDOUT_CROPS = ["Coffee", "Orange", "Peach"]
 MIN_CLASS_IMAGES = 15
 RESULT_JSON = Path("/kaggle/working/phase0_descriptors_result.json")
@@ -119,7 +119,7 @@ def ensure_deps():
 def load_rows(crops, min_imgs=MIN_CLASS_IMAGES):
     rows = []
     if not DATA_DIR.exists():
-        sys.exit(f"no data dir {DATA_DIR}; run phase0_spike.py first.")
+        return rows          # empty -> ensure_held_data() will fetch; do NOT exit here
     for d in DATA_DIR.iterdir():
         if not d.is_dir() or "___" not in d.name:
             continue
