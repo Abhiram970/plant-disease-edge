@@ -21,7 +21,18 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parent.parent
+def _find_repo():
+    try:
+        return Path(__file__).resolve().parent.parent
+    except NameError:                       # pasted into a notebook cell -> no __file__
+        p = Path.cwd()
+        for cand in [p, *p.parents]:
+            if (cand / "scripts" / "config.py").exists():
+                return cand
+        return p
+
+
+REPO = _find_repo()
 sys.path.insert(0, str(REPO / "scripts"))
 import config as C          # noqa: E402
 import sage_data            # noqa: E402
