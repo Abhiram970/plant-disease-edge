@@ -55,6 +55,36 @@ DESCRIPTORS_DIR = REPO_ROOT / "descriptors"   # <crop>.json  (committed to git)
 IMAGE_EXTS = (".jpg", ".jpeg", ".png")
 IMG_SIZE = 224  # student/teacher input resolution
 
+# --- Model family (VALIDATED via Phase-0, 2026-06) --------------------------
+# METHOD: students are FROZEN pretrained image-text models (open_clip). Training a tiny model
+# to learn the alignment -- from scratch OR by specializing on seen crops -- was shown NOT to
+# improve unseen-crop zero-shot (4 runs, catastrophic forgetting). We use frozen backbones +
+# descriptor text prototypes. Only the image encoder deploys; text encoder runs offline.
+MODEL_TIERS = {
+    "small": ("MobileCLIP2-S0", "dfndr2b"),     # ~11.4M image enc -> small NPU / phone
+    "mid":   ("MobileCLIP-S1",  "datacompdr"),  # ~21.5M           -> laptop CPU
+    "large": ("MobileCLIP2-S2", "dfndr2b"),     # ~35.8M           -> laptop / workstation
+}
+# Frozen reference / teacher VLMs for the bake-off (verify availability on Kaggle open_clip).
+TEACHERS = [
+    ("ViT-B-16-SigLIP2", "webli"),    # best in our probe (~25.6%)
+    # ("hf-hub:imageomics/bioclip-2", None),  # BioCLIP 2  -- verify load
+    # ("hf-hub:enalis/scold", None),          # SCOLD leaf-disease VLM -- verify load
+]
+PROMPT_TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
+
+# --- SAGE parquet-shard fetch (the working data path; NOT row-streaming) ----
+# `refs/convert/parquet` has 13 shards (0000..0012); crops are scattered/clustered across them.
+# Front-load shard 0 (small) + shard 8 (holds Peach); auto-stop once enough crops are covered.
+SHARD_REVISION = "refs/convert/parquet"
+SHARD_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]
+MAX_SHARDS = 13
+CAP_HELD_PER_CLASS = 120
+CAP_TRAIN_PER_CLASS = 250
+MIN_HELD_CROPS = 2            # stop once >=N held crops are covered (Coffee is rare in early shards)
+EVAL_MIN_CLASS_IMAGES = 15   # class-size floor for the held-out eval set
+RESULTS_DIR = DATA_ROOT / "results"   # eval result JSONs (feed docs/paper/make_figures.py)
+
 
 def canonical_crop(raw: str) -> str | None:
     """Map a raw SAGE crop string to our canonical crop name, or None if not wanted."""
