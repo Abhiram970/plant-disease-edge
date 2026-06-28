@@ -58,10 +58,8 @@ def main():
     print(f"[train_seen] tier={args.tier} ({name})  device={device}")
 
     # --- data: seen (train) + unseen (held) ---
-    seen = sage_data.fetch(C.TRAIN_CROPS, {c: C.CAP_TRAIN_PER_CLASS for c in C.TRAIN_CROPS},
-                           min_held_crops=args.min_train_crops)
-    unseen = sage_data.fetch(C.HELDOUT_CROPS, {c: C.CAP_HELD_PER_CLASS for c in C.HELDOUT_CROPS},
-                             min_held_crops=C.MIN_HELD_CROPS)
+    seen = sage_data.fetch(C.TRAIN_CROPS, sage_data.full_caps(), min_held_crops=args.min_train_crops)
+    unseen = sage_data.fetch(C.HELDOUT_CROPS, sage_data.full_caps(), min_held_crops=C.MIN_HELD_CROPS)
     assert seen and unseen, "need both seen and unseen images"
 
     # --- frozen backbone + embeddings ---
