@@ -29,6 +29,14 @@ HELDOUT_CROPS = ["Coffee", "Orange", "Peach"]
 MIN_CLASS_IMAGES = 15
 RESULT_JSON = Path("/kaggle/working/phase0_descriptors_result.json")
 
+# --- standalone data fetch (so this works in a FRESH Kaggle session with empty /kaggle/working) ---
+# Front-load shard 0 (small) + shard 8 (known to hold Peach); auto-stop once all 3 held crops covered.
+SHARD_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]
+MAX_SHARDS = 13
+CAP_HELD_PER_CLASS = 120
+CROP_ALIASES = {"coffee": "Coffee", "orange": "Orange", "citrus": "Orange",
+                "sweet orange": "Orange", "peach": "Peach"}
+
 MODELS = [("MobileCLIP2-S0", "dfndr2b"), ("MobileCLIP-S1", "datacompdr"), ("ViT-B-16-SigLIP2", "webli")]
 TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
 
@@ -97,7 +105,8 @@ RICH = [
 def ensure_deps():
     import importlib, subprocess
     need = []
-    for mod, pkg in [("open_clip", "open_clip_torch>=2.24"), ("timm", "timm>=1.0.3")]:
+    for mod, pkg in [("open_clip", "open_clip_torch>=2.24"), ("timm", "timm>=1.0.3"),
+                     ("huggingface_hub", "huggingface_hub"), ("pyarrow", "pyarrow"), ("tqdm", "tqdm")]:
         try:
             importlib.import_module(mod)
         except Exception:
@@ -123,6 +132,120 @@ def load_rows(crops, min_imgs=MIN_CLASS_IMAGES):
     return [r for r in rows if cc[r["label"]] >= min_imgs]
 
 
+def _safe(s):
+    return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in str(s).strip())
+
+
+def _canonical_crop(raw):
+    if not raw:
+        return None
+    k = str(raw).strip().lower()
+    c = CROP_ALIASES.get(k) or next((v for a, v in CROP_ALIASES.items() if a in k), None)
+    return c if c in HELDOUT_CROPS else None
+
+
+def _load_done():
+    p = DATA_DIR / ".shards_done.json"
+    if p.exists():
+        try:
+            return set(json.loads(p.read_text()))
+        except Exception:
+            return set()
+    return set()
+
+
+def _save_done(done):
+    (DATA_DIR / ".shards_done.json").write_text(json.dumps(sorted(done)))
+
+
+def ensure_held_data():
+    """Fetch held-out (Coffee/Orange/Peach) images from SAGE shards if not already on disk,
+    so this script runs standalone in a fresh Kaggle session. Incremental + resumable."""
+    import io, hashlib
+    import pyarrow.parquet as pq
+    from huggingface_hub import hf_hub_download
+    from PIL import Image
+    from tqdm.auto import tqdm
+
+    def crop_of(lbl):
+        return lbl.split("|", 1)[0]
+
+    def covered(rs):
+        by = Counter(crop_of(r["label"]) for r in rs)
+        return all(by.get(c, 0) >= MIN_CLASS_IMAGES for c in HELDOUT_CROPS)
+
+    rows = load_rows(HELDOUT_CROPS, min_imgs=1)
+    if covered(rows):
+        print(f"[data] held images already on disk ({len(rows):,}) -> skip download.")
+        return
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    done = _load_done()
+    kept = Counter((crop_of(r["label"]), r["label"].split("|", 1)[1]) for r in rows)
+    hashes = {Path(r["path"]).stem for r in rows}
+    print(f"[data] fetching held crops {HELDOUT_CROPS} from SAGE shards (have {len(rows):,}) ...")
+    for si in SHARD_ORDER[:MAX_SHARDS]:
+        if covered(rows):
+            break
+        if si in done:
+            continue
+        fn = f"default/train/{si:04d}.parquet"
+        print(f"    downloading shard {si:04d} ...")
+        try:
+            path = hf_hub_download(repo_id="tirtho149/SAGE", repo_type="dataset",
+                                   filename=fn, revision="refs/convert/parquet")
+        except Exception as e:
+            print(f"    !! shard {si:04d} failed: {e}")
+            continue
+        pf = pq.ParquetFile(path)
+        try:
+            names = set(pf.schema_arrow.names)
+            cols = [c for c in ("image", "crop", "disease") if c in names]
+        except Exception:
+            cols = None
+        for batch in tqdm(pf.iter_batches(batch_size=512, columns=cols),
+                          total=pf.metadata.num_rows // 512 + 1, desc=f"shard{si:04d}"):
+            d = batch.to_pydict()
+            imgs = d.get("image", []); crops = d.get("crop", [])
+            diss = d.get("disease", [None] * len(crops))
+            for img_obj, craw, draw in zip(imgs, crops, diss):
+                crop = _canonical_crop(craw)
+                if crop is None:
+                    continue
+                disease = str(draw if draw is not None else "Unknown")
+                key = (crop, disease)
+                if kept[key] >= CAP_HELD_PER_CLASS:
+                    continue
+                try:
+                    raw = img_obj["bytes"] if isinstance(img_obj, dict) else img_obj
+                    img = Image.open(io.BytesIO(raw)).convert("RGB")
+                    buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
+                    jpg = buf.getvalue()
+                except Exception:
+                    continue
+                h16 = hashlib.sha1(jpg).hexdigest()[:16]
+                if h16 in hashes:
+                    continue
+                hashes.add(h16)
+                cls = DATA_DIR / f"{_safe(crop)}___{_safe(disease)}"
+                cls.mkdir(parents=True, exist_ok=True)
+                fp = cls / f"{h16}.jpg"
+                fp.write_bytes(jpg)
+                kept[key] += 1
+                rows.append({"path": str(fp), "label": f"{crop}|{disease}"})
+        try:
+            Path(path).unlink()
+        except Exception:
+            pass
+        done.add(si); _save_done(done)
+        by = Counter(crop_of(r["label"]) for r in rows)
+        print(f"    after shard {si:04d}: " + ", ".join(f"{c}={by.get(c,0)}" for c in HELDOUT_CROPS))
+    if not covered(rows):
+        by = Counter(crop_of(r["label"]) for r in rows)
+        print(f"    WARNING: held crops under {MIN_CLASS_IMAGES} imgs: "
+              + ", ".join(f"{c}={by.get(c,0)}" for c in HELDOUT_CROPS))
+
+
 def text_for(lbl, strategy, coverage=None):
     crop, dis = lbl.split("|")
     base = f"{dis} on {crop} leaf".replace("_", " ")
@@ -145,6 +268,7 @@ def text_for(lbl, strategy, coverage=None):
 
 def main():
     ensure_deps()
+    ensure_held_data()        # fetch Coffee/Orange/Peach from SAGE if not already on disk
     import torch
     import torch.nn.functional as F
     import open_clip
