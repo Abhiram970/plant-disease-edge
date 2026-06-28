@@ -45,6 +45,13 @@ def load_rows(crops, min_imgs: int = 1):
     return [r for r in rows if cc[r["label"]] >= min_imgs]
 
 
+def full_caps():
+    """Caps for ALL wanted crops (train + held). A shard download mines every wanted crop, so a
+    held-only fetch still saves train crops (and vice-versa) -> one shared, valid .shards_done.json."""
+    return {**{c: C.CAP_TRAIN_PER_CLASS for c in C.TRAIN_CROPS},
+            **{c: C.CAP_HELD_PER_CLASS for c in C.HELDOUT_CROPS}}
+
+
 def _done_path() -> Path:
     return C.DATASET_DIR / ".shards_done.json"
 
@@ -80,7 +87,7 @@ def fetch(crops, caps, min_held_crops=None, min_class_images=None):
         return n >= need
 
     C.ensure_dirs()
-    rows = load_rows(crops, min_imgs=1)
+    rows = load_rows(list(caps.keys()), min_imgs=1)   # seed from ALL wanted crops on disk
     if covered(rows):
         print(f"[sage] {len(rows):,} imgs already on disk for {crops} -> skip download.")
         return load_rows(crops, min_imgs=min_class_images)
@@ -115,7 +122,7 @@ def fetch(crops, caps, min_held_crops=None, min_class_images=None):
             diss = d.get("disease", [None] * len(crps))
             for img_obj, craw, draw in zip(imgs, crps, diss):
                 crop = C.canonical_crop(craw)
-                if crop is None or crop not in crops:
+                if crop is None or crop not in caps:     # keep ALL wanted crops, not just `crops`
                     continue
                 cap = caps.get(crop, C.CAP_HELD_PER_CLASS)
                 disease = str(draw if draw is not None else "Unknown")
@@ -157,15 +164,11 @@ def main():
     ap.add_argument("--role", choices=["heldout", "train", "all"], default="heldout")
     args = ap.parse_args()
     if args.role == "heldout":
-        crops, caps = C.HELDOUT_CROPS, {c: C.CAP_HELD_PER_CLASS for c in C.HELDOUT_CROPS}
-        fetch(crops, caps, min_held_crops=C.MIN_HELD_CROPS)
+        fetch(C.HELDOUT_CROPS, full_caps(), min_held_crops=C.MIN_HELD_CROPS)
     elif args.role == "train":
-        crops = C.TRAIN_CROPS
-        fetch(crops, {c: C.CAP_TRAIN_PER_CLASS for c in crops}, min_held_crops=None)
+        fetch(C.TRAIN_CROPS, full_caps(), min_held_crops=4)
     else:
-        caps = {**{c: C.CAP_TRAIN_PER_CLASS for c in C.TRAIN_CROPS},
-                **{c: C.CAP_HELD_PER_CLASS for c in C.HELDOUT_CROPS}}
-        fetch(C.WANT_CROPS, caps, min_held_crops=None)
+        fetch(C.WANT_CROPS, full_caps(), min_held_crops=None)
 
 
 if __name__ == "__main__":

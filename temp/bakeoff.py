@@ -161,8 +161,7 @@ def main():
     ensure_deps()
     import torch
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    rows = sage_data.fetch(C.HELDOUT_CROPS, {c: C.CAP_HELD_PER_CLASS for c in C.HELDOUT_CROPS},
-                           min_held_crops=C.MIN_HELD_CROPS)
+    rows = sage_data.fetch(C.HELDOUT_CROPS, sage_data.full_caps(), min_held_crops=C.MIN_HELD_CROPS)
     assert rows, "no held-out images"
     classes = sorted({r["label"] for r in rows})
     chance = 1.0 / len(classes)
