@@ -41,16 +41,16 @@ SPEC_HELD = [.121, .176, .122, .142, .140, .138, .150, .138, .150, .148, .154]
 SPEC_BASE = 0.199
 
 # ---- EXP1 bake-off: encoder rich-descriptor zero-shot (held 8 classes, chance 12.5%) ----
-BAKEOFF = [  # (label, img params M, rich zero-shot)
-    ("MobileCLIP2-S0", 11.4, 0.371),
-    ("MobileCLIP-S1", 21.5, 0.402),
-    ("MobileCLIP2-S2", 35.8, 0.346),
-    ("BioCLIP2", 304.0, 0.254),
-    ("SigLIP2", 92.9, 0.498),
+BAKEOFF = [  # (label, img params M, rich zero-shot) -- 17-class held (Coffee+Orange+Peach), chance 5.9%
+    ("MobileCLIP2-S0", 11.4, 0.269),
+    ("MobileCLIP-S1", 21.5, 0.225),
+    ("MobileCLIP2-S2", 35.8, 0.287),
+    ("BioCLIP2", 304.0, 0.096),
+    ("SigLIP2", 92.9, 0.315),
 ]
-BAKEOFF_CHANCE = 0.125
-# ---- EXP2 hybrid (MobileCLIP2-S0, 11M): trained seen vs zero-shot seen vs zero-shot unseen ----
-HYBRID = {"seen_trained": 0.671, "seen_zeroshot": 0.085, "unseen_zeroshot": 0.371}
+BAKEOFF_CHANCE = 0.059
+# ---- EXP2 hybrid (MobileCLIP2-S0, 11M): trained seen vs zero-shot seen vs zero-shot unseen (3 crops) ----
+HYBRID = {"seen_trained": 0.670, "seen_zeroshot": 0.085, "unseen_zeroshot": 0.269}
 
 
 def fig_efficiency_curve():
@@ -141,7 +141,7 @@ def fig_bakeoff():
         ax.text(v + 0.005, i, f"{v:.1%}", va="center", fontsize=8)
     ax.axvline(BAKEOFF_CHANCE, ls="--", color="grey", lw=1, label=f"chance ({BAKEOFF_CHANCE:.1%})")
     ax.set_xlabel("rich-descriptor zero-shot accuracy (held-out crops)")
-    ax.set_title("Encoder bake-off: SigLIP2 best; MobileCLIP-S1 best lightweight; BioCLIP2 poor")
+    ax.set_title("Encoder bake-off (17 cls): SigLIP2 best; lightweight 22-29%; BioCLIP2 poor")
     ax.legend(fontsize=8)
     fig.tight_layout(); fig.savefig(FIG / "fig_bakeoff.png", dpi=160); plt.close(fig)
 

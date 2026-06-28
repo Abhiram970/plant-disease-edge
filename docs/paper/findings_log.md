@@ -12,8 +12,9 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 | 5 | Probe pretrained CLIPs | frozen, no training | **MobileCLIP2-S0 (11M) 19.9%**, flat 11–300M @17–22%, SigLIP2 25.6% | **FORK A: feasible** ⇒ pivot to pretrained CLIPs |
 | 6 | Specialize (adapter) | MobileCLIP2-S0 + residual adapter + SigLIP2 KD | base 19.9% → **15.4% (−4.5pp)** | NO LIFT — catastrophic forgetting |
 | 7 | Descriptor quality | bare/crude/**rich** on frozen models, 8 classes (Orange+Peach), chance 12.5% | **rich best on all**: S0 29.5→**37.5%** (+8), S1 24.8→**39.8%** (+15), SigLIP2 34.8→**49.5%** (+14.7); Orange/HLB 8.9→**95.6%** on 11M | **POSITIVE — descriptor lever validated** |
-| 8 | Encoder bake-off | rich zero-shot, held 8 classes | **SigLIP2 49.8%** (best) > **MobileCLIP-S1 40.2%** (best lightweight, 21M) > S0 37.1% (11M) > S2 34.6% (36M, dominated) > BioCLIP2 25.4% (poor). SCOLD/AgriCLIP load-failed | SigLIP2=teacher; S1=deploy; drop BioCLIP2/S2 |
-| 9 | Train seen / keep unseen | MobileCLIP2-S0 11M, linear probe on 80 seen classes | **SEEN trained 67.1% vs zero-shot 8.5%** (8× win); **UNSEEN zero-shot 37.1% preserved** | **HYBRID VALIDATED** — train seen, zero-shot unseen, one frozen 11M model |
+| 8 | Encoder bake-off | rich zero-shot, **3 held crops, 17 classes**, chance 5.9% | **SigLIP2 31.5%** (best) > S2 28.7% > S0 26.9% > S1 22.5% > BioCLIP2 9.6% (poor, drop). SCOLD loaded (class LVL) but **5.3% — adapter issue, not valid** (RoBERTa from base; preprocess mismatch) | SigLIP2=teacher; lightweight ~22-29% (noisy ranking); drop BioCLIP2; SCOLD needs inference.py |
+| 9 | Train seen / keep unseen | MobileCLIP2-S0 11M, linear probe, 80 seen classes, 3 held crops | **SEEN trained 67.0% vs zero-shot 8.5%** (8× win); **UNSEEN zero-shot 26.9% preserved** | **HYBRID VALIDATED** — train seen, zero-shot unseen, one frozen 11M model |
+| 10 | Fine-tune + WiSE-FT (EXP3) | MobileCLIP2-S0, ft 5 epochs, alpha sweep | theta0 ALIASING BUG (deepcopy) made alpha=0 = forgotten model (15.9% not 26.9%); **FIXED** (reload pristine weights); clean sweep re-run pending | re-run `--only exp3` |
 
 ## What is established
 - **Works:** frozen compact pretrained CLIP + descriptors does cross-crop zero-shot (~20% @ 11M, 3.4× chance, ~78% of 93M SigLIP2).
