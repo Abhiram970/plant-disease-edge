@@ -55,8 +55,24 @@ All pretrained CLIPs 17–22% across 11–322M params → the compact tier is ~9
 ### 5.3 Training a small model does not help unseen crops — Fig. `fig_specialization_forgetting.png`
 Specializing MobileCLIP2-S0 on seen crops: 19.9% → 15.4% (−4.5pp); held-out falls as train-crop fit rises = catastrophic forgetting. From-scratch distillation similarly stays ~chance.
 
-### 5.4 Descriptor quality — Fig. `fig_descriptors.png` *(pending)*
-bare vs crude vs source-grounded-style on the frozen models. *[Fill from phase0_descriptors_result.json.]*
+### 5.4 Descriptor quality is the lever — Fig. `fig_descriptors.png`
+Frozen zero-shot, bare vs crude vs rich (source-grounded-style), 8 classes (Orange+Peach), chance 12.5%:
+
+| Model | bare | crude | rich | rich−bare |
+|---|---|---|---|---|
+| MobileCLIP2-S0 (11M) | 29.5% | 27.9% | **37.5%** | **+8.0** |
+| MobileCLIP-S1 (21M) | 24.8% | 36.7% | **39.8%** | **+15.0** |
+| SigLIP2 (93M) | 34.8% | 45.9% | **49.5%** | **+14.7** |
+
+Rich descriptors are best on all three models; the +14–15pp lift on the larger models matches
+SAGE's reported +14–16pp from symptom knowledge (independent corroboration), now shown on **frozen
+compact edge models**. **Standout:** Orange/Huanglongbing on the 11M model goes **8.9% → 95.6%** with a
+good symptom descriptor (SigLIP2 34.8%→94.8%; S1 8.9%→88.9%) — a distinctive disease on an unseen crop,
+diagnosed by an 11M model from text alone.
+
+*Caveats:* small noisy set (Coffee absent; `Leaf_Curl` and `Peach_Leaf_Curl` are duplicate labels of one
+disease; `Whisker_Mold`/`Stigmina_Fungus` are obscure with no descriptor) — so Peach is mixed (rich can
+make near-duplicate classes collide). Taxonomy cleaning + real source-grounded descriptors are Phase A.
 
 ### 5.5 Efficiency / on-device *(Phase D)*
 INT8 size, p50/p95 latency, RAM on laptop + small NPU per tier.
