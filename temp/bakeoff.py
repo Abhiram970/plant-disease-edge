@@ -23,11 +23,13 @@ def _find_repo():
     try:
         return Path(__file__).resolve().parent.parent
     except NameError:                       # pasted into a notebook cell -> no __file__
-        p = Path.cwd()
-        for cand in [p, *p.parents]:
+        cwd = Path.cwd()
+        cands = [cwd, *cwd.parents, cwd / "plant-disease-edge", Path("/kaggle/working/plant-disease-edge")]
+        cands += [m.parent.parent for m in cwd.glob("*/scripts/config.py")]   # repo as a child dir
+        for cand in cands:
             if (cand / "scripts" / "config.py").exists():
                 return cand
-        return p
+        return cwd
 
 
 REPO = _find_repo()
