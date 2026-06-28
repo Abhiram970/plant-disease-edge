@@ -31,9 +31,11 @@ foundation model.**
 
 Frontier vision-language models (VLMs) — e.g. the **SAGE** agentic diagnoser — reach high in-the-wild
 disease accuracy but cost **~$0.21–0.42 per image** and **cannot run on a phone or a Raspberry Pi**.
-We **distill that foundation-model symptom knowledge into a family of INT8 edge students — ~5M / ~10M / ~20M
-params** (EMOv2-5M → iFormer-M → iFormer-L/FastViT) that run at zero marginal inference cost across device
-classes (NPU smart-camera & Raspberry Pi → phone → laptop CPU).
+We build **a compact, deployable model family (11 / 21 / 35M lightweight + 86 / 93M heavyweight)** that is
+**trained for high real-time accuracy on known crops** and does **zero-shot diagnosis on unseen crops** via
+source-grounded symptom descriptors — at zero marginal inference cost on phones, laptops, and small NPUs.
+(A ~5M tier is a proof-of-concept via weight-inherited distillation; sub-10M aligned models aren't
+off-the-shelf.)
 
 **PRIMARY HEADLINE — cross-crop zero-shot generalization.** The tiny student, anchored on
 LLM-authored symptom-descriptor *text prototypes*, diagnoses crops it **never saw during training**
@@ -186,13 +188,14 @@ rests on the CLIP-family alignment, and **DINOv2 is an auxiliary teacher for tra
 only.** State this explicitly in the paper — it pre-empts the obvious reviewer question.
 
 ### Teachers (all FROZEN — never trained) — bake-off picks the winner (Phase C0)
-The zero-shot engine needs an **image–text aligned** space. We benchmark four and pick the best:
-- **SCOLD** (2025) — domain **leaf-disease** VLM (186K image–caption pairs, 97 concepts; HF `enalis/scold`);
-  reported to beat CLIP-L / BioCLIP / SigLIP2 on zero-shot leaf disease. **Likely winner; also the cloud
-  baseline we beat on edge + cross-crop.** Verify load on Kaggle in Phase A.
-- **BioCLIP 2** (2025) — biological foundation model (TreeOfLife-200M); biologically meaningful embedding
-  (healthy leaves of different species cluster). Strong domain-adjacent teacher.
-- **SigLIP2** (2025) — best **generic** open zero-shot VLM.
+These double as the **zero-shot prototype encoder** AND the **distillation source** for the trained heads.
+We bake them off — **only SigLIP2 is CONFIRMED so far (~25.6%); the rest are UNVERIFIED (loaders pending):**
+- **SCOLD** (2025) — domain **leaf-disease** VLM (Swin-T ~28M + RoBERTa; HF `enalis/scold`, loads via
+  `transformers AutoModel`, **NOT open_clip**). Reported to beat CLIP-L/BioCLIP/SigLIP2 on leaf disease.
+  Test BOTH as a teacher AND as a deployable ~28M domain tier. Our closest competitor.
+- **AgriCLIP** (2024, arXiv 2410.01407) — agriculture/livestock CLIP (600K image–text pairs); domain teacher.
+- **BioCLIP 2** (2025) — biological foundation model (TreeOfLife-200M); load via open_clip hf-hub.
+- **SigLIP2** (2025) — best **generic** open zero-shot VLM (the one we've confirmed).
 - **CLIP ViT-B/16** — baseline floor / smallest cache.
 - (Optional 5th: **MobileCLIP2**, low-latency teacher.)
 - The comparison *"which foundation model — generic vs biological vs domain-specific — distills best into
@@ -200,43 +203,55 @@ The zero-shot engine needs an **image–text aligned** space. We benchmark four 
 - **Auxiliary (trained crops only):** **DINOv2-small** — vision-only structure/robustness signal (no
   zero-shot; droppable at inference).
 
-### Student — a PRETRAINED small-CLIP family, specialized (REVISED 2026-06-28 from Phase-0 evidence)
+### Student family — FROZEN backbone + TRAINED seen head + ZERO-SHOT unseen (REVISED 2026-06-28)
 
-> **Phase-0 finding (4 distill runs + a probe, Jun 2026):** training an ImageNet backbone
-> (EMOv2/iFormer/EdgeNeXt) to learn image–text alignment *from scratch* on ~10K images **does not
-> work** — the 5M student stayed at ~chance on unseen crops (11% vs 5.9% chance, 17 classes) even with a
-> SigLIP2 teacher + text-prototype anchoring; a stronger teacher did **not** help. **A small model cannot
-> absorb cross-modal alignment from 10K images — it must INHERIT it from pretraining.** A frozen
-> **pretrained** small CLIP, by contrast, already does the task: **MobileCLIP2-S0 (~11M) → 19.9% zero-shot
-> (3.4× chance, ~78% of the 93M SigLIP2 teacher), no training, crude descriptors.** And the accuracy curve
-> is **flat from 11M→300M (all 17–22%)** → *model size is not the bottleneck* (the "lower compute" pillar,
-> now data-backed).
+> **Phase-0 findings (Jun 2026):** (1) training a tiny model to *learn* image–text alignment from ~10K
+> images fails — from-scratch ≈ chance; specializing a pretrained model on seen crops FORGETS (−4.5pp on
+> unseen). A small model must INHERIT alignment from pretraining. (2) A frozen pretrained small CLIP
+> already does cross-crop zero-shot (**MobileCLIP2-S0 ~11M → 19.9%**, 3.4× chance, ~78% of 93M SigLIP2).
+> (3) Descriptor QUALITY is the lever (**rich +8..+15pp over bare**, matching SAGE's +14–16pp), even at
+> 11M. (4) Accuracy is flat 11M→300M (efficiency pillar). **Corollary:** zero-shot is the right tool for
+> UNSEEN crops; for SEEN crops, SUPERVISED training beats zero-shot (lit: VLM zero-shot ≪ supervised,
+> ~62% best) — so we TRAIN thoroughly for seen crops and keep zero-shot for unseen.
 
-So the students are **pretrained image–text models that we agriculturally SPECIALIZE** — not ImageNet
-backbones distilled from scratch. The "flavours" (the deployable family):
+**The deployable system per tier = ONE frozen backbone, two heads, a router:**
+1. **Trained seen-crop head** — supervised / fine-tuned on the SAGE trained crops, trained THOROUGHLY
+   with checkpoints to be the BEST real-time model on known crops. (This is where training lives.)
+2. **Zero-shot descriptor head** — image embedding vs source-grounded descriptor prototypes; diagnoses
+   UNSEEN crops with no training data ($0/crop). The novel cross-crop capability (headline).
+3. **WiSE-FT weight ensembling** — interpolate fine-tuned ⊕ frozen weights so seen-crop gains do NOT
+   destroy unseen-crop zero-shot (Wortsman et al.) — "train but keep generalization."
+4. **Abstain / OOD router** — distance to nearest prototype: confident known crop → trained head; far /
+   unknown → zero-shot or "unsure." Honest field behaviour.
 
-| Tier | Pretrained base (open_clip) | Image-enc params (deploys) | Probe zero-shot (crude desc.) | Device target |
-|---|---|---|---|---|
-| **Small** | **MobileCLIP2-S0** | ~11.4M | 19.9% | small NPU / phone |
-| **Mid**   | **MobileCLIP-S1** | ~21.5M | 20.8% | laptop CPU |
-| **Large** | **MobileCLIP2-S2** | ~35.8M | 20.3% | laptop / workstation |
+**The family (deploy the image encoder; text encoder runs offline for prototypes):**
 
-(Only the **image encoder** ships to the device; the text encoder runs offline to precompute descriptor
-prototypes. A ~5M tier is a stretch — sub-10M aligned models aren't off-the-shelf; reaching it via
-weight-inherited distillation, à la TinyCLIP, is an optional extra contribution, not the core.)
+| Class | Base (open_clip) | Image-enc params | Device |
+|---|---|---|---|
+| Lightweight | MobileCLIP2-S0 | ~11.4M | small NPU / phone |
+| Lightweight | MobileCLIP-S1 | ~21.5M | laptop CPU |
+| Lightweight | MobileCLIP2-S2 | ~35.8M | laptop |
+| Heavyweight | MobileCLIP-B | ~86.3M | workstation |
+| Heavyweight / ref | SigLIP2 ViT-B/16 | ~92.9M | workstation / ceiling |
+| *Stretch (PoC)* | *distilled ~5M (TinyVLM Matryoshka + CLIP-RD)* | *~5M* | *MCU — future work* |
 
-### Method — agricultural specialization (REVISED, LOCKED)
-We **continue-train / distill the pretrained small CLIP on SAGE trained-crop data with source-grounded
-descriptors** (MobileCLIP2-style reinforced training + CLIP-KD/TinyCLIP losses), distilling from the
-winning teacher (SigLIP2 / BioCLIP2 / SCOLD). **The contribution is the SPECIALIZATION LIFT:** base
-cross-crop zero-shot (≈20%) → specialized (target meaningfully higher), measured on the held-out crops.
-*If specialization doesn't lift the base, the headline is weak — this is the load-bearing experiment.*
-DINOv2-small remains an optional auxiliary for trained-crop robustness.
+Goal: the **best deployable real-time model at each tier** — seen-crop accuracy via thorough training,
+unseen via zero-shot. (SCOLD's Swin-T ~28M is itself a candidate domain-specialized tier — test it.)
 
-**Story to tell:** a **compact agricultural VLM family** (≈11–36M), specialized from foundation VLMs via
-source-grounded symptom-descriptor distillation, doing **cross-crop disease zero-shot** on laptops/NPUs at
-$0/image — and a flat size–accuracy curve proving the small flavour is ~90% of a 300M model. Ablations:
-±specialization, ±source-grounding (vs crude prompts), teacher bake-off, across tiers.
+### Method (REVISED, LOCKED)
+- **Seen crops:** train thoroughly (supervised head / fine-tune) on SAGE trained crops, checkpointed;
+  protect unseen zero-shot with **WiSE-FT**. Goal = best per-tier real-time accuracy on known crops.
+- **Unseen crops:** frozen backbone + **source-grounded descriptor prototypes** (the headline). rich >
+  crude > bare is validated; Phase A2 builds auditable `{value, source_url, verbatim_quote}` descriptors.
+- **Encoder / teacher bake-off:** SCOLD (`transformers` custom load) · BioCLIP2 (hf-hub) · AgriCLIP vs
+  SigLIP2 (only SigLIP2 CONFIRMED) — pick the best zero-shot encoder / distill source.
+- **5M PoC:** weight-inherited distillation (TinyVLM Matryoshka + CLIP-RD relational KD) from the 11M
+  tier — framed as PoC + the "sub-10M aligned-model gap" contribution, not a delivered tier.
+
+**Story:** a deployable compact family (11–93M) that is **accurate on known crops** (trained, real-time)
+and **generalizes to unknown crops** via source-grounded descriptor zero-shot, with an abstain gate — at
+$0/image on edge. The flat 11M→300M curve shows the small flavour is ~90% of a giant. Ablations:
+±training, WiSE-FT vs naive fine-tune, ±source-grounding, encoder bake-off, across tiers.
 
 ---
 
