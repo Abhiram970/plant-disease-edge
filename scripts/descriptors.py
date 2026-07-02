@@ -79,17 +79,47 @@ RICH = [
 _grounded_cache: dict = {}
 
 
-def _grounded(crop, disease):
-    """Source-grounded descriptor text from descriptors/<crop>.json (Phase A2), if available."""
+def _grounded_rec(crop, disease):
+    """The filled descriptor record for (crop, disease) from descriptors/<crop>.json, or None.
+
+    build_descriptors.py writes a LIST of records per crop; we index by disease and only use records
+    with status=='filled' (stubs carry a 'TODO' placeholder that must NOT become a prototype — those
+    fall back to rich). Filename match is case-insensitive (Coffee.json vs coffee.json)."""
     if crop not in _grounded_cache:
-        p = C.DESCRIPTORS_DIR / f"{crop.lower()}.json"
+        idx = {}
         try:
-            _grounded_cache[crop] = json.loads(p.read_text()) if p.exists() else {}
+            fname = f"{C.safe_name(crop)}.json"
+            p = C.DESCRIPTORS_DIR / fname
+            if not p.exists():  # case-insensitive fallback for case-sensitive filesystems
+                p = next((q for q in C.DESCRIPTORS_DIR.glob("*.json")
+                          if q.name.lower() == fname.lower()), p)
+            if p.exists():
+                data = json.loads(p.read_text(encoding="utf-8"))
+                for rec in (data if isinstance(data, list) else data.values()):
+                    if isinstance(rec, dict) and rec.get("status") == "filled":
+                        idx[rec.get("disease")] = rec
         except Exception:
-            _grounded_cache[crop] = {}
-    entry = _grounded_cache[crop].get(disease) if isinstance(_grounded_cache[crop], dict) else None
-    if isinstance(entry, dict):
-        return entry.get("symptom_text") or entry.get("value")
+            idx = {}
+        _grounded_cache[crop] = idx
+    return _grounded_cache[crop].get(disease)
+
+
+def _grounded(crop, disease):
+    """Full source-grounded symptom paragraph (the 'grounded' strategy)."""
+    rec = _grounded_rec(crop, disease)
+    if isinstance(rec, dict):
+        t = (rec.get("symptom_text") or "").strip()
+        return t or None
+    return None
+
+
+def _grounded_visual(crop, disease):
+    """ONLY the visual_symptoms field value (terser, no taxonomy/pathogen prose that CLIP ignores).
+    The 'grounded_visual' strategy — tests whether stripping non-visual text helps prototype matching."""
+    rec = _grounded_rec(crop, disease)
+    if isinstance(rec, dict):
+        v = (rec.get("fields", {}).get("visual_symptoms", {}).get("value") or "").strip()
+        return v or None
     return None
 
 
@@ -106,6 +136,11 @@ def text_for(label: str, strategy: str = "rich", coverage: dict | None = None) -
         g = _grounded(crop, dis)
         if g:
             return f"{base}. {g}"
+        # fall through to rich
+    if strategy == "grounded_visual":
+        gv = _grounded_visual(crop, dis)
+        if gv:
+            return f"{base}. {gv}"
         # fall through to rich
     for kw, desc in RICH:           # rich (or grounded fallback)
         if kw in k:

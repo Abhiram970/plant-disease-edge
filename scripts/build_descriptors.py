@@ -44,6 +44,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
 
+try:                                   # load .env (LAVA_API_KEY, etc.) if python-dotenv is present
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    pass
+
 EMPTY_FIELD = {"value": "", "source_url": "", "verbatim_quote": ""}
 
 # Source-grounded extraction rules — the LLM may ONLY state what a cited source says.
@@ -85,14 +91,8 @@ def stub(crop: str, disease: str) -> dict:
     }
 
 
-def fill_with_claude(crop: str, disease: str) -> dict:
-    """Fill one descriptor via Claude with web-grounded sourcing. Falls back to stub on error."""
-    try:
-        import anthropic
-    except ImportError:
-        sys.exit("pip install anthropic  (needed for --fill)")
-    client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY
-    prompt = (
+def _user_prompt(crop: str, disease: str) -> str:
+    return (
         f"Crop: {crop}\nDisease: {disease}\n\n"
         "Return JSON exactly like:\n"
         '{"crop":"","disease":"","symptom_text":"",'
@@ -100,40 +100,118 @@ def fill_with_claude(crop: str, disease: str) -> dict:
         '"affected_organs":{"value":"","source_url":"","verbatim_quote":""},'
         '"visual_symptoms":{"value":"","source_url":"","verbatim_quote":""}}}'
     )
+
+
+def _parse_descriptor(text: str, crop: str, disease: str) -> dict:
+    """Extract the JSON object from an LLM reply (tolerating ```json fences)."""
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("```")[1]
+        if text.startswith("json"):
+            text = text[4:]
+    start, end = text.find("{"), text.rfind("}") + 1
+    d = json.loads(text[start:end])
+    d["crop"] = crop            # force to the manifest's names (the model sometimes renames the disease),
+    d["disease"] = disease      # so the grounded lookup keys by folder name always match
+    d["status"] = "filled"
+    return d
+
+
+def fill_with_lava(crop: str, disease: str) -> dict:
+    """Fill one descriptor via Claude through Lava's OpenAI-compatible endpoint (spend key).
+    NOTE: a plain chat call cannot browse — source_url/verbatim_quote are model-recalled and MUST
+    be human spot-audited (see audit_descriptors.py). symptom_text is the functional prototype text."""
+    try:
+        from openai import OpenAI
+    except ImportError:
+        sys.exit("pip install openai python-dotenv  (needed for --provider lava)")
+    key = os.environ.get("LAVA_API_KEY", "")
+    if not key:
+        sys.exit("Set LAVA_API_KEY (your Lava spend key) in .env or the environment.")
+    client = OpenAI(api_key=key, base_url=os.environ.get("LAVA_BASE_URL", "https://api.lava.so/v1"))
+    model = os.environ.get("LAVA_MODEL", "anthropic/claude-sonnet-4-6")
+    try:
+        resp = client.chat.completions.create(
+            model=model, max_tokens=1200, temperature=0.0,
+            messages=[{"role": "system", "content": GROUNDING_SYSTEM},
+                      {"role": "user", "content": _user_prompt(crop, disease)}],
+        )
+        return _parse_descriptor(resp.choices[0].message.content, crop, disease)
+    except Exception as e:
+        print(f"   [warn] lava fill failed for {crop}/{disease}: {e} -> stub")
+        return stub(crop, disease)
+
+
+def fill_with_claude(crop: str, disease: str) -> dict:
+    """Fill one descriptor via the native Anthropic SDK (needs ANTHROPIC_API_KEY)."""
+    try:
+        import anthropic
+    except ImportError:
+        sys.exit("pip install anthropic  (needed for --provider anthropic)")
+    client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY
+    model = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5")
     try:
         msg = client.messages.create(
-            model="claude-opus-4-8",
-            max_tokens=1200,
-            system=GROUNDING_SYSTEM,
-            messages=[{"role": "user", "content": prompt}],
+            model=model, max_tokens=1200, system=GROUNDING_SYSTEM,
+            messages=[{"role": "user", "content": _user_prompt(crop, disease)}],
         )
         text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-        start, end = text.find("{"), text.rfind("}") + 1
-        d = json.loads(text[start:end])
-        d.setdefault("crop", crop)
-        d.setdefault("disease", disease)
-        d["status"] = "filled"
-        return d
+        return _parse_descriptor(text, crop, disease)
     except Exception as e:
-        print(f"   [warn] fill failed for {crop}/{disease}: {e} -> stub")
+        print(f"   [warn] anthropic fill failed for {crop}/{disease}: {e} -> stub")
         return stub(crop, disease)
+
+
+def _usable(rec: dict | None) -> bool:
+    """A record counts as a real fill only if it has a substantive symptom_text (the prototype text).
+    Empty/degenerate 'filled' records (model didn't know the disease) are treated as NOT filled so
+    they retry next run and don't inflate the filled count."""
+    if not rec or rec.get("status") != "filled":
+        return False
+    t = (rec.get("symptom_text") or "").strip()
+    return len(t) >= 40 and not t.startswith("TODO")
+
+
+def fill_one(crop: str, disease: str, provider: str) -> dict:
+    rec = fill_with_lava(crop, disease) if provider == "lava" else fill_with_claude(crop, disease)
+    if not _usable(rec):
+        print(f"   [warn] {crop}/{disease}: empty/short symptom_text -> keeping as stub (will retry)")
+        return stub(crop, disease)
+    return rec
 
 
 def main():
     ap = argparse.ArgumentParser(description="Phase A2: build source-grounded descriptors.")
-    ap.add_argument("--fill", action="store_true", help="use Claude to fill (needs ANTHROPIC_API_KEY)")
+    ap.add_argument("--fill", action="store_true", help="fill via LLM (else write stubs)")
+    ap.add_argument("--provider", choices=["auto", "lava", "anthropic"], default="auto",
+                    help="auto = Lava if LAVA_API_KEY is set, else Anthropic")
     ap.add_argument("--classes-from", choices=["all", "train", "heldout"], default="all")
+    ap.add_argument("--limit", type=int, default=0,
+                    help="cap NEW fills this run (0 = no cap) — a spend guard for the $10 budget")
     args = ap.parse_args()
 
-    if args.fill and not os.environ.get("ANTHROPIC_API_KEY"):
-        sys.exit("--fill requires ANTHROPIC_API_KEY in the environment.")
+    provider = args.provider
+    if args.fill:
+        if provider == "auto":
+            provider = "lava" if os.environ.get("LAVA_API_KEY") else "anthropic"
+        if provider == "lava" and not os.environ.get("LAVA_API_KEY"):
+            sys.exit("--provider lava needs LAVA_API_KEY (put it in .env or the environment).")
+        if provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
+            sys.exit("--provider anthropic needs ANTHROPIC_API_KEY.")
 
     C.DESCRIPTORS_DIR.mkdir(parents=True, exist_ok=True)
     classes = classes_from_manifest(args.classes_from)
     if not classes:
         sys.exit("No classes found for that group in the manifest.")
+    n_want = sum(len(v) for v in classes.values())
+    if args.fill:
+        mdl = os.environ.get("LAVA_MODEL", "anthropic/claude-sonnet-4-6") if provider == "lava" \
+            else os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5")
+        print(f"[fill] provider={provider}  model={mdl}  candidates={n_want}"
+              + (f"  (cap {args.limit} new this run)" if args.limit else "")
+              + "  (already-filled are skipped)")
 
-    total, filled = 0, 0
+    total, filled, new_fills = 0, 0, 0
     for crop, diseases in sorted(classes.items()):
         out_path = C.DESCRIPTORS_DIR / f"{C.safe_name(crop)}.json"
         existing = {}
@@ -143,13 +221,14 @@ def main():
         for disease in sorted(diseases):
             total += 1
             prev = existing.get(disease)
-            if prev and prev.get("status") == "filled":
-                records.append(prev)  # don't re-spend API on already-filled
+            if _usable(prev):
+                records.append(prev)  # don't re-spend on a good existing fill
                 filled += 1
                 continue
-            if args.fill:
+            if args.fill and (args.limit == 0 or new_fills < args.limit):
                 print(f"  filling {crop} / {disease} ...")
-                rec = fill_with_claude(crop, disease)
+                rec = fill_one(crop, disease, provider)
+                new_fills += 1
             else:
                 rec = stub(crop, disease)
             records.append(rec)
@@ -158,7 +237,7 @@ def main():
         out_path.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"  wrote {out_path.name}: {len(records)} diseases")
 
-    mode = "FILLED (Claude)" if args.fill else "STUBS (no API key / fast path)"
+    mode = f"FILLED ({provider})" if args.fill else "STUBS (no LLM / fast path)"
     print("\n" + "=" * 60)
     print(f"DESCRIPTORS BUILT — {mode}")
     print("=" * 60)
