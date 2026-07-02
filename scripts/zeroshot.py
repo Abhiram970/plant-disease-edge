@@ -6,9 +6,13 @@ strategy)` returns (accuracy, per_crop_dict). Used by scripts/evaluate.py for th
 descriptor-strategy sweep.
 """
 from __future__ import annotations
+import os
 import sys
 from collections import defaultdict
 from pathlib import Path
+
+# Windows uses spawn -> in-function Dataset classes can't be pickled -> num_workers must be 0.
+DATALOADER_WORKERS = 0 if os.name == "nt" else 2
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
@@ -37,7 +41,7 @@ def embed_images(model, preprocess, rows, device="cpu"):
         def __getitem__(self, i):
             return preprocess(Image.open(rows[i]["path"]).convert("RGB")), rows[i]["label"]
 
-    dl = DataLoader(DS(), batch_size=128, num_workers=2)
+    dl = DataLoader(DS(), batch_size=128, num_workers=DATALOADER_WORKERS)
     embs, labels = [], []
     with torch.no_grad():
         for imgs, lab in dl:

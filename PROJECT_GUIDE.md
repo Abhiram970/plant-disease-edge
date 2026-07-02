@@ -276,6 +276,22 @@ $0/image on edge. The flat 11M→300M curve shows the small flavour is ~90% of a
 > Owners use role tags: **DATA**, **MODEL**, **EDGE**, **WRITE**, **LEAD**. Assign real names in
 > `CONTRIBUTING.md`. Each task lists a **Deliverable** and **Done when** (acceptance criteria).
 
+> **⚠️ STATUS / PIVOT (2026-07, read before following B–C below).** Phase-0 killed the distillation
+> plan: training/distilling a tiny student to *learn* image–text alignment fails (from-scratch ≈ chance;
+> specialize-on-seen forgets −4.5pp). We pivoted to **FROZEN pretrained compact CLIP + descriptors +
+> trained seen head + WiSE-FT** (see §4, revised). Consequently:
+> - **Phase B (teacher embedding cache) is NO LONGER on the critical path.** We do not distill, so there
+>   is no student that needs a cached teacher. Frozen encoders are run directly (`scripts/zeroshot.py`).
+> - **Phase C0–C1 (distillation student, 3-stage curriculum) is SUPERSEDED.** The "student" is now an
+>   off-the-shelf frozen backbone; "training" = a linear/WiSE-FT seen-crop head only (EXP2/EXP3, done).
+> - **What actually remains for submission** (all wired in `scripts/`, runnable on the RTX 4060):
+>   `build_manifest.py` → `build_descriptors.py --fill` + `audit_descriptors.py` (A2, source-grounded);
+>   `evaluate.py --strategies bare crude rich grounded` (descriptor ablation, C4);
+>   `metrics.py` (top-5 + abstain/risk-coverage, C3); `loco.py` + `supervised_baseline.py`
+>   (rebuttal-proofing); `benchmark_edge.py` (INT8 + on-device latency, Phase D); then paper (Phase E).
+> - **Done experiments:** EXP1 bake-off (C0), EXP2 hybrid, EXP3 WiSE-FT — results in `docs/paper/`.
+> The A/D/E structure below still applies; treat B and C0–C1 as historical context, not TODO.
+
 ### Phase A — Data foundation (Week 1–2) · owner: DATA
 - **A1** — `scripts/build_sage_subset.py` (run as a Kaggle notebook). Stream `tirtho149/SAGE`, filter
   `crop ∈ TRAIN∪HELDOUT` (11 crops), cap per (crop,disease) ~1,500, decode image bytes →
