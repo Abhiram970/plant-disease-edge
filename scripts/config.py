@@ -8,6 +8,12 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+try:                                   # make .env authoritative for PDE_* / LAVA_* across all scripts
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    pass
+
 # --- Dataset coordinates (SAGE) ---------------------------------------------
 SAGE_HF_REPO = "tirtho149/SAGE"          # HuggingFace datasets repo (images, MIT, ~114GB parquet)
 SAGE_GH_REPO = "https://github.com/tirtho149/SAGE"  # symptom registry / KB lives here
@@ -47,7 +53,9 @@ RANDOM_SEED = 42
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_ROOT = Path(os.environ.get("PDE_DATA_ROOT", REPO_ROOT / "data"))
 
-DATASET_DIR = DATA_ROOT / "dataset_cleaned"   # <Crop>___<Disease>/<filename>.jpg
+# Image root. Override with PDE_DATASET_DIR to reuse an existing folder-of-classes build
+# (e.g. the run_all.py output at C:\kaggle\working\exp_data) WITHOUT moving 12k files.
+DATASET_DIR = Path(os.environ.get("PDE_DATASET_DIR", DATA_ROOT / "dataset_cleaned"))  # <Crop>___<Disease>/<f>.jpg
 MANIFEST_CSV = DATA_ROOT / "manifest.csv"     # path, crop, disease, filename, split_role
 SPLITS_DIR = DATA_ROOT / "splits"             # train/val/test/heldout/ood .csv
 DESCRIPTORS_DIR = REPO_ROOT / "descriptors"   # <crop>.json  (committed to git)
@@ -69,6 +77,30 @@ MODEL_TIERS = {
 }
 HEAVYWEIGHT = ("MobileCLIP-B", "datacompdr")    # ~86.3M  heavyweight (best MobileCLIP-family zero-shot)
 REFERENCE   = ("ViT-B-16-SigLIP2", "webli")     # ~92.9M  cloud ceiling / distillation teacher (~25.6%)
+
+# THE 4 DEPLOYABLE MODELS (what we ship + report). SigLIP2 is the reference ceiling, not one of the 4.
+# Every downstream script (metrics, benchmark, loco) iterates over these keys; pass --models to subset.
+DEPLOY_MODELS = {
+    "s0": ("MobileCLIP2-S0", "dfndr2b"),      # ~11.4M  -> small NPU / phone
+    "s1": ("MobileCLIP-S1",  "datacompdr"),   # ~21.5M  -> laptop CPU
+    "s2": ("MobileCLIP2-S2", "dfndr2b"),      # ~35.8M  -> laptop
+    "b":  ("MobileCLIP-B",   "datacompdr"),   # ~86.3M  -> workstation (heavyweight)
+}
+REFERENCE_MODELS = {"siglip2": REFERENCE}     # ceiling / teacher, evaluated but not deployed
+
+
+def resolve_models(keys, include_reference=False):
+    """Map --models keys -> [(open_clip_name, pretrained)]. Unknown keys are ignored with a note."""
+    table = {**DEPLOY_MODELS, **REFERENCE_MODELS}
+    out = []
+    for k in keys:
+        if k in table:
+            out.append(table[k])
+        else:
+            print(f"[config] unknown model key '{k}' (known: {list(table)})")
+    if include_reference and REFERENCE not in out:
+        out.append(REFERENCE)
+    return out
 
 # Frozen teacher VLMs for the bake-off (verify availability on Kaggle open_clip).
 TEACHERS = [
