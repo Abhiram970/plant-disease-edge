@@ -42,15 +42,32 @@ SPEC_BASE = 0.199
 
 # ---- EXP1 bake-off: encoder rich-descriptor zero-shot (held 8 classes, chance 12.5%) ----
 BAKEOFF = [  # (label, img params M, rich zero-shot) -- 17-class held (Coffee+Orange+Peach), chance 5.9%
-    ("MobileCLIP2-S0", 11.4, 0.269),
-    ("MobileCLIP-S1", 21.5, 0.225),
+    ("MobileCLIP2-S0", 11.4, 0.270),   # exact from run_all_bakeoff.json (Jul 1, Coffee-inclusive)
+    ("MobileCLIP-S1", 21.5, 0.224),
     ("MobileCLIP2-S2", 35.8, 0.287),
-    ("BioCLIP2", 304.0, 0.096),
     ("SigLIP2", 92.9, 0.315),
+    ("BioCLIP2", 304.0, 0.096),
+    ("SCOLD", 237.5, 0.044),           # below chance = broken wrapper (RoBERTa base fallback); footnote/drop
 ]
 BAKEOFF_CHANCE = 0.059
-# ---- EXP2 hybrid (MobileCLIP2-S0, 11M): trained seen vs zero-shot seen vs zero-shot unseen (3 crops) ----
-HYBRID = {"seen_trained": 0.670, "seen_zeroshot": 0.085, "unseen_zeroshot": 0.269}
+# ---- EXP2 hybrid (MobileCLIP2-S0, 11M): trained seen vs zero-shot seen vs zero-shot unseen ----
+HYBRID = {"seen_trained": 0.672, "seen_zeroshot": 0.093, "unseen_zeroshot": 0.270}
+# ---- EXP3 WiSE-FT sweep (MobileCLIP2-S0): (alpha, seen, unseen) from run_all_exp3_lw11.json ----
+WISEFT = [(0.0, 0.670, 0.270), (0.5, 0.776, 0.154), (1.0, 0.822, 0.104)]
+# ---- descriptor ablation (held 17-class): bare/crude/rich/grounded per model (results/zeroshot_eval.json) ----
+DESC_ABLATION = [  # (model, params, bare, crude, rich, grounded)
+    ("MC2-S0", 11.4, 0.183, 0.198, 0.270, 0.242),
+    ("MC-S1",  21.5, 0.189, 0.211, 0.224, 0.281),
+    ("MC2-S2", 35.8, 0.185, 0.203, 0.287, 0.214),
+    ("MC-B",   86.3, 0.216, 0.226, 0.268, 0.282),
+]
+# ---- edge benchmark (laptop CPU, batch 1, 224px; results/edge_benchmark.json) ----
+EDGE = [  # (model, params, macs_G, onnx_fp32_ms, fp32_mb, int8_ms, int8_mb, rich_zeroshot_acc)
+    ("MC2-S0", 11.4, 1.84,  15.8,  45.8,  288.4, 12.1, 0.270),
+    ("MC-S1",  21.5, 3.59,  43.2,  86.5,  905.6, 22.9, 0.224),
+    ("MC2-S2", 35.8, 6.03,  66.1, 143.6, 1358.0, 37.4, 0.287),
+    ("MC-B",   86.3, 16.99, 135.2, 345.6,  81.1, 87.5, 0.268),
+]
 
 
 def fig_efficiency_curve():
@@ -160,12 +177,103 @@ def fig_hybrid():
     fig.tight_layout(); fig.savefig(FIG / "fig_hybrid.png", dpi=160); plt.close(fig)
 
 
+def fig_wiseft():
+    """EXP3: the seen<->unseen tradeoff as WiSE-FT alpha sweeps 0 (frozen) -> 1 (full fine-tune)."""
+    alphas = [a for a, _, _ in WISEFT]
+    seen = [s for _, s, _ in WISEFT]
+    unseen = [u for _, _, u in WISEFT]
+    fig, ax = plt.subplots(figsize=(6.2, 4))
+    ax.plot(alphas, seen, "-o", color="#2ca02c", label="SEEN (trained-crop) accuracy")
+    ax.plot(alphas, unseen, "-o", color="#1f77b4", label="UNSEEN (zero-shot) accuracy")
+    for a, s, u in WISEFT:
+        ax.text(a, s + 0.015, f"{s:.0%}", ha="center", fontsize=8, color="#2ca02c")
+        ax.text(a, u - 0.03, f"{u:.0%}", ha="center", fontsize=8, color="#1f77b4")
+    ax.axvline(0.5, ls=":", color="grey", lw=1)
+    ax.text(0.5, 0.02, "WiSE-FT\nsweet spot", ha="center", fontsize=8, color="grey")
+    ax.set_xlabel(r"WiSE-FT $\alpha$  (0 = frozen, 1 = full fine-tune)")
+    ax.set_ylabel("accuracy")
+    ax.set_ylim(0, 0.9)
+    ax.set_title("Fine-tuning trades unseen zero-shot for seen accuracy (catastrophic forgetting)")
+    ax.legend(fontsize=8, loc="center right"); ax.grid(True, alpha=0.3)
+    fig.tight_layout(); fig.savefig(FIG / "fig_wiseft.png", dpi=160); plt.close(fig)
+
+
+def fig_descriptor_ablation():
+    """Held-out zero-shot per model across bare/crude/rich/grounded — the descriptor-detail lever."""
+    strategies = ["bare", "crude", "rich", "grounded"]
+    colors = ["#bbbbbb", "#9ecae1", "#2ca02c", "#1f77b4"]
+    n = len(DESC_ABLATION); w = 0.2
+    xs = range(n)
+    fig, ax = plt.subplots(figsize=(7.5, 4))
+    for j, s in enumerate(strategies):
+        vals = [row[2 + j] for row in DESC_ABLATION]
+        ax.bar([x + (j - 1.5) * w for x in xs], vals, width=w, label=s, color=colors[j])
+    ax.axhline(CHANCE, ls="--", color="grey", lw=1, label=f"chance ({CHANCE:.1%})")
+    ax.set_xticks(list(xs)); ax.set_xticklabels([r[0] for r in DESC_ABLATION])
+    ax.set_ylabel("held-out zero-shot accuracy (17 cls)")
+    ax.set_ylim(0, 0.34)
+    ax.set_title("Descriptor detail is the lever: any full description >> class-name (bare)")
+    ax.legend(fontsize=8, ncol=5, loc="upper center")
+    fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=160); plt.close(fig)
+
+
+def fig_edge_pareto():
+    """Accuracy vs on-device latency; point size = params, label = INT8 size. S0 is the sweet spot."""
+    fig, ax = plt.subplots(figsize=(6.8, 4.5))
+    for name, p, macs, fp32, fp32mb, int8ms, int8mb, acc in EDGE:
+        ax.scatter(fp32, acc, s=40 + p * 3, color="#1f77b4", zorder=3)
+        ax.annotate(f"{name}\n{p:.0f}M · {int8mb:.0f}MB int8", (fp32, acc), fontsize=7,
+                    xytext=(7, -3), textcoords="offset points")
+    ax.scatter([EDGE[0][3]], [EDGE[0][7]], s=240, facecolors="none", edgecolors="#d62728",
+               linewidths=2, label="S0 deploy tier (fastest & smallest)", zorder=4)
+    ax.set_xlabel("ONNX FP32 latency, laptop CPU (ms/image, batch 1)")
+    ax.set_ylabel("held-out zero-shot accuracy")
+    ax.set_title("Real-time Pareto: 11M S0 = 15.8 ms/img (~63 img/s) at ~equal accuracy")
+    ax.legend(fontsize=8, loc="lower right"); ax.grid(True, alpha=0.3)
+    fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=160); plt.close(fig)
+
+
+def fig_riskcoverage():
+    """Selective accuracy vs coverage (abstain gate) for S0, from metrics_abstain.json if present."""
+    cands = [HERE / "metrics_abstain.json", Path("C:/kaggle/working/results/metrics_abstain.json"),
+             Path("results/metrics_abstain.json")]
+    path = next((c for c in cands if c.exists()), None)
+    if path is None:
+        print("  (risk-coverage fig skipped — no metrics_abstain.json)")
+        return
+    data = json.loads(path.read_text())
+    key = next((k for k in data["models"] if "S0" in k), None)
+    if not key:
+        return
+    fig, ax = plt.subplots(figsize=(6.2, 4))
+    colors = {"rich": "#2ca02c", "grounded": "#1f77b4"}
+    for strat, col in colors.items():
+        cur = data["models"][key].get(strat, {}).get("risk_coverage_curve")
+        if cur:
+            xs = [p[0] for p in cur]; ys = [p[1] for p in cur]
+            ax.plot(xs, ys, "-", color=col, label=f"{strat} (top-1 {data['models'][key][strat]['top1']:.0%})")
+    ax.axhline(data.get("chance", CHANCE), ls="--", color="grey", lw=1, label="chance")
+    ax.set_xlabel("coverage (fraction of images answered)")
+    ax.set_ylabel("selective accuracy")
+    ax.set_title("Abstain gate (S0, margin confidence): accuracy rises as coverage drops")
+    ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
+    ax.invert_xaxis()
+    fig.tight_layout(); fig.savefig(FIG / "fig_riskcoverage.png", dpi=160); plt.close(fig)
+
+
 def main():
     fig_efficiency_curve()
     fig_arch_comparison()
     fig_specialization_forgetting()
     fig_bakeoff()
     fig_hybrid()
+    fig_wiseft()
+    fig_descriptor_ablation()
+    fig_edge_pareto()
+    try:
+        fig_riskcoverage()
+    except Exception as e:
+        print(f"  (risk-coverage fig skipped: {e})")
     try:
         fig_descriptors()
     except Exception as e:

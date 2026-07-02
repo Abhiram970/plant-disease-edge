@@ -1,0 +1,149 @@
+[
+  {
+    "crop": "Peach",
+    "disease": "Bacterial_Leaf_Spot",
+    "symptom_text": "Bacterial leaf spot on peach, caused by Xanthomonas arboricola pv. pruni, produces small, water-soaked, angular lesions on leaves that are initially pale green to yellow-green in appearance. As the disease progresses, these lesions turn dark purple to brown or black, often surrounded by a yellow halo, and are typically delimited by leaf veins giving them an angular shape. The centers of older lesions may dry out and fall away, creating a characteristic 'shot-hole' appearance. Lesions are distributed across the leaf blade, frequently concentrated near leaf margins and tips, and severe infections can cause extensive yellowing and premature defoliation. Fruit symptoms include small, dark, water-soaked spots that become raised and scabby, while twig infections produce dark, water-soaked cankers.",
+    "fields": {
+      "pathogen": {
+        "value": "Xanthomonas arboricola pv. pruni",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialSpotStoneFruits.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Peach",
+    "disease": "Brown_Rot",
+    "symptom_text": "Brown rot of peach, caused by Monilinia fructicola, manifests as rapidly expanding, tan to brown circular lesions on ripening fruit that quickly engulf the entire fruit surface, giving it a soft, rotted appearance. Infected fruit surfaces become covered with masses of powdery, ash-gray to tan sporodochia arranged in concentric rings or tufts. Blossoms and young shoots may also be affected, turning brown and wilting in a blight-like manner. Infected fruit may shrivel and mummify, remaining attached to the tree. On twigs, elongated brown cankers with gummy exudate can form, girdling and killing the shoot.",
+    "fields": {
+      "pathogen": {
+        "value": "Monilinia fructicola",
+        "source_url": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
+        "verbatim_quote": "Monilinia fructicola is a species of fungus in the order Helotiales. A plant pathogen, it is the causal agent of brown rot of stone fruits."
+      },
+      "affected_organs": {
+        "value": "Blossoms, twigs, and fruit",
+        "source_url": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
+        "verbatim_quote": "Brown rot causes blossom blight, twig blight; twig canker and fruit rot."
+      },
+      "visual_symptoms": {
+        "value": "Small circular brown fruit spots enlarging to rot the whole fruit; greyish spore tufts; mummified fruit",
+        "source_url": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
+        "verbatim_quote": "Fruit rot appears as small, circular brown spots that increase rapidly in size causing the entire fruit to rot. Greyish spores appear in tufts on rotted areas."
+      }
+    },
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
+    "verified_date": "2026-07-02"
+  },
+  {
+    "crop": "Peach",
+    "disease": "Leaf_Curl",
+    "symptom_text": "Peach leaf curl causes newly emerging leaves to develop striking reddish-pink to purple discoloration along with dramatic upward curling, puckering, and thickening of the leaf blade. Affected leaves appear distorted and swollen, with a wrinkled or blistered texture across the entire leaf surface. As the disease progresses, the curled, thickened areas turn pale green to yellowish, and a powdery grayish-white bloom of fungal spores develops on the distorted tissue. Severely infected leaves eventually turn yellow or brown and drop prematurely. Symptoms are most prominent on young, rapidly expanding leaves in early spring, and heavily infected shoots may also show swelling and distortion.",
+    "fields": {
+      "pathogen": {
+        "value": "Taphrina deformans",
+        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans."
+      },
+      "affected_organs": {
+        "value": "Blossoms, fruit, leaves, and shoots",
+        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines."
+      },
+      "visual_symptoms": {
+        "value": "Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores",
+        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus."
+      }
+    },
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+    "verified_date": "2026-07-02"
+  },
+  {
+    "crop": "Peach",
+    "disease": "Leaf_Scab",
+    "symptom_text": "",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Peach",
+    "disease": "Peach_Leaf_Curl",
+    "symptom_text": "Peach leaf curl causes newly emerging leaves to develop striking red to purple puckered and distorted areas that thicken and curl upward or downward, giving the leaf a blistered, crinkled appearance. As the disease progresses, the affected tissue turns pale green to yellow and eventually a powdery grayish-white bloom of fungal spores covers the distorted surfaces. Severely infected leaves may turn brown and drop prematurely. Symptoms are distributed across young expanding leaves throughout the canopy, and in heavy infections shoots, flowers, and young fruit may also be affected, showing similar reddish, distorted, or warty growth.",
+    "fields": {
+      "pathogen": {
+        "value": "Taphrina deformans",
+        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans."
+      },
+      "affected_organs": {
+        "value": "Blossoms, fruit, leaves, and shoots",
+        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines."
+      },
+      "visual_symptoms": {
+        "value": "Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores",
+        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus."
+      }
+    },
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+    "verified_date": "2026-07-02"
+  },
+  {
+    "crop": "Peach",
+    "disease": "Stigmina_Fungus",
+    "symptom_text": "",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  }
+]

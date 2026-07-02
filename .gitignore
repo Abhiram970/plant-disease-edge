@@ -37,3 +37,6 @@ kaggle.json
 Thumbs.db
 .vscode/
 .idea/
+
+# run logs
+*.log
