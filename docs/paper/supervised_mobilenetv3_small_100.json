@@ -1,0 +1,8 @@
+{
+  "arch": "mobilenetv3_small_100",
+  "seen_classes": 80,
+  "seen_top1": 0.705,
+  "epochs_observed": 5,
+  "unseen_top1": "structurally 0 (no output neuron for unseen crops; chance at best)",
+  "note": "Observed top-1 at epoch 5 (test 1,991 imgs); training had plateaued (58.4->60.0->68.0->70.1->70.5%). Longer background runs were repeatedly killed by the environment watchdog; re-run `python scripts/supervised_baseline.py --epochs 8` to regenerate. Compare to the frozen-VLM linear probe (0.672 seen); the CNN cannot do cross-crop zero-shot."
+}

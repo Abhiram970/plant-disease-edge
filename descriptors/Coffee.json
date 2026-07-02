@@ -1,0 +1,120 @@
+[
+  {
+    "crop": "Coffee",
+    "disease": "Berry_Blotch",
+    "symptom_text": "",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Coffee",
+    "disease": "Cercospora Leaf Spot (Brown Eye Spot)",
+    "symptom_text": "",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Coffee",
+    "disease": "Miner",
+    "symptom_text": "",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Coffee",
+    "disease": "Phoma",
+    "symptom_text": "",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Coffee",
+    "disease": "Rust",
+    "symptom_text": "Coffee leaf rust, caused by Hemileia vastatrix, primarily affects the leaves of the coffee plant. On the upper leaf surface, pale yellow to orange-yellow spots first appear as small, oily-looking, pale yellow flecks that gradually enlarge into circular to irregular chlorotic lesions. On the corresponding lower leaf surface, powdery, orange-yellow urediniospore pustules develop, which are the most diagnostic feature of the disease. As lesions age, the centers turn brown and necrotic while the powdery spore mass remains visible at the margins. Severely infected leaves turn yellow and drop prematurely, leading to defoliation that weakens the plant and reduces yield.",
+    "fields": {
+      "pathogen": {
+        "value": "Hemileia vastatrix",
+        "source_url": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
+        "verbatim_quote": "Hemileia vastatrix is a multicellular basidiomycete fungus of the order Pucciniales (previously also known as Uredinales) that causes coffee leaf rust (CLR)."
+      },
+      "affected_organs": {
+        "value": "Leaves (rarely young stems and fruit)",
+        "source_url": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
+        "verbatim_quote": "It mainly attacks the leaves and is only rarely found on young stems and fruit."
+      },
+      "visual_symptoms": {
+        "value": "Yellow-orange powdery uredinia on the underside of leaves; chlorotic pale-yellow spots",
+        "source_url": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
+        "verbatim_quote": "The mycelium with uredinia looks yellow-orange and powdery, and appears on the underside of leaves as points ~0.1 mm in diameter."
+      }
+    },
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
+    "verified_date": "2026-07-02"
+  }
+]

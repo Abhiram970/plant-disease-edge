@@ -1,12 +1,13 @@
 {
   "tier": "lw11",
   "seen_classes": 80,
-  "unseen_classes": 8,
-  "seen_probe_acc": 0.6705173279758915,
-  "seen_zeroshot_acc": 0.08488196885986941,
-  "unseen_zeroshot_acc": 0.37142857142857144,
+  "unseen_classes": 17,
+  "seen_probe_acc": 0.6715218483174284,
+  "seen_zeroshot_acc": 0.0934203917629332,
+  "unseen_zeroshot_acc": 0.2700865265760198,
   "unseen_by_crop": {
-    "Peach": 0.21212121212121213,
-    "Orange": 0.9555555555555556
+    "Coffee": 0.3464285714285714,
+    "Orange": 0.2895204262877442,
+    "Peach": 0.16161616161616163
   }
 }

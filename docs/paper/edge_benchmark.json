@@ -1,0 +1,99 @@
+{
+  "device": "cpu",
+  "img_size": 224,
+  "runs": 50,
+  "models": {
+    "MobileCLIP2-S0": {
+      "img_params_M": 11.41,
+      "macs_G": 1.839,
+      "torch_fp32": {
+        "p50_ms": 65.13,
+        "p95_ms": 71.75,
+        "mean_ms": 60.98
+      },
+      "onnx": {
+        "fp32": {
+          "p50_ms": 15.78,
+          "p95_ms": 16.9,
+          "mean_ms": 15.72,
+          "size_mb": 45.81
+        },
+        "int8": {
+          "p50_ms": 288.37,
+          "p95_ms": 303.19,
+          "mean_ms": 289.21,
+          "size_mb": 12.14
+        }
+      }
+    },
+    "MobileCLIP-S1": {
+      "img_params_M": 21.54,
+      "macs_G": 3.587,
+      "torch_fp32": {
+        "p50_ms": 114.62,
+        "p95_ms": 119.51,
+        "mean_ms": 114.81
+      },
+      "onnx": {
+        "fp32": {
+          "p50_ms": 43.21,
+          "p95_ms": 45.66,
+          "mean_ms": 43.47,
+          "size_mb": 86.51
+        },
+        "int8": {
+          "p50_ms": 905.6,
+          "p95_ms": 920.72,
+          "mean_ms": 905.39,
+          "size_mb": 22.9
+        }
+      }
+    },
+    "MobileCLIP2-S2": {
+      "img_params_M": 35.82,
+      "macs_G": 6.026,
+      "torch_fp32": {
+        "p50_ms": 146.84,
+        "p95_ms": 153.75,
+        "mean_ms": 147.24
+      },
+      "onnx": {
+        "fp32": {
+          "p50_ms": 66.08,
+          "p95_ms": 71.51,
+          "mean_ms": 66.56,
+          "size_mb": 143.62
+        },
+        "int8": {
+          "p50_ms": 1357.96,
+          "p95_ms": 1531.48,
+          "mean_ms": 1388.1,
+          "size_mb": 37.41
+        }
+      }
+    },
+    "MobileCLIP-B": {
+      "img_params_M": 86.35,
+      "macs_G": 16.993,
+      "torch_fp32": {
+        "p50_ms": 158.7,
+        "p95_ms": 162.01,
+        "mean_ms": 159.09
+      },
+      "onnx": {
+        "fp32": {
+          "p50_ms": 135.2,
+          "p95_ms": 141.7,
+          "mean_ms": 135.35,
+          "size_mb": 345.55
+        },
+        "int8": {
+          "p50_ms": 81.09,
+          "p95_ms": 83.26,
+          "mean_ms": 80.62,
+          "size_mb": 87.46
+        }
+      }
+    }
+  }
+}
