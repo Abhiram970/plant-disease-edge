@@ -1,0 +1,258 @@
+[
+  {
+    "crop": "Cucumber",
+    "disease": "Angular_Leaf_Spot",
+    "symptom_text": "Angular leaf spot of cucumber causes small, water-soaked lesions on leaves that are sharply delimited by leaf veins, giving them a distinctly angular shape. As lesions mature, they turn tan to brown and dry out, often falling out to leave ragged holes in the leaf blade. Under humid conditions, a white, milky bacterial exudate may be visible on the undersides of lesions. Lesions can also appear on fruit as small, water-soaked spots that later become white and crusty as the bacterial ooze dries, and on stems as elongated, water-soaked streaks.",
+    "fields": {
+      "pathogen": {
+        "value": "Pseudomonas syringae pv. lachrymans",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "verbatim_quote": "Angular leaf spot is caused by the bacterium Pseudomonas syringae pv. lachrymans."
+      },
+      "affected_organs": {
+        "value": "Leaves, fruit, stems",
+        "source_url": "https://extension.umn.edu/diseases/angular-leaf-spot-cucumbers",
+        "verbatim_quote": "Angular leaf spot affects leaves, fruit, and stems of cucumbers."
+      },
+      "visual_symptoms": {
+        "value": "Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf undersides; lesions dry and fall out leaving holes; water-soaked spots on fruit that become white and crusty",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "verbatim_quote": "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a white, crusty residue after drying."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Angular_Leaf_Spot_Of_Cucumber",
+    "symptom_text": "Angular leaf spot of cucumber, caused by the bacterium Pseudomonas syringae pv. lachrymans, produces small, water-soaked lesions on leaves that are distinctly angular in shape because they are bounded by leaf veins. As the lesions mature, they turn tan to brown and dry out, often with a yellow halo surrounding the necrotic tissue. Under humid conditions, a white, crusty bacterial exudate may be visible on the undersides of lesions. The spots are distributed across the leaf blade and, in severe infections, may coalesce, causing large areas of the leaf to die and tear away, giving a ragged appearance. Fruit and stems can also be affected, showing water-soaked, irregularly shaped spots that may ooze bacterial exudate and later become sunken and corky.",
+    "fields": {
+      "pathogen": {
+        "value": "Pseudomonas syringae pv. lachrymans",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "verbatim_quote": "Angular leaf spot of cucurbits is caused by the bacterium Pseudomonas syringae pv. lachrymans."
+      },
+      "affected_organs": {
+        "value": "Leaves, fruit, stems",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "verbatim_quote": "The disease affects leaves, stems, and fruit of cucurbits."
+      },
+      "visual_symptoms": {
+        "value": "Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf undersides under humid conditions; lesions may coalesce and tear, leaving ragged holes; water-soaked spots on fruit and stems",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "verbatim_quote": "Leaf symptoms begin as small, water-soaked lesions that are angular in shape because they are delimited by leaf veins. Lesions turn tan to brown as they age. Under humid conditions, a white crust of dried bacterial exudate may be visible on the lower leaf surface."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Anthracnose",
+    "symptom_text": "Anthracnose on cucumber, caused by Colletotrichum orbiculare, produces water-soaked, irregularly shaped lesions on leaves that enlarge and turn brown to tan with yellow halos, often causing the leaf tissue to tear and fall out, giving a ragged appearance. On fruits, the pathogen causes sunken, circular, dark brown to black lesions that may coalesce and become covered with salmon-pink to orange masses of spores (acervuli) under moist conditions. Stems and petioles may also develop elongated, sunken, dark cankers. Symptoms are distributed across the canopy but are most severe on older leaves and maturing fruits.",
+    "fields": {
+      "pathogen": {
+        "value": "Colletotrichum orbiculare (syn. C. lagenarium)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Anthracnose.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Bacterial_Wilt",
+    "symptom_text": "Bacterial wilt of cucumber causes rapid, progressive wilting of individual vines or entire plants, with affected leaves and stems losing turgidity and collapsing without yellowing or spotting. Early symptoms appear as dull green, water-soaked wilting of one or a few leaves or a single vine during the heat of the day, initially recovering at night but eventually becoming permanent. Stems and vascular tissue show no external discoloration, but when a wilted stem is cut near the base and the cut ends are slowly pulled apart, a thin, thread-like strand of bacterial ooze stretches between the two pieces, serving as a diagnostic indicator. The disease progresses rapidly through the entire plant, causing complete collapse and death, and is distributed throughout the vascular system of stems and petioles.",
+    "fields": {
+      "pathogen": {
+        "value": "Erwinia tracheiphila",
+        "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
+        "verbatim_quote": "Bacterial wilt is caused by the bacterium Erwinia tracheiphila."
+      },
+      "affected_organs": {
+        "value": "leaves, stems, vascular tissue, entire plant",
+        "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
+        "verbatim_quote": "The bacteria multiply in and block the vascular system of the plant, causing wilting of leaves and stems."
+      },
+      "visual_symptoms": {
+        "value": "Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pulled apart; dull green water-soaked appearance of wilting tissue; complete plant collapse",
+        "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
+        "verbatim_quote": "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand of bacterial ooze will stretch between the two cut ends."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Belly_Rot",
+    "symptom_text": "Belly rot of cucumber, caused by Rhizoctonia solani, primarily affects the fruit surface in direct contact with the soil. Infected fruit develop water-soaked, tan to brown lesions on the lower (belly) side where the cucumber rests on the ground. These lesions expand and darken to a reddish-brown or dark brown color, often with a slightly sunken, irregular shape. The affected tissue may become soft and mushy as decay progresses, and in humid conditions a sparse, web-like mycelium of the fungus may be visible on the lesion surface. Lesions can girdle the contact area and penetrate into the flesh, leading to significant post-harvest losses. The disease is most severe when fruit remain in prolonged contact with wet, warm soil.",
+    "fields": {
+      "pathogen": {
+        "value": "Rhizoctonia solani",
+        "source_url": "https://extension.umn.edu/vegetable-diseases/belly-rot-cucumber",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Corynespora_Leaf_Spot",
+    "symptom_text": "Corynespora leaf spot on cucumber, caused by Corynespora cassiicola, produces circular to irregular brown lesions on leaves that often display a distinctive target-like or zonate pattern of concentric rings. Lesions typically begin as small, water-soaked spots that enlarge and turn tan to dark brown, frequently surrounded by a yellow halo. As lesions mature, the centers may dry out and fall away, creating a shot-hole appearance. Affected tissue is distributed across the leaf lamina, and under humid conditions a sparse grayish sporulation may be visible on the lesion surface. Severe infections can cause extensive blighting and defoliation.",
+    "fields": {
+      "pathogen": {
+        "value": "Corynespora cassiicola",
+        "source_url": "https://www.cabi.org/isc/datasheet/15942",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Downy_Mildew",
+    "symptom_text": "Cucumber downy mildew presents as angular, yellow to pale green lesions on the upper leaf surface, bounded by leaf veins, giving them a characteristic geometric shape. As the disease progresses, lesions turn brown and necrotic. On the lower leaf surface, a grayish-purple to dark violet sporulation (sporangiophores and sporangia) develops beneath the angular chlorotic areas, particularly under humid conditions. Lesions are distributed across the leaf blade and can coalesce, leading to extensive blighting and defoliation. Stems and fruit are generally not affected; symptoms are confined primarily to the foliage.",
+    "fields": {
+      "pathogen": {
+        "value": "Pseudoperonospora cubensis",
+        "source_url": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
+        "verbatim_quote": "Pseudoperonospora cubensis is a species of water mould known for causing downy mildew"
+      },
+      "affected_organs": {
+        "value": "Leaves only (not fruit, flowers, stems or roots)",
+        "source_url": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
+        "verbatim_quote": "Regardless of which cucurbit is involved, only the leaves are infected, not fruit, flowers, stems or roots."
+      },
+      "visual_symptoms": {
+        "value": "Angular chlorotic lesions bound by leaf veins; gray-brown to purplish-black growth on the underside",
+        "source_url": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
+        "verbatim_quote": "The pathogen causes angular chlorotic lesions on the foliage. These lesions appear angular because they are bound by leaf veins. During humid conditions, inspection of the underside of the leaf reveals gray-brown to purplish-black fungal growth."
+      }
+    },
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
+    "verified_date": "2026-07-03"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Gummy_Stem_Blight",
+    "symptom_text": "Gummy stem blight on cucumber, caused by Stagonosporopsis cucurbitacearum, produces water-soaked, irregularly shaped lesions on stems, leaves, and fruit. On stems, infected tissue turns tan to brown and exudes a sticky, amber-colored gummy exudate, often accompanied by dark brown to black pycnidia embedded in the necrotic tissue. Leaf lesions appear as large, irregular, brown to tan spots with concentric zonation, frequently beginning at the leaf margins or around wounds. On fruit, the pathogen causes a black rot with dark, sunken lesions. The disease is most severe under warm, humid conditions and can cause extensive vine collapse and defoliation.",
+    "fields": {
+      "pathogen": {
+        "value": "Stagonosporopsis cucurbitacearum (syn. Didymella bryoniae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GummyStemBlight.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Phytophthora_Blight",
+    "symptom_text": "Phytophthora blight on cucumber causes water-soaked, greasy-appearing lesions that rapidly expand and turn brown to dark brown on stems, leaves, and fruit. Stem infections typically occur at or near the soil line, producing a dark, water-soaked girdle that collapses and causes the entire vine to wilt and die suddenly. Leaf lesions are large, irregular, and water-soaked, often with a pale green to brown coloration, and may be covered with white sporulation (sporangiophores and sporangia) under humid conditions. Infected fruit develop water-soaked, sunken, brown lesions that can encompass the entire fruit surface, frequently covered with a white cottony mycelial growth. The disease spreads rapidly under wet, warm conditions, and affected tissue often has a greasy or oily appearance before collapsing.",
+    "fields": {
+      "pathogen": {
+        "value": "Phytophthora capsici",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/PhytophthoraBlight.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Powdery_Mildew",
+    "symptom_text": "Cucumber powdery mildew appears as circular to irregular white or grayish-white powdery fungal colonies on the upper and lower surfaces of leaves, as well as on petioles and stems. Lesions begin as small, discrete white spots that rapidly coalesce to cover large portions of the leaf surface with a talcum-like powdery coating. Severely infected leaves may turn yellow, then brown, and become necrotic, leading to premature defoliation. The powdery growth is most prominent on older, mature leaves first before spreading to younger tissue, and the disease progresses rapidly under warm, dry conditions with high relative humidity.",
+    "fields": {
+      "pathogen": {
+        "value": "Podosphaera xanthii (formerly Sphaerotheca fuliginea)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PoweryMildewCucurbits.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cucumber",
+    "disease": "Pythium_Fruit_Rot",
+    "symptom_text": "Pythium fruit rot of cucumber presents as water-soaked, greasy-appearing lesions that typically initiate at the blossom end or at points of contact with moist soil. Affected tissue rapidly collapses and becomes soft and mushy, turning pale tan to brown in color. The decayed area may be covered with a white, cottony mycelial growth under humid conditions. Lesions expand quickly, often encompassing large portions of the fruit surface, and the internal flesh becomes watery and disintegrated. The skin may remain intact initially but eventually ruptures, releasing foul-smelling, liquefied tissue.",
+    "fields": {
+      "pathogen": {
+        "value": "Pythium aphanidermatum (and other Pythium spp.)",
+        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-72-W.pdf",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  }
+]
