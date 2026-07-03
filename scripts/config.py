@@ -18,27 +18,50 @@ except Exception:
 SAGE_HF_REPO = "tirtho149/SAGE"          # HuggingFace datasets repo (images, MIT, ~114GB parquet)
 SAGE_GH_REPO = "https://github.com/tirtho149/SAGE"  # symptom registry / KB lives here
 
-# --- Crop split (LOCKED, PROJECT_GUIDE.md sec 3) ----------------------------
-# 7 crops we TRAIN/DISTILL on (broad grower base).
-TRAIN_CROPS = ["Tomato", "Soybean", "Apple", "Corn", "Grape", "Potato", "Rice"]
-# 4 crops we hold out entirely for the ZERO-SHOT headline result (never trained).
-HELDOUT_CROPS = ["Coffee", "Orange", "Peach", "Pumpkin"]
-WANT_CROPS = TRAIN_CROPS + HELDOUT_CROPS  # 11 crops total
+# --- Crop split — nested scale study (Experiments A ⊂ B ⊂ C) ----------------
+# SEEN = crops we train the seen-head on; HELD = crops held out entirely for zero-shot.
+# Pools are ordered so a smaller experiment's crops are a PREFIX of the larger one's -> a clean
+# controlled "accuracy vs #classes" scaling study, with the anchor crops fixed in their roles.
+SEEN_POOL = ["Corn", "Soybean", "Tomato", "Apple",          # A (4) — richest/expert-curated first
+             "Grape", "Potato", "Rice", "Sugarcane",        # +B (-> 8)
+             "Rose", "Strawberry"]                          # +C (-> 10)
+HELD_POOL = ["Coffee", "Orange", "Peach",                   # A (3) — distinctive/economic diseases
+             "Cotton", "Wheat", "Bean",                     # +B (-> 6)
+             "Banana", "Cucumber"]                          # +C (-> 8) — 8 botanical families, anti-cherry-pick
 
-# SAGE crop strings may differ in spelling/case (e.g. "Corn (Maize)", "corn",
-# "Orange/Citrus"). We match case-insensitively on these aliases -> canonical name.
+EXPERIMENTS = {
+    "A": {"seen": SEEN_POOL[:4],  "held": HELD_POOL[:3]},   # anchor (already run)
+    "B": {"seen": SEEN_POOL[:8],  "held": HELD_POOL[:6]},
+    "C": {"seen": SEEN_POOL[:10], "held": HELD_POOL[:8]},
+}
+
+# Default = the full pools (Experiment C) so a single fetch grabs every crop; eval scripts
+# subset per experiment via EXPERIMENTS and a --exp {A,B,C} flag.
+TRAIN_CROPS = SEEN_POOL
+HELDOUT_CROPS = HELD_POOL
+WANT_CROPS = TRAIN_CROPS + HELDOUT_CROPS   # 18 crops total
+
+# SAGE crop strings vary in spelling/case (e.g. "Corn (Maize)", "Mango Leaf"). Match
+# case-insensitively (canonical_crop also does a loose contains-match) -> canonical name.
 CROP_ALIASES = {
-    "tomato": "Tomato",
-    "soybean": "Soybean", "soya": "Soybean", "soya bean": "Soybean",
     "apple": "Apple",
     "corn": "Corn", "maize": "Corn", "corn (maize)": "Corn",
-    "grape": "Grape", "grapevine": "Grape",
     "potato": "Potato",
-    "rice": "Rice",
+    "soybean": "Soybean", "soya": "Soybean", "soya bean": "Soybean",
+    "tomato": "Tomato",
+    "grape": "Grape", "grapevine": "Grape",
+    "rice": "Rice", "paddy": "Rice",
+    "rose": "Rose",
+    "sugarcane": "Sugarcane", "sugar cane": "Sugarcane",
+    "strawberry": "Strawberry",
     "coffee": "Coffee",
     "orange": "Orange", "citrus": "Orange", "sweet orange": "Orange",
     "peach": "Peach",
-    "pumpkin": "Pumpkin",
+    "cotton": "Cotton",
+    "wheat": "Wheat",
+    "bean": "Bean", "common bean": "Bean", "beans": "Bean",
+    "banana": "Banana",
+    "cucumber": "Cucumber",
 }
 
 # --- Data budgets (LOCKED) --------------------------------------------------
@@ -127,10 +150,10 @@ PROMPT_TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {
 SHARD_REVISION = "refs/convert/parquet"
 SHARD_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]
 MAX_SHARDS = 13
-CAP_HELD_PER_CLASS = 120
-CAP_TRAIN_PER_CLASS = 250
-MIN_HELD_CROPS = 2            # stop once >=N held crops are covered (Coffee is rare in early shards)
-EVAL_MIN_CLASS_IMAGES = 15   # class-size floor for the held-out eval set
+CAP_HELD_PER_CLASS = 600     # raised for the 18-crop build (ample disk); tighter CIs
+CAP_TRAIN_PER_CLASS = 1000
+MIN_HELD_CROPS = len(HELDOUT_CROPS)   # cover ALL held crops (some live in late shards -> full pull)
+EVAL_MIN_CLASS_IMAGES = 25   # class-size floor for the held-out eval set
 RESULTS_DIR = DATA_ROOT / "results"   # eval result JSONs (feed docs/paper/make_figures.py)
 
 

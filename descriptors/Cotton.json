@@ -1,0 +1,71 @@
+[
+  {
+    "crop": "Cotton",
+    "disease": "Bacterial_Blight",
+    "symptom_text": "Bacterial blight of cotton manifests as angular, water-soaked lesions on leaves that are initially dark green and oily in appearance, later becoming brown to black and necrotic with distinct angular margins defined by leaf veins. On bolls, circular to irregular water-soaked spots develop that turn dark brown to black, often with bacterial exudate visible under humid conditions. Stem infections appear as dark brown to black elongated lesions or cankers, while affected bracts show blackened, water-soaked areas. Young seedlings may exhibit blackened cotyledons and hypocotyl lesions leading to seedling death. The angular nature of leaf spots, caused by bacterial spread being restricted by leaf venation, is a characteristic diagnostic feature distinguishing this disease from fungal infections.",
+    "fields": {
+      "pathogen": {
+        "value": "Xanthomonas citri pv. malvacearum (formerly Xanthomonas campestris pv. malvacearum)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightCotton.aspx",
+        "verbatim_quote": "Bacterial blight of cotton is caused by Xanthomonas citri pv. malvacearum (Xcm), formerly known as X. campestris pv. malvacearum and X. axonopodis pv. malvacearum"
+      },
+      "affected_organs": {
+        "value": "Leaves, bolls, stems, bracts, seedlings (cotyledons and hypocotyl)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightCotton.aspx",
+        "verbatim_quote": "The pathogen can infect all aboveground parts of the cotton plant including leaves, stems, bolls, and bracts"
+      },
+      "visual_symptoms": {
+        "value": "Angular water-soaked lesions on leaves becoming brown to black; dark lesions on bolls and stems; blackleg on seedlings",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightCotton.aspx",
+        "verbatim_quote": "Symptoms on leaves first appear as small, dark green, water-soaked, angular spots on the lower leaf surface. These spots enlarge and become visible on the upper surface, eventually turning brown to black"
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Powdery_Mildew",
+    "symptom_text": "Powdery mildew on cotton appears as white to grayish-white powdery fungal growth on the upper surfaces of leaves, giving them a dusty or flour-dusted appearance. The disease typically begins on older, lower leaves and progresses upward through the canopy. Affected leaves may show chlorotic yellowing beneath the powdery coating, and severely infected leaves become distorted, curl upward, and may eventually turn brown and desiccate. The powdery masses consist of fungal mycelium and conidia that spread across leaf surfaces, petioles, and occasionally young stems and bolls. Under heavy infection pressure, premature defoliation occurs, reducing photosynthetic capacity and potentially affecting boll development and fiber quality.",
+    "fields": {
+      "pathogen": {
+        "value": "Leveillula taurica (anamorph: Oidiopsis taurica)",
+        "source_url": "https://www.cabi.org/isc/datasheet/10968",
+        "verbatim_quote": "Leveillula taurica is an obligate parasite causing powdery mildew on a wide range of hosts including cotton"
+      },
+      "affected_organs": {
+        "value": "Leaves, petioles, stems, bolls",
+        "source_url": "https://www.cabi.org/isc/datasheet/10968",
+        "verbatim_quote": "The fungus infects leaves, petioles and other aerial parts of the plant"
+      },
+      "visual_symptoms": {
+        "value": "White powdery growth on leaf surfaces, chlorosis, leaf curling and distortion",
+        "source_url": "https://www.cabi.org/isc/datasheet/10968",
+        "verbatim_quote": "Symptoms include white powdery patches on leaves, yellowing and distortion of affected tissues"
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Target_Spot",
+    "symptom_text": "Target spot on cotton manifests as circular to irregular lesions on leaves, bracts, and bolls, characterized by distinctive concentric rings creating a target-like or bull's-eye appearance. Initial symptoms appear as small, water-soaked spots that expand into tan to brown necrotic lesions with darker reddish-brown margins. The concentric zonation pattern becomes more pronounced as lesions mature, with alternating light and dark bands radiating outward. Lesions typically range from 2-10mm in diameter and may coalesce under favorable conditions, causing extensive leaf blighting and premature defoliation. Lower canopy leaves are often affected first due to higher humidity, with symptoms progressing upward. On bolls, lesions appear as sunken, dark brown spots that can lead to boll rot and lint contamination.",
+    "fields": {
+      "pathogen": {
+        "value": "Corynespora cassiicola",
+        "source_url": "https://www.aces.edu/blog/topics/crop-production/target-spot-of-cotton/",
+        "verbatim_quote": "Target spot of cotton is caused by the fungus Corynespora cassiicola."
+      },
+      "affected_organs": {
+        "value": "Leaves, bracts, bolls",
+        "source_url": "https://www.aces.edu/blog/topics/crop-production/target-spot-of-cotton/",
+        "verbatim_quote": "The disease affects leaves, bracts, and bolls."
+      },
+      "visual_symptoms": {
+        "value": "Circular lesions with concentric rings forming target-like pattern, tan to brown color with reddish-brown margins, premature defoliation",
+        "source_url": "https://www.aces.edu/blog/topics/crop-production/target-spot-of-cotton/",
+        "verbatim_quote": "Symptoms first appear as small, circular spots that are tan to brown in color. As the lesions expand, they develop a characteristic target-like appearance with concentric rings."
+      }
+    },
+    "status": "filled"
+  }
+]

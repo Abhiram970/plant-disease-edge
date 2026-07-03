@@ -233,6 +233,44 @@ def fig_edge_pareto():
     fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=160); plt.close(fig)
 
 
+def fig_scaling():
+    """Zero-shot accuracy vs #held-out classes across Experiments A/B/C (the scale study)."""
+    pts = []
+    for e in ("A", "B", "C"):
+        cands = [HERE / f"zeroshot_eval_{e}.json", Path(f"C:/kaggle/working/results/zeroshot_eval_{e}.json"),
+                 Path(f"results/zeroshot_eval_{e}.json")]
+        p = next((c for c in cands if c.exists()), None)
+        if not p:
+            continue
+        d = json.loads(p.read_text())
+        key = next((k for k in d["models"] if "S0" in k), None)
+        if not key:
+            continue
+        row = {"exp": e, "n": d["n_classes"], "chance": d["chance"]}
+        for s in ("rich", "grounded"):
+            if s in d["models"][key]:
+                row[s] = d["models"][key][s]["acc"]
+        pts.append(row)
+    if len(pts) < 2:
+        print("  (scaling fig skipped — need >=2 of zeroshot_eval_{A,B,C}.json)")
+        return
+    fig, ax = plt.subplots(figsize=(6.2, 4))
+    xs = [p["n"] for p in pts]
+    for s, col in (("rich", "#2ca02c"), ("grounded", "#1f77b4")):
+        ys = [p.get(s) for p in pts]
+        if all(y is not None for y in ys):
+            ax.plot(xs, ys, "-o", color=col, label=f"S0 {s}")
+    ax.plot(xs, [p["chance"] for p in pts], "--", color="grey", label="chance")
+    for p in pts:
+        ax.annotate(f"Exp {p['exp']}", (p["n"], max(p.get("rich", 0), p.get("grounded", 0))),
+                    fontsize=8, xytext=(4, 5), textcoords="offset points")
+    ax.set_xlabel("# held-out disease classes")
+    ax.set_ylabel("cross-crop zero-shot accuracy (S0, 11M)")
+    ax.set_title("Scaling: zero-shot degrades gracefully as held-out classes grow (A→B→C)")
+    ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
+    fig.tight_layout(); fig.savefig(FIG / "fig_scaling.png", dpi=160); plt.close(fig)
+
+
 def fig_riskcoverage():
     """Selective accuracy vs coverage (abstain gate) for S0, from metrics_abstain.json if present."""
     cands = [HERE / "metrics_abstain.json", Path("C:/kaggle/working/results/metrics_abstain.json"),
@@ -274,6 +312,10 @@ def main():
         fig_riskcoverage()
     except Exception as e:
         print(f"  (risk-coverage fig skipped: {e})")
+    try:
+        fig_scaling()
+    except Exception as e:
+        print(f"  (scaling fig skipped: {e})")
     try:
         fig_descriptors()
     except Exception as e:

@@ -1,0 +1,117 @@
+[
+  {
+    "crop": "Rose",
+    "disease": "Black_Spot",
+    "symptom_text": "Black spot of rose, caused by the fungus Diplocarpon rosae, produces circular to irregularly shaped black lesions with distinctly fringed or feathery margins on the upper surface of leaves, typically ranging from 2 to 12 mm in diameter. The lesions are surrounded by a yellow halo that causes the surrounding leaf tissue to turn bright yellow, often leading to premature defoliation. Dark, raised, pimple-like acervuli (fungal fruiting bodies) may be visible within the black spots under magnification. Symptoms appear predominantly on the upper leaf surface but can also occur on petioles, young canes, and flower petals, with lower leaves and those in the interior of the plant canopy typically showing the earliest and most severe infection.",
+    "fields": {
+      "pathogen": {
+        "value": "Diplocarpon rosae",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BlackSpotRose.aspx",
+        "verbatim_quote": "Black spot is caused by the fungus Diplocarpon rosae Wolf (sexual stage); the asexual stage is Marssonina rosae (Lib.) Died."
+      },
+      "affected_organs": {
+        "value": "Leaves, petioles, young canes, flower petals",
+        "source_url": "https://extension.umn.edu/plant-diseases/black-spot-rose",
+        "verbatim_quote": "Black spot infects leaves, petioles, young canes, and flower petals."
+      },
+      "visual_symptoms": {
+        "value": "Circular black spots with fringed margins on upper leaf surface, surrounded by yellow halos, leading to yellowing and premature leaf drop",
+        "source_url": "https://extension.umn.edu/plant-diseases/black-spot-rose",
+        "verbatim_quote": "Symptoms appear as circular, black spots with fringed margins on the upper surface of leaves. Yellow halos often surround the spots. Infected leaves turn yellow and drop prematurely."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rose",
+    "disease": "Downy_Mildew",
+    "symptom_text": "Rose downy mildew, caused by Peronospora sparsa, produces irregular, angular to blotchy purplish-red or dark brown lesions on the upper leaf surface, often with yellow halos, while the corresponding lower leaf surface displays a sparse, grayish-white to pale lavender downy sporulation (sporangiophores and sporangia). Lesions may coalesce, causing rapid yellowing and premature defoliation. Affected organs include leaves, petioles, young stems, and flower petals, with stem lesions appearing as dark, water-soaked to purplish-brown streaks. The disease progresses rapidly under cool, humid conditions, and infected leaves frequently drop, leaving bare canes.",
+    "fields": {
+      "pathogen": {
+        "value": "Peronospora sparsa",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/RoseDownyMildew.aspx",
+        "verbatim_quote": "Downy mildew of rose is caused by the oomycete pathogen Peronospora sparsa."
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rose",
+    "disease": "Dry_Leaf",
+    "symptom_text": "TODO: source-grounded symptom description for Dry_Leaf on Rose.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Rose",
+    "disease": "Leaf_Holes",
+    "symptom_text": "TODO: source-grounded symptom description for Leaf_Holes on Rose.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Rose",
+    "disease": "Rose_Rosette_Virus",
+    "symptom_text": "Rose rosette disease causes striking and distinctive symptoms across multiple organs of the rose plant. Infected shoots produce an abnormal proliferation of bright red or crimson-pigmented lateral shoots and leaves, giving a 'witches'-broom' appearance with excessive thorniness on elongated, distorted canes. Leaves are small, crinkled, and mosaic-patterned with yellow or red mottling, often remaining red rather than maturing to green. Flowers, when produced, are malformed, streaked, or reduced in size, with distorted petals. The entire affected shoot system appears stunted and densely clustered, with new growth consistently displaying vivid red pigmentation that does not fade with maturity, distinguishing this disease from normal red new growth seen in healthy roses.",
+    "fields": {
+      "pathogen": {
+        "value": "Rose rosette emaravirus (RRV)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/RoseRosette.aspx",
+        "verbatim_quote": "Rose rosette disease (RRD) is caused by Rose rosette virus (RRV), a negative-sense, single-stranded RNA virus in the genus Emaravirus."
+      },
+      "affected_organs": {
+        "value": "shoots, leaves, stems (canes), flowers",
+        "source_url": "https://extension.psu.edu/rose-rosette-disease",
+        "verbatim_quote": "Symptoms of rose rosette disease include witches' broom, excessive thorniness, red or yellow mosaic on leaves, distorted or stunted shoots, and malformed flowers."
+      },
+      "visual_symptoms": {
+        "value": "Witches'-broom proliferation of shoots, excessive thorniness, bright red pigmentation of new growth that does not fade, mosaic and mottling on leaves, distorted and malformed flowers",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/RoseRosette.aspx",
+        "verbatim_quote": "Symptoms include a proliferation of shoots (witches' broom), an abnormal increase in the number of thorns, red or yellow mosaic or mottling of leaves, distortion and stunting of shoots, and malformation of flowers."
+      }
+    },
+    "status": "filled"
+  }
+]

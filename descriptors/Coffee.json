@@ -2,7 +2,7 @@
   {
     "crop": "Coffee",
     "disease": "Berry_Blotch",
-    "symptom_text": "",
+    "symptom_text": "TODO: source-grounded symptom description for Berry_Blotch on Coffee.",
     "fields": {
       "pathogen": {
         "value": "",
@@ -20,12 +20,12 @@
         "verbatim_quote": ""
       }
     },
-    "status": "filled"
+    "status": "stub"
   },
   {
     "crop": "Coffee",
-    "disease": "Cercospora Leaf Spot (Brown Eye Spot)",
-    "symptom_text": "",
+    "disease": "Cerscospora",
+    "symptom_text": "TODO: source-grounded symptom description for Cerscospora on Coffee.",
     "fields": {
       "pathogen": {
         "value": "",
@@ -43,12 +43,12 @@
         "verbatim_quote": ""
       }
     },
-    "status": "filled"
+    "status": "stub"
   },
   {
     "crop": "Coffee",
     "disease": "Miner",
-    "symptom_text": "",
+    "symptom_text": "TODO: source-grounded symptom description for Miner on Coffee.",
     "fields": {
       "pathogen": {
         "value": "",
@@ -66,12 +66,12 @@
         "verbatim_quote": ""
       }
     },
-    "status": "filled"
+    "status": "stub"
   },
   {
     "crop": "Coffee",
     "disease": "Phoma",
-    "symptom_text": "",
+    "symptom_text": "TODO: source-grounded symptom description for Phoma on Coffee.",
     "fields": {
       "pathogen": {
         "value": "",
@@ -89,7 +89,7 @@
         "verbatim_quote": ""
       }
     },
-    "status": "filled"
+    "status": "stub"
   },
   {
     "crop": "Coffee",
@@ -115,6 +115,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   }
 ]
