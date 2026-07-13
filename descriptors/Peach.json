@@ -46,7 +46,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   },
   {
     "crop": "Peach",
@@ -72,16 +72,16 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   },
   {
     "crop": "Peach",
     "disease": "Leaf_Scab",
-    "symptom_text": "",
+    "symptom_text": "Peach leaf scab, caused by the fungus Cladosporium carpophilum, produces small, circular to angular, olive-green to dark brown or black velvety spots on the undersides of leaves, typically measuring 2–3 mm in diameter. Lesions are often concentrated along the midrib and secondary veins, and may coalesce under heavy infection. Affected tissue may eventually turn yellow and drop out, giving leaves a shot-hole appearance. Symptoms are most visible on young, expanding leaves in spring and early summer.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
+        "value": "Cladosporium carpophilum",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PeachScab.aspx",
         "verbatim_quote": ""
       },
       "affected_organs": {
@@ -121,29 +121,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-    "verified_date": "2026-07-02"
-  },
-  {
-    "crop": "Peach",
-    "disease": "Stigmina_Fungus",
-    "symptom_text": "",
-    "fields": {
-      "pathogen": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
-      },
-      "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
-      },
-      "visual_symptoms": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
-      }
-    },
-    "status": "filled"
+    "verified_date": "2026-07-03"
   }
 ]

@@ -45,15 +45,20 @@ def main():
     ap.add_argument("--tiers", nargs="+", default=list(C.MODEL_TIERS))
     ap.add_argument("--heavy", action="store_true", help="also evaluate the heavyweight (~86M) tier")
     ap.add_argument("--teachers", action="store_true", help="also evaluate the reference/teacher VLMs")
+    ap.add_argument("--exp", choices=list(C.EXPERIMENTS), default="C",
+                    help="scale-study subset: A (3 held) / B (6) / C (8, all)")
     args = ap.parse_args()
 
     ensure_deps()
     import torch
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
+    held_crops = C.EXPERIMENTS[args.exp]["held"]
     rows = sage_data.fetch(C.HELDOUT_CROPS, sage_data.full_caps(), min_held_crops=C.MIN_HELD_CROPS)
-    assert rows, "no held-out images available"
+    rows = [r for r in rows if r["crop"] in set(held_crops)]     # subset to this experiment's held crops
+    assert rows, f"no held-out images for experiment {args.exp} ({held_crops})"
     classes = sorted({r["label"] for r in rows})
+    print(f"[eval] experiment {args.exp}: held crops = {held_crops}")
     chance = 1.0 / len(classes)
     crops = sorted({c.split("|")[0] for c in classes})
     print(f"[eval] held={len(rows):,} imgs  {len(classes)} classes  crops={crops}  chance={chance:.1%}\n")
@@ -85,7 +90,7 @@ def main():
         D.text_for(c, "rich", coverage)
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = C.RESULTS_DIR / "zeroshot_eval.json"
+    out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}.json"
     out.write_text(json.dumps({"chance": chance, "n_classes": len(classes), "crops": crops,
                                "coverage": coverage, "models": results}, indent=2))
     print(f"\n[eval] saved {out}")

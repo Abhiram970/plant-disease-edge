@@ -75,13 +75,17 @@ def main():
     ap.add_argument("--models", nargs="+", default=list(C.DEPLOY_MODELS))
     ap.add_argument("--strategies", nargs="+", default=["rich", "grounded"])
     ap.add_argument("--reference", action="store_true", help="also evaluate SigLIP2 ceiling")
+    ap.add_argument("--exp", choices=list(C.EXPERIMENTS), default="C",
+                    help="scale-study subset: A (3 held) / B (6) / C (8, all)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
     import torch
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    held_crops = C.EXPERIMENTS[args.exp]["held"]
     rows = sage_data.fetch(C.HELDOUT_CROPS, sage_data.full_caps(), min_held_crops=C.MIN_HELD_CROPS)
-    assert rows, "no held-out images on disk (set PDE_DATASET_DIR)"
+    rows = [r for r in rows if r["crop"] in set(held_crops)]
+    assert rows, f"no held-out images for experiment {args.exp} ({held_crops})"
     classes = sorted({r["label"] for r in rows})
     print(f"[metrics] held={len(rows):,} imgs  {len(classes)} classes  chance={1/len(classes):.1%}  device={device}\n")
 
@@ -108,7 +112,7 @@ def main():
             print(f"  {name:18s} skipped ({type(e).__name__}: {str(e)[:70]})")
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = Path(args.out) if args.out else C.RESULTS_DIR / "metrics_abstain.json"
+    out_path = Path(args.out) if args.out else C.RESULTS_DIR / f"metrics_abstain_{args.exp}.json"
     out_path.write_text(json.dumps(out, indent=2))
     print(f"\n[metrics] saved {out_path}")
     print("[metrics] top-5 and acc@cov are the field-relevant, reviewer-defensible numbers.")

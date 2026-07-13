@@ -1,0 +1,163 @@
+[
+  {
+    "crop": "Strawberry",
+    "disease": "Anthracnose",
+    "symptom_text": "Anthracnose of strawberry causes dark, water-soaked, sunken lesions on ripe and unripe fruit that rapidly expand and turn brown to black, often with salmon-pink to orange masses of spores (acervuli) visible at the center of lesions under moist conditions. On runners and petioles, elongated, dark brown to black, slightly sunken cankers develop, while crown infections result in a firm, reddish-brown to dark brown internal discoloration that can collapse the entire plant. Leaf spots appear as small, irregular, dark brown to black lesions. Lesions on fruit are typically circular, sharply delimited, and may cover large portions of the berry surface, giving affected fruit a mummified appearance.",
+    "fields": {
+      "pathogen": {
+        "value": "Colletotrichum acutatum, Colletotrichum gloeosporioides, Colletotrichum fragariae",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryAnthracnose.aspx",
+        "verbatim_quote": "Anthracnose of strawberry is caused by three species of Colletotrichum: C. acutatum, C. gloeosporioides, and C. fragariae."
+      },
+      "affected_organs": {
+        "value": "Fruit, crown, runners, petioles, leaves",
+        "source_url": "https://extension.umd.edu/resource/strawberry-anthracnose",
+        "verbatim_quote": "Anthracnose can affect all above-ground parts of the strawberry plant including fruit, crowns, petioles, runners, and leaves."
+      },
+      "visual_symptoms": {
+        "value": "Dark, water-soaked, sunken lesions on fruit turning brown to black; salmon-pink spore masses under moist conditions; dark sunken cankers on runners and petioles; reddish-brown crown discoloration",
+        "source_url": "https://www.canr.msu.edu/resources/anthracnose_fruit_rot_of_strawberry",
+        "verbatim_quote": "Infected fruit develop dark, water-soaked lesions that become sunken and turn brown to black. Under moist conditions, salmon-colored masses of spores are produced in the center of lesions."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Strawberry",
+    "disease": "Blossom_Blight",
+    "symptom_text": "TODO: source-grounded symptom description for Blossom_Blight on Strawberry.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Strawberry",
+    "disease": "Gray_Mold",
+    "symptom_text": "Gray mold on strawberry, caused by Botrytis cinerea, manifests as water-soaked, light brown to tan lesions that rapidly expand across fruit, flowers, and leaves. Infected berries develop a soft, rotted texture and become covered with a dense, powdery gray to brown sporulating mass of fungal mycelium and conidia. Lesions on fruit often begin at the calyx end or at points of contact between berries, spreading to encompass the entire fruit surface. Blossoms turn brown and collapse, while infected leaves show irregular, tan to brown blighted areas. Under humid conditions, the characteristic dusty gray sporulation is visible across all affected organs.",
+    "fields": {
+      "pathogen": {
+        "value": "Botrytis cinerea",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BotrytisGrayMold.aspx",
+        "verbatim_quote": "Gray mold, caused by Botrytis cinerea, is one of the most economically important diseases of strawberry worldwide."
+      },
+      "affected_organs": {
+        "value": "Fruit, flowers, leaves, stems",
+        "source_url": "https://extension.ucdavis.edu/sites/default/files/2022-03/gray_mold_strawberry.pdf",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "Water-soaked lesions on fruit turning brown and covered with gray sporulating mycelium; blighted blossoms; tan lesions on leaves",
+        "source_url": "https://www.canr.msu.edu/resources/gray-mold-botrytis-fruit-rot-of-strawberry",
+        "verbatim_quote": "Infected fruit first appear water-soaked and light brown, then become covered with a gray, dusty mass of spores."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Strawberry",
+    "disease": "Leaf_Scorch",
+    "symptom_text": "Strawberry leaf scorch, caused by the fungus Diplocarpon earlianum, produces numerous small, irregular to angular dark purple or reddish-purple spots scattered across the upper surface of strawberry leaflets. As lesions mature, their centers may remain dark purple without developing a lighter center (distinguishing scorch from leaf spot), giving the leaf a scorched or burned appearance. Severely infected leaves turn purplish to reddish-brown across large areas, curl, and may die, while the undersides of lesions can bear tiny black acervuli (fruiting bodies) of the pathogen. Symptoms are distributed across all leaflets and can also appear on petioles, runners, and fruit caps.",
+    "fields": {
+      "pathogen": {
+        "value": "Diplocarpon earlianum (anamorph: Marssonina fragariae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx",
+        "verbatim_quote": "Leaf scorch of strawberry is caused by the fungus Diplocarpon earlianum (Ellis & Everh.) F.A. Wolf (anamorph: Marssonina fragariae (Lib.) Kleb.)."
+      },
+      "affected_organs": {
+        "value": "Leaves (leaflets), petioles, runners, fruit caps (calyxes)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx",
+        "verbatim_quote": "Symptoms can be observed on leaves, petioles, runners, and fruit caps."
+      },
+      "visual_symptoms": {
+        "value": "Numerous small, irregular, dark purple to reddish-purple spots on upper leaf surface; centers remain dark (no pale center); severely affected leaves appear scorched or burned",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx",
+        "verbatim_quote": "Leaf scorch symptoms first appear as numerous small, irregular, purplish spots or 'blotches' on the upper leaf surface. Unlike leaf spot, the centers of these lesions do not turn white or gray, but remain dark purple, giving the leaf a 'scorched' appearance."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Strawberry",
+    "disease": "Leaf_Spot",
+    "symptom_text": "Strawberry leaf spot, caused by Mycosphaerella fragariae, produces small, circular to slightly irregular lesions on the upper surface of leaves that begin as dark purple to reddish-purple spots approximately 1–5 mm in diameter. As lesions mature, the centers turn tan to white or gray while the margins remain dark purple, creating a distinctive 'bird's-eye' appearance. Lesions may also appear on petioles, runners, fruit caps (calyxes), and berry surfaces. On heavily infected leaves, numerous spots may coalesce, leading to large necrotic areas and premature defoliation. The contrast between the pale necrotic center and the dark purple border is the hallmark diagnostic feature of this disease.",
+    "fields": {
+      "pathogen": {
+        "value": "Mycosphaerella fragariae (anamorph: Ramularia tulasnei)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx",
+        "verbatim_quote": "Leaf spot of strawberry is caused by the fungus Mycosphaerella fragariae (Tul.) Lindau (anamorph: Ramularia tulasnei Sacc.)."
+      },
+      "affected_organs": {
+        "value": "Leaves, petioles, runners, fruit caps (calyxes), and berry surfaces",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx",
+        "verbatim_quote": "Symptoms occur on leaves, petioles, runners, fruit caps (calyxes), and berry surfaces."
+      },
+      "visual_symptoms": {
+        "value": "Small circular spots with dark purple to reddish-purple margins and tan to white or gray centers ('bird's-eye' lesions), 1–5 mm in diameter, on leaf surfaces",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx",
+        "verbatim_quote": "Spots are circular, 1 to 5 mm in diameter, with centers that are tan to white or gray and margins that are dark purple to reddish purple."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Strawberry",
+    "disease": "Powdery_Mildew",
+    "symptom_text": "Strawberry powdery mildew presents as white to grayish powdery fungal growth (mycelium and conidia) on the upper and lower surfaces of leaves, which may curl upward along the margins exposing the pale undersides coated with the powdery coating. Infected leaves can develop reddish or purplish blotches on the upper surface, while severely affected tissue may become necrotic. Flowers, petioles, and fruit can also be colonized; infected fruit show a white powdery coating and may become dull, leathery, or fail to develop properly, with seeds sometimes appearing prominent on the surface.",
+    "fields": {
+      "pathogen": {
+        "value": "Podosphaera aphanis (syn. Sphaerotheca macularis f. sp. fragariae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryPowderyMildew.aspx",
+        "verbatim_quote": "Powdery mildew of strawberry is caused by Podosphaera aphanis (Wallr.) U. Braun & S. Takam. (syn. Sphaerotheca macularis (Fr.) Lind f. sp. fragariae Peries)."
+      },
+      "affected_organs": {
+        "value": "Leaves, petioles, flowers, fruit",
+        "source_url": "https://ipm.ucanr.edu/PMG/r734100111.html",
+        "verbatim_quote": "Powdery mildew affects all aboveground parts of the strawberry plant including leaves, petioles, runners, flowers, and fruit."
+      },
+      "visual_symptoms": {
+        "value": "White powdery mycelial growth on leaf surfaces; leaves curl upward; reddish or purple blotches on upper leaf surface; white coating on fruit",
+        "source_url": "https://ipm.ucanr.edu/PMG/r734100111.html",
+        "verbatim_quote": "Infected leaves curl upward, exposing the lower surface, which is covered with a white, powdery growth. Upper leaf surfaces may show reddish or purple blotches. Infected fruit are covered with a white, powdery coating."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Strawberry",
+    "disease": "Ramularia_Grevilleana_Verkley",
+    "symptom_text": "TODO: source-grounded symptom description for Ramularia_Grevilleana_Verkley on Strawberry.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  }
+]

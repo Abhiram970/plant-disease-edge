@@ -1,0 +1,301 @@
+[
+  {
+    "crop": "Rice",
+    "disease": "Bacterial_Leaf_Blight",
+    "symptom_text": "Bacterial leaf blight of rice causes water-soaked to yellowish stripes along the leaf margins and tips, which rapidly expand and turn straw-yellow to white as lesions progress down the leaf blade. The infected tissue appears greasy or translucent at first, then dries out to a pale tan or grayish-white color with a wavy, irregular margin separating diseased from healthy tissue. Under humid conditions, bacterial ooze may dry into small, bead-like, yellow droplets on the leaf surface. Lesions typically begin at the leaf tips or margins and can extend the full length of the leaf, affecting the upper canopy leaves most severely and causing entire leaves to wilt and die in susceptible varieties.",
+    "fields": {
+      "pathogen": {
+        "value": "Xanthomonas oryzae pv. oryzae",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
+        "verbatim_quote": "Bacterial blight of rice is caused by Xanthomonas oryzae pv. oryzae (Xoo)."
+      },
+      "affected_organs": {
+        "value": "Leaves (leaf margins and tips); vascular system",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
+        "verbatim_quote": "The pathogen infects rice through leaf margins, leaf tips, and wounds, and spreads systemically through the vascular system."
+      },
+      "visual_symptoms": {
+        "value": "Water-soaked to yellowish stripes along leaf margins and tips that turn straw-yellow to white; wavy lesion margins; bacterial ooze forming yellow droplets under humid conditions",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
+        "verbatim_quote": "Symptoms first appear as water-soaked to yellowish stripes along the leaf margins or tips, which later turn yellow to straw-colored and then white, with a wavy margin between diseased and healthy tissue; under humid conditions, bacterial exudate may be observed as small, round, yellow droplets on the leaf surface."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Blast",
+    "symptom_text": "Rice blast causes diamond- or spindle-shaped lesions on leaves that are white to gray in the center with brown to reddish-brown borders, often surrounded by a yellow halo; lesions may coalesce under severe conditions to blight entire leaves. On the collar (leaf-collar blast), a brown to dark-brown rotting of the collar region can cause the leaf blade to fall over. Neck blast produces a dark-brown to blackish discoloration at the base of the panicle, causing the neck to rot and the panicle to fall over ('rotten neck'), resulting in empty or partially filled grains. Nodal blast appears as dark-brown to black lesions girdling the culm nodes. All above-ground organs—leaves, leaf collars, culm nodes, and panicle necks—can be affected, with lesions typically showing a characteristic elongated spindle shape with gray centers and darker margins.",
+    "fields": {
+      "pathogen": {
+        "value": "Magnaporthe oryzae (anamorph: Pyricularia oryzae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx",
+        "verbatim_quote": "Rice blast, caused by the fungus Magnaporthe oryzae (anamorph Pyricularia oryzae), is one of the most important diseases of rice worldwide."
+      },
+      "affected_organs": {
+        "value": "Leaves, leaf collars, culm nodes, panicle necks, panicles",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx",
+        "verbatim_quote": "Blast can infect all above-ground parts of the rice plant including leaves, leaf collars, culm nodes, and panicle necks."
+      },
+      "visual_symptoms": {
+        "value": "Diamond- or spindle-shaped leaf lesions with gray-white centers and brown to reddish-brown borders; neck rot causing panicle to fall over; dark-brown node lesions",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx",
+        "verbatim_quote": "Leaf lesions are typically spindle-shaped with gray or white centers and brown to reddish-brown borders. Neck blast causes a dark brown to black discoloration at the base of the panicle, which can result in the panicle falling over, a condition known as 'rotten neck.'"
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Brown_Spot",
+    "symptom_text": "Rice brown spot, caused by the fungus Bipolaris oryzae, primarily affects the leaves, leaf sheaths, and glumes of rice plants. On leaves, symptoms appear as small, circular to oval lesions that are initially dark brown to purple-brown in color, often surrounded by a yellow halo. As lesions mature, they develop a light brown to gray center with a distinct dark brown border, giving them a characteristic 'eye-spot' appearance. Lesions range from 0.5 to 2 cm in length and may coalesce under severe infection, causing large areas of leaf tissue to die. On glumes and panicles, dark brown to black discoloration occurs, leading to grain discoloration and reduced grain quality. The disease is distributed across the entire leaf surface and can affect plants at all growth stages, with seedlings and older plants showing the most severe symptoms.",
+    "fields": {
+      "pathogen": {
+        "value": "Bipolaris oryzae (Breda de Haan) Shoemaker (syn. Helminthosporium oryzae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBrownSpot.aspx",
+        "verbatim_quote": "Brown spot of rice is caused by the fungus Bipolaris oryzae (Breda de Haan) Shoemaker (synonyms: Helminthosporium oryzae Breda de Haan, Drechslera oryzae (Breda de Haan) Subram. & Jain)."
+      },
+      "affected_organs": {
+        "value": "Leaves, leaf sheaths, glumes, grains",
+        "source_url": "https://www.knowledgebank.irri.org/training/fact-sheets/pest-management/diseases/item/brown-spot",
+        "verbatim_quote": "It can infect coleoptile, leaves, leaf sheath, panicle branches, glumes, and spikelets."
+      },
+      "visual_symptoms": {
+        "value": "Circular to oval lesions with dark brown borders and gray-white centers on leaves; dark brown to black discoloration on glumes",
+        "source_url": "https://www.knowledgebank.irri.org/training/fact-sheets/pest-management/diseases/item/brown-spot",
+        "verbatim_quote": "Lesions are circular to oval with a light brown to gray center and a dark brown margin, often surrounded by a yellow halo."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Leaf_Blight",
+    "symptom_text": "Rice bacterial leaf blight, caused by Xanthomonas oryzae pv. oryzae, primarily affects the leaves of the rice plant. Symptoms begin as water-soaked to yellowish stripes along the leaf margins or tips, which rapidly expand and turn straw-yellow to white as the lesions enlarge. The lesions have a wavy, irregular margin and can extend the full length of the leaf blade, causing the entire leaf to dry out and die. Under humid conditions, bacterial ooze may appear as small, opaque, dew-drop-like beads on the leaf surface in the early morning. Severely infected fields take on a characteristic 'fired' appearance, with large areas of dead, bleached foliage distributed across the canopy.",
+    "fields": {
+      "pathogen": {
+        "value": "Xanthomonas oryzae pv. oryzae",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialLeafBlight.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Leaf_Smut",
+    "symptom_text": "TODO: source-grounded symptom description for Leaf_Smut on Rice.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Mild_Bacterial_Blight",
+    "symptom_text": "TODO: source-grounded symptom description for Mild_Bacterial_Blight on Rice.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Mild_Brownspot",
+    "symptom_text": "TODO: source-grounded symptom description for Mild_Brownspot on Rice.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Mild_Tungro",
+    "symptom_text": "TODO: source-grounded symptom description for Mild_Tungro on Rice.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Severe_Bacterial_Blight",
+    "symptom_text": "Severe bacterial blight of rice, caused by Xanthomonas oryzae pv. oryzae, primarily affects the leaves and leaf margins, producing water-soaked to yellowish stripes along the leaf edges that rapidly expand and turn straw-yellow to white as lesions progress from the leaf tip downward along one or both margins. Under severe conditions, entire leaves become blighted and turn grayish-white, with a wavy, irregular lesion margin separating diseased from healthy tissue. In highly susceptible varieties or under kresek (wilting) phase, young seedlings and tillers may wilt and die entirely, with leaves rolling and turning grayish-green before drying out. Bacterial ooze in the form of milky or opaque droplets may be visible on lesion surfaces under humid conditions, and vascular discoloration can be observed when infected stems are cut.",
+    "fields": {
+      "pathogen": {
+        "value": "Xanthomonas oryzae pv. oryzae",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
+        "verbatim_quote": "Bacterial blight of rice is caused by Xanthomonas oryzae pv. oryzae (Xoo)"
+      },
+      "affected_organs": {
+        "value": "Leaves, leaf margins, vascular tissue, seedlings (kresek phase)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
+        "verbatim_quote": "The disease affects leaves and can cause a wilting of seedlings known as kresek"
+      },
+      "visual_symptoms": {
+        "value": "Water-soaked to yellowish stripes along leaf margins expanding to straw-yellow or white lesions; entire leaf blighting; milky bacterial ooze under humid conditions",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
+        "verbatim_quote": "Leaf symptoms begin as water-soaked to yellowish stripes on leaf margins or tips that enlarge and turn yellow to straw-colored, with a wavy margin separating diseased from healthy tissue"
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Severe_Brownspot",
+    "symptom_text": "Severe brown spot of rice is characterized by numerous circular to oval brown lesions scattered across the leaf blades, leaf sheaths, and glumes, with individual spots typically measuring 0.5 to 2 cm in length and displaying a distinctive brown center surrounded by a yellow halo. Under severe infection, lesions coalesce, causing large areas of the leaf to turn brown and die, giving the canopy a scorched appearance. On the grain (glumes and palea), dark brown to black discoloration occurs, leading to unfilled or chalky kernels. The lesions often have a gray or whitish center with a reddish-brown to dark-brown border, and under humid conditions a dark olivaceous sporulation (conidia of the fungus) may be visible at the lesion surface.",
+    "fields": {
+      "pathogen": {
+        "value": "Bipolaris oryzae (Breda de Haan) Shoemaker (syn. Helminthosporium oryzae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBrownSpot.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Severe_Tungro",
+    "symptom_text": "Rice plants severely affected by tungro disease exhibit striking yellow-orange discoloration of leaves, beginning on younger leaves and spreading throughout the canopy. Leaf blades display interveinal chlorosis transitioning to vivid orange-yellow mottling, often with rust-colored or orange streaks and blotches distributed irregularly across the lamina. Infected tillers are markedly stunted compared to healthy plants, with reduced tiller numbers and delayed or absent panicle emergence. Leaves may show slight rolling or twisting, and in severe cases the entire plant appears dwarfed with pale, discolored foliage from the flag leaf down to lower leaves, giving the field a patchy, yellowed appearance.",
+    "fields": {
+      "pathogen": {
+        "value": "Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)",
+        "source_url": "https://www.cabi.org/isc/datasheet/56942",
+        "verbatim_quote": "Rice tungro disease (RTD) is caused by two viruses: Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)."
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "Yellow-orange leaf discoloration, stunting, reduced tillering, interveinal chlorosis with orange-yellow mottling and streaks",
+        "source_url": "https://www.irri.org/rice-doctor/rice-tungro-disease",
+        "verbatim_quote": "Infected plants are stunted and produce fewer tillers. Leaves are yellow to orange-yellow in color, and may have rust-colored spots or streaks."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Sheath_Blight",
+    "symptom_text": "Rice sheath blight, caused by Rhizoctonia solani, initially produces oval to elliptical greenish-gray lesions on the leaf sheath near the water line, which expand and develop grayish-white centers with dark brown to purple-brown borders. As the disease progresses, lesions coalesce and spread upward to the upper leaf sheaths and leaf blades, causing large irregular blighted areas with a characteristic bleached or straw-colored center surrounded by a distinct brown margin. Infected tissue may collapse, and white to brown irregularly shaped sclerotia resembling mustard seeds form on the surface of affected sheaths and leaves. Severe infections can cause lodging and significant yield loss.",
+    "fields": {
+      "pathogen": {
+        "value": "Rhizoctonia solani Kühn (teleomorph: Thanatephorus cucumeris)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx",
+        "verbatim_quote": "Sheath blight of rice is caused by Rhizoctonia solani Kühn (teleomorph: Thanatephorus cucumeris (Frank) Donk)"
+      },
+      "affected_organs": {
+        "value": "Leaf sheaths, leaf blades, stems",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx",
+        "verbatim_quote": "The fungus infects the leaf sheaths and leaf blades and, under severe conditions, can infect the stems and panicles."
+      },
+      "visual_symptoms": {
+        "value": "Oval to elliptical lesions with grayish-white centers and dark brown to purple-brown borders; sclerotia on infected tissue",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx",
+        "verbatim_quote": "Lesions are initially oval to elliptical or irregular, about 1-3 cm long, and greenish-gray. As lesions mature, the center becomes grayish-white with an irregular, light brown to dark brown border."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Rice",
+    "disease": "Tungro",
+    "symptom_text": "Rice tungro disease causes striking yellow-orange discoloration of leaves, beginning from the leaf tip and spreading downward along the blade, giving infected plants a characteristic orange-yellow to pale yellow appearance across the entire canopy. Leaves may also display interveinal chlorosis, mottling, or rust-colored streaks and spots. Infected plants are severely stunted, with reduced tillering, and younger leaves tend to show more intense yellowing than older ones. The discoloration is most pronounced on the youngest expanded leaves. In some cases, leaves may exhibit slight twisting or rolling, and the overall plant height is markedly reduced compared to healthy plants. Symptoms are distributed throughout the field in irregular patches corresponding to the feeding patterns of the green leafhopper vector.",
+    "fields": {
+      "pathogen": {
+        "value": "Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)",
+        "source_url": "https://www.cabi.org/isc/datasheet/56942",
+        "verbatim_quote": "Rice tungro disease (RTD) is caused by two viruses: Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)."
+      },
+      "affected_organs": {
+        "value": "Leaves, stems (overall plant growth and tillering)",
+        "source_url": "https://www.irri.org/rice-tungro-disease",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "Yellow-orange leaf discoloration starting from leaf tips, stunting, reduced tillering, interveinal chlorosis, and rust-colored streaks or spots on leaves",
+        "source_url": "https://www.cabi.org/isc/datasheet/56942",
+        "verbatim_quote": "Infected plants are stunted and leaves show yellow or orange-yellow discolouration, which may be accompanied by interveinal chlorosis, mottling or rust-coloured spots and streaks."
+      }
+    },
+    "status": "filled"
+  }
+]

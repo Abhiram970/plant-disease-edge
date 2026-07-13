@@ -23,7 +23,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Citrus_canker",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   },
   {
     "crop": "Orange",
@@ -49,7 +49,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Citrus_canker",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   },
   {
     "crop": "Orange",
@@ -98,7 +98,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   },
   {
     "crop": "Orange",
@@ -124,25 +124,25 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-    "verified_date": "2026-07-02"
+    "verified_date": "2026-07-03"
   },
   {
     "crop": "Orange",
     "disease": "Whisker_Mold",
-    "symptom_text": "",
+    "symptom_text": "Whisker mold on oranges manifests as a distinctive grayish-green to olive-colored fungal growth that develops on the fruit surface, particularly in areas of prior injury or where the rind has been compromised. The affected areas display characteristic whisker-like or hair-like fungal filaments that give the disease its common name. These delicate mycelial strands radiate outward from infection points, creating a fuzzy or bristly appearance on the fruit surface. The underlying rind tissue beneath the fungal growth often becomes soft and water-soaked, with the decay progressing inward to affect the fruit segments. Infected fruits may show sunken lesions with irregular margins, and the affected tissue typically develops a musty or earthy odor characteristic of the causal fungus.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Penicillium ulaiense",
+        "source_url": "https://www.cabi.org/isc/datasheet/39444",
+        "verbatim_quote": "Penicillium ulaiense causes whisker mold of citrus fruits"
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Fruit",
+        "source_url": "https://www.cabi.org/isc/datasheet/39444",
+        "verbatim_quote": "whisker mold of citrus fruits"
       },
       "visual_symptoms": {
-        "value": "",
+        "value": "Grayish-green fungal growth with whisker-like filaments on fruit surface",
         "source_url": "",
         "verbatim_quote": ""
       }

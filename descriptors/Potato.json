@@ -1,0 +1,393 @@
+[
+  {
+    "crop": "Potato",
+    "disease": "Bacteria_Wilt_And_Soft_Rot",
+    "symptom_text": "Bacterial wilt and soft rot of potato, caused by Ralstonia solanacearum and Pectobacterium/Dickeya species respectively, manifest as a range of striking visual symptoms across multiple plant organs. Above ground, infected plants exhibit sudden wilting of stems and foliage, often with yellowing and browning of lower leaves, while stems may show a slimy, water-soaked, dark brown to black discoloration internally when cut. On tubers, soft rot appears as a mushy, cream to tan to dark brown decay of internal flesh that emits a foul odor, often beginning at the stem end or lenticels; the vascular ring may appear brown and ooze a milky-white bacterial slime when the tuber is cut and squeezed. Lesions spread rapidly under warm, wet conditions, converting firm tuber tissue into a wet, slimy mass, while the skin may remain intact initially, masking the extent of internal decay.",
+    "fields": {
+      "pathogen": {
+        "value": "Ralstonia solanacearum (bacterial wilt); Pectobacterium carotovorum subsp. carotovorum and Dickeya spp. (soft rot)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/PotatoBacterialWilt.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Black_Rot",
+    "symptom_text": "TODO: source-grounded symptom description for Black_Rot on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Bread_Mold",
+    "symptom_text": "TODO: source-grounded symptom description for Bread_Mold on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Early_Blight",
+    "symptom_text": "Early blight of potato, caused by Alternaria solani, primarily affects the leaves but can also infect stems and tubers. Symptoms first appear on older, lower leaves as small, dark brown to black, circular to angular lesions that enlarge to form characteristic concentric rings giving a distinctive 'target-board' or 'bull's-eye' appearance. The lesions are often surrounded by a yellow chlorotic halo. As the disease progresses, affected leaves turn yellow, wither, and drop prematurely, leading to significant defoliation. Lesions may coalesce under severe conditions, causing large necrotic areas across the leaf surface. On stems and petioles, dark, elongated, slightly sunken lesions with concentric rings may also develop.",
+    "fields": {
+      "pathogen": {
+        "value": "Alternaria solani",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/EarlyBlight.aspx",
+        "verbatim_quote": "Early blight is caused by the fungus Alternaria solani."
+      },
+      "affected_organs": {
+        "value": "Leaves, stems, petioles, tubers",
+        "source_url": "https://extension.umn.edu/disease-management/early-blight-potato-and-tomato",
+        "verbatim_quote": "Early blight can affect leaves, stems, and tubers of potato."
+      },
+      "visual_symptoms": {
+        "value": "Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow chlorotic halo, primarily on older lower leaves",
+        "source_url": "https://extension.umn.edu/disease-management/early-blight-potato-and-tomato",
+        "verbatim_quote": "Symptoms appear first on the older, lower leaves as small, irregular to circular, brown to black spots. The spots enlarge and concentric rings form in the spots giving them a target-board effect. A yellow area often surrounds each spot."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Fusarium_Damping-Off",
+    "symptom_text": "TODO: source-grounded symptom description for Fusarium_Damping-Off on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Late_Blight",
+    "symptom_text": "Late blight on potato presents as water-soaked, pale green to dark brown or black irregularly shaped lesions that first appear on the tips and edges of lower leaves, often surrounded by a pale yellow-green border; under humid conditions a white cottony sporulating growth (sporangiophores and sporangia) develops on the underside of leaves at the lesion margins. Lesions rapidly expand and coalesce, causing entire leaflets and stems to collapse and turn dark brown to black with a greasy appearance. On tubers, the disease produces reddish-brown, granular, dry rot that extends inward from the skin in irregular patches, with the internal discoloration appearing as a shallow to deep reddish-brown necrosis beneath the surface.",
+    "fields": {
+      "pathogen": {
+        "value": "Phytophthora infestans",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/LateBlight.aspx",
+        "verbatim_quote": "Late blight is caused by the oomycete pathogen Phytophthora infestans."
+      },
+      "affected_organs": {
+        "value": "Leaves, stems, tubers",
+        "source_url": "https://extension.umn.edu/disease-management/late-blight-potato-and-tomato",
+        "verbatim_quote": "Late blight can affect all above ground parts of the plant including leaves, stems, and petioles, as well as the tubers."
+      },
+      "visual_symptoms": {
+        "value": "Water-soaked pale green to brown-black lesions on leaf tips and margins; white sporulating growth on leaf undersides; dark brown-black stem lesions; reddish-brown granular rot on tubers",
+        "source_url": "https://extension.umn.edu/disease-management/late-blight-potato-and-tomato",
+        "verbatim_quote": "Leaf symptoms begin as pale green, water-soaked spots, usually at leaf tips or edges. These spots turn brown to black, and under moist conditions, a white cottony growth (sporangiophores and sporangia) can be seen on the underside of leaves at the edge of the lesion. On tubers, infected areas are reddish-brown, granular, and dry, and may extend an inch or more into the tuber tissue."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Penicillium_Fungi",
+    "symptom_text": "TODO: source-grounded symptom description for Penicillium_Fungi on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Phytophthora_Root_And_Stem_Rot",
+    "symptom_text": "TODO: source-grounded symptom description for Phytophthora_Root_And_Stem_Rot on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Rhizoctonia_Damping-Off",
+    "symptom_text": "TODO: source-grounded symptom description for Rhizoctonia_Damping-Off on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Rhizopus_Soft_Rots",
+    "symptom_text": "TODO: source-grounded symptom description for Rhizopus_Soft_Rots on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Scurf",
+    "symptom_text": "Potato scurf, caused by Rhizoctonia solani, manifests primarily on tuber surfaces as irregular, dark brown to black superficial patches or encrustations that resemble soil adhering to the skin. These lesions vary in size from small specks to large confluent areas covering much of the tuber surface, giving the skin a dirty, rough, or scurfy texture. The discoloration is confined to the outer skin layers and does not penetrate into the flesh. On stems and stolons, the fungus produces dark brown cankers near the soil line, and small, hard, black sclerotia—the resting structures of the pathogen—are embedded in or on the tuber skin, appearing as raised, irregular, wart-like bodies firmly attached to the periderm.",
+    "fields": {
+      "pathogen": {
+        "value": "Rhizoctonia solani",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Rhizoctonia.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Sour_Rot",
+    "symptom_text": "TODO: source-grounded symptom description for Sour_Rot on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Southern_Blight",
+    "symptom_text": "TODO: source-grounded symptom description for Southern_Blight on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Streptomyces_Soil_Rot",
+    "symptom_text": "TODO: source-grounded symptom description for Streptomyces_Soil_Rot on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Sweet_Potato_Feathery_Mottle_Virus",
+    "symptom_text": "TODO: source-grounded symptom description for Sweet_Potato_Feathery_Mottle_Virus on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "Tomato_Spotted_Wilt_Virus",
+    "symptom_text": "TODO: source-grounded symptom description for Tomato_Spotted_Wilt_Virus on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Potato",
+    "disease": "White_Rust",
+    "symptom_text": "TODO: source-grounded symptom description for White_Rust on Potato.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  }
+]

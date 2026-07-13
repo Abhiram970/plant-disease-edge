@@ -86,6 +86,49 @@ V[("Orange", "Canker")] = V[("Orange", "Citrus_Canker")]
 V[("Orange", "Greening_Disease")] = V[("Orange", "Huanglongbing")]
 V[("Peach", "Peach_Leaf_Curl")] = V[("Peach", "Leaf_Curl")]
 
+# --- new held crops (Exp B/C): web-verified headline disease per crop (2026-07) ---
+# (Bean rust + Cotton bacterial blight pages 404'd on fetch -> left honestly LLM-authored.)
+V[("Banana", "Panama_Disease")] = {
+    "source": "https://en.wikipedia.org/wiki/Panama_disease",
+    "pathogen": ("Fusarium oxysporum f. sp. cubense", ""),
+    "affected_organs": ("Feeder roots, rhizome, pseudostem, leaves",
+        "The infection begins at the tips of the feeder roots and then moves on to the rhizome."),
+    "visual_symptoms": ("Oldest leaves yellow, wilt and buckle; outer leaf sheaths split; xylem reddish-brown",
+        "Externally, the oldest leaves start turning yellow and there is often a longitudinal splitting of "
+        "the lower part of the outer leaf sheaths on the pseudostem. The leaves begin to wilt and may buckle "
+        "at the base of the petiole."),
+}
+V[("Banana", "Yellow_And_Black_Sigatoka")] = {
+    "source": "https://en.wikipedia.org/wiki/Mycosphaerella_fijiensis",
+    "pathogen": ("Mycosphaerella fijiensis",
+        "Black sigatoka is a leaf-spot disease of banana plants caused by the ascomycete fungus "
+        "Mycosphaerella fijiensis"),
+    "affected_organs": ("Banana leaves", ""),
+    "visual_symptoms": ("Streaks parallel to secondary veins; rusty-brown paint-like specks darkening to sunken depressions",
+        "In the early stages of the infection of the plant, the lesions have a rusty brown appearance and "
+        "appear to be faint, paint-like specks on the leaves."),
+}
+V[("Cucumber", "Downy_Mildew")] = {
+    "source": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
+    "pathogen": ("Pseudoperonospora cubensis",
+        "Pseudoperonospora cubensis is a species of water mould known for causing downy mildew"),
+    "affected_organs": ("Leaves only (not fruit, flowers, stems or roots)",
+        "Regardless of which cucurbit is involved, only the leaves are infected, not fruit, flowers, "
+        "stems or roots."),
+    "visual_symptoms": ("Angular chlorotic lesions bound by leaf veins; gray-brown to purplish-black growth on the underside",
+        "The pathogen causes angular chlorotic lesions on the foliage. These lesions appear angular because "
+        "they are bound by leaf veins. During humid conditions, inspection of the underside of the leaf "
+        "reveals gray-brown to purplish-black fungal growth."),
+}
+V[("Wheat", "Head_Scab")] = {
+    "source": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+    "pathogen": ("Fusarium graminearum",
+        "In wheat, Fusarium infects the head (hence the name 'Fusarium head blight')"),
+    "affected_organs": ("Wheat head/spike and kernels", "kernels to shrivel up and become chalky white"),
+    "visual_symptoms": ("Bright pink/orange sporulation on the spike; bleached, shrivelled chalky-white kernels",
+        "Macroconidia are produced in sporodochia, which gives the spike a bright pink or orange color."),
+}
+
 FIELDS = ("pathogen", "affected_organs", "visual_symptoms")
 
 

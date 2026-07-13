@@ -34,17 +34,19 @@ SHARD_REVISION = "refs/convert/parquet"
 SHARD_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]
 MAX_SHARDS = 13
 
-TRAIN_CROPS = ["Tomato", "Soybean", "Apple", "Corn", "Grape", "Potato", "Rice"]
-HELDOUT_CROPS = ["Coffee", "Orange", "Peach"]
+# Matches scripts/config.py Experiment C (10 seen / 8 held) so EXP2/EXP3 use the new 18-crop data.
+TRAIN_CROPS = ["Corn", "Soybean", "Tomato", "Apple", "Grape", "Potato", "Rice", "Sugarcane", "Rose", "Strawberry"]
+HELDOUT_CROPS = ["Coffee", "Orange", "Peach", "Cotton", "Wheat", "Bean", "Banana", "Cucumber"]
 CROP_ALIASES = {
-    "tomato": "Tomato", "soybean": "Soybean", "soya": "Soybean", "soya bean": "Soybean",
-    "apple": "Apple", "corn": "Corn", "maize": "Corn", "corn (maize)": "Corn",
-    "grape": "Grape", "grapevine": "Grape", "potato": "Potato", "rice": "Rice",
-    "coffee": "Coffee", "orange": "Orange", "citrus": "Orange", "sweet orange": "Orange",
-    "peach": "Peach",
+    "corn": "Corn", "maize": "Corn", "corn (maize)": "Corn", "soybean": "Soybean", "soya": "Soybean",
+    "tomato": "Tomato", "apple": "Apple", "grape": "Grape", "grapevine": "Grape", "potato": "Potato",
+    "rice": "Rice", "paddy": "Rice", "sugarcane": "Sugarcane", "sugar cane": "Sugarcane", "rose": "Rose",
+    "strawberry": "Strawberry", "coffee": "Coffee", "orange": "Orange", "citrus": "Orange",
+    "sweet orange": "Orange", "peach": "Peach", "cotton": "Cotton", "wheat": "Wheat",
+    "bean": "Bean", "common bean": "Bean", "beans": "Bean", "banana": "Banana", "cucumber": "Cucumber",
 }
-CAP_TRAIN, CAP_HELD = 250, 120
-MIN_CLASS_IMAGES, MIN_HELD_CROPS, MIN_TRAIN_CROPS = 15, 3, 4   # held=3 -> include Coffee (in shard ~5)
+CAP_TRAIN, CAP_HELD = 1000, 600
+MIN_CLASS_IMAGES, MIN_HELD_CROPS, MIN_TRAIN_CROPS = 25, 8, 10   # cover all 8 held + 10 seen crops
 
 MODEL_TIERS = {"lw11": ("MobileCLIP2-S0", "dfndr2b"),
                "lw21": ("MobileCLIP-S1", "datacompdr"),
