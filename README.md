@@ -4,8 +4,6 @@ A **family of compact (11–93M) vision–language models** for crop-disease dia
 high real-time accuracy on known crops** and does **zero-shot diagnosis on unseen crops** via
 source-grounded symptom descriptors — deployable at $0/image on phones, laptops, and small NPUs.
 
-> **Target venue:** *Computers and Electronics in Agriculture* — Special Issue
-> **"Foundation Models in Agriculture."** Submission deadline **30 Sep 2026** (internal target Aug 2026).
 >
 > **Status (Jun 2026):** Phase-0 de-risk complete — the hybrid architecture is **validated on real SAGE
 > data**. Full evidence trail: [`docs/paper/findings_log.md`](docs/paper/findings_log.md).
