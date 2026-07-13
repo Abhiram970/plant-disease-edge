@@ -1,0 +1,232 @@
+[
+  {
+    "crop": "Apple",
+    "disease": "Alternaria_Blotch",
+    "symptom_text": "TODO: source-grounded symptom description for Alternaria_Blotch on Apple.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Apple_Scab",
+    "symptom_text": "Apple scab produces olive-green to brown, velvety or corky lesions on both leaf surfaces and fruit. On leaves, infections first appear as pale yellow or olive-colored spots on the upper surface, which darken to a characteristic olive-brown, felt-like or velvety texture due to fungal sporulation; heavily infected leaves may become distorted and drop prematurely. On fruit, lesions begin as small, circular, olive-green spots that enlarge and turn dark brown to black, becoming sunken, corky, and cracked as the fruit matures; lesions are often concentrated near the calyx end and can coalesce to cover large areas of the fruit surface, severely affecting marketability.",
+    "fields": {
+      "pathogen": {
+        "value": "Venturia inaequalis",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/AppleScab.aspx",
+        "verbatim_quote": "Apple scab is caused by the fungus Venturia inaequalis."
+      },
+      "affected_organs": {
+        "value": "Leaves, fruit, blossoms, and young shoots",
+        "source_url": "https://extension.umn.edu/plant-diseases/apple-scab",
+        "verbatim_quote": "Scab can infect leaves, fruit, blossoms, and young shoots."
+      },
+      "visual_symptoms": {
+        "value": "Olive-green to brown velvety lesions on leaves and fruit; lesions on fruit become sunken, corky, and cracked",
+        "source_url": "https://extension.umn.edu/plant-diseases/apple-scab",
+        "verbatim_quote": "Symptoms appear as olive-green to brown spots on leaves and fruit. Spots on leaves may have a velvety appearance due to the presence of spores. Infected fruit have dark, scabby lesions that may be cracked or corky."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Black_Rot",
+    "symptom_text": "Apple black rot, caused by the fungus Botryosphaeria obtusa, manifests across fruit, leaves, and bark. On fruit, infections begin as small reddish-brown flecks that expand into large, firm, brown-to-black rotted areas often showing concentric rings of black pycnidia (fungal fruiting bodies) on the surface, eventually mummifying the entire apple. On leaves, the disease produces 'frog-eye' lesions — circular spots with a purple-red border surrounding a tan to brown center — typically scattered across the upper leaf surface. On bark and woody tissue, the pathogen causes elongated, sunken, reddish-brown cankers that may girdle limbs, with the bark eventually cracking and peeling to reveal dead wood beneath.",
+    "fields": {
+      "pathogen": {
+        "value": "Botryosphaeria obtusa (anamorph: Sphaeropsis malorum)",
+        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-139-W.pdf",
+        "verbatim_quote": "Black rot is caused by the fungus Botryosphaeria obtusa."
+      },
+      "affected_organs": {
+        "value": "Fruit, leaves, bark/woody limbs",
+        "source_url": "https://extension.umn.edu/plant-diseases/black-rot-apple",
+        "verbatim_quote": "Black rot can infect all aboveground parts of apple trees including the fruit, leaves, and bark."
+      },
+      "visual_symptoms": {
+        "value": "Frog-eye leaf spots (purple-bordered tan lesions), concentric-ringed black fruit rot with pycnidia, sunken bark cankers",
+        "source_url": "https://extension.umn.edu/plant-diseases/black-rot-apple",
+        "verbatim_quote": "On fruit, black rot first appears as a small reddish brown spot. As the spot enlarges, it remains firm and turns brown to black. Concentric rings of black pycnidia often form on the surface of the rotted area. On leaves, infections appear as circular spots with purple or reddish borders and tan to brown centers, giving them a 'frog-eye' appearance."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Brown_Spot",
+    "symptom_text": "TODO: source-grounded symptom description for Brown_Spot on Apple.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Cedar_Apple_Rust",
+    "symptom_text": "Cedar apple rust on apple presents as bright orange-yellow, circular spots on the upper surface of leaves, typically 1/8 to 1/2 inch in diameter, often with a red or orange border. As lesions mature, small, raised, tube-like structures (aecia) erupt from the lower leaf surface directly beneath the upper-surface spots, producing powdery orange spores. Infected fruit develop similar orange lesions and may become distorted, while young twigs can also be affected. Lesions are distributed across the leaf blade and can cause premature defoliation when infections are severe.",
+    "fields": {
+      "pathogen": {
+        "value": "Gymnosporangium juniperi-virginianae",
+        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-1-W.pdf",
+        "verbatim_quote": "Cedar-apple rust is caused by the fungus Gymnosporangium juniperi-virginianae."
+      },
+      "affected_organs": {
+        "value": "Leaves, fruit, and young twigs",
+        "source_url": "https://extension.umn.edu/plant-diseases/cedar-apple-rust",
+        "verbatim_quote": "Cedar-apple rust can infect leaves, fruit, and young twigs of apple and crabapple."
+      },
+      "visual_symptoms": {
+        "value": "Bright orange-yellow spots on upper leaf surface; tube-like aecia on lower leaf surface producing orange spores; orange lesions on fruit",
+        "source_url": "https://extension.umn.edu/plant-diseases/cedar-apple-rust",
+        "verbatim_quote": "On apple, symptoms first appear as bright orange-yellow spots on the upper surface of leaves. Later, tube-like structures called aecia form on the lower surface of the leaf directly below the upper surface spots and produce orange spores."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Frogeye_Leaf_Spot",
+    "symptom_text": "Frogeye leaf spot on apple, caused by Botryosphaeria obtusa, produces small, circular to slightly irregular lesions on leaves that begin as purple to reddish-purple spots and enlarge to roughly 6–12 mm in diameter. As lesions mature, the centers turn tan to light brown or grayish-brown, creating a distinct two-toned appearance with a darker purple-brown border surrounding the lighter necrotic center — a pattern reminiscent of a frog's eye. Lesions are distributed across the upper leaf surface and may coalesce under heavy infection pressure, leading to premature defoliation. Tiny black pycnidia (fungal fruiting bodies) may be visible within the tan centers under magnification. Fruit can also be affected, showing similar circular, sunken, dark lesions.",
+    "fields": {
+      "pathogen": {
+        "value": "Botryosphaeria obtusa (anamorph: Diplodia seriata / Sphaeropsis malorum)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/FrogeyeLeafSpot.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Grey_Spot",
+    "symptom_text": "TODO: source-grounded symptom description for Grey_Spot on Apple.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Leaf_Mosaic_Virus",
+    "symptom_text": "TODO: source-grounded symptom description for Leaf_Mosaic_Virus on Apple.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Powdery_Mildew",
+    "symptom_text": "Apple powdery mildew presents as a white to grayish powdery fungal coating on the surfaces of young leaves, shoots, blossoms, and fruit. Infected leaves are typically narrow, pale, and covered with a dense white mycelial mat on both upper and lower surfaces, often curling or puckering along the margins. New shoot growth appears stunted and silvery-white, with affected tissue sometimes turning brown and necrotic as the season progresses. Blossoms infected early in the season may fail to set fruit, and russeting or netlike scarring can appear on the skin of developing fruit. The powdery white colonies are most conspicuous on succulent new growth in spring, spreading outward from overwintering buds.",
+    "fields": {
+      "pathogen": {
+        "value": "Podosphaera leucotricha",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/ApplePowderyMildew.aspx",
+        "verbatim_quote": "Apple powdery mildew is caused by Podosphaera leucotricha (Ellis & Everh.) E.S. Salmon."
+      },
+      "affected_organs": {
+        "value": "Leaves, shoots, blossoms, fruit",
+        "source_url": "https://extension.psu.edu/apple-powdery-mildew",
+        "verbatim_quote": "Powdery mildew can infect leaves, shoots, blossoms, and fruit of apple."
+      },
+      "visual_symptoms": {
+        "value": "White powdery mycelial growth on leaves and shoots; infected leaves narrow, pale, and distorted; russeting on fruit surface",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/ApplePowderyMildew.aspx",
+        "verbatim_quote": "Infected leaves are narrow, pale green to white, and covered with a white powdery growth. Infected shoots are stunted and covered with white mycelium. Infected fruit may show a netlike russeting on the skin."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Apple",
+    "disease": "Rust",
+    "symptom_text": "Apple rust, caused by Gymnosporangium juniperi-virginianae, produces distinctive bright orange-yellow, circular spots on the upper surface of apple leaves, typically 1/8 to 1/2 inch in diameter, often with a red or orange border. As lesions mature, small tube-like structures called aecia (orange, hair-like projections) erupt from the lower leaf surface beneath each spot. Infected fruit and young shoots may also develop similar orange lesions. Heavily infected leaves may turn yellow and drop prematurely, and fruit lesions can cause distortion and cracking.",
+    "fields": {
+      "pathogen": {
+        "value": "Gymnosporangium juniperi-virginianae",
+        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-1-W.pdf",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  }
+]

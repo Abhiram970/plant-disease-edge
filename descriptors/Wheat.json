@@ -1,0 +1,235 @@
+[
+  {
+    "crop": "Wheat",
+    "disease": "Bacterial_Leaf_Streak_Black_Chaff",
+    "symptom_text": "Bacterial leaf streak and black chaff of wheat, caused by Xanthomonas translucens pv. undulosa, produces water-soaked, translucent streaks on leaves that run parallel to the leaf veins, initially appearing pale green to yellow and later turning brown and necrotic with wavy or irregular margins. On the glumes and chaff of the spike, dark brown to black discoloration develops, giving the characteristic 'black chaff' appearance. Bacterial exudate may dry to form a yellowish crust on lesion surfaces. Lesions are distributed along the length of leaves and can coalesce under humid conditions, causing extensive blighting of leaf tissue.",
+    "fields": {
+      "pathogen": {
+        "value": "Xanthomonas translucens pv. undulosa",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialLeafStreak.aspx",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Fusarium_Graminearum_Schwabe",
+    "symptom_text": "Fusarium head blight (scab) caused by Fusarium graminearum manifests on wheat spikes as premature bleaching of individual spikelets or entire heads, with affected spikelets turning a tan to straw color in sharp contrast to the green or golden healthy tissue surrounding them. The bleached spikelets often display a water-soaked appearance at early infection stages, and salmon-pink to orange fungal sporodochia (masses of conidia) may be visible at the base of infected glumes under moist conditions. Infected kernels are shrunken, lightweight, and chalky-white to pink in color—commonly called 'tombstone' kernels—and may be covered with a pinkish mold. Symptoms typically begin at the middle of the spike and spread upward and downward, with the rachis node below the infected spikelet often showing a dark-brown discoloration that can girdle and kill the tissue above it.",
+    "fields": {
+      "pathogen": {
+        "value": "Fusarium graminearum Schwabe (teleomorph: Gibberella zeae)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/FusariumHeadBlight.aspx",
+        "verbatim_quote": "Fusarium head blight (FHB), also known as scab, is caused primarily by Fusarium graminearum Schwabe [teleomorph: Gibberella zeae (Schwein.) Petch]."
+      },
+      "affected_organs": {
+        "value": "Spikes (heads), spikelets, glumes, rachis, kernels",
+        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-31-W.pdf",
+        "verbatim_quote": "The fungus infects the spikes, causing bleaching of spikelets, and can also infect the rachis, glumes, and kernels."
+      },
+      "visual_symptoms": {
+        "value": "Premature bleaching of spikelets; salmon-pink sporodochia at glume bases; shrunken, chalky-pink 'tombstone' kernels; brown rachis discoloration",
+        "source_url": "https://www.cabi.org/isc/datasheet/24886",
+        "verbatim_quote": "Infected spikelets are bleached prematurely and under moist conditions, salmon-pink sporodochia may be seen at the base of the glumes. Infected grain is shrunken and chalky-white, often referred to as 'tombstone' kernels."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Fusarium_Wilts",
+    "symptom_text": "TODO: source-grounded symptom description for Fusarium_Wilts on Wheat.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Head_Scab",
+    "symptom_text": "Wheat head scab (Fusarium head blight) causes premature bleaching of individual spikelets or entire wheat heads, with affected spikelets turning a distinctive straw-tan to white color in sharp contrast to the surrounding healthy green tissue. The bleached spikelets often display salmon-pink to orange fungal sporodochia (masses of spores) at the base of the glumes under moist conditions. Infected kernels become shrunken, lightweight, and chalky-white to pink in color, often referred to as 'tombstone' kernels. The disease typically begins at the middle of the head and spreads upward and downward, and the boundary between healthy and diseased spikelets can be abrupt. Affected heads may also show a water-soaked appearance at early infection stages before full bleaching occurs.",
+    "fields": {
+      "pathogen": {
+        "value": "Fusarium graminearum",
+        "source_url": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+        "verbatim_quote": "In wheat, Fusarium infects the head (hence the name 'Fusarium head blight')"
+      },
+      "affected_organs": {
+        "value": "Wheat head/spike and kernels",
+        "source_url": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+        "verbatim_quote": "kernels to shrivel up and become chalky white"
+      },
+      "visual_symptoms": {
+        "value": "Bright pink/orange sporulation on the spike; bleached, shrivelled chalky-white kernels",
+        "source_url": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+        "verbatim_quote": "Macroconidia are produced in sporodochia, which gives the spike a bright pink or orange color."
+      }
+    },
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+    "verified_date": "2026-07-03"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Karnal_Bunt",
+    "symptom_text": "Karnal bunt of wheat, caused by Tilletia indica, produces partial bunting of individual wheat kernels within the spike. Infected grains are partially or wholly replaced by a black, powdery mass of teliospores (bunt balls), while adjacent kernels in the same head may appear completely healthy. The affected portion of the kernel turns dark brown to black and emits a distinctive fishy odor due to the production of trimethylamine. Lesions are typically confined to part of the kernel, leaving the embryo end intact, and the pericarp may be ruptured to expose the sooty spore mass. Symptoms are visible only at or after grain fill and are not apparent on leaves, stems, or other vegetative organs.",
+    "fields": {
+      "pathogen": {
+        "value": "Tilletia indica",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx",
+        "verbatim_quote": "Karnal bunt is caused by the fungus Tilletia indica (Mitra) Mundkur (syn. Neovossia indica)."
+      },
+      "affected_organs": {
+        "value": "Kernels (grain/seed)",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx",
+        "verbatim_quote": "The fungus infects the kernels, partially converting them to a mass of dark brown to black teliospores."
+      },
+      "visual_symptoms": {
+        "value": "Partial replacement of kernel tissue by dark brown to black powdery teliospore mass; fishy odor; only part of the kernel is affected while the embryo end often remains intact",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx",
+        "verbatim_quote": "Infected kernels are partially or entirely converted to a black, powdery mass of teliospores. Infected kernels have a distinctive fishy odor caused by the production of trimethylamine. Usually only part of the kernel is infected, with the embryo end often remaining intact."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Loose_Smut",
+    "symptom_text": "Wheat loose smut is characterized by the complete replacement of the grain and floral structures of infected wheat heads with a mass of dark olive-brown to black powdery teliospores, which are initially covered by a thin, pale gray membrane that ruptures shortly after the infected head emerges from the boot. The entire spike, including the rachis, glumes, and developing kernels, is destroyed and converted into a sooty, dusty spore mass that is easily dispersed by wind. Infected plants typically emerge and grow at the same rate as healthy plants, making the disease inconspicuous until heading, at which point the blackened, smutted heads stand out starkly against the green or golden healthy spikes surrounding them. After spore dispersal, only the bare rachis remains, giving the head a skeletal appearance.",
+    "fields": {
+      "pathogen": {
+        "value": "Ustilago tritici",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/LooseSmut.aspx",
+        "verbatim_quote": "Loose smut of wheat is caused by the fungus Ustilago tritici."
+      },
+      "affected_organs": {
+        "value": "Heads (spikes), kernels, glumes, rachis",
+        "source_url": "https://extension.umn.edu/small-grains-pest-management/loose-smut-wheat-and-barley",
+        "verbatim_quote": "The entire head, including the kernels, glumes, and rachis, is replaced by a mass of dark, olive-brown spores."
+      },
+      "visual_symptoms": {
+        "value": "Dark olive-brown to black powdery spore mass replaces the entire head; thin gray membrane covers spores initially then ruptures; bare rachis remains after spore dispersal",
+        "source_url": "https://www.cabi.org/isc/datasheet/55952",
+        "verbatim_quote": "Infected ears emerge earlier than healthy ones and the entire ear is transformed into a mass of dark brown powdery spores (teliospores), initially covered by a greyish membrane which soon ruptures, exposing the spore mass which is dispersed by wind, leaving only the bare rachis."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Powdery_Mildew",
+    "symptom_text": "Wheat powdery mildew appears as superficial, white to light gray, fluffy or powdery fungal colonies on the upper surfaces of leaves, leaf sheaths, and stems. Lesions begin as small, discrete, oval to elongated patches of white mycelium and conidia that coalesce into larger, cottony mats covering broad areas of the leaf blade. As colonies age, the white mycelium turns tan to gray-brown and small, dark brown to black spherical cleistothecia (chasmothecia) become embedded within the felt-like growth. Infected tissue beneath the colonies may turn yellow and eventually die, giving affected leaves a chlorotic and necrotic appearance. Disease typically initiates on lower leaves and progresses upward through the canopy under cool, humid conditions.",
+    "fields": {
+      "pathogen": {
+        "value": "Blumeria graminis f. sp. tritici",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx",
+        "verbatim_quote": "Powdery mildew of wheat is caused by the fungus Blumeria graminis (DC.) Speer f. sp. tritici Em. Marchal."
+      },
+      "affected_organs": {
+        "value": "Leaves, leaf sheaths, stems, and spikes",
+        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx",
+        "verbatim_quote": "The fungus can infect all above-ground parts of the plant including leaves, leaf sheaths, stems, and spikes."
+      },
+      "visual_symptoms": {
+        "value": "White to gray powdery colonies on upper leaf surfaces; colonies turn tan-brown with age; dark cleistothecia embedded in mycelium; yellowing and necrosis of underlying tissue",
+        "source_url": "https://extension.umn.edu/wheat-diseases/powdery-mildew-wheat",
+        "verbatim_quote": "Powdery mildew first appears as white, powdery spots or patches on leaves and other above-ground plant parts. The white, fluffy growth is composed of fungal mycelium and spores. As the disease progresses, the white patches turn gray to tan, and small, black fruiting bodies (cleistothecia) may be visible within the powdery growth."
+      }
+    },
+    "status": "filled"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Resistance_Phenotype",
+    "symptom_text": "TODO: source-grounded symptom description for Resistance_Phenotype on Wheat.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Resistance_Phenotype__Moderately_Resistant",
+    "symptom_text": "TODO: source-grounded symptom description for Resistance_Phenotype__Moderately_Resistant on Wheat.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Resistance_Phenotype__Moderately_Susceptible",
+    "symptom_text": "TODO: source-grounded symptom description for Resistance_Phenotype__Moderately_Susceptible on Wheat.",
+    "fields": {
+      "pathogen": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "affected_organs": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      },
+      "visual_symptoms": {
+        "value": "",
+        "source_url": "",
+        "verbatim_quote": ""
+      }
+    },
+    "status": "stub"
+  }
+]
