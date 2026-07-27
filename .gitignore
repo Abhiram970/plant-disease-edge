@@ -41,3 +41,6 @@ Thumbs.db
 # run logs: ignored anywhere EXCEPT the curated evidence trail in logs/
 *.log
 !logs/*.log
+
+# local benchmark scratch output (onnx exports + raw json)
+results/

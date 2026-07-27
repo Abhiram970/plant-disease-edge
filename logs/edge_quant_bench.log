@@ -1,0 +1,61 @@
+﻿python.exe : Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits 
+and faster downloads.
+At line:5 char:1
++ & $PY kaggle/benchmark_quantization.py --models s0 s1 s2 b --runs 50  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: You ar...ster downloads.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to 
+enable higher rate limits and faster downloads.
+ORT 1.26.0 | torch 2.5.1+cu121 | out=results
+
+======================================================================
+[s0] MobileCLIP2-S0 (dfndr2b)
+======================================================================
+  image-encoder params: 11.41M
+  torch  fp32            47.08 ms
+  onnx   fp32            17.35 ms (45.81 MB)
+  onnx   fp16        FAILED (Fail)
+  onnx   int8-dyn       319.98 ms (12.1 MB)  -> SLOWER than fp32 (18.4x) - not viable
+      calibrating on 32 random tensors (latency-valid; use --calib-dir for accuracy claims)
+  onnx   int8-static     62.18 ms (12.92 MB)  -> SLOWER than fp32 (3.6x) - not viable
+
+======================================================================
+[s1] MobileCLIP-S1 (datacompdr)
+======================================================================
+  image-encoder params: 21.54M
+  torch  fp32            99.80 ms
+  onnx   fp32            33.74 ms (86.51 MB)
+  onnx   fp16        FAILED (Fail)
+  onnx   int8-dyn       614.90 ms (22.81 MB)  -> SLOWER than fp32 (18.2x) - not viable
+      calibrating on 32 random tensors (latency-valid; use --calib-dir for accuracy claims)
+  onnx   int8-static     79.51 ms (24.29 MB)  -> SLOWER than fp32 (2.4x) - not viable
+
+======================================================================
+[s2] MobileCLIP2-S2 (dfndr2b)
+======================================================================
+  image-encoder params: 35.82M
+  torch  fp32           118.96 ms
+  onnx   fp32            49.19 ms (143.62 MB)
+  onnx   fp16        FAILED (Fail)
+  onnx   int8-dyn       923.77 ms (37.31 MB)  -> SLOWER than fp32 (18.8x) - not viable
+      calibrating on 32 random tensors (latency-valid; use --calib-dir for accuracy claims)
+  onnx   int8-static     98.69 ms (39.16 MB)  -> SLOWER than fp32 (2.0x) - not viable
+
+======================================================================
+[b] MobileCLIP-B (datacompdr)
+======================================================================
+  image-encoder params: 86.35M
+  torch  fp32           130.68 ms
+  onnx   fp32           100.78 ms (345.55 MB)
+  onnx   fp16        FAILED (Fail)
+  onnx   int8-dyn        60.44 ms (87.42 MB)  -> FASTER than fp32
+      calibrating on 32 random tensors (latency-valid; use --calib-dir for accuracy claims)
+  onnx   int8-static     46.39 ms (87.4 MB)  -> FASTER than fp32
+
+saved:
+  results\edge_quant_benchmark.json
+  results\edge_quant_benchmark.md
+
+Next: copy both files into docs/paper/ and commit.

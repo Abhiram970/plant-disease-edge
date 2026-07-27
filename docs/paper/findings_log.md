@@ -22,6 +22,45 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 - **Does NOT work:** training a small model to *learn/improve* the alignment — from scratch (≈chance) or specialize-on-seen (−4.5pp, forgetting). Literature-consistent (WiSE-FT).
 - **Untested lever:** descriptor quality (crude stubs everywhere so far; SAGE says source-grounded +14–16pp).
 
+## Edge / quantization (run 11 — 27 Jul 2026, local CPU, ORT 1.26, 50 runs, batch 1, 224px)
+
+Re-ran the edge benchmark because the earlier `edge_benchmark.json` reported INT8 as **21–23×
+slower** than FP32. **Reproduced and root-caused it.** Cause: `quantize_dynamic()` with defaults
+(no `quant_pre_process`, no `per_channel`, no calibration). Full table:
+`docs/paper/edge_quant_benchmark.{json,md}`.
+
+| model | params | ONNX FP32 | INT8 dynamic (old) | INT8 static QDQ (fixed) | best config |
+|---|---|---|---|---|---|
+| MobileCLIP2-S0 | 11.4M | **17.35 ms** / 45.8 MB | 320.0 ms (18.4× slower) | 62.2 ms (3.6× slower) | **FP32** |
+| MobileCLIP-S1 | 21.5M | **33.74 ms** / 86.5 MB | 614.9 ms (18.2× slower) | 79.5 ms (2.4× slower) | **FP32** |
+| MobileCLIP2-S2 | 35.8M | **49.19 ms** / 143.6 MB | 923.8 ms (18.8× slower) | 98.7 ms (2.0× slower) | **FP32** |
+| MobileCLIP-B | 86.4M | 100.78 ms / 345.6 MB | 60.4 ms (1.7× faster) | **46.39 ms** / 87.4 MB (2.2× faster) | **INT8 static** |
+
+**The split is architectural and perfectly consistent.** The three lightweight models are
+FastViT-style **hybrids with depthwise convolutions**; MobileCLIP-B is a **pure ViT**. Mechanistic
+evidence from the node histograms — `float conv left` (convs ORT could *not* quantize):
+
+| model | float convs left after static quant | speedup |
+|---|---|---|
+| S0 / S1 / S2 | **119 / 215 / 235** | 0.28× / 0.42× / 0.50× |
+| B | **3** | 2.17× |
+
+So on the hybrids the graph must dequantize → float-conv → requantize hundreds of times per
+inference (1290–2536 convert nodes). Dynamic quant instead converts every conv to `ConvInteger`
+(0 float convs left) which is pathologically slow for depthwise — hence the ~18× cliff.
+
+**Established:**
+- **INT8 is NOT viable for hybrid conv-transformer VLMs on the ORT CPU EP.** Static QDQ recovers
+  5–9× over the dynamic path but still never beats FP32 on S0/S1/S2.
+- **Deployment config for the lightweight tier is ONNX FP32.** S0 = **17.35 ms ≈ 58 FPS** on CPU at
+  11.4M params. (Faster than the old 21.5 ms because `ORT_ENABLE_ALL` is now on.)
+- **INT8 is a *size* lever, not a speed lever, for the hybrids** — 3.5× smaller (45.8 → 12.9 MB)
+  at 3.6× the latency. Use only when memory-bound.
+- **FP16 fails on the ORT CPU EP for all four** (no fp16 CPU kernels) — it is a GPU/NPU option only.
+- Caveat: verdicts are latency-measured, not node-counted (ORT fuses QDQ at session-init, so a
+  serialized-graph scan is misleading). Calibration used random tensors — valid for latency; an
+  INT8 *accuracy* claim needs `--calib-dir` with real crop images.
+
 ## Implications for the paper
 - Headline = **descriptor-driven cross-crop zero-shot on FROZEN compact edge VLMs + efficiency Pareto + abstain**; specialization demoted to a seen-crop booster.
 - Must report **top-5 / abstain-gated** accuracy (fine-grained 17-class top-1 is modest).
