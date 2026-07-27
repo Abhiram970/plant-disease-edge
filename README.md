@@ -45,10 +45,14 @@ Descriptors are **source-grounded** `{value, source_url, verbatim_quote}` — au
 
 ## Run the experiments
 
-Self-contained Kaggle script (no clone/auth needed): upload **`temp/run_all.py`**, GPU + Internet ON, then
-`%run run_all.py` — runs EXP1 (encoder bake-off) + EXP2 (hybrid: train seen / keep unseen) + EXP3
+Self-contained Kaggle script (no clone/auth needed): upload **`kaggle/run_all.py`**, GPU + Internet ON,
+then `%run run_all.py` — runs EXP1 (encoder bake-off) + EXP2 (hybrid: train seen / keep unseen) + EXP3
 (fine-tune + WiSE-FT). The consolidated, importable pipeline lives in **`scripts/`** (`evaluate.py`,
 `sage_data.py`, `descriptors.py`, `zeroshot.py`). Figures: `python docs/paper/make_figures.py`.
+
+**Edge/quantization benchmark (CPU, no GPU needed):** upload **`kaggle/benchmark_quantization.py`** and
+`%run benchmark_quantization.py` — measures FP32 / FP16 / INT8-dynamic / INT8-static(QDQ) latency and
+diagnoses quantization coverage. See [`kaggle/README.md`](kaggle/README.md).
 
 Full plan, architecture, acceptance criteria: **[`PROJECT_GUIDE.md`](PROJECT_GUIDE.md)**.
 
@@ -66,9 +70,13 @@ Full plan, architecture, acceptance criteria: **[`PROJECT_GUIDE.md`](PROJECT_GUI
 PROJECT_GUIDE.md   # canonical plan (read first)
 CONTRIBUTING.md    # how we work: roles, Kaggle, env, git
 scripts/           # consolidated pipeline: config, sage_data, descriptors, zeroshot, evaluate
-temp/              # run_all.py — self-contained Kaggle experiment driver (EXP1/2/3)
+kaggle/            # self-contained Kaggle drivers: run_all.py (EXP1/2/3), benchmark_quantization.py
+kaggle_cnns/       # Kaggle kernel for the supervised CNN baselines
 descriptors/       # per-crop source-grounded symptom JSON (Phase A2)
+logs/              # run logs — the reproducibility evidence trail (tracked)
 docs/paper/        # paper.md draft, findings_log.md (evidence trail), make_figures.py, figures/
+docs/archive/      # superseded context/result snapshots (dated)
+docs/assets/       # sunburst.png, kb_sources.png
 ```
 
 Weights, datasets, and embedding caches are **not** in git (see `.gitignore`) — they live on Kaggle

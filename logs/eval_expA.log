@@ -1,0 +1,8 @@
+[sage] 86,199 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+[eval] experiment A: held crops = ['Coffee', 'Orange', 'Peach']
+[eval] held=4,050 imgs  16 classes  crops=['Coffee', 'Orange', 'Peach']  chance=6.2%
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  MobileCLIP2-S0       img=  11.4M  bare=13.8%  crude=12.9%  rich=25.9%  grounded=18.0%
+  MobileCLIP-S1        img=  21.5M  bare=12.8%  crude=18.1%  rich=23.0%  grounded=28.5%

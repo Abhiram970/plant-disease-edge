@@ -1,0 +1,3 @@
+[baseline] arch=tf_efficientnetv2_s  69,919 seen imgs  166 classes  device=cuda
+[baseline] train 55,981 / test 13,938  x 8 epochs ...
+  epoch 1/8  loss=0.772  test_top1=85.2%

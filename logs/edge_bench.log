@@ -1,0 +1,25 @@
+
+[edge] MobileCLIP2-S0 (dfndr2b) ...
+   params=11.41M  torch_fp32 p50=60.29ms p95=74.73ms
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+   onnx fp32 21.08ms/45.81MB  int8 467.48ms/12.14MB
+
+[edge] MobileCLIP-S1 (datacompdr) ...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+   params=21.54M  torch_fp32 p50=101.47ms p95=113.44ms
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+   onnx fp32 40.72ms/86.51MB  int8 896.64ms/22.9MB
+
+[edge] MobileCLIP2-S2 (dfndr2b) ...
+   params=35.82M  torch_fp32 p50=129.24ms p95=159.6ms
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+   onnx fp32 60.5ms/143.62MB  int8 1334.82ms/37.41MB
+
+[edge] MobileCLIP-B (datacompdr) ...
+   params=86.35M  torch_fp32 p50=148.07ms p95=158.45ms
+WARNING:root:Please consider to run pre-processing before quantization. Refer to example: https://github.com/microsoft/onnxruntime-inference-examples/blob/main/quantization/image_classification/cpu/ReadMe.md 
+   onnx fp32 125.95ms/345.55MB  int8 75.36ms/87.46MB
+
+[edge] saved C:\kaggle\working\results\edge_benchmark.json
+[edge] run this same script on a Raspberry Pi for the Pi latency row.

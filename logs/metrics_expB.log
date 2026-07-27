@@ -1,0 +1,13 @@
+[sage] 86,199 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+[metrics] held=9,787 imgs  34 classes  chance=2.9%  device=cuda
+
+  MobileCLIP2-S0       11.4M  rich:top1=20.9%/top5=60.2%/aurc=0.695  grounded:top1=20.8%/top5=66.8%/aurc=0.700
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  MobileCLIP-S1        21.5M  rich:top1=23.8%/top5=61.0%/aurc=0.584  grounded:top1=26.1%/top5=66.3%/aurc=0.563
+  MobileCLIP2-S2       35.8M  rich:top1=23.1%/top5=66.4%/aurc=0.617  grounded:top1=19.3%/top5=69.6%/aurc=0.710
+  MobileCLIP-B         86.3M  rich:top1=29.4%/top5=66.5%/aurc=0.526  grounded:top1=27.8%/top5=75.2%/aurc=0.554
+  ViT-B-16-SigLIP2     92.9M  rich:top1=28.6%/top5=73.0%/aurc=0.591  grounded:top1=25.8%/top5=76.7%/aurc=0.677
+
+[metrics] saved C:\kaggle\working\results\metrics_abstain_B.json
+[metrics] top-5 and acc@cov are the field-relevant, reviewer-defensible numbers.

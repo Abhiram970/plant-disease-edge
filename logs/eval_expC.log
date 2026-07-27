@@ -1,0 +1,12 @@
+[sage] 86,199 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+[eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+[eval] held=14,204 imgs  51 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.0%
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  MobileCLIP2-S0       img=  11.4M  bare=18.7%  crude=14.4%  rich=17.0%  grounded=22.2%
+  MobileCLIP-S1        img=  21.5M  bare=16.5%  crude=17.1%  rich=20.1%  grounded=24.5%
+  MobileCLIP2-S2       img=  35.8M  bare=17.4%  crude=14.9%  rich=20.3%  grounded=23.0%
+  MobileCLIP-B         img=  86.3M  bare=23.3%  crude=20.5%  rich=24.2%  grounded=29.1%
+
+[eval] saved C:\kaggle\working\results\zeroshot_eval_C.json

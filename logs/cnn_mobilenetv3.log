@@ -1,0 +1,13 @@
+[baseline] arch=mobilenetv3_small_100  69,919 seen imgs  166 classes  device=cuda
+[baseline] train 55,981 / test 13,938  x 8 epochs ...
+  epoch 1/8  loss=1.121  test_top1=76.6%
+  epoch 2/8  loss=0.611  test_top1=80.2%
+  epoch 3/8  loss=0.481  test_top1=80.4%
+  epoch 4/8  loss=0.407  test_top1=80.8%
+  epoch 5/8  loss=0.351  test_top1=81.5%
+  epoch 6/8  loss=0.308  test_top1=84.1%
+  epoch 7/8  loss=0.278  test_top1=83.9%
+  epoch 8/8  loss=0.251  test_top1=84.3%
+
+[baseline] seen top-1 = 84.3%  (unseen: structurally chance)
+[baseline] saved C:\kaggle\working\results\supervised_mobilenetv3_small_100.json

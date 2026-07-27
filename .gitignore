@@ -38,5 +38,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# run logs
+# run logs: ignored anywhere EXCEPT the curated evidence trail in logs/
 *.log
+!logs/*.log
