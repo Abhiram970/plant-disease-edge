@@ -14,11 +14,14 @@ Raw stdout from every experiment run, kept in git (small, ~73 KB total) so resul
 | `loco_full.log` | LOCO leave-one-crop-out (18 crops) | `loco_s0_rich.json` |
 | `cnn_*.log` | supervised CNN baselines | `supervised_mobilenetv3_small_100.json` |
 | `supervised_output.log` | supervised baseline driver | same |
-| `edge_bench.log` | edge latency benchmark | `edge_benchmark.json` ⚠️ *see note* |
+| `edge_bench.log` | edge latency benchmark (OLD) | `edge_benchmark.json` ⚠️ *superseded — see note* |
+| `edge_quant_bench.log` | `kaggle/benchmark_quantization.py`, 27 Jul, local CPU | **`edge_quant_benchmark.json` / `.md`** ✅ current |
 | `descriptors_fill_all.log` | descriptor generation (Sonnet/Opus) | `descriptors/*.json` |
 
-> ⚠️ **`edge_bench.log` / `edge_benchmark.json` are known-bad for INT8** — the INT8 rows show a
-> 21–23× slowdown caused by `quantize_dynamic()` defaults, not by the models. Superseded by
-> `kaggle/benchmark_quantization.py`. Do not quote the INT8 numbers from that run.
+> ⚠️ **`edge_bench.log` / `edge_benchmark.json` are SUPERSEDED** — their INT8 rows show a 21–23×
+> slowdown caused by `quantize_dynamic()` defaults, not by the models. **Do not quote them.**
+> Replaced by `edge_quant_benchmark.json` (27 Jul), which reproduces the bug, applies the proper
+> static-QDQ path, and reports the corrected numbers. Its FP32 figures are also faster than the old
+> run (e.g. S0 17.35 ms vs 21.5 ms) because `ORT_ENABLE_ALL` graph optimization is now enabled.
 
 **Convention:** when a run supersedes an old one, keep both logs and note it here — don't overwrite.

@@ -1,0 +1,221 @@
+{
+  "device": "cpu",
+  "img_size": 224,
+  "runs": 50,
+  "threads": "auto",
+  "ort_version": "1.26.0",
+  "models": {
+    "s0": {
+      "model": "MobileCLIP2-S0",
+      "pretrained": "dfndr2b",
+      "variants": {
+        "torch_fp32": {
+          "p50_ms": 47.08,
+          "p95_ms": 55.5,
+          "mean_ms": 47.41
+        },
+        "onnx_fp32": {
+          "p50_ms": 17.35,
+          "p95_ms": 18.89,
+          "mean_ms": 17.47,
+          "size_mb": 45.81
+        },
+        "onnx_int8_dynamic": {
+          "p50_ms": 319.98,
+          "p95_ms": 354.74,
+          "mean_ms": 323.97,
+          "size_mb": 12.1
+        },
+        "onnx_int8_static": {
+          "p50_ms": 62.18,
+          "p95_ms": 69.78,
+          "mean_ms": 63.33,
+          "size_mb": 12.92
+        }
+      },
+      "diagnosis": {
+        "int8_dynamic": {
+          "int8_kernels": 124,
+          "convert_nodes": 100,
+          "float_conv_left": 0,
+          "float_matmul_left": 4,
+          "speedup_vs_fp32": 0.05,
+          "verdict": "SLOWER than fp32 (18.4x) - not viable"
+        },
+        "int8_static": {
+          "int8_kernels": 0,
+          "convert_nodes": 1290,
+          "float_conv_left": 119,
+          "float_matmul_left": 8,
+          "speedup_vs_fp32": 0.28,
+          "verdict": "SLOWER than fp32 (3.6x) - not viable"
+        }
+      },
+      "img_params_M": 11.41,
+      "speedup_vs_onnx_fp32": {
+        "onnx_fp32": 1.0,
+        "onnx_int8_dynamic": 0.05,
+        "onnx_int8_static": 0.28
+      }
+    },
+    "s1": {
+      "model": "MobileCLIP-S1",
+      "pretrained": "datacompdr",
+      "variants": {
+        "torch_fp32": {
+          "p50_ms": 99.8,
+          "p95_ms": 132.51,
+          "mean_ms": 102.81
+        },
+        "onnx_fp32": {
+          "p50_ms": 33.74,
+          "p95_ms": 58.82,
+          "mean_ms": 35.94,
+          "size_mb": 86.51
+        },
+        "onnx_int8_dynamic": {
+          "p50_ms": 614.9,
+          "p95_ms": 631.08,
+          "mean_ms": 616.63,
+          "size_mb": 22.81
+        },
+        "onnx_int8_static": {
+          "p50_ms": 79.51,
+          "p95_ms": 91.92,
+          "mean_ms": 80.96,
+          "size_mb": 24.29
+        }
+      },
+      "diagnosis": {
+        "int8_dynamic": {
+          "int8_kernels": 224,
+          "convert_nodes": 182,
+          "float_conv_left": 0,
+          "float_matmul_left": 8,
+          "speedup_vs_fp32": 0.05,
+          "verdict": "SLOWER than fp32 (18.2x) - not viable"
+        },
+        "int8_static": {
+          "int8_kernels": 0,
+          "convert_nodes": 2340,
+          "float_conv_left": 215,
+          "float_matmul_left": 16,
+          "speedup_vs_fp32": 0.42,
+          "verdict": "SLOWER than fp32 (2.4x) - not viable"
+        }
+      },
+      "img_params_M": 21.54,
+      "speedup_vs_onnx_fp32": {
+        "onnx_fp32": 1.0,
+        "onnx_int8_dynamic": 0.05,
+        "onnx_int8_static": 0.42
+      }
+    },
+    "s2": {
+      "model": "MobileCLIP2-S2",
+      "pretrained": "dfndr2b",
+      "variants": {
+        "torch_fp32": {
+          "p50_ms": 118.96,
+          "p95_ms": 136.33,
+          "mean_ms": 120.21
+        },
+        "onnx_fp32": {
+          "p50_ms": 49.19,
+          "p95_ms": 52.61,
+          "mean_ms": 49.74,
+          "size_mb": 143.62
+        },
+        "onnx_int8_dynamic": {
+          "p50_ms": 923.77,
+          "p95_ms": 1007.99,
+          "mean_ms": 937.59,
+          "size_mb": 37.31
+        },
+        "onnx_int8_static": {
+          "p50_ms": 98.69,
+          "p95_ms": 104.48,
+          "mean_ms": 99.82,
+          "size_mb": 39.16
+        }
+      },
+      "diagnosis": {
+        "int8_dynamic": {
+          "int8_kernels": 244,
+          "convert_nodes": 198,
+          "float_conv_left": 0,
+          "float_matmul_left": 8,
+          "speedup_vs_fp32": 0.05,
+          "verdict": "SLOWER than fp32 (18.8x) - not viable"
+        },
+        "int8_static": {
+          "int8_kernels": 0,
+          "convert_nodes": 2536,
+          "float_conv_left": 235,
+          "float_matmul_left": 16,
+          "speedup_vs_fp32": 0.5,
+          "verdict": "SLOWER than fp32 (2.0x) - not viable"
+        }
+      },
+      "img_params_M": 35.82,
+      "speedup_vs_onnx_fp32": {
+        "onnx_fp32": 1.0,
+        "onnx_int8_dynamic": 0.05,
+        "onnx_int8_static": 0.5
+      }
+    },
+    "b": {
+      "model": "MobileCLIP-B",
+      "pretrained": "datacompdr",
+      "variants": {
+        "torch_fp32": {
+          "p50_ms": 130.68,
+          "p95_ms": 139.3,
+          "mean_ms": 131.88
+        },
+        "onnx_fp32": {
+          "p50_ms": 100.78,
+          "p95_ms": 111.01,
+          "mean_ms": 102.66,
+          "size_mb": 345.55
+        },
+        "onnx_int8_dynamic": {
+          "p50_ms": 60.44,
+          "p95_ms": 67.91,
+          "mean_ms": 61.5,
+          "size_mb": 87.42
+        },
+        "onnx_int8_static": {
+          "p50_ms": 46.39,
+          "p95_ms": 52.52,
+          "mean_ms": 46.83,
+          "size_mb": 87.4
+        }
+      },
+      "diagnosis": {
+        "int8_dynamic": {
+          "int8_kernels": 52,
+          "convert_nodes": 52,
+          "float_conv_left": 0,
+          "float_matmul_left": 24,
+          "speedup_vs_fp32": 1.67,
+          "verdict": "FASTER than fp32"
+        },
+        "int8_static": {
+          "int8_kernels": 0,
+          "convert_nodes": 1013,
+          "float_conv_left": 3,
+          "float_matmul_left": 72,
+          "speedup_vs_fp32": 2.17,
+          "verdict": "FASTER than fp32"
+        }
+      },
+      "img_params_M": 86.35,
+      "speedup_vs_onnx_fp32": {
+        "onnx_fp32": 1.0,
+        "onnx_int8_dynamic": 1.67,
+        "onnx_int8_static": 2.17
+      }
+    }
+  }
+}
