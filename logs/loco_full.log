@@ -1,0 +1,28 @@
+[sage] 86,199 imgs already on disk for ['Corn', 'Soybean', 'Tomato', 'Apple', 'Grape', 'Potato', 'Rice', 'Sugarcane', 'Rose', 'Strawberry', 'Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+[loco] model=MobileCLIP2-S0  pool=['Corn', 'Soybean', 'Tomato', 'Apple', 'Grape', 'Potato', 'Rice', 'Sugarcane', 'Rose', 'Strawberry', 'Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']  84,781 imgs  252 classes  chance=0.4%  strategy=rich
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  crop           n  acc   [95% CI]      role
+  Apple      10084  4.8%  [4.4%, 5.3%]  train-pool
+  Banana      2068  12.9%  [11.5%, 14.4%]  held
+  Bean        1023  1.5%  [0.8%, 2.2%]  held
+  Coffee      1582  14.4%  [12.7%, 16.1%]  held
+  Corn        9521  3.2%  [2.8%, 3.5%]  train-pool
+  Cotton      1661  8.4%  [7.2%, 9.8%]  held
+  Cucumber    2389  9.8%  [8.7%, 11.1%]  held
+  Grape       5342  10.9%  [10.0%, 11.7%]  train-pool
+  Orange      1361  29.8%  [27.4%, 32.3%]  held
+  Peach       1126  7.2%  [5.8%, 8.8%]  held
+  Potato      2754  5.6%  [4.8%, 6.5%]  train-pool
+  Rice        5086  0.4%  [0.2%, 0.6%]  train-pool
+  Rose        4251  23.3%  [22.1%, 24.7%]  train-pool
+  Soybean    11895  6.3%  [5.8%, 6.7%]  train-pool
+  Strawberry  3647  27.2%  [25.7%, 28.7%]  train-pool
+  Sugarcane   6646  10.2%  [9.5%, 11.0%]  train-pool
+  Tomato     11211  1.4%  [1.2%, 1.6%]  train-pool
+  Wheat       3134  2.6%  [2.0%, 3.1%]  held
+  POOLED     84781  7.7%  [7.6%, 7.9%]
+
+[loco] saved C:\kaggle\working\results\loco_s0_rich.json
+[loco] stable per-crop accuracy across held + train-pool crops = not a cherry-picked split.

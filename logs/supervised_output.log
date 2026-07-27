@@ -1,0 +1,14 @@
+[baseline] arch=mobilenetv3_small_100  10,045 seen imgs  80 classes  device=cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[baseline] train 8,054 / test 1,991  x 8 epochs ...
+  epoch 1/8  loss=1.946  test_top1=60.5%
+  epoch 2/8  loss=0.949  test_top1=64.5%
+  epoch 3/8  loss=0.615  test_top1=68.4%
+  epoch 4/8  loss=0.431  test_top1=73.1%
+  epoch 5/8  loss=0.330  test_top1=75.3%
+  epoch 6/8  loss=0.266  test_top1=76.0%
+  epoch 7/8  loss=0.180  test_top1=75.8%
+  epoch 8/8  loss=0.149  test_top1=74.9%
+
+[baseline] seen top-1 = 74.9%  (unseen: structurally chance)
+[baseline] saved C:\kaggle\working\results\supervised_mobilenetv3_small_100.json
