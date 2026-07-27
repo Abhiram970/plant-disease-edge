@@ -47,11 +47,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
+import os
 import subprocess
 import sys
 import time
+import warnings
 from collections import Counter
 from pathlib import Path
+
+warnings.filterwarnings("ignore")           # fp16 truncation spam
+logging.getLogger().setLevel(logging.ERROR)  # per-weight quantization notes
 
 # --------------------------------------------------------------------------- deps
 def pip(*pkgs):
@@ -84,13 +90,18 @@ MODELS = {
     "b":  ("MobileCLIP-B",   "datacompdr"),  # ~86.3M -> workstation
 }
 IMG_SIZE = 224
-OUT_DIR = Path("/kaggle/working") if Path("/kaggle/working").exists() else Path("./results")
+_KAGGLE = Path("/kaggle/working")
+# on Windows "/kaggle/working" resolves against the current drive, so require posix
+OUT_DIR = _KAGGLE if (os.name == "posix" and _KAGGLE.exists()) else Path("./results")
 ONNX_DIR = OUT_DIR / "onnx"
 
-# Nodes that mean "this really is running in int8"
-GOOD_INT8_OPS = {"QLinearConv", "QLinearMatMul", "MatMulInteger", "ConvInteger", "QGemm"}
-# Nodes that mean "we are paying conversion cost every inference"
-BAD_OPS = {"DynamicQuantizeLinear", "QuantizeLinear", "DequantizeLinear"}
+# Integer compute kernels present in the serialized graph.
+# NOTE: ConvInteger/MatMulInteger are NOT necessarily fast -- they still need re-scaling.
+INT8_OPS = {"QLinearConv", "QLinearMatMul", "MatMulInteger", "ConvInteger", "QGemm"}
+# Quantize/dequantize conversion nodes. In QDQ format these are EXPECTED: ORT fuses them
+# into QLinear* kernels at session-init, which a static graph scan cannot see. So node
+# counts alone CANNOT decide "fused vs fallback" -- only measured latency can.
+CONVERT_OPS = {"DynamicQuantizeLinear", "QuantizeLinear", "DequantizeLinear"}
 
 
 # --------------------------------------------------------------------------- helpers
@@ -134,15 +145,22 @@ def op_histogram(path):
     return Counter(n.op_type for n in m.graph.node)
 
 
-def diagnose(hist):
-    good = sum(v for k, v in hist.items() if k in GOOD_INT8_OPS)
-    bad = sum(v for k, v in hist.items() if k in BAD_OPS)
-    conv = hist.get("Conv", 0)          # still-float convs
-    matmul = hist.get("MatMul", 0)      # still-float matmuls
-    return {"int8_kernels": good, "quant_convert_nodes": bad,
-            "float_conv_left": conv, "float_matmul_left": matmul,
-            "verdict": ("fused-int8" if good and bad <= good
-                        else "FALLBACK (convert-per-inference)" if bad else "no-int8")}
+def diagnose(hist, p50_ms=None, fp32_p50_ms=None):
+    """Node counts are EVIDENCE; the verdict comes from measured latency vs ONNX FP32,
+    because ORT fuses QDQ pairs at session-init (invisible in the serialized graph)."""
+    d = {"int8_kernels": sum(v for k, v in hist.items() if k in INT8_OPS),
+         "convert_nodes": sum(v for k, v in hist.items() if k in CONVERT_OPS),
+         "float_conv_left": hist.get("Conv", 0),
+         "float_matmul_left": hist.get("MatMul", 0)}
+    if p50_ms and fp32_p50_ms:
+        sp = fp32_p50_ms / p50_ms                      # >1 = faster than fp32
+        d["speedup_vs_fp32"] = round(sp, 2)
+        d["verdict"] = ("FASTER than fp32" if sp >= 1.1 else
+                        "parity with fp32" if sp >= 0.9 else
+                        f"SLOWER than fp32 ({1/sp:.1f}x) - not viable")
+    else:
+        d["verdict"] = "n/a"
+    return d
 
 
 # --------------------------------------------------------------------------- builders
@@ -280,11 +298,14 @@ def run_model(key, runs, calib_n, calib_dir, threads):
         except Exception as e:
             print(f"  onnx   fp16        FAILED ({type(e).__name__})")
 
+    fp32_p50 = entry["variants"]["onnx_fp32"]["p50_ms"]
+
     # 4) int8 dynamic (old, broken path)
     try:
         d8 = build_int8_dynamic(pre, ONNX_DIR / f"{key}_int8_dynamic.onnx")
         entry["variants"]["onnx_int8_dynamic"] = time_onnx(d8, runs, threads=threads)
-        entry["diagnosis"]["int8_dynamic"] = diagnose(op_histogram(d8))
+        entry["diagnosis"]["int8_dynamic"] = diagnose(
+            op_histogram(d8), entry["variants"]["onnx_int8_dynamic"]["p50_ms"], fp32_p50)
         v = entry["variants"]["onnx_int8_dynamic"]
         print(f"  onnx   int8-dyn    {v['p50_ms']:>9.2f} ms ({v['size_mb']} MB)  "
               f"-> {entry['diagnosis']['int8_dynamic']['verdict']}")
@@ -295,7 +316,8 @@ def run_model(key, runs, calib_n, calib_dir, threads):
     try:
         s8 = build_int8_static(pre, ONNX_DIR / f"{key}_int8_static.onnx", calib_n, calib_dir)
         entry["variants"]["onnx_int8_static"] = time_onnx(s8, runs, threads=threads)
-        entry["diagnosis"]["int8_static"] = diagnose(op_histogram(s8))
+        entry["diagnosis"]["int8_static"] = diagnose(
+            op_histogram(s8), entry["variants"]["onnx_int8_static"]["p50_ms"], fp32_p50)
         v = entry["variants"]["onnx_int8_static"]
         print(f"  onnx   int8-static {v['p50_ms']:>9.2f} ms ({v['size_mb']} MB)  "
               f"-> {entry['diagnosis']['int8_static']['verdict']}")
@@ -336,18 +358,20 @@ def write_report(table, out_md):
         lines.append(f"| {e['model']} | {s('onnx_fp32')} | {s('onnx_fp16')} | "
                      f"{s('onnx_int8_dynamic')} | {s('onnx_int8_static')} |")
     lines += ["", "## Quantization diagnosis", "",
-              "`fused-int8` = real int8 kernels. `FALLBACK` = converting every inference (the bug).", "",
-              "| model | path | int8 kernels | convert nodes | float conv left | verdict |",
-              "|---|---|---|---|---|---|"]
+              "Verdict is decided by **measured latency vs ONNX FP32** — node counts are evidence only,",
+              "because ORT fuses QDQ pairs at session-init (not visible in the serialized graph).", "",
+              "| model | path | int8 kernels | convert nodes | float conv left | speedup vs fp32 | verdict |",
+              "|---|---|---|---|---|---|---|"]
     for key, e in table["models"].items():
         for path, d in e.get("diagnosis", {}).items():
-            lines.append(f"| {e['model']} | {path} | {d['int8_kernels']} | {d['quant_convert_nodes']} "
-                         f"| {d['float_conv_left']} | {d['verdict']} |")
+            lines.append(f"| {e['model']} | {path} | {d['int8_kernels']} | {d['convert_nodes']} "
+                         f"| {d['float_conv_left']} | {d.get('speedup_vs_fp32','—')} | {d['verdict']} |")
     lines += ["", "## How to read this", "",
-              "- If **int8 static** is fast and shows `fused-int8`, the regression is fixed → report it.",
-              "- If BOTH int8 paths still show `FALLBACK`, INT8 is not viable for the hybrid",
-              "  backbones on ORT-CPU → **report ONNX FP32/FP16 as the deployment number** and",
-              "  document INT8 as a limitation (honest, and FP32 at ~21 ms is already deployable).", ""]
+              "- **int8-static faster than fp32** → the old regression was a tooling bug; report INT8.",
+              "- **int8-static still slower than fp32** → INT8 is not viable for these hybrid",
+              "  conv-transformer backbones on the ORT CPU EP. **Report ONNX FP32 as the deployment",
+              "  number** and present INT8 purely as a *size* tradeoff (~3.5x smaller, slower).",
+              "  That is an honest, publishable finding, not a failure.", ""]
     Path(out_md).write_text("\n".join(lines), encoding="utf-8")
 
 
