@@ -61,6 +61,33 @@ V = {
             "As the lesion matures, it becomes deeply depressed with an ashy center and may penetrate "
             "down to the coffee bean."),
     },
+    # SAGE labels this a "disease" but it is an INSECT PEST (Leucoptera coffeella). The image-visible
+    # signal is the larval MINE damage, so the descriptor describes the damage, not a pathogen.
+    # Source: open-access peer-reviewed review (Insects 2021), verified 2026-08-01.
+    ("Coffee", "Miner"): {
+        "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
+        "pathogen": ("Leucoptera coffeella (coffee leaf miner) — an insect pest, not a pathogen",
+            "CLM is a monophagous pest, coffee exclusive and the larvae are the causal agent of the "
+            "crop damage"),
+        "affected_organs": ("Leaves (mesophyll / palisade parenchyma); severe attack causes defoliation",
+            "When feeding on the mesophyll of the coffee tree leaves, the insect creates mines that "
+            "justify the common name"),
+        "visual_symptoms": ("Irregular pale-to-brown mines on the upper leaf surface that enlarge from "
+                            "millimetres to centimetres into necrotic patches, ending in leaf fall",
+            "the injuries area evolves from some millimeters to several centimeters...ending up to the "
+            "falling of the leaves"),
+    },
+    # Phoma/Ascochyta spot of coffee. NOTE: trade-technical source (reachable); CABI/APS block bots.
+    ("Coffee", "Phoma"): {
+        "source": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
+        "pathogen": ("Phoma tarda and Phoma costarricensis",
+            "Phoma tarda (RB Stewart) H. Verm. and Phoma costarricensis Echandi, 1957"),
+        "affected_organs": ("Leaves, branches and floral rosettes (indirectly flowers and fruit)",
+            "Phoma spot can also affect floral rosettes, indirectly causing necrosis of flowers and fruits"),
+        "visual_symptoms": ("Dark circular leaf spots up to ~2 cm; leaf edges curl and crack; dark "
+                            "sunken lesions girdling branches (dry shoots)",
+            "circular spots of dark color and varying sizes, which can reach 2 cm in diameter"),
+    },
     ("Peach", "Leaf_Curl"): {
         "source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
         "pathogen": ("Taphrina deformans",

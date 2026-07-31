@@ -301,12 +301,13 @@ assume.)
   problem we advance at edge scale.
 
 ## 7. Limitations
-- **Descriptor coverage.** Across all 18 crops, **154 of 217** disease records are LLM-filled and
-  **14 carry page-verified verbatim citations**; the remaining 63 fall back to the hand-curated `rich`
-  bank, so coverage is an *auditability* gap rather than an accuracy one. On the headline held-out
-  crops (Coffee/Orange/Peach) **14 of 16** are filled and 10 are web-verified. Of 201 unique source
-  URLs, 110 are reachable, 73 return 403/429 (bot-blocked but real, e.g. APS) and **18 are dead** and
-  need manual replacement.
+- **Descriptor coverage.** Across all 18 crops, **156 of 217** disease records are LLM-filled and
+  **16 carry page-verified verbatim citations**; the remaining 61 fall back to the hand-curated `rich`
+  bank, so coverage is an *auditability* gap rather than an accuracy one. On the **headline held-out
+  crops (Coffee/Orange/Peach) coverage is now complete — 16/16 filled**, with every Coffee record
+  page-verified against a retrievable source. The four remaining held-out stubs are all Wheat and are
+  label artefacts (below). Of 201 unique source URLs, 110 are reachable, 73 return 403/429
+  (bot-blocked but real, e.g. APS) and **18 are dead** and need manual replacement.
 - **The grounding prompt over-refuses.** Because the generation endpoint cannot browse, a strict
   "never cite what you cannot quote" instruction makes the model return *empty* records rather than
   risk fabrication — including for well-documented diseases (e.g. Tomato spotted wilt virus, sugarcane
@@ -318,8 +319,11 @@ assume.)
   `Wheat/Resistance_Phenotype{,_Moderately_Resistant,_Moderately_Susceptible}` are breeding *resistance
   ratings*, for which no symptom descriptor can exist; `Coffee/Miner` is an insect pest
   (*Leucoptera coffeella*), not a pathogen; and `Coffee/Cerscospora` is a misspelling of
-  *Cercospora coffeicola*. We recommend excluding the three rating labels from the evaluation and
-  report this as a dataset-quality finding.
+  *Cercospora coffeicola*. `Wheat/Fusarium_Wilts` is also ambiguous — "Fusarium wilt" is not a
+  standard wheat disease and the label most likely duplicates `Wheat/Head_Scab` (Fusarium head
+  blight) or denotes Fusarium crown rot. We recommend excluding the three rating labels from the
+  evaluation, resolving the Wheat/Fusarium duplicate, and report this as a dataset-quality finding —
+  label noise of this kind directly inflates the apparent class count of any fine-grained benchmark.
 - **Scope.** Four trained crops on disk; the showcase crop (Tomato) and Grape are pending a fuller SAGE
   pull. Single random seed; a single evaluation machine.
 - **Sub-10 M gap.** No off-the-shelf aligned model exists below ~11 M; a ~5 M tier would require
@@ -339,8 +343,9 @@ benchmark to make the result auditable and reproducible.
 
 ### 9. Open items before submission
 - [ ] Raspberry Pi / phone latency row (run `benchmark_edge.py` on-device).
-- [ ] Source the 3 genuinely-missing held-out descriptors by hand (Coffee/Miner, Coffee/Phoma,
-      Wheat/Fusarium_Wilts) — the other 3 stubs are resistance-rating labels to be excluded, not filled.
+- [x] ~~Source the missing held-out descriptors~~ — **done**: Coffee is now 5/5 page-verified
+      (Cercospora leaf + berry phases, leaf miner, Phoma). Remaining 4 stubs are all Wheat label
+      artefacts to be excluded/resolved rather than filled.
 - [ ] Replace the 18 dead source URLs (concentrated in extension.psu.edu, cropprotectionnetwork.org,
       grapes.extension.org).
 - [ ] Fuller SAGE pull incl. **Tomato** (showcase crop) and Grape.
