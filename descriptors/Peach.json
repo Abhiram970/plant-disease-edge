@@ -46,7 +46,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
-    "verified_date": "2026-07-03"
+    "verified_date": "2026-07-31"
   },
   {
     "crop": "Peach",
@@ -72,7 +72,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-    "verified_date": "2026-07-03"
+    "verified_date": "2026-07-31"
   },
   {
     "crop": "Peach",
@@ -121,6 +121,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-    "verified_date": "2026-07-03"
+    "verified_date": "2026-07-31"
   }
 ]

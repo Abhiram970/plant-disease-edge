@@ -2,11 +2,11 @@
   {
     "crop": "Corn",
     "disease": "Anthracnose_Leaf_Spot_And_Top_Dieback",
-    "symptom_text": "TODO: source-grounded symptom description for Anthracnose_Leaf_Spot_And_Top_Dieback on Corn.",
+    "symptom_text": "Anthracnose leaf spot on corn appears as small, oval to irregular water-soaked lesions on leaves that enlarge and develop tan to brown centers with yellow to reddish-brown or dark brown borders, often surrounded by a yellow halo; lesions may coalesce to blight large areas of leaf tissue. The top dieback phase affects the upper stalk and leaves, causing shredding and rotting of the upper plant, with the stalk pith becoming discolored and the outer stalk tissue turning shiny black due to fungal colonization, a hallmark diagnostic feature visible on the stalk surface.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
+        "value": "Colletotrichum graminicola",
+        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-43-W.pdf",
         "verbatim_quote": ""
       },
       "affected_organs": {
@@ -20,7 +20,7 @@
         "verbatim_quote": ""
       }
     },
-    "status": "stub"
+    "status": "filled"
   },
   {
     "crop": "Corn",
