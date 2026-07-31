@@ -36,11 +36,22 @@ fi
 echo "[setup] using PY=$PY"
 "$PY" -c "import torch; print('[setup] torch', torch.__version__, 'cuda', torch.cuda.is_available())"
 
-echo "[setup] installing light deps (timm without touching torch) ..."
-"$PY" -m pip install -q --no-deps timm
-"$PY" -m pip install -q safetensors pyyaml huggingface_hub pyarrow tqdm
+echo "[setup] installing light deps (timm + open_clip WITHOUT touching torch) ..."
+# --no-deps on the two big ones so pip never tries to "upgrade" the pre-installed torch (2GB re-download)
+"$PY" -m pip install -q --no-deps timm open_clip_torch
+"$PY" -m pip install -q safetensors pyyaml huggingface_hub pyarrow tqdm \
+                       regex ftfy pandas numpy pillow
 
-"$PY" -c "import torch, timm, pyarrow, huggingface_hub, tqdm; print('[setup] ENV OK — cuda=', torch.cuda.is_available())"
+"$PY" - <<'PYCHK'
+import torch, timm, pyarrow, huggingface_hub, tqdm
+import open_clip                      # required by every model in the pipeline
+print("[setup] ENV OK — torch", torch.__version__,
+      "| cuda", torch.cuda.is_available(),
+      "| open_clip", open_clip.__version__ if hasattr(open_clip, "__version__") else "ok")
+if torch.cuda.is_available():
+    print("[setup] GPU:", torch.cuda.get_device_name(0),
+          f"({torch.cuda.get_device_properties(0).total_memory/1e9:.0f} GB)")
+PYCHK
 echo "$PY" > /tmp/PDEPY
 echo ""
 echo "=========================================================="
