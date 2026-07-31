@@ -1,0 +1,84 @@
+﻿[audit] 217 descriptors across 18 crops
+[audit] status: stub=66, filled=151  |  page-verified citations: 12
+[audit] held-out crops filled: Coffee=1/5, Orange=6/6, Peach=5/5, Cotton=3/3, Wheat=6/10, Bean=5/5, Banana=6/6, Cucumber=11/11
+[audit] !! 8 HELD-OUT diseases still stubs (zero-shot gap): ['Coffee/Berry_Blotch', 'Coffee/Cerscospora', 'Coffee/Miner', 'Coffee/Phoma', 'Wheat/Fusarium_Wilts', 'Wheat/Resistance_Phenotype', 'Wheat/Resistance_Phenotype__Moderately_Resistant', 'Wheat/Resistance_Phenotype__Moderately_Susceptible']
+[audit] OK: every filled record has a substantive symptom_text.
+[audit] info: 60/217 records have >=1 ungrounded field (acceptable — model left what it couldn't cite empty).
+
+[audit] checking 201 unique source URLs (GET, browser agent) ...
+[audit] URLs: 110 reachable · 73 blocked-but-likely-real (403/429) · 18 DEAD (verify/replace by hand)
+         DEAD [404] https://cropprotectionnetwork.org/publications/diplodia-ear-rot-of-corn
+         DEAD [404] https://cropprotectionnetwork.org/resources/articles/diseases/goss-wilt-of-corn
+         DEAD [404] https://extension.psu.edu/apple-powdery-mildew
+         DEAD [404] https://extension.psu.edu/black-rot-of-grapes
+         DEAD [404] https://extension.psu.edu/rose-rosette-disease
+         DEAD [404] https://extension.psu.edu/stewarts-wilt-and-leaf-blight-of-corn
+         DEAD [404] https://extension.purdue.edu/fieldcropsipm/diseases/corn-tar-spot.php
+         DEAD [404] https://extension.uga.edu/publications/detail.html?number=C1117&title=southern-blight
+         DEAD [404] https://extension.umd.edu/resource/strawberry-anthracnose
+         DEAD [URLError] https://grapes.extension.org/grape-botrytis-bunch-rot/
+         DEAD [URLError] https://grapes.extension.org/grape-downy-mildew/
+         DEAD [URLError] https://grapes.extension.org/grape-powdery-mildew/
+[audit] NOTE: Lava can't browse, so citations are model-recalled. Treat ONLY the 'reachable' ones as trustworthy; hand-verify a sample before claiming 'source-grounded'.
+
+===== RANDOM SAMPLE OF 5 (eyeball quote-vs-value) =====
+
+--- Soybean / Charcoal_Rot  [Soybean.json] ---
+  symptom_text: Charcoal rot of soybean, caused by Macrophomina phaseolina, primarily affects the stem and root tissues. Infected plants display premature yellowing and browning of leaves, followed by wilting and early senescence during
+  pathogen: Macrophomina phaseolina
+      src : https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CharcoalRot.aspx
+      quote: Charcoal rot is caused by the soilborne fungus Macrophomina phaseolina.
+  affected_organs: roots, lower stem (hypocotyl), vascular tissue, pith
+      src : https://extension.umn.edu/soybean-diseases/charcoal-rot
+      quote: Symptoms of charcoal rot are most evident on the taproot and lower stem of infected plants.
+  visual_symptoms: Silver-gray to ash-gray discoloration of internal stem and root tissue; dense bl
+      src : https://extension.umn.edu/soybean-diseases/charcoal-rot
+      quote: The pith and vascular tissue of the lower stem and taproot turn silver-gray, and the tiny, black microsclerotia of the pathogen can be seen 
+
+--- Soybean / Phytophthora  [Soybean.json] ---
+  symptom_text: Phytophthora root and stem rot of soybean, caused by Phytophthora sojae, produces a distinctive chocolate-brown to dark-brown discoloration that advances up the stem from the soil line, often extending several inches abo
+  pathogen: Phytophthora sojae
+      src : https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/PhytophthoraRootRot.aspx
+      quote: Phytophthora root and stem rot of soybean is caused by Phytophthora sojae, an oomycete (water mold) pathogen.
+  affected_organs: roots, lower stem, leaves
+      src : https://extension.umn.edu/soybean-diseases/phytophthora-root-and-stem-rot-soybean
+      quote: Phytophthora root and stem rot can affect soybeans at any growth stage, causing seed decay, pre- and post-emergence damping-off, and root an
+  visual_symptoms: Chocolate-brown discoloration of the lower stem advancing upward from the soil l
+      src : https://extension.umn.edu/soybean-diseases/phytophthora-root-and-stem-rot-soybean
+      quote: The most diagnostic symptom is a chocolate brown discoloration of the lower stem that advances up from the soil line. Leaves turn yellow, wi
+
+--- Banana / Panama_Disease  [Banana.json] ---
+  symptom_text: Panama disease, caused by the soil-borne fungus Fusarium oxysporum f. sp. cubense, manifests as progressive yellowing of older leaves beginning at the margins and advancing toward the midrib, with affected leaves eventua
+  pathogen: Fusarium oxysporum f. sp. cubense
+      src : https://en.wikipedia.org/wiki/Panama_disease
+      quote: 
+  affected_organs: Feeder roots, rhizome, pseudostem, leaves
+      src : https://en.wikipedia.org/wiki/Panama_disease
+      quote: The infection begins at the tips of the feeder roots and then moves on to the rhizome.
+  visual_symptoms: Oldest leaves yellow, wilt and buckle; outer leaf sheaths split; xylem reddish-b
+      src : https://en.wikipedia.org/wiki/Panama_disease
+      quote: Externally, the oldest leaves start turning yellow and there is often a longitudinal splitting of the lower part of the outer leaf sheaths o
+
+--- Orange / Green_Mold  [Orange.json] ---
+  symptom_text: Green mold on oranges, caused by Penicillium digitatum, initially appears as a small, soft, water-soaked circular lesion on the fruit surface, often beginning at wounds or stem-end areas. The lesion rapidly expands and t
+  pathogen: Penicillium digitatum
+      src : https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GreenMold.aspx
+      quote: 
+  affected_organs: 
+      src : 
+      quote: 
+  visual_symptoms: 
+      src : 
+      quote: 
+
+--- Sugarcane / Yellow_Leaf  [Sugarcane.json] ---
+  symptom_text: Sugarcane yellow leaf disease causes a striking yellowing of the midrib on the underside of the leaf blade, which is the most diagnostic symptom; this yellowing begins near the tip of the lower leaves and progresses towa
+  pathogen: Sugarcane yellow leaf virus (SCYLV), genus Polerovirus, family Luteoviridae
+      src : https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx
+      quote: Sugarcane yellow leaf virus (SCYLV) is the causal agent of yellow leaf disease of sugarcane. SCYLV is a member of the genus Polerovirus in t
+  affected_organs: Leaves (midrib and leaf blade); stalks (secondary effect — stunting)
+      src : https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx
+      quote: The most characteristic symptom of yellow leaf disease is a bright yellowing of the abaxial (lower) midrib of leaves in the middle to lower 
+  visual_symptoms: Bright yellowing of the abaxial midrib of lower-canopy leaves, progressing to ye
+      src : https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx
+      quote: Symptoms include yellowing of the midrib on the underside of the leaf, which may extend to the upper surface, followed by necrosis and death

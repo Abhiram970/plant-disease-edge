@@ -22,8 +22,9 @@ beats a class-name prompt by +6.9 pp on average, whereas the *authoring method* 
 LLM source-grounded) is statistically a wash, so source-grounding delivers **auditability at no accuracy
 cost**; (iii) with a **top-1−top-2 margin** confidence, an abstain gate makes the modest top-1
 field-useful — selective accuracy rises to ~36 % at 50 % coverage and **top-5 reaches 62–77 %**; and (iv)
-the deployable image encoder runs at **21.5 ms/image on a laptop CPU** (ONNX FP32, ~47 img/s) and
-quantises to **12 MB** (INT8). A leave-one-crop-out analysis shows the held-out crops are not
+the deployable image encoder runs at **17.4 ms/image on a laptop CPU** (ONNX FP32, ~58 img/s) and
+quantises to **12.9 MB** (INT8) — though we show INT8 is a size, not a speed, lever for hybrid
+conv–transformer encoders on CPU. A leave-one-crop-out analysis shows the held-out crops are not
 cherry-picked, and a supervised CNN baseline — competitive on seen crops (74.9 %) — is structurally
 incapable of the cross-crop transfer the descriptor head provides. We release the descriptor pipeline,
 per-tier models, and benchmark so the result is reproducible and auditable.
@@ -56,8 +57,10 @@ text. Only the image encoder ships to the device; text prototypes are precompute
    +6.9 pp; hand-curated and LLM source-grounded descriptors tie on accuracy, so **source-grounding buys
    auditability for free** (§5.3).
 3. **A calibrated abstain gate + top-5** make the modest top-1 field-useful (§5.4).
-4. **A per-tier edge benchmark** with real INT8 sizes and CPU latency, and an efficiency Pareto that
-   identifies the 11 M tier as the deployment sweet spot (§5.9).
+4. **A per-tier edge benchmark** with real INT8 sizes and CPU latency, an efficiency Pareto that
+   identifies the 11 M tier as the deployment sweet spot (§5.9), and a **quantisation result with
+   practical reach**: INT8 helps transformer encoders (2.2× faster) but *hurts* hybrid conv–transformer
+   encoders (up to 19× slower), with the graph-level diagnosis and a deployment rule (§5.10).
 5. **Rigorous negatives that save effort:** naive fine-tuning causes catastrophic forgetting (WiSE-FT
    recovers the trade-off, §5.6); a supervised CNN cannot transfer cross-crop (§5.8); a leave-one-crop-out
    analysis shows the held-out crops are not cherry-picked (§5.7).
@@ -241,22 +244,43 @@ an unseen class**, so its cross-crop accuracy is chance. This is precisely the c
 head adds: the same seen-crop competence, plus generalisation the CNN cannot have.
 
 ### 5.9 Efficiency / on-device (Fig. `fig_edge_pareto.png`)
-Image encoder only (the sole part that ships); laptop CPU, batch 1, 224×224, ONNX Runtime, 50 runs:
+Image encoder only (the sole part that ships); laptop CPU (16 threads), batch 1, 224×224, ONNX Runtime
+1.26 with all graph optimisations enabled, 50 runs. We report **two** INT8 paths because the choice of
+quantisation recipe changes the answer by an order of magnitude (§5.10):
 
-| Tier | Params | MACs | Torch FP32 | ONNX FP32 | ONNX INT8 | FP32 size | INT8 size |
-|---|---|---|---|---|---|---|---|
-| **S0** | 11.4 M | 1.8 G | 80.7 ms | **21.5 ms** | 463 ms | 45.8 MB | **12.1 MB** |
-| S1 | 21.5 M | 3.6 G | 149.2 ms | 40.1 ms | 892 ms | 86.5 MB | 22.9 MB |
-| S2 | 35.8 M | 6.0 G | 178.0 ms | 59.0 ms | 1333 ms | 143.6 MB | 37.4 MB |
-| B | 86.3 M | 17.0 G | 174.8 ms | 106.6 ms | **70.7 ms** | 345.6 MB | 87.5 MB |
+| Tier | Params | MACs | Torch FP32 | **ONNX FP32** | INT8 dynamic | INT8 static (QDQ) | FP32 size | INT8 size |
+|---|---|---|---|---|---|---|---|---|
+| **S0** | 11.4 M | 1.8 G | 47.1 ms | **17.4 ms** | 320.0 ms | 62.2 ms | 45.8 MB | **12.9 MB** |
+| S1 | 21.5 M | 3.6 G | 99.8 ms | **33.7 ms** | 614.9 ms | 79.5 ms | 86.5 MB | 24.3 MB |
+| S2 | 35.8 M | 6.0 G | 119.0 ms | **49.2 ms** | 923.8 ms | 98.7 ms | 143.6 MB | 39.2 MB |
+| B | 86.3 M | 17.0 G | 130.7 ms | 100.8 ms | 60.4 ms | **46.4 ms** | 345.6 MB | 87.4 MB |
 
-**Real-time is met in FP32:** S0 runs at **21.5 ms/image (~47 img/s) on a laptop CPU** (ONNX Runtime is
-3–4× faster than eager PyTorch). **INT8 gives ~3.8× size reduction** (S0 → 12.1 MB). INT8 *latency* is
-architecture-dependent under x86 dynamic quantization: it speeds up the pure-transformer B
-(106.6 → 70.7 ms) but slows the hybrid conv-transformer S-tiers, whose quantized conv kernels are
-unoptimized on desktop CPUs — the INT8 latency win requires an ARM/NPU runtime. For deployment: **S0
-(FP32) for phones/laptops; B (INT8) where a transformer NPU is available.** (Raspberry Pi row pending an
-on-device run of the same script.)
+**Real-time is met in FP32:** S0 runs at **17.4 ms/image (~58 img/s) on a commodity laptop CPU** — ONNX
+Runtime is ~2.7× faster than eager PyTorch. **INT8 compresses ~3.5×** (S0 → 12.9 MB).
+
+### 5.10 INT8 is architecture-dependent, not universally beneficial
+A naive `quantize_dynamic` call — the default recipe in most tutorials — makes the lightweight tiers
+**18–19× *slower*** (S0 320 ms vs. 17.4 ms FP32). A properly configured static QDQ pipeline
+(shape-inference pre-pass, per-channel weights, calibrated activations) recovers **5–9×** of that, but
+still does **not** beat FP32 on the S-tiers. The pure-transformer B behaves oppositely: INT8 makes it
+**2.2× faster** (100.8 → 46.4 ms).
+
+The mechanism is visible in the quantised graphs. Counting convolutions the quantiser could *not*
+convert:
+
+| Tier | Architecture | Float convs remaining | Conversion nodes | INT8 speedup |
+|---|---|---|---|---|
+| S0 / S1 / S2 | FastViT-style hybrid (depthwise convs) | **119 / 215 / 235** | 1290 / 2340 / 2536 | 0.28× / 0.42× / 0.50× |
+| B | pure ViT (MatMul-dominated) | **3** | 1013 | **2.17×** |
+
+On the hybrids the runtime must dequantise → float-conv → requantise hundreds of times per inference;
+dynamic quantisation instead maps every convolution to `ConvInteger`, which is pathologically slow for
+depthwise kernels on x86. **Practical guidance: for hybrid conv–transformer encoders on a CPU runtime,
+INT8 is a *size* lever (3.5× smaller), not a *speed* lever; deploy FP32.** For transformer encoders it
+is both. Deployment recommendation: **S0 (ONNX FP32) for phones/laptops; B (INT8) where a transformer
+NPU is available.** (Raspberry Pi / ARM row pending an on-device run of the same script — ARM NEON has
+well-optimised INT8 depthwise kernels and may reverse the S-tier result, which we flag rather than
+assume.)
 
 ## 6. Discussion
 - **The contribution is a system, not a backbone.** The four tiers are off-the-shelf encoders used
@@ -266,8 +290,12 @@ on-device run of the same script.)
 - **Source-grounding is a trust contribution, not an accuracy one.** LLM descriptors grounded in
   extension sources match hand-curated ones (§5.3), so the anti-hallucination guarantee comes for free;
   descriptor *detail* drives accuracy, the authoring method does not.
-- **Real-time without exotic hardware.** Only the image encoder ships; 21.5 ms on a commodity CPU with a
-  12 MB INT8 footprint makes the 11 M tier the default.
+- **Real-time without exotic hardware.** Only the image encoder ships; 17.4 ms on a commodity CPU with a
+  12.9 MB INT8 footprint makes the 11 M tier the default.
+- **Quantisation advice is architecture-specific.** The field default ("quantise to INT8 for edge") is
+  actively harmful for hybrid conv–transformer encoders on CPU runtimes — up to 19× slower with the
+  standard dynamic recipe. We give the diagnosis (unconvertible depthwise convolutions) and the
+  practical rule (§5.10), which is reusable by anyone deploying MobileCLIP-class encoders.
 - **Honesty on absolutes.** Fine-grained 17-class top-1 is modest; we lead with top-5 (62–77 %) and the
   calibrated abstain gate as the field-relevant metrics, and frame cross-crop transfer as a hard open
   problem we advance at edge scale.
@@ -286,8 +314,8 @@ on-device run of the same script.)
 ## 8. Conclusion
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops and
 small devices at \$0/image: **27 % zero-shot on unseen crops (86 % of a 93 M model at 1/8 the size),
-67 %/74.9 % on known crops, 62–77 % top-5, a calibrated abstain gate, and 21.5 ms real-time CPU
-inference in a 12 MB INT8 footprint.** Model size is shown to be a near-non-factor; the levers are
+67 %/74.9 % on known crops, 62–77 % top-5, a calibrated abstain gate, and 17.4 ms real-time CPU
+inference in a 12.9 MB INT8 footprint.** Model size is shown to be a near-non-factor; the levers are
 descriptor detail, honest abstention, and the frozen-backbone hybrid. We release the pipeline and
 benchmark to make the result auditable and reproducible.
 
