@@ -1,0 +1,20 @@
+# Shell scripts MUST keep LF endings — bash on Linux (Vast.ai / Kaggle / Pi) fails with
+# "$'\r': command not found" if they are checked out CRLF from a Windows machine.
+*.sh text eol=lf
+
+# Same for anything else executed by a POSIX shell / python shebang on Linux.
+*.py text eol=lf
+Makefile text eol=lf
+
+# Keep JSON/markdown normalized too (avoids noisy diffs between machines).
+*.json text eol=lf
+*.md text eol=lf
+*.csv text eol=lf
+
+# Never touch binaries.
+*.png binary
+*.jpg binary
+*.onnx binary
+*.pt binary
+*.pth binary
+*.tar.gz binary
