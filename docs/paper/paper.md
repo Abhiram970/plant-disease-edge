@@ -301,9 +301,25 @@ assume.)
   problem we advance at edge scale.
 
 ## 7. Limitations
-- **Descriptor coverage.** 11 of 17 held-out diseases have filled descriptors (8 web-verified); 6
-  obscure classes remain stubs and fall back to `rich`/`bare`. Automatic citations are model-recalled
-  except where web-verified; five extension URLs were dead and need manual replacement.
+- **Descriptor coverage.** Across all 18 crops, **154 of 217** disease records are LLM-filled and
+  **14 carry page-verified verbatim citations**; the remaining 63 fall back to the hand-curated `rich`
+  bank, so coverage is an *auditability* gap rather than an accuracy one. On the headline held-out
+  crops (Coffee/Orange/Peach) **14 of 16** are filled and 10 are web-verified. Of 201 unique source
+  URLs, 110 are reachable, 73 return 403/429 (bot-blocked but real, e.g. APS) and **18 are dead** and
+  need manual replacement.
+- **The grounding prompt over-refuses.** Because the generation endpoint cannot browse, a strict
+  "never cite what you cannot quote" instruction makes the model return *empty* records rather than
+  risk fabrication — including for well-documented diseases (e.g. Tomato spotted wilt virus, sugarcane
+  common rust). A bulk re-run converted only 1 of 66 stubs. This is the anti-hallucination guarantee
+  behaving correctly, but it means grounded coverage scales only with *human-supplied sources*, not
+  with more API spend. Separating the functional `symptom_text` from the citation fields (as we do)
+  is what keeps the pipeline usable.
+- **Label noise in SAGE.** Three held-out "diseases" are not diseases —
+  `Wheat/Resistance_Phenotype{,_Moderately_Resistant,_Moderately_Susceptible}` are breeding *resistance
+  ratings*, for which no symptom descriptor can exist; `Coffee/Miner` is an insect pest
+  (*Leucoptera coffeella*), not a pathogen; and `Coffee/Cerscospora` is a misspelling of
+  *Cercospora coffeicola*. We recommend excluding the three rating labels from the evaluation and
+  report this as a dataset-quality finding.
 - **Scope.** Four trained crops on disk; the showcase crop (Tomato) and Grape are pending a fuller SAGE
   pull. Single random seed; a single evaluation machine.
 - **Sub-10 M gap.** No off-the-shelf aligned model exists below ~11 M; a ~5 M tier would require
@@ -323,7 +339,10 @@ benchmark to make the result auditable and reproducible.
 
 ### 9. Open items before submission
 - [ ] Raspberry Pi / phone latency row (run `benchmark_edge.py` on-device).
-- [ ] Fill the 6 stub held-out descriptors; replace the 5 dead extension URLs.
+- [ ] Source the 3 genuinely-missing held-out descriptors by hand (Coffee/Miner, Coffee/Phoma,
+      Wheat/Fusarium_Wilts) — the other 3 stubs are resistance-rating labels to be excluded, not filled.
+- [ ] Replace the 18 dead source URLs (concentrated in extension.psu.edu, cropprotectionnetwork.org,
+      grapes.extension.org).
 - [ ] Fuller SAGE pull incl. **Tomato** (showcase crop) and Grape.
 - [ ] Multi-seed runs for CIs on the headline zero-shot table.
 - [ ] Faithful SCOLD loader (or footnote the current below-chance wrapper result).

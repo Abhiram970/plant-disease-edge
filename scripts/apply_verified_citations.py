@@ -34,6 +34,33 @@ V = {
             "The mycelium with uredinia looks yellow-orange and powdery, and appears on the underside "
             "of leaves as points ~0.1 mm in diameter."),
     },
+    # SAGE label "Cerscospora" is a misspelling of Cercospora coffeicola (brown eye spot).
+    # Verified 2026-07-27 from the Wikipedia species page (reachable; APS/CABI block bots).
+    ("Coffee", "Cerscospora"): {
+        "source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "pathogen": ("Cercospora coffeicola (teleomorph Mycosphaerella coffeicola)",
+            "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen."),
+        "affected_organs": ("Leaves and berries",
+            "On leaves, lesions begin as chlorotic (yellow) spots that expand to become deep brown "
+            "and necrotic on the upper leaf surface."),
+        "visual_symptoms": ("Brown necrotic leaf spots with a pale/light sporulating centre and a "
+                            "yellow halo; lesions coalesce into large irregular necrotic areas",
+            "These spots often have a discolored, light center where sporulation can occur, and many "
+            "have a yellow 'halo' around the margins."),
+    },
+    # Berry blotch is the fruit phase of the same pathogen -> same verified page, berry-specific quotes.
+    ("Coffee", "Berry_Blotch"): {
+        "source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "pathogen": ("Cercospora coffeicola (teleomorph Mycosphaerella coffeicola)",
+            "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen."),
+        "affected_organs": ("Berries (green cherries and ripe red cherries)",
+            "On green berries, this includes irregularly shaped brown, sunken lesions that are "
+            "surrounded by a purple halo."),
+        "visual_symptoms": ("Tan-to-brown sunken berry lesions with a purple halo, maturing to a "
+                            "deeply depressed ashy centre that can reach the bean",
+            "As the lesion matures, it becomes deeply depressed with an ashy center and may penetrate "
+            "down to the coffee bean."),
+    },
     ("Peach", "Leaf_Curl"): {
         "source": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
         "pathogen": ("Taphrina deformans",

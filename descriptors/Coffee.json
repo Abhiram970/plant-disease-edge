@@ -5,22 +5,25 @@
     "symptom_text": "TODO: source-grounded symptom description for Berry_Blotch on Coffee.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Cercospora coffeicola (teleomorph Mycosphaerella coffeicola)",
+        "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "verbatim_quote": "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen."
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Berries (green cherries and ripe red cherries)",
+        "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "verbatim_quote": "On green berries, this includes irregularly shaped brown, sunken lesions that are surrounded by a purple halo."
       },
       "visual_symptoms": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Tan-to-brown sunken berry lesions with a purple halo, maturing to a deeply depressed ashy centre that can reach the bean",
+        "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "verbatim_quote": "As the lesion matures, it becomes deeply depressed with an ashy center and may penetrate down to the coffee bean."
       }
     },
-    "status": "stub"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+    "verified_date": "2026-07-31"
   },
   {
     "crop": "Coffee",
@@ -28,22 +31,25 @@
     "symptom_text": "TODO: source-grounded symptom description for Cerscospora on Coffee.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Cercospora coffeicola (teleomorph Mycosphaerella coffeicola)",
+        "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "verbatim_quote": "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen."
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Leaves and berries",
+        "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "verbatim_quote": "On leaves, lesions begin as chlorotic (yellow) spots that expand to become deep brown and necrotic on the upper leaf surface."
       },
       "visual_symptoms": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Brown necrotic leaf spots with a pale/light sporulating centre and a yellow halo; lesions coalesce into large irregular necrotic areas",
+        "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+        "verbatim_quote": "These spots often have a discolored, light center where sporulation can occur, and many have a yellow 'halo' around the margins."
       }
     },
-    "status": "stub"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
+    "verified_date": "2026-07-31"
   },
   {
     "crop": "Coffee",
@@ -115,6 +121,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-    "verified_date": "2026-07-03"
+    "verified_date": "2026-07-31"
   }
 ]
