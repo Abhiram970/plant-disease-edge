@@ -161,33 +161,28 @@ Never commit: `.env`, weights, `results/` (ONNX exports), raw dataset — all gi
 
 ---
 
-## 9. Cloud GPU (Vast.ai) — the GPU-bound remainder
+## 9. GPU work → **Kaggle (free)**
 
-Full plan, GPU choice and cost table: **[`vast/README.md`](vast/README.md)**.
+Everything GPU-bound runs on Kaggle's free 30 h/week tier.
+**Full guide: [`kaggle/RUNBOOK_KAGGLE.md`](kaggle/RUNBOOK_KAGGLE.md).**
 
-```bash
-# on the rented box
-git clone https://<TOKEN>@github.com/Abhiram970/plant-disease-edge.git && cd plant-disease-edge
-bash setup_vast.sh && PY=$(cat /tmp/PDEPY)
-export PDE_DATA_ROOT=/workspace/working PDE_DATASET_DIR=/workspace/working/exp_data
-tmux new -s run
-bash vast/run_plan.sh          # 6 stages, resumable, priority-ordered
-```
+The rule that makes it work: **build the dataset once, save it as a Kaggle Dataset
+(`pde-sage-data`), attach it to every later notebook.** `/kaggle/working` is only ~20 GB and a SAGE
+shard is ~10 GB, so you cannot re-fetch data each session.
 
-| Stage | What | Priority |
+| Session | What | Priority |
 |---|---|---|
-| 1 | SAGE data + manifest | mandatory |
+| 1 | SAGE data → save as Kaggle Dataset | mandatory, once |
 | 2 | **EXP3 WiSE-FT full sweep** | **P0 — blocks the paper** |
 | 3 | **Zero-shot scale study A/B/C** | **P0 — resolves the 27 %-vs-17 % mismatch** |
 | 4 | Seen-head probe A/B/C | P1 |
-| 5 | CNN baseline family (6 archs) | P1 |
-| 6 | LOCO + abstain metrics | P1 |
+| 5 | CNN baselines + metrics + LOCO | P1 |
 
-Retrieve results before destroying the instance:
-```bash
-scp -P <PORT> root@<HOST>:/workspace/plant-disease-edge/vast_results.tar.gz .
-tar -xzf vast_results.tar.gz && cp vast_results/*.json docs/paper/
-```
+Sessions 2 + 3 alone are enough to finish the draft. Always use **Save Version → Save & Run All
+(Commit)** so the 40-minute idle timeout can't kill a run.
+
+*(A paid Vast.ai variant of the same plan is kept in [`vast/README.md`](vast/README.md) if you ever
+want a single uninterrupted box instead of 9-hour sessions.)*
 
 ---
 
@@ -196,7 +191,7 @@ tar -xzf vast_results.tar.gz && cp vast_results/*.json docs/paper/
 | Item | State |
 |---|---|
 | Descriptor pipeline + audit + verified citations | ✅ built |
-| Descriptor coverage | ⚠️ 151/217 filled · 12 page-verified · 8 held-out stubs (5 genuine, 3 label noise) |
+| Descriptor coverage | ✅ 156/217 filled · 16 page-verified · **headline held-out crops 16/16 complete** (Coffee 5/5, all page-verified). 4 remaining stubs are Wheat label artefacts, not gaps |
 | Zero-shot ablation (bare/crude/rich/grounded) | ✅ |
 | Encoder bake-off (6 encoders) | ✅ |
 | Hybrid (trained seen + zero-shot unseen) | ✅ |

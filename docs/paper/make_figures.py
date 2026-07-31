@@ -61,12 +61,15 @@ DESC_ABLATION = [  # (model, params, bare, crude, rich, grounded)
     ("MC2-S2", 35.8, 0.185, 0.203, 0.287, 0.214),
     ("MC-B",   86.3, 0.216, 0.226, 0.268, 0.282),
 ]
-# ---- edge benchmark (laptop CPU, batch 1, 224px; results/edge_benchmark.json) ----
-EDGE = [  # (model, params, macs_G, onnx_fp32_ms, fp32_mb, int8_ms, int8_mb, rich_zeroshot_acc)
-    ("MC2-S0", 11.4, 1.84,  15.8,  45.8,  288.4, 12.1, 0.270),
-    ("MC-S1",  21.5, 3.59,  43.2,  86.5,  905.6, 22.9, 0.224),
-    ("MC2-S2", 35.8, 6.03,  66.1, 143.6, 1358.0, 37.4, 0.287),
-    ("MC-B",   86.3, 16.99, 135.2, 345.6,  81.1, 87.5, 0.268),
+# ---- edge benchmark (laptop CPU 16 threads, batch 1, 224px, ORT 1.26, 50 runs) ----
+# SOURCE: docs/paper/edge_quant_benchmark.json (27 Jul 2026). The int8 column is the STATIC QDQ
+# path (per-channel + calibrated + shape-inference pre-pass) — the *best* INT8 recipe. The older
+# `edge_benchmark.json` used quantize_dynamic() defaults and is SUPERSEDED; do not use it.
+EDGE = [  # (model, params, macs_G, onnx_fp32_ms, fp32_mb, int8_static_ms, int8_mb, rich_zeroshot_acc)
+    ("MC2-S0", 11.41, 1.839,  17.35,  45.81,  62.18, 12.92, 0.270),
+    ("MC-S1",  21.54, 3.587,  33.74,  86.51,  79.51, 24.29, 0.224),
+    ("MC2-S2", 35.82, 6.026,  49.19, 143.62,  98.69, 39.16, 0.287),
+    ("MC-B",   86.35, 16.993, 100.78, 345.55, 46.39, 87.40, 0.268),
 ]
 
 

@@ -23,7 +23,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-    "verified_date": "2026-07-31"
+    "verified_date": "2026-08-01"
   },
   {
     "crop": "Coffee",
@@ -49,7 +49,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-    "verified_date": "2026-07-31"
+    "verified_date": "2026-08-01"
   },
   {
     "crop": "Coffee",
@@ -57,22 +57,25 @@
     "symptom_text": "TODO: source-grounded symptom description for Miner on Coffee.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Leucoptera coffeella (coffee leaf miner) — an insect pest, not a pathogen",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
+        "verbatim_quote": "CLM is a monophagous pest, coffee exclusive and the larvae are the causal agent of the crop damage"
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Leaves (mesophyll / palisade parenchyma); severe attack causes defoliation",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
+        "verbatim_quote": "When feeding on the mesophyll of the coffee tree leaves, the insect creates mines that justify the common name"
       },
       "visual_symptoms": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Irregular pale-to-brown mines on the upper leaf surface that enlarge from millimetres to centimetres into necrotic patches, ending in leaf fall",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
+        "verbatim_quote": "the injuries area evolves from some millimeters to several centimeters...ending up to the falling of the leaves"
       }
     },
-    "status": "stub"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
+    "verified_date": "2026-08-01"
   },
   {
     "crop": "Coffee",
@@ -80,22 +83,25 @@
     "symptom_text": "TODO: source-grounded symptom description for Phoma on Coffee.",
     "fields": {
       "pathogen": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Phoma tarda and Phoma costarricensis",
+        "source_url": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
+        "verbatim_quote": "Phoma tarda (RB Stewart) H. Verm. and Phoma costarricensis Echandi, 1957"
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Leaves, branches and floral rosettes (indirectly flowers and fruit)",
+        "source_url": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
+        "verbatim_quote": "Phoma spot can also affect floral rosettes, indirectly causing necrosis of flowers and fruits"
       },
       "visual_symptoms": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Dark circular leaf spots up to ~2 cm; leaf edges curl and crack; dark sunken lesions girdling branches (dry shoots)",
+        "source_url": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
+        "verbatim_quote": "circular spots of dark color and varying sizes, which can reach 2 cm in diameter"
       }
     },
-    "status": "stub"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
+    "verified_date": "2026-08-01"
   },
   {
     "crop": "Coffee",
@@ -121,6 +127,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-    "verified_date": "2026-07-31"
+    "verified_date": "2026-08-01"
   }
 ]

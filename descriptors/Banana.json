@@ -115,7 +115,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Panama_disease",
-    "verified_date": "2026-07-31"
+    "verified_date": "2026-08-01"
   },
   {
     "crop": "Banana",
@@ -141,6 +141,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Mycosphaerella_fijiensis",
-    "verified_date": "2026-07-31"
+    "verified_date": "2026-08-01"
   }
 ]
