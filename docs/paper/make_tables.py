@@ -1,0 +1,239 @@
+"""
+Regenerate EVERY results table in paper.md straight from the result JSONs.
+
+WHY THIS EXISTS
+---------------
+The manuscript drifted from the data three separate times (an old 17-class eval, a
+superseded edge benchmark, and a third hardcoded latency set inside make_figures.py).
+Tables are now GENERATED, never typed. If a number is in the paper, it came from here.
+
+    python docs/paper/make_tables.py            # print all tables
+    python docs/paper/make_tables.py --write    # also write docs/paper/TABLES.md
+
+Canonical sources (all in docs/paper/):
+    zeroshot_eval_{A,B,C}.json    cross-crop zero-shot at 3 scales   (16 / 34 / 51 classes)
+    metrics_abstain_{A,B,C}.json  top-5 + risk-coverage
+    run_all_bakeoff.json          encoder bake-off (Exp-A held set)
+    probe_seen_C.json             seen-head linear probe (166 classes)
+    run_all_exp3_lw11_full.json   WiSE-FT alpha sweep (full data)
+    supervised_*.json             supervised CNN baselines (166 classes)
+    loco_s0_rich.json             leave-one-crop-out
+    edge_quant_benchmark.json     on-device latency / size / INT8 diagnosis
+"""
+from __future__ import annotations
+import argparse
+import json
+import sys
+from pathlib import Path
+
+# Windows consoles default to cp1252 and choke on the arrows/en-dashes below.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+HERE = Path(__file__).resolve().parent
+OUT = []
+
+
+def load(name):
+    p = HERE / name
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def emit(s=""):
+    print(s)
+    OUT.append(s)
+
+
+def pct(x, nd=1):
+    return "—" if x is None else f"{x * 100:.{nd}f}%"
+
+
+def short(name):
+    return name.split("/")[0]
+
+
+# ---------------------------------------------------------------- 1. scale study
+def table_scale_study():
+    emit("## T1 — Cross-crop zero-shot at three scales (descriptor ablation)\n")
+    emit("Held-out crops are never trained. `bare` = class name only; `rich` = hand-curated symptom")
+    emit("paragraph; `grounded` = LLM source-grounded `symptom_text`.\n")
+    for e in "ABC":
+        j = load(f"zeroshot_eval_{e}.json")
+        if not j:
+            emit(f"*(Exp {e} missing)*\n"); continue
+        emit(f"**Experiment {e} — {j['n_classes']} classes, {len(j['crops'])} held crops "
+             f"({', '.join(j['crops'])}), chance {pct(j['chance'])}**\n")
+        emit("| Model | Params | bare | crude | rich | grounded | rich−bare |")
+        emit("|---|---|---|---|---|---|---|")
+        bares, riches = [], []
+        for m, d in j["models"].items():
+            b, c = d["bare"]["acc"], d["crude"]["acc"]
+            r, g = d["rich"]["acc"], d["grounded"]["acc"]
+            bares.append(b); riches.append(r)
+            emit(f"| {short(m)} | {d['bare']['img_params_M']:.1f} M | {pct(b)} | {pct(c)} "
+                 f"| **{pct(r)}** | {pct(g)} | **{(r-b)*100:+.1f} pp** |")
+        mb, mr = sum(bares)/len(bares), sum(riches)/len(riches)
+        emit(f"| *mean* | — | *{pct(mb)}* | — | *{pct(mr)}* | — | ***{(mr-mb)*100:+.1f} pp*** |")
+        emit("")
+
+
+# ---------------------------------------------------------------- 2. abstain
+def table_abstain():
+    emit("## T2 — Top-5 and abstention (risk–coverage)\n")
+    emit("| Exp | Classes | Model | Strategy | Top-1 | Top-5 | AURC | acc@cov90 | acc@cov80 |")
+    emit("|---|---|---|---|---|---|---|---|---|")
+    for e in "ABC":
+        j = load(f"metrics_abstain_{e}.json")
+        if not j:
+            continue
+        for m, d in j["models"].items():
+            for strat in ("rich", "grounded"):
+                sd = d.get(strat)
+                if not isinstance(sd, dict):
+                    continue
+                emit(f"| {e} | {j['n_classes']} | {short(m)} | {strat} | {pct(sd.get('top1'))} "
+                     f"| **{pct(sd.get('top5'))}** | {sd.get('aurc')} "
+                     f"| {pct(sd.get('acc@cov90'))} | {pct(sd.get('acc@cov80'))} |")
+    emit("")
+
+
+# ---------------------------------------------------------------- 3. bake-off
+def table_bakeoff():
+    j = load("run_all_bakeoff.json")
+    if not j:
+        return
+    emit("## T3 — Encoder bake-off (rich descriptors, 17-class pilot held set)\n")
+    emit(f"{j['n_classes']} classes, chance {pct(j['chance'])} — the 3 anchor held-out crops, run before")
+    emit("the nested A/B/C splits were frozen. Comparable *within* the table; do not mix with T1.\n")
+    emit("| Encoder | Params | Zero-shot | " + " | ".join(
+        list(next(iter(j["models"].values()))["by_crop"])) + " |")
+    emit("|---|---|---|" + "---|" * len(next(iter(j["models"].values()))["by_crop"]))
+    for m, d in sorted(j["models"].items(), key=lambda kv: -kv[1]["rich_acc"]):
+        crops = " | ".join(pct(v) for v in d["by_crop"].values())
+        emit(f"| {m} | {d['img_params_M']:.1f} M | **{pct(d['rich_acc'])}** | {crops} |")
+    emit("")
+    emit("> Domain/biological foundation models (SCOLD, BioCLIP2) fall **at or below chance** under a")
+    emit("> descriptor protocol — see the paper's caveat on the best-effort SCOLD wrapper.\n")
+
+
+# ---------------------------------------------------------------- 4. seen side
+def table_seen():
+    emit("## T4 — Known-crop accuracy (seen head, 166 classes)\n")
+    p = load("probe_seen_C.json")
+    if p:
+        emit(f"Frozen backbone + linear probe · seen crops: {', '.join(p['seen_crops'])}\n")
+        emit("| Model | Params | Seen top-1 (probe) |")
+        emit("|---|---|---|")
+        for m, d in p["models"].items():
+            emit(f"| {m} | {d['img_params_M']:.1f} M | **{pct(d['seen_probe_top1'])}** |")
+        emit("")
+    rows = []
+    for f in sorted(HERE.glob("supervised_*.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        rows.append((d.get("arch"), d.get("seen_classes"), d.get("seen_top1")))
+    if rows:
+        emit("**Supervised CNN baselines** (same 166-class seen set; all are *structurally* incapable")
+        emit("of unseen-crop diagnosis — no output neuron exists for an unseen class):\n")
+        emit("| Architecture | Classes | Seen top-1 | Unseen |")
+        emit("|---|---|---|---|")
+        for a, n, t in sorted(rows, key=lambda r: -(r[2] or 0)):
+            emit(f"| {a} | {n} | {pct(t)} | **0 (structural)** |")
+        emit("")
+
+
+# ---------------------------------------------------------------- 5. WiSE-FT
+def table_wiseft():
+    j = load("run_all_exp3_lw11_full.json")
+    if not j:
+        return
+    emit("## T5 — WiSE-FT: tuning the seen↔unseen trade-off (full data)\n")
+    emit(f"{j['model']} · {j['seen_images']:,} seen images · {j['seen_classes']} seen classes · "
+         f"{j['unseen_classes']} unseen classes · {j['ft_epochs']} fine-tune epochs\n")
+    emit("| α | Seen | Unseen (zero-shot) |")
+    emit("|---|---|---|")
+    for s in j["sweep"]:
+        tag = " ← best balance" if j.get("best", {}).get("alpha") == s["alpha"] else ""
+        lab = {0.0: "0.0 (frozen)", 0.5: "0.5 (WiSE-FT)", 1.0: "1.0 (naive fine-tune)"}.get(
+            s["alpha"], str(s["alpha"]))
+        emit(f"| {lab} | {pct(s['seen'])} | {pct(s['unseen'])}{tag} |")
+    a0 = next(s for s in j["sweep"] if s["alpha"] == 0.0)
+    a5 = next((s for s in j["sweep"] if s["alpha"] == 0.5), None)
+    if a5:
+        emit(f"\n> α=0.5 buys **{(a5['seen']-a0['seen'])*100:+.1f} pp seen** for only "
+             f"**{(a5['unseen']-a0['unseen'])*100:+.1f} pp unseen**; naive fine-tuning (α=1) "
+             f"collapses unseen zero-shot.\n")
+    if j.get("ft_loss"):
+        emit(f"Fine-tune loss: {' → '.join(str(x) for x in j['ft_loss'])}\n")
+
+
+# ---------------------------------------------------------------- 6. LOCO
+def table_loco():
+    j = load("loco_s0_rich.json")
+    if not j:
+        return
+    emit("## T6 — Leave-one-crop-out (anti-cherry-pick)\n")
+    emit(f"{j['model']} ({j['img_params_M']} M) · {j['strategy']} · {j['n_classes']} classes · "
+         f"chance {pct(j['chance'])} · bootstrap 95% CI\n")
+    emit("| Crop | N | Zero-shot | 95% CI |")
+    emit("|---|---|---|---|")
+    for crop, d in sorted(j["per_crop"].items(), key=lambda kv: -kv[1]["acc"]):
+        ci = d.get("ci95", [None, None])
+        emit(f"| {crop} | {d['n']:,} | {pct(d['acc'])} | [{pct(ci[0])}, {pct(ci[1])}] |")
+    p = j["pooled"]
+    emit(f"| **Pooled** | **{p['n']:,}** | **{pct(p['acc'])}** | "
+         f"[{pct(p['ci95'][0])}, {pct(p['ci95'][1])}] |\n")
+
+
+# ---------------------------------------------------------------- 7. edge
+def table_edge():
+    j = load("edge_quant_benchmark.json")
+    if not j:
+        return
+    emit("## T7 — On-device efficiency (image encoder only)\n")
+    emit(f"CPU · batch 1 · {j['img_size']}×{j['img_size']} · ONNX Runtime {j.get('ort_version')} · "
+         f"{j['runs']} runs\n")
+    emit("| Tier | Params | Torch FP32 | ONNX FP32 | INT8 dynamic | INT8 static (QDQ) | FP32 MB | INT8 MB |")
+    emit("|---|---|---|---|---|---|---|---|")
+    for k, d in j["models"].items():
+        v = d.get("variants", {})
+        g = lambda n, f="p50_ms": v.get(n, {}).get(f)
+        fmt = lambda x: "—" if x is None else f"{x:.1f} ms"
+        emit(f"| {d['model']} | {d['img_params_M']:.1f} M | {fmt(g('torch_fp32'))} "
+             f"| **{fmt(g('onnx_fp32'))}** | {fmt(g('onnx_int8_dynamic'))} "
+             f"| {fmt(g('onnx_int8_static'))} | {g('onnx_fp32','size_mb')} "
+             f"| {g('onnx_int8_static','size_mb')} |")
+    emit("\n**INT8 diagnosis** — convolutions the quantiser could not convert:\n")
+    emit("| Tier | Float convs left | Convert nodes | INT8 speedup | Verdict |")
+    emit("|---|---|---|---|---|")
+    for k, d in j["models"].items():
+        dg = d.get("diagnosis", {}).get("int8_static")
+        if dg:
+            emit(f"| {d['model']} | **{dg['float_conv_left']}** | {dg['convert_nodes']} "
+                 f"| {dg.get('speedup_vs_fp32')}× | {dg['verdict']} |")
+    emit("")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--write", action="store_true", help="also write docs/paper/TABLES.md")
+    a = ap.parse_args()
+
+    emit("# Generated results tables")
+    emit("")
+    emit("> **Auto-generated by `docs/paper/make_tables.py` — do not hand-edit.**")
+    emit("> Every number in `paper.md` must match a number here. Re-run after any new result.")
+    emit("")
+    for fn in (table_scale_study, table_abstain, table_bakeoff, table_seen,
+               table_wiseft, table_loco, table_edge):
+        try:
+            fn()
+        except Exception as e:
+            emit(f"*(table failed: {fn.__name__}: {type(e).__name__}: {e})*\n")
+
+    if a.write:
+        (HERE / "TABLES.md").write_text("\n".join(OUT), encoding="utf-8")
+        print(f"\n[tables] wrote {HERE / 'TABLES.md'}")
+
+
+if __name__ == "__main__":
+    main()

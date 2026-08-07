@@ -50,17 +50,49 @@ BAKEOFF = [  # (label, img params M, rich zero-shot) -- 17-class held (Coffee+Or
     ("SCOLD", 237.5, 0.044),           # below chance = broken wrapper (RoBERTa base fallback); footnote/drop
 ]
 BAKEOFF_CHANCE = 0.059
+
+def _load(name):
+    p = HERE / name
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def _short(m):
+    return (m.split("/")[0].replace("MobileCLIP2-", "MC2-").replace("MobileCLIP-", "MC-")
+            .replace("ViT-B-16-SigLIP2", "SigLIP2"))
+
+
 # ---- EXP2 hybrid (MobileCLIP2-S0, 11M): trained seen vs zero-shot seen vs zero-shot unseen ----
-HYBRID = {"seen_trained": 0.672, "seen_zeroshot": 0.093, "unseen_zeroshot": 0.270}
-# ---- EXP3 WiSE-FT sweep (MobileCLIP2-S0): (alpha, seen, unseen) from run_all_exp3_lw11.json ----
-WISEFT = [(0.0, 0.670, 0.270), (0.5, 0.776, 0.154), (1.0, 0.822, 0.104)]
-# ---- descriptor ablation (held 17-class): bare/crude/rich/grounded per model (results/zeroshot_eval.json) ----
-DESC_ABLATION = [  # (model, params, bare, crude, rich, grounded)
-    ("MC2-S0", 11.4, 0.183, 0.198, 0.270, 0.242),
-    ("MC-S1",  21.5, 0.189, 0.211, 0.224, 0.281),
-    ("MC2-S2", 35.8, 0.185, 0.203, 0.287, 0.214),
-    ("MC-B",   86.3, 0.216, 0.226, 0.268, 0.282),
-]
+# Read from the 80-class run, which is the only config with all three quantities measured
+# (probe_seen_C.json has no seen-zero-shot column). Paper §5.5 reports it the same way.
+_h = _load("run_all_train_seen_lw11.json") or {}
+HYBRID = {"seen_trained": _h.get("seen_probe_acc", 0.672),
+          "seen_zeroshot": _h.get("seen_zeroshot_acc", 0.093),
+          "unseen_zeroshot": _h.get("unseen_zeroshot_acc", 0.270)}
+HYBRID_N = (_h.get("seen_classes", 80), _h.get("unseen_classes", 17))
+
+# ---- EXP3 WiSE-FT sweep (MobileCLIP2-S0): (alpha, seen, unseen) ----
+# FULL-data run (166 seen classes, 55,981 images) — supersedes the 80-class pilot.
+_w = _load("run_all_exp3_lw11_full.json") or {}
+WISEFT = ([(s["alpha"], s["seen"], s["unseen"]) for s in _w["sweep"]] if _w.get("sweep")
+          else [(0.0, 0.826, 0.170), (0.5, 0.877, 0.163), (1.0, 0.903, 0.088)])
+WISEFT_N = (_w.get("seen_classes", 166), _w.get("unseen_classes", 51))
+
+# ---- descriptor ablation: bare/crude/rich/grounded per model, at all three held-out scales ----
+# Read straight from zeroshot_eval_{A,B,C}.json. NEVER hardcode: the scale study reversed the
+# hand-curated-vs-grounded conclusion, and a stale copy here would silently contradict §5.3.
+DESC_BY_EXP, DESC_CHANCE = {}, {}
+for _e in "ABC":
+    _j = _load(f"zeroshot_eval_{_e}.json")
+    if not _j:
+        continue
+    DESC_CHANCE[_e] = _j["chance"]
+    DESC_BY_EXP[_e] = [
+        (_short(m), d["bare"]["img_params_M"], d["bare"]["acc"], d["crude"]["acc"],
+         d["rich"]["acc"], d["grounded"]["acc"])
+        for m, d in _j["models"].items()
+    ]
+    DESC_BY_EXP[_e].sort(key=lambda r: r[1])
+DESC_ABLATION = DESC_BY_EXP.get("A", [])
 # ---- edge benchmark (laptop CPU 16 threads, batch 1, 224px, ORT 1.26, 50 runs) ----
 # SOURCE: docs/paper/edge_quant_benchmark.json (27 Jul 2026). The int8 column is the STATIC QDQ
 # path (per-channel + calibrated + shape-inference pre-pass) — the *best* INT8 recipe. The older
@@ -176,7 +208,8 @@ def fig_hybrid():
         ax.text(i, v + 0.01, f"{v:.1%}", ha="center", fontsize=10)
     ax.set_ylabel("accuracy")
     ax.set_ylim(0, 0.8)
-    ax.set_title("Hybrid (11M MobileCLIP2-S0): train for seen, zero-shot for unseen")
+    ax.set_title(f"Hybrid (11M MobileCLIP2-S0): train for seen ({HYBRID_N[0]} cls), "
+                 f"zero-shot for unseen ({HYBRID_N[1]} cls)", fontsize=10)
     fig.tight_layout(); fig.savefig(FIG / "fig_hybrid.png", dpi=160); plt.close(fig)
 
 
@@ -195,29 +228,81 @@ def fig_wiseft():
     ax.text(0.5, 0.02, "WiSE-FT\nsweet spot", ha="center", fontsize=8, color="grey")
     ax.set_xlabel(r"WiSE-FT $\alpha$  (0 = frozen, 1 = full fine-tune)")
     ax.set_ylabel("accuracy")
-    ax.set_ylim(0, 0.9)
-    ax.set_title("Fine-tuning trades unseen zero-shot for seen accuracy (catastrophic forgetting)")
+    ax.set_ylim(0, 1.0)
+    ax.set_title(f"Fine-tuning trades unseen zero-shot for seen accuracy\n"
+                 f"({WISEFT_N[0]} seen / {WISEFT_N[1]} unseen classes)", fontsize=10)
     ax.legend(fontsize=8, loc="center right"); ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_wiseft.png", dpi=160); plt.close(fig)
 
 
+STRATEGIES = ["bare", "crude", "rich", "grounded"]
+STRAT_COLORS = ["#bbbbbb", "#9ecae1", "#2ca02c", "#1f77b4"]
+
+
 def fig_descriptor_ablation():
-    """Held-out zero-shot per model across bare/crude/rich/grounded — the descriptor-detail lever."""
-    strategies = ["bare", "crude", "rich", "grounded"]
-    colors = ["#bbbbbb", "#9ecae1", "#2ca02c", "#1f77b4"]
-    n = len(DESC_ABLATION); w = 0.2
-    xs = range(n)
-    fig, ax = plt.subplots(figsize=(7.5, 4))
-    for j, s in enumerate(strategies):
-        vals = [row[2 + j] for row in DESC_ABLATION]
-        ax.bar([x + (j - 1.5) * w for x in xs], vals, width=w, label=s, color=colors[j])
-    ax.axhline(CHANCE, ls="--", color="grey", lw=1, label=f"chance ({CHANCE:.1%})")
-    ax.set_xticks(list(xs)); ax.set_xticklabels([r[0] for r in DESC_ABLATION])
-    ax.set_ylabel("held-out zero-shot accuracy (17 cls)")
+    """Per-model bare/crude/rich/grounded at all three held-out scales (one panel each)."""
+    exps = [e for e in "ABC" if e in DESC_BY_EXP]
+    if not exps:
+        return
+    fig, axes = plt.subplots(1, len(exps), figsize=(4.6 * len(exps), 4.2), sharey=True)
+    axes = axes if len(exps) > 1 else [axes]
+    for ax, e in zip(axes, exps):
+        rows, ch = DESC_BY_EXP[e], DESC_CHANCE[e]
+        xs, w = range(len(rows)), 0.2
+        for j, s in enumerate(STRATEGIES):
+            ax.bar([x + (j - 1.5) * w for x in xs], [r[2 + j] for r in rows],
+                   width=w, label=s, color=STRAT_COLORS[j])
+        ax.axhline(ch, ls="--", color="grey", lw=1)
+        ax.text(-0.42, ch + 0.006, f"chance {ch:.1%}", fontsize=7, color="grey", ha="left")
+        ax.set_xticks(list(xs))
+        ax.set_xticklabels([r[0] for r in rows], fontsize=8, rotation=15)
+        n_cls = int(round(1 / ch))
+        ax.set_title(f"Scale {e} — {n_cls} unseen classes", fontsize=10)
+    axes[0].set_ylabel("held-out zero-shot top-1")
+    axes[0].set_ylim(0, 0.36)
+    axes[0].legend(fontsize=8, ncol=4, loc="upper left")
+    fig.suptitle("Descriptor detail is the lever — but the winning strategy flips with scale",
+                 fontsize=11)
+    fig.tight_layout(rect=(0, 0, 1, 0.95))
+    fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=160); plt.close(fig)
+
+
+def fig_descriptor_scaling():
+    """THE headline figure: hand-curated descriptors decay with scale, source-grounded ones improve."""
+    exps = [e for e in "ABC" if e in DESC_BY_EXP]
+    if len(exps) < 2:
+        return
+    n_cls = [int(round(1 / DESC_CHANCE[e])) for e in exps]
+
+    def mean(e, j):
+        rows = DESC_BY_EXP[e]
+        return sum(r[2 + j] for r in rows) / len(rows)
+
+    fig, ax = plt.subplots(figsize=(6.6, 4.3))
+    for j, s in enumerate(STRATEGIES):
+        if s == "crude":
+            continue
+        ys = [mean(e, j) for e in exps]
+        ax.plot(n_cls, ys, marker="o", color=STRAT_COLORS[j], lw=2.2 if s != "bare" else 1.4,
+                ls="--" if s == "bare" else "-",
+                label={"bare": "bare (class name)", "rich": "rich (hand-curated)",
+                       "grounded": "grounded (LLM, source-grounded)"}[s])
+        dy = {"bare": -14, "rich": 8, "grounded": -15}[s]
+        for x, y in zip(n_cls, ys):
+            ax.annotate(f"{y:.1%}", (x, y), fontsize=8, color=STRAT_COLORS[j],
+                        xytext=(0, dy), textcoords="offset points", ha="center")
+    ax.plot(n_cls, [DESC_CHANCE[e] for e in exps], ":", color="grey", lw=1.2, label="chance")
+    ax.set_xscale("log")
+    ax.xaxis.set_minor_locator(matplotlib.ticker.NullLocator())
+    ax.xaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    ax.set_xticks(n_cls)
+    ax.set_xticklabels([f"{c}\n(scale {e})" for c, e in zip(n_cls, exps)])
+    ax.set_xlabel("number of unseen classes  (nested held-out pools, A $\\subset$ B $\\subset$ C)")
+    ax.set_ylabel("mean held-out zero-shot top-1\n(4 deployable encoders)")
     ax.set_ylim(0, 0.34)
-    ax.set_title("Descriptor detail is the lever: any full description >> class-name (bare)")
-    ax.legend(fontsize=8, ncol=5, loc="upper center")
-    fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=160); plt.close(fig)
+    ax.set_title("Only source-grounded descriptors scale to more unseen crops")
+    ax.legend(fontsize=8, loc="lower left"); ax.grid(True, alpha=0.3)
+    fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=160); plt.close(fig)
 
 
 def fig_edge_pareto():
@@ -310,6 +395,7 @@ def main():
     fig_hybrid()
     fig_wiseft()
     fig_descriptor_ablation()
+    fig_descriptor_scaling()
     fig_edge_pareto()
     try:
         fig_riskcoverage()

@@ -1,7 +1,7 @@
 {
-  "arch": "mobilenetv3_small_100",
+  "arch": "resnet50",
   "seen_classes": 166,
-  "seen_top1": 0.8431,
+  "seen_top1": 0.8843,
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",
   "note": "Compare seen_top1 to the frozen-VLM linear probe (~0.67). The CNN CANNOT do cross-crop zero-shot \u2014 that is the descriptor head's unique capability."
 }
