@@ -14,13 +14,27 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 | 7 | Descriptor quality | bare/crude/**rich** on frozen models, 8 classes (Orange+Peach), chance 12.5% | **rich best on all**: S0 29.5→**37.5%** (+8), S1 24.8→**39.8%** (+15), SigLIP2 34.8→**49.5%** (+14.7); Orange/HLB 8.9→**95.6%** on 11M | **POSITIVE — descriptor lever validated** |
 | 8 | Encoder bake-off | rich zero-shot, **3 held crops, 17 classes**, chance 5.9% | **SigLIP2 31.5%** (best) > S2 28.7% > S0 26.9% > S1 22.5% > BioCLIP2 9.6% (poor, drop). SCOLD loaded (class LVL) but **5.3% — adapter issue, not valid** (RoBERTa from base; preprocess mismatch) | SigLIP2=teacher; lightweight ~22-29% (noisy ranking); drop BioCLIP2; SCOLD needs inference.py |
 | 9 | Train seen / keep unseen | MobileCLIP2-S0 11M, linear probe, 80 seen classes, 3 held crops | **SEEN trained 67.0% vs zero-shot 8.5%** (8× win); **UNSEEN zero-shot 26.9% preserved** | **HYBRID VALIDATED** — train seen, zero-shot unseen, one frozen 11M model |
-| 10 | Fine-tune + WiSE-FT (EXP3) | MobileCLIP2-S0, ft 5 epochs, alpha sweep | theta0 ALIASING BUG (deepcopy) made alpha=0 = forgotten model (15.9% not 26.9%); **FIXED** (reload pristine weights); clean sweep re-run pending | re-run `--only exp3` |
+| 10 | Fine-tune + WiSE-FT (EXP3) | MobileCLIP2-S0, ft 5 epochs, alpha sweep | theta0 ALIASING BUG (deepcopy) made alpha=0 = forgotten model (15.9% not 26.9%); **FIXED** (reload pristine weights) | superseded by run 12 |
+| 12 | **Nested scale study** | 4 encoders × 4 descriptor strategies at **16 / 34 / 51** unseen classes (A ⊂ B ⊂ C) | mean `rich` **28.0 → 24.3 → 20.4 %** (degrades) vs mean `grounded` **21.7 → 23.5 → 24.7 %** (improves); at C `grounded` wins on **all 4** encoders (+4.3 pp mean) | **REVERSES run 7's reading** — hand-curation does not scale, source-grounding does |
+| 13 | Seen head at full scale | linear probe, 166 seen classes, 55,981 imgs, 4 encoders | **82.6 / 81.2 / 82.8 / 82.6 %** — flat across 11→86M, as zero-shot is | seen side is also pretraining-bound, not capacity-bound |
+| 14 | WiSE-FT, full data | MobileCLIP2-S0, 166 seen cls, α ∈ {0, 0.5, 1} | 82.6/17.0 → **87.7/16.3** → 90.3/8.8 | α=0.5 buys **+5.1 pp seen for −0.7 pp unseen** — far better trade than the 80-class pilot (−11.6 pp) |
+| 15 | Supervised CNN baselines | ResNet-50 / MNv3-S / MNv4-conv-S, same 166 classes | **88.4 / 84.3 / 84.1 %** seen, **0 unseen (structural)** | CNNs win on seen; the descriptor head buys a capability they cannot have |
+
+> **Run 12 is the paper's headline and it inverted an earlier conclusion.** Runs 7–9 were read off a
+> single focused split, which supported "authoring method is a wash, detail is all that matters."
+> Only the nested design exposed that `rich` decays and `grounded` improves with scale. The mechanism
+> is coverage: the hand-written bank was authored for 3 anchor crops; the generated registry spans
+> 156/217 classes. Generalise the lesson — **a single-split ablation cannot distinguish "equally good"
+> from "one of these scales."**
 
 ## What is established
 - **Works:** frozen compact pretrained CLIP + descriptors does cross-crop zero-shot (~20% @ 11M, 3.4× chance, ~78% of 93M SigLIP2).
 - **Works:** accuracy flat 11M→300M ⇒ size is not the bottleneck (efficiency pillar).
 - **Does NOT work:** training a small model to *learn/improve* the alignment — from scratch (≈chance) or specialize-on-seen (−4.5pp, forgetting). Literature-consistent (WiSE-FT).
-- **Untested lever:** descriptor quality (crude stubs everywhere so far; SAGE says source-grounded +14–16pp).
+- **Works, and is the headline:** descriptor *authoring method* decides whether the approach scales —
+  only source-grounded descriptors keep improving as the unseen label space grows (run 12).
+- **Resolved:** the "descriptor quality" lever is no longer untested. Detail beats class names by
+  +15.2 pp at 16 classes; beyond that, grounding is what carries it.
 
 ## Edge / quantization (run 11 — 27 Jul 2026, local CPU, ORT 1.26, 50 runs, batch 1, 224px)
 
@@ -62,9 +76,22 @@ inference (1290–2536 convert nodes). Dynamic quant instead converts every conv
   INT8 *accuracy* claim needs `--calib-dir` with real crop images.
 
 ## Implications for the paper
-- Headline = **descriptor-driven cross-crop zero-shot on FROZEN compact edge VLMs + efficiency Pareto + abstain**; specialization demoted to a seen-crop booster.
-- Must report **top-5 / abstain-gated** accuracy (fine-grained 17-class top-1 is modest).
+- Headline = **descriptor-driven cross-crop zero-shot on FROZEN compact edge VLMs**, with the
+  scale study as the sharp claim (**only source-grounded descriptors scale**); efficiency Pareto and
+  abstain are support. Specialization is demoted to a seen-crop booster.
+- Must report **top-5 / abstain-gated** accuracy (fine-grained cross-crop top-1 is modest, 17–29 %).
 - Contribution must be *built by us* (descriptor pipeline + family + INT8 + benchmark), not off-the-shelf inference, to clear CompAg review.
 
-## Result JSONs (Kaggle `/kaggle/working/`)
-`phase0_result.json` (runs 2–4) · `phase0_probe_result.json` (run 5) · `phase0_specialize_result.json` (run 6) · `phase0_descriptors_result.json` (run 7, pending). Drop these next to `make_figures.py` to regenerate figures.
+## Result JSONs
+All canonical results now live in `docs/paper/` and are the single source of truth:
+`zeroshot_eval_{A,B,C}.json` · `metrics_abstain_{A,B,C}.json` · `run_all_bakeoff.json` ·
+`probe_seen_C.json` · `run_all_exp3_lw11_full.json` · `supervised_*.json` · `loco_s0_rich.json` ·
+`edge_quant_benchmark.json`.
+
+**Never hand-copy a number out of these.** `make_tables.py --write` regenerates every table in the
+paper and `make_figures.py` reads the same files. Three number-drift incidents (a stale 17-class eval,
+a superseded edge benchmark, and a third hardcoded latency set inside `make_figures.py`) all came from
+transcription. Run both after any new result.
+
+Historical Phase-0 JSONs (`phase0_result.json`, `phase0_probe_result.json`,
+`phase0_specialize_result.json`, `phase0_descriptors_result.json`) back runs 2–7 only.
