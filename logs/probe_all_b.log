@@ -10,3 +10,18 @@
   [MobileCLIP-B] 36,864/69,919  28 img/s  eta 19.8 min
   [MobileCLIP-B] 40,960/69,919  27 img/s  eta 17.6 min
   [MobileCLIP-B] 45,056/69,919  27 img/s  eta 15.1 min
+  [MobileCLIP-B] 49,152/69,919  26 img/s  eta 13.3 min
+  [MobileCLIP-B] 53,248/69,919  27 img/s  eta 10.4 min
+  [MobileCLIP-B] 57,344/69,919  27 img/s  eta 7.7 min
+  [MobileCLIP-B] 61,440/69,919  28 img/s  eta 5.1 min
+  [MobileCLIP-B] 65,536/69,919  28 img/s  eta 2.6 min
+  [MobileCLIP-B] 69,632/69,919  28 img/s  eta 0.2 min
+  [MobileCLIP-B] embedded 69,919
+    exp A:  97 cls / 42,326 imgs  MobileCLIP-B       86.3M  top1 = 79.3%
+    exp B: 154 cls / 62,043 imgs  MobileCLIP-B       86.3M  top1 = 80.9%
+    exp C: 166 cls / 69,919 imgs  MobileCLIP-B       86.3M  top1 = 82.6%
+[probe] saved C:\kaggle\working\results\probe_seen_A.json  (3 models)
+  [B] discarding 4 stale model entries from a different pool (154 cls / None imgs)
+[probe] saved C:\kaggle\working\results\probe_seen_B.json  (1 models)
+[probe] saved C:\kaggle\working\results\probe_seen_C.json  (3 models)
+[probe] the VLM tiers do seen (probe) AND unseen (zero-shot); the CNNs do seen only.
