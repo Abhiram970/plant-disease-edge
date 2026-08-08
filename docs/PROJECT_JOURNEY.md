@@ -229,15 +229,35 @@ top-5 — even where its top-1 does not lead.
 
 ### 4.4 Known crops: the seen head
 
-On the full 166-class seen set the frozen backbone plus a linear probe reaches **82.6 %**, versus
-9.3 % for the same encoder used zero-shot on those classes.
+On the full 166-class seen set the frozen backbone plus a linear probe reaches **82.4 %**, versus
+9.3 % for the same encoder used zero-shot on those classes — a 7.2× gain confirming that supervised
+training, not descriptors, is the right tool for known crops.
 
 ![Hybrid](paper/figures/fig_hybrid.png)
 
-The seen-side scaling curve (configs A/B/C) shows accuracy **rising** as the label space grows —
-79.0 → 80.6 → 82.7 % for S0 — because more crops bring proportionally more training images than
-difficulty. Both encoders measured show the same pattern, and an independent run on a different day
-agrees to ~0.2 pp.
+Running the probe at all three nested scales gives the seen-side counterpart to the descriptor study:
+
+| Config | Seen classes | Seen images | MC2-S0 (11.4 M) | MC-S1 (21.5 M) | MC2-S2 (35.8 M) | MC-B (86.3 M) |
+|---|---|---|---|---|---|---|
+| A | 97 | 42,326 | 78.9 % | 77.7 % | 78.8 % | 79.3 % |
+| B | 154 | 62,043 | 80.7 % | 79.2 % | 80.8 % | 80.9 % |
+| C | 166 | 69,919 | **82.4 %** | 81.1 % | 82.5 % | 82.6 % |
+
+![Seen scaling](paper/figures/fig_seen_scaling.png)
+
+Two things fall out. Accuracy is **flat across a 7.6× parameter range** (≤1.5 pp spread at every
+scale), mirroring the zero-shot result from the opposite direction — the strongest single argument for
+deploying the 11 M tier. And accuracy **rises** with the label space (+3.3 to +3.5 pp for every
+encoder), the *opposite* of the unseen side, because adding crops adds proportionally more training
+images than decision difficulty.
+
+That asymmetry is the real case for the hybrid: on the unseen side more classes make the problem
+harder, on the seen side they make it easier, so each head is deployed exactly where its scaling
+behaviour is favourable.
+
+*Reproducibility:* config C measured twice three weeks apart on independently rebuilt caches agrees to
+**0.15 pp** (S0) and **0.06 pp** (S1); a separate implementation run agrees within 0.2 pp on all four
+encoders. Worth having in a paper that is otherwise single-seed.
 
 ### 4.5 WiSE-FT turns the seen/unseen trade-off into a dial
 
@@ -263,6 +283,17 @@ Naive fine-tuning is catastrophic forgetting made visible: seen rises to 90.3 % 
 We report this plainly: **for a fixed, known label set a CNN is the better classifier.** But none of
 them has an output neuron for an unseen class, so cross-crop accuracy is not merely low — it is
 undefined. That gap is the entire point of the descriptor head.
+
+> **Being straight about this table: it is 3 of 14 planned architectures, and the three are not
+> mutually comparable** — MobileNetV4 trained for 6 epochs against 8 for the others, so part of the
+> 84.1 % vs 88.4 % gap is undertraining rather than architecture. A `tf_efficientnetv2_s` run reached
+> **85.2 % after a single epoch** before being interrupted and lost (the runner restarted interrupted
+> architectures from scratch because it never passed `--resume` — now fixed), so the "best CNN =
+> 88.4 %" figure is probably an underestimate. A full 14-architecture sweep at one protocol is running
+> on Kaggle via `kaggle/cnn_baselines_notebook.py`; §5.8 and `tab_supervised.tex` regenerate from the
+> new JSONs automatically. Expect the gap over the frozen probe to *widen* — that is the honest
+> version of a point the paper already concedes, and it makes structural incapability, not accuracy,
+> the load-bearing argument.
 
 ### 4.7 Leave-one-crop-out: the held crops are not cherry-picked
 
@@ -382,23 +413,28 @@ to hear now than after a desk rejection.
 
 ### Hard blockers — a desk reject without them
 
-| # | Blocker | Who can fix it |
+| # | Blocker | Status |
 |---|---|---|
-| 1 | **No references section.** The draft cites "Menon & Vondrick, 2023", "Wortsman et al.", SAGE inline, but there is **no bibliography at all**. | Needs ~2–3 h |
-| 2 | **Authors and affiliations are a placeholder** — literally `[Abhiram et al. — fill affiliations]`. | **Only you** |
-| 3 | **Wrong format.** `paper.md` is Markdown. CEA requires Elsevier LaTeX (`elsarticle`) or Word. | ~3–4 h |
-| 4 | **Missing mandatory front matter:** Highlights (3–5 bullets ≤85 chars), Declaration of Competing Interests, CRediT author-contribution statement, data-availability statement. | Mostly you |
+| 1 | **References** — there was no bibliography at all | ✅ **done** — `docs/paper/tex/refs.bib` + a References section in `paper.md`. **But 7 entries are flagged `UNVERIFIED`**, including SAGE itself, the dataset the whole paper rests on. Those need checking against the published record. |
+| 2 | **Authors, affiliations, corresponding-author email** | ❌ **only you** — search `ACTION` in `tex/main.tex` |
+| 3 | **Elsevier format** — CEA needs LaTeX or Word, not Markdown | ✅ **done** — `tex/main.tex` in `elsarticle`, tables `\input` from generated files |
+| 4 | **Front matter** — Highlights, competing interests, CRediT, data availability | ✅ **drafted** — CRediT roles still need real names; funding/grant numbers are yours |
 
 ### Should fix, will likely be raised by a reviewer
 
-- **Single seed, no confidence intervals** on the headline claim. Grounded-beats-rich (+4.3 pp) is now
-  the paper's central result and it is one point estimate. Three seeds would settle it.
+- **Single seed, no confidence intervals** on the headline claim. Grounded-beats-rich (+4.3 pp) is the
+  paper's central result and it is one point estimate. This is my main reservation about submitting.
+  Partial mitigation now in §5.5: the seen probe reproduces to 0.15 pp across a three-week gap and to
+  0.2 pp across a separate implementation — but that is stability of *one* measurement, not a CI on
+  the headline.
+- **CNN baseline sweep** — running on Kaggle now (see §4.6). Regenerates into the paper automatically.
 - **18 dead source URLs** in the descriptor registry — an auditability paper should not ship dead
   citations.
 - **Only 16 of 111 quotes are page-verified.** Stated honestly in §7, but a reviewer may push.
 - **No ARM/Raspberry Pi latency row.** The deployment claim is CPU-x86 only, and ARM NEON may well
-  reverse the INT8 finding.
-- **Figures are 160 dpi.** Elsevier wants ≥300 dpi for raster art.
+  reverse the INT8 finding — which would make §5.10 stronger, not weaker.
+- **Figures are 160 dpi.** Elsevier wants ≥300 dpi for raster art (one-line change in
+  `make_figures.py`: `dpi=160` → `dpi=300`).
 
 ### What is genuinely strong
 

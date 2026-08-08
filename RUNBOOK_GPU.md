@@ -11,7 +11,7 @@ Verified complete (result JSONs live in `docs/paper/`, tables regenerate from th
 | Zero-shot scale study A/B/C (4 encoders × 4 descriptor strategies) | `zeroshot_eval_{A,B,C}.json` | done |
 | Top-5 + risk–coverage / AURC, A/B/C (5 encoders × 2 strategies) | `metrics_abstain_{A,B,C}.json` | done |
 | Encoder bake-off incl. BioCLIP2 + SCOLD | `run_all_bakeoff.json` | done |
-| Seen-head linear probe, 166 classes, 4 encoders | `probe_seen_C.json` | done |
+| Seen-head linear probe, 4 encoders × 3 nested configs | `probe_seen_{A,B,C}.json` | done |
 | WiSE-FT α sweep, full data (166 seen cls, 55,981 imgs) | `run_all_exp3_lw11_full.json` | done |
 | Supervised CNN baselines ×3 (ResNet-50, MNv3-S, MNv4-conv-S) | `supervised_*.json` | done |
 | Leave-one-crop-out + bootstrap CIs | `loco_s0_rich.json` | done |
@@ -21,22 +21,37 @@ Verified complete (result JSONs live in `docs/paper/`, tables regenerate from th
 
 ## Priority order if you have GPU time
 
-### 1. `probe_seen` for scales A and B  (~25 min, highest value)
-The only *asymmetry* in the paper: zero-shot is measured at three scales, the seen head at one.
-Filling this gives a seen-side scaling curve to sit beside Fig. `fig_descriptor_scaling.png`, and
-answers a reviewer question that is very likely to be asked ("does the probe also flatten?").
+### 1. ~~`probe_seen` for scales A and B~~ — **DONE**
+All four encoders at all three scales, from one data snapshot (§5.5, `fig_seen_scaling.png`).
+
+Use **`scripts/probe_seen_all.py`**, not `probe_seen.py`, for any re-run. It embeds the config-C pool
+once per encoder and derives A and B by subsetting, instead of re-encoding the same images three
+times, and it caches embeddings so an interrupted run resumes. It also records `seen_images`, without
+which two runs of the same `--exp` on different days are silently incomparable — the class list is
+derived from whatever SAGE shards are on disk, and that bit us once.
 
 ```bash
-python scripts/probe_seen.py --exp A
-python scripts/probe_seen.py --exp B
+python scripts/probe_seen_all.py                    # all encoders, all configs
+python scripts/probe_seen_all.py --models b --workers 0   # one encoder; see the throughput note
 ```
 
-(Defaults match the run that produced `probe_seen_C.json` — all four deployable encoders. Add
-`--models ...` / `--epochs N` only if you want to deviate.)
+> **Throughput note, learned the hard way.** `--workers 6` roughly quadruples speed on the small
+> encoders but *stalls outright* on MobileCLIP-B (86 M) — pinned prefetch buffers plus a large model
+> exceed what the laptop sustains. Use `--workers 0` there (39 img/s, perfectly fine). A second GPU
+> job on the same machine produces an identical-looking stall, so check `Get-Process python` before
+> concluding it is a code problem.
 
-Then copy `probe_seen_{A,B}.json` into `docs/paper/` and re-run `make_tables.py --write`. Note that
-`table_seen()` in `make_tables.py` currently reads **only** `probe_seen_C.json`; extend it to loop
-over A/B/C once those files exist.
+### 1b. Supervised CNN sweep — **RUNNING ON KAGGLE**
+The baseline table is 3 of 14 architectures and the three are not mutually comparable (MobileNetV4
+trained 6 epochs vs 8). Use `kaggle/cnn_baselines_notebook.py`, which runs all 14 at one protocol.
+Locally the equivalent is:
+
+```bash
+python scripts/run_cnn_baselines.py --epochs 8 --batch 128 --workers 4 --force
+```
+
+`--resume` is now passed automatically; without it an interrupted architecture restarted from epoch 0,
+which is how a `tf_efficientnetv2_s` run was lost at 85.2 %.
 
 ### 2. Multi-seed for the headline table  (~2–3 h)
 Currently a single seed with no variance estimate anywhere except the LOCO bootstrap. Three seeds on

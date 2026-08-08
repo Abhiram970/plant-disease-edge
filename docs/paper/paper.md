@@ -286,7 +286,8 @@ implementation agreed to within 0.2 pp on all four encoders.
 
 ### 5.6 WiSE-FT tunes the seen↔unseen trade-off (Fig. `fig_wiseft.png`)
 
-Full data: MobileCLIP2-S0, 55,981 seen images, 166 seen classes, the same 3 held-out crops / 17 classes
+Full data: MobileCLIP2-S0, 55,981 seen training images (the 80 % train split of the 69,919-image
+config-C seen pool in §3.1), 166 seen classes, the same 3 held-out crops / 17 classes
 and the same `rich` descriptors as §5.2, 5 fine-tune epochs (loss 2.02 → 0.24). *Note: the α = 0 unseen
 value (17.0 %) is lower than §5.2's 27.0 % for the same encoder, strategy and class list — the 10-crop
 configuration streams more SAGE shards, so the held-out **image** set is larger and harder than the
@@ -570,7 +571,7 @@ come from this release, so it must be cited correctly.]
 - [ ] Replace the 18 dead source URLs (concentrated in extension.psu.edu, cropprotectionnetwork.org,
       grapes.extension.org).
 - [x] ~~Fuller SAGE pull incl. Tomato and Grape~~ — **done**: configuration C trains on 10 crops /
-      166 classes / 55,981 images, including Tomato and Grape.
+      166 classes / 69,919 images, including Tomato and Grape.
 - [x] ~~`probe_seen_A` and `probe_seen_B`~~ — **done**: all four encoders at all three scales from one
       data snapshot (§5.5, `fig_seen_scaling.png`).
 - [ ] **Supervised CNN sweep** — 3 of 14 architectures done, and the three are not mutually comparable

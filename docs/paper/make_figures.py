@@ -18,6 +18,10 @@ import matplotlib.pyplot as plt
 HERE = Path(__file__).resolve().parent
 FIG = HERE / "figures"
 FIG.mkdir(parents=True, exist_ok=True)
+
+# Elsevier requires >=300 dpi for raster artwork; 160 was fine for screen review but would be
+# queried at submission.
+DPI = 300
 CHANCE = 0.0588  # 1/17 held-out classes
 
 # ---- Phase-0 probe: frozen pretrained image-text models, held-out zero-shot (17 classes) ----
@@ -125,7 +129,7 @@ def fig_efficiency_curve():
     ax.set_title("Accuracy is nearly flat from 11M to 300M parameters")
     ax.legend(fontsize=7, loc="lower right")
     ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_efficiency_curve.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_efficiency_curve.png", dpi=DPI); plt.close(fig)
 
 
 def fig_arch_comparison():
@@ -139,7 +143,7 @@ def fig_arch_comparison():
     ax.set_ylabel("cross-crop zero-shot accuracy")
     ax.set_title("Pretrained alignment, not model size, is what matters")
     ax.set_ylim(0, 0.30)
-    fig.tight_layout(); fig.savefig(FIG / "fig_arch_comparison.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_arch_comparison.png", dpi=DPI); plt.close(fig)
 
 
 def fig_specialization_forgetting():
@@ -150,7 +154,7 @@ def fig_specialization_forgetting():
     ax.set_xlabel("epoch"); ax.set_ylabel("held-out zero-shot accuracy")
     ax.set_title("Specializing on seen crops degrades unseen-crop zero-shot")
     ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_specialization_forgetting.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_specialization_forgetting.png", dpi=DPI); plt.close(fig)
 
 
 def fig_descriptors():
@@ -178,7 +182,7 @@ def fig_descriptors():
     ax.set_ylabel("cross-crop zero-shot accuracy")
     ax.set_title("Descriptor quality: bare vs crude vs source-grounded-style")
     ax.legend(fontsize=8)
-    fig.tight_layout(); fig.savefig(FIG / "fig_descriptors.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_descriptors.png", dpi=DPI); plt.close(fig)
 
 
 def fig_bakeoff():
@@ -195,7 +199,7 @@ def fig_bakeoff():
     ax.set_xlabel("rich-descriptor zero-shot accuracy (held-out crops)")
     ax.set_title("Encoder bake-off (17 cls): SigLIP2 best; lightweight 22-29%; BioCLIP2 poor")
     ax.legend(fontsize=8)
-    fig.tight_layout(); fig.savefig(FIG / "fig_bakeoff.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_bakeoff.png", dpi=DPI); plt.close(fig)
 
 
 def fig_hybrid():
@@ -210,7 +214,7 @@ def fig_hybrid():
     ax.set_ylim(0, 0.8)
     ax.set_title(f"Hybrid (11M MobileCLIP2-S0): train for seen ({HYBRID_N[0]} cls), "
                  f"zero-shot for unseen ({HYBRID_N[1]} cls)", fontsize=10)
-    fig.tight_layout(); fig.savefig(FIG / "fig_hybrid.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_hybrid.png", dpi=DPI); plt.close(fig)
 
 
 def fig_wiseft():
@@ -232,7 +236,7 @@ def fig_wiseft():
     ax.set_title(f"Fine-tuning trades unseen zero-shot for seen accuracy\n"
                  f"({WISEFT_N[0]} seen / {WISEFT_N[1]} unseen classes)", fontsize=10)
     ax.legend(fontsize=8, loc="center right"); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_wiseft.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_wiseft.png", dpi=DPI); plt.close(fig)
 
 
 STRATEGIES = ["bare", "crude", "rich", "grounded"]
@@ -264,7 +268,7 @@ def fig_descriptor_ablation():
     fig.suptitle("Descriptor detail is the lever — but the winning strategy flips with scale",
                  fontsize=11)
     fig.tight_layout(rect=(0, 0, 1, 0.95))
-    fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=160); plt.close(fig)
+    fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=DPI); plt.close(fig)
 
 
 def fig_descriptor_scaling():
@@ -302,7 +306,7 @@ def fig_descriptor_scaling():
     ax.set_ylim(0, 0.34)
     ax.set_title("Only source-grounded descriptors scale to more unseen crops")
     ax.legend(fontsize=8, loc="lower left"); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=DPI); plt.close(fig)
 
 
 def fig_seen_scaling():
@@ -339,7 +343,7 @@ def fig_seen_scaling():
                     xytext=(6, -3), textcoords="offset points")
     ax.set_title("Known-crop accuracy rises as the seen label space grows", fontsize=11)
     ax.legend(fontsize=8, loc="upper left"); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_seen_scaling.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_seen_scaling.png", dpi=DPI); plt.close(fig)
 
 
 def fig_edge_pareto():
@@ -355,7 +359,7 @@ def fig_edge_pareto():
     ax.set_ylabel("held-out zero-shot accuracy")
     ax.set_title("Real-time Pareto: 11M S0 = 15.8 ms/img (~63 img/s) at ~equal accuracy")
     ax.legend(fontsize=8, loc="lower right"); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=DPI); plt.close(fig)
 
 
 def fig_scaling():
@@ -393,7 +397,7 @@ def fig_scaling():
     ax.set_ylabel("cross-crop zero-shot accuracy (S0, 11M)")
     ax.set_title("Scaling: zero-shot degrades gracefully as held-out classes grow (A→B→C)")
     ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_scaling.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_scaling.png", dpi=DPI); plt.close(fig)
 
 
 def fig_riskcoverage():
@@ -421,7 +425,7 @@ def fig_riskcoverage():
     ax.set_title("Abstain gate (S0, margin confidence): accuracy rises as coverage drops")
     ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
     ax.invert_xaxis()
-    fig.tight_layout(); fig.savefig(FIG / "fig_riskcoverage.png", dpi=160); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig_riskcoverage.png", dpi=DPI); plt.close(fig)
 
 
 def main():
