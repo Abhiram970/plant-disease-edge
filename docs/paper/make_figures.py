@@ -326,9 +326,19 @@ def fig_seen_scaling():
     ax.set_xlabel("number of seen classes  (nested seen pools, A $\\subset$ B $\\subset$ C)")
     ax.set_ylabel("seen top-1 (frozen backbone + linear probe)")
     ax.set_xticks([p["seen_classes"] for _, p in probes])
-    ax.set_ylim(0, 1.0)
-    ax.set_title("Known-crop accuracy degrades only gently as the seen label space grows")
-    ax.legend(fontsize=8, loc="lower left"); ax.grid(True, alpha=0.3)
+    # Zoom to the data. A 0-1 axis renders the real +3.5 pp trend as a flat line.
+    vals = [p["models"][m]["seen_probe_top1"] for _, p in probes for m in p["models"]]
+    lo, hi = min(vals), max(vals)
+    pad = max(0.01, (hi - lo) * 0.35)
+    ax.set_ylim(lo - pad, hi + pad)
+    for i, m in enumerate(models):
+        pts = sorted((p["seen_classes"], p["models"][m]["seen_probe_top1"])
+                     for _, p in probes if m in p["models"])
+        ax.annotate(f"{pts[-1][1]:.1%}", pts[-1], fontsize=8,
+                    color=cmap(0.85 * i / max(1, len(models) - 1)),
+                    xytext=(6, -3), textcoords="offset points")
+    ax.set_title("Known-crop accuracy rises as the seen label space grows", fontsize=11)
+    ax.legend(fontsize=8, loc="upper left"); ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_seen_scaling.png", dpi=160); plt.close(fig)
 
 
