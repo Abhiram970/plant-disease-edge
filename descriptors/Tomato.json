@@ -235,22 +235,25 @@
     "symptom_text": "Southern blight on tomato is characterized by a rapid wilting and collapse of the entire plant, beginning with yellowing and browning of lower leaves. A white, cottony mycelial mat fans out across the soil surface and up the stem at or just below the soil line, often extending several centimeters in all directions. Embedded within this mycelium are small, round sclerotia that initially appear white and then turn tan to dark brown, resembling mustard seeds in size and shape. The stem at the soil line develops a water-soaked, brown to reddish-brown lesion that girdles the plant, causing the cortical tissue to rot and the plant to collapse. The disease is most conspicuous at the crown and basal stem, with the characteristic white mycelial fan and sclerotia being the definitive diagnostic features.",
     "fields": {
       "pathogen": {
-        "value": "Sclerotium rolfsii (teleomorph: Athelia rolfsii)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SouthernBlight.aspx",
-        "verbatim_quote": "Southern blight is caused by Sclerotium rolfsii Sacc. (teleomorph: Athelia rolfsii (Curzi) Tu & Kimbrough)"
+        "value": "Athelia rolfsii (formerly Sclerotium rolfsii)",
+        "source_url": "https://hort.extension.wisc.edu/articles/southern-blight/",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Stem (crown/soil line), roots, fruit",
-        "source_url": "https://extension.uga.edu/publications/detail.html?number=C1117&title=southern-blight",
+        "value": "Lower stems and leaves, crown, roots and fruit",
+        "source_url": "https://hort.extension.wisc.edu/articles/southern-blight/",
         "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "White mycelial mat at soil line with tan to brown sclerotia; water-soaked stem lesion causing plant wilt and collapse",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SouthernBlight.aspx",
-        "verbatim_quote": "The most diagnostic feature of southern blight is the white mycelial mat that develops on the soil surface and lower stem, along with the presence of sclerotia that are initially white and turn tan to dark brown at maturity, resembling mustard seeds."
+        "value": "Water-soaked lesions on lower stems and leaves, wilting, thick white mycelial mats and mustard-seed-sized tan to dark sclerotia",
+        "source_url": "https://hort.extension.wisc.edu/articles/southern-blight/",
+        "verbatim_quote": "Sclerotia (small spherical structures that are about the size of mustard seeds) develop on infected tissue and on the soil surface. Sclerotia range in color from light tan to dark reddish-brown to black"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://hort.extension.wisc.edu/articles/southern-blight/",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Tomato",

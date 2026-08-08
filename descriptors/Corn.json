@@ -189,22 +189,25 @@
     "symptom_text": "Diplodia ear rot of corn is characterized by a white to grayish-white, dense mycelial growth that begins at the base of the ear and progresses upward between the husks and kernels. Infected ears appear bleached or straw-colored, with husks tightly adhering to the ear. Small, black fungal fruiting bodies (pycnidia) are embedded in the husks, cob tissue, and kernel surfaces, appearing as raised black dots visible to the naked eye. Kernels become lightweight, chalky, and shrunken, often with a grayish discoloration. The rot typically initiates at the base of the ear and moves toward the tip, resulting in a characteristic basal rot pattern. Affected ears are often lightweight and may be entirely rotted, with the entire ear covered in white mold under humid conditions.",
     "fields": {
       "pathogen": {
-        "value": "Stenocarpella maydis (formerly Diplodia maydis)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/DiplodiaStenocarpella.aspx",
-        "verbatim_quote": "Diplodia ear rot is caused by Stenocarpella maydis (Berk.) Sutton (formerly Diplodia maydis)."
+        "value": "Stenocarpella maydis and S. macrospora",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Ears, husks, kernels, cob",
-        "source_url": "https://extension.umn.edu/corn-pest-management/diplodia-ear-rot",
-        "verbatim_quote": "Diplodia ear rot infects the ear, including the husks, kernels, and cob tissue."
+        "value": "Ears, husks and kernels",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "White to grayish-white mold growth starting at the base of the ear; bleached, straw-colored husks; small black pycnidia embedded in husk and kernel tissue; lightweight, shrunken, chalky kernels",
-        "source_url": "https://cropprotectionnetwork.org/publications/diplodia-ear-rot-of-corn",
-        "verbatim_quote": "Symptoms include a white to grayish-white mold that begins at the base of the ear and grows between the husks and kernels. Small, black fungal fruiting bodies (pycnidia) can be seen embedded in the husks and kernels. Infected kernels are lightweight, chalky, and may be grayish in color."
+        "value": "White mould starting at the ear base, turning grayish-brown; raised black pycnidia on husk or kernels",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+        "verbatim_quote": "white mold beginning at the base of the ear that eventually becomes grayish-brown and rots the entire ear"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Corn",
@@ -350,22 +353,25 @@
     "symptom_text": "Goss's Wilt of corn causes large, water-soaked to tan or gray-green leaf lesions with wavy, irregular margins that run parallel to the leaf veins, giving the lesions a freckled appearance due to dark green to black water-soaked spots ('freckles') scattered within the tan necrotic tissue. Infected leaves may display bacterial exudate (dried, shiny, crusty deposits) along the lesion margins. Systemic infection leads to wilting and death of the entire plant, with vascular discoloration visible when stalks are split. Lesions are distributed across the leaf blade and can coalesce to kill large portions of the canopy.",
     "fields": {
       "pathogen": {
-        "value": "Clavibacter michiganensis subsp. nebraskensis",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-77-W.pdf",
-        "verbatim_quote": "Goss's wilt is caused by the bacterium Clavibacter michiganensis subsp. nebraskensis."
+        "value": "Clavibacter nebraskensis",
+        "source_url": "https://cropprotectionnetwork.org/publications/an-overview-of-gosss-bacterial-wilt-and-blight",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, stalks, vascular tissue",
-        "source_url": "https://cropprotectionnetwork.org/resources/articles/diseases/goss-wilt-of-corn",
-        "verbatim_quote": "Goss's wilt can affect leaves and cause systemic infection of the stalk and vascular tissue."
+        "value": "Leaves, with systemic infection of the stalk",
+        "source_url": "https://cropprotectionnetwork.org/publications/an-overview-of-gosss-bacterial-wilt-and-blight",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Large tan to gray-green leaf lesions with wavy margins, dark green water-soaked 'freckles' within lesions, bacterial exudate (dried shiny deposits) on leaf surface, wilting of entire plant in systemic infections",
-        "source_url": "https://cropprotectionnetwork.org/resources/articles/diseases/goss-wilt-of-corn",
-        "verbatim_quote": "Leaf blight symptoms appear as large, tan to gray-green lesions with wavy, irregular margins. Within these lesions, dark green to black water-soaked spots called 'freckles' are often visible. Bacterial exudate, which appears as dried, shiny, crusty deposits on the leaf surface, is a distinguishing characteristic of Goss's wilt."
+        "value": "Elongated tan to grayish-brown lesions with wavy margins along the veins, carrying diagnostic dark water-soaked 'freckles' that appear translucent when backlit",
+        "source_url": "https://cropprotectionnetwork.org/publications/an-overview-of-gosss-bacterial-wilt-and-blight",
+        "verbatim_quote": "Dark green to black, scattered, discontinuous water-soaked spots (\"freckles\") develop within the plant tissue inside the lesions and are diagnostic for Goss's wilt"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/publications/an-overview-of-gosss-bacterial-wilt-and-blight",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Corn",
@@ -741,22 +747,25 @@
     "symptom_text": "Stewart's disease of corn, caused by the bacterium Pantoea stewartii, produces two distinct phases of symptoms. During the seedling (wilt) phase, young plants exhibit rapid wilting and death, with leaves showing pale green to yellow streaks that run parallel to the leaf veins. In the leaf blight phase, which occurs on older plants, irregular, water-soaked lesions with wavy or irregular margins develop on the leaves, turning pale green to yellow and then tan or brown as they dry out. These elongated, straw-colored streaks with wavy, irregular margins are distributed along the length of the leaf blade and have a characteristic 'scorched' appearance. Infected vascular tissue may appear discolored when stalks are cut, and in susceptible sweet corn hybrids, the pathogen can cause systemic infection leading to stunting and poor ear development.",
     "fields": {
       "pathogen": {
-        "value": "Pantoea stewartii subsp. stewartii",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/StewartWilt.aspx",
-        "verbatim_quote": "Stewart's wilt and leaf blight of corn is caused by the bacterium Pantoea stewartii subsp. stewartii"
+        "value": "Pantoea stewartii",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/stewarts-disease-of-corn",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, vascular system, stalks, seedlings",
-        "source_url": "https://extension.psu.edu/stewarts-wilt-and-leaf-blight-of-corn",
-        "verbatim_quote": "The bacterium infects corn through the feeding wounds of the corn flea beetle and spreads systemically through the vascular system, affecting leaves and causing wilting of the entire plant"
+        "value": "Leaves, spreading from flea beetle feeding scars",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/stewarts-disease-of-corn",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Pale green to yellow streaks with irregular, wavy margins running parallel to leaf veins; water-soaked lesions that turn tan to brown; wilting in seedlings",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/StewartWilt.aspx",
-        "verbatim_quote": "Leaf blight symptoms appear as long, pale green to yellow streaks with irregular or wavy margins on the leaves of older plants"
+        "value": "Pale green to yellow streaks spreading from flea beetle scars, browning as tissue dies, with wavy margins following the veins",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/stewarts-disease-of-corn",
+        "verbatim_quote": "Stewart's disease lesions spread from flea beetle feeding scars (a tiny scratch on the leaf) and are initially pale green to yellow streaks, later becoming brown as tissue dies. The margins of the streaks are usually wavy but generally follow leaf veins."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/encyclopedia/stewarts-disease-of-corn",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Corn",
@@ -765,21 +774,24 @@
     "fields": {
       "pathogen": {
         "value": "Phyllachora maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TarSpotCorn.aspx",
-        "verbatim_quote": "Tar spot is caused by the fungal pathogen Phyllachora maydis."
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/tar-spot-of-corn",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, leaf sheaths, husks",
-        "source_url": "https://extension.purdue.edu/fieldcropsipm/diseases/corn-tar-spot.php",
-        "verbatim_quote": "Tar spot affects leaves, leaf sheaths, and husks of corn plants."
+        "value": "Leaves (upper and lower surfaces)",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/tar-spot-of-corn",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Small, raised, black, oval to circular stromata on leaf surfaces that cannot be rubbed off; tan to brown necrotic halos ('fisheye lesions') may surround stromata in severe cases",
-        "source_url": "https://extension.purdue.edu/fieldcropsipm/diseases/corn-tar-spot.php",
-        "verbatim_quote": "Tar spot is characterized by small, raised, black, oval to circular spots (stromata) on the upper and lower leaf surfaces that cannot be rubbed off. In some cases, the stromata are surrounded by tan to brown necrotic halos, giving a 'fisheye' appearance."
+        "value": "Small raised black stromata scattered over both leaf surfaces; tan-to-brown 'fisheye' lesions with dark borders may surround them",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/tar-spot-of-corn",
+        "verbatim_quote": "Tar spot appears as small, raised, black spots scattered across the upper and lower leaf surfaces."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/encyclopedia/tar-spot-of-corn",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Corn",

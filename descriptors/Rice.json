@@ -51,22 +51,25 @@
     "symptom_text": "Rice brown spot, caused by the fungus Bipolaris oryzae, primarily affects the leaves, leaf sheaths, and glumes of rice plants. On leaves, symptoms appear as small, circular to oval lesions that are initially dark brown to purple-brown in color, often surrounded by a yellow halo. As lesions mature, they develop a light brown to gray center with a distinct dark brown border, giving them a characteristic 'eye-spot' appearance. Lesions range from 0.5 to 2 cm in length and may coalesce under severe infection, causing large areas of leaf tissue to die. On glumes and panicles, dark brown to black discoloration occurs, leading to grain discoloration and reduced grain quality. The disease is distributed across the entire leaf surface and can affect plants at all growth stages, with seedlings and older plants showing the most severe symptoms.",
     "fields": {
       "pathogen": {
-        "value": "Bipolaris oryzae (Breda de Haan) Shoemaker (syn. Helminthosporium oryzae)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBrownSpot.aspx",
-        "verbatim_quote": "Brown spot of rice is caused by the fungus Bipolaris oryzae (Breda de Haan) Shoemaker (synonyms: Helminthosporium oryzae Breda de Haan, Drechslera oryzae (Breda de Haan) Subram. & Jain)."
+        "value": "Helminthosporium oryzae",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, leaf sheaths, glumes, grains",
-        "source_url": "https://www.knowledgebank.irri.org/training/fact-sheets/pest-management/diseases/item/brown-spot",
-        "verbatim_quote": "It can infect coleoptile, leaves, leaf sheath, panicle branches, glumes, and spikelets."
+        "value": "Leaves",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Circular to oval lesions with dark brown borders and gray-white centers on leaves; dark brown to black discoloration on glumes",
-        "source_url": "https://www.knowledgebank.irri.org/training/fact-sheets/pest-management/diseases/item/brown-spot",
-        "verbatim_quote": "Lesions are circular to oval with a light brown to gray center and a dark brown margin, often surrounded by a yellow halo."
+        "value": "Minute brown dots enlarging to oval-to-circular sesame-seed-like spots 0.5-2.0 mm across that coalesce into large patches",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
+        "verbatim_quote": "The disease appears first as minute brown dots, later becoming cylindrical or oval to circular.(resemble sesame seed)"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Rice",
@@ -236,21 +239,24 @@
     "fields": {
       "pathogen": {
         "value": "Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)",
-        "source_url": "https://www.cabi.org/isc/datasheet/56942",
-        "verbatim_quote": "Rice tungro disease (RTD) is caused by two viruses: Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)."
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
+        "value": "Leaves",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
         "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Yellow-orange leaf discoloration, stunting, reduced tillering, interveinal chlorosis with orange-yellow mottling and streaks",
-        "source_url": "https://www.irri.org/rice-doctor/rice-tungro-disease",
-        "verbatim_quote": "Infected plants are stunted and produce fewer tillers. Leaves are yellow to orange-yellow in color, and may have rust-colored spots or streaks."
+        "value": "Yellow to orange-yellow leaves with rust-coloured spots, discolouring from the leaf tip downward",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+        "verbatim_quote": "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Rice",
@@ -282,20 +288,23 @@
     "fields": {
       "pathogen": {
         "value": "Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)",
-        "source_url": "https://www.cabi.org/isc/datasheet/56942",
-        "verbatim_quote": "Rice tungro disease (RTD) is caused by two viruses: Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)."
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, stems (overall plant growth and tillering)",
-        "source_url": "https://www.irri.org/rice-tungro-disease",
+        "value": "Leaves",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
         "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Yellow-orange leaf discoloration starting from leaf tips, stunting, reduced tillering, interveinal chlorosis, and rust-colored streaks or spots on leaves",
-        "source_url": "https://www.cabi.org/isc/datasheet/56942",
-        "verbatim_quote": "Infected plants are stunted and leaves show yellow or orange-yellow discolouration, which may be accompanied by interveinal chlorosis, mottling or rust-coloured spots and streaks."
+        "value": "Yellow to orange-yellow leaves with rust-coloured spots, discolouring from the leaf tip downward",
+        "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+        "verbatim_quote": "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+    "verified_date": "2026-08-08"
   }
 ]

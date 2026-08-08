@@ -29,21 +29,24 @@
     "fields": {
       "pathogen": {
         "value": "Guignardia bidwellii",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrapeBlackRot.aspx",
-        "verbatim_quote": "Black rot of grape is caused by the ascomycetous fungus Guignardia bidwellii (Ellis) Viala & Ravaz."
+        "source_url": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, shoots, tendrils, petioles, berries",
-        "source_url": "https://extension.psu.edu/black-rot-of-grapes",
-        "verbatim_quote": "Black rot can infect all green parts of the vine including leaves, shoots, petioles, tendrils, rachises, and berries."
+        "value": "Leaves, shoots and fruit",
+        "source_url": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Circular tan lesions with dark borders on leaves containing black pycnidia; dark cankers on shoots; berries turn brown then shrivel into black mummies covered with pycnidia",
-        "source_url": "https://extension.psu.edu/black-rot-of-grapes",
-        "verbatim_quote": "Leaf lesions are circular, tan to brown, and have a dark brown to black border. Small, black pycnidia (fruiting bodies) form within the lesions. Infected berries first appear light brown, then turn dark brown to black, and eventually shrivel into hard, black mummies."
+        "value": "Small yellow leaf spots enlarging to lesions with dark brownish-red borders and tan to dark brown centres, ringed with black pycnidia",
+        "source_url": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
+        "verbatim_quote": "Symptoms of black rot first appear as small yellow spots on leaves. Enlarged spots (lesions) have a dark brownish-red border with tan to dark brown centers."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Grape",
@@ -75,21 +78,24 @@
     "fields": {
       "pathogen": {
         "value": "Plasmopara viticola",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/GrapeDownyMildew.aspx",
-        "verbatim_quote": "Downy mildew of grape is caused by Plasmopara viticola, an oomycete pathogen that is not a true fungus."
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, shoots, tendrils, petioles, flowers, and berries",
-        "source_url": "https://grapes.extension.org/grape-downy-mildew/",
-        "verbatim_quote": "All green parts of the vine are susceptible to infection, including leaves, shoots, tendrils, petioles, flowers, and berries."
+        "value": "Leaves",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Yellow oily spots on upper leaf surface; white downy sporulation on lower leaf surface; infected berries turn grayish and shrivel",
-        "source_url": "https://www.canr.msu.edu/grapes/uploads/files/Downy-Mildew-of-Grape.pdf",
-        "verbatim_quote": "On the upper surface of leaves, symptoms first appear as pale yellow, oily or water-soaked spots. Under humid conditions, a white downy growth (sporangiophores and sporangia) appears on the lower surface of leaves directly below the oily spots."
+        "value": "Irregular yellowish translucent spots on the upper leaf surface with white powdery growth beneath; leaves yellow, brown and dry",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+        "verbatim_quote": "Irregular, yellowish, translucent sports on the upper surface of the leaves. Correspondingly on the lower surface, white, powdery growth on leaves."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Grape",
@@ -121,21 +127,24 @@
     "fields": {
       "pathogen": {
         "value": "Botrytis cinerea",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BotrytisGrape.aspx",
-        "verbatim_quote": "Gray mold of grape is caused by the fungus Botrytis cinerea Pers.:Fr. (teleomorph: Botryotinia fuckeliana (de Bary) Whetzel)."
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Berries, clusters, rachis, shoots, leaves, flowers",
-        "source_url": "https://grapes.extension.org/grape-botrytis-bunch-rot/",
-        "verbatim_quote": "Botrytis can infect all green tissues of the grapevine including leaves, shoots, flowers, and fruit."
+        "value": "Berries and clusters",
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Gray to brown fuzzy sporulating masses on berries; water-soaked brown lesions expanding to cover berry surface; infected clusters show browning and collapse of berries covered with gray powdery spore masses",
-        "source_url": "https://www.canr.msu.edu/grapes/uploads/files/Botrytis%20bunch%20rot%20of%20grapes.pdf",
-        "verbatim_quote": "Infected berries turn brown and soft, and under moist conditions, the characteristic gray sporulation of the fungus covers the surface of infected berries and clusters."
+        "value": "Infected berries brown (white cultivars) or redden (red/black cultivars), developing a gray velvety mould",
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+        "verbatim_quote": "At veraison, individually infected berries in a cluster turn brown on white cultivars or reddish in red and black cultivars...resulting in the characteristic gray, velvety appearance of infected berries."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Grape",
@@ -212,21 +221,24 @@
     "symptom_text": "Grape powdery mildew presents as white to grayish-white, powdery or dusty fungal colonies that form on the surfaces of leaves, shoots, tendrils, and berry clusters. On leaves, the superficial mycelium appears as irregular, pale-yellow to white patches on the upper surface, often accompanied by a corresponding chlorotic or necrotic area on the lower surface. Infected young berries develop a characteristic webbing of white mycelium over their surface; as berries enlarge, the skin may crack or split, exposing seeds, and infected tissue turns brown to russet. Shoot tips and rachises may also be covered with the white powdery growth, and severely infected clusters can exhibit stunted, distorted berries with a rough, russeted texture distributed throughout the cluster.",
     "fields": {
       "pathogen": {
-        "value": "Erysiphe necator (syn. Uncinula necator)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrapePowderyMildew.aspx",
-        "verbatim_quote": "Powdery mildew of grape is caused by the fungus Erysiphe necator Schwein. (synonym Uncinula necator (Schwein.) Burrill)."
+        "value": "Uncinula necator",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, shoots, tendrils, rachises, and berries",
-        "source_url": "https://grapes.extension.org/grape-powdery-mildew/",
+        "value": "Leaves",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
         "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "White to grayish-white powdery mycelial growth on leaves, shoots, and berries; infected berries may crack and turn brown; chlorotic patches on leaf surfaces",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrapePowderyMildew.aspx",
-        "verbatim_quote": "Infected tissues are covered with a white to gray powdery growth of mycelium and conidia. Infected berries may crack open, exposing the seeds, and the skin and flesh turn brown."
+        "value": "Powdery growth mainly on the upper leaf surface, with malformation and discolouration of affected leaves",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+        "verbatim_quote": "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration of affected leaves."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+    "verified_date": "2026-08-08"
   }
 ]

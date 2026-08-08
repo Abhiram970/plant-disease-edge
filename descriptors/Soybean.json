@@ -120,22 +120,25 @@
     "symptom_text": "Brown stem rot of soybean, caused by Cadophora gregata, produces a distinctive internal browning of the stem pith that is the hallmark of the disease. Externally, infected plants may appear healthy early in the season, but as the disease progresses, interveinal chlorosis develops on the leaves, turning the tissue between the leaf veins yellow while the veins themselves remain green, eventually leading to necrosis and premature defoliation. When the stem is split longitudinally, the pith reveals a characteristic brown discoloration that may extend through multiple internodes, contrasting sharply with the white, healthy pith of unaffected plants. Root systems may also show browning and decay. Symptoms are most pronounced during reproductive stages and are often confused with sudden death syndrome, though brown stem rot's internal pith browning distinguishes it.",
     "fields": {
       "pathogen": {
-        "value": "Cadophora gregata (formerly Phialophora gregata)",
-        "source_url": "https://www.extension.iastate.edu/smallfarms/brown-stem-rot-soybeans",
+        "value": "Cadophora gregata",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
         "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
+        "value": "Leaves; internal stem vascular tissue and pith, especially at nodes and in the lower stem",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
         "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Interveinal chlorosis and necrosis followed by leaf curling and death; internal browning of stem pith while the stem looks healthy outside",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
+        "verbatim_quote": "Characteristic foliar symptoms of BSR include chlorosis and necrosis between leaf veins, followed by leaf curling and leaf death."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Soybean",

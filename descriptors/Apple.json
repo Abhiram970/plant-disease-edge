@@ -190,21 +190,24 @@
     "fields": {
       "pathogen": {
         "value": "Podosphaera leucotricha",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/ApplePowderyMildew.aspx",
-        "verbatim_quote": "Apple powdery mildew is caused by Podosphaera leucotricha (Ellis & Everh.) E.S. Salmon."
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, shoots, blossoms, fruit",
-        "source_url": "https://extension.psu.edu/apple-powdery-mildew",
-        "verbatim_quote": "Powdery mildew can infect leaves, shoots, blossoms, and fruit of apple."
+        "value": "Leaves, twigs and fruit buds",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+        "verbatim_quote": "Twigs are also infected."
       },
       "visual_symptoms": {
-        "value": "White powdery mycelial growth on leaves and shoots; infected leaves narrow, pale, and distorted; russeting on fruit surface",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/ApplePowderyMildew.aspx",
-        "verbatim_quote": "Infected leaves are narrow, pale green to white, and covered with a white powdery growth. Infected shoots are stunted and covered with white mycelium. Infected fruit may show a netlike russeting on the skin."
+        "value": "Small patches of white powdery growth on the upper leaf surface, on both surfaces when severe; affected leaves fall",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+        "verbatim_quote": "Small patches of white powdery growth appear on upper side of leaves."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Apple",

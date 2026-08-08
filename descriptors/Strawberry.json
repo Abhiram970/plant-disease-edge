@@ -5,22 +5,25 @@
     "symptom_text": "Anthracnose of strawberry causes dark, water-soaked, sunken lesions on ripe and unripe fruit that rapidly expand and turn brown to black, often with salmon-pink to orange masses of spores (acervuli) visible at the center of lesions under moist conditions. On runners and petioles, elongated, dark brown to black, slightly sunken cankers develop, while crown infections result in a firm, reddish-brown to dark brown internal discoloration that can collapse the entire plant. Leaf spots appear as small, irregular, dark brown to black lesions. Lesions on fruit are typically circular, sharply delimited, and may cover large portions of the berry surface, giving affected fruit a mummified appearance.",
     "fields": {
       "pathogen": {
-        "value": "Colletotrichum acutatum, Colletotrichum gloeosporioides, Colletotrichum fragariae",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryAnthracnose.aspx",
-        "verbatim_quote": "Anthracnose of strawberry is caused by three species of Colletotrichum: C. acutatum, C. gloeosporioides, and C. fragariae."
+        "value": "Colletotrichum acutatum",
+        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Fruit, crown, runners, petioles, leaves",
-        "source_url": "https://extension.umd.edu/resource/strawberry-anthracnose",
-        "verbatim_quote": "Anthracnose can affect all above-ground parts of the strawberry plant including fruit, crowns, petioles, runners, and leaves."
+        "value": "Petioles, runners, crown and fruit",
+        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Dark, water-soaked, sunken lesions on fruit turning brown to black; salmon-pink spore masses under moist conditions; dark sunken cankers on runners and petioles; reddish-brown crown discoloration",
-        "source_url": "https://www.canr.msu.edu/resources/anthracnose_fruit_rot_of_strawberry",
-        "verbatim_quote": "Infected fruit develop dark, water-soaked lesions that become sunken and turn brown to black. Under moist conditions, salmon-colored masses of spores are produced in the center of lesions."
+        "value": "Dark brown to black sunken lens-shaped spots on petioles and runners; salmon or orange spore masses form on lesions",
+        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+        "verbatim_quote": "salmon or orange-colored spores can form on the lesions of the fruit, petioles, and runners"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Strawberry",

@@ -28,22 +28,25 @@
     "symptom_text": "Fusarium head blight (scab) caused by Fusarium graminearum manifests on wheat spikes as premature bleaching of individual spikelets or entire heads, with affected spikelets turning a tan to straw color in sharp contrast to the green or golden healthy tissue surrounding them. The bleached spikelets often display a water-soaked appearance at early infection stages, and salmon-pink to orange fungal sporodochia (masses of conidia) may be visible at the base of infected glumes under moist conditions. Infected kernels are shrunken, lightweight, and chalky-white to pink in color—commonly called 'tombstone' kernels—and may be covered with a pinkish mold. Symptoms typically begin at the middle of the spike and spread upward and downward, with the rachis node below the infected spikelet often showing a dark-brown discoloration that can girdle and kill the tissue above it.",
     "fields": {
       "pathogen": {
-        "value": "Fusarium graminearum Schwabe (teleomorph: Gibberella zeae)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/FusariumHeadBlight.aspx",
-        "verbatim_quote": "Fusarium head blight (FHB), also known as scab, is caused primarily by Fusarium graminearum Schwabe [teleomorph: Gibberella zeae (Schwein.) Petch]."
+        "value": "Fusarium graminearum",
+        "source_url": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+        "verbatim_quote": "In wheat, Fusarium infects the head (hence the name 'Fusarium head blight')"
       },
       "affected_organs": {
-        "value": "Spikes (heads), spikelets, glumes, rachis, kernels",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-31-W.pdf",
-        "verbatim_quote": "The fungus infects the spikes, causing bleaching of spikelets, and can also infect the rachis, glumes, and kernels."
+        "value": "Wheat head/spike and kernels",
+        "source_url": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+        "verbatim_quote": "kernels to shrivel up and become chalky white"
       },
       "visual_symptoms": {
-        "value": "Premature bleaching of spikelets; salmon-pink sporodochia at glume bases; shrunken, chalky-pink 'tombstone' kernels; brown rachis discoloration",
-        "source_url": "https://www.cabi.org/isc/datasheet/24886",
-        "verbatim_quote": "Infected spikelets are bleached prematurely and under moist conditions, salmon-pink sporodochia may be seen at the base of the glumes. Infected grain is shrunken and chalky-white, often referred to as 'tombstone' kernels."
+        "value": "Bright pink/orange sporulation on the spike; bleached, shrivelled chalky-white kernels",
+        "source_url": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+        "verbatim_quote": "Macroconidia are produced in sporodochia, which gives the spike a bright pink or orange color."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://en.wikipedia.org/wiki/Fusarium_ear_blight",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Wheat",
