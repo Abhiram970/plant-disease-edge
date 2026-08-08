@@ -305,6 +305,33 @@ def fig_descriptor_scaling():
     fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=160); plt.close(fig)
 
 
+def fig_seen_scaling():
+    """Seen-side counterpart to fig_descriptor_scaling: does the probe flatten as classes grow?"""
+    probes = [(e, _load(f"probe_seen_{e}.json")) for e in "ABC"]
+    probes = [(e, p) for e, p in probes if p]
+    if len(probes) < 2:
+        return
+    def params_of(m):
+        return next(p["models"][m]["img_params_M"] for _, p in probes if m in p["models"])
+
+    models = sorted({m for _, p in probes for m in p["models"]}, key=params_of)
+    fig, ax = plt.subplots(figsize=(6.6, 4.3))
+    cmap = plt.get_cmap("viridis")
+    for i, m in enumerate(models):
+        pts = sorted((p["seen_classes"], p["models"][m]["seen_probe_top1"])
+                     for _, p in probes if m in p["models"])
+        ax.plot([x for x, _ in pts], [y for _, y in pts], marker="o",
+                color=cmap(0.85 * i / max(1, len(models) - 1)), lw=2,
+                label=f"{_short(m)} ({params_of(m):.0f}M)")
+    ax.set_xlabel("number of seen classes  (nested seen pools, A $\\subset$ B $\\subset$ C)")
+    ax.set_ylabel("seen top-1 (frozen backbone + linear probe)")
+    ax.set_xticks([p["seen_classes"] for _, p in probes])
+    ax.set_ylim(0, 1.0)
+    ax.set_title("Known-crop accuracy degrades only gently as the seen label space grows")
+    ax.legend(fontsize=8, loc="lower left"); ax.grid(True, alpha=0.3)
+    fig.tight_layout(); fig.savefig(FIG / "fig_seen_scaling.png", dpi=160); plt.close(fig)
+
+
 def fig_edge_pareto():
     """Accuracy vs on-device latency; point size = params, label = INT8 size. S0 is the sweet spot."""
     fig, ax = plt.subplots(figsize=(6.8, 4.5))
@@ -396,6 +423,7 @@ def main():
     fig_wiseft()
     fig_descriptor_ablation()
     fig_descriptor_scaling()
+    fig_seen_scaling()
     fig_edge_pareto()
     try:
         fig_riskcoverage()

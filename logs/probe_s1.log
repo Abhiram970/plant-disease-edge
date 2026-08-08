@@ -1,0 +1,15 @@
+﻿[sage] 86,199 imgs already on disk for ['Corn', 'Soybean', 'Tomato', 'Apple', 'Grape', 'Potato', 'Rice', 'Sugarcane', 'Rose', 'Strawberry'] -> skip download.
+[pool] 69,919 seen images over 10 crops, 166 classes  (device=cuda)
+  [MobileCLIP-S1] resuming at 36,864/69,919
+  [MobileCLIP-S1] 45,056/69,919  24 img/s  eta 17.5 min
+  [MobileCLIP-S1] 53,248/69,919  23 img/s  eta 11.9 min
+  [MobileCLIP-S1] 61,440/69,919  27 img/s  eta 5.3 min
+  [MobileCLIP-S1] 69,632/69,919  29 img/s  eta 0.2 min
+  [MobileCLIP-S1] embedded 69,919
+    exp A:  97 cls / 42,326 imgs  MobileCLIP-S1      21.5M  top1 = 77.6%
+    exp B: 154 cls / 62,043 imgs  MobileCLIP-S1      21.5M  top1 = 79.4%
+    exp C: 166 cls / 69,919 imgs  MobileCLIP-S1      21.5M  top1 = 81.2%
+[probe] saved C:\kaggle\working\results\probe_seen_A.json  (2 models)
+[probe] saved C:\kaggle\working\results\probe_seen_B.json  (2 models)
+[probe] saved C:\kaggle\working\results\probe_seen_C.json  (2 models)
+[probe] the VLM tiers do seen (probe) AND unseen (zero-shot); the CNNs do seen only.
