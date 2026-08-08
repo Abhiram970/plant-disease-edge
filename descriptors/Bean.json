@@ -28,22 +28,25 @@
     "symptom_text": "Common bacterial blight of beans, caused by Xanthomonas axonopodis pv. phaseoli, produces water-soaked, irregularly shaped lesions on leaves that rapidly enlarge and turn brown and necrotic, often surrounded by a distinctive bright yellow halo. These lesions may coalesce to cover large areas of the leaf blade, causing extensive blighting. On pods, water-soaked spots develop and turn reddish-brown, sometimes with a creamy bacterial exudate visible on the surface. Infected seeds may show yellow or wrinkled discoloration. Symptoms are distributed across leaves, pods, and seeds, and are most severe under warm, humid conditions.",
     "fields": {
       "pathogen": {
-        "value": "Xanthomonas axonopodis pv. phaseoli",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/CommonBacterialBlight.aspx",
-        "verbatim_quote": "Common bacterial blight is caused by the bacterium Xanthomonas axonopodis pv. phaseoli (Smith) Vauterin et al."
+        "value": "Xanthomonas campestris (axonopodis) pv. phaseoli; Xanthomonas fuscans subsp. fuscans",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/common-bacterial-blight/",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "leaves, pods, seeds",
-        "source_url": "https://extension.umn.edu/disease-management/common-bacterial-blight-bean",
-        "verbatim_quote": "Common bacterial blight affects leaves, pods, and seeds of bean plants."
+        "value": "Leaf margins and interveinal areas; whole leaves in severe cases",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/common-bacterial-blight/",
+        "verbatim_quote": "The spots or lesions develop on the edges or interveinal areas of leaves."
       },
       "visual_symptoms": {
-        "value": "Water-soaked lesions on leaves that become necrotic with yellow halos; water-soaked, reddish-brown spots on pods; discolored seeds",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/CommonBacterialBlight.aspx",
-        "verbatim_quote": "Leaf symptoms begin as water-soaked spots that enlarge and become necrotic, often surrounded by a yellow halo. Pod lesions are water-soaked and may turn reddish brown. Seeds from infected pods may be shriveled and discolored."
+        "value": "Water-soaked or light green spots enlarging to brown necrotic centres, bordered by a diagnostic lemon-yellow ring",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/common-bacterial-blight/",
+        "verbatim_quote": "These irregularly shaped spots are bordered by a lemon yellow ring, which serves as a diagnostic symptom of common bacterial blight."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/agriculture/dry-beans/common-bacterial-blight/",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Bean",
@@ -51,22 +54,25 @@
     "symptom_text": "Halo blight of bean, caused by Pseudomonas savastanoi pv. phaseolicola, primarily affects leaves, pods, and seeds. On leaves, small water-soaked spots first appear, which enlarge and turn brown to reddish-brown necrotic lesions surrounded by a conspicuous wide, pale green to yellow chlorotic halo — the hallmark symptom giving the disease its name. Lesions are angular to irregular in shape, often delimited by leaf veins, and may coalesce under wet conditions to cause extensive blighting. On pods, water-soaked, greasy-looking spots develop and may become reddish-brown with age. Seeds from infected pods may show a wrinkled, discolored appearance. Symptoms are most severe under cool, wet weather conditions and can be distributed across the entire canopy when the pathogen is seed-borne.",
     "fields": {
       "pathogen": {
-        "value": "Pseudomonas savastanoi pv. phaseolicola",
-        "source_url": "https://www.cabi.org/isc/datasheet/43659",
-        "verbatim_quote": "Pseudomonas savastanoi pv. phaseolicola is the causal agent of halo blight of bean (Phaseolus vulgaris)."
+        "value": "Pseudomonas syringae pv. phaseolicola",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/halo-blight/",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "leaves, pods, seeds",
-        "source_url": "https://www.cabi.org/isc/datasheet/43659",
-        "verbatim_quote": "The disease affects all above-ground parts of the plant including leaves, pods and seeds."
+        "value": "Leaves (undersurfaces first), extending to upper plant parts",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/halo-blight/",
+        "verbatim_quote": "small, angular, water-soaked spots (almost resembling little pin pricks) on the undersurfaces of leaves"
       },
       "visual_symptoms": {
-        "value": "Water-soaked spots enlarging to brown necrotic lesions surrounded by a wide pale-green to yellow chlorotic halo on leaves; water-soaked greasy spots on pods",
-        "source_url": "https://www.cabi.org/isc/datasheet/43659",
-        "verbatim_quote": "On leaves, small water-soaked spots develop which enlarge and become necrotic, surrounded by a characteristic broad, pale-green or yellow halo. On pods, water-soaked, greasy spots appear which may later become reddish-brown."
+        "value": "Angular water-soaked spots with a light green to yellow halo; general chlorosis of leaves and upper plant in severe cases",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/halo-blight/",
+        "verbatim_quote": "a characteristic light green to yellow halo appears around the spots"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/agriculture/dry-beans/halo-blight/",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Bean",
@@ -74,22 +80,25 @@
     "symptom_text": "Bean common mosaic virus causes distinctive foliar symptoms characterized by irregular light and dark green mosaic patterns on leaves, creating a mottled appearance across the leaf surface. Affected leaves often display puckering, downward curling, and malformation with a blistered or crinkled texture. The mosaic pattern consists of alternating patches of normal green tissue interspersed with chlorotic yellow-green areas, giving leaves an uneven coloration. Trifoliate leaves may become narrowed, elongated, and distorted. Plants infected early show stunting and reduced vigor, with symptoms most pronounced on younger developing leaves. In severe cases, leaves may exhibit vein banding where darker green tissue follows along the veins while interveinal areas remain lighter.",
     "fields": {
       "pathogen": {
-        "value": "Bean common mosaic virus (BCMV)",
-        "source_url": "https://www.cabi.org/isc/datasheet/8168",
-        "verbatim_quote": "Bean common mosaic virus (BCMV) is one of the most important and widespread viral diseases of common bean (Phaseolus vulgaris)"
+        "value": "Bean common mosaic virus",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/bean-common-mosaic/",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, pods, seeds",
-        "source_url": "https://extension.umn.edu/disease-management/bean-common-mosaic",
-        "verbatim_quote": "Symptoms of BCMV are most obvious on leaves but can also affect pods and seeds"
+        "value": "Trifoliolate leaves",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/bean-common-mosaic/",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Mosaic patterns, leaf curling, puckering, stunting",
-        "source_url": "https://extension.umn.edu/disease-management/bean-common-mosaic",
-        "verbatim_quote": "Leaves with light and dark green mosaic patterns, puckering, and downward curling of leaves. Plants may be stunted"
+        "value": "Light green-yellow and dark green mosaic on trifoliolate leaves with puckering, blistering, distortion and downward curling",
+        "source_url": "https://ipm.ucanr.edu/agriculture/dry-beans/bean-common-mosaic/",
+        "verbatim_quote": "mosaic patterns of light green-yellow leaf tissue, dark green tissue, or both light and dark mosaics together on the trifoliolate leaves. Leaf discoloration is usually accompanied by puckering, blistering, distortion, and a downward curling and rolling."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/agriculture/dry-beans/bean-common-mosaic/",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Bean",
@@ -97,21 +106,24 @@
     "symptom_text": "Bean rust, caused by Uromyces appendiculatus, primarily affects leaves but can also infect stems and pods. On the upper leaf surface, small pale yellow or white spots first appear, while the corresponding lower leaf surface develops raised, brick-red to reddish-brown powdery pustules (uredinia) that are circular and approximately 1–2 mm in diameter. These pustules rupture the epidermis and release masses of reddish-brown urediniospores, giving infected tissue a rusty, powdery appearance. As the disease progresses, pustules may coalesce, and surrounding tissue often turns yellow and necrotic. Later in the season, darker brown to black teliospore pustules (telia) may form on the same or adjacent lesions. Severely infected leaves may drop prematurely, and heavily infected pods show similar reddish-brown pustules on their surface.",
     "fields": {
       "pathogen": {
-        "value": "Uromyces appendiculatus",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/BeanRust.aspx",
-        "verbatim_quote": "Bean rust is caused by the fungus Uromyces appendiculatus (Pers.) Unger."
+        "value": "Uromyces phaseoli (syn. U. appendiculatus)",
+        "source_url": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "Leaves, stems, pods",
-        "source_url": "https://extension.umn.edu/plant-diseases/bean-rust",
-        "verbatim_quote": "Rust can infect leaves, stems, and pods of bean plants."
+        "value": "Leaves, primarily the lower surface; pods may also be affected",
+        "source_url": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Small white or yellow spots on upper leaf surface; raised reddish-brown powdery pustules on lower leaf surface; pustules rupture epidermis releasing reddish-brown spores; later dark brown to black teliospore pustules may form",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/BeanRust.aspx",
-        "verbatim_quote": "Symptoms first appear as small, white or yellow flecks on either leaf surface. These develop into pustules, which are brick-red, powdery masses of spores (urediniospores) on the lower leaf surface, often surrounded by a yellow halo. Later in the season, dark brown to black pustules (telia) containing teliospores may form."
+        "value": "Dry reddish, yellowish or orange powdery spore pustules, mainly on the underside of leaves",
+        "source_url": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+        "verbatim_quote": "Plants infected with rust have dry reddish, yellowish, or orange spore masses or pustules primarily on the lower surface of leaves."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+    "verified_date": "2026-08-08"
   }
 ]

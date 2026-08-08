@@ -5,22 +5,25 @@
     "symptom_text": "Bacterial blight of cotton manifests as angular, water-soaked lesions on leaves that are initially dark green and oily in appearance, later becoming brown to black and necrotic with distinct angular margins defined by leaf veins. On bolls, circular to irregular water-soaked spots develop that turn dark brown to black, often with bacterial exudate visible under humid conditions. Stem infections appear as dark brown to black elongated lesions or cankers, while affected bracts show blackened, water-soaked areas. Young seedlings may exhibit blackened cotyledons and hypocotyl lesions leading to seedling death. The angular nature of leaf spots, caused by bacterial spread being restricted by leaf venation, is a characteristic diagnostic feature distinguishing this disease from fungal infections.",
     "fields": {
       "pathogen": {
-        "value": "Xanthomonas citri pv. malvacearum (formerly Xanthomonas campestris pv. malvacearum)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightCotton.aspx",
-        "verbatim_quote": "Bacterial blight of cotton is caused by Xanthomonas citri pv. malvacearum (Xcm), formerly known as X. campestris pv. malvacearum and X. axonopodis pv. malvacearum"
+        "value": "Xanthomonas citri subsp. malvacearum",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
+        "verbatim_quote": "Xanthomonas citri subsp. malvacearum"
       },
       "affected_organs": {
-        "value": "Leaves, bolls, stems, bracts, seedlings (cotyledons and hypocotyl)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightCotton.aspx",
-        "verbatim_quote": "The pathogen can infect all aboveground parts of the cotton plant including leaves, stems, bolls, and bracts"
+        "value": "Leaves, stems and petioles (black arm), and bolls",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
+        "verbatim_quote": "black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls"
       },
       "visual_symptoms": {
-        "value": "Angular water-soaked lesions on leaves becoming brown to black; dark lesions on bolls and stems; blackleg on seedlings",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightCotton.aspx",
-        "verbatim_quote": "Symptoms on leaves first appear as small, dark green, water-soaked, angular spots on the lower leaf surface. These spots enlarge and become visible on the upper surface, eventually turning brown to black"
+        "value": "Angular water-soaked leaf lesions delimited by the veins",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
+        "verbatim_quote": "water-soaked lesions on leaves constricted by the leaf veins"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Cotton",
@@ -52,20 +55,23 @@
     "fields": {
       "pathogen": {
         "value": "Corynespora cassiicola",
-        "source_url": "https://www.aces.edu/blog/topics/crop-production/target-spot-of-cotton/",
-        "verbatim_quote": "Target spot of cotton is caused by the fungus Corynespora cassiicola."
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
+        "verbatim_quote": "The disease is caused by the fungus Corynespora cassiicola."
       },
       "affected_organs": {
-        "value": "Leaves, bracts, bolls",
-        "source_url": "https://www.aces.edu/blog/topics/crop-production/target-spot-of-cotton/",
-        "verbatim_quote": "The disease affects leaves, bracts, and bolls."
+        "value": "Leaves",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Circular lesions with concentric rings forming target-like pattern, tan to brown color with reddish-brown margins, premature defoliation",
-        "source_url": "https://www.aces.edu/blog/topics/crop-production/target-spot-of-cotton/",
-        "verbatim_quote": "Symptoms first appear as small, circular spots that are tan to brown in color. As the lesions expand, they develop a characteristic target-like appearance with concentric rings."
+        "value": "Brick-red spots enlarging to tan/light-brown centres with concentric rings",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
+        "verbatim_quote": "Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
+    "verified_date": "2026-08-08"
   }
 ]
