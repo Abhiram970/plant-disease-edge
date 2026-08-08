@@ -118,15 +118,28 @@ def table_bakeoff():
 
 # ---------------------------------------------------------------- 4. seen side
 def table_seen():
-    emit("## T4 — Known-crop accuracy (seen head, 166 classes)\n")
-    p = load("probe_seen_C.json")
-    if p:
-        emit(f"Frozen backbone + linear probe · seen crops: {', '.join(p['seen_crops'])}\n")
-        emit("| Model | Params | Seen top-1 (probe) |")
-        emit("|---|---|---|")
-        for m, d in p["models"].items():
-            emit(f"| {m} | {d['img_params_M']:.1f} M | **{pct(d['seen_probe_top1'])}** |")
+    emit("## T4 — Known-crop accuracy (seen head, frozen backbone + linear probe)\n")
+    probes = {e: load(f"probe_seen_{e}.json") for e in "ABC"}
+    probes = {e: p for e, p in probes.items() if p}
+    if probes:
+        emit("Seen-side scaling: does the probe also flatten as the seen label space grows?\n")
+        cols = sorted({m for p in probes.values() for m in p["models"]},
+                      key=lambda m: next(p["models"][m]["img_params_M"]
+                                         for p in probes.values() if m in p["models"]))
+        emit("| Config | Seen crops | Seen classes | Seen images | "
+             + " | ".join(short(c) for c in cols) + " |")
+        emit("|---|---|---|---|" + "---|" * len(cols))
+        for e, p in probes.items():
+            n_img = p.get("seen_images")
+            accs = " | ".join(pct(p["models"].get(c, {}).get("seen_probe_top1")) for c in cols)
+            emit(f"| **{e}** | {p.get('n_seen_crops', len(p['seen_crops']))} | {p['seen_classes']} "
+                 f"| {'—' if n_img is None else f'{n_img:,}'} | {accs} |")
         emit("")
+        stale = [e for e, p in probes.items() if p.get("seen_images") is None]
+        if stale:
+            emit(f"> ⚠ Config {'/'.join(stale)} predates the `seen_images` field, so it may have been")
+            emit("> run against a smaller on-disk SAGE pool — class counts are pool-dependent. Re-run")
+            emit("> before comparing across configs.\n")
     rows = []
     for f in sorted(HERE.glob("supervised_*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))

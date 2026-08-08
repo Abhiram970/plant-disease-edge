@@ -385,9 +385,13 @@ assume.)
   as a hard open problem we advance at edge scale rather than claim to solve.
 
 ## 7. Limitations
-- **Descriptor coverage.** Across all 18 crops, **156 of 217** disease records are LLM-filled and
-  **16 carry page-verified verbatim citations**; the remaining 61 fall back to the hand-curated `rich`
-  bank, so coverage is an *auditability* gap rather than an accuracy one. On the **headline held-out
+- **Descriptor coverage and two tiers of citation.** Across all 18 crops, **156 of 217** disease records
+  are LLM-filled (`status: filled`); the remaining 61 are explicit stubs that fall back to the
+  hand-curated `rich` bank. Of the 156, **111 carry a verbatim quote**, but only **16 have been
+  page-verified** — i.e. the quote was copied from a page we retrieved and read. The other 95 quotes are
+  *model-recalled* and must be treated as unverified provenance, not evidence. Stub records carry a
+  `TODO` placeholder that the loader excludes by design (`descriptors.py` keys on `status == "filled"`),
+  so a placeholder can never become a CLIP text prototype. On the **headline held-out
   crops (Coffee/Orange/Peach) coverage is now complete — 16/16 filled**, with every Coffee record
   page-verified against a retrievable source. The four remaining held-out stubs are all Wheat and are
   label artefacts (below). Of 201 unique source URLs, 110 are reachable, 73 return 403/429
@@ -427,6 +431,115 @@ is shown to be a near-non-factor across a 27× parameter range. The levers are, 
 authoring method** — and specifically the finding that only source-grounded descriptors keep improving
 as the unseen label space grows — honest abstention, and the frozen-backbone hybrid. We release the
 pipeline and benchmark to make the result auditable and reproducible.
+
+---
+
+## Highlights
+
+*(Elsevier requires 3–5 bullets, each ≤ 85 characters including spaces.)*
+
+- A frozen 11.4 M CLIP diagnoses diseases on crops it never saw, at 3.5–12.6× chance. (84)
+- Only source-grounded descriptors keep improving as the unseen label space grows. (79)
+- Hand-curated symptom text degrades from 28.0% to 20.4% as unseen classes triple. (80)
+- One frozen backbone serves both known crops (82.6%) and unknown ones. (69)
+- INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders. (78)
+
+## CRediT authorship contribution statement
+
+**[Author 1]:** Conceptualization, Methodology, Software, Investigation, Formal analysis,
+Visualization, Writing – original draft. **[Author 2]:** _[fill]_. **[Author 3]:** _[fill]_.
+
+> **ACTION REQUIRED:** replace with the real author list. Every listed author needs at least one
+> CRediT role.
+
+## Declaration of competing interest
+
+The authors declare that they have no known competing financial interests or personal relationships
+that could have appeared to influence the work reported in this paper.
+
+## Data availability
+
+All data are public. The SAGE dataset is available at `https://huggingface.co/datasets/tirtho149/SAGE`
+(MIT licence). The source-grounded descriptor registry, all result JSONs, the table/figure generators,
+and the full experimental code are released at _[repository URL — fill on acceptance]_. No proprietary
+data were used.
+
+## Acknowledgements
+
+_[Fill: funding sources with grant numbers, compute donors, and any non-author contributors.
+If there was no external funding, Elsevier expects an explicit statement to that effect.]_
+
+## References
+
+> **⚠ VERIFY BEFORE SUBMISSION.** Entries marked **⚠** were reconstructed from in-text citations and
+> their exact authors, venue or year have **not** been confirmed against the published record. Check
+> every one of them — a wrong citation is worse than a missing one. Unmarked entries are standard and
+> widely cited, but confirm page numbers and DOIs against the publisher regardless.
+
+He, K., Zhang, X., Ren, S., Sun, J., 2016. Deep residual learning for image recognition, in:
+Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 770–778.
+
+Howard, A., Sandler, M., Chu, G., Chen, L.-C., Chen, B., Tan, M., Wang, W., Zhu, Y., Pang, R.,
+Vasudevan, V., Le, Q.V., Adam, H., 2019. Searching for MobileNetV3, in: Proceedings of the IEEE/CVF
+International Conference on Computer Vision (ICCV), pp. 1314–1324.
+
+Ilharco, G., Wortsman, M., Wightman, R., Gordon, C., Carlini, N., Taori, R., Dave, A., Shankar, V.,
+Namkoong, H., Miller, J., Hajishirzi, H., Farhadi, A., Schmidt, L., 2021. OpenCLIP. Zenodo.
+https://doi.org/10.5281/zenodo.5143773
+
+Menon, S., Vondrick, C., 2023. Visual classification via description from large language models, in:
+International Conference on Learning Representations (ICLR).
+
+Mohanty, S.P., Hughes, D.P., Salathé, M., 2016. Using deep learning for image-based plant disease
+detection. Frontiers in Plant Science 7, 1419.
+
+Oquab, M., Darcet, T., Moutakanni, T., Vo, H., Szafraniec, M., Khalidov, V., Fernandez, P., Haziza, D.,
+Massa, F., El-Nouby, A., et al., 2024. DINOv2: Learning robust visual features without supervision.
+Transactions on Machine Learning Research.
+
+Pratt, S., Covert, I., Liu, R., Farhadi, A., 2023. What does a platypus look like? Generating
+customized prompts for zero-shot image classification, in: Proceedings of the IEEE/CVF International
+Conference on Computer Vision (ICCV), pp. 15691–15701.
+
+Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A.,
+Mishkin, P., Clark, J., Krueger, G., Sutskever, I., 2021. Learning transferable visual models from
+natural language supervision, in: International Conference on Machine Learning (ICML), pp. 8748–8763.
+
+Vasu, P.K.A., Pouransari, H., Faghri, F., Vemulapalli, R., Tuzel, O., 2024. MobileCLIP: Fast
+image-text models through multi-modal reinforced training, in: Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition (CVPR), pp. 15963–15974.
+
+Wortsman, M., Ilharco, G., Kim, J.W., Li, M., Kornblith, S., Roelofs, R., Lopes, R.G., Hajishirzi, H.,
+Farhadi, A., Namkoong, H., Schmidt, L., 2022. Robust fine-tuning of zero-shot models, in: Proceedings
+of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pp. 7959–7971.
+
+Wu, K., Peng, H., Zhou, Z., Xiao, B., Liu, M., Yuan, L., Xuan, H., Valenzuela, M., Chen, X., Wang, X.,
+Chao, H., Hu, H., 2023. TinyCLIP: CLIP distillation via affinity mimicking and weight inheritance, in:
+Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), pp. 21970–21980.
+
+Zhai, X., Mustafa, B., Kolesnikov, A., Beyer, L., 2023. Sigmoid loss for language image pre-training,
+in: Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), pp. 11975–11986.
+
+**⚠** Arshad, M.A., et al., 2025. SAGE: [exact title, authors and venue to be confirmed from the
+paper the dataset ships with]. Dataset: https://huggingface.co/datasets/tirtho149/SAGE
+
+**⚠** Ghazal, S., et al., 2024. [Cited in §1 for poor cross-crop transfer — confirm full reference or
+remove the citation.]
+
+**⚠** Qin, D., et al., 2024. MobileNetV4: Universal models for the mobile ecosystem, in: European
+Conference on Computer Vision (ECCV). [Confirm author list and pages.]
+
+**⚠** Stevens, S., et al., 2024/2025. BioCLIP / BioCLIP 2: A vision foundation model for the tree of
+life. [We evaluate BioCLIP **2**; confirm which paper to cite and its year.]
+
+**⚠** Tschannen, M., et al., 2025. SigLIP 2: Multilingual vision-language encoders. [Confirm authors
+and venue.]
+
+**⚠** Vasu, P.K.A., et al., 2025. MobileCLIP2. [Confirm the exact reference; several tiers we deploy
+come from this release, so it must be cited correctly.]
+
+**⚠** SCOLD, 2025. [Domain leaf-disease VLM evaluated in §5.2 — obtain the full citation, or state in
+§5.2 that only the released checkpoint was used if no paper is available.]
 
 ---
 

@@ -43,7 +43,11 @@ def main():
     cidx = {c: i for i, c in enumerate(classes)}
     print(f"[probe] exp {args.exp}: {len(rows):,} seen imgs, {len(classes)} classes, crops={seen_crops}")
 
-    out = {"exp": args.exp, "seen_classes": len(classes), "seen_crops": seen_crops, "models": {}}
+    # seen_images/n_seen_crops are recorded, not just printed: the class count depends on which SAGE
+    # shards happen to be on disk, so two runs of the same --exp on different days are NOT comparable
+    # without it. (probe_seen_C.json from 14 Jul 2026 had 166 classes; the pool has grown since.)
+    out = {"exp": args.exp, "seen_classes": len(classes), "seen_images": len(rows),
+           "n_seen_crops": len(seen_crops), "seen_crops": seen_crops, "models": {}}
     for name, pretrained in C.resolve_models(args.models):
         model, preprocess, tok, params_m = zeroshot.load_model(name, pretrained, device)
         emb, labels = zeroshot.embed_images(model, preprocess, rows, device)
