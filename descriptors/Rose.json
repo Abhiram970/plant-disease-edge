@@ -97,21 +97,24 @@
     "symptom_text": "Rose rosette disease causes striking and distinctive symptoms across multiple organs of the rose plant. Infected shoots produce an abnormal proliferation of bright red or crimson-pigmented lateral shoots and leaves, giving a 'witches'-broom' appearance with excessive thorniness on elongated, distorted canes. Leaves are small, crinkled, and mosaic-patterned with yellow or red mottling, often remaining red rather than maturing to green. Flowers, when produced, are malformed, streaked, or reduced in size, with distorted petals. The entire affected shoot system appears stunted and densely clustered, with new growth consistently displaying vivid red pigmentation that does not fade with maturity, distinguishing this disease from normal red new growth seen in healthy roses.",
     "fields": {
       "pathogen": {
-        "value": "Rose rosette emaravirus (RRV)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/RoseRosette.aspx",
-        "verbatim_quote": "Rose rosette disease (RRD) is caused by Rose rosette virus (RRV), a negative-sense, single-stranded RNA virus in the genus Emaravirus."
+        "value": "Rose rosette virus, vectored by the eriophyid mite Phyllocoptes fructiphilus",
+        "source_url": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
+        "verbatim_quote": ""
       },
       "affected_organs": {
-        "value": "shoots, leaves, stems (canes), flowers",
-        "source_url": "https://extension.psu.edu/rose-rosette-disease",
-        "verbatim_quote": "Symptoms of rose rosette disease include witches' broom, excessive thorniness, red or yellow mosaic on leaves, distorted or stunted shoots, and malformed flowers."
+        "value": "Shoots, stems, leaves, buds and flowers",
+        "source_url": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
+        "verbatim_quote": ""
       },
       "visual_symptoms": {
-        "value": "Witches'-broom proliferation of shoots, excessive thorniness, bright red pigmentation of new growth that does not fade, mosaic and mottling on leaves, distorted and malformed flowers",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/RoseRosette.aspx",
-        "verbatim_quote": "Symptoms include a proliferation of shoots (witches' broom), an abnormal increase in the number of thorns, red or yellow mosaic or mottling of leaves, distortion and stunting of shoots, and malformation of flowers."
+        "value": "Witches' brooms, red or yellow discoloured and distorted buds, excessive thorns, mosaic-patterned leaves, thick stalks and deformed leaves/flowers",
+        "source_url": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
+        "verbatim_quote": "witches' brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and flowers on roses."
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
+    "verified_date": "2026-08-08"
   }
 ]

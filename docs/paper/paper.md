@@ -466,6 +466,28 @@ assume.)
   We recommend that users of SAGE merge these pairs and drop the rating labels, and we report it as a
   dataset-quality finding: label noise of this kind silently inflates the apparent class count of any
   fine-grained benchmark and depresses every method evaluated on it.
+
+- **The class count is set by a minimum-images threshold, and the tail below it is contaminated.**
+  We retain (crop, disease) classes with **≥ 25 images**, which yields our 166 seen / 51 held-out
+  classes. The threshold, not the amount of data pulled, is what determines that number — we hold 12
+  of SAGE's 13 shards for these crops, so the corpus is close to exhausted. Relaxing the threshold
+  expands the label space steeply:
+
+  | Min images | Seen classes | Held-out classes | Total |
+  |---|---|---|---|
+  | ≥ 1 | 366 | 177 | 543 |
+  | ≥ 15 | 193 | 59 | 252 |
+  | **≥ 25 (ours)** | **166** | **51** | **217** |
+  | ≥ 50 | 133 | 42 | 175 |
+
+  We keep ≥ 25 because the 327 excluded classes are not merely small, they are **visibly
+  mis-labelled**: `Cucumber/Apple_Scab` (10 images) and `Potato/Apple_Scab` (6) attribute an apple
+  disease to unrelated hosts, `Apple/Beech_Bark_Disease` (10) attributes a forest-tree disease to
+  apple, a garbled label `Bacterial_Brown_Spot_Of_Bean…Of_Stone_Fruit` appears under Cotton, Wheat
+  *and* Bean, and `Coffee/Brown_Eye_Spot` (13) is a third name for the *Cercospora coffeicola*
+  already present twice. Lowering the threshold would therefore buy apparent scale at the cost of
+  label integrity. We state the threshold explicitly because it is a load-bearing design choice that
+  papers in this area often leave implicit.
 - **Scope.** Configuration C covers 10 seen crops (Corn, Soybean, Tomato, Apple, Grape, Potato, Rice,
   Sugarcane, Rose, Strawberry) and 8 held-out crops — 18 of SAGE's crop set, not all of it. The seen-head
   probe is reported at scale C only; A and B seen-side probes are not run, so the seen-side scaling

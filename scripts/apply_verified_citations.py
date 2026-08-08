@@ -244,6 +244,156 @@ V[("Cotton", "Target_Spot")] = {
         "concentric rings."),
 }
 
+# --- Replacements for dead source URLs, verified 2026-08-08 ------------------------------------
+# IMPORTANT: repointing a dead URL at a live one WITHOUT re-extracting the quote is worse than
+# leaving it dead -- the model-recalled sentence will not appear on the new page, and a reviewer who
+# checks concludes the citation was fabricated. Every entry below has its verbatim_quote copied from
+# the replacement page itself. All of these are SEEN crops (plus one held-out duplicate that --clean
+# merges away), so none of them affects any reported number; this is purely auditability.
+V[("Grape", "Gray_Mold")] = {
+    "source": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+    "pathogen": ("Botrytis cinerea", ""),
+    "affected_organs": ("Berries and clusters", ""),
+    "visual_symptoms": ("Infected berries brown (white cultivars) or redden (red/black cultivars), "
+                        "developing a gray velvety mould",
+        "At veraison, individually infected berries in a cluster turn brown on white cultivars or "
+        "reddish in red and black cultivars...resulting in the characteristic gray, velvety "
+        "appearance of infected berries."),
+}
+V[("Grape", "Black_Rot")] = {
+    "source": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
+    "pathogen": ("Guignardia bidwellii", ""),
+    "affected_organs": ("Leaves, shoots and fruit", ""),
+    "visual_symptoms": ("Small yellow leaf spots enlarging to lesions with dark brownish-red borders "
+                        "and tan to dark brown centres, ringed with black pycnidia",
+        "Symptoms of black rot first appear as small yellow spots on leaves. Enlarged spots (lesions) "
+        "have a dark brownish-red border with tan to dark brown centers."),
+}
+V[("Grape", "Downy_Mildew")] = {
+    "source": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+    "pathogen": ("Plasmopara viticola", ""),
+    "affected_organs": ("Leaves", ""),
+    "visual_symptoms": ("Irregular yellowish translucent spots on the upper leaf surface with white "
+                        "powdery growth beneath; leaves yellow, brown and dry",
+        "Irregular, yellowish, translucent sports on the upper surface of the leaves. "
+        "Correspondingly on the lower surface, white, powdery growth on leaves."),
+}
+V[("Grape", "Powdery_Mildew")] = {
+    "source": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+    "pathogen": ("Uncinula necator", ""),
+    "affected_organs": ("Leaves", ""),
+    "visual_symptoms": ("Powdery growth mainly on the upper leaf surface, with malformation and "
+                        "discolouration of affected leaves",
+        "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration "
+        "of affected leaves."),
+}
+V[("Apple", "Powdery_Mildew")] = {
+    "source": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+    "pathogen": ("Podosphaera leucotricha", ""),
+    "affected_organs": ("Leaves, twigs and fruit buds", "Twigs are also infected."),
+    "visual_symptoms": ("Small patches of white powdery growth on the upper leaf surface, on both "
+                        "surfaces when severe; affected leaves fall",
+        "Small patches of white powdery growth appear on upper side of leaves."),
+}
+V[("Corn", "Diplodia_Ear_Rot")] = {
+    "source": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+    "pathogen": ("Stenocarpella maydis and S. macrospora", ""),
+    "affected_organs": ("Ears, husks and kernels", ""),
+    "visual_symptoms": ("White mould starting at the ear base, turning grayish-brown; raised black "
+                        "pycnidia on husk or kernels",
+        "white mold beginning at the base of the ear that eventually becomes grayish-brown and rots "
+        "the entire ear"),
+}
+V[("Corn", "Goss_S_Wilt")] = {
+    "source": "https://cropprotectionnetwork.org/publications/an-overview-of-gosss-bacterial-wilt-and-blight",
+    "pathogen": ("Clavibacter nebraskensis", ""),
+    "affected_organs": ("Leaves, with systemic infection of the stalk", ""),
+    "visual_symptoms": ("Elongated tan to grayish-brown lesions with wavy margins along the veins, "
+                        "carrying diagnostic dark water-soaked 'freckles' that appear translucent "
+                        "when backlit",
+        "Dark green to black, scattered, discontinuous water-soaked spots (\"freckles\") develop "
+        "within the plant tissue inside the lesions and are diagnostic for Goss's wilt"),
+}
+V[("Corn", "Stewart_S_Disease")] = {
+    "source": "https://cropprotectionnetwork.org/encyclopedia/stewarts-disease-of-corn",
+    "pathogen": ("Pantoea stewartii", ""),
+    "affected_organs": ("Leaves, spreading from flea beetle feeding scars", ""),
+    "visual_symptoms": ("Pale green to yellow streaks spreading from flea beetle scars, browning as "
+                        "tissue dies, with wavy margins following the veins",
+        "Stewart's disease lesions spread from flea beetle feeding scars (a tiny scratch on the leaf) "
+        "and are initially pale green to yellow streaks, later becoming brown as tissue dies. The "
+        "margins of the streaks are usually wavy but generally follow leaf veins."),
+}
+V[("Corn", "Tar_Spot")] = {
+    "source": "https://cropprotectionnetwork.org/encyclopedia/tar-spot-of-corn",
+    "pathogen": ("Phyllachora maydis", ""),
+    "affected_organs": ("Leaves (upper and lower surfaces)", ""),
+    "visual_symptoms": ("Small raised black stromata scattered over both leaf surfaces; tan-to-brown "
+                        "'fisheye' lesions with dark borders may surround them",
+        "Tar spot appears as small, raised, black spots scattered across the upper and lower leaf "
+        "surfaces."),
+}
+V[("Rice", "Brown_Spot")] = {
+    "source": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
+    "pathogen": ("Helminthosporium oryzae", ""),
+    "affected_organs": ("Leaves", ""),
+    "visual_symptoms": ("Minute brown dots enlarging to oval-to-circular sesame-seed-like spots "
+                        "0.5-2.0 mm across that coalesce into large patches",
+        "The disease appears first as minute brown dots, later becoming cylindrical or oval to "
+        "circular.(resemble sesame seed)"),
+}
+V[("Rice", "Tungro")] = {
+    "source": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
+    "pathogen": ("Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)", ""),
+    "affected_organs": ("Leaves", ""),
+    "visual_symptoms": ("Yellow to orange-yellow leaves with rust-coloured spots, discolouring from "
+                        "the leaf tip downward",
+        "Their leaves become yellow or orange-yellow, may also have rust-colored spots. "
+        "Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"),
+}
+V[("Rice", "Severe_Tungro")] = dict(V[("Rice", "Tungro")])
+V[("Strawberry", "Anthracnose")] = {
+    "source": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+    "pathogen": ("Colletotrichum acutatum", ""),
+    "affected_organs": ("Petioles, runners, crown and fruit", ""),
+    "visual_symptoms": ("Dark brown to black sunken lens-shaped spots on petioles and runners; "
+                        "salmon or orange spore masses form on lesions",
+        "salmon or orange-colored spores can form on the lesions of the fruit, petioles, and runners"),
+}
+V[("Tomato", "Southern_Blight")] = {
+    "source": "https://hort.extension.wisc.edu/articles/southern-blight/",
+    "pathogen": ("Athelia rolfsii (formerly Sclerotium rolfsii)", ""),
+    "affected_organs": ("Lower stems and leaves, crown, roots and fruit", ""),
+    "visual_symptoms": ("Water-soaked lesions on lower stems and leaves, wilting, thick white "
+                        "mycelial mats and mustard-seed-sized tan to dark sclerotia",
+        "Sclerotia (small spherical structures that are about the size of mustard seeds) develop on "
+        "infected tissue and on the soil surface. Sclerotia range in color from light tan to dark "
+        "reddish-brown to black"),
+}
+
+V[("Soybean", "Brown_Stem_Rot")] = {
+    "source": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
+    "pathogen": ("Cadophora gregata", ""),
+    "affected_organs": ("Leaves; internal stem vascular tissue and pith, especially at nodes and "
+                        "in the lower stem", ""),
+    "visual_symptoms": ("Interveinal chlorosis and necrosis followed by leaf curling and death; "
+                        "internal browning of stem pith while the stem looks healthy outside",
+        "Characteristic foliar symptoms of BSR include chlorosis and necrosis between leaf veins, "
+        "followed by leaf curling and leaf death."),
+}
+V[("Rose", "Rose_Rosette_Virus")] = {
+    "source": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
+    "pathogen": ("Rose rosette virus, vectored by the eriophyid mite Phyllocoptes fructiphilus", ""),
+    "affected_organs": ("Shoots, stems, leaves, buds and flowers", ""),
+    "visual_symptoms": ("Witches' brooms, red or yellow discoloured and distorted buds, excessive "
+                        "thorns, mosaic-patterned leaves, thick stalks and deformed leaves/flowers",
+        "witches' brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), "
+        "excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and "
+        "flowers on roses."),
+}
+# Same disease as Head_Scab (see LABEL_ALIASES) -> same verified source rather than a dead Purdue PDF.
+V[("Wheat", "Fusarium_Graminearum_Schwabe")] = dict(V[("Wheat", "Head_Scab")])
+
 FIELDS = ("pathogen", "affected_organs", "visual_symptoms")
 
 
