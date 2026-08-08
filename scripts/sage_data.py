@@ -146,10 +146,18 @@ def fetch(crops, caps, min_held_crops=None, min_class_images=None):
                 kept[key] += 1
                 rows.append({"path": str(cls / f"{h16}.jpg"), "crop": crop,
                              "disease": disease, "label": f"{crop}|{disease}"})
+        # Free the shard properly. hf_hub_download returns a SYMLINK in the snapshots/ tree pointing
+        # at the real payload under blobs/; unlinking only the symlink frees nothing, so a multi-shard
+        # fetch silently accumulated ~10 GB per shard and filled the disk (this is what made Kaggle
+        # runs die partway through a fetch). Resolve to the blob and delete that too.
         try:
-            Path(path).unlink()      # free disk; HF cache blob may remain
-        except Exception:
-            pass
+            p = Path(path)
+            blob = p.resolve()
+            p.unlink(missing_ok=True)
+            if blob.exists() and blob != p:
+                blob.unlink()
+        except Exception as e:
+            print(f"    [warn] could not free shard {si:04d}: {type(e).__name__}: {e}")
         done.add(si); _save_done(done)
         by = Counter(r["crop"] for r in rows)
         print(f"    after shard {si:04d}: " + ", ".join(f"{c}={by.get(c,0)}" for c in crops))
