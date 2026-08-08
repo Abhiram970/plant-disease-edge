@@ -38,6 +38,29 @@ paragraph; `grounded` = LLM source-grounded `symptom_text`.
 | MobileCLIP-B | 86.3 M | 23.3% | 20.5% | **24.2%** | 29.1% | **+0.9 pp** |
 | *mean* | — | *19.0%* | — | *20.4%* | — | ***+1.4 pp*** |
 
+## T1b — Sensitivity to SAGE label defects (experiment C)
+
+Merging the 5 duplicate disease pairs and dropping the 4 non-disease labels takes the held-out set from **51 to 42 classes** (chance 2.0% -> 2.4%). Means over the 4 deployable encoders:
+
+| Strategy | As-published | Label-corrected | Δ |
+|---|---|---|---|
+| bare | 19.0% | **23.8%** | +4.8 pp |
+| crude | 16.7% | **22.0%** | +5.3 pp |
+| rich | 20.4% | **26.4%** | +6.0 pp |
+| grounded | 24.7% | **30.7%** | +6.0 pp |
+
+> The correction lifts every strategy by 4.8--6.0 pp, confirming that duplicate classes were suppressing all of them. Critically the **grounded − rich gap is unchanged (+4.3 pp vs +4.3 pp)**, so the paper's central claim is not an artefact of label noise. Grounded reaches **12.9× chance** after correction.
+
+| Encoder | rich | grounded | Δ |
+|---|---|---|---|
+| MobileCLIP2-S0 | 23.1% | **27.6%** | +4.5 pp |
+| MobileCLIP-S1 | 27.2% | **30.8%** | +3.6 pp |
+| MobileCLIP2-S2 | 27.4% | **29.8%** | +2.5 pp |
+| MobileCLIP-B | 27.9% | **34.7%** | +6.8 pp |
+| ViT-B-16-SigLIP2 | 29.5% | **34.7%** | +5.1 pp |
+
+> Grounded wins on **all five** encoders, including the SigLIP2 reference.
+
 ## T2 — Top-5 and abstention (risk–coverage)
 
 | Exp | Classes | Model | Strategy | Top-1 | Top-5 | AURC | acc@cov90 | acc@cov80 |
