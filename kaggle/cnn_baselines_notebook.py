@@ -1,45 +1,50 @@
 """
-KAGGLE NOTEBOOK — full supervised CNN baseline sweep (paste as ONE cell)
-=======================================================================
+KAGGLE — build the SAGE subset AND run the full CNN baseline sweep, in one committed run.
+==========================================================================================
 
-Runs every architecture in the baseline table at IDENTICAL settings, so the numbers are comparable.
-Designed to be launched with "Save Version -> Save & Run All (Commit)" and left alone: it survives a
-closed tab and the 40-minute idle killer, and it stops itself cleanly before Kaggle's 9-hour wall so
-the results are actually written.
+Paste this whole file as ONE cell, then use  Save Version -> "Save & Run All (Commit)".
+It runs on Kaggle's servers, survives a closed tab, and stops itself before the 9-hour wall so the
+results are actually written.
 
-NOTEBOOK SETTINGS (right pane) -- all four matter:
-    Accelerator = GPU T4 x2 (or P100)
-    Internet    = ON              <- git clone and HuggingFace both fail silently-ish without it
+NOTEBOOK SETTINGS (right pane) -- all of these matter:
+    Accelerator = GPU T4 x2  (or P100)
+    Internet    = ON              <- git clone and HuggingFace both fail without it
     Persistence = Files only
-    Add data    = pde-sage-data   <- if you already built it (see kaggle/RUNBOOK_KAGGLE.md Session 1)
 
-SECRET (Add-ons -> Secrets): add GH_TOKEN = a fine-grained GitHub PAT with read-only Contents.
-The repo is private, so a plain clone or ZIP download returns 404. Using a Secret keeps the token out
-of the saved notebook.
+SECRET (Add-ons -> Secrets): GH_TOKEN = a GitHub fine-grained PAT with read-only Contents.
+The repo is private, so an anonymous clone returns 404.
 
-RESUMING A SECOND SESSION: attach this notebook's own output as a dataset next time and set
-PRIOR_OUTPUT below to its path. Completed architectures are skipped and a partially-trained one
-resumes from its last epoch checkpoint.
+WHY THIS DOES NOT GET STUCK (it did before):
+  1. hf_hub_download returns a SYMLINK into the HF cache; the old code deleted the symlink but not the
+     ~10 GB blob behind it, so every shard permanently consumed disk until /kaggle/working filled and
+     the fetch died. Fixed in sage_data.py.
+  2. HF_HOME now points at /kaggle/temp (73 GB scratch) instead of the small working volume.
+  3. Images are downscaled to MAX_SIDE. At full resolution the subset is 19.8 GB against a ~20 GB
+     limit -- it does not fit. Everything trains at 224, so this costs nothing.
+  4. Disk is checked after the fetch and the run aborts early with a clear message rather than dying
+     mid-training.
 """
 import json
 import os
+import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
 
 # ----------------------------------------------------------------- configuration
-EPOCHS = 8          # MUST match across all archs or the table is not a comparison
+MAX_SIDE = 288       # store at 288 px; models train at 224. Keeps the subset ~4 GB instead of ~20 GB.
+EPOCHS = 8           # MUST be identical across archs or the table is not a comparison
 BATCH = 128
-WORKERS = 4         # Kaggle VMs have ~4 vCPU; more just thrashes
-BUDGET_H = 8.3      # stop before Kaggle's 9 h wall so results get written
-PRIOR_OUTPUT = None  # e.g. "/kaggle/input/cnn-baselines-run1" to resume a previous session
+WORKERS = 4          # Kaggle VMs have ~4 vCPU
+BUDGET_H = 8.3       # stop before the 9 h wall
+ROLE = "all"         # "all" = seen + held-out crops (reusable); "train" = seen only, smaller/faster
 
-# Priority order: the scientifically valuable ones first, so a truncated run still helps.
-# FastViT is deliberately near the front -- it is the same architecture family as MobileCLIP's image
-# encoder, making it the fairest supervised-vs-VLM comparison in the paper.
+# Priority order, so a truncated run still yields the valuable ones. FastViT is near the front because
+# it is the same architecture family as MobileCLIP's image encoder -- the fairest supervised-vs-VLM
+# comparison in the paper.
 ARCHS = [
-    "tf_efficientnetv2_s",        # abandoned mid-run locally at 85.2% after 1 epoch
+    "tf_efficientnetv2_s",         # abandoned locally at 85.2% after 1 epoch
     "fastvit_t8", "fastvit_sa12",  # same family as the VLM backbone
     "convnextv2_tiny", "convnextv2_nano",
     "resnet50", "mobilenetv3_small_100", "mobilenetv4_conv_small",  # rerun for a uniform protocol
@@ -51,112 +56,131 @@ T0 = time.time()
 WORK = Path("/kaggle/working")
 os.chdir(WORK)
 
-# ----------------------------------------------------------------- repo (private -> needs a token)
+
+def sh(cmd, **kw):
+    return subprocess.run(cmd, **kw).returncode
+
+
+def free_gb(p="/kaggle/working"):
+    return shutil.disk_usage(p).free / 1e9
+
+
+def used_gb(p):
+    p = Path(p)
+    if not p.exists():
+        return 0.0
+    return sum(f.stat().st_size for f in p.rglob("*") if f.is_file()) / 1e9
+
+
+# ----------------------------------------------------------------- repo
 tok = None
 try:
     from kaggle_secrets import UserSecretsClient
     tok = UserSecretsClient().get_secret("GH_TOKEN")
 except Exception as e:
-    print(f"[warn] no GH_TOKEN secret ({type(e).__name__}). Falling back to an anonymous clone, "
-          f"which only works if the repo is public.")
+    print(f"[warn] no GH_TOKEN secret ({type(e).__name__}); anonymous clone only works if public.")
 
 repo = WORK / "pde"
 if not repo.exists():
     url = (f"https://{tok}@github.com/Abhiram970/plant-disease-edge.git" if tok
            else "https://github.com/Abhiram970/plant-disease-edge.git")
-    rc = subprocess.run(["git", "clone", "--depth", "1", url, str(repo)]).returncode
-    if rc != 0:
-        sys.exit("[fatal] clone failed. Check: Internet=ON, and GH_TOKEN set under Add-ons -> Secrets.")
+    if sh(["git", "clone", "--depth", "1", url, str(repo)]) != 0:
+        sys.exit("[fatal] clone failed -> check Internet=ON and the GH_TOKEN secret.")
 print(f"[ok] repo at {repo}")
 
-# --no-deps keeps pip from dragging in a 2 GB torch wheel that can break Kaggle's CUDA build.
-subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-deps", "timm"], check=False)
-subprocess.run([sys.executable, "-m", "pip", "install", "-q",
-                "safetensors", "pyyaml", "huggingface_hub", "pyarrow", "tqdm"], check=False)
+sh([sys.executable, "-m", "pip", "install", "-q", "--no-deps", "timm"])
+sh([sys.executable, "-m", "pip", "install", "-q",
+    "safetensors", "pyyaml", "huggingface_hub", "pyarrow", "tqdm"])
 
-# ----------------------------------------------------------------- data
-# Prefer the prebuilt Kaggle Dataset. Re-fetching SAGE shards costs hours and a single shard is ~10 GB
-# against a ~20 GB /kaggle/working, so the fetch path is a last resort.
-os.environ["PDE_DATA_ROOT"] = str(WORK)          # results MUST land in working, never in input
-attached = Path("/kaggle/input/pde-sage-data")
-if (attached / "exp_data").exists():
-    os.environ["PDE_DATASET_DIR"] = str(attached / "exp_data")
-    src = attached / "manifest.csv"
-    if src.exists():
-        (WORK / "manifest.csv").write_bytes(src.read_bytes())
-    print(f"[ok] using attached dataset {attached}")
-else:
-    print("[warn] pde-sage-data not attached -- fetching SAGE from HuggingFace. This takes HOURS and "
-          "may exhaust /kaggle/working. Prefer RUNBOOK_KAGGLE.md Session 1, then attach it.")
-    os.environ["PDE_DATASET_DIR"] = str(WORK / "exp_data")
-    subprocess.run([sys.executable, str(repo / "scripts" / "sage_data.py"), "--role", "all"],
-                   check=False)
-    subprocess.run([sys.executable, str(repo / "scripts" / "build_manifest.py"),
-                    "--min-images", "25"], check=False)
-
-results = WORK / "results"
-results.mkdir(parents=True, exist_ok=True)
-
-# Seed from a previous session's output so we resume rather than repeat.
-if PRIOR_OUTPUT:
-    prior = Path(PRIOR_OUTPUT)
-    for sub in ("results", "checkpoints"):
-        s = prior / sub
-        if s.exists():
-            d = WORK / sub
-            d.mkdir(parents=True, exist_ok=True)
-            for f in s.iterdir():
-                if not (d / f.name).exists():
-                    (d / f.name).write_bytes(f.read_bytes())
-            print(f"[ok] seeded {sub}/ from {s}")
+# ----------------------------------------------------------------- environment
+# HF blobs go to scratch, NOT the 20 GB working volume. This is the single most important line here.
+os.environ["HF_HOME"] = "/kaggle/temp/hf"
+os.environ["HF_HUB_CACHE"] = "/kaggle/temp/hf/hub"
+Path("/kaggle/temp/hf/hub").mkdir(parents=True, exist_ok=True)
+os.environ["PDE_DATA_ROOT"] = str(WORK)                    # results land here
+os.environ["PDE_DATASET_DIR"] = str(WORK / "exp_data")     # images land here
 
 import torch
 print(f"[env] cuda={torch.cuda.is_available()} "
-      f"{torch.cuda.get_device_name(0) if torch.cuda.is_available() else ''}")
+      f"{torch.cuda.get_device_name(0) if torch.cuda.is_available() else ''} "
+      f"| free={free_gb():.1f} GB")
+
+# ----------------------------------------------------------------- data
+manifest = WORK / "manifest.csv"
+if not manifest.exists():
+    print(f"\n[data] fetching SAGE (role={ROLE}, max_side={MAX_SIDE}). Expect 1-3 h.", flush=True)
+    rc = sh([sys.executable, "-u", str(repo / "scripts" / "sage_data.py"),
+             "--role", ROLE, "--max-side", str(MAX_SIDE)])
+    if rc != 0:
+        print(f"[warn] sage_data exited {rc} -- continuing if enough images landed.")
+    sh([sys.executable, "-u", str(repo / "scripts" / "build_manifest.py"), "--min-images", "25"])
+else:
+    print("[ok] manifest.csv already present -- skipping fetch.")
+
+size = used_gb(WORK / "exp_data")
+print(f"[data] exp_data = {size:.2f} GB, free = {free_gb():.1f} GB")
+if not manifest.exists():
+    sys.exit("[fatal] no manifest.csv -- the fetch did not produce a usable dataset. Check the log "
+             "above for shard errors, and confirm Internet=ON.")
+if free_gb() < 2:
+    sys.exit(f"[fatal] only {free_gb():.1f} GB free; training would die mid-run. Lower MAX_SIDE or "
+             f"set ROLE='train' (seen crops only) and re-run.")
+
+results = WORK / "results"
+results.mkdir(parents=True, exist_ok=True)
 
 # ----------------------------------------------------------------- the sweep
 script = str(repo / "scripts" / "supervised_baseline.py")
 done, failed, skipped = [], [], []
 
-for arch in ARCHS:
+for i, arch in enumerate(ARCHS):
     out = results / f"supervised_{arch}.json"
     if out.exists():
         print(f"[skip] {arch} (already complete)")
         continue
-
     elapsed_h = (time.time() - T0) / 3600
     if elapsed_h > BUDGET_H:
-        print(f"[budget] {elapsed_h:.1f} h elapsed -- stopping before the 9 h wall. "
-              f"Remaining: {', '.join(ARCHS[ARCHS.index(arch):])}")
-        skipped = ARCHS[ARCHS.index(arch):]
+        skipped = ARCHS[i:]
+        print(f"[budget] {elapsed_h:.1f} h elapsed -- stopping cleanly. Not started: {skipped}")
         break
-
-    print(f"\n{'=' * 72}\n[run] {arch}  (epochs={EPOCHS} batch={BATCH})  t+{elapsed_h:.1f} h\n{'=' * 72}",
-          flush=True)
-    rc = subprocess.run([sys.executable, "-u", script, "--arch", arch, "--epochs", str(EPOCHS),
-                         "--batch", str(BATCH), "--workers", str(WORKERS), "--resume"]).returncode
+    print(f"\n{'=' * 72}\n[run] {arch}  (epochs={EPOCHS} batch={BATCH})  "
+          f"t+{elapsed_h:.1f} h  free={free_gb():.1f} GB\n{'=' * 72}", flush=True)
+    rc = sh([sys.executable, "-u", script, "--arch", arch, "--epochs", str(EPOCHS),
+             "--batch", str(BATCH), "--workers", str(WORKERS), "--resume"])
     (done if rc == 0 else failed).append(arch)
 
+    # Drop the checkpoint once the result JSON exists: it is only needed to resume an interrupted
+    # arch, and 14 of them (up to ~400 MB each for resnet101/convnextv2) would eat several GB of both
+    # disk and the notebook's ~20 GB output allowance. Checkpoints for FAILED archs are kept so a
+    # follow-up session can resume them.
+    if rc == 0 and out.exists():
+        ck = WORK / "checkpoints" / f"{arch}_ckpt.pt"
+        if ck.exists():
+            ck.unlink()
+            print(f"  [clean] removed {ck.name} (result saved)")
+
 # ----------------------------------------------------------------- summary
-print(f"\n{'=' * 72}\nSUPERVISED CNN BASELINES — seen top-1 (166-class head)\n{'=' * 72}")
+print(f"\n{'=' * 72}\nSUPERVISED CNN BASELINES — seen top-1\n{'=' * 72}")
 rows = []
 for arch in ARCHS:
     p = results / f"supervised_{arch}.json"
     if p.exists():
         try:
             d = json.loads(p.read_text())
-            rows.append((arch, d.get("seen_top1"), d.get("seen_classes"), len(d.get("epoch_log") or [])))
+            rows.append((arch, d.get("seen_top1"), d.get("seen_classes"),
+                         len(d.get("epoch_log") or [])))
         except Exception:
             rows.append((arch, None, None, 0))
 for arch, acc, ncls, neps in sorted(rows, key=lambda r: -(r[1] or 0)):
-    print(f"  {arch:26s} {'--' if acc is None else f'{acc:.1%}'}   "
-          f"classes={ncls}  epochs_logged={neps}")
-print("  (every one of these is structurally 0% on UNSEEN crops -- that is the point)")
-print(f"\n  completed this session: {done}")
+    print(f"  {arch:26s} {'--' if acc is None else f'{acc:.1%}'}   classes={ncls}  epochs={neps}")
+print("  (all are structurally 0% on UNSEEN crops -- that is the point)")
+print(f"\n  completed: {done}")
 if failed:
-    print(f"  FAILED (arch name may not exist in this timm version): {failed}")
+    print(f"  FAILED (arch may not exist in this timm version): {failed}")
 if skipped:
-    print(f"  NOT STARTED (ran out of budget): {skipped}")
-print(f"  wall time: {(time.time() - T0) / 3600:.2f} h")
-print("\nCollect: right pane -> Output -> download results/supervised_*.json into docs/paper/,")
-print("then run  python docs/paper/make_tables.py --write  and  make_figures.py  locally.")
+    print(f"  NOT STARTED: {skipped}")
+print(f"  wall: {(time.time() - T0) / 3600:.2f} h   free: {free_gb():.1f} GB")
+print("\nNEXT: right pane -> Output -> download results/supervised_*.json into docs/paper/, then")
+print("  python docs/paper/make_tables.py --write && python docs/paper/make_tex_tables.py")
+print("ALSO: Output -> Create Dataset ('pde-sage-data') to keep exp_data + manifest.csv for reuse,")
+print("so no future session ever refetches from HuggingFace.")

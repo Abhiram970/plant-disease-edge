@@ -70,9 +70,16 @@ def _save_done(done):
     _done_path().write_text(json.dumps(sorted(done)))
 
 
-def fetch(crops, caps, min_held_crops=None, min_class_images=None):
+def fetch(crops, caps, min_held_crops=None, min_class_images=None, max_side=None):
     """Download shards until `crops` are covered. `caps` = {crop: per-class cap}. Stops when
-    >= min_held_crops of `crops` have >= min_class_images (None -> require ALL crops)."""
+    >= min_held_crops of `crops` have >= min_class_images (None -> require ALL crops).
+
+    max_side: if set, downscale each image so its longest edge is at most this many pixels before
+    saving. SAGE images arrive at 448px and larger while every model here trains and evaluates at
+    C.IMG_SIZE (224), so full-resolution storage is ~4x larger for no benefit. This matters on Kaggle,
+    where /kaggle/working is ~20 GB and the full-resolution subset is 19.8 GB -- i.e. it does not fit.
+    Downscaling is NOT applied to already-downloaded images, so a directory built with and without it
+    would be inconsistent; use one setting per dataset build."""
     import pyarrow.parquet as pq
     from huggingface_hub import hf_hub_download
     from PIL import Image
@@ -132,6 +139,8 @@ def fetch(crops, caps, min_held_crops=None, min_class_images=None):
                 try:
                     raw = img_obj["bytes"] if isinstance(img_obj, dict) else img_obj
                     img = Image.open(io.BytesIO(raw)).convert("RGB")
+                    if max_side and max(img.size) > max_side:
+                        img.thumbnail((max_side, max_side), Image.LANCZOS)  # preserves aspect ratio
                     buf = io.BytesIO(); img.save(buf, format="JPEG", quality=92)
                     jpg = buf.getvalue()
                 except Exception:
@@ -170,13 +179,17 @@ def fetch(crops, caps, min_held_crops=None, min_class_images=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--role", choices=["heldout", "train", "all"], default="heldout")
+    ap.add_argument("--max-side", type=int, default=None,
+                    help="downscale longest edge to N px before saving (e.g. 256). Everything trains "
+                         "and evaluates at 224, so full-res storage is ~4x larger for no benefit; "
+                         "required to fit inside Kaggle's ~20 GB /kaggle/working.")
     args = ap.parse_args()
     if args.role == "heldout":
-        fetch(C.HELDOUT_CROPS, full_caps(), min_held_crops=C.MIN_HELD_CROPS)
+        fetch(C.HELDOUT_CROPS, full_caps(), min_held_crops=C.MIN_HELD_CROPS, max_side=args.max_side)
     elif args.role == "train":
-        fetch(C.TRAIN_CROPS, full_caps(), min_held_crops=4)
+        fetch(C.TRAIN_CROPS, full_caps(), min_held_crops=4, max_side=args.max_side)
     else:
-        fetch(C.WANT_CROPS, full_caps(), min_held_crops=None)
+        fetch(C.WANT_CROPS, full_caps(), min_held_crops=None, max_side=args.max_side)
 
 
 if __name__ == "__main__":
