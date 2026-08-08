@@ -224,6 +224,25 @@ equal accuracy — it is *what makes the descriptor approach extend to new crops
 precisely the capability this paper claims. Measured against chance, the grounded head becomes
 *relatively stronger* as the problem gets harder (3.5× → 12.6×).
 
+**(3) The finding is not an artefact of label noise** (`TABLES.md` T1b). SAGE's held-out set contains
+five duplicate disease pairs and four non-disease labels (§7). Merging and dropping them reduces
+experiment C from 51 to 42 classes, and we re-ran the entire evaluation on the corrected set as a
+sensitivity analysis:
+
+| Strategy | As-published (51 cls) | Label-corrected (42 cls) | Δ |
+|---|---|---|---|
+| bare | 19.0 % | 23.8 % | +4.8 pp |
+| rich | 20.4 % | 26.4 % | +6.0 pp |
+| **grounded** | 24.7 % | **30.7 %** | +6.0 pp |
+
+Every strategy gains 4.8–6.0 pp, confirming that unwinnable duplicate pairs were suppressing all of
+them — so the numbers we report elsewhere are **conservative**. Decisively, the **grounded − rich gap
+is unchanged at +4.3 pp**, and grounded wins on **all five** encoders after correction (+2.5 to
++6.8 pp), including the SigLIP2 reference. On the corrected set the grounded head reaches
+**12.9× chance**. We report the as-published numbers as our headline throughout, and treat the
+corrected set as the sensitivity check rather than the other way round, so our claims are never
+flattered by a benchmark we ourselves modified.
+
 ### 5.4 Top-5 and a calibrated abstain gate make the top-1 field-useful (Fig. `fig_riskcoverage.png`)
 
 Scale A (16 classes, chance 6.2 %):

@@ -16,3 +16,7 @@ enable higher rate limits and faster downloads.
   MobileCLIP2-S0       img=  11.4M  bare=24.1%  crude=20.0%  rich=23.1%  grounded=27.6%
   MobileCLIP-S1        img=  21.5M  bare=21.6%  crude=23.5%  rich=27.2%  grounded=30.8%
   MobileCLIP2-S2       img=  35.8M  bare=23.7%  crude=21.4%  rich=27.4%  grounded=29.8%
+  MobileCLIP-B         img=  86.3M  bare=25.9%  crude=23.2%  rich=27.9%  grounded=34.7%
+  ViT-B-16-SigLIP2     img=  92.9M  bare=28.2%  crude=27.0%  rich=29.5%  grounded=34.7%
+
+[eval] saved C:\kaggle\working\results\zeroshot_eval_C_clean.json
