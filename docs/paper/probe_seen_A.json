@@ -1,36 +1,30 @@
 {
-  "exp": "C",
+  "exp": "A",
   "models": {
     "MobileCLIP2-S0": {
       "img_params_M": 11.41,
-      "seen_probe_top1": 0.8241
+      "seen_probe_top1": 0.789
     },
     "MobileCLIP-S1": {
       "img_params_M": 21.54,
-      "seen_probe_top1": 0.8109
+      "seen_probe_top1": 0.7771
     },
     "MobileCLIP2-S2": {
       "img_params_M": 35.82,
-      "seen_probe_top1": 0.8248
+      "seen_probe_top1": 0.7881
     },
     "MobileCLIP-B": {
       "img_params_M": 86.35,
-      "seen_probe_top1": 0.8256
+      "seen_probe_top1": 0.7933
     }
   },
-  "seen_classes": 166,
-  "seen_images": 69919,
-  "n_seen_crops": 10,
+  "seen_classes": 97,
+  "seen_images": 42326,
+  "n_seen_crops": 4,
   "seen_crops": [
     "Corn",
     "Soybean",
     "Tomato",
-    "Apple",
-    "Grape",
-    "Potato",
-    "Rice",
-    "Sugarcane",
-    "Rose",
-    "Strawberry"
+    "Apple"
   ]
 }

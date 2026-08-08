@@ -90,16 +90,15 @@ the nested A/B/C splits were frozen. Comparable *within* the table; do not mix w
 > Domain/biological foundation models (SCOLD, BioCLIP2) fall **at or below chance** under a
 > descriptor protocol — see the paper's caveat on the best-effort SCOLD wrapper.
 
-## T4 — Known-crop accuracy (seen head, 166 classes)
+## T4 — Known-crop accuracy (seen head, frozen backbone + linear probe)
 
-Frozen backbone + linear probe · seen crops: Corn, Soybean, Tomato, Apple, Grape, Potato, Rice, Sugarcane, Rose, Strawberry
+Seen-side scaling: does the probe also flatten as the seen label space grows?
 
-| Model | Params | Seen top-1 (probe) |
-|---|---|---|
-| MobileCLIP2-S0 | 11.4 M | **82.6%** |
-| MobileCLIP-S1 | 21.5 M | **81.2%** |
-| MobileCLIP2-S2 | 35.8 M | **82.8%** |
-| MobileCLIP-B | 86.3 M | **82.6%** |
+| Config | Seen crops | Seen classes | Seen images | MobileCLIP2-S0 | MobileCLIP-S1 | MobileCLIP2-S2 | MobileCLIP-B |
+|---|---|---|---|---|---|---|---|
+| **A** | 4 | 97 | 42,326 | 78.9% | 77.7% | 78.8% | 79.3% |
+| **B** | 8 | 154 | 62,043 | 80.7% | 79.2% | 80.8% | 80.9% |
+| **C** | 10 | 166 | 69,919 | 82.4% | 81.1% | 82.5% | 82.6% |
 
 **Supervised CNN baselines** (same 166-class seen set; all are *structurally* incapable
 of unseen-crop diagnosis — no output neuron exists for an unseen class):

@@ -248,26 +248,41 @@ Across models, **`grounded` abstains best** — it holds the lowest AURC (S1 0.5
 calibration, even where its top-1 does not lead. Combined with §5.3, this makes `grounded` the
 recommended deployment strategy: it scales with the label space *and* abstains most reliably.
 
-### 5.5 The hybrid works on one 11 M backbone (Fig. `fig_hybrid.png`)
-On the full seen set — **10 crops, 166 classes, 55,981 images** — a frozen backbone with a linear probe
-reaches:
+### 5.5 The hybrid works on one 11 M backbone (Figs. `fig_hybrid.png`, `fig_seen_scaling.png`)
+Running the seen head at all three nested scales gives the seen-side counterpart to §5.3
+(`TABLES.md` T4):
 
-| Model | Params | Seen top-1 (probe) |
-|---|---|---|
-| MobileCLIP2-S0 | 11.4 M | **82.6 %** |
-| MobileCLIP-S1 | 21.5 M | 81.2 % |
-| MobileCLIP2-S2 | 35.8 M | 82.8 % |
-| MobileCLIP-B | 86.3 M | 82.6 % |
+| Config | Seen crops | Seen classes | Seen images | MC2-S0 (11.4 M) | MC-S1 (21.5 M) | MC2-S2 (35.8 M) | MC-B (86.3 M) |
+|---|---|---|---|---|---|---|---|
+| **A** | 4 | 97 | 42,326 | 78.9 % | 77.7 % | 78.8 % | 79.3 % |
+| **B** | 8 | 154 | 62,043 | 80.7 % | 79.2 % | 80.8 % | 80.9 % |
+| **C** | 10 | 166 | 69,919 | **82.4 %** | 81.1 % | 82.5 % | 82.6 % |
 
-Two observations. First, **the seen head is accurate**: 82.6 % over 166 fine-grained classes from a
-*frozen* 11 M encoder. The gain over using the same frozen encoder zero-shot on its own seen classes is
-large — measured at the 80-class configuration, the probe lifts 9.3 % → 67.0 %, a **7.2× gain** —
-confirming that supervised training, not descriptors, is the right tool for known crops. Second,
-**accuracy is flat from
-11 M to 86 M on the seen side too** (81.2–82.8 %), mirroring the zero-shot flatness of §5.1: the
-pretrained representation, not capacity, is the binding constraint. The same frozen backbone
-simultaneously serves the descriptor head for unseen crops (§5.3), so one deployed model covers both
-regimes.
+Three observations.
+
+**(1) The seen head is accurate.** 82.4 % over 166 fine-grained classes from a *frozen* 11 M encoder.
+The gain over using the same frozen encoder zero-shot on its own seen classes is large — measured at
+the 80-class configuration, the probe lifts 9.3 % → 67.0 %, a **7.2× gain** — confirming that
+supervised training, not descriptors, is the right tool for known crops.
+
+**(2) Accuracy is flat with model size here too.** Across a **7.6× parameter range** the four encoders
+span just 1.5 pp at every scale (e.g. 81.1–82.6 % at C). This mirrors the zero-shot flatness of §5.1
+from the opposite direction: whether the head is trained or descriptor-driven, the pretrained
+representation — not capacity — is the binding constraint. It is the strongest single argument that the
+11 M tier is the right deployment choice.
+
+**(3) Accuracy *rises* as the seen label space grows** (+3.3 to +3.5 pp from 97 to 166 classes, for
+every encoder), which is the opposite of the usual fine-grained trend. Adding crops adds
+proportionally more training images than decision difficulty, so the probe strictly improves. Note the
+asymmetry with §5.3: on the *unseen* side more classes make the problem harder, while on the *seen*
+side more classes make it easier. The two curves together are the case for the hybrid — each head is
+deployed exactly where its scaling behaviour is favourable.
+
+The same frozen backbone serves both heads simultaneously, so one deployed model covers both regimes.
+
+*Reproducibility note:* configuration C was measured twice, three weeks apart, on independently rebuilt
+embedding caches, agreeing to **0.15 pp** (S0) and **0.06 pp** (S1). An independent run of a separate
+implementation agreed to within 0.2 pp on all four encoders.
 
 ### 5.6 WiSE-FT tunes the seen↔unseen trade-off (Fig. `fig_wiseft.png`)
 
@@ -556,8 +571,12 @@ come from this release, so it must be cited correctly.]
       grapes.extension.org).
 - [x] ~~Fuller SAGE pull incl. Tomato and Grape~~ — **done**: configuration C trains on 10 crops /
       166 classes / 55,981 images, including Tomato and Grape.
-- [ ] `probe_seen_A` and `probe_seen_B` — needed only to plot seen-side accuracy vs. seen-set size
-      (~25 GPU-min; see `RUNBOOK_GPU.md` §1). Not required for any current claim.
+- [x] ~~`probe_seen_A` and `probe_seen_B`~~ — **done**: all four encoders at all three scales from one
+      data snapshot (§5.5, `fig_seen_scaling.png`).
+- [ ] **Supervised CNN sweep** — 3 of 14 architectures done, and the three are not mutually comparable
+      (MobileNetV4 trained 6 epochs vs 8 for the others). Re-running all 14 at identical settings via
+      `kaggle/cnn_baselines_notebook.py`. `tf_efficientnetv2_s` reached 85.2 % after one epoch before
+      being interrupted, so the current "best CNN" figure of 88.4 % is probably an underestimate.
 - [ ] Multi-seed runs for CIs on the headline zero-shot table.
 - [ ] Faithful SCOLD loader (or footnote the current below-chance wrapper result).
 - [ ] Convert to the Elsevier CompAg LaTeX template; final figure polish; author list & funding.
