@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Colletotrichum truncatum",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanAnthracnose.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -30,17 +33,20 @@
       "pathogen": {
         "value": "Pseudomonas savastanoi pv. glycinea",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/SoybeanBlight.aspx",
-        "verbatim_quote": "Bacterial blight of soybean is caused by Pseudomonas savastanoi pv. glycinea"
+        "verbatim_quote": "Bacterial blight of soybean is caused by Pseudomonas savastanoi pv. glycinea",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (primarily); also pods and stems",
         "source_url": "https://extension.umn.edu/soybean-diseases/bacterial-blight-soybean",
-        "verbatim_quote": "Bacterial blight affects leaves, pods, and stems of soybean plants."
+        "verbatim_quote": "Bacterial blight affects leaves, pods, and stems of soybean plants.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Small, angular, water-soaked lesions with yellow halos that turn brown to black and necrotic; lesions bounded by leaf veins; infected tissue may fall out leaving ragged holes",
         "source_url": "https://extension.umn.edu/soybean-diseases/bacterial-blight-soybean",
-        "verbatim_quote": "Symptoms first appear as small, angular, water-soaked spots on leaves. These spots turn brown and are surrounded by a yellow halo. The centers of the spots dry out and may fall out, giving the leaf a ragged appearance."
+        "verbatim_quote": "Symptoms first appear as small, angular, water-soaked spots on leaves. These spots turn brown and are surrounded by a yellow halo. The centers of the spots dry out and may fall out, giving the leaf a ragged appearance.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -48,22 +54,25 @@
   {
     "crop": "Soybean",
     "disease": "Bacterial_Pustule",
-    "symptom_text": "Bacterial pustule of soybean manifests primarily on leaves as small, pale green to yellow spots with raised, wartlike pustules at their centers, most prominently on the lower leaf surface. Lesions typically begin as tiny, water-soaked spots that enlarge to roughly 2–5 mm, developing a tan to brown necrotic center surrounded by a yellow-green halo. The characteristic raised pustule, visible on the abaxial surface, distinguishes this disease from bacterial blight. Lesions are scattered across the leaf blade, and under severe infection they may coalesce, causing extensive yellowing and premature defoliation. Pods and stems can also be affected, showing similar small, raised pustules.",
+    "symptom_text": "Bacterial pustule of soybean manifests primarily on leaves as small, pale green to yellow spots with raised, wartlike pustules at their centers, most prominently on the lower leaf surface. Lesions typically begin as tiny, water-soaked spots that enlarge to roughly 2\u20135 mm, developing a tan to brown necrotic center surrounded by a yellow-green halo. The characteristic raised pustule, visible on the abaxial surface, distinguishes this disease from bacterial blight. Lesions are scattered across the leaf blade, and under severe infection they may coalesce, causing extensive yellowing and premature defoliation. Pods and stems can also be affected, showing similar small, raised pustules.",
     "fields": {
       "pathogen": {
         "value": "Xanthomonas axonopodis pv. glycines",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialPustule.aspx",
-        "verbatim_quote": "Bacterial pustule is caused by Xanthomonas axonopodis pv. glycines."
+        "verbatim_quote": "Bacterial pustule is caused by Xanthomonas axonopodis pv. glycines.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Small, pale green to yellow spots with raised pustules on the lower leaf surface; lesions have tan to brown centers surrounded by yellow-green halos",
         "source_url": "https://extension.umn.edu/soybean-diseases/bacterial-pustule",
-        "verbatim_quote": "Symptoms appear as small, pale green spots with raised pustules in the center, usually on the lower leaf surface. The center of the lesion is tan to brown and is surrounded by a yellow-green halo."
+        "verbatim_quote": "Symptoms appear as small, pale green spots with raised pustules in the center, usually on the lower leaf surface. The center of the lesion is tan to brown and is surrounded by a yellow-green halo.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -76,17 +85,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -99,17 +111,20 @@
       "pathogen": {
         "value": "Septoria glycines",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanBrownSpot.aspx",
-        "verbatim_quote": "Brown spot of soybean is caused by the fungus Septoria glycines Hemmi."
+        "verbatim_quote": "Brown spot of soybean is caused by the fungus Septoria glycines Hemmi.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, pods, stems",
         "source_url": "https://extension.umn.edu/soybean-diseases/brown-spot-soybean",
-        "verbatim_quote": "Brown spot affects leaves, pods, and stems of soybean plants."
+        "verbatim_quote": "Brown spot affects leaves, pods, and stems of soybean plants.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Irregular, angular dark brown lesions on upper and lower leaf surfaces, often with yellow halos; lesions coalesce causing blighting; lower leaves affected first with premature yellowing and defoliation",
         "source_url": "https://extension.umn.edu/soybean-diseases/brown-spot-soybean",
-        "verbatim_quote": "Symptoms first appear on the lower leaves as irregular dark brown spots on both the upper and lower leaf surfaces. Spots may have a yellow halo. As the disease progresses, spots may coalesce, causing the leaves to turn yellow and drop prematurely."
+        "verbatim_quote": "Symptoms first appear on the lower leaves as irregular dark brown spots on both the upper and lower leaf surfaces. Spots may have a yellow halo. As the disease progresses, spots may coalesce, causing the leaves to turn yellow and drop prematurely.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -122,17 +137,20 @@
       "pathogen": {
         "value": "Cadophora gregata",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves; internal stem vascular tissue and pith, especially at nodes and in the lower stem",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Interveinal chlorosis and necrosis followed by leaf curling and death; internal browning of stem pith while the stem looks healthy outside",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean",
-        "verbatim_quote": "Characteristic foliar symptoms of BSR include chlorosis and necrosis between leaf veins, followed by leaf curling and leaf death."
+        "verbatim_quote": "Characteristic foliar symptoms of BSR include chlorosis and necrosis between leaf veins, followed by leaf curling and leaf death.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -148,17 +166,20 @@
       "pathogen": {
         "value": "Cercospora kikuchii",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanCercospora.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -171,17 +192,20 @@
       "pathogen": {
         "value": "Cercospora kikuchii",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanCercospora.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -194,17 +218,20 @@
       "pathogen": {
         "value": "Macrophomina phaseolina",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CharcoalRot.aspx",
-        "verbatim_quote": "Charcoal rot is caused by the soilborne fungus Macrophomina phaseolina."
+        "verbatim_quote": "Charcoal rot is caused by the soilborne fungus Macrophomina phaseolina.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "roots, lower stem (hypocotyl), vascular tissue, pith",
         "source_url": "https://extension.umn.edu/soybean-diseases/charcoal-rot",
-        "verbatim_quote": "Symptoms of charcoal rot are most evident on the taproot and lower stem of infected plants."
+        "verbatim_quote": "Symptoms of charcoal rot are most evident on the taproot and lower stem of infected plants.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Silver-gray to ash-gray discoloration of internal stem and root tissue; dense black microsclerotia visible beneath the epidermis of the lower stem and taproot; premature yellowing, wilting, and early plant death",
         "source_url": "https://extension.umn.edu/soybean-diseases/charcoal-rot",
-        "verbatim_quote": "The pith and vascular tissue of the lower stem and taproot turn silver-gray, and the tiny, black microsclerotia of the pathogen can be seen with the naked eye on and beneath the epidermis of the lower stem and taproot, giving the tissue a charcoal-gray appearance."
+        "verbatim_quote": "The pith and vascular tissue of the lower stem and taproot turn silver-gray, and the tiny, black microsclerotia of the pathogen can be seen with the naked eye on and beneath the epidermis of the lower stem and taproot, giving the tissue a charcoal-gray appearance.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -217,17 +244,20 @@
       "pathogen": {
         "value": "Pythium spp., Phytophthora sojae, Fusarium spp., Rhizoctonia solani",
         "source_url": "https://extension.umn.edu/soybean-diseases/soybean-seedling-diseases",
-        "verbatim_quote": "Damping-off is caused by several soilborne pathogens including Pythium spp., Phytophthora sojae, Fusarium spp., and Rhizoctonia solani."
+        "verbatim_quote": "Damping-off is caused by several soilborne pathogens including Pythium spp., Phytophthora sojae, Fusarium spp., and Rhizoctonia solani.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "roots, hypocotyl, cotyledons, seeds",
         "source_url": "https://extension.umn.edu/soybean-diseases/soybean-seedling-diseases",
-        "verbatim_quote": "These pathogens can infect seeds, roots, hypocotyls, and cotyledons of soybean seedlings."
+        "verbatim_quote": "These pathogens can infect seeds, roots, hypocotyls, and cotyledons of soybean seedlings.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked lesions on hypocotyl and roots; brown to reddish-brown discoloration; seedling collapse at soil line; pre- and post-emergence damping-off",
         "source_url": "https://extension.umn.edu/soybean-diseases/soybean-seedling-diseases",
-        "verbatim_quote": "Symptoms include water-soaked, brown lesions on the hypocotyl and roots, seedling collapse at or below the soil line, and both pre- and post-emergence damping-off."
+        "verbatim_quote": "Symptoms include water-soaked, brown lesions on the hypocotyl and roots, seedling collapse at or below the soil line, and both pre- and post-emergence damping-off.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -240,17 +270,20 @@
       "pathogen": {
         "value": "Diaporthe longicolla (anamorph: Phomopsis longicolla) and related Diaporthe/Phomopsis species",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanPodStemBlight.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -263,17 +296,20 @@
       "pathogen": {
         "value": "Peronospora manshurica",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/SoybeanDownyMildew.aspx",
-        "verbatim_quote": "Downy mildew of soybean is caused by the oomycete pathogen Peronospora manshurica."
+        "verbatim_quote": "Downy mildew of soybean is caused by the oomycete pathogen Peronospora manshurica.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, seeds, pods",
         "source_url": "https://extension.umn.edu/soybean-diseases/downy-mildew-soybean",
-        "verbatim_quote": "Downy mildew can infect leaves, pods, and seeds of soybean."
+        "verbatim_quote": "Downy mildew can infect leaves, pods, and seeds of soybean.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Pale green to yellow spots on upper leaf surface with grayish-white sporulation on lower leaf surface; seeds may be encrusted with white mycelium",
         "source_url": "https://extension.umn.edu/soybean-diseases/downy-mildew-soybean",
-        "verbatim_quote": "Symptoms appear as pale green to light yellow spots on the upper surface of leaves. On the lower leaf surface, a grayish-white to pale purple sporulation (sporangiophores and sporangia) is visible beneath the spots. Infected seeds may be covered with a white, crusty coating of mycelium and oospores."
+        "verbatim_quote": "Symptoms appear as pale green to light yellow spots on the upper surface of leaves. On the lower leaf surface, a grayish-white to pale purple sporulation (sporangiophores and sporangia) is visible beneath the spots. Infected seeds may be covered with a white, crusty coating of mycelium and oospores.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -286,17 +322,20 @@
       "pathogen": {
         "value": "Cercospora sojina",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/FrogeyeLeafSpot.aspx",
-        "verbatim_quote": "Frogeye leaf spot is caused by the fungus Cercospora sojina Hara."
+        "verbatim_quote": "Frogeye leaf spot is caused by the fungus Cercospora sojina Hara.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, pods, seeds",
         "source_url": "https://extension.umn.edu/soybean-diseases/frogeye-leaf-spot",
-        "verbatim_quote": "Frogeye leaf spot can infect leaves, pods, and seeds."
+        "verbatim_quote": "Frogeye leaf spot can infect leaves, pods, and seeds.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Circular to irregular lesions with gray-brown centers and reddish-purple borders on leaves; gray sporulation on lesion undersides under humid conditions",
         "source_url": "https://extension.umn.edu/soybean-diseases/frogeye-leaf-spot",
-        "verbatim_quote": "Lesions are circular to irregular, 2 to 5 mm in diameter, with gray to brown centers and reddish-purple borders. Under humid conditions, gray sporulation may be seen on the lower leaf surface."
+        "verbatim_quote": "Lesions are circular to irregular, 2 to 5 mm in diameter, with gray to brown centers and reddish-purple borders. Under humid conditions, gray sporulation may be seen on the lower leaf surface.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -309,17 +348,20 @@
       "pathogen": {
         "value": "Fusarium virguliforme (sudden death syndrome); Fusarium solani, F. oxysporum, and other Fusarium spp. (root and crown rot)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SuddenDeathSyndrome.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -332,17 +374,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -353,22 +398,28 @@
     "symptom_text": "Soybean herbicide injury presents highly variable visual symptoms depending on the herbicide class involved. ALS-inhibitor injury causes yellowing and stunting of growing points, while PPO-inhibitor contact injury produces irregular, water-soaked, necrotic lesions with brown to tan scorching on leaf margins and interveinal tissue. Synthetic auxin (dicamba or 2,4-D) drift injury causes characteristic cupping, crinkling, and downward rolling of leaves along with twisted, strap-like leaflets and distorted growing points. Glyphosate injury manifests as interveinal chlorosis on newly emerging leaves, often with a yellow-to-white discoloration of young trifoliates. Symptoms are typically most pronounced on the youngest, actively growing leaves and shoot tips, and may be distributed across the entire plant canopy when systemic herbicides are involved, or restricted to exposed leaf surfaces in the case of contact-type products.",
     "fields": {
       "pathogen": {
-        "value": "Non-infectious; caused by chemical herbicide exposure (various modes of action including ALS inhibitors, PPO inhibitors, synthetic auxins, and EPSPS inhibitors)",
-        "source_url": "https://extension.umn.edu/pest-management/herbicide-injury-soybeans",
-        "verbatim_quote": "Herbicide injury is not caused by a pathogen but rather by exposure to herbicide residues, drift, or misapplication."
+        "value": "None - abiotic injury from herbicide drift, carryover or contact, not a pathogen",
+        "source_url": "https://crops.extension.iastate.edu/post/identifying-common-herbicide-symptoms-soybean",
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
-        "value": "",
-        "source_url": "",
-        "verbatim_quote": ""
+        "value": "Leaves and leaflets; hypocotyls and cotyledons after preemergence splash",
+        "source_url": "https://crops.extension.iastate.edu/post/identifying-common-herbicide-symptoms-soybean",
+        "verbatim_quote": "tissue contacted by the herbicide develops necrosis",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
-        "value": "Symptoms vary by herbicide class: cupping, crinkling, and strapping of leaves from synthetic auxin drift; interveinal chlorosis on new growth from glyphosate; contact necrosis and scorching from PPO inhibitors; yellowing and stunting of meristems from ALS inhibitors",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-96-W.pdf",
-        "verbatim_quote": "Symptoms of herbicide injury in soybeans vary widely depending on the herbicide involved and may include leaf cupping, crinkling, interveinal chlorosis, necrotic lesions, and stunting of growing points."
+        "value": "Symptoms vary by herbicide group: strapped or cupped leaves (auxin mimics), interveinal chlorosis and necrosis (photosynthesis inhibitors), speckled necrotic tissue (PPO inhibitors), heart-shaped asymmetric leaflets (lipid synthesis inhibitors), and bleaching or yellowing of newly emerged leaves (HPPD inhibitors)",
+        "source_url": "https://crops.extension.iastate.edu/post/identifying-common-herbicide-symptoms-soybean",
+        "verbatim_quote": "2,4-D often causes more of a strapped appearance to leaves, making them longer and skinnier with parallel veins",
+        "provenance": "page-verified"
       }
     },
-    "status": "filled"
+    "status": "filled",
+    "verified": true,
+    "verified_source": "https://crops.extension.iastate.edu/post/identifying-common-herbicide-symptoms-soybean",
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Soybean",
@@ -376,19 +427,22 @@
     "symptom_text": "Iron deficiency chlorosis in soybean manifests primarily on young, newly emerging leaves at the top of the plant, where interveinal chlorosis produces a striking yellow to pale yellow discoloration between the leaf veins while the veins themselves remain distinctly green. As the deficiency intensifies, the entire leaf blade may turn uniformly yellow or nearly white, and in severe cases leaf margins and tips may become necrotic and brown. The symptoms are most pronounced on the youngest trifoliate leaves and growing points, reflecting iron's immobility within the plant. Affected leaflets appear thin and papery in texture, and heavily affected plants exhibit stunted growth with reduced canopy cover. Symptoms are typically distributed in patches across a field, often corresponding to high-pH, calcareous, or waterlogged soils that restrict iron availability.",
     "fields": {
       "pathogen": {
-        "value": "Abiotic – iron (Fe) deficiency; no pathogen involved",
+        "value": "Abiotic \u2013 iron (Fe) deficiency; no pathogen involved",
         "source_url": "https://extension.umn.edu/nutrient-management/iron-deficiency-chlorosis-soybeans",
-        "verbatim_quote": "Iron deficiency chlorosis (IDC) is not caused by a pathogen, but rather by a lack of available iron in the soil."
+        "verbatim_quote": "Iron deficiency chlorosis (IDC) is not caused by a pathogen, but rather by a lack of available iron in the soil.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Young leaves (newest trifoliate leaves and growing points)",
         "source_url": "https://extension.umn.edu/nutrient-management/iron-deficiency-chlorosis-soybeans",
-        "verbatim_quote": "Symptoms first appear on the youngest leaves at the top of the plant because iron is not mobile within the plant and cannot be redistributed from older leaves to new growth."
+        "verbatim_quote": "Symptoms first appear on the youngest leaves at the top of the plant because iron is not mobile within the plant and cannot be redistributed from older leaves to new growth.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Interveinal chlorosis on young leaves with yellow to white leaf tissue between green veins; severe cases show necrosis and browning of leaf margins",
         "source_url": "https://extension.umn.edu/nutrient-management/iron-deficiency-chlorosis-soybeans",
-        "verbatim_quote": "Symptoms include yellowing of leaf tissue between the veins (interveinal chlorosis) on the youngest leaves. In severe cases, leaves may turn almost white and develop brown, necrotic edges and tips."
+        "verbatim_quote": "Symptoms include yellowing of leaf tissue between the veins (interveinal chlorosis) on the youngest leaves. In severe cases, leaves may turn almost white and develop brown, necrotic edges and tips.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -401,17 +455,20 @@
       "pathogen": {
         "value": "Diaporthe longicolla (anamorph: Phomopsis longicolla) and related Diaporthe/Phomopsis species",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Phomopsis.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -424,17 +481,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -447,17 +507,20 @@
       "pathogen": {
         "value": "Phytophthora sojae",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/PhytophthoraRootRot.aspx",
-        "verbatim_quote": "Phytophthora root and stem rot of soybean is caused by Phytophthora sojae, an oomycete (water mold) pathogen."
+        "verbatim_quote": "Phytophthora root and stem rot of soybean is caused by Phytophthora sojae, an oomycete (water mold) pathogen.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "roots, lower stem, leaves",
         "source_url": "https://extension.umn.edu/soybean-diseases/phytophthora-root-and-stem-rot-soybean",
-        "verbatim_quote": "Phytophthora root and stem rot can affect soybeans at any growth stage, causing seed decay, pre- and post-emergence damping-off, and root and stem rot of older plants."
+        "verbatim_quote": "Phytophthora root and stem rot can affect soybeans at any growth stage, causing seed decay, pre- and post-emergence damping-off, and root and stem rot of older plants.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Chocolate-brown discoloration of the lower stem advancing upward from the soil line; wilting and yellowing of leaves; rotted dark-brown roots; leaves remain attached after death",
         "source_url": "https://extension.umn.edu/soybean-diseases/phytophthora-root-and-stem-rot-soybean",
-        "verbatim_quote": "The most diagnostic symptom is a chocolate brown discoloration of the lower stem that advances up from the soil line. Leaves turn yellow, wilt, and die but remain attached to the plant."
+        "verbatim_quote": "The most diagnostic symptom is a chocolate brown discoloration of the lower stem that advances up from the soil line. Leaves turn yellow, wilt, and die but remain attached to the plant.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -470,17 +533,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves (older, lower leaves primarily); pods and seeds under severe deficiency",
         "source_url": "https://extension.umn.edu/crop-specific-needs/soybean-nutrient-management#potassium-deficiency-symptoms-1870913",
-        "verbatim_quote": "Potassium deficiency symptoms appear first on the older, lower leaves because potassium is mobile in the plant and moves from older to younger tissue."
+        "verbatim_quote": "Potassium deficiency symptoms appear first on the older, lower leaves because potassium is mobile in the plant and moves from older to younger tissue.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Yellowing and necrosis of leaf margins and tips on older leaves, progressing inward; scorched or burned appearance around leaf edges; interveinal chlorosis; symptoms move upward through canopy as deficiency worsens",
         "source_url": "https://extension.umn.edu/crop-specific-needs/soybean-nutrient-management#potassium-deficiency-symptoms-1870913",
-        "verbatim_quote": "Symptoms include yellowing of leaf margins that progresses to necrosis (dead tissue), giving the leaf a scorched appearance. Symptoms appear first on the lower, older leaves and progress upward."
+        "verbatim_quote": "Symptoms include yellowing of leaf margins that progresses to necrosis (dead tissue), giving the leaf a scorched appearance. Symptoms appear first on the lower, older leaves and progress upward.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -493,17 +559,20 @@
       "pathogen": {
         "value": "Erysiphe diffusa (syn. Microsphaera diffusa)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanPowderyMildew.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -516,17 +585,20 @@
       "pathogen": {
         "value": "Rhizoctonia solani",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Rhizoctonia.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -539,17 +611,20 @@
       "pathogen": {
         "value": "Phakopsora pachyrhizi",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SoybeanRust.aspx",
-        "verbatim_quote": "Soybean rust is caused by the fungus Phakopsora pachyrhizi Sydow & P. Sydow."
+        "verbatim_quote": "Soybean rust is caused by the fungus Phakopsora pachyrhizi Sydow & P. Sydow.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, stems, pods",
         "source_url": "https://extension.umn.edu/soybean-pest-management/soybean-rust",
-        "verbatim_quote": "The fungus can infect leaves, petioles, stems, and pods."
+        "verbatim_quote": "The fungus can infect leaves, petioles, stems, and pods.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Small tan to dark brown angular lesions on lower leaf surface with raised uredinia producing powdery brown spores; yellowing and premature defoliation",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SoybeanRust.aspx",
-        "verbatim_quote": "Lesions are angular and limited by leaf veins, and range in color from gray-green to tan, dark brown, or reddish-brown. Uredinia (pustules) form on the lower leaf surface and appear as small, raised blisters that break through the epidermis and release powdery, light-brown urediniospores."
+        "verbatim_quote": "Lesions are angular and limited by leaf veins, and range in color from gray-green to tan, dark brown, or reddish-brown. Uredinia (pustules) form on the lower leaf surface and appear as small, raised blisters that break through the epidermis and release powdery, light-brown urediniospores.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -562,17 +637,20 @@
       "pathogen": {
         "value": "Sclerotinia sclerotiorum",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SclerotiniaStemRot.aspx",
-        "verbatim_quote": "Sclerotinia stem rot is caused by the fungus Sclerotinia sclerotiorum."
+        "verbatim_quote": "Sclerotinia stem rot is caused by the fungus Sclerotinia sclerotiorum.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Stems, branches, pith",
         "source_url": "https://extension.umn.edu/soybean-diseases/sclerotinia-stem-rot-soybeans",
-        "verbatim_quote": "The fungus infects the stem, causing a bleached or white discoloration of the outer stem tissue and destruction of the pith."
+        "verbatim_quote": "The fungus infects the stem, causing a bleached or white discoloration of the outer stem tissue and destruction of the pith.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked lesions on stems that bleach white; white cottony mycelium on stem surface; hard black sclerotia inside and outside the stem; premature plant death and wilting",
         "source_url": "https://extension.umn.edu/soybean-diseases/sclerotinia-stem-rot-soybeans",
-        "verbatim_quote": "Infected stems are bleached white and may be covered with white, cottony mycelium. Black, hard sclerotia (resting structures) form on the outside and inside of infected stems. Plants wilt and die prematurely."
+        "verbatim_quote": "Infected stems are bleached white and may be covered with white, cottony mycelium. Black, hard sclerotia (resting structures) form on the outside and inside of infected stems. Plants wilt and die prematurely.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -585,17 +663,20 @@
       "pathogen": {
         "value": "Septoria glycines",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SeptoriaBrownSpot.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -608,17 +689,20 @@
       "pathogen": {
         "value": "Heterodera glycines",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/nematode/pdlessons/Pages/SoybeanCystNematode.aspx",
-        "verbatim_quote": "Soybean cyst nematode, caused by Heterodera glycines, is the most damaging pathogen of soybean in the United States."
+        "verbatim_quote": "Soybean cyst nematode, caused by Heterodera glycines, is the most damaging pathogen of soybean in the United States.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Roots, above-ground plant (stunting and yellowing of shoots and leaves)",
         "source_url": "https://extension.umn.edu/pest-management/soybean-cyst-nematode",
-        "verbatim_quote": "SCN feeds on soybean roots, which can cause stunting and yellowing of plants above ground."
+        "verbatim_quote": "SCN feeds on soybean roots, which can cause stunting and yellowing of plants above ground.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Stunted, yellowing plants in irregular field patches; white to yellow lemon-shaped females on roots turning brown cysts; reduced root mass and nodulation",
         "source_url": "https://extension.umn.edu/pest-management/soybean-cyst-nematode",
-        "verbatim_quote": "The most reliable way to confirm SCN is to look for the tiny, white, lemon-shaped females on the roots of plants dug from the field. The females are about the size of a period at the end of a sentence."
+        "verbatim_quote": "The most reliable way to confirm SCN is to look for the tiny, white, lemon-shaped females on the roots of plants dug from the field. The females are about the size of a period at the end of a sentence.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -631,17 +715,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -654,17 +741,20 @@
       "pathogen": {
         "value": "Soybean mosaic virus (SMV), genus Potyvirus, family Potyviridae",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SoybeanMosaic.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -672,22 +762,25 @@
   {
     "crop": "Soybean",
     "disease": "Soybean_Rust",
-    "symptom_text": "Soybean rust produces small, angular to irregular lesions on the lower (abaxial) surface of leaves, initially appearing as tiny pale green to yellow spots that gradually turn tan, brown, or reddish-brown as the disease progresses. The lesions are typically 2–5 mm in diameter and are bounded by leaf veins, giving them an angular appearance. On the underside of infected leaves, raised, blister-like pustules called uredinia erupt through the epidermis, releasing powdery, tan to brown urediniospores. Heavily infected leaves turn yellow and drop prematurely, leading to significant defoliation. Symptoms typically begin on lower canopy leaves and progress upward, and in severe cases lesions may also appear on petioles, stems, and pods.",
+    "symptom_text": "Soybean rust produces small, angular to irregular lesions on the lower (abaxial) surface of leaves, initially appearing as tiny pale green to yellow spots that gradually turn tan, brown, or reddish-brown as the disease progresses. The lesions are typically 2\u20135 mm in diameter and are bounded by leaf veins, giving them an angular appearance. On the underside of infected leaves, raised, blister-like pustules called uredinia erupt through the epidermis, releasing powdery, tan to brown urediniospores. Heavily infected leaves turn yellow and drop prematurely, leading to significant defoliation. Symptoms typically begin on lower canopy leaves and progress upward, and in severe cases lesions may also appear on petioles, stems, and pods.",
     "fields": {
       "pathogen": {
         "value": "Phakopsora pachyrhizi",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SoybeanRust.aspx",
-        "verbatim_quote": "Soybean rust is caused by two fungal pathogens: Phakopsora pachyrhizi Sydow and P. meibomiae (Arthur) Arthur."
+        "verbatim_quote": "Soybean rust is caused by two fungal pathogens: Phakopsora pachyrhizi Sydow and P. meibomiae (Arthur) Arthur.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (primarily), petioles, stems, pods",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SoybeanRust.aspx",
-        "verbatim_quote": "Rust can infect all above-ground parts of the soybean plant. Symptoms are most commonly observed on leaves but can also be found on petioles, stems, and pods."
+        "verbatim_quote": "Rust can infect all above-ground parts of the soybean plant. Symptoms are most commonly observed on leaves but can also be found on petioles, stems, and pods.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Small angular lesions on lower leaf surface, tan to brown or reddish-brown in color, with raised uredinia (pustules) that release tan to brown powdery urediniospores; infected leaves yellow and drop prematurely",
         "source_url": "https://extension.umn.edu/pest-management/soybean-rust",
-        "verbatim_quote": "Lesions are angular and limited by leaf veins. They are initially small and pale green to yellow, but turn tan to dark brown or reddish-brown as they mature. Uredinia (pustules) form on the lower leaf surface and release tan to brown powdery spores."
+        "verbatim_quote": "Lesions are angular and limited by leaf veins. They are initially small and pale green to yellow, but turn tan to dark brown or reddish-brown as they mature. Uredinia (pustules) form on the lower leaf surface and release tan to brown powdery spores.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -700,17 +793,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -723,17 +819,20 @@
       "pathogen": {
         "value": "Diaporthe aspalathi (southern stem canker) and Diaporthe caulivora (northern stem canker)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanStemCanker.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -741,22 +840,25 @@
   {
     "crop": "Soybean",
     "disease": "Sudden_Death_Syndrome",
-    "symptom_text": "Sudden Death Syndrome of soybean, caused by Fusarium virguliforme, produces distinctive foliar symptoms that appear during reproductive stages: interveinal chlorosis develops first as yellow mottling between the leaf veins on the upper canopy, rapidly progressing to interveinal necrosis where the tissue between veins turns brown and dies while the veins themselves remain green. Affected leaflets often curl, scorch, and drop prematurely, leaving bare petioles attached to the stem. Internally, the taproot and lower stem show a light gray to brown cortical rot, while the pith remains white—a key diagnostic feature distinguishing SDS from brown stem rot. Root systems are severely rotted, appearing dark brown to black, with lateral roots largely destroyed.",
+    "symptom_text": "Sudden Death Syndrome of soybean, caused by Fusarium virguliforme, produces distinctive foliar symptoms that appear during reproductive stages: interveinal chlorosis develops first as yellow mottling between the leaf veins on the upper canopy, rapidly progressing to interveinal necrosis where the tissue between veins turns brown and dies while the veins themselves remain green. Affected leaflets often curl, scorch, and drop prematurely, leaving bare petioles attached to the stem. Internally, the taproot and lower stem show a light gray to brown cortical rot, while the pith remains white\u2014a key diagnostic feature distinguishing SDS from brown stem rot. Root systems are severely rotted, appearing dark brown to black, with lateral roots largely destroyed.",
     "fields": {
       "pathogen": {
         "value": "Fusarium virguliforme",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SuddenDeath.aspx",
-        "verbatim_quote": "Sudden death syndrome (SDS) of soybean is caused by the soilborne fungus Fusarium virguliforme (formerly F. solani f. sp. glycines)."
+        "verbatim_quote": "Sudden death syndrome (SDS) of soybean is caused by the soilborne fungus Fusarium virguliforme (formerly F. solani f. sp. glycines).",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "roots, lower stem cortex, leaves",
         "source_url": "https://extension.umn.edu/soybean-pest-management/sudden-death-syndrome-soybean",
-        "verbatim_quote": "SDS infects soybean roots early in the season, but foliar symptoms do not appear until reproductive stages. The fungus colonizes the roots and lower stem, causing root rot and cortical decay."
+        "verbatim_quote": "SDS infects soybean roots early in the season, but foliar symptoms do not appear until reproductive stages. The fungus colonizes the roots and lower stem, causing root rot and cortical decay.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Interveinal chlorosis and necrosis on leaves with green veins remaining; premature defoliation leaving bare petioles; brown cortical root and lower stem rot with white pith",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SuddenDeath.aspx",
-        "verbatim_quote": "Foliar symptoms are characterized by scattered, irregular yellow blotches between the veins (interveinal chlorosis) that eventually turn brown (interveinal necrosis). Veins remain green. Severely affected leaflets drop, leaving the petioles attached to the stem. Internal symptoms include a light brown to gray discoloration of the root cortex and lower stem, while the pith remains white."
+        "verbatim_quote": "Foliar symptoms are characterized by scattered, irregular yellow blotches between the veins (interveinal chlorosis) that eventually turn brown (interveinal necrosis). Veins remain green. Severely affected leaflets drop, leaving the petioles attached to the stem. Internal symptoms include a light brown to gray discoloration of the root cortex and lower stem, while the pith remains white.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -769,17 +871,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -792,17 +897,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -815,17 +923,20 @@
       "pathogen": {
         "value": "Sclerotinia sclerotiorum",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WhiteMold.aspx",
-        "verbatim_quote": "White mold of soybean is caused by the fungus Sclerotinia sclerotiorum."
+        "verbatim_quote": "White mold of soybean is caused by the fungus Sclerotinia sclerotiorum.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "stems, petioles, pods, leaves",
         "source_url": "https://extension.umn.edu/soybean-diseases/white-mold-soybean",
-        "verbatim_quote": "White mold can infect stems, petioles, pods, and leaves of soybean plants."
+        "verbatim_quote": "White mold can infect stems, petioles, pods, and leaves of soybean plants.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked lesions on stems that bleach white; cottony white mycelium; hard black sclerotia on and inside stems; wilting and premature death of plants",
         "source_url": "https://extension.umn.edu/soybean-diseases/white-mold-soybean",
-        "verbatim_quote": "Symptoms include water-soaked lesions on the stem that later turn tan or white. A white, cottony mold grows on infected tissue. Hard, black structures called sclerotia form on and inside infected stems."
+        "verbatim_quote": "Symptoms include water-soaked lesions on the stem that later turn tan or white. A white, cottony mold grows on infected tissue. Hard, black structures called sclerotia form on and inside infected stems.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"

@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Fungal complex including Phaeoacremonium minimum, Phaeomoniella chlamydospora, and Fomitiporia mediterranea",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Esca.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves, berries, woody canes and trunk",
         "source_url": "https://ipm.ucanr.edu/PMG/r302100211.html",
-        "verbatim_quote": "Affected parts include leaves, fruit, and the woody parts of the vine including cordons, arms, and trunk."
+        "verbatim_quote": "Affected parts include leaves, fruit, and the woody parts of the vine including cordons, arms, and trunk.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Interveinal chlorosis and necrosis on leaves forming tiger-stripe pattern; dark spots with lighter halos on berries; dark streaking in wood",
         "source_url": "https://ipm.ucanr.edu/PMG/r302100211.html",
-        "verbatim_quote": "Leaf symptoms appear as a 'tiger stripe' pattern with interveinal areas turning yellow to reddish brown while the veins remain green. Berries develop small, dark spots surrounded by a lighter halo, giving the fruit a measles-like appearance."
+        "verbatim_quote": "Leaf symptoms appear as a 'tiger stripe' pattern with interveinal areas turning yellow to reddish brown while the veins remain green. Berries develop small, dark spots surrounded by a lighter halo, giving the fruit a measles-like appearance.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -30,17 +33,20 @@
       "pathogen": {
         "value": "Guignardia bidwellii",
         "source_url": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves, shoots and fruit",
         "source_url": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Small yellow leaf spots enlarging to lesions with dark brownish-red borders and tan to dark brown centres, ringed with black pycnidia",
         "source_url": "https://ohioline.osu.edu/factsheet/plpath-fru-24",
-        "verbatim_quote": "Symptoms of black rot first appear as small yellow spots on leaves. Enlarged spots (lesions) have a dark brownish-red border with tan to dark brown centers."
+        "verbatim_quote": "Symptoms of black rot first appear as small yellow spots on leaves. Enlarged spots (lesions) have a dark brownish-red border with tan to dark brown centers.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -56,17 +62,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -79,17 +88,20 @@
       "pathogen": {
         "value": "Plasmopara viticola",
         "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
         "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Irregular yellowish translucent spots on the upper leaf surface with white powdery growth beneath; leaves yellow, brown and dry",
         "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
-        "verbatim_quote": "Irregular, yellowish, translucent sports on the upper surface of the leaves. Correspondingly on the lower surface, white, powdery growth on leaves."
+        "verbatim_quote": "Irregular, yellowish, translucent sports on the upper surface of the leaves. Correspondingly on the lower surface, white, powdery growth on leaves.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -105,17 +117,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -128,17 +143,20 @@
       "pathogen": {
         "value": "Botrytis cinerea",
         "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Berries and clusters",
         "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Infected berries brown (white cultivars) or redden (red/black cultivars), developing a gray velvety mould",
         "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
-        "verbatim_quote": "At veraison, individually infected berries in a cluster turn brown on white cultivars or reddish in red and black cultivars...resulting in the characteristic gray, velvety appearance of infected berries."
+        "verbatim_quote": "At veraison, individually infected berries in a cluster turn brown on white cultivars or reddish in red and black cultivars...resulting in the characteristic gray, velvety appearance of infected berries.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -154,17 +172,20 @@
       "pathogen": {
         "value": "Pseudocercospora vitis (syn. Isariopsis clavispora; teleomorph: Mycosphaerella personata)",
         "source_url": "https://www.cabi.org/isc/datasheet/45846",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -177,17 +198,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -200,17 +224,20 @@
       "pathogen": {
         "value": "Grapevine leafroll-associated viruses (GLRaVs), primarily GLRaV-1 and GLRaV-3",
         "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-139-W.pdf",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -223,17 +250,20 @@
       "pathogen": {
         "value": "Uncinula necator",
         "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
         "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Powdery growth mainly on the upper leaf surface, with malformation and discolouration of affected leaves",
         "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
-        "verbatim_quote": "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration of affected leaves."
+        "verbatim_quote": "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration of affected leaves.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",

@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Diplocarpon rosae",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BlackSpotRose.aspx",
-        "verbatim_quote": "Black spot is caused by the fungus Diplocarpon rosae Wolf (sexual stage); the asexual stage is Marssonina rosae (Lib.) Died."
+        "verbatim_quote": "Black spot is caused by the fungus Diplocarpon rosae Wolf (sexual stage); the asexual stage is Marssonina rosae (Lib.) Died.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, young canes, flower petals",
         "source_url": "https://extension.umn.edu/plant-diseases/black-spot-rose",
-        "verbatim_quote": "Black spot infects leaves, petioles, young canes, and flower petals."
+        "verbatim_quote": "Black spot infects leaves, petioles, young canes, and flower petals.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Circular black spots with fringed margins on upper leaf surface, surrounded by yellow halos, leading to yellowing and premature leaf drop",
         "source_url": "https://extension.umn.edu/plant-diseases/black-spot-rose",
-        "verbatim_quote": "Symptoms appear as circular, black spots with fringed margins on the upper surface of leaves. Yellow halos often surround the spots. Infected leaves turn yellow and drop prematurely."
+        "verbatim_quote": "Symptoms appear as circular, black spots with fringed margins on the upper surface of leaves. Yellow halos often surround the spots. Infected leaves turn yellow and drop prematurely.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -30,17 +33,20 @@
       "pathogen": {
         "value": "Peronospora sparsa",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/RoseDownyMildew.aspx",
-        "verbatim_quote": "Downy mildew of rose is caused by the oomycete pathogen Peronospora sparsa."
+        "verbatim_quote": "Downy mildew of rose is caused by the oomycete pathogen Peronospora sparsa.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -53,17 +59,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -76,17 +85,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -99,17 +111,20 @@
       "pathogen": {
         "value": "Rose rosette virus, vectored by the eriophyid mite Phyllocoptes fructiphilus",
         "source_url": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Shoots, stems, leaves, buds and flowers",
         "source_url": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Witches' brooms, red or yellow discoloured and distorted buds, excessive thorns, mosaic-patterned leaves, thick stalks and deformed leaves/flowers",
         "source_url": "https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus",
-        "verbatim_quote": "witches' brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and flowers on roses."
+        "verbatim_quote": "witches' brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and flowers on roses.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",

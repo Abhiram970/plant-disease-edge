@@ -439,10 +439,18 @@ assume.)
   costs nothing — but it does mean the auditability guarantee applies to the zero-shot path only.
   The four remaining held-out stubs are all Wheat label artefacts (below).
 
-  Of the 205 unique source URLs, **116 resolve, 70 return 403/429** (bot-blocked but live, e.g. APS)
-  and **19 are dead** — concentrated in extension sites that reorganised (`extension.psu.edu`,
-  `cropprotectionnetwork.org`, `grapes.extension.org`, `irri.org`). Nine URLs point at Wikipedia,
-  which we flag as a weaker provenance tier than extension or peer-reviewed sources. On the **headline held-out
+  An initial audit found 19 of 205 source URLs dead, concentrated in extension sites that had
+  reorganised. **All have since been replaced, and every replacement had its quote re-extracted from
+  the new page rather than merely repointing the link** — a live URL whose quoted sentence does not
+  appear on it is a worse failure than a dead one, because it reads as fabricated evidence. No
+  descriptor now cites an unreachable page.
+
+  To make the data self-documenting, every field carries a `provenance` tag: **79 fields are
+  `page-verified`** (quote copied from a page we retrieved), **204 are `model-recalled`** (produced by
+  the LLM and *not* checked against the cited page — unverified provenance, not evidence), and the
+  remainder carry no quote. A reader inspecting the released JSON therefore cannot mistake one tier
+  for the other. Nine URLs point at Wikipedia, which we flag as weaker than extension or
+  peer-reviewed sources. On the **headline held-out
   crops (Coffee/Orange/Peach) coverage is now complete — 16/16 filled**, with every Coffee record
   page-verified against a retrievable source. The four remaining held-out stubs are all Wheat and are
   label artefacts (below). Of 201 unique source URLs, 110 are reachable, 73 return 403/429

@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Xanthomonas oryzae pv. oryzae",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
-        "verbatim_quote": "Bacterial blight of rice is caused by Xanthomonas oryzae pv. oryzae (Xoo)."
+        "verbatim_quote": "Bacterial blight of rice is caused by Xanthomonas oryzae pv. oryzae (Xoo).",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (leaf margins and tips); vascular system",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
-        "verbatim_quote": "The pathogen infects rice through leaf margins, leaf tips, and wounds, and spreads systemically through the vascular system."
+        "verbatim_quote": "The pathogen infects rice through leaf margins, leaf tips, and wounds, and spreads systemically through the vascular system.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked to yellowish stripes along leaf margins and tips that turn straw-yellow to white; wavy lesion margins; bacterial ooze forming yellow droplets under humid conditions",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
-        "verbatim_quote": "Symptoms first appear as water-soaked to yellowish stripes along the leaf margins or tips, which later turn yellow to straw-colored and then white, with a wavy margin between diseased and healthy tissue; under humid conditions, bacterial exudate may be observed as small, round, yellow droplets on the leaf surface."
+        "verbatim_quote": "Symptoms first appear as water-soaked to yellowish stripes along the leaf margins or tips, which later turn yellow to straw-colored and then white, with a wavy margin between diseased and healthy tissue; under humid conditions, bacterial exudate may be observed as small, round, yellow droplets on the leaf surface.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -25,22 +28,25 @@
   {
     "crop": "Rice",
     "disease": "Blast",
-    "symptom_text": "Rice blast causes diamond- or spindle-shaped lesions on leaves that are white to gray in the center with brown to reddish-brown borders, often surrounded by a yellow halo; lesions may coalesce under severe conditions to blight entire leaves. On the collar (leaf-collar blast), a brown to dark-brown rotting of the collar region can cause the leaf blade to fall over. Neck blast produces a dark-brown to blackish discoloration at the base of the panicle, causing the neck to rot and the panicle to fall over ('rotten neck'), resulting in empty or partially filled grains. Nodal blast appears as dark-brown to black lesions girdling the culm nodes. All above-ground organs—leaves, leaf collars, culm nodes, and panicle necks—can be affected, with lesions typically showing a characteristic elongated spindle shape with gray centers and darker margins.",
+    "symptom_text": "Rice blast causes diamond- or spindle-shaped lesions on leaves that are white to gray in the center with brown to reddish-brown borders, often surrounded by a yellow halo; lesions may coalesce under severe conditions to blight entire leaves. On the collar (leaf-collar blast), a brown to dark-brown rotting of the collar region can cause the leaf blade to fall over. Neck blast produces a dark-brown to blackish discoloration at the base of the panicle, causing the neck to rot and the panicle to fall over ('rotten neck'), resulting in empty or partially filled grains. Nodal blast appears as dark-brown to black lesions girdling the culm nodes. All above-ground organs\u2014leaves, leaf collars, culm nodes, and panicle necks\u2014can be affected, with lesions typically showing a characteristic elongated spindle shape with gray centers and darker margins.",
     "fields": {
       "pathogen": {
         "value": "Magnaporthe oryzae (anamorph: Pyricularia oryzae)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx",
-        "verbatim_quote": "Rice blast, caused by the fungus Magnaporthe oryzae (anamorph Pyricularia oryzae), is one of the most important diseases of rice worldwide."
+        "verbatim_quote": "Rice blast, caused by the fungus Magnaporthe oryzae (anamorph Pyricularia oryzae), is one of the most important diseases of rice worldwide.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, leaf collars, culm nodes, panicle necks, panicles",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx",
-        "verbatim_quote": "Blast can infect all above-ground parts of the rice plant including leaves, leaf collars, culm nodes, and panicle necks."
+        "verbatim_quote": "Blast can infect all above-ground parts of the rice plant including leaves, leaf collars, culm nodes, and panicle necks.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Diamond- or spindle-shaped leaf lesions with gray-white centers and brown to reddish-brown borders; neck rot causing panicle to fall over; dark-brown node lesions",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx",
-        "verbatim_quote": "Leaf lesions are typically spindle-shaped with gray or white centers and brown to reddish-brown borders. Neck blast causes a dark brown to black discoloration at the base of the panicle, which can result in the panicle falling over, a condition known as 'rotten neck.'"
+        "verbatim_quote": "Leaf lesions are typically spindle-shaped with gray or white centers and brown to reddish-brown borders. Neck blast causes a dark brown to black discoloration at the base of the panicle, which can result in the panicle falling over, a condition known as 'rotten neck.'",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -53,17 +59,20 @@
       "pathogen": {
         "value": "Helminthosporium oryzae",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Minute brown dots enlarging to oval-to-circular sesame-seed-like spots 0.5-2.0 mm across that coalesce into large patches",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html",
-        "verbatim_quote": "The disease appears first as minute brown dots, later becoming cylindrical or oval to circular.(resemble sesame seed)"
+        "verbatim_quote": "The disease appears first as minute brown dots, later becoming cylindrical or oval to circular.(resemble sesame seed)",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -79,17 +88,20 @@
       "pathogen": {
         "value": "Xanthomonas oryzae pv. oryzae",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialLeafBlight.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -102,17 +114,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -125,17 +140,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -148,17 +166,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -171,17 +192,20 @@
       "pathogen": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "stub"
@@ -194,17 +218,20 @@
       "pathogen": {
         "value": "Xanthomonas oryzae pv. oryzae",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
-        "verbatim_quote": "Bacterial blight of rice is caused by Xanthomonas oryzae pv. oryzae (Xoo)"
+        "verbatim_quote": "Bacterial blight of rice is caused by Xanthomonas oryzae pv. oryzae (Xoo)",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, leaf margins, vascular tissue, seedlings (kresek phase)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
-        "verbatim_quote": "The disease affects leaves and can cause a wilting of seedlings known as kresek"
+        "verbatim_quote": "The disease affects leaves and can cause a wilting of seedlings known as kresek",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked to yellowish stripes along leaf margins expanding to straw-yellow or white lesions; entire leaf blighting; milky bacterial ooze under humid conditions",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx",
-        "verbatim_quote": "Leaf symptoms begin as water-soaked to yellowish stripes on leaf margins or tips that enlarge and turn yellow to straw-colored, with a wavy margin separating diseased from healthy tissue"
+        "verbatim_quote": "Leaf symptoms begin as water-soaked to yellowish stripes on leaf margins or tips that enlarge and turn yellow to straw-colored, with a wavy margin separating diseased from healthy tissue",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -217,17 +244,20 @@
       "pathogen": {
         "value": "Bipolaris oryzae (Breda de Haan) Shoemaker (syn. Helminthosporium oryzae)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBrownSpot.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -240,17 +270,20 @@
       "pathogen": {
         "value": "Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Yellow to orange-yellow leaves with rust-coloured spots, discolouring from the leaf tip downward",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
-        "verbatim_quote": "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"
+        "verbatim_quote": "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -264,19 +297,22 @@
     "symptom_text": "Rice sheath blight, caused by Rhizoctonia solani, initially produces oval to elliptical greenish-gray lesions on the leaf sheath near the water line, which expand and develop grayish-white centers with dark brown to purple-brown borders. As the disease progresses, lesions coalesce and spread upward to the upper leaf sheaths and leaf blades, causing large irregular blighted areas with a characteristic bleached or straw-colored center surrounded by a distinct brown margin. Infected tissue may collapse, and white to brown irregularly shaped sclerotia resembling mustard seeds form on the surface of affected sheaths and leaves. Severe infections can cause lodging and significant yield loss.",
     "fields": {
       "pathogen": {
-        "value": "Rhizoctonia solani Kühn (teleomorph: Thanatephorus cucumeris)",
+        "value": "Rhizoctonia solani K\u00fchn (teleomorph: Thanatephorus cucumeris)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx",
-        "verbatim_quote": "Sheath blight of rice is caused by Rhizoctonia solani Kühn (teleomorph: Thanatephorus cucumeris (Frank) Donk)"
+        "verbatim_quote": "Sheath blight of rice is caused by Rhizoctonia solani K\u00fchn (teleomorph: Thanatephorus cucumeris (Frank) Donk)",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaf sheaths, leaf blades, stems",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx",
-        "verbatim_quote": "The fungus infects the leaf sheaths and leaf blades and, under severe conditions, can infect the stems and panicles."
+        "verbatim_quote": "The fungus infects the leaf sheaths and leaf blades and, under severe conditions, can infect the stems and panicles.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Oval to elliptical lesions with grayish-white centers and dark brown to purple-brown borders; sclerotia on infected tissue",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx",
-        "verbatim_quote": "Lesions are initially oval to elliptical or irregular, about 1-3 cm long, and greenish-gray. As lesions mature, the center becomes grayish-white with an irregular, light brown to dark brown border."
+        "verbatim_quote": "Lesions are initially oval to elliptical or irregular, about 1-3 cm long, and greenish-gray. As lesions mature, the center becomes grayish-white with an irregular, light brown to dark brown border.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -289,17 +325,20 @@
       "pathogen": {
         "value": "Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV)",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Yellow to orange-yellow leaves with rust-coloured spots, discolouring from the leaf tip downward",
         "source_url": "https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html",
-        "verbatim_quote": "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"
+        "verbatim_quote": "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",

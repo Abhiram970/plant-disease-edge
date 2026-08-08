@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Xanthomonas arboricola pv. pruni",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialSpotStoneFruits.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -30,17 +33,20 @@
       "pathogen": {
         "value": "Monilinia fructicola",
         "source_url": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
-        "verbatim_quote": "Monilinia fructicola is a species of fungus in the order Helotiales. A plant pathogen, it is the causal agent of brown rot of stone fruits."
+        "verbatim_quote": "Monilinia fructicola is a species of fungus in the order Helotiales. A plant pathogen, it is the causal agent of brown rot of stone fruits.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Blossoms, twigs, and fruit",
         "source_url": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
-        "verbatim_quote": "Brown rot causes blossom blight, twig blight; twig canker and fruit rot."
+        "verbatim_quote": "Brown rot causes blossom blight, twig blight; twig canker and fruit rot.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Small circular brown fruit spots enlarging to rot the whole fruit; greyish spore tufts; mummified fruit",
         "source_url": "https://en.wikipedia.org/wiki/Monilinia_fructicola",
-        "verbatim_quote": "Fruit rot appears as small, circular brown spots that increase rapidly in size causing the entire fruit to rot. Greyish spores appear in tufts on rotted areas."
+        "verbatim_quote": "Fruit rot appears as small, circular brown spots that increase rapidly in size causing the entire fruit to rot. Greyish spores appear in tufts on rotted areas.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -56,17 +62,20 @@
       "pathogen": {
         "value": "Taphrina deformans",
         "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-        "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans."
+        "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Blossoms, fruit, leaves, and shoots",
         "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-        "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines."
+        "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores",
         "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-        "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus."
+        "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -77,22 +86,25 @@
   {
     "crop": "Peach",
     "disease": "Leaf_Scab",
-    "symptom_text": "Peach leaf scab, caused by the fungus Cladosporium carpophilum, produces small, circular to angular, olive-green to dark brown or black velvety spots on the undersides of leaves, typically measuring 2–3 mm in diameter. Lesions are often concentrated along the midrib and secondary veins, and may coalesce under heavy infection. Affected tissue may eventually turn yellow and drop out, giving leaves a shot-hole appearance. Symptoms are most visible on young, expanding leaves in spring and early summer.",
+    "symptom_text": "Peach leaf scab, caused by the fungus Cladosporium carpophilum, produces small, circular to angular, olive-green to dark brown or black velvety spots on the undersides of leaves, typically measuring 2\u20133 mm in diameter. Lesions are often concentrated along the midrib and secondary veins, and may coalesce under heavy infection. Affected tissue may eventually turn yellow and drop out, giving leaves a shot-hole appearance. Symptoms are most visible on young, expanding leaves in spring and early summer.",
     "fields": {
       "pathogen": {
         "value": "Cladosporium carpophilum",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PeachScab.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -105,17 +117,20 @@
       "pathogen": {
         "value": "Taphrina deformans",
         "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-        "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans."
+        "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Blossoms, fruit, leaves, and shoots",
         "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-        "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines."
+        "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores",
         "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
-        "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus."
+        "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
