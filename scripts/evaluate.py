@@ -47,6 +47,10 @@ def main():
     ap.add_argument("--teachers", action="store_true", help="also evaluate the reference/teacher VLMs")
     ap.add_argument("--exp", choices=list(C.EXPERIMENTS), default="C",
                     help="scale-study subset: A (3 held) / B (6) / C (8, all)")
+    ap.add_argument("--clean", action="store_true",
+                    help="merge SAGE's duplicate disease labels and drop non-disease labels "
+                         "(see config.LABEL_ALIASES / EXCLUDE_LABELS). Writes a separate "
+                         "*_clean.json so the as-published result is never overwritten.")
     args = ap.parse_args()
 
     ensure_deps()
@@ -57,6 +61,14 @@ def main():
     rows = sage_data.fetch(C.HELDOUT_CROPS, sage_data.full_caps(), min_held_crops=C.MIN_HELD_CROPS)
     rows = [r for r in rows if r["crop"] in set(held_crops)]     # subset to this experiment's held crops
     assert rows, f"no held-out images for experiment {args.exp} ({held_crops})"
+    clean_stats = None
+    if args.clean:
+        n_before = len({r["label"] for r in rows})
+        rows, clean_stats = C.clean_rows(rows)
+        n_after = len({r["label"] for r in rows})
+        print(f"[clean] {n_before} -> {n_after} classes  "
+              f"({clean_stats['merged_images']:,} imgs relabelled, "
+              f"{clean_stats['dropped_images']:,} dropped)")
     classes = sorted({r["label"] for r in rows})
     print(f"[eval] experiment {args.exp}: held crops = {held_crops}")
     chance = 1.0 / len(classes)
@@ -90,8 +102,11 @@ def main():
         D.text_for(c, "rich", coverage)
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}.json"
+    suffix = "_clean" if args.clean else ""
+    out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}{suffix}.json"
     out.write_text(json.dumps({"chance": chance, "n_classes": len(classes), "crops": crops,
+                               "n_images": len(rows), "clean": bool(args.clean),
+                               "clean_stats": clean_stats,
                                "coverage": coverage, "models": results}, indent=2))
     print(f"\n[eval] saved {out}")
 

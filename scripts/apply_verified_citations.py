@@ -183,6 +183,67 @@ V[("Wheat", "Head_Scab")] = {
         "Macroconidia are produced in sporodochia, which gives the spike a bright pink or orange color."),
 }
 
+# --- Bean and Cotton, verified 2026-08-08 ------------------------------------------------------
+# These two held-out crops previously had ZERO page-verified records while carrying the headline
+# cross-crop claim, which was the weakest point in the auditability story. Sources are UC IPM and the
+# Crop Protection Network (both retrievable; APS returns 403 to automated requests).
+V[("Bean", "Halo_Blight")] = {
+    "source": "https://ipm.ucanr.edu/agriculture/dry-beans/halo-blight/",
+    "pathogen": ("Pseudomonas syringae pv. phaseolicola", ""),
+    "affected_organs": ("Leaves (undersurfaces first), extending to upper plant parts",
+        "small, angular, water-soaked spots (almost resembling little pin pricks) on the "
+        "undersurfaces of leaves"),
+    "visual_symptoms": ("Angular water-soaked spots with a light green to yellow halo; general "
+                        "chlorosis of leaves and upper plant in severe cases",
+        "a characteristic light green to yellow halo appears around the spots"),
+}
+V[("Bean", "Common_Bacterial_Blight_Of_Beans")] = {
+    "source": "https://ipm.ucanr.edu/agriculture/dry-beans/common-bacterial-blight/",
+    "pathogen": ("Xanthomonas campestris (axonopodis) pv. phaseoli; Xanthomonas fuscans subsp. fuscans",
+        ""),
+    "affected_organs": ("Leaf margins and interveinal areas; whole leaves in severe cases",
+        "The spots or lesions develop on the edges or interveinal areas of leaves."),
+    "visual_symptoms": ("Water-soaked or light green spots enlarging to brown necrotic centres, "
+                        "bordered by a diagnostic lemon-yellow ring",
+        "These irregularly shaped spots are bordered by a lemon yellow ring, which serves as a "
+        "diagnostic symptom of common bacterial blight."),
+}
+V[("Bean", "Rust")] = {
+    "source": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+    "pathogen": ("Uromyces phaseoli (syn. U. appendiculatus)", ""),
+    "affected_organs": ("Leaves, primarily the lower surface; pods may also be affected", ""),
+    "visual_symptoms": ("Dry reddish, yellowish or orange powdery spore pustules, mainly on the "
+                        "underside of leaves",
+        "Plants infected with rust have dry reddish, yellowish, or orange spore masses or pustules "
+        "primarily on the lower surface of leaves."),
+}
+V[("Bean", "Leaf_Mosaic_Virus")] = {
+    "source": "https://ipm.ucanr.edu/agriculture/dry-beans/bean-common-mosaic/",
+    "pathogen": ("Bean common mosaic virus", ""),
+    "affected_organs": ("Trifoliolate leaves", ""),
+    "visual_symptoms": ("Light green-yellow and dark green mosaic on trifoliolate leaves with "
+                        "puckering, blistering, distortion and downward curling",
+        "mosaic patterns of light green-yellow leaf tissue, dark green tissue, or both light and dark "
+        "mosaics together on the trifoliolate leaves. Leaf discoloration is usually accompanied by "
+        "puckering, blistering, distortion, and a downward curling and rolling."),
+}
+V[("Cotton", "Bacterial_Blight")] = {
+    "source": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
+    "pathogen": ("Xanthomonas citri subsp. malvacearum", "Xanthomonas citri subsp. malvacearum"),
+    "affected_organs": ("Leaves, stems and petioles (black arm), and bolls",
+        "black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls"),
+    "visual_symptoms": ("Angular water-soaked leaf lesions delimited by the veins",
+        "water-soaked lesions on leaves constricted by the leaf veins"),
+}
+V[("Cotton", "Target_Spot")] = {
+    "source": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
+    "pathogen": ("Corynespora cassiicola", "The disease is caused by the fungus Corynespora cassiicola."),
+    "affected_organs": ("Leaves", ""),
+    "visual_symptoms": ("Brick-red spots enlarging to tan/light-brown centres with concentric rings",
+        "Initial symptoms are brick-red spots that expand into tan to light brown centers with "
+        "concentric rings."),
+}
+
 FIELDS = ("pathogen", "affected_organs", "visual_symptoms")
 
 

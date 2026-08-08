@@ -64,6 +64,53 @@ CROP_ALIASES = {
     "cucumber": "Cucumber",
 }
 
+# --- SAGE label-quality corrections (opt-in via --clean) --------------------
+# Audited over the 51 held-out classes of experiment C. Applied ONLY when a script is run with
+# --clean, so the default reproduces the as-published SAGE label set and the two can be compared.
+#
+# Each pair below was confirmed to be one disease under two names by checking that the two
+# INDEPENDENTLY GENERATED descriptor records resolve to an identical pathogen. Duplicates are not a
+# cosmetic problem: two near-identical text prototypes split the similarity mass, so the pair is
+# unwinnable by construction and top-1 is depressed for every method evaluated on the benchmark.
+LABEL_ALIASES = {
+    "Orange|Canker": "Orange|Citrus_Canker",                  # Xanthomonas citri
+    "Orange|Greening_Disease": "Orange|Huanglongbing",        # Ca. Liberibacter spp.
+    "Peach|Leaf_Curl": "Peach|Peach_Leaf_Curl",               # Taphrina deformans
+    "Cucumber|Angular_Leaf_Spot_Of_Cucumber": "Cucumber|Angular_Leaf_Spot",  # P. syringae pv. lachrymans
+    "Wheat|Fusarium_Graminearum_Schwabe": "Wheat|Head_Scab",  # Fusarium graminearum
+}
+
+# Labels that cannot have a symptom descriptor at all. Deliberately CONSERVATIVE: it holds only
+# breeding resistance ratings and one label that is not a wheat disease. Debatable cases are kept
+# on purpose -- Coffee|Miner (an insect, but its leaf mines are a genuine visual target) and the
+# post-harvest fruit rots (Orange|Green_Mold, Orange|Whisker_Mold, Cucumber|Belly_Rot,
+# Cucumber|Pythium_Fruit_Rot) all remain, so this cannot be mistaken for pruning to flatter results.
+EXCLUDE_LABELS = {
+    "Wheat|Resistance_Phenotype",
+    "Wheat|Resistance_Phenotype__Moderately_Resistant",
+    "Wheat|Resistance_Phenotype__Moderately_Susceptible",
+    "Wheat|Fusarium_Wilts",          # not a standard wheat disease
+}
+
+
+def clean_rows(rows):
+    """Apply LABEL_ALIASES / EXCLUDE_LABELS. Returns (rows, stats) and never mutates the input."""
+    out, merged, dropped = [], 0, 0
+    for r in rows:
+        lab = r["label"]
+        if lab in EXCLUDE_LABELS:
+            dropped += 1
+            continue
+        if lab in LABEL_ALIASES:
+            r = dict(r)
+            r["label"] = LABEL_ALIASES[lab]
+            r["disease"] = r["label"].split("|", 1)[1]
+            merged += 1
+        out.append(r)
+    return out, {"merged_images": merged, "dropped_images": dropped,
+                 "alias_pairs": len(LABEL_ALIASES), "excluded_labels": len(EXCLUDE_LABELS)}
+
+
 # --- Data budgets (LOCKED) --------------------------------------------------
 PER_CLASS_CAP = 1500       # max images kept per (crop, disease) class
 MIN_CLASS_IMAGES = 50      # classes below this are dropped -> OOD/abstain set

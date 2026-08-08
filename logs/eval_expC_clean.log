@@ -1,0 +1,15 @@
+﻿[sage] 86,199 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+[clean] 51 -> 42 classes  (784 imgs relabelled, 1,792 dropped)
+[eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+[eval] held=12,412 imgs  42 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.4%
+
+python.exe : Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits 
+and faster downloads.
+At line:1 char:347
++ ... sease-edge; & "C:\Users\PV Abhiram\.pyenv\pyenv-win\versions\3.11.9\p ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: You ar...ster downloads.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to 
+enable higher rate limits and faster downloads.

@@ -23,7 +23,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-    "verified_date": "2026-08-01"
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Coffee",
@@ -49,7 +49,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-    "verified_date": "2026-08-01"
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Coffee",
@@ -75,7 +75,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
-    "verified_date": "2026-08-01"
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Coffee",
@@ -101,7 +101,7 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
-    "verified_date": "2026-08-01"
+    "verified_date": "2026-08-08"
   },
   {
     "crop": "Coffee",
@@ -127,6 +127,6 @@
     "status": "filled",
     "verified": true,
     "verified_source": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-    "verified_date": "2026-08-01"
+    "verified_date": "2026-08-08"
   }
 ]
