@@ -129,6 +129,9 @@ def main():
     # ----------------------
 
     print(f"[baseline] train {len(tr):,} / test {len(te):,}  x {args.epochs} epochs ...")
+    # Initialised here, not in the loop: resuming a run whose epochs are all complete skips the loop
+    # body entirely, and the summary below would otherwise raise NameError on `correct`/`tot`.
+    correct = tot = 0
     for ep in range(start_epoch, args.epochs):
         model.train(); run = 0.0; nb = 0
         for x, y in dl_tr:
