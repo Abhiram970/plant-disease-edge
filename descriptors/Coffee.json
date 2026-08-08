@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Cercospora coffeicola (teleomorph Mycosphaerella coffeicola)",
         "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-        "verbatim_quote": "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen."
+        "verbatim_quote": "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Berries (green cherries and ripe red cherries)",
         "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-        "verbatim_quote": "On green berries, this includes irregularly shaped brown, sunken lesions that are surrounded by a purple halo."
+        "verbatim_quote": "On green berries, this includes irregularly shaped brown, sunken lesions that are surrounded by a purple halo.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Tan-to-brown sunken berry lesions with a purple halo, maturing to a deeply depressed ashy centre that can reach the bean",
         "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-        "verbatim_quote": "As the lesion matures, it becomes deeply depressed with an ashy center and may penetrate down to the coffee bean."
+        "verbatim_quote": "As the lesion matures, it becomes deeply depressed with an ashy center and may penetrate down to the coffee bean.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -33,17 +36,20 @@
       "pathogen": {
         "value": "Cercospora coffeicola (teleomorph Mycosphaerella coffeicola)",
         "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-        "verbatim_quote": "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen."
+        "verbatim_quote": "Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves and berries",
         "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-        "verbatim_quote": "On leaves, lesions begin as chlorotic (yellow) spots that expand to become deep brown and necrotic on the upper leaf surface."
+        "verbatim_quote": "On leaves, lesions begin as chlorotic (yellow) spots that expand to become deep brown and necrotic on the upper leaf surface.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Brown necrotic leaf spots with a pale/light sporulating centre and a yellow halo; lesions coalesce into large irregular necrotic areas",
         "source_url": "https://en.wikipedia.org/wiki/Cercospora_coffeicola",
-        "verbatim_quote": "These spots often have a discolored, light center where sporulation can occur, and many have a yellow 'halo' around the margins."
+        "verbatim_quote": "These spots often have a discolored, light center where sporulation can occur, and many have a yellow 'halo' around the margins.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -57,19 +63,22 @@
     "symptom_text": "TODO: source-grounded symptom description for Miner on Coffee.",
     "fields": {
       "pathogen": {
-        "value": "Leucoptera coffeella (coffee leaf miner) — an insect pest, not a pathogen",
+        "value": "Leucoptera coffeella (coffee leaf miner) \u2014 an insect pest, not a pathogen",
         "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
-        "verbatim_quote": "CLM is a monophagous pest, coffee exclusive and the larvae are the causal agent of the crop damage"
+        "verbatim_quote": "CLM is a monophagous pest, coffee exclusive and the larvae are the causal agent of the crop damage",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves (mesophyll / palisade parenchyma); severe attack causes defoliation",
         "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
-        "verbatim_quote": "When feeding on the mesophyll of the coffee tree leaves, the insect creates mines that justify the common name"
+        "verbatim_quote": "When feeding on the mesophyll of the coffee tree leaves, the insect creates mines that justify the common name",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Irregular pale-to-brown mines on the upper leaf surface that enlarge from millimetres to centimetres into necrotic patches, ending in leaf fall",
         "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/",
-        "verbatim_quote": "the injuries area evolves from some millimeters to several centimeters...ending up to the falling of the leaves"
+        "verbatim_quote": "the injuries area evolves from some millimeters to several centimeters...ending up to the falling of the leaves",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -85,17 +94,20 @@
       "pathogen": {
         "value": "Phoma tarda and Phoma costarricensis",
         "source_url": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
-        "verbatim_quote": "Phoma tarda (RB Stewart) H. Verm. and Phoma costarricensis Echandi, 1957"
+        "verbatim_quote": "Phoma tarda (RB Stewart) H. Verm. and Phoma costarricensis Echandi, 1957",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves, branches and floral rosettes (indirectly flowers and fruit)",
         "source_url": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
-        "verbatim_quote": "Phoma spot can also affect floral rosettes, indirectly causing necrosis of flowers and fruits"
+        "verbatim_quote": "Phoma spot can also affect floral rosettes, indirectly causing necrosis of flowers and fruits",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Dark circular leaf spots up to ~2 cm; leaf edges curl and crack; dark sunken lesions girdling branches (dry shoots)",
         "source_url": "https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee",
-        "verbatim_quote": "circular spots of dark color and varying sizes, which can reach 2 cm in diameter"
+        "verbatim_quote": "circular spots of dark color and varying sizes, which can reach 2 cm in diameter",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -111,17 +123,20 @@
       "pathogen": {
         "value": "Hemileia vastatrix",
         "source_url": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-        "verbatim_quote": "Hemileia vastatrix is a multicellular basidiomycete fungus of the order Pucciniales (previously also known as Uredinales) that causes coffee leaf rust (CLR)."
+        "verbatim_quote": "Hemileia vastatrix is a multicellular basidiomycete fungus of the order Pucciniales (previously also known as Uredinales) that causes coffee leaf rust (CLR).",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves (rarely young stems and fruit)",
         "source_url": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-        "verbatim_quote": "It mainly attacks the leaves and is only rarely found on young stems and fruit."
+        "verbatim_quote": "It mainly attacks the leaves and is only rarely found on young stems and fruit.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Yellow-orange powdery uredinia on the underside of leaves; chlorotic pale-yellow spots",
         "source_url": "https://en.wikipedia.org/wiki/Coffee_leaf_rust",
-        "verbatim_quote": "The mycelium with uredinia looks yellow-orange and powdery, and appears on the underside of leaves as points ~0.1 mm in diameter."
+        "verbatim_quote": "The mycelium with uredinia looks yellow-orange and powdery, and appears on the underside of leaves as points ~0.1 mm in diameter.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",

@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Colletotrichum musae",
         "source_url": "https://www.cabi.org/isc/datasheet/13573",
-        "verbatim_quote": "Colletotrichum musae is the causal agent of banana anthracnose, one of the most important post-harvest diseases of banana."
+        "verbatim_quote": "Colletotrichum musae is the causal agent of banana anthracnose, one of the most important post-harvest diseases of banana.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruits (peel and pulp)",
         "source_url": "https://www.cabi.org/isc/datasheet/13573",
-        "verbatim_quote": "The fungus infects the fruit skin and can penetrate into the pulp, causing post-harvest rot of banana fingers."
+        "verbatim_quote": "The fungus infects the fruit skin and can penetrate into the pulp, causing post-harvest rot of banana fingers.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Sunken, dark brown to black circular lesions on the peel that enlarge and coalesce; salmon-pink spore masses may appear under humid conditions; internal pulp rot in advanced stages",
         "source_url": "https://www.cabi.org/isc/datasheet/13573",
-        "verbatim_quote": "Symptoms appear as small, sunken, dark brown to black lesions on the peel of ripening fruit; under moist conditions, salmon-pink masses of conidia may be visible on the lesions."
+        "verbatim_quote": "Symptoms appear as small, sunken, dark brown to black lesions on the peel of ripening fruit; under moist conditions, salmon-pink masses of conidia may be visible on the lesions.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -25,22 +28,25 @@
   {
     "crop": "Banana",
     "disease": "Bunchy_Top",
-    "symptom_text": "Banana bunchy top disease causes newly emerging leaves to be stunted, narrow, and stiff with upright orientation, giving the plant a characteristic rosette or 'bunchy' appearance at the crown. Leaf margins display dark green streaks or 'Morse code' dashes — short, discontinuous dark-green lines running parallel to the veins on the underside of leaves and on the petioles and midribs. Older leaves show marginal yellowing and may curl upward. Infected plants produce successive leaves that are progressively shorter, paler, and more erect, with the youngest leaves clustered tightly at the top of the pseudostem. Affected pseudostems may also exhibit dark green streaking. Plants infected at an early stage rarely produce fruit, and if they do, the bunch is small and distorted.",
+    "symptom_text": "Banana bunchy top disease causes newly emerging leaves to be stunted, narrow, and stiff with upright orientation, giving the plant a characteristic rosette or 'bunchy' appearance at the crown. Leaf margins display dark green streaks or 'Morse code' dashes \u2014 short, discontinuous dark-green lines running parallel to the veins on the underside of leaves and on the petioles and midribs. Older leaves show marginal yellowing and may curl upward. Infected plants produce successive leaves that are progressively shorter, paler, and more erect, with the youngest leaves clustered tightly at the top of the pseudostem. Affected pseudostems may also exhibit dark green streaking. Plants infected at an early stage rarely produce fruit, and if they do, the bunch is small and distorted.",
     "fields": {
       "pathogen": {
         "value": "Banana bunchy top virus (BBTV)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx",
-        "verbatim_quote": "Banana bunchy top virus (BBTV) is the causal agent of banana bunchy top disease, one of the most devastating diseases of banana worldwide."
+        "verbatim_quote": "Banana bunchy top virus (BBTV) is the causal agent of banana bunchy top disease, one of the most devastating diseases of banana worldwide.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, midribs, pseudostem",
         "source_url": "https://www.cabi.org/isc/datasheet/12648",
-        "verbatim_quote": "Symptoms appear on leaves, petioles, midribs and pseudostems of infected plants."
+        "verbatim_quote": "Symptoms appear on leaves, petioles, midribs and pseudostems of infected plants.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Stunted, narrow, upright leaves clustered at crown; dark green 'Morse code' streaks on leaf margins, petioles, and midribs; marginal yellowing; progressive leaf shortening",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx",
-        "verbatim_quote": "Characteristic symptoms include dark green streaks in the veins of the lower portion of the petiole and in the midrib, and short, dark-green, discontinuous streaks (resembling Morse code) along the margins of the leaves and on the petioles; leaves become progressively shorter, narrower, more erect, and more chlorotic, giving the plant a bunchy appearance at the top."
+        "verbatim_quote": "Characteristic symptoms include dark green streaks in the veins of the lower portion of the petiole and in the midrib, and short, dark-green, discontinuous streaks (resembling Morse code) along the margins of the leaves and on the petioles; leaves become progressively shorter, narrower, more erect, and more chlorotic, giving the plant a bunchy appearance at the top.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -53,17 +59,20 @@
       "pathogen": {
         "value": "Trachysphaera fructigena, Verticillium theobromae (Stachylidium theobromae)",
         "source_url": "https://www.plantwise.org/knowledgebank/datasheet/54349",
-        "verbatim_quote": "Cigar-end rot is caused by two fungi, Stachylidium theobromae (Verticillium theobromae) and Trachysphaera fructigena"
+        "verbatim_quote": "Cigar-end rot is caused by two fungi, Stachylidium theobromae (Verticillium theobromae) and Trachysphaera fructigena",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruit (distal end/tip), flower remnants",
         "source_url": "https://www.plantwise.org/knowledgebank/datasheet/54349",
-        "verbatim_quote": "The rot starts at the flower end of the fruit and progresses towards the stalk"
+        "verbatim_quote": "The rot starts at the flower end of the fruit and progresses towards the stalk",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Dry, wrinkled, grayish-black necrotic tissue at fruit tip resembling cigar ash; distinct boundary between healthy and diseased tissue",
         "source_url": "https://www.plantwise.org/knowledgebank/datasheet/54349",
-        "verbatim_quote": "The tip of the fruit becomes dry and shrivelled, and black, looking like the ash on the end of a cigar"
+        "verbatim_quote": "The tip of the fruit becomes dry and shrivelled, and black, looking like the ash on the end of a cigar",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -76,17 +85,20 @@
       "pathogen": {
         "value": "Cordana musae (Neergaard) Hern.-Restr. & Crous (syn. Cordana johnstonii)",
         "source_url": "https://www.cabi.org/isc/datasheet/15463",
-        "verbatim_quote": "Cordana musae is a fungal pathogen causing leaf spot disease on banana"
+        "verbatim_quote": "Cordana musae is a fungal pathogen causing leaf spot disease on banana",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, primarily older and senescent leaves",
         "source_url": "https://www.cabi.org/isc/datasheet/15463",
-        "verbatim_quote": "The fungus primarily affects the leaves of banana plants, particularly the older leaves"
+        "verbatim_quote": "The fungus primarily affects the leaves of banana plants, particularly the older leaves",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Oval to elliptical pale brown to grayish lesions with dark brown borders and yellow halos on leaves",
         "source_url": "https://www.cabi.org/isc/datasheet/15463",
-        "verbatim_quote": "Symptoms appear as oval to elliptical spots with pale brown to grey centres and dark brown margins, often surrounded by a yellow halo"
+        "verbatim_quote": "Symptoms appear as oval to elliptical spots with pale brown to grey centres and dark brown margins, often surrounded by a yellow halo",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -99,17 +111,20 @@
       "pathogen": {
         "value": "Fusarium oxysporum f. sp. cubense",
         "source_url": "https://en.wikipedia.org/wiki/Panama_disease",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "Feeder roots, rhizome, pseudostem, leaves",
         "source_url": "https://en.wikipedia.org/wiki/Panama_disease",
-        "verbatim_quote": "The infection begins at the tips of the feeder roots and then moves on to the rhizome."
+        "verbatim_quote": "The infection begins at the tips of the feeder roots and then moves on to the rhizome.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Oldest leaves yellow, wilt and buckle; outer leaf sheaths split; xylem reddish-brown",
         "source_url": "https://en.wikipedia.org/wiki/Panama_disease",
-        "verbatim_quote": "Externally, the oldest leaves start turning yellow and there is often a longitudinal splitting of the lower part of the outer leaf sheaths on the pseudostem. The leaves begin to wilt and may buckle at the base of the petiole."
+        "verbatim_quote": "Externally, the oldest leaves start turning yellow and there is often a longitudinal splitting of the lower part of the outer leaf sheaths on the pseudostem. The leaves begin to wilt and may buckle at the base of the petiole.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -125,17 +140,20 @@
       "pathogen": {
         "value": "Mycosphaerella fijiensis",
         "source_url": "https://en.wikipedia.org/wiki/Mycosphaerella_fijiensis",
-        "verbatim_quote": "Black sigatoka is a leaf-spot disease of banana plants caused by the ascomycete fungus Mycosphaerella fijiensis"
+        "verbatim_quote": "Black sigatoka is a leaf-spot disease of banana plants caused by the ascomycete fungus Mycosphaerella fijiensis",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Banana leaves",
         "source_url": "https://en.wikipedia.org/wiki/Mycosphaerella_fijiensis",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Streaks parallel to secondary veins; rusty-brown paint-like specks darkening to sunken depressions",
         "source_url": "https://en.wikipedia.org/wiki/Mycosphaerella_fijiensis",
-        "verbatim_quote": "In the early stages of the infection of the plant, the lesions have a rusty brown appearance and appear to be faint, paint-like specks on the leaves."
+        "verbatim_quote": "In the early stages of the infection of the plant, the lesions have a rusty brown appearance and appear to be faint, paint-like specks on the leaves.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",

@@ -394,6 +394,24 @@ V[("Rose", "Rose_Rosette_Virus")] = {
 # Same disease as Head_Scab (see LABEL_ALIASES) -> same verified source rather than a dead Purdue PDF.
 V[("Wheat", "Fusarium_Graminearum_Schwabe")] = dict(V[("Wheat", "Head_Scab")])
 
+# Not a disease at all -- abiotic chemical damage. The "pathogen" field records that explicitly
+# rather than naming an organism, because a descriptor that invents a causal agent here would be
+# exactly the hallucination the grounding protocol exists to prevent.
+V[("Soybean", "Herbicide_Injury")] = {
+    "source": "https://crops.extension.iastate.edu/post/identifying-common-herbicide-symptoms-soybean",
+    "pathogen": ("None - abiotic injury from herbicide drift, carryover or contact, not a pathogen",
+                 ""),
+    "affected_organs": ("Leaves and leaflets; hypocotyls and cotyledons after preemergence splash",
+        "tissue contacted by the herbicide develops necrosis"),
+    "visual_symptoms": ("Symptoms vary by herbicide group: strapped or cupped leaves (auxin mimics), "
+                        "interveinal chlorosis and necrosis (photosynthesis inhibitors), speckled "
+                        "necrotic tissue (PPO inhibitors), heart-shaped asymmetric leaflets (lipid "
+                        "synthesis inhibitors), and bleaching or yellowing of newly emerged leaves "
+                        "(HPPD inhibitors)",
+        "2,4-D often causes more of a strapped appearance to leaves, making them longer and skinnier "
+        "with parallel veins"),
+}
+
 FIELDS = ("pathogen", "affected_organs", "visual_symptoms")
 
 

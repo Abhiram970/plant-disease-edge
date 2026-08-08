@@ -2,22 +2,25 @@
   {
     "crop": "Orange",
     "disease": "Canker",
-    "symptom_text": "Citrus canker, caused by the bacterium Xanthomonas citri subsp. citri, produces raised, corky, water-soaked lesions that erupt through the epidermis of leaves, stems, and fruit. On leaves, lesions are circular, tan to brown, and surrounded by a yellow halo, typically ranging from 2–10 mm in diameter. The lesion centers become spongy and crater-like with age, often with a greasy or water-soaked margin. On fruit, similar raised, corky pustules develop on the rind surface, reducing marketability. Lesions are distributed across both leaf surfaces but are most prominent on the abaxial side, and severe infections cause premature leaf and fruit drop.",
+    "symptom_text": "Citrus canker, caused by the bacterium Xanthomonas citri subsp. citri, produces raised, corky, water-soaked lesions that erupt through the epidermis of leaves, stems, and fruit. On leaves, lesions are circular, tan to brown, and surrounded by a yellow halo, typically ranging from 2\u201310 mm in diameter. The lesion centers become spongy and crater-like with age, often with a greasy or water-soaked margin. On fruit, similar raised, corky pustules develop on the rind surface, reducing marketability. Lesions are distributed across both leaf surfaces but are most prominent on the abaxial side, and severe infections cause premature leaf and fruit drop.",
     "fields": {
       "pathogen": {
         "value": "Xanthomonas citri",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_canker",
-        "verbatim_quote": "Citrus canker is a disease affecting Citrus species caused by the bacterium Xanthomonas citri."
+        "verbatim_quote": "Citrus canker is a disease affecting Citrus species caused by the bacterium Xanthomonas citri.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves, stems, and fruit",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_canker",
-        "verbatim_quote": "Infection causes lesions on the leaves, stems, and fruit of citrus trees, including lime, oranges, and grapefruit."
+        "verbatim_quote": "Infection causes lesions on the leaves, stems, and fruit of citrus trees, including lime, oranges, and grapefruit.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Raised brown water-soaked lesions with a yellow halo; older lesions corky",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_canker",
-        "verbatim_quote": "Plants infected with citrus canker have characteristic lesions on leaves, stems, and fruit with raised, brown, water-soaked margins, usually with a yellow halo or ring effect around the lesion. Older lesions have a corky appearance, still in many cases retaining the halo effect."
+        "verbatim_quote": "Plants infected with citrus canker have characteristic lesions on leaves, stems, and fruit with raised, brown, water-soaked margins, usually with a yellow halo or ring effect around the lesion. Older lesions have a corky appearance, still in many cases retaining the halo effect.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -33,17 +36,20 @@
       "pathogen": {
         "value": "Xanthomonas citri",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_canker",
-        "verbatim_quote": "Citrus canker is a disease affecting Citrus species caused by the bacterium Xanthomonas citri."
+        "verbatim_quote": "Citrus canker is a disease affecting Citrus species caused by the bacterium Xanthomonas citri.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves, stems, and fruit",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_canker",
-        "verbatim_quote": "Infection causes lesions on the leaves, stems, and fruit of citrus trees, including lime, oranges, and grapefruit."
+        "verbatim_quote": "Infection causes lesions on the leaves, stems, and fruit of citrus trees, including lime, oranges, and grapefruit.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Raised brown water-soaked lesions with a yellow halo; older lesions corky",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_canker",
-        "verbatim_quote": "Plants infected with citrus canker have characteristic lesions on leaves, stems, and fruit with raised, brown, water-soaked margins, usually with a yellow halo or ring effect around the lesion. Older lesions have a corky appearance, still in many cases retaining the halo effect."
+        "verbatim_quote": "Plants infected with citrus canker have characteristic lesions on leaves, stems, and fruit with raised, brown, water-soaked margins, usually with a yellow halo or ring effect around the lesion. Older lesions have a corky appearance, still in many cases retaining the halo effect.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -59,17 +65,20 @@
       "pathogen": {
         "value": "Penicillium digitatum",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GreenMold.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -82,17 +91,20 @@
       "pathogen": {
         "value": "Candidatus Liberibacter spp.",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-        "verbatim_quote": "is a disease of citrus trees caused by bacteria of the genus Liberibacter."
+        "verbatim_quote": "is a disease of citrus trees caused by bacteria of the genus Liberibacter.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves, twigs, fruit, and roots",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-        "verbatim_quote": "followed by splotchy mottling of the entire leaf, premature defoliation, dieback of twigs, decay of feeder rootlets and lateral roots"
+        "verbatim_quote": "followed by splotchy mottling of the entire leaf, premature defoliation, dieback of twigs, decay of feeder rootlets and lateral roots",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Asymmetrical (blotchy mottle) leaf yellowing; small lopsided fruit green at the bottom",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-        "verbatim_quote": "Nutrient deficiencies tend to be symmetrical along the leaf vein margin, while HLB has an asymmetrical yellowing around the vein."
+        "verbatim_quote": "Nutrient deficiencies tend to be symmetrical along the leaf vein margin, while HLB has an asymmetrical yellowing around the vein.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -103,22 +115,25 @@
   {
     "crop": "Orange",
     "disease": "Huanglongbing",
-    "symptom_text": "Huanglongbing (HLB) on orange trees produces a distinctive asymmetric or blotchy yellowing of leaves known as 'yellow shoot' or 'blotchy mottle,' where irregular yellow and green patches appear on the same leaf in a non-uniform pattern that does not follow the midrib symmetrically, distinguishing it from nutrient deficiencies. Affected leaves are small, upright, and leathery with yellowing that may resemble zinc or iron deficiency but remains asymmetric. Fruit on infected trees are small, lopsided, and remain partially green at the stylar end even when ripe — a symptom called 'greening' — with bitter, salty, or off-flavored juice. Seeds within affected fruit are often aborted and darkened. Symptoms appear on individual branches initially, giving the canopy a patchy appearance, and affected shoots may show dieback over time.",
+    "symptom_text": "Huanglongbing (HLB) on orange trees produces a distinctive asymmetric or blotchy yellowing of leaves known as 'yellow shoot' or 'blotchy mottle,' where irregular yellow and green patches appear on the same leaf in a non-uniform pattern that does not follow the midrib symmetrically, distinguishing it from nutrient deficiencies. Affected leaves are small, upright, and leathery with yellowing that may resemble zinc or iron deficiency but remains asymmetric. Fruit on infected trees are small, lopsided, and remain partially green at the stylar end even when ripe \u2014 a symptom called 'greening' \u2014 with bitter, salty, or off-flavored juice. Seeds within affected fruit are often aborted and darkened. Symptoms appear on individual branches initially, giving the canopy a patchy appearance, and affected shoots may show dieback over time.",
     "fields": {
       "pathogen": {
         "value": "Candidatus Liberibacter spp.",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-        "verbatim_quote": "is a disease of citrus trees caused by bacteria of the genus Liberibacter."
+        "verbatim_quote": "is a disease of citrus trees caused by bacteria of the genus Liberibacter.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves, twigs, fruit, and roots",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-        "verbatim_quote": "followed by splotchy mottling of the entire leaf, premature defoliation, dieback of twigs, decay of feeder rootlets and lateral roots"
+        "verbatim_quote": "followed by splotchy mottling of the entire leaf, premature defoliation, dieback of twigs, decay of feeder rootlets and lateral roots",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Asymmetrical (blotchy mottle) leaf yellowing; small lopsided fruit green at the bottom",
         "source_url": "https://en.wikipedia.org/wiki/Citrus_greening_disease",
-        "verbatim_quote": "Nutrient deficiencies tend to be symmetrical along the leaf vein margin, while HLB has an asymmetrical yellowing around the vein."
+        "verbatim_quote": "Nutrient deficiencies tend to be symmetrical along the leaf vein margin, while HLB has an asymmetrical yellowing around the vein.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -134,17 +149,20 @@
       "pathogen": {
         "value": "Penicillium ulaiense",
         "source_url": "https://www.cabi.org/isc/datasheet/39444",
-        "verbatim_quote": "Penicillium ulaiense causes whisker mold of citrus fruits"
+        "verbatim_quote": "Penicillium ulaiense causes whisker mold of citrus fruits",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruit",
         "source_url": "https://www.cabi.org/isc/datasheet/39444",
-        "verbatim_quote": "whisker mold of citrus fruits"
+        "verbatim_quote": "whisker mold of citrus fruits",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Grayish-green fungal growth with whisker-like filaments on fruit surface",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"

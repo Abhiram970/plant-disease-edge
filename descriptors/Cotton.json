@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Xanthomonas citri subsp. malvacearum",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
-        "verbatim_quote": "Xanthomonas citri subsp. malvacearum"
+        "verbatim_quote": "Xanthomonas citri subsp. malvacearum",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves, stems and petioles (black arm), and bolls",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
-        "verbatim_quote": "black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls"
+        "verbatim_quote": "black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Angular water-soaked leaf lesions delimited by the veins",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton",
-        "verbatim_quote": "water-soaked lesions on leaves constricted by the leaf veins"
+        "verbatim_quote": "water-soaked lesions on leaves constricted by the leaf veins",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -33,17 +36,20 @@
       "pathogen": {
         "value": "Leveillula taurica (anamorph: Oidiopsis taurica)",
         "source_url": "https://www.cabi.org/isc/datasheet/10968",
-        "verbatim_quote": "Leveillula taurica is an obligate parasite causing powdery mildew on a wide range of hosts including cotton"
+        "verbatim_quote": "Leveillula taurica is an obligate parasite causing powdery mildew on a wide range of hosts including cotton",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, stems, bolls",
         "source_url": "https://www.cabi.org/isc/datasheet/10968",
-        "verbatim_quote": "The fungus infects leaves, petioles and other aerial parts of the plant"
+        "verbatim_quote": "The fungus infects leaves, petioles and other aerial parts of the plant",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "White powdery growth on leaf surfaces, chlorosis, leaf curling and distortion",
         "source_url": "https://www.cabi.org/isc/datasheet/10968",
-        "verbatim_quote": "Symptoms include white powdery patches on leaves, yellowing and distortion of affected tissues"
+        "verbatim_quote": "Symptoms include white powdery patches on leaves, yellowing and distortion of affected tissues",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -56,17 +62,20 @@
       "pathogen": {
         "value": "Corynespora cassiicola",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
-        "verbatim_quote": "The disease is caused by the fungus Corynespora cassiicola."
+        "verbatim_quote": "The disease is caused by the fungus Corynespora cassiicola.",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Brick-red spots enlarging to tan/light-brown centres with concentric rings",
         "source_url": "https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton",
-        "verbatim_quote": "Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings."
+        "verbatim_quote": "Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",

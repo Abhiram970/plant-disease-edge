@@ -7,17 +7,20 @@
       "pathogen": {
         "value": "Pseudomonas syringae pv. lachrymans",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
-        "verbatim_quote": "Angular leaf spot is caused by the bacterium Pseudomonas syringae pv. lachrymans."
+        "verbatim_quote": "Angular leaf spot is caused by the bacterium Pseudomonas syringae pv. lachrymans.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, fruit, stems",
         "source_url": "https://extension.umn.edu/diseases/angular-leaf-spot-cucumbers",
-        "verbatim_quote": "Angular leaf spot affects leaves, fruit, and stems of cucumbers."
+        "verbatim_quote": "Angular leaf spot affects leaves, fruit, and stems of cucumbers.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf undersides; lesions dry and fall out leaving holes; water-soaked spots on fruit that become white and crusty",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
-        "verbatim_quote": "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a white, crusty residue after drying."
+        "verbatim_quote": "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a white, crusty residue after drying.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -30,17 +33,20 @@
       "pathogen": {
         "value": "Pseudomonas syringae pv. lachrymans",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
-        "verbatim_quote": "Angular leaf spot of cucurbits is caused by the bacterium Pseudomonas syringae pv. lachrymans."
+        "verbatim_quote": "Angular leaf spot of cucurbits is caused by the bacterium Pseudomonas syringae pv. lachrymans.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, fruit, stems",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
-        "verbatim_quote": "The disease affects leaves, stems, and fruit of cucurbits."
+        "verbatim_quote": "The disease affects leaves, stems, and fruit of cucurbits.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf undersides under humid conditions; lesions may coalesce and tear, leaving ragged holes; water-soaked spots on fruit and stems",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
-        "verbatim_quote": "Leaf symptoms begin as small, water-soaked lesions that are angular in shape because they are delimited by leaf veins. Lesions turn tan to brown as they age. Under humid conditions, a white crust of dried bacterial exudate may be visible on the lower leaf surface."
+        "verbatim_quote": "Leaf symptoms begin as small, water-soaked lesions that are angular in shape because they are delimited by leaf veins. Lesions turn tan to brown as they age. Under humid conditions, a white crust of dried bacterial exudate may be visible on the lower leaf surface.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -53,17 +59,20 @@
       "pathogen": {
         "value": "Colletotrichum orbiculare (syn. C. lagenarium)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Anthracnose.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -76,17 +85,20 @@
       "pathogen": {
         "value": "Erwinia tracheiphila",
         "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
-        "verbatim_quote": "Bacterial wilt is caused by the bacterium Erwinia tracheiphila."
+        "verbatim_quote": "Bacterial wilt is caused by the bacterium Erwinia tracheiphila.",
+        "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "leaves, stems, vascular tissue, entire plant",
         "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
-        "verbatim_quote": "The bacteria multiply in and block the vascular system of the plant, causing wilting of leaves and stems."
+        "verbatim_quote": "The bacteria multiply in and block the vascular system of the plant, causing wilting of leaves and stems.",
+        "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pulled apart; dull green water-soaked appearance of wilting tissue; complete plant collapse",
         "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
-        "verbatim_quote": "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand of bacterial ooze will stretch between the two cut ends."
+        "verbatim_quote": "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand of bacterial ooze will stretch between the two cut ends.",
+        "provenance": "model-recalled"
       }
     },
     "status": "filled"
@@ -99,17 +111,20 @@
       "pathogen": {
         "value": "Rhizoctonia solani",
         "source_url": "https://extension.umn.edu/vegetable-diseases/belly-rot-cucumber",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -122,17 +137,20 @@
       "pathogen": {
         "value": "Corynespora cassiicola",
         "source_url": "https://www.cabi.org/isc/datasheet/15942",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -145,17 +163,20 @@
       "pathogen": {
         "value": "Pseudoperonospora cubensis",
         "source_url": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
-        "verbatim_quote": "Pseudoperonospora cubensis is a species of water mould known for causing downy mildew"
+        "verbatim_quote": "Pseudoperonospora cubensis is a species of water mould known for causing downy mildew",
+        "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Leaves only (not fruit, flowers, stems or roots)",
         "source_url": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
-        "verbatim_quote": "Regardless of which cucurbit is involved, only the leaves are infected, not fruit, flowers, stems or roots."
+        "verbatim_quote": "Regardless of which cucurbit is involved, only the leaves are infected, not fruit, flowers, stems or roots.",
+        "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Angular chlorotic lesions bound by leaf veins; gray-brown to purplish-black growth on the underside",
         "source_url": "https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis",
-        "verbatim_quote": "The pathogen causes angular chlorotic lesions on the foliage. These lesions appear angular because they are bound by leaf veins. During humid conditions, inspection of the underside of the leaf reveals gray-brown to purplish-black fungal growth."
+        "verbatim_quote": "The pathogen causes angular chlorotic lesions on the foliage. These lesions appear angular because they are bound by leaf veins. During humid conditions, inspection of the underside of the leaf reveals gray-brown to purplish-black fungal growth.",
+        "provenance": "page-verified"
       }
     },
     "status": "filled",
@@ -171,17 +192,20 @@
       "pathogen": {
         "value": "Stagonosporopsis cucurbitacearum (syn. Didymella bryoniae)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GummyStemBlight.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -194,17 +218,20 @@
       "pathogen": {
         "value": "Phytophthora capsici",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/PhytophthoraBlight.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -217,17 +244,20 @@
       "pathogen": {
         "value": "Podosphaera xanthii (formerly Sphaerotheca fuliginea)",
         "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PoweryMildewCucurbits.aspx",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
@@ -240,17 +270,20 @@
       "pathogen": {
         "value": "Pythium aphanidermatum (and other Pythium spp.)",
         "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-72-W.pdf",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "affected_organs": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       },
       "visual_symptoms": {
         "value": "",
         "source_url": "",
-        "verbatim_quote": ""
+        "verbatim_quote": "",
+        "provenance": "none"
       }
     },
     "status": "filled"
