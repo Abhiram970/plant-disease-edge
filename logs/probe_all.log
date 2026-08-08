@@ -10,3 +10,24 @@
     exp C: 166 cls / 69,919 imgs  MobileCLIP-S1      21.5M  top1 = 81.1%
   [MobileCLIP2-S2] resuming at 8,192/69,919
   [MobileCLIP2-S2] 16,384/69,919  43 img/s  eta 20.8 min
+  [MobileCLIP2-S2] 24,576/69,919  44 img/s  eta 17.0 min
+  [MobileCLIP2-S2] 32,768/69,919  45 img/s  eta 13.8 min
+  [MobileCLIP2-S2] 40,960/69,919  45 img/s  eta 10.7 min
+  [MobileCLIP2-S2] 49,152/69,919  45 img/s  eta 7.7 min
+  [MobileCLIP2-S2] 57,344/69,919  45 img/s  eta 4.6 min
+  [MobileCLIP2-S2] 65,536/69,919  45 img/s  eta 1.6 min
+  [MobileCLIP2-S2] embedded 69,919
+    exp A:  97 cls / 42,326 imgs  MobileCLIP2-S2     35.8M  top1 = 78.8%
+    exp B: 154 cls / 62,043 imgs  MobileCLIP2-S2     35.8M  top1 = 80.8%
+    exp C: 166 cls / 69,919 imgs  MobileCLIP2-S2     35.8M  top1 = 82.5%
+python.exe : Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits 
+and faster downloads.
+At line:1 char:347
++ ... sease-edge; & "C:\Users\PV Abhiram\.pyenv\pyenv-win\versions\3.11.9\p ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Warning: You ar...ster downloads.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to 
+enable higher rate limits and faster downloads.
+  [MobileCLIP-B] 8,192/69,919  43 img/s  eta 24.2 min

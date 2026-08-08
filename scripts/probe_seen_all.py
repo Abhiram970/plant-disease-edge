@@ -97,9 +97,13 @@ def embed_cached(name, pretrained, rows, cache, device, chunk=8192, workers=8):
 
     # ONE DataLoader over everything remaining, rather than one per chunk (which respawns `workers`
     # Windows processes each time under the spawn start method).
-    # NOTE ON THROUGHPUT: an apparent hard "stall" during development turned out to be GPU/CPU
-    # contention with a second training job on the same machine, NOT a loader bug. If throughput
-    # collapses, check for other python processes before rewriting this.
+    #
+    # THROUGHPUT, HARD-WON: workers>0 roughly quadruples throughput on the small encoders, but on
+    # MobileCLIP-B (86 M) it stalls the pipeline outright -- 6 workers x prefetch 4 x ~77 MB batches
+    # of pinned memory alongside the larger model is more than this machine sustains. Measured with
+    # workers=0: B loads in 5 s and embeds at 39 img/s, so the fallback is cheap. If throughput
+    # collapses, try --workers 0 FIRST, and check for competing python processes second (contention
+    # with a second training job produced an identical-looking symptom earlier).
     dl = DataLoader(_ImageDS(todo, preprocess), batch_size=128, num_workers=workers,
                     shuffle=False, pin_memory=(device == "cuda"),
                     persistent_workers=bool(workers), prefetch_factor=4 if workers else None)

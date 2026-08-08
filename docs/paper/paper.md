@@ -99,9 +99,13 @@ attributable to the size of the label space, not to which crops were picked:
 
 | Config | Seen crops | Seen classes | Seen images | Held-out crops | Held-out classes | Chance |
 |---|---|---|---|---|---|---|
-| **A** | 4 | 80 | 12,288 | Coffee, Orange, Peach | 16 | 6.2 % |
-| **B** | 8 | — | — | + Bean, Cotton, Wheat | 34 | 2.9 % |
-| **C** | 10 | 166 | 55,981 | + Banana, Cucumber | 51 | 2.0 % |
+| **A** | 4 — Corn, Soybean, Tomato, Apple | 97 | 42,326 | Coffee, Orange, Peach | 16 | 6.2 % |
+| **B** | 8 — + Grape, Potato, Rice, Sugarcane | 154 | 62,043 | + Cotton, Wheat, Bean | 34 | 2.9 % |
+| **C** | 10 — + Rose, Strawberry | 166 | 69,919 | + Banana, Cucumber | 51 | 2.0 % |
+
+Class counts are derived from the images actually on disk, so they are properties of a specific data
+snapshot; the seen-image counts above are recorded in the result files alongside every accuracy, and
+all configurations reported here come from one snapshot.
 
 Held-out crops are never used for training at any stage; they are diagnosed only from descriptor text.
 Seen-head results (§5.5–5.6, §5.8) are reported on the largest configuration, C.

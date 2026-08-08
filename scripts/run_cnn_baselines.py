@@ -58,7 +58,10 @@ def main():
     ap.add_argument("--archs", nargs="+", default=DEFAULT_ARCHS)
     ap.add_argument("--epochs", type=int, default=12)
     ap.add_argument("--batch", type=int, default=128)
-    ap.add_argument("--workers", type=int, default=8)
+    # 8 workers stalled the embedding pipeline outright on the largest model (pinned prefetch buffers
+    # + a big model exceed what this machine sustains). 4 is the safe default; drop to 0 if a run
+    # makes no progress, and check for a competing GPU job before assuming a code problem.
+    ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--force", action="store_true", help="re-run even if a result JSON exists")
     args = ap.parse_args()
 
@@ -70,8 +73,11 @@ def main():
         if out.exists() and not args.force:
             print(f"[skip] {arch} (result exists: {out.name})")
             continue
+        # --resume ALWAYS. supervised_baseline.py checkpoints every epoch, but without this flag an
+        # interrupted architecture silently restarts from epoch 0 -- which is how a tf_efficientnetv2_s
+        # run was lost after reaching 85.2% on its first epoch. Harmless when no checkpoint exists.
         cmd = [sys.executable, script, "--arch", arch, "--epochs", str(args.epochs),
-               "--batch", str(args.batch), "--workers", str(args.workers)]
+               "--batch", str(args.batch), "--workers", str(args.workers), "--resume"]
         print(f"\n{'=' * 72}\n[run] {arch}   (epochs={args.epochs} batch={args.batch})\n{'=' * 72}")
         rc = subprocess.run(cmd).returncode
         (ran if rc == 0 else failed).append(arch)

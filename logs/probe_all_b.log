@@ -1,0 +1,12 @@
+﻿[sage] 86,199 imgs already on disk for ['Corn', 'Soybean', 'Tomato', 'Apple', 'Grape', 'Potato', 'Rice', 'Sugarcane', 'Rose', 'Strawberry'] -> skip download.
+[pool] 69,919 seen images over 10 crops, 166 classes  (device=cuda)
+  [MobileCLIP-B] resuming at 8,192/69,919
+  [MobileCLIP-B] 12,288/69,919  22 img/s  eta 42.9 min
+  [MobileCLIP-B] 16,384/69,919  24 img/s  eta 37.4 min
+  [MobileCLIP-B] 20,480/69,919  24 img/s  eta 34.1 min
+  [MobileCLIP-B] 24,576/69,919  26 img/s  eta 28.7 min
+  [MobileCLIP-B] 28,672/69,919  27 img/s  eta 25.8 min
+  [MobileCLIP-B] 32,768/69,919  27 img/s  eta 22.6 min
+  [MobileCLIP-B] 36,864/69,919  28 img/s  eta 19.8 min
+  [MobileCLIP-B] 40,960/69,919  27 img/s  eta 17.6 min
+  [MobileCLIP-B] 45,056/69,919  27 img/s  eta 15.1 min
