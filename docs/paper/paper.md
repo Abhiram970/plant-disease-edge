@@ -411,7 +411,19 @@ assume.)
   page-verified** — i.e. the quote was copied from a page we retrieved and read. The other 95 quotes are
   *model-recalled* and must be treated as unverified provenance, not evidence. Stub records carry a
   `TODO` placeholder that the loader excludes by design (`descriptors.py` keys on `status == "filled"`),
-  so a placeholder can never become a CLIP text prototype. On the **headline held-out
+  so a placeholder can never become a CLIP text prototype.
+
+  Coverage is, however, **strongly skewed toward the crops that carry the headline claim**, which is
+  the right place for it: the 8 held-out crops of configuration C are **47/51 filled** and hold **all
+  16** page-verified records, whereas the seen crops are 109/166 filled with **none** page-verified.
+  The seen side is diagnosed by a trained probe and never consults a descriptor, so this asymmetry
+  costs nothing — but it does mean the auditability guarantee applies to the zero-shot path only.
+  The four remaining held-out stubs are all Wheat label artefacts (below).
+
+  Of the 205 unique source URLs, **116 resolve, 70 return 403/429** (bot-blocked but live, e.g. APS)
+  and **19 are dead** — concentrated in extension sites that reorganised (`extension.psu.edu`,
+  `cropprotectionnetwork.org`, `grapes.extension.org`, `irri.org`). Nine URLs point at Wikipedia,
+  which we flag as a weaker provenance tier than extension or peer-reviewed sources. On the **headline held-out
   crops (Coffee/Orange/Peach) coverage is now complete — 16/16 filled**, with every Coffee record
   page-verified against a retrievable source. The four remaining held-out stubs are all Wheat and are
   label artefacts (below). Of 201 unique source URLs, 110 are reachable, 73 return 403/429
@@ -423,15 +435,37 @@ assume.)
   behaving correctly, but it means grounded coverage scales only with *human-supplied sources*, not
   with more API spend. Separating the functional `symptom_text` from the citation fields (as we do)
   is what keeps the pipeline usable.
-- **Label noise in SAGE.** Three held-out "diseases" are not diseases —
-  `Wheat/Resistance_Phenotype{,_Moderately_Resistant,_Moderately_Susceptible}` are breeding *resistance
-  ratings*, for which no symptom descriptor can exist; `Coffee/Miner` is an insect pest
-  (*Leucoptera coffeella*), not a pathogen; and `Coffee/Cerscospora` is a misspelling of
-  *Cercospora coffeicola*. `Wheat/Fusarium_Wilts` is also ambiguous — "Fusarium wilt" is not a
-  standard wheat disease and the label most likely duplicates `Wheat/Head_Scab` (Fusarium head
-  blight) or denotes Fusarium crown rot. We recommend excluding the three rating labels from the
-  evaluation, resolving the Wheat/Fusarium duplicate, and report this as a dataset-quality finding —
-  label noise of this kind directly inflates the apparent class count of any fine-grained benchmark.
+- **Label noise in SAGE, and why it makes our numbers conservative.** Auditing the 51 held-out classes
+  of configuration C surfaced two distinct defects.
+
+  *Duplicate classes.* Five pairs denote the **same disease under two names**, which we confirmed by
+  checking that the independently generated descriptor records resolve to an identical pathogen:
+
+  | Pair | Pathogen (identical in both records) |
+  |---|---|
+  | `Orange/Canker` = `Orange/Citrus_Canker` | *Xanthomonas citri* |
+  | `Orange/Greening_Disease` = `Orange/Huanglongbing` | *Candidatus* Liberibacter spp. |
+  | `Peach/Leaf_Curl` = `Peach/Peach_Leaf_Curl` | *Taphrina deformans* |
+  | `Cucumber/Angular_Leaf_Spot` = `Cucumber/…_Of_Cucumber` | *Pseudomonas syringae* pv. *lachrymans* |
+  | `Wheat/Head_Scab` = `Wheat/Fusarium_Graminearum_Schwabe` | *Fusarium graminearum* |
+
+  *Non-diseases.* `Wheat/Resistance_Phenotype{,_Moderately_Resistant,_Moderately_Susceptible}` are
+  breeding **resistance ratings**, for which no symptom descriptor can exist; `Wheat/Fusarium_Wilts` is
+  not a standard wheat disease; `Coffee/Miner` is an insect pest (*Leucoptera coffeella*) rather than a
+  pathogen; and `Coffee/Cerscospora` misspells *Cercospora coffeicola*. Several Orange and Cucumber
+  labels (`Green_Mold`, `Whisker_Mold`, `Belly_Rot`, `Pythium_Fruit_Rot`) are post-harvest fruit rots
+  rather than foliar diseases.
+
+  **This biases our headline downward, not upward.** A duplicate pair is unwinnable by construction:
+  two near-identical text prototypes split the similarity mass, so top-1 is close to a coin flip
+  regardless of how well the image is understood. Removing the five duplicates and the four
+  non-disease labels leaves ~42 genuinely distinct held-out classes, so the *effective* chance level is
+  ~2.4 % rather than the 2.0 % we report against. Our cross-crop accuracies are therefore
+  **conservative**, and the true margin over chance is somewhat larger than stated.
+
+  We recommend that users of SAGE merge these pairs and drop the rating labels, and we report it as a
+  dataset-quality finding: label noise of this kind silently inflates the apparent class count of any
+  fine-grained benchmark and depresses every method evaluated on it.
 - **Scope.** Configuration C covers 10 seen crops (Corn, Soybean, Tomato, Apple, Grape, Potato, Rice,
   Sugarcane, Rose, Strawberry) and 8 held-out crops — 18 of SAGE's crop set, not all of it. The seen-head
   probe is reported at scale C only; A and B seen-side probes are not run, so the seen-side scaling
