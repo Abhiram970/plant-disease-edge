@@ -36,20 +36,24 @@ from pathlib import Path
 MAX_SIDE = 288       # store at 288 px; models train at 224. Keeps the subset ~4 GB instead of ~20 GB.
 EPOCHS = 8           # MUST be identical across archs or the table is not a comparison
 BATCH = 128
+MIN_BATCH = 16       # retry floor; batch is halved on failure (T4 OOMs at 128 on the heavy models)
 WORKERS = 4          # Kaggle VMs have ~4 vCPU
-BUDGET_H = 8.3       # stop before the 9 h wall
+BUDGET_H = 8.3       # checked BEFORE starting an arch, so the run can overshoot by one arch's length
 ROLE = "all"         # "all" = seen + held-out crops (reusable); "train" = seen only, smaller/faster
 
 # Priority order, so a truncated run still yields the valuable ones. FastViT is near the front because
 # it is the same architecture family as MobileCLIP's image encoder -- the fairest supervised-vs-VLM
 # comparison in the paper.
 ARCHS = [
-    "tf_efficientnetv2_s",         # abandoned locally at 85.2% after 1 epoch
+    # Run 1 (8 Aug 2026) completed everything except these four, so they come first on a re-run:
+    # three died of CUDA OOM at batch 128 on a T4, one ran out of budget. Finished archs are skipped
+    # automatically, so this list can stay complete.
+    "tf_efficientnetv2_s", "convnextv2_tiny", "resnet101", "densenet121",
     "fastvit_t8", "fastvit_sa12",  # same family as the VLM backbone
-    "convnextv2_tiny", "convnextv2_nano",
-    "resnet50", "mobilenetv3_small_100", "mobilenetv4_conv_small",  # rerun for a uniform protocol
+    "convnextv2_nano",
+    "resnet50", "mobilenetv3_small_100", "mobilenetv4_conv_small",
     "mobilenetv3_large_100", "mobilenetv4_conv_medium", "efficientnet_b0",
-    "resnet101", "regnety_040", "densenet121",
+    "regnety_040",
 ]
 
 T0 = time.time()
@@ -143,10 +147,20 @@ for i, arch in enumerate(ARCHS):
         skipped = ARCHS[i:]
         print(f"[budget] {elapsed_h:.1f} h elapsed -- stopping cleanly. Not started: {skipped}")
         break
-    print(f"\n{'=' * 72}\n[run] {arch}  (epochs={EPOCHS} batch={BATCH})  "
-          f"t+{elapsed_h:.1f} h  free={free_gb():.1f} GB\n{'=' * 72}", flush=True)
-    rc = sh([sys.executable, "-u", script, "--arch", arch, "--epochs", str(EPOCHS),
-             "--batch", str(BATCH), "--workers", str(WORKERS), "--resume"])
+    # Halve the batch and retry on failure. A T4 has 14.56 GB and batch 128 does NOT fit
+    # tf_efficientnetv2_s, convnextv2_tiny or resnet101 -- all three died with CUDA OOM on the first
+    # full run, and were reported as "arch may not exist" because the runner could not see why the
+    # child exited. Retrying costs nothing when the first attempt succeeds.
+    rc, batch = 1, BATCH
+    while rc != 0 and batch >= MIN_BATCH:
+        print(f"\n{'=' * 72}\n[run] {arch}  (epochs={EPOCHS} batch={batch})  "
+              f"t+{(time.time() - T0) / 3600:.1f} h  free={free_gb():.1f} GB\n{'=' * 72}", flush=True)
+        rc = sh([sys.executable, "-u", script, "--arch", arch, "--epochs", str(EPOCHS),
+                 "--batch", str(batch), "--workers", str(WORKERS), "--resume"])
+        if rc != 0:
+            batch //= 2
+            if batch >= MIN_BATCH:
+                print(f"  [retry] {arch} failed (likely CUDA OOM) -> batch {batch}", flush=True)
     (done if rc == 0 else failed).append(arch)
 
     # Drop the checkpoint once the result JSON exists: it is only needed to resume an interrupted
@@ -176,7 +190,8 @@ for arch, acc, ncls, neps in sorted(rows, key=lambda r: -(r[1] or 0)):
 print("  (all are structurally 0% on UNSEEN crops -- that is the point)")
 print(f"\n  completed: {done}")
 if failed:
-    print(f"  FAILED (arch may not exist in this timm version): {failed}")
+    print(f"  FAILED even at batch {MIN_BATCH} (check the traceback above -- CUDA OOM, or the arch "
+          f"name may not exist in this timm version): {failed}")
 if skipped:
     print(f"  NOT STARTED: {skipped}")
 print(f"  wall: {(time.time() - T0) / 3600:.2f} h   free: {free_gb():.1f} GB")
