@@ -27,7 +27,9 @@ def main():
     for f in sorted(dest.glob("supervised_*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
         arch = d.get("arch")
-        if not arch or d.get("params_M") is not None:
+        if not arch:
+            continue
+        if d.get("params_M") is not None and d.get("batch") is not None:
             continue
         try:
             m = timm.create_model(arch, pretrained=False,
@@ -37,6 +39,12 @@ def main():
             continue
         d["params_M"] = round(sum(p.numel() for p in m.parameters()) / 1e6, 2)
         d.setdefault("img_size", C.IMG_SIZE)
+        # Run 1 (8 Aug 2026) predates the batch/epochs fields. Its log records every architecture as
+        # "[run] <arch> (epochs=8 batch=128)", so backfill that rather than leave the field absent --
+        # the four re-run architectures used batch 64 after the OOMs, and a table that cannot show
+        # the difference would hide a genuine protocol split.
+        d.setdefault("batch", 128)
+        d.setdefault("epochs", len(d.get("epoch_log") or []) or 8)
         f.write_text(json.dumps(d, indent=2), encoding="utf-8")
         print(f"  {arch:26s} {d['params_M']:7.2f} M   seen {d.get('seen_top1', 0):.1%}")
         n += 1

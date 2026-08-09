@@ -5,7 +5,7 @@
 
 Exported ONNX graphs (~1.7 GB) are deliberately not tracked — regenerate them with `python kaggle/benchmark_quantization.py`.
 
-## `supervised/` — 10 file(s)
+## `supervised/` — 14 file(s)
 
 Supervised CNN baselines — one protocol (166 classes, 8 epochs). Full per-epoch loss and test accuracy retained in `epoch_log`.
 
@@ -15,9 +15,13 @@ Supervised CNN baselines — one protocol (166 classes, 8 epochs). Full per-epoc
 | `mobilenetv3_large_100` | 4.41 | 166 | 8 | **88.6%** | 0 (structural) |
 | `efficientnet_b0` | 4.22 | 166 | 8 | **88.3%** | 0 (structural) |
 | `regnety_040` | 19.74 | 166 | 8 | **88.1%** | 0 (structural) |
+| `tf_efficientnetv2_s` | 20.39 | 166 | 8 | **88.1%** | 0 (structural) |
 | `resnet50` | 23.85 | 166 | 8 | **88.0%** | 0 (structural) |
 | `fastvit_sa12` | 10.73 | 166 | 8 | **87.4%** | 0 (structural) |
 | `mobilenetv4_conv_medium` | 8.65 | 166 | 8 | **87.1%** | 0 (structural) |
+| `densenet121` | 7.12 | 166 | 8 | **87.0%** | 0 (structural) |
+| `resnet101` | 42.84 | 166 | 8 | **86.8%** | 0 (structural) |
+| `convnextv2_tiny` | 27.99 | 166 | 8 | **85.6%** | 0 (structural) |
 | `fastvit_t8` | 3.38 | 166 | 8 | **85.4%** | 0 (structural) |
 | `mobilenetv3_small_100` | 1.69 | 166 | 8 | **84.4%** | 0 (structural) |
 | `mobilenetv4_conv_small` | 2.71 | 166 | 8 | **82.3%** | 0 (structural) |
@@ -36,6 +40,32 @@ Supervised CNN baselines — one protocol (166 classes, 8 epochs). Full per-epoc
 | 6 | 0.1481 | 87.3% |
 | 7 | 0.1399 | 86.6% |
 | 8 | 0.1271 | 88.6% |
+
+**convnextv2_tiny**
+
+| Epoch | Train loss | Test top-1 |
+|---|---|---|
+| 1 | 0.8131 | 83.2% |
+| 2 | 0.3797 | 85.2% |
+| 3 | 0.2756 | 85.1% |
+| 4 | 0.2255 | 86.6% |
+| 5 | 0.1964 | 87.2% |
+| 6 | 0.1836 | 86.2% |
+| 7 | 0.1645 | 87.4% |
+| 8 | 0.1448 | 85.6% |
+
+**densenet121**
+
+| Epoch | Train loss | Test top-1 |
+|---|---|---|
+| 1 | 1.0241 | 82.2% |
+| 2 | 0.4525 | 83.5% |
+| 3 | 0.3334 | 86.6% |
+| 4 | 0.2587 | 87.5% |
+| 5 | 0.2182 | 85.9% |
+| 6 | 0.1837 | 87.8% |
+| 7 | 0.1627 | 86.9% |
+| 8 | 0.1436 | 87.0% |
 
 **efficientnet_b0**
 
@@ -141,6 +171,19 @@ Supervised CNN baselines — one protocol (166 classes, 8 epochs). Full per-epoc
 | 7 | 0.1629 | 87.4% |
 | 8 | 0.1432 | 88.1% |
 
+**resnet101**
+
+| Epoch | Train loss | Test top-1 |
+|---|---|---|
+| 1 | 1.3731 | 80.3% |
+| 2 | 0.4745 | 85.2% |
+| 3 | 0.3181 | 85.8% |
+| 4 | 0.2319 | 86.8% |
+| 5 | 0.1835 | 87.0% |
+| 6 | 0.1589 | 87.5% |
+| 7 | 0.1337 | 87.0% |
+| 8 | 0.1232 | 86.8% |
+
 **resnet50**
 
 | Epoch | Train loss | Test top-1 |
@@ -153,6 +196,19 @@ Supervised CNN baselines — one protocol (166 classes, 8 epochs). Full per-epoc
 | 6 | 0.134 | 86.1% |
 | 7 | 0.1118 | 88.4% |
 | 8 | 0.0944 | 88.0% |
+
+**tf_efficientnetv2_s**
+
+| Epoch | Train loss | Test top-1 |
+|---|---|---|
+| 1 | 0.7803 | 86.1% |
+| 2 | 0.2964 | 88.5% |
+| 3 | 0.2018 | 88.3% |
+| 4 | 0.1596 | 88.2% |
+| 5 | 0.1483 | 88.0% |
+| 6 | 0.133 | 88.5% |
+| 7 | 0.1215 | 88.8% |
+| 8 | 0.1065 | 88.1% |
 
 </details>
 
