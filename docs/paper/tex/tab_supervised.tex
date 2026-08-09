@@ -7,9 +7,16 @@
 \toprule
 Architecture & Classes & Seen top-1 & Unseen \\
 \midrule
-resnet50 & 166 & 88.4\% & \textbf{0 (structural)} \\
-mobilenetv3-small-100 & 166 & 84.3\% & \textbf{0 (structural)} \\
-mobilenetv4-conv-small & 166 & 84.1\% & \textbf{0 (structural)} \\
+convnextv2-nano & 166 & 88.6\% & \textbf{0 (structural)} \\
+mobilenetv3-large-100 & 166 & 88.6\% & \textbf{0 (structural)} \\
+efficientnet-b0 & 166 & 88.3\% & \textbf{0 (structural)} \\
+regnety-040 & 166 & 88.1\% & \textbf{0 (structural)} \\
+resnet50 & 166 & 88.0\% & \textbf{0 (structural)} \\
+fastvit-sa12 & 166 & 87.4\% & \textbf{0 (structural)} \\
+mobilenetv4-conv-medium & 166 & 87.1\% & \textbf{0 (structural)} \\
+fastvit-t8 & 166 & 85.4\% & \textbf{0 (structural)} \\
+mobilenetv3-small-100 & 166 & 84.4\% & \textbf{0 (structural)} \\
+mobilenetv4-conv-small & 166 & 82.3\% & \textbf{0 (structural)} \\
 \bottomrule
 \end{tabular}
 \begin{flushleft}\footnotesize For a fixed, known label set a CNN is the stronger classifier. None of them, however, has an output unit for an unseen class, so cross-crop accuracy is not low but undefined --- the capability the descriptor head supplies.\end{flushleft}
