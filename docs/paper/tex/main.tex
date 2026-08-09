@@ -58,10 +58,10 @@ new crops at all; (iii)~an abstain gate makes the modest top-1 field-useful --- 
 61--77\% on 16 unseen classes and still 58--76\% on 51 (29--38$\times$ chance); and (iv)~the deployable
 image encoder runs at 17.4\,ms/image on a laptop CPU (ONNX FP32, $\sim$58 img/s) in a 12.9\,MB INT8
 footprint --- though we show INT8 is a \emph{size}, not a \emph{speed}, lever for hybrid
-convolution--transformer encoders on CPU. On known crops the same frozen backbone reaches 82.6\% over
+convolution--transformer encoders on CPU. On known crops the same frozen backbone reaches 82.4\% over
 166 classes, rising to 87.7\% with WiSE-FT at a cost of only 0.7 percentage points of unseen accuracy.
 A leave-one-crop-out analysis shows the held-out crops are not cherry-picked, and supervised CNN
-baselines --- stronger on seen crops (up to 88.4\%) --- remain \emph{structurally} incapable of the
+baselines --- stronger on seen crops (up to 88.6\%) --- remain \emph{structurally} incapable of the
 cross-crop transfer the descriptor head provides. We release the descriptor pipeline, per-tier models,
 and benchmark so the result is reproducible and auditable.
 \end{abstract}
@@ -70,7 +70,7 @@ and benchmark so the result is reproducible and auditable.
 \item A frozen 11.4M CLIP diagnoses diseases on crops it never saw, at 3.5-12.6x chance.
 \item Only source-grounded descriptors keep improving as the unseen label space grows.
 \item Hand-curated symptom text degrades from 28.0\% to 20.4\% as unseen classes triple.
-\item One frozen backbone serves both known crops (82.6\%) and unknown ones.
+\item One frozen backbone serves both known crops (82.4\%) and unknown ones.
 \item INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.
 \end{highlights}
 
@@ -87,14 +87,16 @@ edge deployment \sep source-grounded descriptors \sep precision agriculture
 Cloud VLM diagnosers achieve high in-the-wild accuracy but cost roughly \$0.21--0.42 per image and
 require connectivity --- a poor fit for smallholder and field use, which needs offline, low-cost,
 real-time inference. A second, deeper obstacle is generalisation: models trained on one crop transfer
-poorly to others, and edge deployment additionally demands compression. Cross-crop transfer is
+poorly to others~\citep{ghazal2024}, and edge deployment additionally demands compression. Cross-crop
+transfer is
 therefore the foundation-model-native open problem this Special Issue targets: it is enabled only by an
 image--text-aligned VLM, not by a conventional classifier.
 
 We study the question: \emph{how small can a model be and still perform cross-crop disease zero-shot at
-the edge?} Our system is one \textbf{frozen} compact CLIP encoder with two heads and an abstain router:
-a trained head for accurate real-time diagnosis on known crops, and a descriptor head that diagnoses
-unseen crops by matching image embeddings to LLM-authored, source-grounded symptom-descriptor text.
+the edge?} Our system is one \textbf{frozen} compact Contrastive Language--Image Pre-training (CLIP)
+encoder with two heads and an abstain router: a trained head for accurate real-time diagnosis on known
+crops, and a descriptor head that diagnoses unseen crops by matching image embeddings to
+large-language-model (LLM) authored, source-grounded symptom-descriptor text.
 Only the image encoder ships to the device; text prototypes are precomputed offline.
 
 \paragraph{Contributions}
@@ -120,33 +122,50 @@ are not cherry-picked.
 
 \section{Related work}
 
-\paragraph{Agricultural VLMs} SAGE provides our data and the cloud agent we contrast against; its
+\paragraph{Agricultural VLMs} SAGE~\citep{sage2025} provides our data and the cloud agent we contrast
+against; its
 \{value, source\_url, verbatim\_quote\} source-grounded schema and its reported 14--16 point gain from
 symptom knowledge motivate our descriptor design. We are the deployable edge counterpart at \$0/image.
 
-\paragraph{Descriptor-based classification} DCLIP \citep{menon2023} and CuPL \citep{pratt2023} classify
+\paragraph{Descriptor-based classification} Descriptor-based CLIP classification
+(DCLIP)~\citep{menon2023} and Customized Prompts via Language models (CuPL)~\citep{pratt2023} classify
 by LLM-written visual descriptions. \emph{Our delta:} source-grounded and therefore auditable,
 compressed to the edge, and evaluated for \emph{cross-crop} agricultural transfer rather than general
 retrieval.
 
-\paragraph{Compact CLIPs} MobileCLIP \citep{vasu2024} and TinyCLIP \citep{wu2023} provide our frozen
-backbones. \emph{Our delta:} an agricultural cross-crop zero-shot study and an edge efficiency
-analysis.
+\paragraph{Compact CLIPs} CLIP~\citep{radford2021} established image--text contrastive pretraining;
+MobileCLIP~\citep{vasu2024}, its successor MobileCLIP2~\citep{mobileclip2} and
+TinyCLIP~\citep{wu2023} compress it, and provide our frozen backbones. We use the
+open\_clip~\citep{ilharco2021} implementations throughout, with SigLIP\,2~\citep{siglip2}, whose
+sigmoid objective follows \citet{zhai2023}, as a reference ceiling. \emph{Our delta:} an agricultural
+cross-crop zero-shot study and an edge efficiency analysis.
 
 \paragraph{Robust fine-tuning} WiSE-FT \citep{wortsman2022} explains our forgetting result and
 motivates the frozen-backbone plus weight-ensembling design.
 
-\paragraph{Domain foundation models} We evaluate biological and leaf-disease foundation models as
-candidate backbones and find they do not transfer under our descriptor protocol
-(Section~\ref{sec:bakeoff}).
+\paragraph{Domain foundation models} We evaluate the biological foundation model
+BioCLIP\,2~\citep{bioclip2} and the leaf-disease model SCOLD~\citep{scold2025} as candidate backbones
+and find they do not transfer under our descriptor protocol (Section~\ref{sec:bakeoff}).
+
+\paragraph{Vision-only foundation models} Self-supervised encoders such as
+DINOv2~\citep{oquab2024} learn strong visual features but have no text tower, so they cannot match an
+image against a written symptom description. Zero-shot diagnosis of an unseen crop therefore requires
+an image--text-aligned model by construction, which is why every backbone we evaluate is
+CLIP-family.
+
+\paragraph{Supervised baselines} Our comparison set spans ResNet~\citep{he2016},
+MobileNetV3~\citep{howard2019} and MobileNetV4~\citep{qin2024} among others
+(Section~\ref{sec:baselines}).
 
 \section{Materials and methods}
 
 \subsection{Dataset and the nested design}
 \label{sec:data}
 
-We use SAGE only ($\sim$1.01\,M images as Parquet shards, MIT licence) to avoid the ``old, lab-only''
-critique of legacy corpora. We stream-filter shards to our crops with a per-class cap and content-hash
+We use SAGE~\citep{sage2025} only ($\sim$1.01\,M images as Parquet shards, MIT licence) to avoid the
+``old, lab-only'' critique of legacy corpora such as PlantVillage~\citep{mohanty2016}, on which
+in-distribution accuracy has long been saturated. We stream-filter shards to our crops with a
+per-class cap and content-hash
 de-duplication.
 
 To test whether the approach \emph{scales} rather than reporting a single convenient split, we define
@@ -243,6 +262,8 @@ crops at all, which is precisely the capability this paper claims. Measured agai
 grounded head becomes \emph{relatively stronger} as the problem gets harder, from 3.5$\times$ to
 12.6$\times$.
 
+\input{tab_scale_study}
+
 \subsection{Top-5 and a calibrated abstain gate}
 \label{sec:abstain}
 
@@ -253,22 +274,46 @@ confirming the confidence signal is properly ordered rather than anti-calibrated
 grounded strategy also abstains best, holding the lowest area under the risk--coverage curve and the
 highest top-5 even where its top-1 does not lead --- making it the recommended deployment setting.
 
+\input{tab_abstain}
+
 \subsection{Known crops, and the seen/unseen dial}
 
-The same frozen backbone with a linear probe reaches 82.6\% over 166 fine-grained classes
+The same frozen backbone with a linear probe reaches 82.4\% over 166 fine-grained classes
 (Table~\ref{tab:seen}), against 9.3\% for the same encoder used zero-shot on its own seen classes.
-Accuracy is flat across encoder size on the seen side too, mirroring the zero-shot result. WiSE-FT
-(Table~\ref{tab:wiseft}) turns the seen/unseen balance into one tunable knob: $\alpha=0.5$ buys 5.1
-points of seen accuracy for only 0.7 points of unseen, whereas naive fine-tuning nearly halves unseen
-accuracy.
+Two patterns repeat here. Accuracy is flat across a 7.6$\times$ parameter range ($\leq$1.5 points at
+every scale), mirroring Section~\ref{sec:flat}; and accuracy \emph{rises} as the seen label space grows
+(+3.3 to +3.5 points from 97 to 166 classes, for every encoder), the opposite of the unseen side,
+because additional crops contribute proportionally more training images than decision difficulty. Each
+head is therefore deployed where its scaling behaviour is favourable. WiSE-FT (Table~\ref{tab:wiseft})
+turns the balance into one tunable knob: $\alpha=0.5$ buys 5.1 points of seen accuracy for only 0.7
+points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
+
+\input{tab_seen}
+\input{tab_wiseft}
 
 \subsection{Supervised baselines and leave-one-crop-out}
+\label{sec:baselines}
 
-Supervised CNNs are strong on known crops (Table~\ref{tab:cnn}); we report this plainly, because for a
-fixed, known label set a CNN is the better classifier. But none has an output unit for an unseen class,
-so cross-crop accuracy is not merely low --- it is structurally undefined. Table~\ref{tab:loco} shows
-the held-out crops fall in the middle of the per-crop range, with two \emph{trained} crops the hardest,
-so the headline held-out set is not a favourable split.
+Fourteen supervised architectures spanning 1.7--42.8\,M parameters, all on the identical 166-class seen
+set for 8 epochs (Table~\ref{tab:cnn}), are strong on known crops: the best reaches 88.6\%, about
+6.2 points above the frozen probe. We report this plainly, because for a fixed, known label set a
+conventional classifier is the better choice.
+
+Capacity is not the lever, and here the evidence is blunt: the best architecture has 4.4\,M parameters
+while the largest, ResNet-101 at 42.8\,M, is 1.8 points \emph{worse}; across a 25$\times$ range the
+family spans 6.3 points with no monotone trend. That reproduces Sections~\ref{sec:flat} and the seen
+probe above in a third, fully supervised setting, making ``size is not the bottleneck'' a property of
+the task rather than an artefact of frozen backbones. The sharpest control is FastViT-SA12 (10.7\,M),
+the same architecture family as our image encoder (11.4\,M) at nearly the same size: 87.4\% trained
+supervised against 82.4\% as a frozen probe, so the 5.0-point difference is training regime, not
+architecture. Yet none of the fourteen has an output unit for an unseen class, so cross-crop accuracy
+is not merely low --- it is structurally undefined at any parameter count.
+
+Table~\ref{tab:loco} shows the held-out crops fall in the middle of the per-crop range, with two
+\emph{trained} crops the hardest, so the headline held-out set is not a favourable split.
+
+\input{tab_supervised}
+\input{tab_loco}
 
 \subsection{On-device efficiency}
 
@@ -276,11 +321,14 @@ Table~\ref{tab:edge} reports the deployable image encoder on a laptop CPU. The 1
 17.4\,ms/image ($\sim$58 img/s), with ONNX Runtime about 2.7$\times$ faster than eager PyTorch, and
 compresses 3.5$\times$ to 12.9\,MB under INT8.
 
+\input{tab_edge}
+
 \subsection{INT8 is architecture-dependent, not universally beneficial}
 \label{sec:int8}
 
 A naive dynamic-quantisation call --- the default recipe in most tutorials --- makes the lightweight
-tiers 18--19$\times$ \emph{slower}. A properly configured static QDQ pipeline (shape-inference
+tiers 18--19$\times$ \emph{slower}. A properly configured static quantise--dequantise (QDQ) pipeline
+(shape-inference
 pre-pass, per-channel weights, calibrated activations) recovers 5--9$\times$ of that but still does not
 beat FP32 on those tiers. The pure-transformer model behaves oppositely and becomes 2.2$\times$ faster.
 
@@ -292,8 +340,8 @@ is pathologically slow for depthwise kernels on x86.
 
 \paragraph{Practical guidance} For hybrid convolution--transformer encoders on a CPU runtime, INT8 is a
 \emph{size} lever, not a \emph{speed} lever; deploy FP32. For transformer encoders it is both. We flag
-rather than assume that ARM NEON, which has well-optimised INT8 depthwise kernels, may reverse this for
-the hybrid tiers.
+rather than assume that Advanced RISC Machine (ARM) NEON, whose single-instruction-multiple-data
+extension has well-optimised INT8 depthwise kernels, may reverse this for the hybrid tiers.
 
 \section{Discussion}
 
@@ -344,20 +392,14 @@ $\sim$5\,M tier would require weight-inherited distillation and is framed as fut
 
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops
 and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance on 16--51 unseen
-classes, 82.6\% (87.7\% with WiSE-FT) on 166 known classes, 58--77\% top-5, a calibrated abstain gate,
+classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, 58--77\% top-5, a calibrated abstain gate,
 and 17.4\,ms real-time CPU inference in a 12.9\,MB INT8 footprint. Model size is a near-non-factor
 across a $27\times$ parameter range. The levers are, in order: the descriptor authoring method --- and
 specifically the finding that only source-grounded descriptors keep improving as the unseen label space
 grows --- honest abstention, and the frozen-backbone hybrid.
 
-%% ---------------------------------------------------------------- generated tables
-\input{tab_scale_study}
-\input{tab_abstain}
-\input{tab_seen}
-\input{tab_wiseft}
-\input{tab_supervised}
-\input{tab_loco}
-\input{tab_edge}
+%% Tables are \input at the point each is discussed (Section 4), not collected here, so a float
+%% lands near its text instead of all seven piling up after the Conclusion.
 
 \section*{CRediT authorship contribution statement}
 %% ACTION: every listed author needs at least one CRediT role.

@@ -26,9 +26,9 @@ field-useful — grounded **top-5 is 61–77 %** on 16 unseen classes and still 
 (29–38× chance), with selective accuracy rising monotonically as coverage tightens; and (iv) the deployable image encoder runs at
 **17.4 ms/image on a laptop CPU** (ONNX FP32, ~58 img/s) in a **12.9 MB** INT8 footprint — though we
 show INT8 is a *size*, not a *speed*, lever for hybrid conv–transformer encoders on CPU. On known crops
-the same frozen backbone reaches **82.6 %** over 166 classes, rising to **87.7 %** with WiSE-FT at a cost
+the same frozen backbone reaches **82.4 %** over 166 classes, rising to **87.7 %** with WiSE-FT at a cost
 of only 0.7 pp of unseen accuracy. A leave-one-crop-out analysis shows the held-out crops are not
-cherry-picked, and supervised CNN baselines — stronger on seen crops (up to 88.4 %) — remain
+cherry-picked, and 14 supervised CNN baselines — stronger on seen crops (up to 88.6 %) — remain
 *structurally* incapable of the cross-crop transfer the descriptor head provides. We release the
 descriptor pipeline, per-tier models, and benchmark so the result is reproducible and auditable.
 
@@ -554,7 +554,7 @@ assume.)
 ## 8. Conclusion
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops and
 small devices at \$0/image: **cross-crop zero-shot at 3.5–12.6× chance on 16–51 unseen classes (86 % of
-a 93 M model at 1/8 the size), 82.6 % — 87.7 % with WiSE-FT — on 166 known classes, 58–77 % top-5, a
+a 93 M model at 1/8 the size), 82.4 % — 87.7 % with WiSE-FT — on 166 known classes, 58–77 % top-5, a
 calibrated abstain gate, and 17.4 ms real-time CPU inference in a 12.9 MB INT8 footprint.** Model size
 is shown to be a near-non-factor across a 27× parameter range. The levers are, in order: **descriptor
 authoring method** — and specifically the finding that only source-grounded descriptors keep improving
@@ -570,7 +570,7 @@ pipeline and benchmark to make the result auditable and reproducible.
 - A frozen 11.4 M CLIP diagnoses diseases on crops it never saw, at 3.5–12.6× chance. (84)
 - Only source-grounded descriptors keep improving as the unseen label space grows. (79)
 - Hand-curated symptom text degrades from 28.0% to 20.4% as unseen classes triple. (80)
-- One frozen backbone serves both known crops (82.6%) and unknown ones. (69)
+- One frozen backbone serves both known crops (82.4%) and unknown ones. (69)
 - INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders. (78)
 
 ## CRediT authorship contribution statement
@@ -683,10 +683,9 @@ come from this release, so it must be cited correctly.]
       166 classes / 69,919 images, including Tomato and Grape.
 - [x] ~~`probe_seen_A` and `probe_seen_B`~~ — **done**: all four encoders at all three scales from one
       data snapshot (§5.5, `fig_seen_scaling.png`).
-- [ ] **Supervised CNN sweep** — 3 of 14 architectures done, and the three are not mutually comparable
-      (MobileNetV4 trained 6 epochs vs 8 for the others). Re-running all 14 at identical settings via
-      `kaggle/cnn_baselines_notebook.py`. `tf_efficientnetv2_s` reached 85.2 % after one epoch before
-      being interrupted, so the current "best CNN" figure of 88.4 % is probably an underestimate.
+- [x] ~~Supervised CNN sweep~~ — **done**: all 14 architectures at one protocol (166 classes,
+      8 epochs), spanning 1.7–42.8 M parameters. Best is 88.6 %; the largest model is 1.8 pp worse
+      than the best 4.4 M one (§5.8).
 - [ ] Multi-seed runs for CIs on the headline zero-shot table.
 - [ ] Faithful SCOLD loader (or footnote the current below-chance wrapper result).
 - [ ] Convert to the Elsevier CompAg LaTeX template; final figure polish; author list & funding.
