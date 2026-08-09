@@ -47,5 +47,7 @@
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",
   "note": "Compare seen_top1 to the frozen-VLM linear probe (~0.67). The CNN CANNOT do cross-crop zero-shot \u2014 that is the descriptor head's unique capability.",
   "params_M": 4.22,
-  "img_size": 224
+  "img_size": 224,
+  "batch": 128,
+  "epochs": 8
 }

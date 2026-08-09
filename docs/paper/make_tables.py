@@ -182,20 +182,28 @@ def table_seen():
     for f in sorted(HERE.glob("supervised_*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
         rows.append((d.get("arch"), d.get("params_M"), d.get("seen_classes"),
-                     d.get("seen_top1"), len(d.get("epoch_log") or [])))
+                     d.get("seen_top1"), len(d.get("epoch_log") or []), d.get("batch")))
     if rows:
-        emit("**Supervised CNN baselines** (identical protocol; all are *structurally* incapable of")
-        emit("unseen-crop diagnosis — no output neuron exists for an unseen class):\n")
-        emit("| Architecture | Params | Classes | Epochs | Seen top-1 | Unseen |")
-        emit("|---|---|---|---|---|---|")
-        for a, pm, n, t, ne in sorted(rows, key=lambda r: -(r[3] or 0)):
+        emit("**Supervised CNN baselines** — all are *structurally* incapable of unseen-crop")
+        emit("diagnosis, since no output neuron exists for an unseen class:\n")
+        emit("| Architecture | Params | Classes | Epochs | Batch | Seen top-1 | Unseen |")
+        emit("|---|---|---|---|---|---|---|")
+        for a, pm, n, t, ne, b in sorted(rows, key=lambda r: -(r[3] or 0)):
             p = "—" if pm is None else f"{pm:.1f} M"
-            emit(f"| {a.replace('_', '-')} | {p} | {n} | {ne} | **{pct(t)}** | 0 (structural) |")
+            emit(f"| {a.replace('_', '-')} | {p} | {n} | {ne} | {b or '—'} | **{pct(t)}** "
+                 f"| 0 (structural) |")
         emit("")
-        odd = {(n, ne) for _, _, n, _, ne in rows}
-        if len(odd) > 1:
-            emit(f"> ⚠ Not one protocol: {sorted(odd)} (classes, epochs). These are NOT comparable "
-                 f"to each other — re-run the odd ones before tabulating.\n")
+        if len({(n, ne) for _, _, n, _, ne, _ in rows}) > 1:
+            emit("> ⚠ **Class or epoch counts differ** — these rows are not comparable. Re-run the "
+                 "odd ones before tabulating.\n")
+        batches = {b for *_, b in rows if b}
+        if len(batches) > 1:
+            emit(f"> ⚠ **Mixed batch size** ({sorted(batches)}). The larger models were re-run at a "
+                 "smaller batch after exhausting GPU memory at the original setting. With a fixed "
+                 "learning rate a smaller batch means more optimiser steps per epoch, so the "
+                 "batch-64 rows are not perfectly controlled against the batch-128 rows. The gap is "
+                 "small relative to the spread here, but it should be stated rather than smoothed "
+                 "over.\n")
 
 
 # ---------------------------------------------------------------- 5. WiSE-FT
