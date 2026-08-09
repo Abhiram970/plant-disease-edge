@@ -346,6 +346,41 @@ def fig_seen_scaling():
     fig.tight_layout(); fig.savefig(FIG / "fig_seen_scaling.png", dpi=DPI); plt.close(fig)
 
 
+def fig_cnn_training():
+    """Per-epoch curves for the supervised baselines — shows they were trained to convergence
+    under one protocol, which is what makes the table a comparison rather than a list."""
+    runs = []
+    for f in sorted(HERE.glob("supervised_*.json")):
+        d = _load(f.name)
+        if d and d.get("epoch_log"):
+            runs.append(d)
+    if len(runs) < 2:
+        return
+    runs.sort(key=lambda d: -(d.get("seen_top1") or 0))
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.4))
+    cmap = plt.get_cmap("viridis")
+    for i, d in enumerate(runs):
+        log = d["epoch_log"]
+        xs = [e.get("epoch", j) + 1 for j, e in enumerate(log)]
+        c = cmap(0.9 * i / max(1, len(runs) - 1))
+        lab = f"{d['arch'].replace('_', '-')}"
+        if d.get("params_M"):
+            lab += f" ({d['params_M']:.1f}M)"
+        ax1.plot(xs, [e.get("loss") for e in log], marker="o", ms=3, lw=1.5, color=c)
+        ax2.plot(xs, [e.get("test_top1") for e in log], marker="o", ms=3, lw=1.5,
+                 color=c, label=lab)
+    ax1.set_xlabel("epoch"); ax1.set_ylabel("training loss"); ax1.grid(True, alpha=0.3)
+    ax1.set_title("Training loss", fontsize=10)
+    ax2.set_xlabel("epoch"); ax2.set_ylabel("held-out test top-1"); ax2.grid(True, alpha=0.3)
+    ax2.set_title("Seen-crop test accuracy", fontsize=10)
+    ax2.legend(fontsize=7, ncol=1, loc="lower right")
+    fig.suptitle(f"Supervised CNN baselines — {len(runs)} architectures, identical protocol "
+                 f"({runs[0].get('seen_classes')} classes)", fontsize=11)
+    fig.tight_layout(rect=(0, 0, 1, 0.94))
+    fig.savefig(FIG / "fig_cnn_training.png", dpi=DPI); plt.close(fig)
+
+
 def fig_edge_pareto():
     """Accuracy vs on-device latency; point size = params, label = INT8 size. S0 is the sweet spot."""
     fig, ax = plt.subplots(figsize=(6.8, 4.5))
@@ -438,6 +473,7 @@ def main():
     fig_descriptor_ablation()
     fig_descriptor_scaling()
     fig_seen_scaling()
+    fig_cnn_training()
     fig_edge_pareto()
     try:
         fig_riskcoverage()

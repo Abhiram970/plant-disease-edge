@@ -42,5 +42,8 @@ Thumbs.db
 *.log
 !logs/*.log
 
-# local benchmark scratch output (onnx exports + raw json)
-results/
+# results/ is a TRACKED archive of every experiment output, so collaborators and reviewers can read
+# the numbers without re-running anything. Only the exported model graphs are excluded (~1.7 GB, and
+# regenerable from the benchmark script).
+results/onnx/
+results/**/*.onnx

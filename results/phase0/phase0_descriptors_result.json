@@ -1,0 +1,31 @@
+{
+  "chance": 0.125,
+  "n_classes": 8,
+  "coverage": {
+    "Orange|Huanglongbing": "huanglongbing",
+    "Orange|Whisker_Mold": "(NO MATCH)",
+    "Peach|Bacterial_Leaf_Spot": "spot",
+    "Peach|Brown_Rot": "rot",
+    "Peach|Leaf_Curl": "curl",
+    "Peach|Leaf_Scab": "scab",
+    "Peach|Peach_Leaf_Curl": "curl",
+    "Peach|Stigmina_Fungus": "(NO MATCH)"
+  },
+  "models": {
+    "MobileCLIP2-S0/dfndr2b": {
+      "bare": {"acc": 0.29523809523809524, "by_crop": {"Peach": 0.3515151515151515, "Orange": 0.08888888888888889}},
+      "crude": {"acc": 0.27936507936507937, "by_crop": {"Peach": 0.3111111111111111, "Orange": 0.16296296296296298}},
+      "rich": {"acc": 0.3746031746031746, "by_crop": {"Peach": 0.21616161616161617, "Orange": 0.9555555555555556}}
+    },
+    "MobileCLIP-S1/datacompdr": {
+      "bare": {"acc": 0.24761904761904763, "by_crop": {"Peach": 0.2909090909090909, "Orange": 0.08888888888888889}},
+      "crude": {"acc": 0.36666666666666664, "by_crop": {"Peach": 0.24848484848484848, "Orange": 0.8}},
+      "rich": {"acc": 0.3984126984126984, "by_crop": {"Peach": 0.26464646464646463, "Orange": 0.8888888888888888}}
+    },
+    "ViT-B-16-SigLIP2/webli": {
+      "bare": {"acc": 0.3476190476190476, "by_crop": {"Peach": 0.3474747474747475, "Orange": 0.34814814814814815}},
+      "crude": {"acc": 0.4587301587301587, "by_crop": {"Peach": 0.39191919191919194, "Orange": 0.7037037037037037}},
+      "rich": {"acc": 0.49523809523809526, "by_crop": {"Peach": 0.3717171717171717, "Orange": 0.9481481481481482}}
+    }
+  }
+}
