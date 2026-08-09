@@ -157,11 +157,14 @@ def main():
         print(f"    [ckpt] saved epoch {ep+1} (best={best_acc:.1%})")
 
     seen_top1 = correct / tot if tot > 0 else best_acc
+    n_params = sum(p.numel() for p in model.parameters()) / 1e6
     out = {"arch": args.arch, "seen_classes": len(classes), "seen_top1": round(seen_top1, 4),
-           "epoch_log": epoch_log,
+           "params_M": round(n_params, 2), "epochs": args.epochs, "batch": args.batch,
+           "img_size": C.IMG_SIZE, "epoch_log": epoch_log,
            "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",
-           "note": "Compare seen_top1 to the frozen-VLM linear probe (~0.67). The CNN CANNOT do "
-                   "cross-crop zero-shot — that is the descriptor head's unique capability."}
+           "note": "Compare seen_top1 to the frozen-VLM linear probe (0.824 on the same 166 "
+                   "classes). The CNN CANNOT do cross-crop zero-shot — that is the descriptor "
+                   "head's unique capability."}
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = C.RESULTS_DIR / f"supervised_{args.arch}.json"
     out_path.write_text(json.dumps(out, indent=2))

@@ -1,51 +1,51 @@
 {
-  "arch": "mobilenetv4_conv_small",
+  "arch": "efficientnet_b0",
   "seen_classes": 166,
-  "seen_top1": 0.8229,
+  "seen_top1": 0.8826,
   "epoch_log": [
     {
       "epoch": 0,
-      "loss": 1.1517,
-      "test_top1": 0.7633
+      "loss": 0.969,
+      "test_top1": 0.8442
     },
     {
       "epoch": 1,
-      "loss": 0.5165,
-      "test_top1": 0.7894
+      "loss": 0.3456,
+      "test_top1": 0.8725
     },
     {
       "epoch": 2,
-      "loss": 0.3786,
-      "test_top1": 0.7807
+      "loss": 0.2092,
+      "test_top1": 0.8824
     },
     {
       "epoch": 3,
-      "loss": 0.2971,
-      "test_top1": 0.8352
+      "loss": 0.1485,
+      "test_top1": 0.8806
     },
     {
       "epoch": 4,
-      "loss": 0.2426,
-      "test_top1": 0.8401
+      "loss": 0.122,
+      "test_top1": 0.8841
     },
     {
       "epoch": 5,
-      "loss": 0.2045,
-      "test_top1": 0.8302
+      "loss": 0.1043,
+      "test_top1": 0.895
     },
     {
       "epoch": 6,
-      "loss": 0.1827,
-      "test_top1": 0.8604
+      "loss": 0.0989,
+      "test_top1": 0.8856
     },
     {
       "epoch": 7,
-      "loss": 0.1681,
-      "test_top1": 0.8229
+      "loss": 0.0902,
+      "test_top1": 0.8826
     }
   ],
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",
   "note": "Compare seen_top1 to the frozen-VLM linear probe (~0.67). The CNN CANNOT do cross-crop zero-shot \u2014 that is the descriptor head's unique capability.",
-  "params_M": 2.71,
+  "params_M": 4.22,
   "img_size": 224
 }

@@ -123,14 +123,21 @@ Seen-side scaling: does the probe also flatten as the seen label space grows?
 | **B** | 8 | 154 | 62,043 | 80.7% | 79.2% | 80.8% | 80.9% |
 | **C** | 10 | 166 | 69,919 | 82.4% | 81.1% | 82.5% | 82.6% |
 
-**Supervised CNN baselines** (same 166-class seen set; all are *structurally* incapable
-of unseen-crop diagnosis — no output neuron exists for an unseen class):
+**Supervised CNN baselines** (identical protocol; all are *structurally* incapable of
+unseen-crop diagnosis — no output neuron exists for an unseen class):
 
-| Architecture | Classes | Seen top-1 | Unseen |
-|---|---|---|---|
-| resnet50 | 166 | 88.4% | **0 (structural)** |
-| mobilenetv3_small_100 | 166 | 84.3% | **0 (structural)** |
-| mobilenetv4_conv_small | 166 | 84.1% | **0 (structural)** |
+| Architecture | Params | Classes | Epochs | Seen top-1 | Unseen |
+|---|---|---|---|---|---|
+| convnextv2-nano | 15.1 M | 166 | 8 | **88.6%** | 0 (structural) |
+| mobilenetv3-large-100 | 4.4 M | 166 | 8 | **88.6%** | 0 (structural) |
+| efficientnet-b0 | 4.2 M | 166 | 8 | **88.3%** | 0 (structural) |
+| regnety-040 | 19.7 M | 166 | 8 | **88.1%** | 0 (structural) |
+| resnet50 | 23.9 M | 166 | 8 | **88.0%** | 0 (structural) |
+| fastvit-sa12 | 10.7 M | 166 | 8 | **87.4%** | 0 (structural) |
+| mobilenetv4-conv-medium | 8.7 M | 166 | 8 | **87.1%** | 0 (structural) |
+| fastvit-t8 | 3.4 M | 166 | 8 | **85.4%** | 0 (structural) |
+| mobilenetv3-small-100 | 1.7 M | 166 | 8 | **84.4%** | 0 (structural) |
+| mobilenetv4-conv-small | 2.7 M | 166 | 8 | **82.3%** | 0 (structural) |
 
 ## T5 — WiSE-FT: tuning the seen↔unseen trade-off (full data)
 

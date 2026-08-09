@@ -346,21 +346,41 @@ every crop is 5–19× chance. Difficulty tracks intra-crop symptom distinctiven
 membership (expected for a backbone that trained on none of them).
 
 ### 5.8 Supervised baselines: accurate on seen, structurally zero on unseen
-Three supervised CNNs trained on the identical 166-class seen set:
+Ten supervised architectures spanning 1.7–23.9 M parameters, all trained under one protocol
+(identical 166-class seen set, 8 epochs, batch 128; `TABLES.md` T4):
 
 | Architecture | Params | Seen top-1 | Unseen |
 |---|---|---|---|
-| ResNet-50 | 25.6 M | **88.4 %** | **0 (structural)** |
-| MobileNetV3-Small | 2.5 M | 84.3 % | **0 (structural)** |
-| MobileNetV4-Conv-Small | 3.8 M | 84.1 % | **0 (structural)** |
+| ConvNeXtV2-Nano | 15.1 M | **88.6 %** | 0 (structural) |
+| MobileNetV3-Large-100 | 4.4 M | **88.6 %** | 0 (structural) |
+| EfficientNet-B0 | 4.2 M | 88.3 % | 0 (structural) |
+| RegNetY-040 | 19.7 M | 88.1 % | 0 (structural) |
+| ResNet-50 | 23.9 M | 88.0 % | 0 (structural) |
+| FastViT-SA12 | 10.7 M | 87.4 % | 0 (structural) |
+| MobileNetV4-Conv-Medium | 8.7 M | 87.1 % | 0 (structural) |
+| FastViT-T8 | 3.4 M | 85.4 % | 0 (structural) |
+| MobileNetV3-Small-100 | 1.7 M | 84.4 % | 0 (structural) |
+| MobileNetV4-Conv-Small | 2.7 M | 82.3 % | 0 (structural) |
 
-Supervised CNNs are strong on known crops — ResNet-50 reaches 88.4 %, ~6 pp above the frozen-VLM probe
-(82.6 %), and even a 2.5 M MobileNetV3 is competitive at 84.3 %. We report this plainly: *for a fixed,
-known label set a CNN is the better classifier.* But every one of them has **no output neuron for an
-unseen class**, so cross-crop accuracy is not merely low, it is structurally undefined. That is the
-capability the descriptor head adds — comparable seen-crop competence plus a generalisation route the
-CNN cannot possess at any parameter count. The WiSE-FT hybrid (§5.6, 87.7 % seen) closes most of the
-seen-crop gap to ResNet-50 while retaining unseen-crop transfer.
+**Supervised CNNs win on known crops, and we say so plainly:** the best reaches 88.6 %, about
+**6.2 pp above the frozen-VLM probe (82.4 %)** on the identical label set. *For a fixed, known label
+set a conventional classifier is the better choice*, and a paper that obscured this would be less
+useful.
+
+Two observations sharpen the comparison. First, **accuracy is again nearly flat with size** — a 4.4 M
+MobileNetV3-Large matches a 15.1 M ConvNeXtV2 and beats a 23.9 M ResNet-50, echoing §5.1 and §5.5 in a
+third setting. Second, the **cleanest possible control**: FastViT-SA12 (10.7 M) is the *same
+architecture family* as our MobileCLIP image encoder (11.4 M) at almost the same size. Trained
+supervised it reaches 87.4 %; used as a frozen VLM backbone with a linear probe it reaches 82.4 %. The
+5.0 pp difference is therefore attributable to *training regime*, not architecture — supervised
+training buys seen-crop accuracy, image–text pretraining buys the ability to name a disease on a crop
+that was never in the training set.
+
+And that is the point: **every row above has no output neuron for an unseen class**, so cross-crop
+accuracy is not merely low, it is undefined. No amount of parameters or epochs changes this — it is
+structural. The descriptor head trades ~6 pp of seen accuracy for a capability the entire table
+lacks, and the WiSE-FT hybrid (§5.6, 87.7 % seen) recovers most of that gap while retaining
+unseen-crop transfer.
 
 ### 5.9 Efficiency / on-device (Fig. `fig_edge_pareto.png`)
 Image encoder only (the sole part that ships); laptop CPU (16 threads), batch 1, 224×224, ONNX Runtime
