@@ -189,6 +189,9 @@ WiSE-FT alpha sweep — the seen/unseen trade-off dial.
 
 Files: `run_all_exp3_lw11.json`, `run_all_exp3_lw11_full.json`
 
+> ⚠ **Do not use for current numbers:**
+> - `run_all_exp3_lw11.json` — SUPERSEDED — 80-class pilot config; use `run_all_exp3_lw11_full.json` (166 classes).
+
 ## `bakeoff/` — 1 file(s)
 
 Encoder bake-off, including the domain/biological foundation models.
@@ -212,6 +215,9 @@ Files: `loco_s0_rich.json`
 On-device latency/size per tier, plus the INT8 graph diagnosis.
 
 Files: `edge_benchmark.json`, `edge_quant_benchmark.json`
+
+> ⚠ **Do not use for current numbers:**
+> - `edge_benchmark.json` — SUPERSEDED — used `quantize_dynamic()` defaults, whose INT8 path is pathologically slow for depthwise convolutions. Use `edge_quant_benchmark.json`.
 
 ## `phase0/` — 1 file(s)
 

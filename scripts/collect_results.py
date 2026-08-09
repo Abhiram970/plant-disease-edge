@@ -54,10 +54,28 @@ def pct(x):
     return "—" if x is None else f"{x * 100:.1f}%"
 
 
+# Results that exist but must NOT be read as current. Shipping a superseded benchmark unlabelled
+# next to the live one is how someone ends up citing the wrong numbers.
+SUPERSEDED = {
+    "edge_benchmark.json":
+        "SUPERSEDED — used `quantize_dynamic()` defaults, whose INT8 path is pathologically slow "
+        "for depthwise convolutions. Use `edge_quant_benchmark.json`.",
+    "zeroshot_eval.json":
+        "SUPERSEDED — the early 17-class pilot, before the nested A/B/C splits were frozen. "
+        "Use `zeroshot_eval_{A,B,C}.json`.",
+    "metrics_abstain.json":
+        "SUPERSEDED — pilot split; use `metrics_abstain_{A,B,C}.json`.",
+    "run_all_exp3_lw11.json":
+        "SUPERSEDED — 80-class pilot config; use `run_all_exp3_lw11_full.json` (166 classes).",
+}
+
+
 def main():
     if DST.exists():
-        for p in sorted(DST.rglob("*.json")):
-            if "onnx" not in p.parts:
+        # Clear previously generated content (not the untracked onnx exports) so renamed or
+        # withdrawn results cannot linger.
+        for p in sorted(DST.rglob("*")):
+            if p.is_file() and "onnx" not in p.parts and p.suffix in (".json", ".md"):
                 p.unlink()
     DST.mkdir(parents=True, exist_ok=True)
 
@@ -140,6 +158,13 @@ def main():
             out.append("")
         else:
             out.append("Files: " + ", ".join(f"`{f.name}`" for f in files))
+            out.append("")
+
+        stale = [f.name for f in files if f.name in SUPERSEDED]
+        if stale:
+            out.append("> ⚠ **Do not use for current numbers:**")
+            for name in stale:
+                out.append(f"> - `{name}` — {SUPERSEDED[name]}")
             out.append("")
 
     # non-JSON artefacts worth keeping alongside
