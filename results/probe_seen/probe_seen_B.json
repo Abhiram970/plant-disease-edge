@@ -1,0 +1,34 @@
+{
+  "exp": "B",
+  "models": {
+    "MobileCLIP2-S0": {
+      "img_params_M": 11.41,
+      "seen_probe_top1": 0.8066
+    },
+    "MobileCLIP-S1": {
+      "img_params_M": 21.54,
+      "seen_probe_top1": 0.7922
+    },
+    "MobileCLIP2-S2": {
+      "img_params_M": 35.82,
+      "seen_probe_top1": 0.8082
+    },
+    "MobileCLIP-B": {
+      "img_params_M": 86.35,
+      "seen_probe_top1": 0.8094
+    }
+  },
+  "seen_classes": 154,
+  "seen_images": 62043,
+  "n_seen_crops": 8,
+  "seen_crops": [
+    "Corn",
+    "Soybean",
+    "Tomato",
+    "Apple",
+    "Grape",
+    "Potato",
+    "Rice",
+    "Sugarcane"
+  ]
+}

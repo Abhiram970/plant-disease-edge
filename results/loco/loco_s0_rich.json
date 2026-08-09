@@ -1,0 +1,79 @@
+{
+  "model": "MobileCLIP2-S0/dfndr2b",
+  "img_params_M": 11.41,
+  "n_classes": 58,
+  "chance": 0.017241379310344827,
+  "strategy": "rich",
+  "pool": [
+    "Coffee",
+    "Orange",
+    "Peach",
+    "Apple",
+    "Corn",
+    "Potato"
+  ],
+  "per_crop": {
+    "Apple": {
+      "n": 2584,
+      "acc": 0.1176,
+      "ci95": [
+        0.1056,
+        0.13
+      ],
+      "role": "train-pool"
+    },
+    "Coffee": {
+      "n": 560,
+      "acc": 0.2661,
+      "ci95": [
+        0.2286,
+        0.3036
+      ],
+      "role": "held"
+    },
+    "Corn": {
+      "n": 729,
+      "acc": 0.3292,
+      "ci95": [
+        0.2949,
+        0.3635
+      ],
+      "role": "train-pool"
+    },
+    "Orange": {
+      "n": 563,
+      "acc": 0.2345,
+      "ci95": [
+        0.2007,
+        0.27
+      ],
+      "role": "held"
+    },
+    "Peach": {
+      "n": 495,
+      "acc": 0.1333,
+      "ci95": [
+        0.1051,
+        0.1636
+      ],
+      "role": "held"
+    },
+    "Potato": {
+      "n": 1254,
+      "acc": 0.0805,
+      "ci95": [
+        0.0662,
+        0.0949
+      ],
+      "role": "train-pool"
+    }
+  },
+  "pooled": {
+    "n": 6185,
+    "acc": 0.1604,
+    "ci95": [
+      0.1508,
+      0.1696
+    ]
+  }
+}

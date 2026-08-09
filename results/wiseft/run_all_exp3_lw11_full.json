@@ -1,0 +1,15 @@
+{
+  "tier": "lw11",
+  "model": "MobileCLIP2-S0",
+  "seen_images": 55981,
+  "unseen_classes": 17,
+  "seen_classes": 166,
+  "ft_epochs": 5,
+  "ft_loss": [2.020, 0.664, 0.435, 0.319, 0.240],
+  "sweep": [
+    {"alpha": 0.00, "seen": 0.826, "unseen": 0.170},
+    {"alpha": 0.50, "seen": 0.877, "unseen": 0.163},
+    {"alpha": 1.00, "seen": 0.903, "unseen": 0.088}
+  ],
+  "best": {"alpha": 0.50, "seen": 0.877, "unseen": 0.163}
+}
