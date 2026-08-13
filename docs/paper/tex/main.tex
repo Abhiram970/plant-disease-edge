@@ -8,8 +8,14 @@
 %% They are written from the result JSONs in docs/paper/, which are the single source of truth.
 %% Every number in this manuscript must come from there.
 %%
-%% BEFORE SUBMISSION -- search for "ACTION" in this file. Author names, affiliations, funding and
-%% several references still need to be supplied; they cannot be inferred from the code or data.
+%% BEFORE SUBMISSION -- search for "ACTION" in this file.
+%% Authors and citations are done. What remains cannot be inferred from the code or data:
+%%   1. AFFILIATION  (line ~46) -- Elsevier will not accept the manuscript without one. BLOCKING.
+%%   2. CRediT roles (line ~408) -- adjust to what each author actually did.
+%%   3. Funding      (line ~426) -- keep the "no specific grant" statement only if true.
+%%   4. AI disclosure(line ~433) -- confirm the wording against the journal's current policy.
+%% This file has never been compiled here (no LaTeX toolchain on the authoring machine). Build with
+%% two passes plus BibTeX before submitting, and check float placement in the PDF.
 
 \documentclass[preprint,3p,times]{elsarticle}
 
@@ -439,7 +445,8 @@ is a methodological component of the study and is described in full in the Metho
 reviewed and edited the manuscript text and take full responsibility for the content of the
 publication.
 
-%% ACTION: several entries in refs.bib are unverified placeholders -- see the warnings in that file.
+%% All 19 entries verified against the published record (2026-08-09). One open item is noted in
+%% refs.bib: SAGE's own sources disagree on its venue.
 \bibliographystyle{elsarticle-harv}
 \bibliography{refs}
 
