@@ -30,40 +30,42 @@
 
 \title{Compact Vision--Language Models for Cross-Crop Plant-Disease Diagnosis at the Edge}
 
-%% ACTION: replace with the real author list, affiliations and corresponding-author details.
-\author[inst1]{Author One\corref{cor1}}
-\ead{first.author@example.edu}
-\author[inst1]{Author Two}
-\author[inst2]{Author Three}
+\author[inst1]{Pinni Venkata Abhiram\corref{cor1}}
+\ead{abhiramp428@gmail.com}
+\author[inst1]{Rahul Ananthasayanam}
+\ead{tnarahul@gmail.com}
+\author[inst1]{Gaurav Shrivastava}
+\ead{gauravjshrivastava10@gmail.com}
 \cortext[cor1]{Corresponding author.}
-\affiliation[inst1]{organization={Department, Institution},
-                    city={City}, postcode={00000}, country={Country}}
-\affiliation[inst2]{organization={Department, Institution},
-                    city={City}, postcode={00000}, country={Country}}
 
+%% ACTION (REQUIRED BEFORE SUBMISSION): Elsevier will not accept a manuscript without a real
+%% affiliation. Fill organization/city/postcode/country for each author. If the authors sit at
+%% different institutions, split into inst1/inst2/... and re-tag \author[...] accordingly.
+%% Institutional e-mail addresses are also strongly preferred over personal ones for the
+%% corresponding author.
+\affiliation[inst1]{organization={FILL: Department, Institution},
+                    city={FILL: City}, postcode={FILL}, country={FILL: Country}}
+
+%% Elsevier abstracts are typically capped at 250 words; this is 243. Recount after any edit.
 \begin{abstract}
-Frontier vision--language models (VLMs) diagnose plant disease accurately but cost cents per image and
-cannot run offline on a phone, laptop, or field camera. We ask how small a \emph{deployable} model can
-be while still performing \emph{cross-crop zero-shot} disease diagnosis --- recognising diseases on
-crops it was never trained on, by matching a leaf image to LLM-authored, source-grounded symptom
-descriptions. Using the SAGE dataset and off-the-shelf frozen compact CLIP encoders, we show that
-(i)~an 11.4\,M-parameter frozen encoder performs cross-crop zero-shot diagnosis at 3.5--12.6$\times$
-chance across held-out sets of 16, 34 and 51 unseen classes, with accuracy nearly flat from 11\,M to
-300\,M parameters; (ii)~descriptor quality is the accuracy lever, and only \emph{source-grounded}
-descriptors scale --- a full symptom description beats a class-name prompt by 15.2 percentage points
-on a focused three-crop set, but as the unseen label space grows to 51 classes hand-curated
-descriptions \emph{degrade} (28.0\% to 20.4\%) while LLM source-grounded ones \emph{improve} (21.7\% to
-24.7\%), so source-grounding is not an auditability tax but the mechanism that lets the approach reach
-new crops at all; (iii)~an abstain gate makes the modest top-1 field-useful --- grounded top-5 is
-61--77\% on 16 unseen classes and still 58--76\% on 51 (29--38$\times$ chance); and (iv)~the deployable
-image encoder runs at 17.4\,ms/image on a laptop CPU (ONNX FP32, $\sim$58 img/s) in a 12.9\,MB INT8
-footprint --- though we show INT8 is a \emph{size}, not a \emph{speed}, lever for hybrid
-convolution--transformer encoders on CPU. On known crops the same frozen backbone reaches 82.4\% over
-166 classes, rising to 87.7\% with WiSE-FT at a cost of only 0.7 percentage points of unseen accuracy.
-A leave-one-crop-out analysis shows the held-out crops are not cherry-picked, and supervised CNN
-baselines --- stronger on seen crops (up to 88.6\%) --- remain \emph{structurally} incapable of the
-cross-crop transfer the descriptor head provides. We release the descriptor pipeline, per-tier models,
-and benchmark so the result is reproducible and auditable.
+Cloud vision--language models (VLMs) diagnose plant disease accurately but cost cents per image and
+need connectivity, suiting neither smallholder nor in-field use. The harder obstacle is
+generalisation: a classifier cannot name a disease on a crop absent from its training set. We ask how
+small a deployable model can be while still performing cross-crop zero-shot diagnosis, by matching a
+leaf image to LLM-authored, source-grounded symptom descriptions. Using the SAGE dataset
+and frozen off-the-shelf compact CLIP encoders, we report four results. First, an 11.4\,M-parameter
+frozen encoder diagnoses unseen crops at 3.5--12.6$\times$ chance across nested held-out sets of 16,
+34 and 51 classes, with accuracy nearly flat from 11\,M to 300\,M parameters. Second, and centrally,
+only \emph{source-grounded} descriptors scale: as the unseen label space triples, hand-curated
+symptom text \emph{degrades} (28.0\% to 20.4\%) while source-grounded text \emph{improves} (21.7\% to
+24.7\%), so auditability is not a tax but the mechanism that reaches new crops at all. Third, an
+abstain gate makes the modest top-1 field-useful, with grounded top-5 at 61--77\% on 16 unseen classes
+and 58--76\% on 51. Fourth, the deployable encoder runs at 17.4\,ms/image on a laptop CPU in a
+12.9\,MB INT8 footprint, though INT8 proves a size rather than a speed lever for hybrid
+convolution--transformer encoders. On known crops the same backbone reaches 82.4\% over 166 classes,
+or 87.7\% with WiSE-FT. Fourteen supervised CNNs are stronger on seen crops (up to 88.6\%) yet remain
+structurally incapable of cross-crop transfer. The descriptor pipeline, models and benchmark are
+released.
 \end{abstract}
 
 \begin{highlights}
@@ -87,7 +89,7 @@ edge deployment \sep source-grounded descriptors \sep precision agriculture
 Cloud VLM diagnosers achieve high in-the-wild accuracy but cost roughly \$0.21--0.42 per image and
 require connectivity --- a poor fit for smallholder and field use, which needs offline, low-cost,
 real-time inference. A second, deeper obstacle is generalisation: models trained on one crop transfer
-poorly to others~\citep{ghazal2024}, and edge deployment additionally demands compression. Cross-crop
+poorly to others~\citep{bouacida2025}, and edge deployment additionally demands compression. Cross-crop
 transfer is
 therefore the foundation-model-native open problem this Special Issue targets: it is enabled only by an
 image--text-aligned VLM, not by a conventional classifier.
@@ -122,7 +124,7 @@ are not cherry-picked.
 
 \section{Related work}
 
-\paragraph{Agricultural VLMs} SAGE~\citep{sage2025} provides our data and the cloud agent we contrast
+\paragraph{Agricultural VLMs} SAGE~\citep{sage2026} provides our data and the cloud agent we contrast
 against; its
 \{value, source\_url, verbatim\_quote\} source-grounded schema and its reported 14--16 point gain from
 symptom knowledge motivate our descriptor design. We are the deployable edge counterpart at \$0/image.
@@ -162,7 +164,8 @@ MobileNetV3~\citep{howard2019} and MobileNetV4~\citep{qin2024} among others
 \subsection{Dataset and the nested design}
 \label{sec:data}
 
-We use SAGE~\citep{sage2025} only ($\sim$1.01\,M images as Parquet shards, MIT licence) to avoid the
+We use SAGE~\citep{sage2026} only --- $\sim$839\,K images over 335 crops and 1{,}251 disease classes,
+released under the MIT licence --- to avoid the
 ``old, lab-only'' critique of legacy corpora such as PlantVillage~\citep{mohanty2016}, on which
 in-distribution accuracy has long been saturated. We stream-filter shards to our crops with a
 per-class cap and content-hash
@@ -340,8 +343,8 @@ is pathologically slow for depthwise kernels on x86.
 
 \paragraph{Practical guidance} For hybrid convolution--transformer encoders on a CPU runtime, INT8 is a
 \emph{size} lever, not a \emph{speed} lever; deploy FP32. For transformer encoders it is both. We flag
-rather than assume that Advanced RISC Machine (ARM) NEON, whose single-instruction-multiple-data
-extension has well-optimised INT8 depthwise kernels, may reverse this for the hybrid tiers.
+rather than assume that Arm processors, whose vector extension provides well-optimised INT8 depthwise
+kernels, may reverse this for the hybrid tiers.
 
 \section{Discussion}
 
@@ -402,10 +405,12 @@ grows --- honest abstention, and the frozen-backbone hybrid.
 %% lands near its text instead of all seven piling up after the Conclusion.
 
 \section*{CRediT authorship contribution statement}
-%% ACTION: every listed author needs at least one CRediT role.
-\textbf{Author One:} Conceptualization, Methodology, Software, Investigation, Formal analysis,
-Visualization, Writing -- original draft. \textbf{Author Two:} [fill].
-\textbf{Author Three:} [fill].
+%% ACTION: adjust so each role reflects what that author actually did. Elsevier requires every
+%% listed author to carry at least one CRediT role, and the roles should be accurate, not uniform.
+\textbf{Pinni Venkata Abhiram:} Conceptualization, Methodology, Software, Investigation, Formal
+analysis, Visualization, Writing -- original draft.
+\textbf{Rahul Ananthasayanam:} Methodology, Validation, Investigation, Writing -- review \& editing.
+\textbf{Gaurav Shrivastava:} Methodology, Data curation, Validation, Writing -- review \& editing.
 
 \section*{Declaration of competing interest}
 The authors declare that they have no known competing financial interests or personal relationships
@@ -417,10 +422,22 @@ All data are public. The SAGE dataset is available at
 registry, all result files, the table and figure generators, and the full experimental code are
 released at [repository URL].
 
-\section*{Acknowledgements}
-%% ACTION: funding sources with grant numbers, compute donors, non-author contributors. If there was
-%% no external funding, Elsevier expects an explicit statement to that effect.
-[Fill.]
+\section*{Funding}
+%% ACTION: if the work was externally funded, list sources with grant numbers here. If it was not,
+%% Elsevier still expects the statement below to be present and explicit -- delete whichever does
+%% not apply.
+This research did not receive any specific grant from funding agencies in the public, commercial, or
+not-for-profit sectors.
+
+\section*{Declaration of generative AI in the writing process}
+%% ACTION: keep only if accurate, and check the journal's current wording requirement. Elsevier
+%% requires disclosure when generative AI was used in the writing process; it must not be listed as
+%% an author. Tool-assisted code and data processing is separate from writing assistance.
+During the preparation of this work the authors used a large language model to generate the
+source-grounded symptom descriptions that form the descriptor registry (Section~\ref{sec:data}); this
+is a methodological component of the study and is described in full in the Methods. The authors
+reviewed and edited the manuscript text and take full responsibility for the content of the
+publication.
 
 %% ACTION: several entries in refs.bib are unverified placeholders -- see the warnings in that file.
 \bibliographystyle{elsarticle-harv}
