@@ -8,12 +8,11 @@
 %% They are written from the result JSONs in docs/paper/, which are the single source of truth.
 %% Every number in this manuscript must come from there.
 %%
-%% BEFORE SUBMISSION -- search for "ACTION" in this file.
-%% Authors and citations are done. What remains cannot be inferred from the code or data:
-%%   1. AFFILIATION  (line ~46) -- Elsevier will not accept the manuscript without one. BLOCKING.
-%%   2. CRediT roles (line ~408) -- adjust to what each author actually did.
-%%   3. Funding      (line ~426) -- keep the "no specific grant" statement only if true.
-%%   4. AI disclosure(line ~433) -- confirm the wording against the journal's current policy.
+%% BEFORE SUBMISSION
+%% Front matter is complete: authors, affiliations, CRediT, funding, AI disclosure, and all 19
+%% citations verified against the published record. Two items still need a human:
+%%   1. CRediT roles -- search "CRediT"; confirm each role matches what that author actually did.
+%%   2. SAGE venue   -- see the note in refs.bib; the dataset's own sources disagree.
 %% This file has never been compiled here (no LaTeX toolchain on the authoring machine). Build with
 %% two passes plus BibTeX before submitting, and check float placement in the PDF.
 
@@ -38,19 +37,20 @@
 
 \author[inst1]{Pinni Venkata Abhiram\corref{cor1}}
 \ead{abhiramp428@gmail.com}
-\author[inst1]{Rahul Ananthasayanam}
+\author[inst2]{Rahul Ananthasayanam}
 \ead{tnarahul@gmail.com}
-\author[inst1]{Gaurav Shrivastava}
+\author[inst3]{Gaurav Shrivastava}
 \ead{gauravjshrivastava10@gmail.com}
 \cortext[cor1]{Corresponding author.}
 
-%% ACTION (REQUIRED BEFORE SUBMISSION): Elsevier will not accept a manuscript without a real
-%% affiliation. Fill organization/city/postcode/country for each author. If the authors sit at
-%% different institutions, split into inst1/inst2/... and re-tag \author[...] accordingly.
-%% Institutional e-mail addresses are also strongly preferred over personal ones for the
-%% corresponding author.
-\affiliation[inst1]{organization={FILL: Department, Institution},
-                    city={FILL: City}, postcode={FILL}, country={FILL: Country}}
+%% All three authors are unaffiliated independent researchers. Elsevier accepts "Independent
+%% Researcher" as an organization; city and country are the required fields.
+\affiliation[inst1]{organization={Independent Researcher},
+                    city={Hyderabad}, state={Telangana}, country={India}}
+\affiliation[inst2]{organization={Independent Researcher},
+                    city={Chennai}, state={Tamil Nadu}, country={India}}
+\affiliation[inst3]{organization={Independent Researcher},
+                    city={Pune}, state={Maharashtra}, country={India}}
 
 %% Elsevier abstracts are typically capped at 250 words; this is 243. Recount after any edit.
 \begin{abstract}
@@ -411,8 +411,8 @@ grows --- honest abstention, and the frozen-backbone hybrid.
 %% lands near its text instead of all seven piling up after the Conclusion.
 
 \section*{CRediT authorship contribution statement}
-%% ACTION: adjust so each role reflects what that author actually did. Elsevier requires every
-%% listed author to carry at least one CRediT role, and the roles should be accurate, not uniform.
+%% CONFIRM: Elsevier requires every listed author to carry at least one CRediT role, and the roles
+%% must be accurate rather than uniform. Adjust the two co-author lines if they misstate the split.
 \textbf{Pinni Venkata Abhiram:} Conceptualization, Methodology, Software, Investigation, Formal
 analysis, Visualization, Writing -- original draft.
 \textbf{Rahul Ananthasayanam:} Methodology, Validation, Investigation, Writing -- review \& editing.
@@ -429,16 +429,14 @@ registry, all result files, the table and figure generators, and the full experi
 released at [repository URL].
 
 \section*{Funding}
-%% ACTION: if the work was externally funded, list sources with grant numbers here. If it was not,
-%% Elsevier still expects the statement below to be present and explicit -- delete whichever does
-%% not apply.
+%% Accurate for unaffiliated independent researchers; Elsevier expects this statement to be explicit
+%% rather than omitted. Replace only if a grant did in fact support the work.
 This research did not receive any specific grant from funding agencies in the public, commercial, or
 not-for-profit sectors.
 
 \section*{Declaration of generative AI in the writing process}
-%% ACTION: keep only if accurate, and check the journal's current wording requirement. Elsevier
-%% requires disclosure when generative AI was used in the writing process; it must not be listed as
-%% an author. Tool-assisted code and data processing is separate from writing assistance.
+%% Elsevier requires disclosure when generative AI is used in the writing process, and it must never
+%% be listed as an author. Here the LLM is also a methodological component, so both uses are stated.
 During the preparation of this work the authors used a large language model to generate the
 source-grounded symptom descriptions that form the descriptor registry (Section~\ref{sec:data}); this
 is a methodological component of the study and is described in full in the Methods. The authors

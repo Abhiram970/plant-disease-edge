@@ -20,7 +20,7 @@
 - **Must contain:** "Angular leaf spot affects leaves, fruit, and stems of cucumbers."
 - **Should support:** Leaves, fruit, stems
 
-### 2. [429 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 2. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
 <https://extension.umn.edu/diseases/bacterial-wilt-cucurbits>
 
@@ -28,7 +28,7 @@
 - **Must contain:** "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand "
 - **Should support:** Erwinia tracheiphila; Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pull; leaves, stems, vascular tissue, entire plant
 
-### 3. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 3. [429 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
 <https://extension.umn.edu/small-grains-pest-management/loose-smut-wheat-and-barley>
 
@@ -236,7 +236,7 @@
 - **Must contain:** "The pathogen causes angular chlorotic lesions on the foliage. These lesions appear angular because they are bound by leaf veins. During humid conditions, inspection of the underside of the leaf reveals gray-brown to purplish-black fungal growth."
 - **Should support:** Angular chlorotic lesions bound by leaf veins; gray-brown to purplish-black growth on the underside; Leaves only (not fruit, flowers, stems or roots); Pseudoperonospora cubensis
 
-### 29. [429 bot-blocked (page exists)] `HELD-OUT` — none
+### 29. [403 bot-blocked (page exists)] `HELD-OUT` — none
 
 <https://extension.umn.edu/vegetable-diseases/belly-rot-cucumber>
 
@@ -372,7 +372,7 @@
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Corynespora cassiicola
 
-### 46. [OK] `HELD-OUT` — none
+### 46. [SSL-unverifiable (page likely fine)] `HELD-OUT` — none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-72-W.pdf>
 
@@ -412,7 +412,7 @@
 - **Must contain:** "Galls are white to silvery gray and shiny when young. As galls mature, they become filled with a dark, olive-brown to black powdery mass of spores. The outer membrane eventually ruptures, releasing the spores."
 - **Should support:** Large galls that are white to gray when young, turning dark brown to black and powdery as spores mature; galls; White to silvery-gray galls that mature to dark olive-brown or black powdery spore masses; galls can reach sof; ears, tassels, stalks, leaves
 
-### 51. [OK] `seen` — model-recalled
+### 51. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/eyespot-corn>
 
@@ -420,7 +420,7 @@
 - **Must contain:** "Lesions are small (1/8 inch diameter), circular, with a pale tan center, brown border, and yellow halo, giving the appearance of an eye."
 - **Should support:** Leaves; Small circular lesions with pale tan centers, brown borders, and yellow halos on leaves
 
-### 52. [OK] `seen` — model-recalled
+### 52. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/gray-leaf-spot-corn>
 
@@ -444,7 +444,7 @@
 - **Must contain:** "Lesions are tan to brown, rectangular in shape, and limited in width by the leaf veins. Lesions range from 1 to 3 cm in length and have tan centers with brown borders."
 - **Should support:** Tan to brown, elongated rectangular lesions limited by leaf veins, with tan centers and brown borders, ranging
 
-### 55. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 55. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/southern-rust-corn>
 
@@ -452,7 +452,7 @@
 - **Must contain:** "Pustules of southern rust are smaller, more circular, and more orange in color than those of common rust. They are densely packed on the upper leaf surface and produce powdery, orange urediniospores."
 - **Should support:** Leaves (primarily upper surface), leaf sheaths, husks; Small, circular to oval, orange to tan pustules densely clustered on upper leaf surfaces, releasing powdery or
 
-### 56. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 56. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/crop-specific-needs/soybean-nutrient-management#potassium-deficiency-symptoms-1870913>
 
@@ -460,7 +460,7 @@
 - **Must contain:** "Symptoms include yellowing of leaf margins that progresses to necrosis (dead tissue), giving the leaf a scorched appearance. Symptoms appear first on the lower, older leaves and progress upward."
 - **Should support:** Leaves (older, lower leaves primarily); pods and seeds under severe deficiency; Yellowing and necrosis of leaf margins and tips on older leaves, progressing inward; scorched or burned appear
 
-### 57. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 57. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/disease-management/early-blight-potato-and-tomato>
 
@@ -476,7 +476,7 @@
 - **Must contain:** "Leaf symptoms begin as pale green, water-soaked spots, usually at leaf tips or edges. These spots turn brown to black, and under moist conditions, a white cottony growth (sporangiophores and sporangia) can be seen on the underside of leaves at the edge of the "
 - **Should support:** Leaves, stems, tubers; Water-soaked pale green to brown-black lesions on leaf tips and margins; white sporulating growth on leaf unde
 
-### 59. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 59. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/disease-management/late-blight-tomato-and-potato>
 
@@ -484,7 +484,7 @@
 - **Must contain:** "Leaf symptoms begin as small, water-soaked lesions that are often pale green to yellow. These lesions enlarge rapidly and turn brown to dark brown. Under humid conditions, a white, cottony growth (sporangia and sporangiophores) may be visible on the underside "
 - **Should support:** Large, irregularly shaped, water-soaked, brown to dark brown lesions on leaves with white sporulation on under; Leaves, stems, fruit
 
-### 60. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 60. [429 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/diseases/bacterial-spot-tomato>
 
@@ -532,7 +532,7 @@
 - **Must contain:** "Symptoms include yellowing of leaf tissue between the veins (interveinal chlorosis) on the youngest leaves. In severe cases, leaves may turn almost white and develop brown, necrotic edges and tips."
 - **Should support:** Abiotic – iron (Fe) deficiency; no pathogen involved; Interveinal chlorosis on young leaves with yellow to white leaf tissue between green veins; severe cases show ; Young leaves (newest trifoliate leaves and growing points)
 
-### 66. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 66. [429 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/pest-management/soybean-cyst-nematode>
 
@@ -540,7 +540,7 @@
 - **Must contain:** "The most reliable way to confirm SCN is to look for the tiny, white, lemon-shaped females on the roots of plants dug from the field. The females are about the size of a period at the end of a sentence."
 - **Should support:** Roots, above-ground plant (stunting and yellowing of shoots and leaves); Stunted, yellowing plants in irregular field patches; white to yellow lemon-shaped females on roots turning br
 
-### 67. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 67. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/pest-management/soybean-rust>
 
@@ -612,7 +612,7 @@
 - **Must contain:** "The pith and vascular tissue of the lower stem and taproot turn silver-gray, and the tiny, black microsclerotia of the pathogen can be seen with the naked eye on and beneath the epidermis of the lower stem and taproot, giving the tissue a charcoal-gray appeara"
 - **Should support:** Silver-gray to ash-gray discoloration of internal stem and root tissue; dense black microsclerotia visible ben; roots, lower stem (hypocotyl), vascular tissue, pith
 
-### 76. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 76. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/soybean-diseases/downy-mildew-soybean>
 
@@ -652,7 +652,7 @@
 - **Must contain:** "Symptoms include water-soaked, brown lesions on the hypocotyl and roots, seedling collapse at or below the soil line, and both pre- and post-emergence damping-off."
 - **Should support:** Pythium spp., Phytophthora sojae, Fusarium spp., Rhizoctonia solani; Water-soaked lesions on hypocotyl and roots; brown to reddish-brown discoloration; seedling collapse at soil l; roots, hypocotyl, cotyledons, seeds
 
-### 81. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 81. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/soybean-diseases/white-mold-soybean>
 
@@ -668,7 +668,7 @@
 - **Must contain:** "The fungus can infect leaves, petioles, stems, and pods."
 - **Should support:** Leaves, petioles, stems, pods
 
-### 83. [429 bot-blocked (page exists)] `seen` — model-recalled
+### 83. [403 bot-blocked (page exists)] `seen` — model-recalled
 
 <https://extension.umn.edu/soybean-pest-management/sudden-death-syndrome-soybean>
 
@@ -1044,7 +1044,7 @@
 - **Must contain:** "Infected fruit first appear water-soaked and light brown, then become covered with a gray, dusty mass of spores."
 - **Should support:** Water-soaked lesions on fruit turning brown and covered with gray sporulating mycelium; blighted blossoms; tan
 
-### 130. [OK] `seen` — model-recalled, none
+### 130. [SSL-unverifiable (page likely fine)] `seen` — model-recalled, none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-1-W.pdf>
 
@@ -1052,7 +1052,7 @@
 - **Must contain:** "Cedar-apple rust is caused by the fungus Gymnosporangium juniperi-virginianae."
 - **Should support:** Gymnosporangium juniperi-virginianae
 
-### 131. [OK] `seen` — model-recalled, none
+### 131. [SSL-unverifiable (page likely fine)] `seen` — model-recalled, none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-139-W.pdf>
 
@@ -1060,7 +1060,7 @@
 - **Must contain:** "Black rot is caused by the fungus Botryosphaeria obtusa."
 - **Should support:** Botryosphaeria obtusa (anamorph: Sphaeropsis malorum); Grapevine leafroll-associated viruses (GLRaVs), primarily GLRaV-1 and GLRaV-3
 
-### 132. [OK] `seen` — model-recalled, none
+### 132. [SSL-unverifiable (page likely fine)] `seen` — model-recalled, none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-75-W.pdf>
 
@@ -1068,7 +1068,7 @@
 - **Must contain:** "Gibberella ear rot is characterized by a pink to reddish mold that usually starts at the tip of the ear. Fusarium ear rot appears as white to pink mold on individual kernels, often in a 'starburst' pattern. Diplodia ear rot produces a white to grayish-white mo"
 - **Should support:** Fusarium verticillioides (formerly F. moniliforme), Fusarium graminearum, and other Fusarium spp.; Pink to red mold at ear tip (Gibberella); white to pink starburst kernel discoloration (Fusarium); white-gray 
 
-### 133. [OK] `seen` — model-recalled
+### 133. [SSL-unverifiable (page likely fine)] `seen` — model-recalled
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-84-W.pdf>
 
@@ -1164,7 +1164,7 @@
 - **Must contain:** "2,4-D often causes more of a strapped appearance to leaves, making them longer and skinnier with parallel veins"
 - **Should support:** Leaves and leaflets; hypocotyls and cotyledons after preemergence splash; None - abiotic injury from herbicide drift, carryover or contact, not a pathogen; Symptoms vary by herbicide group: strapped or cupped leaves (auxin mimics), interveinal chlorosis and necrosis
 
-### 145. [OK] `seen` — none
+### 145. [403 bot-blocked (page exists)] `seen` — none
 
 <https://extension.ucdavis.edu/sites/default/files/2022-03/gray_mold_strawberry.pdf>
 
@@ -1172,7 +1172,7 @@
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Fruit, flowers, leaves, stems
 
-### 146. [429 bot-blocked (page exists)] `seen` — none
+### 146. [403 bot-blocked (page exists)] `seen` — none
 
 <https://extension.umn.edu/diseases/powdery-mildew-tomato>
 
@@ -1436,7 +1436,7 @@
 - **Must contain:** "witches' brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and flowers on roses."
 - **Should support:** Rose rosette virus, vectored by the eriophyid mite Phyllocoptes fructiphilus; Shoots, stems, leaves, buds and flowers; Witches' brooms, red or yellow discoloured and distorted buds, excessive thorns, mosaic-patterned leaves, thic
 
-### 179. [OK] `seen` — none
+### 179. [SSL-unverifiable (page likely fine)] `seen` — none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-143-W.pdf>
 
@@ -1444,7 +1444,7 @@
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Tetranychus urticae (two-spotted spider mite)
 
-### 180. [OK] `seen` — none
+### 180. [SSL-unverifiable (page likely fine)] `seen` — none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-43-W.pdf>
 
@@ -1452,7 +1452,7 @@
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Colletotrichum graminicola
 
-### 181. [OK] `seen` — none
+### 181. [SSL-unverifiable (page likely fine)] `seen` — none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-77-W.pdf>
 
