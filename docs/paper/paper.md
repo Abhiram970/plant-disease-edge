@@ -89,9 +89,10 @@ text. Only the image encoder ships to the device; text prototypes are precompute
 ## 3. Materials and methods
 
 ### 3.1 Dataset
-We use **SAGE only** (`tirtho149/SAGE`, MIT; ~1.01 M images as parquet shards) to avoid the "old,
-lab-only" critique of legacy corpora. We stream-filter shards to our crops with a per-class cap and
-content-hash de-duplication.
+We use **SAGE only** (Arshad et al., 2026; `tirtho149/SAGE`, MIT) — **~839 K images spanning 335 crops
+and 1,251 disease classes** — to avoid the "old, lab-only" critique of legacy corpora such as
+PlantVillage, on which in-distribution accuracy has long been saturated. We stream-filter its parquet
+shards to our crops with a per-class cap and content-hash de-duplication.
 
 To test whether the approach *scales* rather than reporting a single convenient split, we define three
 **nested** configurations — every seen/held crop in A also appears in B, and B in C — so differences are
