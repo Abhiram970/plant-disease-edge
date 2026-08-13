@@ -14,6 +14,7 @@ import concurrent.futures as cf
 import json
 import ssl
 import sys
+import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
@@ -28,12 +29,15 @@ FIELDS = ("pathogen", "affected_organs", "visual_symptoms")
 HELD = set(C.EXPERIMENTS["C"]["held"])
 
 
-def probe(url):
+def probe(url, _attempt=0):
     """Classify a URL. Distinguishing these matters: a 403 and an SSL trust failure both LOOK dead
     from a script but the page is fine, and reporting them as dead sends you hunting for
     replacements you do not need. Only a real 404/410/DNS failure is dead.
 
     Note many extension sites answer HEAD with 404 while serving GET correctly, so GET decides.
+
+    A DEAD verdict is retried once, serially: under concurrency these servers intermittently drop
+    connections, and a transient reset previously reported a live 403-protected page as dead.
     """
     last = None
     for method in ("HEAD", "GET"):
@@ -53,7 +57,11 @@ def probe(url):
             if "CERTIFICATE_VERIFY_FAILED" in str(e):
                 return "SSL-unverifiable (page likely fine)"
             last = f"DEAD ({type(e).__name__})"
-    return last or "DEAD"
+    verdict = last or "DEAD"
+    if verdict.startswith("DEAD") and _attempt == 0:
+        time.sleep(2)
+        return probe(url, _attempt=1)
+    return verdict
 
 
 def main():
@@ -84,7 +92,7 @@ def main():
     status = {u: "not checked" for u in urls}
     if not args.no_net:
         print(f"probing {len(urls)} urls ...")
-        with cf.ThreadPoolExecutor(max_workers=16) as ex:
+        with cf.ThreadPoolExecutor(max_workers=6) as ex:   # gentler; these servers rate-limit
             for u, s in zip(urls, ex.map(probe, urls)):
                 status[u] = s
 

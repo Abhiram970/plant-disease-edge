@@ -4,7 +4,12 @@
 Agriculture" (submission deadline 30 September 2026). Numbers are final for the runs reported
 (local RTX-GPU workstation, 2 July 2026); items still pending are listed in §9.*
 
-**Authors:** _[Abhiram et al. — fill affiliations]_
+**Authors:** Pinni Venkata Abhiram¹ (corresponding, abhiramp428@gmail.com) · Rahul Ananthasayanam² ·
+Gaurav Shrivastava³
+
+¹ Independent Researcher, Hyderabad, Telangana, India ·
+² Independent Researcher, Chennai, Tamil Nadu, India ·
+³ Independent Researcher, Pune, Maharashtra, India
 
 ---
 
@@ -576,11 +581,25 @@ pipeline and benchmark to make the result auditable and reproducible.
 
 ## CRediT authorship contribution statement
 
-**[Author 1]:** Conceptualization, Methodology, Software, Investigation, Formal analysis,
-Visualization, Writing – original draft. **[Author 2]:** _[fill]_. **[Author 3]:** _[fill]_.
+**Pinni Venkata Abhiram:** Conceptualization, Methodology, Software, Investigation, Formal analysis,
+Visualization, Writing – original draft. **Rahul Ananthasayanam:** Methodology, Validation,
+Investigation, Writing – review & editing. **Gaurav Shrivastava:** Methodology, Data curation,
+Validation, Writing – review & editing.
 
-> **ACTION REQUIRED:** replace with the real author list. Every listed author needs at least one
-> CRediT role.
+> **Confirm** each role matches what that author actually did — Elsevier expects accurate, not
+> uniform, attribution.
+
+## Funding
+
+This research did not receive any specific grant from funding agencies in the public, commercial, or
+not-for-profit sectors.
+
+## Declaration of generative AI in the writing process
+
+During the preparation of this work the authors used a large language model to generate the
+source-grounded symptom descriptions that form the descriptor registry (§3.2); this is a
+methodological component of the study and is described in full in the Methods. The authors reviewed
+and edited the manuscript text and take full responsibility for the content of the publication.
 
 ## Declaration of competing interest
 
@@ -594,17 +613,28 @@ All data are public. The SAGE dataset is available at `https://huggingface.co/da
 and the full experimental code are released at _[repository URL — fill on acceptance]_. No proprietary
 data were used.
 
-## Acknowledgements
-
-_[Fill: funding sources with grant numbers, compute donors, and any non-author contributors.
-If there was no external funding, Elsevier expects an explicit statement to that effect.]_
-
 ## References
 
-> **⚠ VERIFY BEFORE SUBMISSION.** Entries marked **⚠** were reconstructed from in-text citations and
-> their exact authors, venue or year have **not** been confirmed against the published record. Check
-> every one of them — a wrong citation is worse than a missing one. Unmarked entries are standard and
-> widely cited, but confirm page numbers and DOIs against the publisher regardless.
+> All 19 entries verified against the published record on **9 Aug 2026** (arXiv listings, publisher
+> pages, proceedings pages, or the dataset's own citation block). One open item: SAGE's own sources
+> disagree on its venue — the HuggingFace card says NeurIPS Datasets track, the arXiv listing says a
+> CVPR 2026 workshop — so it is cited as the arXiv preprint.
+
+Arshad, M.A., Roy, T., Shen, Y., Elango, D., Chiranjeevi, S., Singh, A.K., Ganapathysubramanian, B.,
+Hegde, C., Singh, A., Sarkar, S., 2026. SAGE: Scalable Agentic Grounded Evaluation for Crop Disease
+Diagnosis. arXiv:2605.09768.
+
+Bouacida, I., Farou, B., Djakhdjakha, L., Seridi, H., Kurulay, M., 2025. Innovative deep learning
+approach for cross-crop plant disease detection: A generalized method for identifying unhealthy
+leaves. Information Processing in Agriculture 12, 54. https://doi.org/10.1016/j.inpa.2024.03.002
+
+Faghri, F., Vasu, P.K.A., Koc, C., Shankar, V., Toshev, A., Tuzel, O., Pouransari, H., 2025.
+MobileCLIP2: Improving multi-modal reinforced training. Transactions on Machine Learning Research.
+arXiv:2508.20691.
+
+Gu, J., Stevens, S., Campolongo, E.G., Thompson, M.J., Zhang, N., Wu, J., et al., 2025. BioCLIP 2:
+Emergent properties from scaling hierarchical contrastive learning, in: Advances in Neural
+Information Processing Systems (NeurIPS). arXiv:2505.23883.
 
 He, K., Zhang, X., Ren, S., Sun, J., 2016. Deep residual learning for image recognition, in:
 Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pp. 770–778.
@@ -623,6 +653,10 @@ International Conference on Learning Representations (ICLR).
 Mohanty, S.P., Hughes, D.P., Salathé, M., 2016. Using deep learning for image-based plant disease
 detection. Frontiers in Plant Science 7, 1419.
 
+Nguyen, K.Q., Le, L.T.T., Quach, L.-D., 2025. A vision–language foundation model for leaf disease
+identification. Expert Systems with Applications.
+https://doi.org/10.1016/j.eswa.2025.129701
+
 Oquab, M., Darcet, T., Moutakanni, T., Vo, H., Szafraniec, M., Khalidov, V., Fernandez, P., Haziza, D.,
 Massa, F., El-Nouby, A., et al., 2024. DINOv2: Learning robust visual features without supervision.
 Transactions on Machine Learning Research.
@@ -631,9 +665,18 @@ Pratt, S., Covert, I., Liu, R., Farhadi, A., 2023. What does a platypus look lik
 customized prompts for zero-shot image classification, in: Proceedings of the IEEE/CVF International
 Conference on Computer Vision (ICCV), pp. 15691–15701.
 
+Qin, D., Leichner, C., Delakis, M., Fornoni, M., Luo, S., Yang, F., Wang, W., Banbury, C., Ye, C.,
+Akin, B., Aggarwal, V., Zhu, T., Moro, D., Howard, A., 2024. MobileNetV4: Universal models for the
+mobile ecosystem, in: European Conference on Computer Vision (ECCV), pp. 78–96. arXiv:2404.10518.
+
 Radford, A., Kim, J.W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., Sastry, G., Askell, A.,
 Mishkin, P., Clark, J., Krueger, G., Sutskever, I., 2021. Learning transferable visual models from
 natural language supervision, in: International Conference on Machine Learning (ICML), pp. 8748–8763.
+
+Tschannen, M., Gritsenko, A., Wang, X., Naeem, M.F., Alabdulmohsin, I., Parthasarathy, N., Evans, T.,
+Beyer, L., Xia, Y., Mustafa, B., Hénaff, O., Harmsen, J., Steiner, A., Zhai, X., 2025. SigLIP 2:
+Multilingual vision–language encoders with improved semantic understanding, localization, and dense
+features. arXiv:2502.14786.
 
 Vasu, P.K.A., Pouransari, H., Faghri, F., Vemulapalli, R., Tuzel, O., 2024. MobileCLIP: Fast
 image-text models through multi-modal reinforced training, in: Proceedings of the IEEE/CVF Conference
@@ -650,27 +693,6 @@ Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), 
 Zhai, X., Mustafa, B., Kolesnikov, A., Beyer, L., 2023. Sigmoid loss for language image pre-training,
 in: Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV), pp. 11975–11986.
 
-**⚠** Arshad, M.A., et al., 2025. SAGE: [exact title, authors and venue to be confirmed from the
-paper the dataset ships with]. Dataset: https://huggingface.co/datasets/tirtho149/SAGE
-
-**⚠** Ghazal, S., et al., 2024. [Cited in §1 for poor cross-crop transfer — confirm full reference or
-remove the citation.]
-
-**⚠** Qin, D., et al., 2024. MobileNetV4: Universal models for the mobile ecosystem, in: European
-Conference on Computer Vision (ECCV). [Confirm author list and pages.]
-
-**⚠** Stevens, S., et al., 2024/2025. BioCLIP / BioCLIP 2: A vision foundation model for the tree of
-life. [We evaluate BioCLIP **2**; confirm which paper to cite and its year.]
-
-**⚠** Tschannen, M., et al., 2025. SigLIP 2: Multilingual vision-language encoders. [Confirm authors
-and venue.]
-
-**⚠** Vasu, P.K.A., et al., 2025. MobileCLIP2. [Confirm the exact reference; several tiers we deploy
-come from this release, so it must be cited correctly.]
-
-**⚠** SCOLD, 2025. [Domain leaf-disease VLM evaluated in §5.2 — obtain the full citation, or state in
-§5.2 that only the released checkpoint was used if no paper is available.]
-
 ---
 
 ### 9. Open items before submission
@@ -678,8 +700,8 @@ come from this release, so it must be cited correctly.]
 - [x] ~~Source the missing held-out descriptors~~ — **done**: Coffee is now 5/5 page-verified
       (Cercospora leaf + berry phases, leaf miner, Phoma). Remaining 4 stubs are all Wheat label
       artefacts to be excluded/resolved rather than filled.
-- [ ] Replace the 18 dead source URLs (concentrated in extension.psu.edu, cropprotectionnetwork.org,
-      grapes.extension.org).
+- [x] ~~Replace the dead source URLs~~ — **done**: all 19 replaced, each with its quote re-extracted
+      from the new page rather than the link merely repointed. **0 of 181 source URLs are dead.**
 - [x] ~~Fuller SAGE pull incl. Tomato and Grape~~ — **done**: configuration C trains on 10 crops /
       166 classes / 69,919 images, including Tomato and Grape.
 - [x] ~~`probe_seen_A` and `probe_seen_B`~~ — **done**: all four encoders at all three scales from one
@@ -687,6 +709,16 @@ come from this release, so it must be cited correctly.]
 - [x] ~~Supervised CNN sweep~~ — **done**: all 14 architectures at one protocol (166 classes,
       8 epochs), spanning 1.7–42.8 M parameters. Best is 88.6 %; the largest model is 1.8 pp worse
       than the best 4.4 M one (§5.8).
-- [ ] Multi-seed runs for CIs on the headline zero-shot table.
+- [x] ~~Convert to the Elsevier LaTeX template; author list & funding~~ — **done**:
+      `tex/main.tex` (elsarticle) with authors, affiliations, CRediT, funding and AI disclosure;
+      all 7 tables generated from the JSONs; figures at 300 dpi.
+- [x] ~~Verify the bibliography~~ — **done**: all 19 entries checked against the published record.
+      Two were wrong, not merely unconfirmed — a citation attributed to non-existent authorship, and
+      the SAGE dataset size (839 K, not 1.01 M).
+- [ ] **Compile `tex/main.tex`** — never built here (no LaTeX toolchain on the authoring machine).
+      Two passes plus BibTeX; check float placement.
+- [ ] **Multi-seed runs for CIs on the headline** — the single remaining technical weakness.
+- [ ] Proofread the 181 source URLs — `docs/paper/SOURCE_CHECKLIST.md`, held-out and unverified
+      entries sorted first.
 - [ ] Faithful SCOLD loader (or footnote the current below-chance wrapper result).
-- [ ] Convert to the Elsevier CompAg LaTeX template; final figure polish; author list & funding.
+- [ ] Confirm the SAGE venue (its own sources disagree — see `tex/refs.bib`).
