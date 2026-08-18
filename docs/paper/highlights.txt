@@ -1,0 +1,5 @@
+A frozen 11.4M CLIP diagnoses diseases on crops it never saw, at 3.5-12.6x chance.
+Only source-grounded descriptors keep improving as the unseen label space grows.
+Hand-curated symptom text degrades from 28.0% to 20.4% as unseen classes triple.
+One frozen backbone serves both known crops (82.4%) and unknown ones.
+INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.

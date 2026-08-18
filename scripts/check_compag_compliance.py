@@ -20,6 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
+C_REPO = C.REPO_ROOT
 
 TEX = C.REPO_ROOT / "docs" / "paper" / "tex" / "main.tex"
 FIGS = C.REPO_ROOT / "docs" / "paper" / "figures"
@@ -28,13 +29,18 @@ ABSTRACT_MAX = 250
 HL_MIN, HL_MAX, HL_CHARS = 3, 5, 85
 KW_MAX = 7
 MIN_PX_SINGLE_COL = 1063          # Elsevier: single column at 300 dpi
+# cas-dc prints CRediT from per-author \credit{} macros via \printcredits, so accept either that
+# or an explicit section (elsarticle style).
 REQUIRED_SECTIONS = [
-    ("CRediT authorship contribution statement", "CRediT"),
-    ("Declaration of competing interest", "competing interests"),
-    ("Funding", "funding"),
-    ("Data availability", "data statement (Option C applies to this journal)"),
-    ("generative AI", "generative-AI disclosure"),
+    (("CRediT authorship contribution statement", "\\printcredits"), "CRediT"),
+    (("Declaration of competing interest",), "competing interests"),
+    (("Funding",), "funding"),
+    (("Data availability",), "data statement (Option C applies to this journal)"),
+    (("generative AI",), "generative-AI disclosure"),
 ]
+
+# The highlights file the journal wants uploaded separately.
+HIGHLIGHTS_FILE = C_REPO / "docs" / "paper" / "highlights.txt"
 
 ok, warn, fail = [], [], []
 
@@ -69,8 +75,8 @@ def main():
             fail.append("abstract contains \\cite -- the guide asks for citations in full, so avoid "
                         "them in the abstract")
 
-    # ---- keywords
-    kw = block(t_nocomment, "keyword")
+    # ---- keywords (elsarticle uses "keyword", cas-dc uses "keywords")
+    kw = block(t_nocomment, "keywords") or block(t_nocomment, "keyword")
     if kw is None:
         fail.append("no \\begin{keyword} block")
     else:
@@ -81,12 +87,21 @@ def main():
         if bad:
             warn.append(f"keywords joined by and/of, which the guide discourages: {bad}")
 
-    # ---- highlights
+    # ---- highlights: a standalone file is the submission form the journal asks for
     hl = block(t_nocomment, "highlights")
-    if hl is None:
-        warn.append("no \\begin{highlights} block in main.tex (it is submitted as a separate file, "
-                    "so this is only a warning)")
-    else:
+    if hl is None and HIGHLIGHTS_FILE.exists():
+        items = [ln.strip() for ln in
+                 HIGHLIGHTS_FILE.read_text(encoding="utf-8").splitlines() if ln.strip()]
+        (ok if HL_MIN <= len(items) <= HL_MAX else fail).append(
+            f"{len(items)} highlights in {HIGHLIGHTS_FILE.name} (allowed {HL_MIN}-{HL_MAX})")
+        long_ = [i for i in items if len(i) > HL_CHARS]
+        (ok if not long_ else fail).append(
+            f"all highlights within {HL_CHARS} characters" if not long_
+            else f"highlights over {HL_CHARS} chars: {long_}")
+        hl = None
+    elif hl is None:
+        fail.append("no highlights: neither a \\begin{highlights} block nor docs/paper/highlights.txt")
+    if hl is not None:
         items = [i.strip() for i in re.findall(r"\\item(.*)", hl) if i.strip()]
         (ok if HL_MIN <= len(items) <= HL_MAX else fail).append(
             f"{len(items)} highlights (allowed {HL_MIN}-{HL_MAX})")
@@ -98,8 +113,9 @@ def main():
             ok.append(f"all {len(items)} highlights within {HL_CHARS} characters")
 
     # ---- required front/back matter
-    for needle, label in REQUIRED_SECTIONS:
-        (ok if needle.lower() in t_nocomment.lower() else fail).append(f"{label} statement present")
+    for needles, label in REQUIRED_SECTIONS:
+        hit = any(n.lower() in t_nocomment.lower() for n in needles)
+        (ok if hit else fail).append(f"{label} statement present")
 
     # ---- unresolved placeholders
     holes = re.findall(r"(FILL[^}\n]*|\[fill[^\]]*\]|XXXX)", t_nocomment)

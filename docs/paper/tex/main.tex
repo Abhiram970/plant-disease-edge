@@ -1,58 +1,59 @@
-%% Computers and Electronics in Agriculture -- Special Issue "Foundation Models in Agriculture"
-%% Elsevier elsarticle template.
+%% Computers and Electronics in Agriculture -- Elsevier CAS double-column template.
 %%
-%% BUILD:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+%% BUILD: pdflatex main -> bibtex main -> pdflatex main -> pdflatex main
+%% Requires cas-dc.cls and cas-model2-names.bst (both on Overleaf: "Elsevier CAS" template).
 %%
-%% TABLES ARE GENERATED. Do not edit tab_*.tex by hand -- run:
-%%     python docs/paper/make_tex_tables.py
-%% They are written from the result JSONs in docs/paper/, which are the single source of truth.
-%% Every number in this manuscript must come from there.
+%% TABLES AND FIGURES ARE GENERATED. Do not hand-edit tab_*.tex; regenerate with
+%%     python docs/paper/make_tex_tables.py && python docs/paper/make_figures.py
 %%
-%% BEFORE SUBMISSION
-%% Front matter is complete: authors, affiliations, CRediT, funding, AI disclosure, and all 19
-%% citations verified against the published record. Two items still need a human:
-%%   1. CRediT roles -- search "CRediT"; confirm each role matches what that author actually did.
-%%   2. SAGE venue   -- see the note in refs.bib; the dataset's own sources disagree.
-%% This file has never been compiled here (no LaTeX toolchain on the authoring machine). Build with
-%% two passes plus BibTeX before submitting, and check float placement in the PDF.
+%% Highlights are NOT in this file by design: the journal requires them as a separate editable
+%% file, supplied as highlights.txt.
+%%
+%% REMAINING AUTHOR ACTION: the data-availability statement carries a placeholder DOI. This journal
+%% applies Option C research-data rules, which require the code/data to be deposited and linked.
 
-\documentclass[preprint,3p,times]{elsarticle}
+\documentclass[a4paper,fleqn]{cas-dc}
 
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{booktabs}
-\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{url}
-\usepackage[hidelinks]{hyperref}
-\usepackage{xcolor}
 \graphicspath{{../figures/}}
 
-\journal{Computers and Electronics in Agriculture}
-
 \begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
 
-\begin{frontmatter}
+\shorttitle{Compact VLMs for cross-crop plant-disease diagnosis at the edge}
+\shortauthors{Abhiram P.V. et al.}
 
-\title{Compact Vision--Language Models for Cross-Crop Plant-Disease Diagnosis at the Edge}
+\title[mode=title]{Compact Vision--Language Models for Cross-Crop Plant-Disease Diagnosis at the
+Edge}
 
-\author[inst1]{Pinni Venkata Abhiram\corref{cor1}}
+\author[1]{Pinni Venkata Abhiram}[orcid=0009-0007-8783-7362]
+\cormark[1]
 \ead{abhiramp428@gmail.com}
-\author[inst2]{Rahul Ananthasayanam}
-\ead{tnarahul@gmail.com}
-\author[inst3]{Gaurav Shrivastava}
+\credit{Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation,
+Writing -- original draft, Writing -- review and editing, Visualization, Project administration}
+\affiliation[1]{organization={Independent Researcher},
+                city={Hyderabad}, state={Telangana}, country={India}}
+
+\author[2]{Gaurav Shrivastava}
 \ead{gauravjshrivastava10@gmail.com}
-\cortext[cor1]{Corresponding author.}
+\credit{Methodology, Software, Validation, Investigation, Writing -- review and editing}
+\affiliation[2]{organization={Independent Researcher},
+                city={Pune}, state={Maharashtra}, country={India}}
 
-%% All three authors are unaffiliated independent researchers. Elsevier accepts "Independent
-%% Researcher" as an organization; city and country are the required fields.
-\affiliation[inst1]{organization={Independent Researcher},
-                    city={Hyderabad}, state={Telangana}, country={India}}
-\affiliation[inst2]{organization={Independent Researcher},
-                    city={Chennai}, state={Tamil Nadu}, country={India}}
-\affiliation[inst3]{organization={Independent Researcher},
-                    city={Pune}, state={Maharashtra}, country={India}}
+\author[3]{Rahul Ananthasayanam}
+\ead{tnarahul@gmail.com}
+\credit{Validation, Investigation, Writing -- review and editing}
+\affiliation[3]{organization={Independent Researcher},
+                city={Chennai}, state={Tamil Nadu}, country={India}}
 
-%% Elsevier abstracts are typically capped at 250 words; this is 243. Recount after any edit.
+\cortext[1]{Corresponding author}
+
 \begin{abstract}
 Cloud vision--language models diagnose plant disease accurately but cost cents per image and need
 connectivity, suiting neither smallholder nor in-field use. The harder obstacle is that a classifier
@@ -73,20 +74,17 @@ over 166 classes. Fourteen supervised convolutional baselines are stronger on se
 structurally incapable of cross-crop transfer.
 \end{abstract}
 
-\begin{highlights}
-\item A frozen 11.4M CLIP diagnoses diseases on crops it never saw, at 3.5-12.6x chance.
-\item Only source-grounded descriptors keep improving as the unseen label space grows.
-\item Hand-curated symptom text degrades from 28.0\% to 20.4\% as unseen classes triple.
-\item One frozen backbone serves both known crops (82.4\%) and unknown ones.
-\item INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.
-\end{highlights}
+\begin{keywords}
+foundation models \sep
+vision--language models \sep
+plant disease \sep
+cross-crop zero-shot \sep
+edge deployment \sep
+source-grounded descriptors \sep
+precision agriculture
+\end{keywords}
 
-\begin{keyword}
-foundation models \sep vision--language models \sep plant disease \sep cross-crop zero-shot \sep
-edge deployment \sep source-grounded descriptors \sep precision agriculture
-\end{keyword}
-
-\end{frontmatter}
+\maketitle
 
 \section{Introduction}
 \label{sec:intro}
@@ -290,12 +288,12 @@ grounded head becomes \emph{relatively stronger} as the problem gets harder, fro
 
 \input{tab_scale_study}
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.98\textwidth]{fig_descriptor_ablation.png}
+\includegraphics[width=0.92\textwidth]{fig_descriptor_ablation.png}
 \caption{Descriptor strategy by encoder at each held-out scale. Per-encoder top-1 accuracy for the four descriptor strategies at 16, 34 and 51 unseen classes. The source-grounded strategy is the tallest bar for every encoder at the largest scale, whereas the hand-curated strategy leads only at the smallest.}
 \label{fig:descabl}
-\end{figure}
+\end{figure*}
 
 
 \subsection{Top-5 and a calibrated abstain gate}
@@ -372,12 +370,12 @@ Table~\ref{tab:loco} shows the held-out crops fall in the middle of the per-crop
 
 \input{tab_supervised}
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.98\textwidth]{fig_cnn_training.png}
+\includegraphics[width=0.92\textwidth]{fig_cnn_training.png}
 \caption{Training behaviour of the fourteen supervised baselines. Training loss and held-out test accuracy per epoch under one protocol. All architectures converge, and the smallest models show the largest epoch-to-epoch variance.}
 \label{fig:cnntrain}
-\end{figure}
+\end{figure*}
 
 \input{tab_loco}
 
@@ -475,13 +473,8 @@ grows --- honest abstention, and the frozen-backbone hybrid.
 %% Tables are \input at the point each is discussed (Section 4), not collected here, so a float
 %% lands near its text instead of all seven piling up after the Conclusion.
 
-\section*{CRediT authorship contribution statement}
-%% Roles supplied by the authors; each name uses the exact CRediT taxonomy terms.
-\textbf{Pinni Venkata Abhiram:} Conceptualization, Methodology, Software, Validation, Formal
-analysis, Investigation, Writing -- original draft, Writing -- review \& editing, Visualization,
-Project administration. \textbf{Gaurav Shrivastava:} Methodology, Software, Validation,
-Investigation, Writing -- review \& editing. \textbf{Rahul Ananthasayanam:} Validation,
-Investigation, Writing -- review \& editing.
+
+\printcredits
 
 \section*{Declaration of competing interest}
 The authors declare that they have no known competing financial interests or personal relationships
@@ -489,35 +482,27 @@ that could have appeared to influence the work reported in this paper.
 
 \section*{Data availability}
 %% ACTION BEFORE SUBMISSION: this journal applies Option C research-data rules, which REQUIRE the
-%% underlying data to be deposited, cited and linked. The code repository is currently private --
-%% make it public or mint a Zenodo DOI, then replace the placeholder below with the real link. The
-%% dataset citation itself is already in place.
+%% underlying data to be deposited, cited and linked. Replace the placeholder DOI below with a real
+%% Zenodo DOI or a public repository URL.
 All data underlying this study are public. The images are the SAGE crop-disease
 dataset~\citep{sagedata2026}, released under the MIT licence and used without modification other
 than the crop and per-class subsetting described in Section~\ref{sec:data}. The source-grounded
 descriptor registry, every result file including per-epoch training curves, the table and figure
-generators, and the full experimental code are released at
-\url{https://doi.org/PENDING-ZENODO-DOI}, which reproduces every number and figure in this article
-from the released result files.
+generators, and the full experimental code are released at \url{https://doi.org/PENDING-ZENODO-DOI},
+which reproduces every number and figure in this article from the released result files.
 
 \section*{Funding}
-%% Accurate for unaffiliated independent researchers; Elsevier expects this statement to be explicit
-%% rather than omitted. Replace only if a grant did in fact support the work.
 This research did not receive any specific grant from funding agencies in the public, commercial, or
 not-for-profit sectors.
 
 \section*{Declaration of generative AI in the writing process}
-%% Elsevier requires disclosure when generative AI is used in the writing process, and it must never
-%% be listed as an author. Here the LLM is also a methodological component, so both uses are stated.
 During the preparation of this work the authors used a large language model to generate the
-source-grounded symptom descriptions that form the descriptor registry (Section~\ref{sec:data}); this
-is a methodological component of the study and is described in full in the Methods. The authors
+source-grounded symptom descriptions that form the descriptor registry (Section~\ref{sec:data});
+this is a methodological component of the study and is described in full in the Methods. The authors
 reviewed and edited the manuscript text and take full responsibility for the content of the
 publication.
 
-%% All 19 entries verified against the published record (2026-08-09). One open item is noted in
-%% refs.bib: SAGE's own sources disagree on its venue.
-\bibliographystyle{elsarticle-harv}
+\bibliographystyle{cas-model2-names}
 \bibliography{refs}
 
 \end{document}

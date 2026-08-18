@@ -14,39 +14,57 @@
 
 ### 1. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/diseases/angular-leaf-spot-cucumbers>
+<https://extension.umn.edu/diseases/angular-leaf-spot-cucumbers> - <https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/angular-leaf-spot>
 
 - **Cited by:** Cucumber/Angular_Leaf_Spot  (fields: affected_organs)
 - **Must contain:** "Angular leaf spot affects leaves, fruit, and stems of cucumbers."
 - **Should support:** Leaves, fruit, stems
+- **Additional info:** - Angular leaf spot is a bacterial disease caused by Pseudomonas syringae pv. lachrymans. 
+Although angular leaf spot can infect any of the cucurbit crops, it is less common on cucumber due to the availability of resistant varieties.
+Angular leaf spot thrives in warm, humid conditions.
+The bacteria can infect all cucurbit crops and will infect all above-ground parts of the plant, including leaves, fruit and vines.
+When bacteria infect the fruit, it moves deep into the fruit and infect the seed.
+Contaminated seed can introduce the disease into a field.
+When humidity is high, a drop of clear to white sticky bacterial ooze forms on infections. These bacteria move from plant to plant on the hands and tools of workers, by insects, or by splashing water.
+The pathogen can survive in plant debris for over two years. 
 
 ### 2. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/diseases/bacterial-wilt-cucurbits>
+<https://extension.umn.edu/diseases/bacterial-wilt-cucurbits> - <https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-wilt>
 
 - **Cited by:** Cucumber/Bacterial_Wilt  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand "
 - **Should support:** Erwinia tracheiphila; Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pull; leaves, stems, vascular tissue, entire plant
+- - **Additional info:** - The bacterium Erwinia tracheiphila causes bacterial wilt. This pathogen can cause severe losses in cucumbers and muskmelons. It does not affect squash and pumpkins as much. Bacterial wilt does not affect watermelon. 
+The bacteria overwinter in the gut of striped and spotted cucumber beetles. Not all beetles carry the bacteria. Beetles that feed on infected plants pick up the bacteria. They then move to new plants, creating wounds through feeding. The bacteria are on the mouthparts or in the fecal matter of the beetle and enter the plant through the feeding wounds.
+The bacteria multiply rapidly within the plant and plug the vascular tissue, resulting in wilting of the vines. Once bacterial wilt infects a plant, there is no way to control the disease. The bacteria cannot transmit in seed, does not survive in soil, and only survives in plant debris for a short period. It cannot overwinter in Minnesota in plant debris.
+Bacterial wilt does not occur every year in Minnesota.
 
 ### 3. [429 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/small-grains-pest-management/loose-smut-wheat-and-barley>
+<https://extension.umn.edu/small-grains-pest-management/loose-smut-wheat-and-barley> - <https://www.albertagrains.com/the-growing-point/articles-library/true-loose-smut-in-barley>
 
 - **Cited by:** Wheat/Loose_Smut  (fields: affected_organs)
 - **Must contain:** "The entire head, including the kernels, glumes, and rachis, is replaced by a mass of dark, olive-brown spores."
 - **Should support:** Heads (spikes), kernels, glumes, rachis
+- **Additional info:** - A foundational step in establishing a high yield potential crop is minimizing the impact of seed-bourne diseases on yield and quality. True loose smut (TLS) is a seed-bourne disease that can reduce both the yield of barley. Caused by the fungus Ustilago nuda, TLS infects the embryo of barley seed. Infection of the seed occurs when a previously infected seed is sown. Sowing TLS infected barely seed will reduce the yield of the crop because the flowering spikes will be replaced by spikes of fungal spores. In addition, heads with loose smut spores act as a source of TLS leading to infected seed that can result in TLS when planted the next growing season.
+
+Although TLS will not impact seed germination, it infects and survives within the growing plant throughout the season. When the seed germinates, the fungus is activated and colonizes the growing point of the plant. As the head develops, all the tissue except the central spike is invaded and converted to spores that are covered by a delicate, easily ruptured membrane (Figure 1). These infected heads typically emerge before healthy plants in the crop. Wind easily disperses spores that land on healthy heads eventually germinating and infecting embryo tissues leading to infected grain. Sowing TLS-infected barley seed will reduce crop yield given the plants that are produced do not produce seed. Losses from infection can range from 1% to 40% and in general, the percent yield loss is equal to the percent of the heads infected with TLS.
+
+
 
 ### 4. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/wheat-diseases/powdery-mildew-wheat>
+<https://extension.umn.edu/wheat-diseases/powdery-mildew-wheat> - <https://www.sciencedirect.com/science/article/pii/S2589721725000844>
 
 - **Cited by:** Wheat/Powdery_Mildew  (fields: visual_symptoms)
 - **Must contain:** "Powdery mildew first appears as white, powdery spots or patches on leaves and other above-ground plant parts. The white, fluffy growth is composed of fungal mycelium and spores. As the disease progresses, the white patches turn gray to tan, and small, black fr"
 - **Should support:** White to gray powdery colonies on upper leaf surfaces; colonies turn tan-brown with age; dark cleistothecia em
+- **Additional info:** - Powdery mildew seriously hinders photosynthesis and nutrient accumulation in wheat, and its early detection holds the key to enhancing control efficacy. In this research, solar-induced chlorophyll fluorescence (SIF) parameters were derived from radiance and reflectance data, while vegetation indices (VI) were computed using reflectance. A suite of feature selection methods, including shadow feature (Boruta), feature selection (ReliefF), minimum redundancy maximum correlation (mRMR), and random forest (RF). Models were developed on the back propagation (BP) neural network, support vector regression (SVR), and partial least squares regression (PLSR). Furthermore, a stacking ensemble strategy was adopted, utilizing RF and decision tree (DT) algorithms as meta-models to integrate the predictions from base models. The findings revealed that the Boruta method selected a well-balanced number of feature parameters with normalized weights. The multi-source model (SIF + VI) is superior to the single-source model (SIF or VI). The BP model exhibited high accuracy in wheat disease monitoring, particularly during the initial infection phases. The multi-regressor stacked with RF ensemble model (MRSRF) generally surpassed the multi-regressor stacked with DT ensemble model (MRSDT), especially in the initial infection stage, where the MRSRF model's average R2 was 13.03 % higher than that of the BP model. To validate these conclusions, reflectance data simulated by the PROSAIL model (PROSPECT and SAIL) were utilized. The Boruta-MRSRF model demonstrated exceptional advantages in early detection, achieving an R2 greater than 0.90 at all infection stages. This study provides effective ideas and methods for the active prevention and control of crop diseases, which are of great significance for ensuring agricultural production.
 
 ### 5. [OK] `HELD-OUT` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx>
+<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx> - <https://agritech.tnau.ac.in/crop_protection/wheat/crop_prot_crop%20diseases_cereals_wheat_5.html>
 
 - **Cited by:** Wheat/Powdery_Mildew  (fields: affected_organs, pathogen)
 - **Must contain:** "The fungus can infect all above-ground parts of the plant including leaves, leaf sheaths, stems, and spikes."
@@ -54,19 +72,30 @@
 
 ### 6. [OK] `HELD-OUT` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx>
+<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx> - <https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/plant/identify/karnal-bunt>
 
 - **Cited by:** Wheat/Karnal_Bunt  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Infected kernels are partially or entirely converted to a black, powdery mass of teliospores. Infected kernels have a distinctive fishy odor caused by the production of trimethylamine. Usually only part of the kernel is infected, with the embryo end often rema"
 - **Should support:** Kernels (grain/seed); Partial replacement of kernel tissue by dark brown to black powdery teliospore mass; fishy odor; only part of ; Tilletia indica
+- **Additional info:** - Karnal bunt (also called partial bunt) is caused by the fungus Tilletia indica which infects grains at flowering. It reduces grain quality through the production of masses of powdery spores that discolour the grain and grain products. It is recognised by a fishy smell which taints the grain.
+
+The name comes from the city in India, Karnal, where the disease was first identified. Unlike other bunt diseases, only some grains are affected on each wheat ear.
+
+If Karnal bunt made it to Australia, it would have a major economic impact—over 45 international markets would reject our grains and grain prices would plummet.
+
+The fungus would be almost impossible to eradicate once here since its spores can persist in soil for up to four years and they can be carried over long distances by wind.
 
 ### 7. [OK] `HELD-OUT` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/LooseSmut.aspx>
+<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/LooseSmut.aspx> - <https://cropprotectionnetwork.org/encyclopedia/loose-smut-of-wheat>
 
 - **Cited by:** Wheat/Loose_Smut  (fields: pathogen)
 - **Must contain:** "Loose smut of wheat is caused by the fungus Ustilago tritici."
 - **Should support:** Ustilago tritici
+- **Additional info:** - Loose smut has a wide distribution and can occur anywhere wheat is produced. It is caused by the fungus Ustilago tritici. Mild symptoms may be present prior to heading, including yellowish leaf streaks and stiff, dark green leaves. Affected plants head out early, producing sterile heads with clumped, sooty olive-black spores in place of healthy glumes and kernels. Spores are not enclosed by the seed coat, so are quickly dispersed by rain or wind after emergence. After spores disperse, only a bare rachis remains with a few fragments of glumes or awns. These spores infect other wheat plants at flowering, causing seed infection. Infected seed appear healthy. The best time to scout is after heading. The fungus is seedborne, and unless infected seed is planted, no disease will occur in a field. New infections are favored by humid, cool weather 60-72°F during flowering (FGS 10.5.1 - 10.5.3).
+
+Less susceptible varieties of wheat are available. Plant certified seed to reduce disease risk. Do not save seed from fields with loose smut. Fungicide seed treatments can effectively manage loose smut.
+ 
 
 ### 8. [OK] `HELD-OUT` — model-recalled
 

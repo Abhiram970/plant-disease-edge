@@ -63,27 +63,25 @@ def main():
     for t in sorted(TEXDIR.glob("tab_*.tex")):
         shutil.copy(t, OUT / t.name)
 
-    # Highlights as a separate editable file (required by the guide, with "highlights" in the name).
-    hl = re.search(r"\\begin\{highlights\}(.*?)\\end\{highlights\}", tex, re.S)
-    if hl:
-        items = [re.sub(r"\\[a-zA-Z]+\{?|\}", "", i).replace("\\%", "%").strip()
-                 for i in re.findall(r"\\item(.*)", hl.group(1)) if i.strip()]
-        (OUT / "highlights.txt").write_text(
-            "\n".join(items) + "\n", encoding="utf-8")
+    # Highlights ship as a separate editable file with "highlights" in the name, per the guide.
+    hl_src = C.REPO_ROOT / "docs" / "paper" / "highlights.txt"
+    if hl_src.exists():
+        shutil.copy(hl_src, OUT / "highlights.txt")
 
     readme = f"""# Submission package — Computers and Electronics in Agriculture
 
 Upload the whole folder (or the zip) to Overleaf and set **main.tex** as the compile target.
 
 ## Build
-Requires `elsarticle` (bundled with Overleaf). Compile order:
+Requires the Elsevier CAS class (`cas-dc.cls`, `cas-model2-names.bst`) - on Overleaf
+start from the **Elsevier CAS** template, or the files are on CTAN. Compile order:
 
     pdflatex main -> bibtex main -> pdflatex main -> pdflatex main
 
 Two BibTeX-dependent passes are needed or citations render as `?`.
 
 ## Contents
-- `main.tex` — manuscript (elsarticle, `preprint,3p,times`)
+- `main.tex` — manuscript (cas-dc, double column, same layout as the authors' ASR submission)
 - `refs.bib` — {len(re.findall(r'^@', (TEXDIR / 'refs.bib').read_text(encoding='utf-8'), re.M))} entries, all verified against the published record
 - `tab_*.tex` — {len(list(TEXDIR.glob('tab_*.tex')))} tables, generated from the result files; do not hand-edit
 - `figures/Figure_1..{len(mapping)}.png` — 300 dpi, renamed in order of appearance
