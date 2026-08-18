@@ -335,12 +335,26 @@ def fig_seen_scaling():
     lo, hi = min(vals), max(vals)
     pad = max(0.01, (hi - lo) * 0.35)
     ax.set_ylim(lo - pad, hi + pad)
-    for i, m in enumerate(models):
-        pts = sorted((p["seen_classes"], p["models"][m]["seen_probe_top1"])
-                     for _, p in probes if m in p["models"])
-        ax.annotate(f"{pts[-1][1]:.1%}", pts[-1], fontsize=8,
+    # End-of-line value labels, spread vertically so they cannot overprint: at 166 classes three
+    # encoders finish within 0.2 pp of each other and naive anchoring produced illegible overlap.
+    xs = [p["seen_classes"] for _, p in probes]
+    ax.set_xlim(min(xs) - 4, max(xs) + (max(xs) - min(xs)) * 0.16)
+    ends = sorted(
+        ((next(p["models"][m]["seen_probe_top1"] for _, p in probes if m in p["models"]
+               and p["seen_classes"] == max(xs)), i, m) for i, m in enumerate(models)),
+        key=lambda r: r[0])
+    span = ax.get_ylim()[1] - ax.get_ylim()[0]
+    min_gap = span * 0.055
+    placed = []
+    for y, i, m in ends:
+        y_lab = y if not placed else max(y, placed[-1] + min_gap)
+        placed.append(y_lab)
+        ax.annotate(f"{y:.1%}", xy=(max(xs), y), xytext=(max(xs) + (max(xs) - min(xs)) * 0.03, y_lab),
+                    fontsize=8, va="center",
                     color=cmap(0.85 * i / max(1, len(models) - 1)),
-                    xytext=(6, -3), textcoords="offset points")
+                    arrowprops=dict(arrowstyle="-", lw=0.6,
+                                    color=cmap(0.85 * i / max(1, len(models) - 1)),
+                                    shrinkA=0, shrinkB=2))
     ax.set_title("Known-crop accuracy rises as the seen label space grows", fontsize=11)
     ax.legend(fontsize=8, loc="upper left"); ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_seen_scaling.png", dpi=DPI); plt.close(fig)
