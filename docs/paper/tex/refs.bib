@@ -10,19 +10,29 @@
 
 %% ---------------------------------------------------------------- dataset
 
-%% VERIFIED against the dataset's own citation block and arXiv:2605.09768.
-%% VENUE CONFLICT: the HuggingFace dataset card states "NeurIPS Evaluations and Datasets Track",
-%% while the arXiv listing states "CVPR 2026 Workshop on Emerging Directions in Data for Multimodal
-%% Foundation Models". Cited here as the arXiv preprint, which is unambiguous and citable; replace
-%% with the proceedings entry once the authors' own venue is confirmed.
-@article{sage2026,
-  title   = {{SAGE}: Scalable Agentic Grounded Evaluation for Crop Disease Diagnosis},
-  author  = {Arshad, Muhammad Arbab and Roy, Tirtho and Shen, Yanben and Elango, Dinakaran and
-             Chiranjeevi, Shivani and Singh, Asheesh K. and Ganapathysubramanian, Baskar and
-             Hegde, Chinmay and Singh, Arti and Sarkar, Soumik},
-  journal = {arXiv preprint arXiv:2605.09768},
-  year    = {2026},
-  url     = {https://arxiv.org/abs/2605.09768}
+%% VERIFIED. Venue confirmed by the authors' own project page (https://sage-dataset.github.io)
+%% and their published BibTeX; the earlier NeurIPS attribution on the HuggingFace card was wrong.
+@inproceedings{arshad2026sage,
+  title     = {{SAGE}: Scalable Agentic Grounded Evaluation for Crop Disease Diagnosis},
+  author    = {Arshad, Muhammad Arbab and Roy, Tirtho and Shen, Yanben and Elango, Dinakaran and
+               Chiranjeevi, Shivani and Singh, Asheesh K. and Ganapathysubramanian, Baskar and
+               Hegde, Chinmay and Singh, Arti and Sarkar, Soumik},
+  booktitle = {CVPR 2026 Workshop on Emerging Directions in Data for Multimodal Foundation Models},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2605.09768}
+}
+
+%% Data reference. CEA applies Option C research-data rules, which require the underlying dataset to
+%% be cited and linked; the [dataset] tag is Elsevier's marker and is stripped in the published PDF.
+@misc{sagedata2026,
+  title        = {{SAGE}: Scalable Agentic Grounded Evaluation for Crop Disease Diagnosis (dataset)},
+  author       = {Arshad, Muhammad Arbab and Roy, Tirtho and Shen, Yanben and Elango, Dinakaran and
+                  Chiranjeevi, Shivani and Singh, Asheesh K. and Ganapathysubramanian, Baskar and
+                  Hegde, Chinmay and Singh, Arti and Sarkar, Soumik},
+  year         = {2026},
+  howpublished = {HuggingFace Datasets},
+  note         = {[dataset]},
+  url          = {https://huggingface.co/datasets/tirtho149/SAGE}
 }
 
 %% ---------------------------------------------------------------- vision-language models
