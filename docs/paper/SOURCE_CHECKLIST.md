@@ -99,35 +99,59 @@ Less susceptible varieties of wheat are available. Plant certified seed to reduc
 
 ### 8. [OK] `HELD-OUT` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx>
+<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx> - <https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/>
 
 - **Cited by:** Cucumber/Angular_Leaf_Spot, Cucumber/Angular_Leaf_Spot_Of_Cucumber  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a w"
 - **Should support:** Leaves, fruit, stems; Pseudomonas syringae pv. lachrymans; Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf un
+- **Additional info:** - Cucurbit angular leaf spot is a bacterial disease that can be economically damaging to leaves, stems, and fruit of cucumbers, honeydew melon, and zucchini squash growers in Wisconsin. This disease looks somewhat like downy mildew, but is caused by a bacterial pathogen Pseudomonas syringae pv. lachrimans. Initial lesions appear as small, tan, water-soaked spots that are delineated by the veins of the leaf giving the ’angled’ or straight edge appearance of lesions on the leaves. As the lesions expand and develop, they typically turn white and papery in texture until the dead tissue falls out of the leaf, leaving a hole and often a tattered appearance to the leaf. Under humid conditions, a milky substance (bacterial ooze) may be notes on the infected foliage. This ooze dries to a white crust around the lesions. While fruit may appear healthy during leaf infection, the infection may continue to develop later in the season or post harvest as the lesions develop into soft areas of fruit under the cuticle or skin.
+
+The pathogen may be seedborne or debris-borne (for up to 2 years). To manage this disease, reduce the likelihood of infection by rotating out of cucurbit crops for at least 2 years and use disease free seed. In greenhouse cucumbers, lowering the humidity to 80-90% will help reduce the spread of the disease. Hot water and chemical seed treatments are not effective for totally eliminating the pathogen on infested seed (pathogen is beneath the seed coat). Breeding efforts have resulted in a large selection of cucurbits with tolerance to angular leaf spot. In some cultivars, tolerance to the disease is most strongly expressed in the fruit while significant infection can still occur in the foliage during cool, wet weather.
+
+Prolonged leaf wetness favors infection. The bacterium enters the leaf through respiration pores (stomates), water excreting pores (hydathodes), or wounds. Infections spread from leaf to leaf by splashing rain, human activity, and cucumber beetles.
+
+Copper containing fungicides can limit plant to plant spread of this disease. Treatments must be made every 5-7 days when the pressure is high and fruit require further expansion and maturity.
 
 ### 9. [OK] `HELD-OUT` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx>
+<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx> - <https://pmc.ncbi.nlm.nih.gov/articles/PMC7757248/>
 
 - **Cited by:** Banana/Bunchy_Top  (fields: pathogen, visual_symptoms)
 - **Must contain:** "Characteristic symptoms include dark green streaks in the veins of the lower portion of the petiole and in the midrib, and short, dark-green, discontinuous streaks (resembling Morse code) along the margins of the leaves and on the petioles; leaves become progr"
 - **Should support:** Banana bunchy top virus (BBTV); Stunted, narrow, upright leaves clustered at crown; dark green 'Morse code' streaks on leaf margins, petioles,
+- **Additional info:** - Banana bunchy top disease (BBTD) is one of the world's most destructive viral diseases of banana and plantain, causing up to 100% yield loss in severe cases. The disease is vectored by banana aphids (Pentalonia nigronervosa) and carried long distances through the movement of infected plant materials. The banana aphids harboring banana bunchy top virus (BBTV) present in banana producing regions are the sole vector and the most efficient method of transmitting the virus to the healthy plants. Controlling the spread of BBTD has been very challenging since no known banana germplasm is immune to BBTV. The disease can be managed with the use of virus‐free planting material and roguing. However, once BBTD is established in the field, it is very difficult to eradicate or manage it. Therefore, a more sustainable way of controlling the disease is developing host plant resistance against the virus and the vector. Biotechnological strategies via RNA interference (RNAi) could be used to target the banana aphid as well as BBTV to reduce virus‐associated yield losses of banana and plantain, which feed over 500 million people around the world. This review discusses the status of BBTD and perspectives on effective RNAi technologies for controlling BBTV and the vector, banana aphid, transmitting the virus as sustainable management of the disease.
+
+Banana bunchy top disease (BBTD) is one of the world's most destructive viral disease of banana and plantain causing up to 100% yield loss in severe cases. Biotechnological strategies via RNAi could be used to target banana aphid as well as__banana bunchy top virus__(BBTV) to reduce virus‐passociated yield losses of banana and plantain, which feed over 500 million people around the world. This review discusses the status of BBTD and perspectives on effective RNAi technologies for controlling BBTV and the vector, banana aphid, transmitting the virus as management of the disease.
 
 ### 10. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/10968>
+<https://www.cabi.org/isc/datasheet/10968> - <https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/mpp.70128>
 
 - **Cited by:** Cotton/Powdery_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Leveillula taurica is an obligate parasite causing powdery mildew on a wide range of hosts including cotton"
 - **Should support:** Leaves, petioles, stems, bolls; Leveillula taurica (anamorph: Oidiopsis taurica); White powdery growth on leaf surfaces, chlorosis, leaf curling and distortion
+- **Additional info:** - Powdery mildew diseases, caused by fungi of the family Erysiphaceae, are prevalent worldwide and significantly impact agricultural production. The Erysiphaceae, historically classified under the order Erysiphales but now reassigned to the order Helotiales on the basis of recent phylogenetic studies, comprise over 900 species that infect more than 10,000 monocotyledonous and dicotyledonous plant species (Braun and Cook 2012; Dean et al. 2012; Glawe 2008; Vaghefi et al. 2022). These obligate biotrophic fungi primarily manifest as white powdery spots on leaves, stems and fruits that can enlarge and coalesce. However, symptom expression varies among fungal and plant species (Bardin and Gullino 2020).
+
+For example, Leveillula taurica (Lév.) Arnaud 1921 (syn. Phyllactinia taurica) infection produces light-green spots on the adaxial (upper) leaf surface, which progressively turn yellow. White sporulation of the fungus typically develops on the abaxial (lower) surface and occasionally on the adaxial side, potentially leading to necrosis. Infected pepper and tomato plants may exhibit necrotic lesions and extensive leaf shedding, significantly reducing yield (Palti 1988). Leaf shedding also exposes fruits to sunburn, further diminishing marketable fruit yield.
+
+Powdery mildew diseases can cause severe economic losses across a wide range of crops. Without effective plant protection measures, yield reduction can reach up to 25% and 43% in peas and mung beans infected by Erysiphe pisi and E. polygoni, respectively (Bing et al. 2011; Vekariya et al. 2020), 50% in wheat caused by Blumeria graminis (Rana et al. 2022; Smith and Smith 1974), and 100% in grapevines infected by E. necator (Möth et al. 2023). In vegetables, L. taurica can reduce pepper yields up to 50% (Bademiyya and Ashtaputre 2019; Palti 1988) and devastate even entire greenhouses when early infections occur (Elad et al. 2007).
+
+Leveillula taurica and its asexual stage Oidiopsis taurica (Lév.) Salmon 1906 affects a variety of crops, including peppers, tomatoes, eggplants, cucumbers, onions, fennels, legumes, sunflowers, cottons, and ornamental plants like nasturtiums and geraniums, as well as weeds and trees, making it a critical threat to global agriculture.
+
+This review provides a comprehensive overview of current knowledge on L. taurica and the genetic basis of resistance to this pathogen in pepper (Capsicum spp.). We begin by exploring the taxonomic classification of L. taurica, highlighting its hemi-endophytic life cycle. Next, we examine its geographical distribution and the various strategies available for disease control. We then review sources of resistance identified in pepper and the genetic determinism of resistance to L. taurica. Finally, we highlight knowledge gaps in the understanding of this pathosystem and discuss potential directions for future research.
+
+
 
 ### 11. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/12648>
+<https://www.cabi.org/isc/datasheet/12648> - <https://en.wikipedia.org/wiki/Banana_bunchy_top_virus>
 
 - **Cited by:** Banana/Bunchy_Top  (fields: affected_organs)
 - **Must contain:** "Symptoms appear on leaves, petioles, midribs and pseudostems of infected plants."
 - **Should support:** Leaves, petioles, midribs, pseudostem
+- **Additional info:** - Banana bunchy top disease affects the banana fruit and foliage, and is caused by a single-strand DNA virus, the banana bunchy top virus.[4] BBTV can infect species of the family Musaceae, which includes bananas, plantains, abaca, and more.[1] The aphids also feed on Heliconia and flowering ginger, which are grown in the same regions as bananas and must be considered in management of the disease. It is best to establish a banana production area where these alternate hosts are not present. Any age plants can be infected by this virus, but some varieties of banana, including the Cavendish, are more susceptible to the virus.[2] In areas where the virus is less common, the disease is usually spread by planting diseased suckers at the beginning of the season, which means the season is started with a diseased crop.[1]
+
+The pathogen causes cytopathological effects in the phloem tissue, which is the damaging of the host cells caused by the virus.[1] The damage causes many effects that help to diagnose and characterize the disease. The name of the disease comes from the symptom which occurs in older plants, in which the new leaves that are produced are narrower than normal, yellow, and flat, which causes a "bunchy" appearance at the top of the tree.[2] If any fruit is produced, which is unusual, it will be deformed.[2] In addition, one of the most distinctive symptoms is "Morse code streaking"[2] where the infected cells die and are lighter in color, causing irregular spots and dashes on the leaves that are easier to see when the waxy coating over the petiole is rubbed away.[2]
 
 ### 12. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
