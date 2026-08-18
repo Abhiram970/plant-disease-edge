@@ -1,9 +1,34 @@
 # Kaggle runners
 
-Self-contained scripts you **upload to a Kaggle notebook and `%run`** — no repo clone, no auth.
+## Start here: `run_everything.py`
+
+Paste the whole file as **one cell**. It reproduces the entire study — SAGE fetch, cross-crop
+zero-shot at three scales, abstention, seen-crop probe, leave-one-crop-out, the label-corrected
+sensitivity run, and all 14 supervised CNN baselines.
+
+    Accelerator = GPU T4 x2 (or P100) · Internet = ON · Persistence = Files only
+    Add-ons -> Secrets -> GH_TOKEN  (GitHub fine-grained PAT, read-only Contents)
+    Save Version -> "Save & Run All (Commit)", then close the tab.
+
+Roughly 9-11 h for everything; the stage flags at the top let you run a subset. Every stage skips
+work whose result file already exists, the embedding cache resumes mid-encoder, and CNNs resume from
+their last epoch checkpoint — so if the session wall stops it, just run it again.
+
+It verifies the fetch before training on it: if the pull comes back short of ~60k images over 16
+crops it stops with an explanation rather than spending eight hours producing class counts that will
+not match the paper.
+
+Attach a previously published `pde-sage-data` dataset (or any attached folder containing
+`exp_data/`) to skip the 40-90 min fetch. `manifest.csv` is always rebuilt, never reused, because it
+stores absolute image paths and an attached dataset mounts somewhere else.
+
+---
+
+## Older, single-purpose runners
 
 | File | What it runs | Accelerator | Internet |
 |---|---|---|---|
+| `cnn_baselines_finish.py` | Just the CNN architectures a previous sweep missed | GPU | ON |
 | `run_all.py` | EXP1 encoder bake-off · EXP2 hybrid (train seen / keep unseen) · EXP3 fine-tune + WiSE-FT | **GPU** | ON |
 | `run_all_win.py` | Same, tuned for the Windows/local box | GPU | ON |
 | `bakeoff.py` | EXP1 only (encoder bake-off) | GPU | ON |
