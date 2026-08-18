@@ -54,24 +54,23 @@
 
 %% Elsevier abstracts are typically capped at 250 words; this is 243. Recount after any edit.
 \begin{abstract}
-Cloud vision--language models (VLMs) diagnose plant disease accurately but cost cents per image and
-need connectivity, suiting neither smallholder nor in-field use. The harder obstacle is
-generalisation: a classifier cannot name a disease on a crop absent from its training set. We ask how
-small a deployable model can be while still performing cross-crop zero-shot diagnosis, by matching a
-leaf image to LLM-authored, source-grounded symptom descriptions. Using the SAGE dataset
-and frozen off-the-shelf compact CLIP encoders, we report four results. First, an 11.4\,M-parameter
-frozen encoder diagnoses unseen crops at 3.5--12.6$\times$ chance across nested held-out sets of 16,
-34 and 51 classes, with accuracy nearly flat from 11\,M to 300\,M parameters. Second, and centrally,
-only \emph{source-grounded} descriptors scale: as the unseen label space triples, hand-curated
-symptom text \emph{degrades} (28.0\% to 20.4\%) while source-grounded text \emph{improves} (21.7\% to
-24.7\%), so auditability is not a tax but the mechanism that reaches new crops at all. Third, an
-abstain gate makes the modest top-1 field-useful, with grounded top-5 at 61--77\% on 16 unseen classes
-and 58--76\% on 51. Fourth, the deployable encoder runs at 17.4\,ms/image on a laptop CPU in a
-12.9\,MB INT8 footprint, though INT8 proves a size rather than a speed lever for hybrid
-convolution--transformer encoders. On known crops the same backbone reaches 82.4\% over 166 classes,
-or 87.7\% with WiSE-FT. Fourteen supervised CNNs are stronger on seen crops (up to 88.6\%) yet remain
-structurally incapable of cross-crop transfer. The descriptor pipeline, models and benchmark are
-released.
+Cloud vision--language models diagnose plant disease accurately but cost cents per image and need
+connectivity, suiting neither smallholder nor in-field use. The harder obstacle is that a classifier
+cannot name a disease on a crop absent from its training set. We ask how small a deployable model can
+be while still performing cross-crop zero-shot diagnosis, matching a leaf image to symptom
+descriptions written by a large language model and grounded in cited sources. Using the SAGE
+crop-disease dataset and frozen compact contrastive language--image pre-training encoders, we report
+four results. First, an 11.4-million-parameter frozen encoder diagnoses unseen crops at 3.5--12.6
+times chance across nested held-out sets of 16, 34 and 51 classes, with accuracy nearly flat from 11
+to 300 million parameters. Second, and centrally, only source-grounded descriptors scale: as the
+unseen label space triples, hand-curated symptom text degrades from 28.0\% to 20.4\% while
+source-grounded text improves from 21.7\% to 24.7\%, so auditability is not a tax but the mechanism
+that reaches new crops at all. Third, an abstain gate makes the modest top-1 field-useful: grounded
+top-5 is 61--77\% on 16 unseen classes and 58--76\% on 51. Fourth, the encoder runs at 17.4 ms per
+image on a laptop processor in a 12.9 MB 8-bit-integer footprint, though 8-bit quantisation proves a
+size rather than a speed lever for hybrid encoders. On known crops the same backbone reaches 82.4\%
+over 166 classes. Fourteen supervised convolutional baselines are stronger on seen crops yet
+structurally incapable of cross-crop transfer.
 \end{abstract}
 
 \begin{highlights}
@@ -130,7 +129,7 @@ are not cherry-picked.
 
 \section{Related work}
 
-\paragraph{Agricultural VLMs} SAGE~\citep{sage2026} provides our data and the cloud agent we contrast
+\paragraph{Agricultural VLMs} SAGE~\citep{arshad2026sage} provides our data and the cloud agent we contrast
 against; its
 \{value, source\_url, verbatim\_quote\} source-grounded schema and its reported 14--16 point gain from
 symptom knowledge motivate our descriptor design. We are the deployable edge counterpart at \$0/image.
@@ -170,7 +169,8 @@ MobileNetV3~\citep{howard2019} and MobileNetV4~\citep{qin2024} among others
 \subsection{Dataset and the nested design}
 \label{sec:data}
 
-We use SAGE~\citep{sage2026} only --- $\sim$839\,K images over 335 crops and 1{,}251 disease classes,
+We use SAGE~\citep{arshad2026sage} only, drawing images from the released
+dataset~\citep{sagedata2026} --- $\sim$839\,K images over 335 crops and 1{,}251 disease classes,
 released under the MIT licence --- to avoid the
 ``old, lab-only'' critique of legacy corpora such as PlantVillage~\citep{mohanty2016}, on which
 in-distribution accuracy has long been saturated. We stream-filter shards to our crops with a
@@ -220,30 +220,47 @@ Across the nested splits the four deployable encoders span only 17.0--24.2\% (ri
 essentially flat from 11\,M to 300\,M (Fig.~\ref{fig:eff}). Model size is not the bottleneck; the
 pretrained alignment is the asset. Attempts to \emph{train} a small model to learn this alignment fail
 --- from scratch it stays near chance, and specialising on seen crops loses 4.5 points of unseen
-accuracy to catastrophic forgetting --- so we keep the backbone frozen.
+accuracy to catastrophic forgetting (Fig.~\ref{fig:forget}) --- so we keep the backbone frozen.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.75\textwidth]{fig_efficiency_curve.png}
-\caption{Zero-shot accuracy against image-encoder parameters. Frozen pretrained CLIPs cluster together
-across a $27\times$ parameter range, while a from-scratch small student sits near chance.}
+\caption{Zero-shot accuracy against image-encoder size. Cross-crop accuracy for frozen pretrained
+encoders spanning a 27-fold parameter range, with a from-scratch small student for contrast. The
+pretrained models cluster together regardless of size; the from-scratch student sits near chance.}
 \label{fig:eff}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_specialization_forgetting.png}
+\caption{Catastrophic forgetting when specialising a frozen encoder. Held-out zero-shot accuracy per epoch while adapting the encoder to the seen crops. Unseen-crop accuracy falls as the training objective improves.}
+\label{fig:forget}
 \end{figure}
 
 \subsection{Encoder bake-off}
 \label{sec:bakeoff}
 
-The 11.4\,M encoder recovers 86\% of the 92.9\,M reference at one eighth the parameters, and
+Fig.~\ref{fig:bakeoff} summarises the comparison. The 11.4\,M encoder recovers 86\% of the 92.9\,M reference at one eighth the parameters, and
 \emph{beats} the larger 21.5\,M model --- a training-recipe effect that reinforces that pretraining
 quality, not size, drives transfer. Biological and domain leaf-disease foundation models perform at or
 below chance under a descriptor protocol: taxonomy-style contrastive pretraining does not align to
 symptom-descriptor text. We note openly that our wrapper for one domain model is a best-effort load and
 a faithful evaluation would need the authors' inference pipeline; we do not rest any claim on it.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_bakeoff.png}
+\caption{Encoder bake-off on the pilot held-out set. Rich-descriptor zero-shot accuracy for each candidate backbone against its image-encoder parameter count. The biological and leaf-disease foundation models fall at or below chance under a descriptor protocol.}
+\label{fig:bakeoff}
+\end{figure}
+
+
 \subsection{Descriptor detail is the lever --- and only source-grounded descriptors scale}
 \label{sec:desc}
 
-Table~\ref{tab:scale} and Fig.~\ref{fig:descscale} carry the paper's central result.
+Table~\ref{tab:scale} and Figs.~\ref{fig:descscale} and~\ref{fig:descabl} carry the paper's central result.
 
 \begin{figure}[htbp]
 \centering
@@ -273,11 +290,19 @@ grounded head becomes \emph{relatively stronger} as the problem gets harder, fro
 
 \input{tab_scale_study}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\textwidth]{fig_descriptor_ablation.png}
+\caption{Descriptor strategy by encoder at each held-out scale. Per-encoder top-1 accuracy for the four descriptor strategies at 16, 34 and 51 unseen classes. The source-grounded strategy is the tallest bar for every encoder at the largest scale, whereas the hand-curated strategy leads only at the smallest.}
+\label{fig:descabl}
+\end{figure}
+
+
 \subsection{Top-5 and a calibrated abstain gate}
 \label{sec:abstain}
 
 A field tool can propose a short list and abstain when unsure, so raw top-1 is not the operative
-metric. Table~\ref{tab:abstain} shows grounded top-5 at 61--77\% on 16 classes, holding at 58--76\% on
+metric. Table~\ref{tab:abstain} and Fig.~\ref{fig:riskcov} show grounded top-5 at 61--77\% on 16 classes, holding at 58--76\% on
 51 classes (29--38$\times$ chance). Selective accuracy rises monotonically as coverage tightens,
 confirming the confidence signal is properly ordered rather than anti-calibrated. Across models the
 grounded strategy also abstains best, holding the lowest area under the risk--coverage curve and the
@@ -285,26 +310,50 @@ highest top-5 even where its top-1 does not lead --- making it the recommended d
 
 \input{tab_abstain}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_riskcoverage.png}
+\caption{Risk--coverage behaviour of the abstain gate. Selective accuracy as a function of the fraction of images the model chooses to answer, using the top-1 minus top-2 similarity margin as the confidence score. Accuracy rises monotonically as coverage tightens, confirming the score is correctly ordered.}
+\label{fig:riskcov}
+\end{figure}
+
+
 \subsection{Known crops, and the seen/unseen dial}
 
 The same frozen backbone with a linear probe reaches 82.4\% over 166 fine-grained classes
-(Table~\ref{tab:seen}), against 9.3\% for the same encoder used zero-shot on its own seen classes.
+(Table~\ref{tab:seen}, Fig.~\ref{fig:seenscale}), against 9.3\% for the same encoder used zero-shot on its own seen classes.
 Two patterns repeat here. Accuracy is flat across a 7.6$\times$ parameter range ($\leq$1.5 points at
 every scale), mirroring Section~\ref{sec:flat}; and accuracy \emph{rises} as the seen label space grows
 (+3.3 to +3.5 points from 97 to 166 classes, for every encoder), the opposite of the unseen side,
 because additional crops contribute proportionally more training images than decision difficulty. Each
-head is therefore deployed where its scaling behaviour is favourable. WiSE-FT (Table~\ref{tab:wiseft})
+head is therefore deployed where its scaling behaviour is favourable. WiSE-FT (Table~\ref{tab:wiseft}, Fig.~\ref{fig:wiseft})
 turns the balance into one tunable knob: $\alpha=0.5$ buys 5.1 points of seen accuracy for only 0.7
 points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
 
 \input{tab_seen}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_seen_scaling.png}
+\caption{Known-crop accuracy against the size of the seen label space. Linear-probe top-1 for four frozen encoders at 97, 154 and 166 seen classes. Accuracy rises with the label space and is flat across a 7.6-fold parameter range.}
+\label{fig:seenscale}
+\end{figure}
+
 \input{tab_wiseft}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_wiseft.png}
+\caption{The seen--unseen trade-off as a single interpolation weight. Accuracy on seen and unseen crops as the weight-space ensembling ratio moves from the frozen encoder to the fully fine-tuned one. Full fine-tuning nearly halves unseen accuracy.}
+\label{fig:wiseft}
+\end{figure}
+
 
 \subsection{Supervised baselines and leave-one-crop-out}
 \label{sec:baselines}
 
 Fourteen supervised architectures spanning 1.7--42.8\,M parameters, all on the identical 166-class seen
-set for 8 epochs (Table~\ref{tab:cnn}), are strong on known crops: the best reaches 88.6\%, about
+set for 8 epochs (Table~\ref{tab:cnn}; per-epoch curves in Fig.~\ref{fig:cnntrain}), are strong on known crops: the best reaches 88.6\%, about
 6.2 points above the frozen probe. We report this plainly, because for a fixed, known label set a
 conventional classifier is the better choice.
 
@@ -322,15 +371,31 @@ Table~\ref{tab:loco} shows the held-out crops fall in the middle of the per-crop
 \emph{trained} crops the hardest, so the headline held-out set is not a favourable split.
 
 \input{tab_supervised}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\textwidth]{fig_cnn_training.png}
+\caption{Training behaviour of the fourteen supervised baselines. Training loss and held-out test accuracy per epoch under one protocol. All architectures converge, and the smallest models show the largest epoch-to-epoch variance.}
+\label{fig:cnntrain}
+\end{figure}
+
 \input{tab_loco}
 
 \subsection{On-device efficiency}
 
-Table~\ref{tab:edge} reports the deployable image encoder on a laptop CPU. The 11.4\,M tier runs at
+Table~\ref{tab:edge} and Fig.~\ref{fig:edge} report the deployable image encoder on a laptop processor. The 11.4\,M tier runs at
 17.4\,ms/image ($\sim$58 img/s), with ONNX Runtime about 2.7$\times$ faster than eager PyTorch, and
 compresses 3.5$\times$ to 12.9\,MB under INT8.
 
 \input{tab_edge}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig_edge_pareto.png}
+\caption{Accuracy against on-device latency. Cross-crop zero-shot accuracy versus single-image latency on a laptop processor; marker area is proportional to parameter count and labels give the 8-bit footprint. The 11.4-million-parameter tier is the deployment sweet spot.}
+\label{fig:edge}
+\end{figure}
+
 
 \subsection{INT8 is architecture-dependent, not universally beneficial}
 \label{sec:int8}
@@ -411,22 +476,29 @@ grows --- honest abstention, and the frozen-backbone hybrid.
 %% lands near its text instead of all seven piling up after the Conclusion.
 
 \section*{CRediT authorship contribution statement}
-%% CONFIRM: Elsevier requires every listed author to carry at least one CRediT role, and the roles
-%% must be accurate rather than uniform. Adjust the two co-author lines if they misstate the split.
-\textbf{Pinni Venkata Abhiram:} Conceptualization, Methodology, Software, Investigation, Formal
-analysis, Visualization, Writing -- original draft.
-\textbf{Rahul Ananthasayanam:} Methodology, Validation, Investigation, Writing -- review \& editing.
-\textbf{Gaurav Shrivastava:} Methodology, Data curation, Validation, Writing -- review \& editing.
+%% Roles supplied by the authors; each name uses the exact CRediT taxonomy terms.
+\textbf{Pinni Venkata Abhiram:} Conceptualization, Methodology, Software, Validation, Formal
+analysis, Investigation, Writing -- original draft, Writing -- review \& editing, Visualization,
+Project administration. \textbf{Gaurav Shrivastava:} Methodology, Software, Validation,
+Investigation, Writing -- review \& editing. \textbf{Rahul Ananthasayanam:} Validation,
+Investigation, Writing -- review \& editing.
 
 \section*{Declaration of competing interest}
 The authors declare that they have no known competing financial interests or personal relationships
 that could have appeared to influence the work reported in this paper.
 
 \section*{Data availability}
-All data are public. The SAGE dataset is available at
-\url{https://huggingface.co/datasets/tirtho149/SAGE} (MIT licence). The source-grounded descriptor
-registry, all result files, the table and figure generators, and the full experimental code are
-released at [repository URL].
+%% ACTION BEFORE SUBMISSION: this journal applies Option C research-data rules, which REQUIRE the
+%% underlying data to be deposited, cited and linked. The code repository is currently private --
+%% make it public or mint a Zenodo DOI, then replace the placeholder below with the real link. The
+%% dataset citation itself is already in place.
+All data underlying this study are public. The images are the SAGE crop-disease
+dataset~\citep{sagedata2026}, released under the MIT licence and used without modification other
+than the crop and per-class subsetting described in Section~\ref{sec:data}. The source-grounded
+descriptor registry, every result file including per-epoch training curves, the table and figure
+generators, and the full experimental code are released at
+\url{https://doi.org/PENDING-ZENODO-DOI}, which reproduces every number and figure in this article
+from the released result files.
 
 \section*{Funding}
 %% Accurate for unaffiliated independent researchers; Elsevier expects this statement to be explicit

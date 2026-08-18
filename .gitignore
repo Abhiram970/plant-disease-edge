@@ -47,3 +47,4 @@ Thumbs.db
 # regenerable from the benchmark script).
 results/onnx/
 results/**/*.onnx
+docs/paper/submission/
