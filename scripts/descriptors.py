@@ -14,6 +14,7 @@ tensor of L2-normalized text-prototype embeddings.
 """
 from __future__ import annotations
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -123,15 +124,55 @@ def _grounded_visual(crop, disease):
     return None
 
 
+# --- ungrounded LLM descriptors (the control for the grounding claim) --------------------------
+# Same generator and same schema as the grounded registry, but with the "cite a retrievable source"
+# constraint removed. Generated at several seeds because a single sample of LLM text cannot
+# distinguish "grounding helps" from "this particular generation was lucky".
+_ungrounded_cache: dict = {}
+UNGROUNDED_SEED = int(os.environ.get("PDE_UNGROUNDED_SEED", "0"))
+
+
+def _ungrounded(crop, disease):
+    """symptom_text from descriptors_ungrounded/<seed>/<crop>.json, or None."""
+    key = (crop, UNGROUNDED_SEED)
+    if key not in _ungrounded_cache:
+        idx = {}
+        try:
+            p = C.REPO_ROOT / "descriptors_ungrounded" / str(UNGROUNDED_SEED) / \
+                f"{C.safe_name(crop)}.json"
+            if p.exists():
+                for rec in json.loads(p.read_text(encoding="utf-8")):
+                    if isinstance(rec, dict) and rec.get("status") == "filled":
+                        idx[rec.get("disease")] = rec
+        except Exception:
+            idx = {}
+        _ungrounded_cache[key] = idx
+    rec = _ungrounded_cache[key].get(disease)
+    if isinstance(rec, dict):
+        return (rec.get("symptom_text") or "").strip() or None
+    return None
+
+
 def text_for(label: str, strategy: str = "rich", coverage: dict | None = None) -> str:
     crop, dis = label.split("|", 1)
     base = f"{dis} on {crop} leaf".replace("_", " ")
-    k = dis.lower()
+    # Normalise underscores BEFORE matching. Labels are Crop|Disease_Name, and 13 of the 32 RICH
+    # keys are multi-word ("powdery mildew", "citrus canker", "leaf curl", ...). Matching against
+    # the raw "powdery_mildew" made every one of those keys unreachable for every label in the
+    # dataset, so classes with a correct distinct entry in the bank silently fell through to a
+    # coarser key ("mildew") or to no match at all. `base` already normalised; `k` did not.
+    k = dis.lower().replace("_", " ")
     if strategy == "bare":
         return base
     if strategy == "crude":
         hint = next((v for kw, v in CRUDE.items() if kw in k), "")
         return f"{base}: {hint}" if hint else base
+    if strategy == "ungrounded":
+        u = _ungrounded(crop, dis)
+        if u:
+            return f"{base}. {u}"
+        # fall through to rich, exactly as `grounded` does, so coverage gaps are handled
+        # identically in both arms and the comparison stays fair
     if strategy == "grounded":
         g = _grounded(crop, dis)
         if g:
