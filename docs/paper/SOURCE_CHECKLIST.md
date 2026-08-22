@@ -155,75 +155,122 @@ The pathogen causes cytopathological effects in the phloem tissue, which is the 
 
 ### 12. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/13573>
+<https://www.cabi.org/isc/datasheet/13573> - <https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_1.html>
 
 - **Cited by:** Banana/Anthracnose  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Symptoms appear as small, sunken, dark brown to black lesions on the peel of ripening fruit; under moist conditions, salmon-pink masses of conidia may be visible on the lesions."
 - **Should support:** Colletotrichum musae; Fruits (peel and pulp); Sunken, dark brown to black circular lesions on the peel that enlarge and coalesce; salmon-pink spore masses m
+- **Additional info:** - Small, black, circular specks on the skin- sunken & coalesce to form large spots.
+Bright salmon-coloured conidial mass appears on the spots.
+Severely infected fruits become dark due to blemishes.
+Acervuli also develop on the skin and the pulp becomes partially soft.
+Non-latent infection usually starts during or after the harvest of bunches in small peel wounds and it continues to develop without a dormant period.
+Many latent infections at the time of harvest show large number of appressoria on the surface of the peel.
+The spread of the disease is by air-borne conidia and numerous insects which frequently visit banana flowers also spread the disease.
+Temp.30 to 35°C and RH- 85.7 -100 %
+
 
 ### 13. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/15463>
+<https://www.cabi.org/isc/datasheet/15463> - <https://www.crop.bayer.com.au/crop-management/diseases/cordana-leaf-spot>
 
 - **Cited by:** Banana/Cordana_Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Symptoms appear as oval to elliptical spots with pale brown to grey centres and dark brown margins, often surrounded by a yellow halo"
 - **Should support:** Cordana musae (Neergaard) Hern.-Restr. & Crous (syn. Cordana johnstonii); Leaves, primarily older and senescent leaves; Oval to elliptical pale brown to grayish lesions with dark brown borders and yellow halos on leaves
+- **Additional info:** - Affecting bananas, cordana leaf spot (CLS), also known as banana diamond leaf spot, is caused by two fungi species; C. musae, which is more commonly found in tropical regions and C. johnstonii, which is found in the cooler banana growing regions of Australia. Although being widespread, CLS is not considered a major pest of bananas and is usually a secondary invader of leaf lesions caused by other fungi. Growth and spread of CLS can be accelerated by frequent rain and hot, humid conditions.
+
+Leaf spots (up to 10 cm), which are oval to diamond-shaped and pale brown with a yellow border, appear on the upper leaf side. Often spots merge, affecting large areas of the leaf, which turns brown and dries out. Spores are produced in large quantities on the underside of leaves, causing lesions to appear as greyish-brown and hairy. Dispersal of spores occurs via wet windy weather. Lesions caused by C.musae are generally larger and more elongated compared to C.johnstonii.
+
+Plants are more susceptible to CLS under adverse environmental conditions (waterlogging or drought), nutritional deficiencies and injury or infection from other diseases, which provide an entry point for CLS to invade. Cavendish bananas appear to be more tolerant to CLS than native banana species (plantain).
+
 
 ### 14. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/39444>
+<https://www.cabi.org/isc/datasheet/39444> - <https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-18-1098-PDN>
 
 - **Cited by:** Orange/Whisker_Mold  (fields: affected_organs, pathogen)
 - **Must contain:** "Penicillium ulaiense causes whisker mold of citrus fruits"
 - **Should support:** Fruit; Penicillium ulaiense
+- **Additional info:** -  In a survey of postharvest losses in citrus packinghouses located in Valencia province (Spain) conducted during the 2017 to 2018 citrus season, mold symptoms distinctive from those of the most frequent and well-known citrus green and blue molds (caused by Penicillium digitatum [Pers.] Sacc. and Penicillium italicum Wehmer, respectively) were observed in about 1 to 2% of the sampled molded orange fruits (Citrus sinensis L.). Distinctive symptoms on sporulated soft lesions were the grayish blue color of the conidial masses and the presence of whisker-like coremia with tall whitish stalks. This whisker mold was often found in mixed infections with green and/or blue molds in the same fruit. The potential causal agent (isolate IVIA NAV-1) was transferred to potato dextrose agar (PDA) plates and purified by consecutive replating after 7 days of incubation at 25°C. At this time, colonies were mostly circular, compact, 30 to 40 mm in diameter, with dense velvety grayish mycelium and abundant bluish conidia. Conidiophores were sinoid, mostly terverticillate, and conidia were cylindrical to ellipsoidal, smooth, and thin walled, measuring 4.8 to 8.4 × 2.0 to 3.2 μm. Based on these morphological characteristics, the isolate IVIA NAV-1 was tentatively identified as Penicillium ulaiense H.M. Hsieh, H.J. Su & Tzean (Frisvad and Samson 2004). To confirm the identity, molecular identification was performed in a specialized laboratory. The rDNA internal transcribed spacer regions ITS 1 and ITS 2 and the β-tubulin gene were amplified, sequenced, and deposited in GenBank (accessions nos. MH477872 and MH477873, respectively). A BLAST search for ITS showed 100% identity and 100% query coverage with P. ulaiense strain CBS 210.92 (accession no. KC411695.1). A BLAST search for the β-tubulin gene showed 99% identity and 100% query coverage with P. ulaiense isolate 1399 (accession no. LT629297.1). Selected healthy oranges of cultivar Valencia were surface disinfected by dipping in 0.5% sodium hypochlorite for 2 min followed by thorough rinsing in deionized water. Pathogenicity was tested by pipetting 30 µl of a spore suspension (1 × 106 conidia/ml), prepared from 7- to 10-day-old PDA cultures, onto fresh rind wounds, which were made on the equatorial area of disinfected fruit using a sterile, stainless steel rod with a probe tip of 1 mm in width × 2 mm in length (one wound per fruit, total of 20 oranges). Additionally, 10 disinfected, wounded, noninoculated oranges were used as controls. The same procedure was repeated 15 days later with another lot of Valencia oranges. In both tests, disease symptoms were observed on all inoculated fruit after 7 days of incubation at 25°C, and P. ulaiense was consistently reisolated, thereby fulfilling Koch’s postulates. No decay was observed on any of the control fruit. To our knowledge, this is the first report of P. ulaiense causing whisker mold of citrus fruit in Spain. The disease has been previously reported in important citrus-producing areas such as California (Holmes et al. 1993), Egypt (Youssef et al. 2010), Pakistan (Khan et al. 2017), and Korea (Park et al. 2018).
+
+
 
 ### 15. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/40339>
+<https://www.cabi.org/isc/datasheet/40339> - <https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.13556>
 
 - **Cited by:** Bean/Angular_Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "On leaves, lesions are angular, delimited by veins, initially water-soaked, later turning brown to grey-brown, with a darker border; on the lower leaf surface a grey, powdery sporulation is visible; on pods, lesions are circular to irregular, reddish-brown spo"
 - **Should support:** Angular, water-soaked lesions delimited by leaf veins turning brown to gray-brown; grayish sporulation on leaf; Leaves, pods, stems; Pseudocercospora griseola (formerly Phaeoisariopsis griseola)
+- **Additional info:** -  Angular leaf spot (ALS), a typical disease in common beans (Phaseolus vulgaris), is caused by the fungus Pseudocercospora griseola (Singh & Schwartz, 2010). Conidia are mainly spread by wind; however, water droplets, agricultural implements and contaminated seeds also facilitate pathogen transmission. The optimum conditions for infection include humidity and a temperature of 24°C. The conidia can germinate in about 3 h, penetrating the leaves through the stomata within 2 days. The whole tissue is colonized by the pathogen after 3–7 days and lesions can be observed 8–15 days after infection. Symptoms of ALS appear primarily on leaves and pods (Liebenberg & Pretorius, 1997). The lesions may coalesce, causing premature defoliation that compromises pod filling, and consequent loss in grain yield if no efficient control method is employed (Ramalho et al., 2007).
+
+The use of fungicides is one of the methods to control this disease, because obtaining plants with genetic resistance is difficult due to the pathogenic variability of P. griseola (Abadio et al., 2012; Chilagane et al., 2016; Ddamulira et al., 2014; Silva et al., 2008; Stenglein et al., 2005).
+
+In Brazil, 151 commercial fungicides are registered for the control of ALS in common bean. The chemical groups are benzimidazole, dithiocarbamate, inorganic groups (copper and tin), strobilurins, triazoles, isophthalonitrile and some mixtures (AGROFIT: http://agrofit.agricultura.gov.br/agrofit_cons/principal_agrofit_cons). Fungicides with known efficiency in control of ALS are tebuconazole, pyraclostrobin, metiram + pyraclostrobin, azoxystrobin, hexaconazole, propiconazole, mancozeb and difenoconazole (Demant & Maringoni, 2012; Rava, 2002). However, fungicide-resistant P. griseola strains exist due to its great diversity, its intense multiplication capacity and its acquired resistance to some chemical groups due to repetitive fungicide applications with the same active ingredient or the same chemical group of fungicide (Ma & Michailides, 2005).
+
+The emergence of fungicide-resistant pathogens is a problem because the fungicide efficiency is significantly reduced (Hollomon, 2015). Therefore, it is necessary to monitor the pathogenic and morphophysiological variability of P. griseola strains and their sensitivity to commonly used fungicides. In addition, it is important to know the aggressiveness of P. griseola strains present in different locations. In this study, the morphophysiological and pathogenic characterization of different P. griseola strains was performed. Moreover, the sensitivity of these strains to the commonly used fungicides to control ALS was evaluated.
 
 ### 16. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/55952>
+<https://www.cabi.org/isc/datasheet/55952> - <https://www.crop.bayer.com.au/crop-management/diseases/covered-smut>
 
 - **Cited by:** Wheat/Loose_Smut  (fields: visual_symptoms)
 - **Must contain:** "Infected ears emerge earlier than healthy ones and the entire ear is transformed into a mass of dark brown powdery spores (teliospores), initially covered by a greyish membrane which soon ruptures, exposing the spore mass which is dispersed by wind, leaving on"
 - **Should support:** Dark olive-brown to black powdery spore mass replaces the entire head; thin gray membrane covers spores initia
+- **Additional info:** - Covered smut is caused by the same fungal pathogen in barley and oats, but in wheat it is caused by a different pathogen. Covered smut in wheat has several names including ball smut, stinking smut and common bunt. Like other cereal smuts, covered smut is generally controlled effectively with seed dressings. Covered smut can cause yield losses and there is a nil tolerance of grain contaminated with covered smut at receival points in Australia.
+
+Covered smut is a disease affecting seed heads and generally remains undetected until head emergence. Infected heads may emerge later than healthy ones and the ears often break through the sheath below the flag leaf. Infected heads are filled with dark brown to black sooty spores instead of grains. Covered smut spores are held tightly compared to loose smut spores. Infection is encouraged by wet conditions and warm temperatures (15 - 20 °C) during flowering.
+
+Spores from covered smut are seed and soil-borne. During harvest, spores from infected heads contaminate healthy clean seed, soil and machinery, where they remain dormant. Spores on contaminated seed used for planting germinate at the same time as seedlings, infecting the plant. Conditions favouring infection are early sowing into dry soil and warm (15 - 21 °C) temperatures. Following infection, the fungus grows within the plant, appearing later in the heads as masses of spores, replacing grains.
 
 ### 17. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
 
-<https://www.plantwise.org/knowledgebank/datasheet/54349>
+<https://www.plantwise.org/knowledgebank/datasheet/54349> - <https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_4.html>
 
 - **Cited by:** Banana/Cigar_End_Rot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Cigar-end rot is caused by two fungi, Stachylidium theobromae (Verticillium theobromae) and Trachysphaera fructigena"
 - **Should support:** Dry, wrinkled, grayish-black necrotic tissue at fruit tip resembling cigar ash; distinct boundary between heal; Fruit (distal end/tip), flower remnants; Trachysphaera fructigena, Verticillium theobromae (Stachylidium theobromae)
+- **Additional info:** - 
+Tip of immature fruit and spreads upward.
+Ashy conidia and conidiophores cover the rotted portion.
+Imparting burnt ashy cigar-end appearance with a dark border.
+Decay may extend up to one-third of the fruit but internal tissues develop a dry rot.
+Conidia are hyaline, oblong to cylindrical, borne at the ends of tapering phialides, aggregated into rounded, mucilaginous transluscent heads.
+The fungus – plant debris – microsclerotia.
+Infected plant parts – irrigation water – implements.
+
 
 ### 18. [OK] `HELD-OUT` — page-verified
 
-<https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton>
+<https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton> - Perfect link
 
 - **Cited by:** Cotton/Bacterial_Blight  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls"
 - **Should support:** Angular water-soaked leaf lesions delimited by the veins; Leaves, stems and petioles (black arm), and bolls; Xanthomonas citri subsp. malvacearum
+- **Additional info:** - Bacterial blight of cotton, also known as angular leaf spot and black arm, is an important disease of cotton. It is caused by Xanthomonas citri subsp. malvacearum, and it affects all parts of the cotton plant, reducing yield and fiber quality. Symptoms include water-soaked lesions on leaves constricted by the leaf veins, black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls. The causal pathogen is primarily transmitted through infected seed. However, in situations where continuous cotton is grown, the pathogen can survive on residue on the soil surface for short periods. High humidity, rain, and wind contribute to disease risk and spread.
+Managing the disease involves using resistant cultivars, practicing crop rotation, destroying crop residue, and maintaining sanitary practices during ginning and seed processing.
 
 ### 19. [OK] `HELD-OUT` — none, page-verified
 
-<https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton>
+<https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton> - Perfect link
 
 - **Cited by:** Cotton/Target_Spot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings."
 - **Should support:** Brick-red spots enlarging to tan/light-brown centres with concentric rings; Corynespora cassiicola; Leaves
+- **Additional info:** - Target spot, caused by the fungus Corynespora cassiicola, occurs in all U.S. cotton-producing states but is more problematic in the Gulf-coastal region due to frequent rainfall and high humidity. Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings. The disease primarily affects the lower canopy, leading to premature defoliation, and lesions can be observed on petioles, bracts, and bolls. Effective management includes crop rotation, sanitation, selection of less susceptible cultivars, timely application of fungicides during bloom, and regulating excessive canopy growth.
 
 ### 20. [OK] `HELD-OUT` — page-verified
 
-<https://en.wikipedia.org/wiki/Cercospora_coffeicola>
+<https://en.wikipedia.org/wiki/Cercospora_coffeicola> - Perfect link
 
 - **Cited by:** Coffee/Berry_Blotch, Coffee/Cerscospora  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "These spots often have a discolored, light center where sporulation can occur, and many have a yellow 'halo' around the margins."
-- **Should support:** Berries (green cherries and ripe red cherries); Brown necrotic leaf spots with a pale/light sporulating centre and a yellow halo; lesions coalesce into large ; Cercospora coffeicola (teleomorph Mycosphaerella coffeicola); Leaves and berries; Tan-to-brown sunken berry lesions with a purple halo, maturing to a deeply depressed ashy centre that can reac
+- **Should support:** Berries (green cherries and ripe red cherries); Brown necrotic leaf spots with a pale/light sporulating centre and a yellow halo; lesions coalesce into large ; Cercospora coffeicola (teleomorph Mycosphaerella coffeicola); Leaves and berries; Tan-to-brown sunken berry lesions with a purple halo, maturing to a deeply depressed ashy centre that can react
+- **Additional info:** - Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen. It is most commonly referred to as the asexual organism Cercospora coffeicola. There are 40 species in the genus Coffea (family Rubiaceae) that are susceptible to the disease caused by M. coffeicola, but only a few that are commercially relevant.[1] Arabica coffee (Coffea arabica L.) is the most significant of the susceptible species, affecting 70% of the world's coffee production.[2] Coffea arabica ranges in growth habit from a shrub to a small tree and has ovate, shiny, pointed leaves, with clustered white flowers.[1] The fruits begin as green berries which ripen to a deep red color. These are often called the coffee "cherries". Each fruit contains two seeds (i.e. coffee beans) in a drupe.[2]
+
+Symptoms of M. coffeicola vary depending on the plant organ affected. These differing symptoms help explain the various common names for the disease: Cercospora "Leaf Spot" and Cercospora "Berry Blotch" (Cercospora is reference to the deuteromycete stage).[1] On leaves, lesions begin as chlorotic (yellow) spots that expand to become deep brown and necrotic on the upper leaf surface.[3] These spots often have a discolored, light center where sporulation can occur, and many have a yellow "halo" around the margins. This halo is caused by the toxin cercosporin, produced by Cercospora species.[1] Not all lesions have distinct edges or a halo, however, and some occur in concentric rings. In general, lesions of this species are able to fuse, and can form large irregular areas of necrotic tissue.[4] Leaves may drop in extreme cases.[3] Fruit symptoms typically appear 90 days after flowering.[4] On green berries, this includes irregularly shaped brown, sunken lesions that are surrounded by a purple halo. Infected red cherries also have large, dark areas of sunken flesh. At this stage, fruit is susceptible to attack by opportunistic bacteria and fungi (such as Colletotrichum gloeosporioides), though symptoms from these organisms should not be falsely attributed to M. coffeicola.
+
+Prevention is the most effective method of managing M. coffeicola. Risk factors for this pathogen include: prolonged (24–72 hours) humid environment, poor soil nutrition, and plant stress caused by increased planting density, herbicide injury, weeds, drought, and over irrigation. To manage humidity a farmer can prune to allow for air circulation and ensure the soil has proper drainage.[1] In order to maintain proper plant nutrition, soil testing and a fertilization regiment are essential for combating this pathogen. Plant symptoms such as chlorosis, leaf curling, and bronzing along the edges of leaves can be used to diagnose specific nutrient deficiencies. For example, if a plant has leaves bronzed along edges, cupped down-ward; new leaves dead; eventual die back of shoot tips, then it is likely the plant has a calcium deficiency.[7] To reduce plant stress, a farmer can use herbicides to combat weeds but must be careful not to damage the plant in process. Also to minimize competition between adjacent crops, it is important to properly space coffee plants in 8 ft. by 8 ft. areas. Stress can further be minimized if post and pre-harvest damage by machinery or laborers is avoided. To avoid wilting stress plants should be properly irrigated .[8] However, if a crop already has M. coffeicola, copper fungicide is effective. In Hawaii, farmers often spray tri-annually, using 1.5–6 lbs of fungicide per 50–100 gallons water, containing 30–80% copper hydroxide.[1] "Sprays should coincide with dry weather and calm winds. Three spray applications per season should suffice (occurring approximately once per month), beginning at flowering. Thorough coverage of the plant canopy is very important. Large farms in Hawai‘i utilize tractor-mounted mist blowers."[1] 
 
 ### 21. [OK] `HELD-OUT` — page-verified
 
