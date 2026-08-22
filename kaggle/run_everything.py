@@ -35,6 +35,8 @@ RUN_ABSTAIN    = True   # top-5 + risk-coverage, scales A/B/C     (~1 h)
 RUN_PROBE      = True   # seen-crop linear probe, scales A/B/C    (~1 h)
 RUN_LOCO       = True   # leave-one-crop-out + bootstrap CIs      (~20 min)
 RUN_CLEAN_EVAL = True   # label-corrected sensitivity run         (~30 min)
+RUN_UNGROUNDED = True   # ungrounded-LLM control arm, 3 seeds     (~1 h, needs the descriptors)
+UNGROUNDED_SEEDS = [0, 1, 2]
 RUN_CNNS       = True   # 14 supervised baselines                 (~8 h)  <- the long one
 
 EPOCHS, BATCH, WORKERS = 8, 128, 4
@@ -172,6 +174,19 @@ print(f"\n[env] cuda={torch.cuda.is_available()} "
       f"| free {free_gb():.1f} GB | t+{elapsed_h():.1f} h")
 
 # ----------------------------------------------------------------- zero-shot + abstention
+# NOTE ON RE-RUNNING: the rich keyword matcher was normalising `base` but not the match key, so
+# 13 of the 32 multi-word bank entries were unreachable and classes with a correct distinct entry
+# fell through to a coarser key. That is fixed, which means every previously published `rich` number
+# was produced by different code and must be re-measured. Delete stale zeroshot_eval_*.json before
+# re-running, or the guard below will skip the very stages that need redoing.
+STALE = [p for p in RESULTS.glob("zeroshot_eval_*.json")
+         if not json.loads(p.read_text()).get("matcher_normalised")]
+if STALE and RUN_ZEROSHOT:
+    for p in STALE:
+        p.rename(p.with_suffix(".json.pre_matcher_fix"))
+    print(f"[rich-fix] set aside {len(STALE)} evaluation(s) produced by the old matcher; "
+          f"they will be recomputed")
+
 for exp in ["A", "B", "C"]:
     if RUN_ZEROSHOT and not (RESULTS / f"zeroshot_eval_{exp}.json").exists():
         print(f"\n{'=' * 72}\n[zero-shot {exp}]  t+{elapsed_h():.1f} h\n{'=' * 72}", flush=True)
@@ -189,6 +204,28 @@ if RUN_CLEAN_EVAL and not (RESULTS / "zeroshot_eval_C_clean.json").exists():
           flush=True)
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C", "--clean",
         "--strategies", "bare", "crude", "rich", "grounded", "--heavy", "--teachers"])
+
+# --- ungrounded control arm: same LLM, same schema, no citation constraint ---------------------
+# This is the arm that decides whether the contribution is about GROUNDING or merely about per-class
+# coverage. Several seeds, because one sample of LLM text cannot separate "grounding helps" from
+# "that generation was lucky". Needs descriptors_ungrounded/<seed>/ in the repo -- generate it
+# offline first with scripts/build_ungrounded.py, which requires an API key.
+if RUN_UNGROUNDED:
+    ung_root = REPO / "descriptors_ungrounded"
+    have = [s for s in UNGROUNDED_SEEDS if (ung_root / str(s)).is_dir()]
+    if not have:
+        print("[ungrounded] SKIPPED -- no descriptors_ungrounded/<seed>/ in the repo. Generate it "
+              "locally (needs an LLM key) and push before this arm can run:")
+        print("             python scripts/build_ungrounded.py --seed 0 --which heldout")
+    for s in have:
+        out = RESULTS / f"zeroshot_eval_C_ung{s}.json"
+        if out.exists():
+            print(f"[skip] ungrounded seed {s}")
+            continue
+        print(f"\n{'=' * 72}\n[ungrounded seed {s}]  t+{elapsed_h():.1f} h\n{'=' * 72}", flush=True)
+        sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
+            "--strategies", "rich", "grounded", "ungrounded",
+            "--ungrounded-seed", str(s), "--heavy"])
 
 # ----------------------------------------------------------------- seen probe + LOCO
 if RUN_PROBE:
@@ -274,6 +311,18 @@ for e in "ABC":
         g = sum(m["grounded"]["acc"] for m in ms) / len(ms)
         print(f"\n  scale {e}: {d['n_classes']:3d} unseen classes  chance {d['chance']:.1%}  "
               f"rich {r:.1%}  grounded {g:.1%}  delta {(g - r) * 100:+.1f} pp")
+
+ung = sorted(RESULTS.glob("zeroshot_eval_C_ung*.json"))
+if ung:
+    print(f"\n  UNGROUNDED CONTROL ARM ({len(ung)} seed(s)) -- the comparison that decides whether")
+    print("  the contribution is grounding or per-class coverage:")
+    for p in ung:
+        d = json.loads(p.read_text())
+        ms = [v for k, v in d["models"].items() if "SigLIP" not in k]
+        for arm in ("rich", "grounded", "ungrounded"):
+            if arm in ms[0]:
+                v = sum(m[arm]["acc"] for m in ms) / len(ms)
+                print(f"    {p.stem.split('_ung')[-1]:>4s} {arm:11s} {v:.1%}")
 
 if done:
     print(f"\n  CNNs this session: {done}")

@@ -1,0 +1,146 @@
+{
+  "bank_keys": 32,
+  "bank_multiword_keys": 13,
+  "scales": {
+    "A": {
+      "n_classes": 16,
+      "no_match": 5,
+      "no_match_labels": [
+        "Coffee|Berry_Blotch",
+        "Coffee|Cerscospora",
+        "Coffee|Miner",
+        "Orange|Green_Mold",
+        "Orange|Whisker_Mold"
+      ],
+      "unique": 9,
+      "collided_classes": 2,
+      "collision_groups": {
+        "leaf curl": [
+          "Peach|Leaf_Curl",
+          "Peach|Peach_Leaf_Curl"
+        ]
+      },
+      "distinct_prototypes": 15
+    },
+    "B": {
+      "n_classes": 34,
+      "no_match": 13,
+      "no_match_labels": [
+        "Coffee|Berry_Blotch",
+        "Coffee|Cerscospora",
+        "Coffee|Miner",
+        "Orange|Green_Mold",
+        "Orange|Whisker_Mold",
+        "Wheat|Bacterial_Leaf_Streak_Black_Chaff",
+        "Wheat|Fusarium_Graminearum_Schwabe",
+        "Wheat|Fusarium_Wilts",
+        "Wheat|Karnal_Bunt",
+        "Wheat|Loose_Smut",
+        "Wheat|Resistance_Phenotype",
+        "Wheat|Resistance_Phenotype__Moderately_Resistant",
+        "Wheat|Resistance_Phenotype__Moderately_Susceptible"
+      ],
+      "unique": 7,
+      "collided_classes": 14,
+      "collision_groups": {
+        "spot": [
+          "Bean|Angular_Leaf_Spot",
+          "Cotton|Target_Spot",
+          "Peach|Bacterial_Leaf_Spot"
+        ],
+        "blight": [
+          "Bean|Common_Bacterial_Blight_Of_Beans",
+          "Bean|Halo_Blight",
+          "Cotton|Bacterial_Blight"
+        ],
+        "rust": [
+          "Bean|Rust",
+          "Coffee|Rust"
+        ],
+        "powdery mildew": [
+          "Cotton|Powdery_Mildew",
+          "Wheat|Powdery_Mildew"
+        ],
+        "leaf curl": [
+          "Peach|Leaf_Curl",
+          "Peach|Peach_Leaf_Curl"
+        ],
+        "scab": [
+          "Peach|Leaf_Scab",
+          "Wheat|Head_Scab"
+        ]
+      },
+      "distinct_prototypes": 26
+    },
+    "C": {
+      "n_classes": 51,
+      "no_match": 17,
+      "no_match_labels": [
+        "Banana|Bunchy_Top",
+        "Banana|Panama_Disease",
+        "Banana|Yellow_And_Black_Sigatoka",
+        "Coffee|Berry_Blotch",
+        "Coffee|Cerscospora",
+        "Coffee|Miner",
+        "Cucumber|Bacterial_Wilt",
+        "Orange|Green_Mold",
+        "Orange|Whisker_Mold",
+        "Wheat|Bacterial_Leaf_Streak_Black_Chaff",
+        "Wheat|Fusarium_Graminearum_Schwabe",
+        "Wheat|Fusarium_Wilts",
+        "Wheat|Karnal_Bunt",
+        "Wheat|Loose_Smut",
+        "Wheat|Resistance_Phenotype",
+        "Wheat|Resistance_Phenotype__Moderately_Resistant",
+        "Wheat|Resistance_Phenotype__Moderately_Susceptible"
+      ],
+      "unique": 8,
+      "collided_classes": 26,
+      "collision_groups": {
+        "spot": [
+          "Banana|Cordana_Leaf_Spot",
+          "Bean|Angular_Leaf_Spot",
+          "Cotton|Target_Spot",
+          "Cucumber|Angular_Leaf_Spot",
+          "Cucumber|Angular_Leaf_Spot_Of_Cucumber",
+          "Cucumber|Corynespora_Leaf_Spot",
+          "Peach|Bacterial_Leaf_Spot"
+        ],
+        "blight": [
+          "Bean|Common_Bacterial_Blight_Of_Beans",
+          "Bean|Halo_Blight",
+          "Cotton|Bacterial_Blight",
+          "Cucumber|Gummy_Stem_Blight",
+          "Cucumber|Phytophthora_Blight"
+        ],
+        "rot": [
+          "Banana|Cigar_End_Rot",
+          "Cucumber|Belly_Rot",
+          "Cucumber|Pythium_Fruit_Rot"
+        ],
+        "powdery mildew": [
+          "Cotton|Powdery_Mildew",
+          "Cucumber|Powdery_Mildew",
+          "Wheat|Powdery_Mildew"
+        ],
+        "anthracnose": [
+          "Banana|Anthracnose",
+          "Cucumber|Anthracnose"
+        ],
+        "rust": [
+          "Bean|Rust",
+          "Coffee|Rust"
+        ],
+        "leaf curl": [
+          "Peach|Leaf_Curl",
+          "Peach|Peach_Leaf_Curl"
+        ],
+        "scab": [
+          "Peach|Leaf_Scab",
+          "Wheat|Head_Scab"
+        ]
+      },
+      "distinct_prototypes": 33
+    }
+  }
+}

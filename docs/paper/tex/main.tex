@@ -62,13 +62,13 @@ cannot name a disease on a crop absent from its training set. We ask how small a
 be while still performing cross-crop zero-shot diagnosis, matching a leaf image to symptom
 descriptions written by a large language model and grounded in cited sources. Using the SAGE
 crop-disease dataset and frozen compact contrastive language--image pre-training encoders, we report
-four results. First, an 11.4-million-parameter frozen encoder diagnoses unseen crops at 3.5--12.6
-times chance across nested held-out sets of 16, 34 and 51 classes, with accuracy nearly flat from 11
-to 300 million parameters. Second, and centrally, only source-grounded descriptors scale: as the
+four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops
+at 3.5--12.6 times chance, averaged over four tiers, across nested held-out sets of 16, 34 and 51
+classes; accuracy is nearly flat over that range. Second, and centrally, only source-grounded descriptors scale: as the
 unseen label space triples, hand-curated symptom text degrades from 28.0\% to 20.4\% while
 source-grounded text improves from 21.7\% to 24.7\%, so auditability is not a tax but the mechanism
-that reaches new crops at all. Third, an abstain gate makes the modest top-1 field-useful: grounded
-top-5 is 61--77\% on 16 unseen classes and 58--76\% on 51. Fourth, the encoder runs at 17.4 ms per
+that reaches new crops at all. Third, an abstain gate makes top-1 field-useful: grounded top-5 is
+61--77\% on 16 unseen classes and 58--76\% on 51. Fourth, the encoder runs at 17.4 ms per
 image on a laptop processor in a 12.9 MB 8-bit-integer footprint, though 8-bit quantisation proves a
 size rather than a speed lever for hybrid encoders. On known crops the same backbone reaches 82.4\%
 over 166 classes. Fourteen supervised baselines are stronger on seen crops yet
@@ -109,15 +109,16 @@ Only the image encoder ships to the device; text prototypes are precomputed offl
 
 \paragraph{Contributions}
 \begin{enumerate}
-\item \textbf{Frozen compact VLMs do cross-crop zero-shot.} An 11.4\,M encoder diagnoses unseen crops
-at 3.5--12.6$\times$ chance across 16-, 34- and 51-class held-out sets, and accuracy is flat from 11\,M
+\item \textbf{Frozen compact VLMs do cross-crop zero-shot.} Averaged over the four deployable
+tiers, they diagnose unseen crops at 3.5--12.6$\times$ chance across 16-, 34- and 51-class held-out
+sets (the 11.4\,M tier alone spans 2.9--11.3$\times$), and accuracy is flat from 11\,M
 to 300\,M --- model size is not the bottleneck (Sections~\ref{sec:flat}--\ref{sec:desc}).
 \item \textbf{A nested scale study showing that only source-grounded descriptors scale.} Detail is the
 first lever (+15.2 points over class names at 16 classes), but as the unseen label space triples,
 hand-curated descriptors \emph{degrade} while LLM source-grounded ones \emph{improve}, overtaking them
 by 4.3 points at 51 classes. Auditability is therefore not a cost but the only authoring route that
 reaches new crops (Section~\ref{sec:desc}).
-\item \textbf{A calibrated abstain gate plus top-5} makes the modest top-1 field-useful
+\item \textbf{A margin-ranked abstain gate plus top-5} makes the modest top-1 field-useful
 (Section~\ref{sec:abstain}).
 \item \textbf{A per-tier edge benchmark} with real INT8 sizes and CPU latency, and a quantisation
 result with practical reach: INT8 helps transformer encoders but \emph{hurts} hybrid
@@ -216,13 +217,14 @@ symptom text, falling back to \emph{rich} where a record is absent).
 \subsection{A frozen 11\,M model already does cross-crop zero-shot, and accuracy is flat with size}
 \label{sec:flat}
 
-Across the nested splits the four deployable encoders span only 17.0--24.2\% (rich) and 22.2--29.1\%
-(grounded) at configuration C despite a 7.6-fold spread in parameters, and the efficiency curve is
+Across the nested splits (Protocol N) the four deployable encoders span only 17.0--24.2\% (rich)
+and 22.2--29.1\% (grounded) at configuration C despite a 7.6-fold spread in parameters, and the efficiency curve is
 essentially flat from 11\,M to 300\,M (Fig.~\ref{fig:eff}). Model size is not the bottleneck; the
 pretrained alignment is the asset. Attempts to \emph{train} a small model to learn this alignment fail
---- a 5.5\,M student distilled from scratch reaches only 11.0\% (1.9$\times$ chance) against the
-19.9\% of the frozen 11.4\,M encoder it was distilled from, and specialising on seen crops loses
-4.5 points of unseen
+--- on the earlier 17-class pilot set (Protocol P, not comparable with the nested splits above)
+a 5.5\,M student distilled from scratch reaches only 11.0\% against 5.9\% chance, versus 19.9\%
+for the frozen 11.4\,M encoder it was distilled from; and specialising that encoder on seen crops
+loses 4.5 points of unseen
 accuracy to catastrophic forgetting (Fig.~\ref{fig:forget}) --- so we keep the backbone frozen.
 
 \begin{figure}[htbp]
@@ -301,13 +303,13 @@ grounded head becomes \emph{relatively stronger} as the problem gets harder, fro
 \end{figure*}
 
 
-\subsection{Top-5 and a calibrated abstain gate}
+\subsection{Top-5 and a margin-ranked abstain gate}
 \label{sec:abstain}
 
 A field tool can propose a short list and abstain when unsure, so raw top-1 is not the operative
 metric. Table~\ref{tab:abstain} and Fig.~\ref{fig:riskcov} show grounded top-5 at 61--77\% on 16 classes, holding at 58--76\% on
 51 classes (29--38$\times$ chance). Selective accuracy rises monotonically as coverage tightens,
-confirming the confidence signal is properly ordered rather than anti-calibrated. Across models the
+confirming the confidence signal is correctly ordered rather than inverted. Across models the
 grounded strategy also abstains best, holding the lowest area under the risk--coverage curve and the
 highest top-5 even where its top-1 does not lead --- making it the recommended deployment setting.
 
@@ -424,7 +426,7 @@ kernels, may reverse this for the hybrid tiers.
 \section{Discussion}
 
 \paragraph{The contribution is a system, not a backbone} The tiers are off-the-shelf encoders used
-frozen; the novelty is the source-grounded descriptor head, the calibrated abstain gate, the WiSE-FT
+frozen; the novelty is the source-grounded descriptor head, the margin-ranked abstain gate, the WiSE-FT
 knob, and the real-time edge packaging. Because accuracy is flat with size, the reason to offer a
 family is the measured latency/size Pareto, not accuracy.
 
@@ -435,7 +437,7 @@ because it cannot --- it requires an expert per crop, whereas a grounded generat
 per crop. We consider this the paper's most transferable claim beyond agriculture.
 
 \paragraph{Honesty on absolutes} Fine-grained cross-crop top-1 is modest (17--29\%); we lead with top-5
-and the calibrated abstain gate as the field-relevant metrics, and frame cross-crop transfer as a hard
+and the margin-ranked abstain gate as the field-relevant metrics, and frame cross-crop transfer as a hard
 open problem we advance at edge scale rather than claim to solve.
 
 \section{Limitations}
@@ -469,7 +471,8 @@ $\sim$5\,M tier would require weight-inherited distillation and is framed as fut
 \section{Conclusion}
 
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops
-and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance on 16--51 unseen
+and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance, averaged over the
+four deployable tiers, on 16--51 unseen
 classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 61--77\% at 16 unseen classes and 58--76\% at 51, a
 margin-ranked abstain gate,
 and 17.4\,ms real-time CPU inference in a 12.9\,MB INT8 footprint. Model size is a near-non-factor across the

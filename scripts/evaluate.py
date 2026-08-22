@@ -14,6 +14,7 @@ Run on Kaggle (GPU, Internet ON) after cloning the repo:
 from __future__ import annotations
 import argparse
 import importlib
+import os
 import json
 import subprocess
 import sys
@@ -41,7 +42,11 @@ def ensure_deps():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--strategies", nargs="+", default=["bare", "crude", "rich"])
+    ap.add_argument("--strategies", nargs="+", default=["bare", "crude", "rich"],
+                    help="bare | crude | rich | grounded | grounded_visual | ungrounded")
+    ap.add_argument("--ungrounded-seed", type=int, default=None,
+                    help="which descriptors_ungrounded/<seed>/ set to use; also tags the "
+                         "output filename so seeds do not overwrite each other")
     ap.add_argument("--tiers", nargs="+", default=list(C.MODEL_TIERS))
     ap.add_argument("--heavy", action="store_true", help="also evaluate the heavyweight (~86M) tier")
     ap.add_argument("--teachers", action="store_true", help="also evaluate the reference/teacher VLMs")
@@ -52,6 +57,9 @@ def main():
                          "(see config.LABEL_ALIASES / EXCLUDE_LABELS). Writes a separate "
                          "*_clean.json so the as-published result is never overwritten.")
     args = ap.parse_args()
+
+    if args.ungrounded_seed is not None:
+        os.environ["PDE_UNGROUNDED_SEED"] = str(args.ungrounded_seed)
 
     ensure_deps()
     import torch
@@ -103,8 +111,10 @@ def main():
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = "_clean" if args.clean else ""
+    if args.ungrounded_seed is not None:
+        suffix += f"_ung{args.ungrounded_seed}"
     out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}{suffix}.json"
-    out.write_text(json.dumps({"chance": chance, "n_classes": len(classes), "crops": crops,
+    out.write_text(json.dumps({"matcher_normalised": True, "chance": chance, "n_classes": len(classes), "crops": crops,
                                "n_images": len(rows), "clean": bool(args.clean),
                                "clean_stats": clean_stats,
                                "coverage": coverage, "models": results}, indent=2))
