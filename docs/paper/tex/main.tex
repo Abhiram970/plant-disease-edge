@@ -55,7 +55,8 @@ Writing -- original draft, Writing -- review and editing, Visualization, Project
 \cortext[1]{Corresponding author}
 
 \begin{abstract}
-Cloud vision--language models diagnose plant disease accurately but cost cents per image and need
+Cloud vision--language models diagnose plant disease accurately but cost tens of cents per image
+and need
 connectivity, suiting neither smallholder nor in-field use. The harder obstacle is that a classifier
 cannot name a disease on a crop absent from its training set. We ask how small a deployable model can
 be while still performing cross-crop zero-shot diagnosis, matching a leaf image to symptom
@@ -70,7 +71,7 @@ that reaches new crops at all. Third, an abstain gate makes the modest top-1 fie
 top-5 is 61--77\% on 16 unseen classes and 58--76\% on 51. Fourth, the encoder runs at 17.4 ms per
 image on a laptop processor in a 12.9 MB 8-bit-integer footprint, though 8-bit quantisation proves a
 size rather than a speed lever for hybrid encoders. On known crops the same backbone reaches 82.4\%
-over 166 classes. Fourteen supervised convolutional baselines are stronger on seen crops yet
+over 166 classes. Fourteen supervised baselines are stronger on seen crops yet
 structurally incapable of cross-crop transfer.
 \end{abstract}
 
@@ -87,9 +88,11 @@ precision agriculture
 \maketitle
 
 \section{Introduction}
-\label{sec:intro}
 
-Cloud VLM diagnosers achieve high in-the-wild accuracy but cost roughly \$0.21--0.42 per image and
+%% ACTION: the per-image cost below needs a citation or must be removed. It is currently
+%% unsourced and it is the sentence carrying the paper's motivation.
+Cloud VLM diagnosers achieve high in-the-wild accuracy but cost of the order of tens of cents
+per image and
 require connectivity --- a poor fit for smallholder and field use, which needs offline, low-cost,
 real-time inference. A second, deeper obstacle is generalisation: models trained on one crop transfer
 poorly to others~\citep{bouacida2025}, and edge deployment additionally demands compression. Cross-crop
@@ -134,7 +137,7 @@ symptom knowledge motivate our descriptor design. We are the deployable edge cou
 
 \paragraph{Descriptor-based classification} Descriptor-based CLIP classification
 (DCLIP)~\citep{menon2023} and Customized Prompts via Language models (CuPL)~\citep{pratt2023} classify
-by LLM-written visual descriptions. \emph{Our delta:} source-grounded and therefore auditable,
+by LLM-written visual descriptions. In contrast, our descriptors are source-grounded and therefore auditable,
 compressed to the edge, and evaluated for \emph{cross-crop} agricultural transfer rather than general
 retrieval.
 
@@ -142,8 +145,8 @@ retrieval.
 MobileCLIP~\citep{vasu2024}, its successor MobileCLIP2~\citep{mobileclip2} and
 TinyCLIP~\citep{wu2023} compress it, and provide our frozen backbones. We use the
 open\_clip~\citep{ilharco2021} implementations throughout, with SigLIP\,2~\citep{siglip2}, whose
-sigmoid objective follows \citet{zhai2023}, as a reference ceiling. \emph{Our delta:} an agricultural
-cross-crop zero-shot study and an edge efficiency analysis.
+sigmoid objective follows \citet{zhai2023}, as a reference ceiling. We contribute an agricultural cross-crop zero-shot study and an
+edge efficiency analysis rather than a retrieval benchmark.
 
 \paragraph{Robust fine-tuning} WiSE-FT \citep{wortsman2022} explains our forgetting result and
 motivates the frozen-backbone plus weight-ensembling design.
@@ -214,15 +217,17 @@ symptom text, falling back to \emph{rich} where a record is absent).
 \label{sec:flat}
 
 Across the nested splits the four deployable encoders span only 17.0--24.2\% (rich) and 22.2--29.1\%
-(grounded) at configuration C despite an $8\times$ spread in parameters, and the efficiency curve is
+(grounded) at configuration C despite a 7.6-fold spread in parameters, and the efficiency curve is
 essentially flat from 11\,M to 300\,M (Fig.~\ref{fig:eff}). Model size is not the bottleneck; the
 pretrained alignment is the asset. Attempts to \emph{train} a small model to learn this alignment fail
---- from scratch it stays near chance, and specialising on seen crops loses 4.5 points of unseen
+--- a 5.5\,M student distilled from scratch reaches only 11.0\% (1.9$\times$ chance) against the
+19.9\% of the frozen 11.4\,M encoder it was distilled from, and specialising on seen crops loses
+4.5 points of unseen
 accuracy to catastrophic forgetting (Fig.~\ref{fig:forget}) --- so we keep the backbone frozen.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_efficiency_curve.png}
+\includegraphics[width=\linewidth]{fig_efficiency_curve.png}
 \caption{Zero-shot accuracy against image-encoder size. Cross-crop accuracy for frozen pretrained
 encoders spanning a 27-fold parameter range, with a from-scratch small student for contrast. The
 pretrained models cluster together regardless of size; the from-scratch student sits near chance.}
@@ -232,7 +237,7 @@ pretrained models cluster together regardless of size; the from-scratch student 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_specialization_forgetting.png}
+\includegraphics[width=\linewidth]{fig_specialization_forgetting.png}
 \caption{Catastrophic forgetting when specialising a frozen encoder. Held-out zero-shot accuracy per epoch while adapting the encoder to the seen crops. Unseen-crop accuracy falls as the training objective improves.}
 \label{fig:forget}
 \end{figure}
@@ -249,7 +254,7 @@ a faithful evaluation would need the authors' inference pipeline; we do not rest
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_bakeoff.png}
+\includegraphics[width=\linewidth]{fig_bakeoff.png}
 \caption{Encoder bake-off on the pilot held-out set. Rich-descriptor zero-shot accuracy for each candidate backbone against its image-encoder parameter count. The biological and leaf-disease foundation models fall at or below chance under a descriptor protocol.}
 \label{fig:bakeoff}
 \end{figure}
@@ -262,7 +267,7 @@ Table~\ref{tab:scale} and Figs.~\ref{fig:descscale} and~\ref{fig:descabl} carry 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_descriptor_scaling.png}
+\includegraphics[width=\linewidth]{fig_descriptor_scaling.png}
 \caption{Mean zero-shot accuracy over the four deployable encoders as the unseen label space grows.
 Hand-curated descriptors degrade; source-grounded descriptors improve and overtake them.}
 \label{fig:descscale}
@@ -310,7 +315,7 @@ highest top-5 even where its top-1 does not lead --- making it the recommended d
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_riskcoverage.png}
+\includegraphics[width=\linewidth]{fig_riskcoverage.png}
 \caption{Risk--coverage behaviour of the abstain gate. Selective accuracy as a function of the fraction of images the model chooses to answer, using the top-1 minus top-2 similarity margin as the confidence score. Accuracy rises monotonically as coverage tightens, confirming the score is correctly ordered.}
 \label{fig:riskcov}
 \end{figure}
@@ -320,7 +325,7 @@ highest top-5 even where its top-1 does not lead --- making it the recommended d
 
 The same frozen backbone with a linear probe reaches 82.4\% over 166 fine-grained classes
 (Table~\ref{tab:seen}, Fig.~\ref{fig:seenscale}), against 9.3\% for the same encoder used zero-shot on its own seen classes.
-Two patterns repeat here. Accuracy is flat across a 7.6$\times$ parameter range ($\leq$1.5 points at
+Two patterns repeat here. Accuracy is flat across the same 7.6-fold parameter range ($\leq$1.5 points at
 every scale), mirroring Section~\ref{sec:flat}; and accuracy \emph{rises} as the seen label space grows
 (+3.3 to +3.5 points from 97 to 166 classes, for every encoder), the opposite of the unseen side,
 because additional crops contribute proportionally more training images than decision difficulty. Each
@@ -332,7 +337,7 @@ points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_seen_scaling.png}
+\includegraphics[width=\linewidth]{fig_seen_scaling.png}
 \caption{Known-crop accuracy against the size of the seen label space. Linear-probe top-1 for four frozen encoders at 97, 154 and 166 seen classes. Accuracy rises with the label space and is flat across a 7.6-fold parameter range.}
 \label{fig:seenscale}
 \end{figure}
@@ -341,7 +346,7 @@ points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_wiseft.png}
+\includegraphics[width=\linewidth]{fig_wiseft.png}
 \caption{The seen--unseen trade-off as a single interpolation weight. Accuracy on seen and unseen crops as the weight-space ensembling ratio moves from the frozen encoder to the fully fine-tuned one. Full fine-tuning nearly halves unseen accuracy.}
 \label{fig:wiseft}
 \end{figure}
@@ -350,14 +355,15 @@ points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
 \subsection{Supervised baselines and leave-one-crop-out}
 \label{sec:baselines}
 
-Fourteen supervised architectures spanning 1.7--42.8\,M parameters, all on the identical 166-class seen
+Fourteen supervised baselines --- twelve convolutional networks and two hybrid
+convolution--transformer models --- spanning 1.7--42.8\,M parameters, all on the identical 166-class seen
 set for 8 epochs (Table~\ref{tab:cnn}; per-epoch curves in Fig.~\ref{fig:cnntrain}), are strong on known crops: the best reaches 88.6\%, about
 6.2 points above the frozen probe. We report this plainly, because for a fixed, known label set a
 conventional classifier is the better choice.
 
 Capacity is not the lever, and here the evidence is blunt: the best architecture has 4.4\,M parameters
 while the largest, ResNet-101 at 42.8\,M, is 1.8 points \emph{worse}; across a 25$\times$ range the
-family spans 6.3 points with no monotone trend. That reproduces Sections~\ref{sec:flat} and the seen
+family spans 6.3 points with no monotone trend. That reproduces Section~\ref{sec:flat} and the seen
 probe above in a third, fully supervised setting, making ``size is not the bottleneck'' a property of
 the task rather than an artefact of frozen backbones. The sharpest control is FastViT-SA12 (10.7\,M),
 the same architecture family as our image encoder (11.4\,M) at nearly the same size: 87.4\% trained
@@ -389,7 +395,7 @@ compresses 3.5$\times$ to 12.9\,MB under INT8.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{fig_edge_pareto.png}
+\includegraphics[width=\linewidth]{fig_edge_pareto.png}
 \caption{Accuracy against on-device latency. Cross-crop zero-shot accuracy versus single-image latency on a laptop processor; marker area is proportional to parameter count and labels give the 8-bit footprint. The 11.4-million-parameter tier is the deployment sweet spot.}
 \label{fig:edge}
 \end{figure}
@@ -464,9 +470,11 @@ $\sim$5\,M tier would require weight-inherited distillation and is framed as fut
 
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops
 and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance on 16--51 unseen
-classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, 58--77\% top-5, a calibrated abstain gate,
-and 17.4\,ms real-time CPU inference in a 12.9\,MB INT8 footprint. Model size is a near-non-factor
-across a $27\times$ parameter range. The levers are, in order: the descriptor authoring method --- and
+classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 61--77\% at 16 unseen classes and 58--76\% at 51, a
+margin-ranked abstain gate,
+and 17.4\,ms real-time CPU inference in a 12.9\,MB INT8 footprint. Model size is a near-non-factor across the
+11.4--304\,M range probed in Fig.~\ref{fig:eff}, and across the 11.4--86.3\,M deployable family in
+every other experiment. The levers are, in order: the descriptor authoring method --- and
 specifically the finding that only source-grounded descriptors keep improving as the unseen label space
 grows --- honest abstention, and the frozen-backbone hybrid.
 

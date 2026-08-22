@@ -44,7 +44,7 @@ SPEC_EPOCH = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 SPEC_HELD = [.121, .176, .122, .142, .140, .138, .150, .138, .150, .148, .154]
 SPEC_BASE = 0.199
 
-# ---- EXP1 bake-off: encoder rich-descriptor zero-shot (held 8 classes, chance 12.5%) ----
+# ---- EXP1 bake-off: encoder rich-descriptor zero-shot on the 17-class pilot held set ----
 BAKEOFF = [  # (label, img params M, rich zero-shot) -- 17-class held (Coffee+Orange+Peach), chance 5.9%
     ("MobileCLIP2-S0", 11.4, 0.270),   # exact from run_all_bakeoff.json (Jul 1, Coffee-inclusive)
     ("MobileCLIP-S1", 21.5, 0.224),
