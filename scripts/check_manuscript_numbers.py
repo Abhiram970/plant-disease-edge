@@ -65,6 +65,15 @@ def facts():
 
 
 def main():
+    # Manuscript lines contain en-dashes and arrows. Printing one to a cp1252 Windows console
+    # raised UnicodeEncodeError and killed this checker partway through paper.md -- before it had
+    # examined main.tex at all, which is the file that actually gets submitted. A guard that dies
+    # silently mid-audit is worse than no guard, so force a lossy-but-surviving stdout.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
     """Prints every match with its line, because a value that is stale in one sentence is often
     legitimate in another — 82.6% is wrong for the S0 probe but right for MobileCLIP-B and for the
     WiSE-FT alpha=0 row. This flags candidates for a human to adjudicate; it does not auto-fix."""
