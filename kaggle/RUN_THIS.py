@@ -27,10 +27,12 @@ WHY IT IS SPLIT ACROSS RUNS AND NOT ONE LONG ONE
 ------------------------------------------------
 The whole study is ~15 h of compute and a Kaggle cell is killed at 12 h. A killed cell commits
 NOTHING -- including every stage that had already finished. The previous single-cell attempt lost a
-full session that way: it spent 11.8 of its 12 hours inside one shard request that never returned a
-byte. So this file stops itself at BUDGET_H, prints exactly what is left, and exits cleanly. Every
-stage writes its own result file and is skipped next time; the probe embedding cache resumes
-mid-encoder; CNNs resume from their last epoch checkpoint; the fetch resumes per shard.
+full session that way: three shards arrived at 28-150 MB/s, then shard 0002 was requested at t+548 s
+and had produced no bytes when the notebook was terminated 11.8 hours later. Nothing bounded that
+request and nothing bounded the cell, so a single stalled socket cost everything. This file stops
+itself at BUDGET_H, prints exactly what is left, and exits cleanly. Every stage writes its own result
+file and is skipped next time; the probe embedding cache resumes mid-encoder; CNNs resume from their
+last epoch checkpoint; the fetch resumes per shard, and a stalled shard is killed and retried.
 
 CPU FIRST RUN (saves your GPU quota)
 ------------------------------------
@@ -50,8 +52,9 @@ SAGE shipped two incompatible releases:
 The August release is NOT a superset: its own canonical_mapping.json marks all 14 Cotton entries
 "how": "no-canonical-crop", and the crop column of all 48 August shards contains zero Cotton rows.
 Every published number here was measured with Cotton held out, so config.py pins the May commit SHA.
-`refs/convert/parquet` is a FLOATING branch that HuggingFace regenerated for the August release --
-using it is what made the failed run resume a May-built .shards_done.json against August data.
+`refs/convert/parquet` is a FLOATING branch and now resolves to the August data, so pinning is what
+keeps this reproducible. (The 12 h failure was not caused by that mismatch -- that run read May
+throughout; see config.py. The pin prevents a future run from silently losing Cotton.)
 
 WHAT THIS RUN IS ACTUALLY FOR
 -----------------------------

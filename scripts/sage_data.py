@@ -79,9 +79,13 @@ def setup_hf_env(verbose: bool = True) -> bool:
     """Authenticate and accelerate the HF transport. Returns True if a token was found.
 
     An unauthenticated puller gets a much lower rate limit, and once throttled the connection does
-    not fail cleanly -- it stalls. That is exactly what killed the 12 h Kaggle run: shard 0002 was
-    requested at t+548 s and had still not produced a single byte when the notebook was terminated
-    11.8 hours later. Token first, hard timeouts second (see download_shard)."""
+    not fail cleanly -- it stalls.
+
+    Honest about the evidence: in the 12 h Kaggle failure the three shards that DID arrive came down
+    at 28, 141 and 150 MB/s, so throttling was not limiting throughput there. Shard 0002 was
+    requested at t+548 s and had produced no bytes 11.8 hours later -- a stall, not slow progress.
+    A token plausibly avoids a rate-limit block on a fourth large request, but that is not proven;
+    the deadline in download_shard is what actually makes the failure survivable."""
     tok = os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")
     if tok:
         os.environ["HF_TOKEN"] = os.environ["HUGGING_FACE_HUB_TOKEN"] = tok

@@ -78,18 +78,25 @@ With images attached that is roughly 15 h of compute, so **two runs**. Three if 
 ## Why the last run died
 
 It spent **11.8 of its 12 hours inside a single call** — a shard requested at t+548 s that never
-returned a byte. Four independent causes, all fixed:
+returned a byte. Two proven causes, one likely contributor, and one thing that was *not* the cause:
 
-1. **A floating dataset revision.** `SHARD_REVISION` was `refs/convert/parquet`, an auto-generated
-   branch HuggingFace **regenerated** when SAGE was reorganised on **2026-08-24**, three days before
-   the run. The job was resuming a May-built `.shards_done.json` against August data. Now pinned to
-   a commit SHA.
-2. **No token.** The log carried *"You are sending unauthenticated requests to the HF Hub"*.
-   Anonymous pulls are rate-limited, and a throttled HF connection does not fail — it stalls.
-3. **No deadline.** `hf_hub_download` has no usable wall-clock bound and its backoff will retry a
-   dead endpoint indefinitely. Shard downloads now run in a child process killed at 15 min and
-   retried — a bad shard costs minutes, not a session.
-4. **No budget.** A cell that overruns is killed and commits nothing, including finished stages.
+1. **No deadline (proven).** `hf_hub_download` has no usable wall-clock bound and its backoff will
+   retry a dead endpoint indefinitely. Shard downloads now run in a child process killed at 15 min
+   and retried — a bad shard costs minutes, not a session.
+2. **No budget (proven).** A cell that overruns is killed and commits nothing, including the stages
+   that had already finished. Every run now stops itself at `BUDGET_H = 8.5`.
+3. **No token (likely contributor, not established).** The log carried *"You are sending
+   unauthenticated requests to the HF Hub"*. But the three shards that did arrive came down at 28,
+   141 and 150 MB/s, so throttling was not limiting throughput. A token plausibly avoids a
+   rate-limit block on a fourth large request; the evidence does not prove it.
+4. **Not the cause: the floating revision.** I first attributed the hang to `refs/convert/parquet`
+   being regenerated for the August release, i.e. a May-built `.shards_done.json` resuming against
+   August data. The log disproves that. Its tqdm totals (shard 0000 = **1** batch of 512, so under
+   512 rows) match May shard 0, which holds 90 rows; August shard 0 holds 14,248 and would have
+   shown 28 batches. That run read May throughout, and `MAX_SHARDS = 13` was correct for it.
+
+   Pinning is still right — the branch resolves to August **now**, so an unpinned run would silently
+   lose Cotton — but it is a forward hazard, not the post-mortem.
 
 ### The part that matters for the paper, not just the run
 
