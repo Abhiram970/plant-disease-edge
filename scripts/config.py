@@ -200,10 +200,14 @@ PROMPT_TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {
 #
 # Every published result in this repository was measured on the MAY release, so that is what the
 # fetch is pinned to. The pin is a full commit SHA, not a branch: `refs/convert/parquet` is a
-# floating auto-conversion that HuggingFace REGENERATED for the August release, so a run resuming a
-# May-built .shards_done.json silently began pulling August data. That, plus an unauthenticated
-# (throttled, non-failing) connection and no download deadline, is what hung a Kaggle session for
-# 11.8 hours inside a single shard request.
+# floating auto-conversion, and it now serves the August data (48 shards; verified by reading every
+# footer). Any run that resolves that branch from here on gets a different dataset than the paper.
+#
+# Note on the 12 h Kaggle failure, so the record is accurate: that run was NOT a May/August mismatch.
+# Its tqdm totals (shard 0000 = 1 batch of 512, i.e. <512 rows) match May shard 0, which holds 90
+# rows; August shard 0 holds 14,248 and would have shown 28 batches. It was reading May throughout,
+# and MAX_SHARDS = 13 was correct for it. It died because a 10.7 GB shard download stalled with no
+# deadline and no budget to stop it -- see sage_data.download_shard.
 #
 # The August release is not a superset. Its canonical_mapping.json marks all 14 Cotton entries
 # "how": "no-canonical-crop", and the crop column of all 48 August shards contains zero Cotton rows.

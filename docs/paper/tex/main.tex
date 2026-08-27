@@ -64,10 +64,10 @@ descriptions written by a large language model and grounded in cited sources. Us
 crop-disease dataset and frozen compact contrastive language--image pre-training encoders, we report
 four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops
 at 3.5--12.6 times chance, averaged over four tiers, across nested held-out sets of 16, 34 and 51
-classes; accuracy is nearly flat over that range. Second, and centrally, only source-grounded descriptors scale: as the
-unseen label space triples, hand-curated symptom text degrades from 28.0\% to 20.4\% while
-source-grounded text improves from 21.7\% to 24.7\%, so auditability is not a tax but the mechanism
-that reaches new crops at all. Third, an abstain gate makes top-1 field-useful: grounded top-5 is
+classes; accuracy is nearly flat over that range. Second, descriptor authoring is the central lever:
+source-grounded text improves from 21.7\% to 24.7\% as the unseen label space triples. Because a
+keyword-retrieved symptom bank gives only 8 of 51 classes a unique entry, we separate grounding from
+per-class distinctness with an ungrounded control. Third, an abstain gate makes top-1 field-useful: grounded top-5 is
 61--77\% on 16 unseen classes and 58--76\% on 51. Fourth, the encoder runs at 17.4 ms per
 image on a laptop processor in a 12.9 MB 8-bit-integer footprint, though 8-bit quantisation proves a
 size rather than a speed lever for hybrid encoders. On known crops the same backbone reaches 82.4\%
@@ -113,11 +113,12 @@ Only the image encoder ships to the device; text prototypes are precomputed offl
 tiers, they diagnose unseen crops at 3.5--12.6$\times$ chance across 16-, 34- and 51-class held-out
 sets (the 11.4\,M tier alone spans 2.9--11.3$\times$), and accuracy is flat from 11\,M
 to 300\,M --- model size is not the bottleneck (Sections~\ref{sec:flat}--\ref{sec:desc}).
-\item \textbf{A nested scale study showing that only source-grounded descriptors scale.} Detail is the
-first lever (+15.2 points over class names at 16 classes), but as the unseen label space triples,
-hand-curated descriptors \emph{degrade} while LLM source-grounded ones \emph{improve}, overtaking them
-by 4.3 points at 51 classes. Auditability is therefore not a cost but the only authoring route that
-reaches new crops (Section~\ref{sec:desc}).
+\item \textbf{A nested scale study isolating what descriptor authoring actually buys.} Symptom text
+beats a bare class name at every scale (+8.8 points at 16 classes for source-grounded text), and
+source-grounded descriptors keep improving as the unseen label space triples. We further show that
+the usual comparison against a keyword-retrieved symptom bank is confounded by prototype collisions
+rather than by grounding, and separate the two with an ungrounded-generation control
+(Section~\ref{sec:desc}).
 \item \textbf{A margin-ranked abstain gate plus top-5} makes the modest top-1 field-useful
 (Section~\ref{sec:abstain}).
 \item \textbf{A per-tier edge benchmark} with real INT8 sizes and CPU latency, and a quantisation
@@ -270,7 +271,7 @@ a faithful evaluation would need the authors' inference pipeline; we do not rest
 \end{figure}
 
 
-\subsection{Descriptor detail is the lever --- and only source-grounded descriptors scale}
+\subsection{Descriptor authoring is the lever}
 \label{sec:desc}
 
 Table~\ref{tab:scale} and Figs.~\ref{fig:descscale} and~\ref{fig:descabl} carry the paper's central result.
@@ -279,25 +280,40 @@ Table~\ref{tab:scale} and Figs.~\ref{fig:descscale} and~\ref{fig:descabl} carry 
 \centering
 \includegraphics[width=\linewidth]{fig_descriptor_scaling.png}
 \caption{Mean zero-shot accuracy over the four deployable encoders as the unseen label space grows.
-Hand-curated descriptors degrade; source-grounded descriptors improve and overtake them.}
+Source-grounded descriptors improve as the label space widens. The keyword-retrieved bank is shown
+for reference only: its prototypes collide (Section~\ref{sec:desc}), so the gap between the two is
+not a measurement of grounding.}
 \label{fig:descscale}
 \end{figure}
 
 \paragraph{Detail is the first lever} Any full symptom description beats a class-name prompt. At the
-focused scale A the gain is 15.2 points on average, closely matching the 14--16 points that SAGE
-reports for symptom knowledge in a cloud setting, here reproduced on frozen 11--86\,M edge encoders.
+focused scale A, source-grounded text gains 8.8 points on average over a bare class name on frozen
+11--86\,M edge encoders.
 
-\paragraph{Hand-curation does not scale; source-grounding does} As the unseen label space grows from 16
-to 51 classes, hand-curated descriptors degrade monotonically (28.0\%, 24.3\%, 20.4\%) while LLM
-source-grounded descriptors improve (21.7\%, 23.5\%, 24.7\%). At configuration C, grounded beats rich
-for \emph{all four} encoders (mean $+4.3$ points) and is the only strategy that still clearly beats a
-bare class name. The mechanism is coverage rather than cleverness: the hand-written symptom bank was
-authored against the three anchor crops and thins out as new crops enter, whereas the generated
+\paragraph{Source-grounded descriptors keep improving with scale} As the unseen label space grows
+from 16 to 51 classes, source-grounded descriptors improve monotonically (21.7\%, 23.5\%, 24.7\%),
+and at configuration C they are the strategy that most clearly beats a bare class name. The generated
 registry covers 156 of 217 classes under a uniform schema.
 
-This inverts the conclusion available from a single split. Source-grounding is not merely an
-auditability tax paid for equal accuracy --- it is what makes the descriptor approach extend to new
-crops at all, which is precisely the capability this paper claims. Measured against chance, the
+\paragraph{Why we do not attribute this to grounding alone}
+%% BLOCKING: the re-measured `rich` accuracies and the ungrounded control arm are produced by
+%% kaggle/RUN_THIS.py. Until they land, no delta between the arms may appear anywhere in this paper.
+%% The PENDING marker below is deliberate -- check_compag_compliance.py fails on it, which is what
+%% stops this draft being submitted with the comparison unresolved.
+The natural comparison is against \texttt{rich}, a keyword-retrieved symptom bank, but that
+comparison does not isolate grounding. Retrieval assigns text by matching a disease name against 32
+generic keys, so distinct classes routinely receive identical prototypes. At configuration C only 8
+of the 51 held-out classes receive a unique entry; 17 fall back to the bare class name and 26 share
+text with another class, the largest groups being seven classes keyed on \emph{spot} and five on
+\emph{blight}. Collisions grow with the label space (2, 14 and 26 classes at A, B and C) while
+coverage stays flat (68.8\%, 61.8\%, 66.7\%), so any advantage over this baseline measures per-class
+\emph{distinctness}, not sourcing. This is a limitation of symptom-bank retrieval as we implemented
+it, not of per-class generation methods such as DCLIP or CuPL, which emit text per class and cannot
+collide. To separate the two effects we add an ungrounded-generation control: the same model, schema
+and fall-through behaviour, sampled at temperature 1.0 over three seeds, with only the requirement to
+cite a retrievable source removed. PENDING-UNGROUNDED-ARM.
+
+Measured against chance, the
 grounded head becomes \emph{relatively stronger} as the problem gets harder, from 3.5$\times$ to
 12.6$\times$.
 
@@ -438,11 +454,12 @@ frozen; the novelty is the source-grounded descriptor head, the margin-ranked ab
 knob, and the real-time edge packaging. Because accuracy is flat with size, the reason to offer a
 family is the measured latency/size Pareto, not accuracy.
 
-\paragraph{Source-grounding is a trust contribution and, at scale, an accuracy one} On a focused
-three-crop set hand-curation wins, which is why a single-split study would conclude that auditability
-is a free but optional extra. The nested design shows the opposite. Hand-curation does not scale
-because it cannot --- it requires an expert per crop, whereas a grounded generator requires a source
-per crop. We consider this the paper's most transferable claim beyond agriculture.
+\paragraph{Source-grounding is a trust contribution, and the authoring route that scales} Grounded
+generation requires one retrievable source per class, where hand-curation requires an expert per crop
+and, in the retrieval form used here, cannot even keep prototypes distinct as the label space grows.
+That asymmetry, rather than any measured accuracy gap, is what we consider the paper's transferable
+claim beyond agriculture: whether the sourcing constraint also costs accuracy is exactly what the
+ungrounded control in Section~\ref{sec:desc} is there to answer.
 
 \paragraph{Honesty on absolutes} Fine-grained cross-crop top-1 is modest (17--29\%); we lead with top-5
 and the margin-ranked abstain gate as the field-relevant metrics, and frame cross-crop transfer as a hard
@@ -486,7 +503,7 @@ margin-ranked abstain gate,
 and 17.4\,ms real-time CPU inference in a 12.9\,MB INT8 footprint. Model size is a near-non-factor across the
 11.4--304\,M range probed in Fig.~\ref{fig:eff}, and across the 11.4--86.3\,M deployable family in
 every other experiment. The levers are, in order: the descriptor authoring method --- and
-specifically the finding that only source-grounded descriptors keep improving as the unseen label space
+specifically the finding that source-grounded descriptors keep improving as the unseen label space
 grows --- honest abstention, and the frozen-backbone hybrid.
 
 %% Tables are \input at the point each is discussed (Section 4), not collected here, so a float
