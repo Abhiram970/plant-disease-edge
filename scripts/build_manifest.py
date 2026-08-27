@@ -1,7 +1,7 @@
 """
 Phase A1 (lightweight) — build manifest.csv from an existing folder-of-classes dataset.
 
-The full streaming builder (build_sage_subset.py) was never needed once run_all.py fetched the
+The full streaming builder was never needed once the shard fetch produced the
 crops to disk. This scans DATASET_DIR (`<Crop>___<Disease>/<hash>.jpg`) and emits the manifest that
 build_descriptors.py and the split/leakage tooling expect:
 

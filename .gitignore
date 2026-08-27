@@ -48,3 +48,7 @@ Thumbs.db
 results/onnx/
 results/**/*.onnx
 docs/paper/submission/
+
+# build artifact -- regenerate with scripts/build_submission.py
+docs/paper/compag_submission.zip
+docs/paper/compag_submission/

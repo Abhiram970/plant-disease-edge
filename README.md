@@ -1,94 +1,119 @@
-# Plant-Disease-Edge
+# Plant-Disease-Edge — compact VLMs for cross-crop diagnosis at the edge
 
-A **family of compact (11–93M) vision–language models** for crop-disease diagnosis that is **trained for
-high real-time accuracy on known crops** and does **zero-shot diagnosis on unseen crops** via
-source-grounded symptom descriptors — deployable at $0/image on phones, laptops, and small NPUs.
+**v2** · manuscript for *Computers and Electronics in Agriculture* (Elsevier)
 
->
-> **Status (Jun 2026):** Phase-0 de-risk complete — the hybrid architecture is **validated on real SAGE
-> data**. Full evidence trail: [`docs/paper/findings_log.md`](docs/paper/findings_log.md).
+One **frozen** compact CLIP image encoder with two heads and an abstain router:
+
+- a **trained linear probe** for accurate real-time diagnosis on known crops, and
+- a **zero-shot descriptor head** that diagnoses crops absent from training by matching image
+  embeddings to LLM-authored, source-grounded symptom text.
+
+Only the image encoder ships to the device; text prototypes are precomputed offline.
 
 ---
 
-## The idea in one line
+## Run everything
 
-Frontier VLM disease agents (e.g. **SAGE**, **SCOLD**) are accurate but cloud-scale. We build a deployable
-compact VLM family: a **frozen image–text backbone** + a **trained head for seen crops** (high accuracy)
-+ a **descriptor-driven zero-shot head for unseen crops** + **WiSE-FT** (train without losing
-generalization) + an **abstain gate** — at $0/image on the edge.
+Paste **`kaggle/RUN_THIS.py`** into a Kaggle notebook as one cell. The whole study is in that file:
+data, descriptor generation, zero-shot at three scales, the ungrounded control arm, abstention,
+the label-corrected run, the seen probe, leave-one-crop-out, and 14 supervised CNN baselines.
 
-## What's validated (Phase-0)
+It is ~15 h of compute and a Kaggle cell is killed at 12 h, so it stops itself at `BUDGET_H`,
+prints what is left, and exits cleanly. Publish its Output as a Dataset, attach that to a fresh
+copy, run the same file again — nothing is ever redone. **Two runs**, or three if you let it fetch.
 
-- **A frozen compact CLIP does cross-crop zero-shot** via source-grounded descriptors (MobileCLIP2-S0, 11M).
-- **Descriptor quality is the lever:** rich vs bare = **+8–15pp** (matches SAGE's +14–16pp), even at 11M.
-- **The hybrid works on ONE 11M backbone:** trained head **67%** on seen crops **+** zero-shot **~27%** on
-  unseen crops, simultaneously.
-- **Encoder bake-off:** SigLIP2 best teacher (31.5%); lightweight tiers 22–29%; **BioCLIP2 poor (dropped)**.
-- **Training a tiny model from scratch / specializing on seen does NOT improve unseen zero-shot** — so we
-  keep frozen backbone + descriptors for unseen, and train only the seen head (+ WiSE-FT).
+Full instructions, secrets and failure modes: **[`kaggle/RUNBOOK.md`](kaggle/RUNBOOK.md)**.
 
-## The model family
+To skip the 114 GB fetch, build the images locally and upload the 1.7 GB result:
 
-| Class | Base (open_clip) | Image-enc params | Device |
-|---|---|---|---|
-| Lightweight | MobileCLIP2-S0 · MobileCLIP-S1 · MobileCLIP2-S2 | ~11 / 21 / 35M | NPU · phone · laptop |
-| Heavyweight | MobileCLIP-B · SigLIP2 | ~86 / 93M | workstation |
-| Stretch (PoC) | distilled ~5M (TinyVLM / CLIP-RD) | ~5M | MCU — future work |
-
-Only the **image encoder** deploys; the text encoder runs offline to precompute descriptor prototypes.
-
-## Data
-
-**SAGE only** (`tirtho149/SAGE`, MIT) — parquet-shard fetch on Kaggle (never the ~133 GB). Train crops:
-Tomato/Soybean/Apple/Corn/Grape/Potato/Rice. Held-out (zero-shot): Coffee/Orange/Peach/Pumpkin.
-Descriptors are **source-grounded** `{value, source_url, verbatim_quote}` — auditable, hallucination-resistant.
-
-## Run the experiments
-
-Self-contained Kaggle script (no clone/auth needed): upload **`kaggle/run_all.py`**, GPU + Internet ON,
-then `%run run_all.py` — runs EXP1 (encoder bake-off) + EXP2 (hybrid: train seen / keep unseen) + EXP3
-(fine-tune + WiSE-FT). The consolidated, importable pipeline lives in **`scripts/`** (`evaluate.py`,
-`sage_data.py`, `descriptors.py`, `zeroshot.py`). Figures: `python docs/paper/make_figures.py`.
-
-**Edge/quantization benchmark (CPU, no GPU needed):** upload **`kaggle/benchmark_quantization.py`** and
-`%run benchmark_quantization.py` — measures FP32 / FP16 / INT8-dynamic / INT8-static(QDQ) latency and
-diagnoses quantization coverage. See [`kaggle/README.md`](kaggle/README.md).
-
-Full plan, architecture, acceptance criteria: **[`PROJECT_GUIDE.md`](PROJECT_GUIDE.md)**.
-
-## Getting started (new teammate)
-
-1. Read **[`PROJECT_GUIDE.md`](PROJECT_GUIDE.md)** (the plan) then **[`CONTRIBUTING.md`](CONTRIBUTING.md)**
-   (roles, Kaggle accounts, env, git).
-2. Set up the environment (CONTRIBUTING §3) and grab your role + Kaggle account (§1–2).
-3. Current state: **Phase-0 de-risk complete (hybrid validated)**; next is Phase A (clean data incl.
-   Coffee via a saved Kaggle Dataset, source-grounded descriptors, full ablation + on-device benchmark).
-
-## Repo layout
-
-```
-PROJECT_GUIDE.md   # canonical plan (read first)
-CONTRIBUTING.md    # how we work: roles, Kaggle, env, git
-scripts/           # consolidated pipeline: config, sage_data, descriptors, zeroshot, evaluate
-kaggle/            # self-contained Kaggle drivers: run_all.py (EXP1/2/3), benchmark_quantization.py
-kaggle_cnns/       # Kaggle kernel for the supervised CNN baselines
-descriptors/       # per-crop source-grounded symptom JSON (Phase A2)
-logs/              # run logs — the reproducibility evidence trail (tracked)
-docs/paper/        # paper.md draft, findings_log.md (evidence trail), make_figures.py, figures/
-docs/archive/      # superseded context/result snapshots (dated)
-docs/assets/       # sunburst.png, kb_sources.png
+```bash
+python scripts/prepare_upload.py --dry-run    # check the plan
+python scripts/prepare_upload.py              # 84,123 images at 288 px
 ```
 
-Weights, datasets, and embedding caches are **not** in git (see `.gitignore`) — they live on Kaggle
-Datasets / Hugging Face, linked from the relevant phase.
+---
 
-## Data & licensing
+## The dataset is pinned, and that is load-bearing
 
-We use the **SAGE** dataset (Arshad et al., arXiv 2605.09768; HF `tirtho149/SAGE`, MIT). We publish
-only our filtered subset, embeddings, and trained weights. Underlying SAGE sub-datasets keep their own
-terms — we don't rehost the full corpus. See `PROJECT_GUIDE.md §2`.
+SAGE shipped two incompatible releases:
 
-## History
+| release | commit | shards | size | held-out crops | classes at C |
+|---|---|---|---|---|---|
+| **2026-05-07** | `bc9bd2899f` | 13 | 114 GB | **8** | **51** |
+| 2026-08-24 | `dde0de8633` | 48 | 21 GB | 7 | 48 |
 
-Supersedes an earlier tomato-ensemble project, kept separately at
-`github.com/Abhiram970/Plant-disease`. This repo is a clean slate for the SAGE-distillation paper.
+August is **not a superset** — its own `canonical_mapping.json` marks all 14 Cotton entries
+`"how": "no-canonical-crop"`, and the crop column of all 48 August shards holds zero Cotton rows.
+Every number here was measured with Cotton held out, so `scripts/config.py` pins the May commit.
+`refs/convert/parquet` is a floating branch and now resolves to August; do not unpin without
+re-measuring every zero-shot number.
+
+---
+
+## Open: the claim under test
+
+The earlier headline — *"only source-grounded descriptors scale"* — is **retracted**. It compared
+`grounded` against `rich`, a keyword-retrieved bank in which only **8 of 51** held-out classes get a
+unique entry (17 fall back to the bare class name, 26 share text), so the gap measured per-class
+*distinctness*, not sourcing. The `rich` accuracies were also produced by a matcher that could not
+reach any of the 13 multi-word bank keys.
+
+`RUN_THIS.py` settles it with two matched arms generated by the same model in the same run,
+differing only in whether a retrievable source is required:
+
+- `ungrounded ≈ grounded_matched` → grounding is free and buys auditability
+- `ungrounded < grounded_matched` → the sourcing constraint itself helps
+
+Either is publishable. **No delta goes in the manuscript until it lands**, and not from fewer than
+three seeds. `main.tex` carries a `PENDING-UNGROUNDED-ARM` marker that
+`scripts/check_compag_compliance.py` fails on, so the draft cannot be submitted with the question
+open.
+
+---
+
+## Layout
+
+```
+kaggle/RUN_THIS.py      the entire study, one Kaggle cell
+kaggle/RUNBOOK.md       how to run it, and what went wrong before
+scripts/                config, data, descriptors, evaluation, checkers
+descriptors/            the source-grounded symptom registry (committed)
+docs/paper/tex/         main.tex + generated tab_*.tex  <- the submission
+docs/paper/*.json       result files; every table and figure is generated from these
+results/, logs/         per-run outputs and per-epoch training logs
+```
+
+**No number in the manuscript is typed by hand.** After a run:
+
+```bash
+python docs/paper/make_tables.py --write
+python docs/paper/make_tex_tables.py
+python docs/paper/make_figures.py
+python scripts/collect_results.py
+python scripts/build_submission.py     # -> Overleaf-ready package
+```
+
+Guards, all of which have caught something real:
+
+```bash
+python scripts/check_compag_compliance.py    # journal rules; fails on PENDING placeholders
+python scripts/check_tex_refs.py             # labels, refs, citations, bib
+python scripts/check_manuscript_numbers.py   # prose vs the result JSONs
+python scripts/descriptor_coverage.py        # collision table, never hand-counted
+```
+
+## Submission blockers
+
+- **`PENDING-ZENODO-DOI`** — COMPAG Option C requires the data deposited and linked.
+- **`PENDING-UNGROUNDED-ARM`** — clears when the control arm lands.
+- The 181-URL pass in `docs/paper/SOURCE_CHECKLIST.md`. Auditability is the load-bearing claim, so
+  this is critical path; 16 of 217 records are page-verified.
+
+## Setup
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env     # LAVA_API_KEY or ANTHROPIC_API_KEY for descriptor generation
+```
+
+`.env`, `kaggle.json`, API keys and model weights are git-ignored and must never be committed.

@@ -15,7 +15,7 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 | 8 | Encoder bake-off | rich zero-shot, **3 held crops, 17 classes**, chance 5.9% | **SigLIP2 31.5%** (best) > S2 28.7% > S0 26.9% > S1 22.5% > BioCLIP2 9.6% (poor, drop). SCOLD loaded (class LVL) but **5.3% — adapter issue, not valid** (RoBERTa from base; preprocess mismatch) | SigLIP2=teacher; lightweight ~22-29% (noisy ranking); drop BioCLIP2; SCOLD needs inference.py |
 | 9 | Train seen / keep unseen | MobileCLIP2-S0 11M, linear probe, 80 seen classes, 3 held crops | **SEEN trained 67.0% vs zero-shot 8.5%** (8× win); **UNSEEN zero-shot 26.9% preserved** | **HYBRID VALIDATED** — train seen, zero-shot unseen, one frozen 11M model |
 | 10 | Fine-tune + WiSE-FT (EXP3) | MobileCLIP2-S0, ft 5 epochs, alpha sweep | theta0 ALIASING BUG (deepcopy) made alpha=0 = forgotten model (15.9% not 26.9%); **FIXED** (reload pristine weights) | superseded by run 12 |
-| 12 | **Nested scale study** | 4 encoders × 4 descriptor strategies at **16 / 34 / 51** unseen classes (A ⊂ B ⊂ C) | mean `rich` **28.0 → 24.3 → 20.4 %** (degrades) vs mean `grounded` **21.7 → 23.5 → 24.7 %** (improves); at C `grounded` wins on **all 4** encoders (+4.3 pp mean) | **REVERSES run 7's reading** — hand-curation does not scale, source-grounding does |
+| 12 | **Nested scale study** | 4 encoders x 4 descriptor strategies at **16 / 34 / 51** unseen classes (A subset B subset C) | mean `grounded` **21.7 -> 23.5 -> 24.7 %** (improves). The `rich` column is **RETRACTED**: it came from a matcher that could not reach any of the 13 multi-word bank keys, and the bank collides on 26 of 51 classes at C | **Do not cite a rich-vs-grounded delta.** The comparison measured per-class distinctness, not sourcing; the ungrounded control arm settles it |
 | 13 | **Seen-head scaling** | linear probe, 4 encoders × 3 nested configs (97 / 154 / 166 seen classes; 42,326 / 62,043 / 69,919 imgs), one data snapshot | at C: **82.4 / 81.1 / 82.5 / 82.6 %**. Flat across a 7.6× parameter range (≤1.5 pp spread at every scale) AND **rising** with the label space (+3.3 to +3.5 pp from 97→166 cls) | seen side is pretraining-bound like the unseen side, but scales in the **opposite direction** |
 | 14 | WiSE-FT, full data | MobileCLIP2-S0, 166 seen cls, α ∈ {0, 0.5, 1} | 82.6/17.0 → **87.7/16.3** → 90.3/8.8 | α=0.5 buys **+5.1 pp seen for −0.7 pp unseen** — far better trade than the 80-class pilot (−11.6 pp) |
 | 15 | Supervised CNN baselines | ResNet-50 / MNv3-S / MNv4-conv-S, same 166 classes | **88.4 / 84.3 / 84.1 %** seen, **0 unseen (structural)** | CNNs win on seen; the descriptor head buys a capability they cannot have |
@@ -33,7 +33,7 @@ descriptors unless noted. Student backbone for distill runs = `edgenext_small` (
 - **Works:** accuracy flat 11M→300M ⇒ size is not the bottleneck (efficiency pillar).
 - **Does NOT work:** training a small model to *learn/improve* the alignment — from scratch (≈chance) or specialize-on-seen (−4.5pp, forgetting). Literature-consistent (WiSE-FT).
 - **Works, and is the headline:** descriptor *authoring method* decides whether the approach scales —
-  only source-grounded descriptors keep improving as the unseen label space grows (run 12).
+  source-grounded descriptors keep improving as the unseen label space grows (run 12).
 - **Resolved:** the "descriptor quality" lever is no longer untested. Detail beats class names by
   +15.2 pp at 16 classes; beyond that, grounding is what carries it.
 
@@ -78,7 +78,7 @@ inference (1290–2536 convert nodes). Dynamic quant instead converts every conv
 
 ## Implications for the paper
 - Headline = **descriptor-driven cross-crop zero-shot on FROZEN compact edge VLMs**, with the
-  scale study as the sharp claim (**only source-grounded descriptors scale**); efficiency Pareto and
+  scale study as the sharp claim (**descriptor authoring is the lever**); efficiency Pareto and
   abstain are support. Specialization is demoted to a seen-crop booster.
 - Must report **top-5 / abstain-gated** accuracy (fine-grained cross-crop top-1 is modest, 17–29 %).
 - Contribution must be *built by us* (descriptor pipeline + family + INT8 + benchmark), not off-the-shelf inference, to clear CompAg review.

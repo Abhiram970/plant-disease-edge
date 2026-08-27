@@ -91,7 +91,9 @@ them would invite "old, lab-only" reviews and there's no need).
 
 **Official sources (confirmed):**
 - **Images (Hugging Face):** `https://huggingface.co/datasets/tirtho149/SAGE`
-  — **~1.01M rows / ~114 GB, MIT license**, stored as **Parquet shards**, ONE flat `train` split,
+  — pinned to revision `bc9bd2899f` (7 May 2026): **13 Parquet shards / 114 GB, MIT license**, ONE
+  flat `train` split. SAGE was re-released on 24 Aug 2026 as 48 shards / 21 GB with Cotton dropped;
+  see scripts/config.py. Do not unpin without re-measuring every zero-shot number.
   columns `{image: bytes, crop: str, disease: str, filename: str}`. **NOT per-crop downloadable.**
 - **Code + symptom registry KB:** `https://github.com/tirtho149/SAGE` (the per-disease symptom
   knowledge base + `open_agentic/prompt.py` live here — this is the descriptor goldmine).
