@@ -1,7 +1,7 @@
 """
 Emit Elsevier-ready LaTeX tables (booktabs) from the SAME result JSONs make_tables.py reads.
 
-WHY: the manuscript exists as Markdown (paper.md) and LaTeX (tex/main.tex). Maintaining tables in
+WHY: the manuscript is tex/main.tex and its tables are generated. Maintaining tables in
 both by hand is how the paper drifted from the data three times. main.tex \\input{}s these files, so
 there is exactly one source of truth -- the JSONs -- for every number in either format.
 

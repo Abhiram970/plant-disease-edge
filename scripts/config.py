@@ -124,7 +124,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_ROOT = Path(os.environ.get("PDE_DATA_ROOT", REPO_ROOT / "data"))
 
 # Image root. Override with PDE_DATASET_DIR to reuse an existing folder-of-classes build
-# (e.g. the run_all.py output at C:\kaggle\working\exp_data) WITHOUT moving 12k files.
+# (e.g. an existing build at C:\kaggle\working\exp_data) WITHOUT moving the files.
 DATASET_DIR = Path(os.environ.get("PDE_DATASET_DIR", DATA_ROOT / "dataset_cleaned"))  # <Crop>___<Disease>/<f>.jpg
 MANIFEST_CSV = DATA_ROOT / "manifest.csv"     # path, crop, disease, filename, split_role
 SPLITS_DIR = DATA_ROOT / "splits"             # train/val/test/heldout/ood .csv

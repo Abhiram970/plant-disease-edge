@@ -29,7 +29,7 @@ subset **once**, **save `DATASET_DIR` as a Kaggle Dataset**, and **attach** it n
 then skips downloading and gets all crops (incl. Coffee) with a clean taxonomy.
 
 ## Result → paper
-`zeroshot_eval.json` feeds `docs/paper/make_figures.py` and the tables in `docs/paper/paper.md`.
+`zeroshot_eval.json` feeds `docs/paper/make_figures.py` and the tables in `docs/paper/TABLES.md`.
 
 Validated family: **MobileCLIP2-S0 ~11M / MobileCLIP-S1 ~21M / MobileCLIP2-S2 ~35M** (image-encoder
 params; only the image encoder deploys). A ~5M tier is not off-the-shelf — it would need TinyCLIP-style

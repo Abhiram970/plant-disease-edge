@@ -1,10 +1,10 @@
 """
-Cross-check the headline numbers in BOTH manuscripts against the result JSONs.
+Cross-check the manuscript's headline numbers against the result JSONs.
 
-WHY: paper.md and tex/main.tex are two renderings of the same work, and the tables are generated but
-the prose is not. main.tex silently kept 82.6% for the seen probe and 88.4% for the best CNN after
-both were re-measured — the kind of drift that survives every proofread because the sentence still
-reads fine. This recomputes each headline from the JSONs and greps for contradicting values.
+WHY: the tables are generated from the JSONs but the prose is not. main.tex silently kept 82.6% for
+the seen probe and 88.4% for the best CNN after both were re-measured — the kind of drift that
+survives every proofread because the sentence still reads fine. This recomputes each headline from
+the JSONs and greps for contradicting values.
 
     python scripts/check_manuscript_numbers.py        # exit 1 if any manuscript disagrees
 """
@@ -18,7 +18,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
 
 DOC = C.REPO_ROOT / "docs" / "paper"
-MANUSCRIPTS = [DOC / "paper.md", DOC / "tex" / "main.tex"]
+# tex/main.tex is the single manuscript. The Markdown rendering (paper.md) was deleted in v2:
+# maintaining two renderings of the same prose is exactly the drift this checker exists to catch,
+# and the Markdown copy was already carrying four superseded values.
+MANUSCRIPTS = [DOC / "tex" / "main.tex"]
 
 
 def load(name):
@@ -66,9 +69,9 @@ def facts():
 
 def main():
     # Manuscript lines contain en-dashes and arrows. Printing one to a cp1252 Windows console
-    # raised UnicodeEncodeError and killed this checker partway through paper.md -- before it had
-    # examined main.tex at all, which is the file that actually gets submitted. A guard that dies
-    # silently mid-audit is worse than no guard, so force a lossy-but-surviving stdout.
+    # raised UnicodeEncodeError and killed this checker mid-audit, so it could report nothing while
+    # having examined almost nothing. A guard that dies silently is worse than no guard, so force a
+    # lossy-but-surviving stdout.
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:
@@ -98,7 +101,7 @@ def main():
         print(f"[REVIEW] {hits} occurrence(s) of a superseded value. Each needs a human decision: "
               f"the same number can be stale in the abstract and correct in a table row.")
         return 1
-    print("[OK] no superseded headline values found in either manuscript.")
+    print("[OK] no superseded headline values found in the manuscript.")
     return 0
 
 
