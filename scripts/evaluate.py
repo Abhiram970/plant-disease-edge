@@ -43,7 +43,8 @@ def ensure_deps():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strategies", nargs="+", default=["bare", "crude", "rich"],
-                    help="bare | crude | rich | grounded | grounded_visual | ungrounded")
+                    help="bare | crude | rich | grounded | grounded_visual | ungrounded | "
+                         "grounded_matched (same model as ungrounded -- the clean sourcing test)")
     ap.add_argument("--ungrounded-seed", type=int, default=None,
                     help="which descriptors_ungrounded/<seed>/ set to use; also tags the "
                          "output filename so seeds do not overwrite each other")

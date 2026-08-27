@@ -113,6 +113,11 @@ def main():
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = Path(args.out) if args.out else C.RESULTS_DIR / f"metrics_abstain_{args.exp}.json"
+    # Stamped because this file reports a `rich` arm, and `rich` came from a matcher that could not
+    # reach any multi-word bank key. An unstamped file predates the fix and must be recomputed, not
+    # skipped by a "result already exists" guard.
+    if isinstance(out, dict):
+        out = {"matcher_normalised": True, **out}
     out_path.write_text(json.dumps(out, indent=2))
     print(f"\n[metrics] saved {out_path}")
     print("[metrics] top-5 and acc@cov are the field-relevant, reviewer-defensible numbers.")
