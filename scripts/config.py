@@ -192,11 +192,42 @@ STRETCH_TIERS = {
 PROMPT_TEMPLATES = ["a photo of {}", "a close-up leaf photo: {}", "a leaf with {}"]
 
 # --- SAGE parquet-shard fetch (the working data path; NOT row-streaming) ----
-# `refs/convert/parquet` has 13 shards (0000..0012); crops are scattered/clustered across them.
-# Front-load shard 0 (small) + shard 8 (holds Peach); auto-stop once enough crops are covered.
-SHARD_REVISION = "refs/convert/parquet"
-SHARD_ORDER = [0, 8, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12]
-MAX_SHARDS = 13
+# THE DATASET WAS REWRITTEN UNDER THIS PAPER. Read this before changing anything here.
+#
+# SAGE shipped two incompatible releases:
+#   2026-05-07  bc9bd2899f  13 shards, 114 GB, `data/train-000NN-of-00013.parquet`
+#   2026-08-24  dde0de8633  48 shards,  21 GB, re-canonicalised crop/disease names
+#
+# Every published result in this repository was measured on the MAY release, so that is what the
+# fetch is pinned to. The pin is a full commit SHA, not a branch: `refs/convert/parquet` is a
+# floating auto-conversion that HuggingFace REGENERATED for the August release, so a run resuming a
+# May-built .shards_done.json silently began pulling August data. That, plus an unauthenticated
+# (throttled, non-failing) connection and no download deadline, is what hung a Kaggle session for
+# 11.8 hours inside a single shard request.
+#
+# The August release is not a superset. Its canonical_mapping.json marks all 14 Cotton entries
+# "how": "no-canonical-crop", and the crop column of all 48 August shards contains zero Cotton rows.
+# Re-fetching from August therefore yields 7 held-out crops and 48 classes at scale C, not the 8 and
+# 51 this paper reports. Do not "update" this pin without re-measuring every zero-shot number.
+SAGE_REVISION_MAY = "bc9bd2899f19379be29c7a99d37d2e89bf8e430d"   # 13 shards, 114 GB  <- PINNED
+SAGE_REVISION_AUG = "dde0de8633"                                  # 48 shards,  21 GB  (no Cotton)
+
+SHARD_REVISION = os.environ.get("PDE_SAGE_REVISION", SAGE_REVISION_MAY)
+_AUG = SHARD_REVISION.startswith(SAGE_REVISION_AUG[:10]) or SHARD_REVISION == "refs/convert/parquet"
+
+if _AUG:
+    N_SHARDS = 48
+    SHARD_FILENAME = "default/train/{si:04d}.parquet"
+    _FIRST = [32, 15, 39, 25, 0, 1, 26, 27, 2, 9, 10, 3, 4, 29, 23, 24]
+else:
+    N_SHARDS = 13
+    SHARD_FILENAME = "data/train-{si:05d}-of-00013.parquet"
+    # shard 0 is small (265 MB) and shard 8 carries Peach; front-load both so a truncated fetch
+    # still produces a usable held-out set.
+    _FIRST = [0, 8]
+
+SHARD_ORDER = _FIRST + [s for s in range(N_SHARDS) if s not in _FIRST]
+MAX_SHARDS = N_SHARDS
 CAP_HELD_PER_CLASS = 600     # raised for the 18-crop build (ample disk); tighter CIs
 CAP_TRAIN_PER_CLASS = 1000
 MIN_HELD_CROPS = len(HELDOUT_CROPS)   # cover ALL held crops (some live in late shards -> full pull)
