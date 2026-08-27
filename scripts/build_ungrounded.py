@@ -49,8 +49,21 @@ UNGROUNDED_SYSTEM = (
 )
 
 
-def fill_one(crop: str, disease: str, seed: int) -> dict:
-    """One descriptor, ungrounded. Temperature is non-zero so seeds actually differ."""
+DEFAULT_MODEL = "claude-sonnet-5"
+
+
+def model_name() -> str:
+    return os.environ.get("PDE_LLM_MODEL", DEFAULT_MODEL)
+
+
+def fill_one(crop: str, disease: str, seed: int, arm: str = "ungrounded") -> dict:
+    """One descriptor for `arm`. Temperature is non-zero so seeds actually differ.
+
+    `arm` selects only the system prompt. Everything else -- model, schema, temperature, seed,
+    parsing, fall-through -- is identical, which is the whole point: the two arms must differ in
+    exactly one respect or the comparison measures something other than grounding."""
+    system = BD.GROUNDING_SYSTEM if arm == "grounded" else UNGROUNDED_SYSTEM
+    model = model_name()
     lava = os.environ.get("LAVA_API_KEY", "")
     prompt = BD._user_prompt(crop, disease)
     if lava:
@@ -58,21 +71,28 @@ def fill_one(crop: str, disease: str, seed: int) -> dict:
         client = OpenAI(api_key=lava,
                         base_url=os.environ.get("LAVA_BASE_URL", "https://api.lava.so/v1"))
         resp = client.chat.completions.create(
-            model=os.environ.get("PDE_LLM_MODEL", "claude-sonnet-4-5"),
-            max_tokens=1200, temperature=1.0, seed=seed,
-            messages=[{"role": "system", "content": UNGROUNDED_SYSTEM},
+            model=model, max_tokens=1200, temperature=1.0, seed=seed,
+            messages=[{"role": "system", "content": system},
                       {"role": "user", "content": prompt}],
         )
-        return BD._parse_descriptor(resp.choices[0].message.content, crop, disease)
-
-    import anthropic
-    client = anthropic.Anthropic()
-    msg = client.messages.create(
-        model=os.environ.get("PDE_LLM_MODEL", "claude-sonnet-4-5"),
-        max_tokens=1200, temperature=1.0, system=UNGROUNDED_SYSTEM,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return BD._parse_descriptor(msg.content[0].text, crop, disease)
+        rec = BD._parse_descriptor(resp.choices[0].message.content, crop, disease)
+    else:
+        import anthropic
+        client = anthropic.Anthropic()
+        msg = client.messages.create(
+            model=model, max_tokens=1200, temperature=1.0, system=system,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        rec = BD._parse_descriptor(msg.content[0].text, crop, disease)
+    # Provenance, stamped per record. The shipped grounded registry carries none, so there is no way
+    # to prove which model wrote it -- which is exactly why this arm regenerates its own matched
+    # grounded set instead of comparing against text of unknown origin.
+    if isinstance(rec, dict):
+        rec["model"] = model
+        rec["arm"] = arm
+        rec["seed"] = seed
+        rec["temperature"] = 1.0
+    return rec
 
 
 def main():
@@ -81,18 +101,25 @@ def main():
     ap.add_argument("--which", default="heldout", choices=["all", "train", "heldout"],
                     help="heldout is enough for the zero-shot comparison and is ~4x cheaper")
     ap.add_argument("--limit", type=int, default=0, help="stop after N classes (smoke test)")
+    ap.add_argument("--arm", default="ungrounded", choices=["ungrounded", "grounded"],
+                    help="ungrounded = sourcing constraint removed. grounded = the SAME model and "
+                         "schema WITH the constraint, written to descriptors_grounded_matched/. "
+                         "Generate both from one run: the shipped registry records no model, so "
+                         "comparing against it would confound grounding with model version.")
     args = ap.parse_args()
 
     if not (os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")):
         sys.exit("Set LAVA_API_KEY or ANTHROPIC_API_KEY. This step needs an LLM; it cannot be "
                  "reproduced offline, which is why the generated descriptors are released.")
 
-    out_dir = C.REPO_ROOT / "descriptors_ungrounded" / str(args.seed)
+    root = "descriptors_ungrounded" if args.arm == "ungrounded" else "descriptors_grounded_matched"
+    out_dir = C.REPO_ROOT / root / str(args.seed)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     by_crop = BD.classes_from_manifest(args.which)
     total = sum(len(v) for v in by_crop.values())
-    print(f"[ungrounded] seed {args.seed}: {total} classes over {len(by_crop)} crops -> {out_dir}")
+    print(f"[{args.arm}] seed {args.seed}, model {model_name()}: {total} classes over "
+          f"{len(by_crop)} crops -> {out_dir}")
 
     n = 0
     for crop in sorted(by_crop):
@@ -105,7 +132,7 @@ def main():
             if disease in have:
                 continue
             try:
-                rec = fill_one(crop, disease, args.seed)
+                rec = fill_one(crop, disease, args.seed, args.arm)
             except Exception as e:
                 print(f"  [fail] {crop}/{disease}: {type(e).__name__}: {str(e)[:70]}")
                 rec = BD.stub(crop, disease)

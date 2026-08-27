@@ -90,6 +90,10 @@ def main():
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = C.RESULTS_DIR / f"loco_{args.model}_{args.strategy}.json"
+    # LOCO runs on a single descriptor strategy (default `rich`), so a file produced before the
+    # matcher fix is invalid end to end, not just in one column. Stamp it so the runner recomputes
+    # rather than skipping on "the result file exists".
+    out = {"matcher_normalised": True, **out}
     out_path.write_text(json.dumps(out, indent=2))
     print(f"\n[loco] saved {out_path}")
     print("[loco] stable per-crop accuracy across held + train-pool crops = not a cherry-picked split.")

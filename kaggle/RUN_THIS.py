@@ -13,8 +13,12 @@ file again. Two runs if you attach images; three if you let it fetch. Nothing is
     SECRETS  (Add-ons -> Secrets)
       GH_TOKEN           GitHub fine-grained PAT, read-only Contents      (required, private repo)
       HF_TOKEN           HuggingFace READ token                           (required if fetching)
-      LAVA_API_KEY       your Lava spend key            \\ either one; needed ONLY by the ungrounded
-      ANTHROPIC_API_KEY  sk-ant-...                     /  arm. Everything else runs without a key.
+      LAVA_API_KEY       your Lava spend key            \\ either one; needed ONLY by the descriptor
+      ANTHROPIC_API_KEY  sk-ant-...                     /  arms. Everything else runs without a key.
+
+      Both descriptor arms are generated with claude-sonnet-5 (override with PDE_LLM_MODEL). The key
+      is checked with one cheap call BEFORE the long stages, so a bad key or an unavailable model
+      costs seconds rather than being discovered six GPU-hours in.
 
     ADD DATA
       Attach the previous run's output every time after the first. Images, results, ungrounded
@@ -93,6 +97,15 @@ ARCH_MAX_H       = 1.5      # no single CNN architecture may exceed this
 
 MAX_SIDE         = 288      # store at 288 px; everything trains at 224, so more is bytes for nothing
 UNGROUNDED_SEEDS = [0, 1, 2]
+LLM_MODEL        = "claude-sonnet-5"   # both descriptor arms; see MATCHED_GROUNDED below
+MATCHED_GROUNDED = True
+# The shipped grounded registry records no generating model (217 records: crop, disease,
+# symptom_text, fields, status -- no provenance). Comparing a freshly generated ungrounded set
+# against text of unknown origin would confound GROUNDING with MODEL VERSION, which is the same
+# class of confound that invalidated the original claim. So we regenerate a grounded set with the
+# same model, in the same run, and evaluate it as `grounded_matched`. The shipped `grounded` arm is
+# still evaluated, so the published numbers remain comparable; `grounded_matched` vs `ungrounded` is
+# the clean test.
 EPOCHS, BATCH, WORKERS = 8, 128, 4
 MIN_BATCH        = 16       # CNN batch is halved on CUDA OOM down to this
 
@@ -164,6 +177,7 @@ for k in ("GH_TOKEN", "HF_TOKEN", "LAVA_API_KEY", "ANTHROPIC_API_KEY",
         print(f"[ok] secret {k}")
 if os.environ.get("HF_TOKEN"):
     os.environ["HUGGING_FACE_HUB_TOKEN"] = os.environ["HF_TOKEN"]
+os.environ.setdefault("PDE_LLM_MODEL", LLM_MODEL)
 HAVE_LLM_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
 
 REPO = WORK / "pde"
@@ -222,10 +236,11 @@ if inp.exists():
                     shutil.copy(f, RESULTS / f.name)
                     n += 1
             print(f"[carry] {n} result file(s) from {r.name} in {cand.name}")
-        u = cand / "descriptors_ungrounded"
-        if u.is_dir():
-            shutil.copytree(u, REPO / "descriptors_ungrounded", dirs_exist_ok=True)
-            print(f"[carry] ungrounded descriptors from {cand.name}")
+        for _n in ("descriptors_ungrounded", "descriptors_grounded_matched"):
+            u = cand / _n
+            if u.is_dir():
+                shutil.copytree(u, REPO / _n, dirs_exist_ok=True)
+                print(f"[carry] {_n} from {cand.name}")
         ck = cand / "checkpoints"
         if ck.is_dir():
             shutil.copytree(ck, WORK / "checkpoints", dirs_exist_ok=True)
@@ -307,13 +322,18 @@ CPU SESSION -- data is ready, experiments need a GPU.
 
 # ---------------------------------------------------------------- stale-result guard
 # Anything produced by the pre-fix rich matcher must be RECOMPUTED, not skipped.
+# Every one of these reports a `rich` arm, and LOCO runs on `rich` end to end, so all three families
+# are invalid if produced before the fix -- not just the zero-shot evaluations. Guarding only
+# zeroshot_eval_* would let a carried-forward abstain or LOCO file be skipped on "it already
+# exists" and keep contaminated numbers in the final results.
 stale = []
-for p in RESULTS.glob("zeroshot_eval_*.json"):
-    try:
-        if not json.loads(p.read_text()).get("matcher_normalised"):
+for pat in ("zeroshot_eval_*.json", "metrics_abstain_*.json", "loco_*.json"):
+    for p in RESULTS.glob(pat):
+        try:
+            if not json.loads(p.read_text()).get("matcher_normalised"):
+                stale.append(p)
+        except Exception:
             stale.append(p)
-    except Exception:
-        stale.append(p)
 for p in stale:
     p.rename(p.with_suffix(".json.pre_matcher_fix"))
 if stale:
@@ -321,36 +341,75 @@ if stale:
 
 # ================================ STAGE 2 — UNGROUNDED DESCRIPTORS ================================
 # Text-only and cheap, and it is what decides the paper, so it runs before the long GPU stages.
-UNG_ROOT = REPO / "descriptors_ungrounded"
+ARMS = [("ungrounded", REPO / "descriptors_ungrounded")]
+if MATCHED_GROUNDED:
+    ARMS.append(("grounded", REPO / "descriptors_grounded_matched"))
+
+
+def llm_reachable():
+    """One cheap call before spending the run. Discovering a bad key or an unavailable model after
+    six hours of GPU time is the expensive way to learn it."""
+    try:
+        if os.environ.get("LAVA_API_KEY"):
+            from openai import OpenAI
+            c = OpenAI(api_key=os.environ["LAVA_API_KEY"],
+                       base_url=os.environ.get("LAVA_BASE_URL", "https://api.lava.so/v1"))
+            c.chat.completions.create(model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
+                                      messages=[{"role": "user", "content": "ping"}])
+        else:
+            import anthropic
+            anthropic.Anthropic().messages.create(
+                model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
+                messages=[{"role": "user", "content": "ping"}])
+        return True, ""
+    except Exception as e:
+        return False, f"{type(e).__name__}: {str(e)[:200]}"
+
+
 if not HAVE_LLM_KEY:
-    print("\n[ungrounded] no LAVA_API_KEY / ANTHROPIC_API_KEY secret -> generation SKIPPED. "
+    print("\n[descriptors] no LAVA_API_KEY / ANTHROPIC_API_KEY secret -> generation SKIPPED. "
           "Every other stage still runs; add the secret to get the control arm.")
 else:
-    for s in UNGROUNDED_SEEDS:
-        d = UNG_ROOT / str(s)
-        filled = 0
-        if d.is_dir():
-            for p in d.glob("*.json"):
-                try:
-                    filled += sum(1 for r in json.loads(p.read_text()) if r.get("status") == "filled")
-                except Exception:
-                    pass
-        if filled >= 40:
-            print(f"[skip] ungrounded descriptors seed {s} ({filled} filled)")
-            continue
-        if not ok_to_start(f"ungrounded descriptors seed {s}",
-                           [f"ungrounded descriptors seed {x}"
-                            for x in UNGROUNDED_SEEDS[UNGROUNDED_SEEDS.index(s) + 1:]]):
-            break
-        banner(f"generate ungrounded descriptors, seed {s}")
-        sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
-            "--seed", str(s), "--which", "heldout"], 1.0)
+    okc, err = llm_reachable()
+    print(f"\n[llm] model {os.environ['PDE_LLM_MODEL']} via "
+          f"{'Lava' if os.environ.get('LAVA_API_KEY') else 'Anthropic'}: "
+          f"{'reachable' if okc else 'UNREACHABLE -- ' + err}")
+    if not okc:
+        HAVE_LLM_KEY = False
+        print("[llm] skipping both descriptor arms rather than filling the registry with stubs. "
+              "Fix the secret or PDE_LLM_MODEL and re-run; nothing else is affected.")
+
+if HAVE_LLM_KEY:
+    for arm, root in ARMS:
+        for s in UNGROUNDED_SEEDS:
+            d = root / str(s)
+            filled = 0
+            if d.is_dir():
+                for p in d.glob("*.json"):
+                    try:
+                        filled += sum(1 for r in json.loads(p.read_text())
+                                      if r.get("status") == "filled")
+                    except Exception:
+                        pass
+            if filled >= 40:
+                print(f"[skip] {arm} descriptors seed {s} ({filled} filled)")
+                continue
+            if not ok_to_start(f"{arm} descriptors seed {s}",
+                               [f"{arm} descriptors seed {x}"
+                                for x in UNGROUNDED_SEEDS[UNGROUNDED_SEEDS.index(s) + 1:]]):
+                break
+            banner(f"generate {arm} descriptors, seed {s}, model {os.environ['PDE_LLM_MODEL']}")
+            sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
+                "--seed", str(s), "--which", "heldout", "--arm", arm], 1.0)
+
+UNG_ROOT = REPO / "descriptors_ungrounded"
 
 # Always re-save, not just after generating: descriptors carried in from an attached dataset must
 # also land in THIS run's output, or a later run that attaches only this output loses the arm.
-if UNG_ROOT.is_dir():
-    shutil.copytree(UNG_ROOT, WORK / "descriptors_ungrounded", dirs_exist_ok=True)
-    print("[ok] ungrounded descriptors saved into this run's output")
+for _name in ("descriptors_ungrounded", "descriptors_grounded_matched"):
+    if (REPO / _name).is_dir():
+        shutil.copytree(REPO / _name, WORK / _name, dirs_exist_ok=True)
+        print(f"[ok] {_name} saved into this run's output")
 
 # ================================ STAGE 3 — ZERO-SHOT ================================
 for exp in ["A", "B", "C"]:
@@ -366,21 +425,56 @@ for exp in ["A", "B", "C"]:
         "--strategies", "bare", "crude", "rich", "grounded", "--heavy", "--teachers"])
 
 # ================================ STAGE 4 — THE CONTROL ARM ================================
-have_seeds = [s for s in UNGROUNDED_SEEDS if (UNG_ROOT / str(s)).is_dir()]
+MIN_FILLED = 40      # of the 51 held-out classes at configuration C
+
+
+def filled_count(root, seed):
+    d = root / str(seed)
+    if not d.is_dir():
+        return 0
+    n = 0
+    for p in d.glob("*.json"):
+        try:
+            n += sum(1 for r in json.loads(p.read_text()) if r.get("status") == "filled")
+        except Exception:
+            pass
+    return n
+
+
+# A seed directory existing is NOT enough. Every arm falls through to `rich` for a class it has no
+# record for -- deliberately, so coverage gaps are handled identically everywhere -- which means a
+# directory of stubs would make the "ungrounded" arm silently BE `rich`, and the run would report a
+# confident delta between an arm and itself. Require most classes to be genuinely filled.
+have_seeds = []
+for s in UNGROUNDED_SEEDS:
+    n = filled_count(UNG_ROOT, s)
+    if n >= MIN_FILLED:
+        have_seeds.append(s)
+    elif (UNG_ROOT / str(s)).is_dir():
+        print(f"[ungrounded] seed {s} has only {n} filled records (need {MIN_FILLED}) -> NOT "
+              f"evaluated; it would fall through to `rich` and compare rich against itself.")
 if not have_seeds:
-    print("\n[ungrounded] no descriptors available -> control arm SKIPPED")
+    print("\n[ungrounded] no usable descriptor seeds -> control arm SKIPPED")
+
 for s in have_seeds:
     if (RESULTS / f"zeroshot_eval_C_ung{s}.json").exists():
-        print(f"[skip] ungrounded eval seed {s}")
+        print(f"[skip] control arm eval seed {s}")
         continue
-    if not ok_to_start(f"ungrounded eval seed {s}",
-                       [f"ungrounded eval seed {x}"
+    if not ok_to_start(f"control arm eval seed {s}",
+                       [f"control arm eval seed {x}"
                         for x in have_seeds[have_seeds.index(s) + 1:]
                         if not (RESULTS / f"zeroshot_eval_C_ung{x}.json").exists()]):
         break
-    banner(f"ungrounded control arm, seed {s}")
+    banner(f"control arm, seed {s}")
+    arms = ["rich", "grounded", "ungrounded"]
+    gm = filled_count(REPO / "descriptors_grounded_matched", s)
+    if MATCHED_GROUNDED and gm >= MIN_FILLED:
+        arms.append("grounded_matched")   # same model as `ungrounded`; this is the clean comparison
+    elif MATCHED_GROUNDED:
+        print(f"  [note] grounded_matched seed {s} has {gm} filled records (need {MIN_FILLED}); "
+              f"evaluating without it, so this seed compares against the shipped registry only.")
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
-        "--strategies", "rich", "grounded", "ungrounded", "--ungrounded-seed", str(s), "--heavy"])
+        "--strategies", *arms, "--ungrounded-seed", str(s), "--heavy"])
 
 # ================================ STAGE 5 — ABSTENTION ================================
 for exp in ["A", "B", "C"]:
@@ -481,22 +575,31 @@ if ung:
     for p in ung:
         d = json.loads(p.read_text())
         ms = [v for k, v in d["models"].items() if "SigLIP" not in k]
-        for arm in ("rich", "grounded", "ungrounded"):
+        for arm in ("rich", "grounded", "grounded_matched", "ungrounded"):
             if ms and arm in ms[0]:
                 v = sum(m[arm]["acc"] for m in ms) / len(ms)
                 acc.setdefault(arm, []).append(v)
-                print(f"    seed {p.stem.split('_ung')[-1]}  {arm:11s} {v:.1%}")
-    if "ungrounded" in acc and "grounded" in acc:
+                print(f"    seed {p.stem.split('_ung')[-1]}  {arm:16s} {v:.1%}")
+    # grounded_matched is generated by the SAME model as ungrounded, so it is the comparison that
+    # isolates sourcing. The shipped `grounded` registry records no model, so grounded-vs-ungrounded
+    # cannot separate the sourcing constraint from a change of model version.
+    ref = "grounded_matched" if "grounded_matched" in acc else "grounded"
+    if "ungrounded" in acc and ref in acc:
         u = sum(acc["ungrounded"]) / len(acc["ungrounded"])
-        g = sum(acc["grounded"]) / len(acc["grounded"])
+        g = sum(acc[ref]) / len(acc[ref])
         spread = max(acc["ungrounded"]) - min(acc["ungrounded"])
-        print(f"\n    grounded {g:.1%} | ungrounded {u:.1%} (n={len(acc['ungrounded'])} seeds) | "
+        n = len(acc["ungrounded"])
+        print(f"\n    {ref} {g:.1%} | ungrounded {u:.1%} (n={n} seeds) | "
               f"delta {(g - u) * 100:+.1f} pp | seed spread {spread * 100:.1f} pp")
+        if ref == "grounded":
+            print("    NOTE: compared against the SHIPPED registry, whose generating model is not")
+            print("    recorded, so this delta confounds sourcing with model version.")
         if (g - u) * 100 > spread:
             print("    -> the gap exceeds seed noise: SOURCING itself is doing work.")
         else:
             print("    -> the gap is within seed noise: grounding buys AUDITABILITY, not accuracy.")
-        print("    Do not put a delta in the manuscript from fewer than 3 seeds.")
+        if n < 3:
+            print(f"    Only {n} seed(s). Do not put a delta in the manuscript from fewer than 3.")
 
 sup = []
 for f in sorted(RESULTS.glob("supervised_*.json")):
