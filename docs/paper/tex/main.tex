@@ -177,7 +177,15 @@ released under the MIT licence --- to avoid the
 ``old, lab-only'' critique of legacy corpora such as PlantVillage~\citep{mohanty2016}, on which
 in-distribution accuracy has long been saturated. We stream-filter shards to our crops with a
 per-class cap and content-hash
-de-duplication.
+de-duplication, storing images at a longest edge of 288 pixels since every model here operates at
+224.
+
+We pin the dataset to revision \texttt{bc9bd2899f} (7 May 2026). This is not a formality: SAGE was
+re-released on 24 August 2026 with re-canonicalised crop and disease names, and the later release
+drops Cotton entirely --- its own canonicalisation record marks every Cotton entry as having no
+canonical crop. Evaluating against the later release would therefore yield seven held-out crops and
+48 classes at our largest configuration rather than the eight and 51 reported here. Every number in
+this article refers to the pinned revision, and the fetch code pins the same commit hash.
 
 To test whether the approach \emph{scales} rather than reporting a single convenient split, we define
 three \textbf{nested} configurations --- every seen and held-out crop in A also appears in B, and B in
@@ -496,8 +504,10 @@ that could have appeared to influence the work reported in this paper.
 %% underlying data to be deposited, cited and linked. Replace the placeholder DOI below with a real
 %% Zenodo DOI or a public repository URL.
 All data underlying this study are public. The images are the SAGE crop-disease
-dataset~\citep{sagedata2026}, released under the MIT licence and used without modification other
-than the crop and per-class subsetting described in Section~\ref{sec:data}. The source-grounded
+dataset~\citep{sagedata2026} at revision \texttt{bc9bd2899f}, released under the MIT licence and
+used without modification other than the crop and per-class subsetting and the 288-pixel resizing
+described in Section~\ref{sec:data}. The revision is quoted because a later release of SAGE changes
+the class inventory; see Section~\ref{sec:data}. The source-grounded
 descriptor registry, every result file including per-epoch training curves, the table and figure
 generators, and the full experimental code are released at \url{https://doi.org/PENDING-ZENODO-DOI},
 which reproduces every number and figure in this article from the released result files.

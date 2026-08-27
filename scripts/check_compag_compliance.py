@@ -118,9 +118,14 @@ def main():
         (ok if hit else fail).append(f"{label} statement present")
 
     # ---- unresolved placeholders
-    holes = re.findall(r"(FILL[^}\n]*|\[fill[^\]]*\]|XXXX)", t_nocomment)
+    # PENDING-/TBD/TODO are in this pattern deliberately. The DOI placeholder in the
+    # data-availability statement used to slip through a check that only looked for FILL/XXXX, so
+    # the suite reported a clean 11/11 while the single hardest submission blocker was still in the
+    # manuscript. A compliance check that misses the blocker is worse than no check at all.
+    holes = re.findall(r"(FILL[^}\n]*|\[fill[^\]]*\]|XXXX|PENDING[-\w]*|\bTBD\b|\bTODO\b)",
+                       t_nocomment)
     (ok if not holes else fail).append(
-        "no unresolved placeholders" if not holes else f"unresolved placeholders: {set(holes)}")
+        "no unresolved placeholders" if not holes else f"unresolved placeholders: {sorted(set(holes))}")
 
     # ---- figures
     if FIGS.exists():

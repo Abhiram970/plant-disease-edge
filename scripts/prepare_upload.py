@@ -149,13 +149,26 @@ def main():
         "per_class": {k: len(v) for k, v in sorted(keep.items())},
     }, indent=2), encoding="utf-8")
 
+    # dataset-metadata.json is REQUIRED by `kaggle datasets create` and ignored by the web
+    # uploader, so writing it costs nothing and removes a failure mode if the CLI is used.
+    meta = out.parent / "dataset-metadata.json"
+    if not meta.exists():
+        meta.write_text(json.dumps({
+            "title": "pde-sage-data",
+            "id": "YOUR_KAGGLE_USERNAME/pde-sage-data",
+            "licenses": [{"name": "other"}],
+        }, indent=2), encoding="utf-8")
+
     print(f"""
-NEXT
-  1. Upload {out.parent} to Kaggle:
-       Kaggle -> Datasets -> New Dataset -> drag the folder -> title: pde-sage-data
-     or, with the Kaggle CLI:
-       kaggle datasets create -p "{out.parent}" -u
-  2. Run 2 (kaggle/run2_experiments.py) with pde-sage-data attached.
+NEXT -- upload {out.parent} to Kaggle as a PRIVATE dataset titled  pde-sage-data
+
+  Web (simplest, nothing to configure):
+      kaggle.com -> Datasets -> New Dataset -> drag the folder -> title: pde-sage-data
+
+  CLI (needs ~/.kaggle/kaggle.json, and edit the id in dataset-metadata.json first):
+      kaggle datasets create -p "{out.parent}"
+
+Then paste kaggle/RUN_THIS.py into a Kaggle notebook with that dataset attached.
 """)
 
 
