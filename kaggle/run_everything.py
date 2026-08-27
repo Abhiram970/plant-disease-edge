@@ -1,12 +1,9 @@
 """
 DEPRECATED — do not run this. It is the script that burned a 12 h Kaggle session and saved nothing.
 
-Superseded by kaggle/RUNBOOK.md and the runners beside this file:
-
-    scripts/prepare_upload.py    build the dataset locally, upload it as  pde-sage-data
-    kaggle/run2_experiments.py   zero-shot, abstention, clean eval, ungrounded arm, probe, LOCO
-    kaggle/run3_cnns.py          the 14 supervised CNN baselines
-    kaggle/run1_data.py          fetch SAGE on Kaggle -- fallback only, you should not need it
+Superseded by kaggle/RUN_THIS.py -- one file, the whole study, run it 2-3 times.
+See kaggle/RUNBOOK.md. To skip the 114 GB fetch, build the images locally first with
+scripts/prepare_upload.py and upload them as the Kaggle dataset  pde-sage-data.
 
 WHAT WENT WRONG HERE
 --------------------

@@ -1,0 +1,555 @@
+"""
+KAGGLE — THE WHOLE STUDY IN ONE FILE.  Paste this entire file as ONE cell.
+=========================================================================
+
+Run it, let it commit, publish its Output as a Dataset, attach that to a fresh copy, run the SAME
+file again. Two runs if you attach images; three if you let it fetch. Nothing is ever redone.
+
+    NOTEBOOK SETTINGS
+      Accelerator = GPU T4 x2      (see "CPU FIRST RUN" below if you are fetching)
+      Internet    = ON
+      Persistence = Files only
+
+    SECRETS  (Add-ons -> Secrets)
+      GH_TOKEN           GitHub fine-grained PAT, read-only Contents      (required, private repo)
+      HF_TOKEN           HuggingFace READ token                           (required if fetching)
+      LAVA_API_KEY       your Lava spend key            \\ either one; needed ONLY by the ungrounded
+      ANTHROPIC_API_KEY  sk-ant-...                     /  arm. Everything else runs without a key.
+
+    ADD DATA
+      Attach the previous run's output every time after the first. Images, results, ungrounded
+      descriptors and CNN checkpoints are all picked up automatically from any attached dataset.
+
+    Then: Save Version -> "Save & Run All (Commit)" -> close the tab.
+    After it finishes: Output -> "Create Dataset". Attach that next time.
+
+WHY IT IS SPLIT ACROSS RUNS AND NOT ONE LONG ONE
+------------------------------------------------
+The whole study is ~15 h of compute and a Kaggle cell is killed at 12 h. A killed cell commits
+NOTHING -- including every stage that had already finished. The previous single-cell attempt lost a
+full session that way: it spent 11.8 of its 12 hours inside one shard request that never returned a
+byte. So this file stops itself at BUDGET_H, prints exactly what is left, and exits cleanly. Every
+stage writes its own result file and is skipped next time; the probe embedding cache resumes
+mid-encoder; CNNs resume from their last epoch checkpoint; the fetch resumes per shard.
+
+CPU FIRST RUN (saves your GPU quota)
+------------------------------------
+If you have no images yet, run this file ONCE with Accelerator = **None (CPU)**. It will fetch the
+data, skip everything that needs a GPU, and exit. Kaggle CPU sessions do not spend the 30 h/week GPU
+quota that the experiments need. Then publish the output and re-run on GPU.
+Better still: skip the fetch entirely by building the images locally, which takes ~25 min instead of
+downloading 114 GB --  python scripts/prepare_upload.py  -- and uploading the 1.7 GB result.
+
+THE DATASET WAS REWRITTEN UNDER THIS PAPER -- READ BEFORE CHANGING THE PIN
+--------------------------------------------------------------------------
+SAGE shipped two incompatible releases:
+
+    2026-05-07  bc9bd2899f   13 shards, 114 GB   8 held-out crops   51 classes at scale C
+    2026-08-24  dde0de8633   48 shards,  21 GB   7 held-out crops   48 classes at scale C
+
+The August release is NOT a superset: its own canonical_mapping.json marks all 14 Cotton entries
+"how": "no-canonical-crop", and the crop column of all 48 August shards contains zero Cotton rows.
+Every published number here was measured with Cotton held out, so config.py pins the May commit SHA.
+`refs/convert/parquet` is a FLOATING branch that HuggingFace regenerated for the August release --
+using it is what made the failed run resume a May-built .shards_done.json against August data.
+
+WHAT THIS RUN IS ACTUALLY FOR
+-----------------------------
+The paper's headline -- "only source-grounded descriptors scale" -- is retracted and not yet
+rewritten. `rich` is a keyword-retrieved bank in which, at scale C, only 8 of 51 held-out classes
+get a unique descriptor: 17 fall back to the bare class name and 26 share text with another class.
+Beating that measures per-class DISTINCTNESS, not grounding.
+
+The ungrounded arm removes the confound -- same model, same schema, same fall-through, temperature
+1.0, three seeds; the only difference is that the "cite a retrievable source" constraint is dropped.
+
+    ungrounded ~= grounded  -> grounding is free and buys auditability. The cleaner paper.
+    ungrounded <  grounded  -> the sourcing constraint itself helps. A real finding.
+
+This run also re-measures `rich`. descriptors.text_for normalised underscores for the prompt but not
+for the match key, so all 13 multi-word bank entries ("powdery mildew", "citrus canker", ...) were
+unreachable for every label in the dataset. Every published `rich` accuracy came from that broken
+matcher. Results are now stamped "matcher_normalised"; anything unstamped is set aside and
+recomputed rather than skipped.
+"""
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+from collections import Counter
+from pathlib import Path
+
+# ============================== SETTINGS ==============================
+BUDGET_H         = 8.5      # do not START a new stage past this. Must stay under the 12 h cell wall.
+FETCH_BUDGET_H   = 7.0      # sub-budget for the fetch, so a slow pull cannot eat the whole session
+SHARD_TIMEOUT    = 900      # kill + retry a shard download stalled this many seconds
+STAGE_TIMEOUT_H  = 3.0      # no single stage may exceed this
+ARCH_MAX_H       = 1.5      # no single CNN architecture may exceed this
+
+MAX_SIDE         = 288      # store at 288 px; everything trains at 224, so more is bytes for nothing
+UNGROUNDED_SEEDS = [0, 1, 2]
+EPOCHS, BATCH, WORKERS = 8, 128, 4
+MIN_BATCH        = 16       # CNN batch is halved on CUDA OOM down to this
+
+MIN_IMAGES       = 60_000   # sanity floor; a complete build is 84,123 images
+MIN_CROPS        = 18       # all 18; Cotton exists only in the pinned May release
+REPO_URL         = "github.com/Abhiram970/plant-disease-edge.git"
+
+ARCHS = [   # ordered so a truncated sweep still yields the informative ones. FastViT is early
+            # because it is the MobileCLIP image encoder's architecture family, which makes it the
+            # fairest supervised-versus-VLM comparison in the paper.
+    "tf_efficientnetv2_s", "convnextv2_tiny", "resnet101", "densenet121",
+    "fastvit_t8", "fastvit_sa12", "convnextv2_nano",
+    "resnet50", "mobilenetv3_small_100", "mobilenetv4_conv_small",
+    "mobilenetv3_large_100", "mobilenetv4_conv_medium", "efficientnet_b0", "regnety_040",
+]
+# ======================================================================
+
+T0 = time.time()
+WORK = Path("/kaggle/working")
+os.chdir(WORK)
+elapsed_h = lambda: (time.time() - T0) / 3600
+free_gb = lambda p="/kaggle/working": shutil.disk_usage(p).free / 1e9
+LEFT = []            # stages not done this session, reported at the end
+
+
+def secret(name):
+    try:
+        from kaggle_secrets import UserSecretsClient
+        return UserSecretsClient().get_secret(name)
+    except Exception:
+        return None
+
+
+def sh(cmd, timeout_h=STAGE_TIMEOUT_H):
+    """Run a stage under a hard deadline. A hung stage must cost one stage, not the session."""
+    try:
+        return subprocess.run(cmd, timeout=timeout_h * 3600).returncode
+    except subprocess.TimeoutExpired:
+        print(f"\n[TIMEOUT] stage exceeded {timeout_h} h and was killed\n", flush=True)
+        return 124
+
+
+def ok_to_start(stage, rest=()):
+    """True if there is budget left to begin `stage`.
+
+    `rest` is the remaining work in the same loop. Recording it matters: a bare `break` would report
+    "zero-shot A" as the only thing left while silently omitting B and C, and the whole point of the
+    end-of-run report is that you can trust it to say what is actually outstanding."""
+    if elapsed_h() > BUDGET_H:
+        LEFT.append(stage)
+        LEFT.extend(rest)
+        return False
+    return True
+
+
+def banner(s):
+    print(f"\n{'=' * 74}\n[{s}]  t+{elapsed_h():.1f} h  free {free_gb():.1f} GB\n{'=' * 74}",
+          flush=True)
+
+
+print(f"[start] free disk {free_gb():.1f} GB")
+
+# ---------------------------------------------------------------- secrets + repo
+for k in ("GH_TOKEN", "HF_TOKEN", "LAVA_API_KEY", "ANTHROPIC_API_KEY",
+          "LAVA_BASE_URL", "PDE_LLM_MODEL"):
+    v = secret(k)
+    if v:
+        os.environ[k] = v
+        print(f"[ok] secret {k}")
+if os.environ.get("HF_TOKEN"):
+    os.environ["HUGGING_FACE_HUB_TOKEN"] = os.environ["HF_TOKEN"]
+HAVE_LLM_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
+
+REPO = WORK / "pde"
+if not REPO.exists():
+    gh = os.environ.get("GH_TOKEN")
+    url = f"https://{gh}@{REPO_URL}" if gh else f"https://{REPO_URL}"
+    if subprocess.run(["git", "clone", "--depth", "1", url, str(REPO)]).returncode != 0:
+        sys.exit("[fatal] clone failed -> check Internet=ON and the GH_TOKEN secret.")
+print(f"[ok] repo at {REPO}")
+S = REPO / "scripts"
+
+# --no-deps keeps pip from pulling a 2 GB torch wheel over Kaggle's working CUDA build.
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-deps", "timm", "open_clip_torch"])
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "safetensors", "pyyaml",
+                "huggingface_hub", "hf_transfer", "pyarrow", "tqdm", "regex", "ftfy", "pillow",
+                "openai", "anthropic"])
+
+# HF blobs go to /kaggle/temp (73 GB scratch), NOT the ~20 GB working volume. Without this a fetch
+# fills the disk partway through and dies.
+os.environ["HF_HOME"] = "/kaggle/temp/hf"
+os.environ["HF_HUB_CACHE"] = "/kaggle/temp/hf/hub"
+Path("/kaggle/temp/hf/hub").mkdir(parents=True, exist_ok=True)
+os.environ["PDE_DATA_ROOT"] = str(WORK)
+
+sys.path.insert(0, str(S))
+import config as CFG           # noqa: E402  -- needs the clone above
+print(f"[ok] SAGE pinned to {CFG.SHARD_REVISION[:12]} ({CFG.N_SHARDS} shards)")
+
+try:
+    import torch
+    HAS_GPU = torch.cuda.is_available()
+    print(f"[env] cuda={HAS_GPU} {torch.cuda.get_device_name(0) if HAS_GPU else '(CPU session)'}")
+except Exception:
+    HAS_GPU = False
+    print("[env] torch unavailable -> CPU-only stages")
+
+# ---------------------------------------------------------------- carry work forward
+RESULTS = WORK / "results"
+RESULTS.mkdir(parents=True, exist_ok=True)
+DATA = WORK / "exp_data"
+inp = Path("/kaggle/input")
+
+attached_imgs = None
+if inp.exists():
+    for cand in sorted(inp.iterdir()):
+        if not cand.is_dir():
+            continue
+        src = cand / "exp_data" if (cand / "exp_data").is_dir() else cand
+        if attached_imgs is None and src.is_dir() and any(src.glob("*___*")):
+            attached_imgs = src
+        r = cand / "results"
+        if r.is_dir():
+            n = 0
+            for f in r.glob("*.json"):
+                if not (RESULTS / f.name).exists():
+                    shutil.copy(f, RESULTS / f.name)
+                    n += 1
+            print(f"[carry] {n} result file(s) from {r.name} in {cand.name}")
+        u = cand / "descriptors_ungrounded"
+        if u.is_dir():
+            shutil.copytree(u, REPO / "descriptors_ungrounded", dirs_exist_ok=True)
+            print(f"[carry] ungrounded descriptors from {cand.name}")
+        ck = cand / "checkpoints"
+        if ck.is_dir():
+            shutil.copytree(ck, WORK / "checkpoints", dirs_exist_ok=True)
+            print(f"[carry] CNN checkpoints from {cand.name} -- interrupted archs resume")
+
+# ================================ STAGE 1 — DATA ================================
+if attached_imgs is not None:
+    os.environ["PDE_DATASET_DIR"] = str(attached_imgs)
+    print(f"[data] using attached images at {attached_imgs} -- no fetch")
+else:
+    os.environ["PDE_DATASET_DIR"] = str(DATA)
+    DATA.mkdir(parents=True, exist_ok=True)
+    if not HAS_GPU:
+        print("[data] CPU session: fetching only. This is the cheap way to build the dataset -- it "
+              "does not spend GPU quota.")
+    else:
+        print("[data] WARNING: fetching on a GPU session spends GPU quota on a network-bound job. "
+              "Consider a CPU session for this run, or upload a local build (prepare_upload.py).")
+    if not os.environ.get("HF_TOKEN"):
+        print("[data] WARNING: no HF_TOKEN. Anonymous pulls are throttled, and a throttled HF "
+              "connection stalls rather than failing. This is what hung the previous run.")
+    banner(f"fetch SAGE rev {CFG.SHARD_REVISION[:10]} ({CFG.N_SHARDS} shards)")
+    sh([sys.executable, "-u", str(S / "sage_data.py"), "--role", "all",
+        "--max-side", str(MAX_SIDE), "--budget-h", str(min(FETCH_BUDGET_H, BUDGET_H)),
+        "--shard-timeout", str(SHARD_TIMEOUT)], min(FETCH_BUDGET_H, BUDGET_H) + 0.5)
+
+# --- verify before spending hours on top of it ---------------------------------------------
+DDIR = Path(os.environ["PDE_DATASET_DIR"])
+per_crop, n_images = Counter(), 0
+for d in DDIR.iterdir():
+    if d.is_dir() and "___" in d.name:
+        k = sum(1 for _ in d.glob("*.jpg"))
+        per_crop[d.name.split("___", 1)[0]] += k
+        n_images += k
+n_classes = sum(1 for d in DDIR.iterdir() if d.is_dir() and "___" in d.name)
+print(f"\n[data] {n_images:,} images | {len(per_crop)} crops | {n_classes} classes")
+for crop, k in sorted(per_crop.items(), key=lambda kv: -kv[1]):
+    role = "HELD" if crop in CFG.HELDOUT_CROPS else "seen"
+    print(f"       {crop:12s} {k:7,d}  {role}")
+
+DATA_OK = n_images >= MIN_IMAGES and len(per_crop) >= MIN_CROPS
+if not DATA_OK:
+    missing = [c for c in CFG.WANT_CROPS if per_crop.get(c, 0) < 25]
+    print(f"""
+{'=' * 74}
+DATA INCOMPLETE -- stopping here on purpose.
+{'=' * 74}
+  have {n_images:,} images over {len(per_crop)} crops; need >= {MIN_IMAGES:,} over {MIN_CROPS}.
+  missing / too small: {missing}
+
+  Nothing is lost. The fetch is checkpointed per shard in .shards_done.json.
+    1. Save Version -> Save & Run All (Commit)   (already running if you used that)
+    2. Output -> "Create Dataset"
+    3. Attach it to a fresh copy of this notebook and run this same file again.
+
+  Training on a partial pull would silently change every class count in the paper, which is why
+  this stops rather than continuing.
+  wall {elapsed_h():.2f} h
+""")
+    sys.exit(0)
+
+# The manifest stores ABSOLUTE image paths, so it is ALWAYS rebuilt where it will be used -- an
+# attached dataset mounts at a different path than it was built at.
+sh([sys.executable, "-u", str(S / "build_manifest.py"), "--min-images", "25"], 0.5)
+if not (WORK / "manifest.csv").exists():
+    sys.exit("[fatal] no manifest.csv")
+print(f"[ok] data verified: {n_images:,} images, {len(per_crop)} crops, {n_classes} classes")
+
+if not HAS_GPU:
+    print(f"""
+{'=' * 74}
+CPU SESSION -- data is ready, experiments need a GPU.
+{'=' * 74}
+  1. Output -> "Create Dataset"  (call it pde-sage-data)
+  2. New notebook, Accelerator = GPU T4 x2, attach it, paste this same file, run.
+  wall {elapsed_h():.2f} h
+""")
+    sys.exit(0)
+
+# ---------------------------------------------------------------- stale-result guard
+# Anything produced by the pre-fix rich matcher must be RECOMPUTED, not skipped.
+stale = []
+for p in RESULTS.glob("zeroshot_eval_*.json"):
+    try:
+        if not json.loads(p.read_text()).get("matcher_normalised"):
+            stale.append(p)
+    except Exception:
+        stale.append(p)
+for p in stale:
+    p.rename(p.with_suffix(".json.pre_matcher_fix"))
+if stale:
+    print(f"[rich-fix] set aside {len(stale)} evaluation(s) from the old matcher; recomputing")
+
+# ================================ STAGE 2 — UNGROUNDED DESCRIPTORS ================================
+# Text-only and cheap, and it is what decides the paper, so it runs before the long GPU stages.
+UNG_ROOT = REPO / "descriptors_ungrounded"
+if not HAVE_LLM_KEY:
+    print("\n[ungrounded] no LAVA_API_KEY / ANTHROPIC_API_KEY secret -> generation SKIPPED. "
+          "Every other stage still runs; add the secret to get the control arm.")
+else:
+    for s in UNGROUNDED_SEEDS:
+        d = UNG_ROOT / str(s)
+        filled = 0
+        if d.is_dir():
+            for p in d.glob("*.json"):
+                try:
+                    filled += sum(1 for r in json.loads(p.read_text()) if r.get("status") == "filled")
+                except Exception:
+                    pass
+        if filled >= 40:
+            print(f"[skip] ungrounded descriptors seed {s} ({filled} filled)")
+            continue
+        if not ok_to_start(f"ungrounded descriptors seed {s}",
+                           [f"ungrounded descriptors seed {x}"
+                            for x in UNGROUNDED_SEEDS[UNGROUNDED_SEEDS.index(s) + 1:]]):
+            break
+        banner(f"generate ungrounded descriptors, seed {s}")
+        sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
+            "--seed", str(s), "--which", "heldout"], 1.0)
+
+# Always re-save, not just after generating: descriptors carried in from an attached dataset must
+# also land in THIS run's output, or a later run that attaches only this output loses the arm.
+if UNG_ROOT.is_dir():
+    shutil.copytree(UNG_ROOT, WORK / "descriptors_ungrounded", dirs_exist_ok=True)
+    print("[ok] ungrounded descriptors saved into this run's output")
+
+# ================================ STAGE 3 — ZERO-SHOT ================================
+for exp in ["A", "B", "C"]:
+    if (RESULTS / f"zeroshot_eval_{exp}.json").exists():
+        print(f"[skip] zero-shot {exp}")
+        continue
+    if not ok_to_start(f"zero-shot {exp}",
+                       [f"zero-shot {x}" for x in "ABC"[("ABC".index(exp) + 1):]
+                        if not (RESULTS / f"zeroshot_eval_{x}.json").exists()]):
+        break
+    banner(f"zero-shot, scale {exp}")
+    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", exp,
+        "--strategies", "bare", "crude", "rich", "grounded", "--heavy", "--teachers"])
+
+# ================================ STAGE 4 — THE CONTROL ARM ================================
+have_seeds = [s for s in UNGROUNDED_SEEDS if (UNG_ROOT / str(s)).is_dir()]
+if not have_seeds:
+    print("\n[ungrounded] no descriptors available -> control arm SKIPPED")
+for s in have_seeds:
+    if (RESULTS / f"zeroshot_eval_C_ung{s}.json").exists():
+        print(f"[skip] ungrounded eval seed {s}")
+        continue
+    if not ok_to_start(f"ungrounded eval seed {s}",
+                       [f"ungrounded eval seed {x}"
+                        for x in have_seeds[have_seeds.index(s) + 1:]
+                        if not (RESULTS / f"zeroshot_eval_C_ung{x}.json").exists()]):
+        break
+    banner(f"ungrounded control arm, seed {s}")
+    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
+        "--strategies", "rich", "grounded", "ungrounded", "--ungrounded-seed", str(s), "--heavy"])
+
+# ================================ STAGE 5 — ABSTENTION ================================
+for exp in ["A", "B", "C"]:
+    if (RESULTS / f"metrics_abstain_{exp}.json").exists():
+        print(f"[skip] abstain {exp}")
+        continue
+    if not ok_to_start(f"abstain {exp}",
+                       [f"abstain {x}" for x in "ABC"[("ABC".index(exp) + 1):]
+                        if not (RESULTS / f"metrics_abstain_{x}.json").exists()]):
+        break
+    banner(f"abstention + top-5, scale {exp}")
+    sh([sys.executable, "-u", str(S / "metrics.py"), "--exp", exp,
+        "--strategies", "rich", "grounded", "--reference"])
+
+# ================================ STAGE 6 — LABEL-CORRECTED SENSITIVITY ================================
+# Merges SAGE's duplicate disease labels and drops the non-disease ones, into a SEPARATE
+# *_clean.json so the as-published numbers are never overwritten.
+if (RESULTS / "zeroshot_eval_C_clean.json").exists():
+    print("[skip] clean eval")
+elif ok_to_start("label-corrected eval"):
+    banner("zero-shot scale C, label-corrected")
+    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C", "--clean",
+        "--strategies", "bare", "crude", "rich", "grounded", "--heavy", "--teachers"])
+
+# ================================ STAGE 7 — SEEN PROBE + LOCO ================================
+if ok_to_start("seen-crop probe"):
+    banner("seen-crop linear probe, scales A/B/C")
+    # Embeds the config-C pool ONCE per encoder and derives A and B by subsetting instead of
+    # re-encoding the same images three times. The cache resumes mid-encoder.
+    sh([sys.executable, "-u", str(S / "probe_seen_all.py"), "--workers", str(WORKERS)], 3.5)
+
+if (RESULTS / "loco_s0_rich.json").exists():
+    print("[skip] loco")
+elif ok_to_start("leave-one-crop-out"):
+    banner("leave-one-crop-out + bootstrap CIs")
+    sh([sys.executable, "-u", str(S / "loco.py"), "--model", "s0",
+        "--strategy", "rich", "--bootstrap", "2000"], 1.0)
+
+# ================================ STAGE 8 — CNN BASELINES ================================
+# Last on purpose: this is ~8 h, and everything above decides the paper.
+cnn_done, cnn_failed = [], []
+for i, arch in enumerate(ARCHS):
+    if (RESULTS / f"supervised_{arch}.json").exists():
+        print(f"[skip] cnn {arch}")
+        continue
+    if not ok_to_start(f"cnn {arch}",
+                       [f"cnn {a}" for a in ARCHS[i + 1:]
+                        if not (RESULTS / f"supervised_{a}.json").exists()]):
+        break
+    # A T4 has 14.56 GB and batch 128 does not fit the heavier models. Halve and retry rather than
+    # lose the architecture -- three were lost this way on an earlier sweep and the cause was
+    # misdiagnosed as a missing timm arch; all three were torch.OutOfMemoryError.
+    rc, batch = 1, BATCH
+    while rc != 0 and batch >= MIN_BATCH:
+        banner(f"cnn {i + 1}/{len(ARCHS)}: {arch} (epochs={EPOCHS} batch={batch})")
+        rc = sh([sys.executable, "-u", str(S / "supervised_baseline.py"), "--arch", arch,
+                 "--epochs", str(EPOCHS), "--batch", str(batch),
+                 "--workers", str(WORKERS), "--resume"], ARCH_MAX_H)
+        if rc != 0:
+            batch //= 2
+            if batch >= MIN_BATCH:
+                print(f"  [retry] {arch} failed (likely CUDA OOM) -> batch {batch}", flush=True)
+    (cnn_done if rc == 0 else cnn_failed).append(arch)
+    # Only delete the checkpoint of an architecture that COMPLETED -- a failed one needs it to
+    # resume next run. 14 checkpoints would otherwise eat several GB of the output quota.
+    if rc == 0:
+        ck = WORK / "checkpoints" / f"{arch}_ckpt.pt"
+        if ck.exists():
+            ck.unlink()
+
+# ================================ SUMMARY ================================
+# Regenerated from the fixed matcher so the collision counts can never be hand-typed into the paper.
+sh([sys.executable, "-u", str(S / "descriptor_coverage.py"), "--write"], 0.2)
+
+print(f"\n{'=' * 74}\nRESULT FILES\n{'=' * 74}")
+for f in sorted(RESULTS.glob("*.json")):
+    print(f"  {f.name:46s} {f.stat().st_size / 1024:8.1f} KB")
+
+for e in "ABC":
+    p = RESULTS / f"zeroshot_eval_{e}.json"
+    if not p.exists():
+        continue
+    d = json.loads(p.read_text())
+    ms = [v for k, v in d["models"].items() if "SigLIP" not in k]
+    if not ms:
+        continue
+    r = sum(m["rich"]["acc"] for m in ms) / len(ms)
+    g = sum(m["grounded"]["acc"] for m in ms) / len(ms)
+    print(f"\n  scale {e}: {d['n_classes']:3d} unseen classes  chance {d['chance']:.1%}  "
+          f"rich {r:.1%}  grounded {g:.1%}  delta {(g - r) * 100:+.1f} pp"
+          f"   [matcher_normalised={d.get('matcher_normalised')}]")
+
+ung = sorted(RESULTS.glob("zeroshot_eval_C_ung*.json"))
+if ung:
+    print(f"\n{'=' * 74}\nUNGROUNDED CONTROL ARM ({len(ung)} seed(s))\n"
+          f"decides whether the contribution is grounding or per-class coverage\n{'=' * 74}")
+    acc = {}
+    for p in ung:
+        d = json.loads(p.read_text())
+        ms = [v for k, v in d["models"].items() if "SigLIP" not in k]
+        for arm in ("rich", "grounded", "ungrounded"):
+            if ms and arm in ms[0]:
+                v = sum(m[arm]["acc"] for m in ms) / len(ms)
+                acc.setdefault(arm, []).append(v)
+                print(f"    seed {p.stem.split('_ung')[-1]}  {arm:11s} {v:.1%}")
+    if "ungrounded" in acc and "grounded" in acc:
+        u = sum(acc["ungrounded"]) / len(acc["ungrounded"])
+        g = sum(acc["grounded"]) / len(acc["grounded"])
+        spread = max(acc["ungrounded"]) - min(acc["ungrounded"])
+        print(f"\n    grounded {g:.1%} | ungrounded {u:.1%} (n={len(acc['ungrounded'])} seeds) | "
+              f"delta {(g - u) * 100:+.1f} pp | seed spread {spread * 100:.1f} pp")
+        if (g - u) * 100 > spread:
+            print("    -> the gap exceeds seed noise: SOURCING itself is doing work.")
+        else:
+            print("    -> the gap is within seed noise: grounding buys AUDITABILITY, not accuracy.")
+        print("    Do not put a delta in the manuscript from fewer than 3 seeds.")
+
+sup = []
+for f in sorted(RESULTS.glob("supervised_*.json")):
+    try:
+        d = json.loads(f.read_text())
+        sup.append((d.get("arch"), d.get("params_M"), d.get("seen_top1")))
+    except Exception:
+        pass
+if sup:
+    print(f"\n{'=' * 74}\nSUPERVISED BASELINES ({len(sup)}/{len(ARCHS)})\n{'=' * 74}")
+    for a, p, acc_ in sorted(sup, key=lambda r: -(r[2] or 0)):
+        print(f"  {a:26s} {'  --  ' if p is None else f'{p:6.2f}M'}  {(acc_ or 0):.1%}")
+    if len(sup) > 1:
+        best = max(sup, key=lambda r: r[2] or 0)
+        big = max(sup, key=lambda r: r[1] or 0)
+        if best[1] and big[1]:
+            print(f"\n  best {best[0]} at {best[1]:.1f}M -> {best[2]:.1%};  "
+                  f"largest {big[0]} at {big[1]:.1f}M -> {big[2]:.1%}  "
+                  f"({(best[2] - big[2]) * 100:+.1f} pp for {big[1] / best[1]:.1f}x the parameters)")
+
+if cnn_done:
+    print(f"\n  CNNs trained this session: {cnn_done}")
+if cnn_failed:
+    print(f"  STILL FAILING at batch {MIN_BATCH}: {cnn_failed}  (read the traceback above)")
+
+if LEFT:
+    print(f"""
+{'=' * 74}
+NOT DONE YET ({len(LEFT)} stage(s)) -- stopped at the {BUDGET_H} h budget, on purpose
+{'=' * 74}
+  {chr(10).join('    ' + s for s in LEFT[:20])}
+  {'    ... and %d more' % (len(LEFT) - 20) if len(LEFT) > 20 else ''}
+
+  1. Output -> "Create Dataset"
+  2. Attach it to a fresh copy of this notebook and run this SAME file again.
+     Everything above is skipped; it picks up exactly here.
+""")
+else:
+    print(f"""
+{'=' * 74}
+EVERYTHING COMPLETE
+{'=' * 74}
+  1. Output -> download results/*.json into docs/paper/
+  2. Locally, regenerate -- nothing in the paper is typed by hand:
+       python docs/paper/make_tables.py --write
+       python docs/paper/make_tex_tables.py
+       python docs/paper/make_figures.py
+       python scripts/collect_results.py
+       python scripts/build_submission.py
+  3. Rewrite section 5.3, the abstract and the title around what the ungrounded arm showed.
+
+  Still open and independent of this run:
+    * PENDING-ZENODO-DOI in main.tex -- COMPAG Option C needs the data deposited and linked.
+      Cite SAGE at {CFG.SHARD_REVISION[:12]}, not "latest".
+    * The 181-URL pass in docs/paper/SOURCE_CHECKLIST.md. Auditability is now the load-bearing
+      claim, so this is critical path; only 16 of 217 records are page-verified.
+""")
+
+print(f"  wall {elapsed_h():.2f} h | free disk {free_gb():.1f} GB")
