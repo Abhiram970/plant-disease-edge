@@ -41,8 +41,11 @@ full resolution (60.8 GB, up to 3072 px):
 ```bash
 python scripts/prepare_upload.py --dry-run     # check the plan
 python scripts/prepare_upload.py               # 84,123 images, 1.7 GB at 288 px
-kaggle datasets create -p "C:/kaggle/upload" -u # title it pde-sage-data
 ```
+
+Then upload `C:/kaggle/upload` as a **private** dataset titled `pde-sage-data` — kaggle.com →
+Datasets → New Dataset → drag the folder. (The `kaggle` CLI also works, but needs
+`~/.kaggle/kaggle.json` and the `id` edited in `dataset-metadata.json`; the web UI needs neither.)
 
 Everything trains and evaluates at 224 px, so storing more is ~4× the bytes for nothing.
 
