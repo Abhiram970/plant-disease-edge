@@ -109,8 +109,11 @@ ARCH_MAX_H       = 1.5      # no single CNN architecture may exceed this
 
 MAX_SIDE         = 288      # store at 288 px; everything trains at 224, so more is bytes for nothing
 UNGROUNDED_SEEDS = [0, 1, 2]
-LLM_MODEL        = "claude-sonnet-5"   # native Anthropic API
-LAVA_MODEL       = "claude-sonnet-4-6" # what the Lava service key is whitelisted for (probed)
+LLM_MODEL        = "claude-sonnet-5"   # both providers; the current Lava key allows exactly this
+# A Lava SERVICE KEY is whitelisted to specific models AND to one request shape. Probed live:
+# this key is Anthropic-shape and allows claude-sonnet-5 only (claude-sonnet-4-6 is refused).
+# If a future key differs, Lava names the allowed model in its error; set PDE_LLM_MODEL to it,
+# and set LAVA_SHAPE=openai if the key wants the OpenAI protocol instead.
 # Whichever is used, BOTH arms use the SAME model in the SAME run -- that is what makes
 # grounded_matched vs ungrounded a test of sourcing rather than of model version.
 MATCHED_GROUNDED = True
@@ -188,7 +191,7 @@ print(f"[start] free disk {free_gb():.1f} GB")
 
 # ---------------------------------------------------------------- secrets + repo
 for k in ("GH_TOKEN", "HF_TOKEN", "LAVA_API_KEY", "ANTHROPIC_API_KEY",
-          "ANTHROPIC_WORKSPACE_ID", "LAVA_BASE_URL", "PDE_LLM_MODEL"):
+          "ANTHROPIC_WORKSPACE_ID", "LAVA_BASE_URL", "LAVA_SHAPE", "PDE_LLM_MODEL"):
     v = secret(k)
     if v:
         os.environ[k] = v
@@ -202,10 +205,9 @@ if os.environ.get("HF_TOKEN"):
 # so the bare 4-6 name is the only one that works there. Do not "upgrade" this to Sonnet 5 without
 # re-probing the key; the run would fail its preflight.
 if not os.environ.get("PDE_LLM_MODEL"):
-    _lava = bool(os.environ.get("LAVA_API_KEY"))
-    os.environ["PDE_LLM_MODEL"] = LAVA_MODEL if _lava else LLM_MODEL
-    print(f"[llm] provider {'Lava' if _lava else 'Anthropic'} -> model "
-          f"{os.environ['PDE_LLM_MODEL']}")
+    os.environ["PDE_LLM_MODEL"] = LLM_MODEL
+_prov = "Lava" if os.environ.get("LAVA_API_KEY") else "Anthropic"
+print(f"[llm] provider {_prov} -> model {os.environ['PDE_LLM_MODEL']}")
 HAVE_LLM_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
 
 REPO = WORK / "pde"
@@ -459,30 +461,33 @@ if MATCHED_GROUNDED:
 def llm_reachable():
     """One cheap call before spending the run. Discovering a bad key or an unavailable model after
     six hours of GPU time is the expensive way to learn it."""
+    # Build the client exactly the way the generators do, so a PASS here means a PASS there.
+    sys.path.insert(0, str(S))
+    import build_descriptors as BD                                   # noqa: E402
     try:
-        if os.environ.get("LAVA_API_KEY"):
+        if os.environ.get("LAVA_API_KEY") and BD.lava_is_openai_shape():
             from openai import OpenAI
             c = OpenAI(api_key=os.environ["LAVA_API_KEY"],
                        base_url=os.environ.get("LAVA_BASE_URL", "https://api.lava.so/v1"))
             c.chat.completions.create(model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
                                       messages=[{"role": "user", "content": "ping"}])
         else:
-            import anthropic
-            ws = (os.environ.get("ANTHROPIC_WORKSPACE_ID") or "").strip()
-            # A workspace-scoped ("identity-linked") key is refused with a 400 unless the workspace
-            # id is sent as a header. The key is valid; only the header is missing.
-            cl = (anthropic.Anthropic(default_headers={"anthropic-workspace-id": ws}) if ws
-                  else anthropic.Anthropic())
-            cl.messages.create(model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
-                               messages=[{"role": "user", "content": "ping"}])
+            BD.anthropic_client().messages.create(
+                model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
+                messages=[{"role": "user", "content": "ping"}])
         return True, ""
     except Exception as e:
-        msg = f"{type(e).__name__}: {str(e)[:200]}"
-        if "workspace-id" in str(e):
+        s, msg = str(e), f"{type(e).__name__}: {str(e)[:200]}"
+        if "workspace-id" in s:
             msg += ("\n      -> your key is WORKSPACE-SCOPED. Add a Kaggle secret "
-                    "ANTHROPIC_WORKSPACE_ID with the workspace id from console.anthropic.com "
-                    "(Settings -> Workspaces), or issue a non-workspace key. The key is fine; "
-                    "only the header is missing.")
+                    "ANTHROPIC_WORKSPACE_ID with the id from console.anthropic.com "
+                    "(Settings -> Workspaces). The key is fine; only the header is missing.")
+        elif "request_shape" in s:
+            msg += ("\n      -> this Lava key wants the OTHER request shape. Set the Kaggle secret "
+                    "LAVA_SHAPE=openai (or remove it to use the Anthropic shape) and re-run.")
+        elif "not allowed for this service key" in s:
+            msg += ("\n      -> the key is valid but not whitelisted for this model. Lava names the "
+                    "allowed model in the message above; set PDE_LLM_MODEL to it.")
         return False, msg
 
 

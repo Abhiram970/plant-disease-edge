@@ -50,6 +50,12 @@ UNGROUNDED_SYSTEM = (
 
 
 DEFAULT_MODEL = "claude-sonnet-5"
+# The GROUNDED schema carries a source_url and a verbatim_quote per field, so its JSON
+# is far longer than the ungrounded one. At 1200 it hit stop_reason=max_tokens and the
+# truncated JSON failed to parse -- which would have silently stubbed the whole matched
+# grounded arm while the ungrounded arm looked fine. Both arms share this value so they
+# differ in exactly one respect: the system prompt.
+MAX_TOKENS = int(os.environ.get("PDE_MAX_TOKENS", "2000"))
 
 
 def model_name() -> str:
@@ -66,21 +72,29 @@ def fill_one(crop: str, disease: str, seed: int, arm: str = "ungrounded") -> dic
     model = model_name()
     lava = os.environ.get("LAVA_API_KEY", "")
     prompt = BD._user_prompt(crop, disease)
-    if lava:
+    if lava and BD.lava_is_openai_shape():
         from openai import OpenAI
         client = OpenAI(api_key=lava,
                         base_url=os.environ.get("LAVA_BASE_URL", "https://api.lava.so/v1"))
         resp = client.chat.completions.create(
-            model=model, max_tokens=1200, temperature=1.0, seed=seed,
+            model=model, max_tokens=MAX_TOKENS, temperature=1.0, seed=seed,
             messages=[{"role": "system", "content": system},
                       {"role": "user", "content": prompt}],
         )
         rec = BD._parse_descriptor(resp.choices[0].message.content, crop, disease)
     else:
-        client = BD.anthropic_client()   # handles workspace-scoped keys; see build_descriptors
+        # Anthropic shape -- either a direct Anthropic key or an Anthropic-shape Lava key, which
+        # is the same client with base_url pointed at Lava. See BD.anthropic_client.
+        client = BD.anthropic_client()
+        # temperature goes through extra_body: anthropic SDK 1.2 dropped it from the typed
+        # signature of messages.create (TypeError: unexpected keyword argument 'temperature'),
+        # but the API still honours it. Passing it matters -- it is the ONLY reason three seeds
+        # produce different text, and a silent fall back to the default would make the seed
+        # spread meaningless while still looking like it worked.
         msg = client.messages.create(
-            model=model, max_tokens=1200, temperature=1.0, system=system,
+            model=model, max_tokens=MAX_TOKENS, system=system,
             messages=[{"role": "user", "content": prompt}],
+            extra_body={"temperature": 1.0},
         )
         rec = BD._parse_descriptor(msg.content[0].text, crop, disease)
     # Provenance, stamped per record. The shipped grounded registry carries none, so there is no way
