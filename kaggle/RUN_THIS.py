@@ -16,6 +16,12 @@ file again. Two runs if you attach images; three if you let it fetch. Nothing is
       LAVA_API_KEY       your Lava spend key            \\ either one; needed ONLY by the descriptor
       ANTHROPIC_API_KEY  sk-ant-...                     /  arms. Everything else runs without a key.
 
+      ANTHROPIC_WORKSPACE_ID   ONLY if your Anthropic key is workspace-scoped. Such a key is
+                               refused with "anthropic-workspace-id is required when authenticating
+                               with an identity-linked API key" -- the key is valid, the header is
+                               missing. Get the id from console.anthropic.com -> Settings ->
+                               Workspaces. Leave the secret unset for an ordinary key.
+
       Both descriptor arms are generated with claude-sonnet-5 (override with PDE_LLM_MODEL). The key
       is checked with one cheap call BEFORE the long stages, so a bad key or an unavailable model
       costs seconds rather than being discovered six GPU-hours in.
