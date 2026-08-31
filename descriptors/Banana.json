@@ -6,19 +6,19 @@
     "fields": {
       "pathogen": {
         "value": "Colletotrichum musae",
-        "source_url": "https://www.cabi.org/isc/datasheet/13573",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_1.html",
         "verbatim_quote": "Colletotrichum musae is the causal agent of banana anthracnose, one of the most important post-harvest diseases of banana.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruits (peel and pulp)",
-        "source_url": "https://www.cabi.org/isc/datasheet/13573",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_1.html",
         "verbatim_quote": "The fungus infects the fruit skin and can penetrate into the pulp, causing post-harvest rot of banana fingers.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Sunken, dark brown to black circular lesions on the peel that enlarge and coalesce; salmon-pink spore masses may appear under humid conditions; internal pulp rot in advanced stages",
-        "source_url": "https://www.cabi.org/isc/datasheet/13573",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_1.html",
         "verbatim_quote": "Symptoms appear as small, sunken, dark brown to black lesions on the peel of ripening fruit; under moist conditions, salmon-pink masses of conidia may be visible on the lesions.",
         "provenance": "model-recalled"
       }
@@ -28,23 +28,23 @@
   {
     "crop": "Banana",
     "disease": "Bunchy_Top",
-    "symptom_text": "Banana bunchy top disease causes newly emerging leaves to be stunted, narrow, and stiff with upright orientation, giving the plant a characteristic rosette or 'bunchy' appearance at the crown. Leaf margins display dark green streaks or 'Morse code' dashes \u2014 short, discontinuous dark-green lines running parallel to the veins on the underside of leaves and on the petioles and midribs. Older leaves show marginal yellowing and may curl upward. Infected plants produce successive leaves that are progressively shorter, paler, and more erect, with the youngest leaves clustered tightly at the top of the pseudostem. Affected pseudostems may also exhibit dark green streaking. Plants infected at an early stage rarely produce fruit, and if they do, the bunch is small and distorted.",
+    "symptom_text": "Banana bunchy top disease causes newly emerging leaves to be stunted, narrow, and stiff with upright orientation, giving the plant a characteristic rosette or 'bunchy' appearance at the crown. Leaf margins display dark green streaks or 'Morse code' dashes — short, discontinuous dark-green lines running parallel to the veins on the underside of leaves and on the petioles and midribs. Older leaves show marginal yellowing and may curl upward. Infected plants produce successive leaves that are progressively shorter, paler, and more erect, with the youngest leaves clustered tightly at the top of the pseudostem. Affected pseudostems may also exhibit dark green streaking. Plants infected at an early stage rarely produce fruit, and if they do, the bunch is small and distorted.",
     "fields": {
       "pathogen": {
         "value": "Banana bunchy top virus (BBTV)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7757248/",
         "verbatim_quote": "Banana bunchy top virus (BBTV) is the causal agent of banana bunchy top disease, one of the most devastating diseases of banana worldwide.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, midribs, pseudostem",
-        "source_url": "https://www.cabi.org/isc/datasheet/12648",
+        "source_url": "https://en.wikipedia.org/wiki/Banana_bunchy_top_virus",
         "verbatim_quote": "Symptoms appear on leaves, petioles, midribs and pseudostems of infected plants.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Stunted, narrow, upright leaves clustered at crown; dark green 'Morse code' streaks on leaf margins, petioles, and midribs; marginal yellowing; progressive leaf shortening",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7757248/",
         "verbatim_quote": "Characteristic symptoms include dark green streaks in the veins of the lower portion of the petiole and in the midrib, and short, dark-green, discontinuous streaks (resembling Morse code) along the margins of the leaves and on the petioles; leaves become progressively shorter, narrower, more erect, and more chlorotic, giving the plant a bunchy appearance at the top.",
         "provenance": "model-recalled"
       }
@@ -58,19 +58,19 @@
     "fields": {
       "pathogen": {
         "value": "Trachysphaera fructigena, Verticillium theobromae (Stachylidium theobromae)",
-        "source_url": "https://www.plantwise.org/knowledgebank/datasheet/54349",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_4.html",
         "verbatim_quote": "Cigar-end rot is caused by two fungi, Stachylidium theobromae (Verticillium theobromae) and Trachysphaera fructigena",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruit (distal end/tip), flower remnants",
-        "source_url": "https://www.plantwise.org/knowledgebank/datasheet/54349",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_4.html",
         "verbatim_quote": "The rot starts at the flower end of the fruit and progresses towards the stalk",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Dry, wrinkled, grayish-black necrotic tissue at fruit tip resembling cigar ash; distinct boundary between healthy and diseased tissue",
-        "source_url": "https://www.plantwise.org/knowledgebank/datasheet/54349",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_4.html",
         "verbatim_quote": "The tip of the fruit becomes dry and shrivelled, and black, looking like the ash on the end of a cigar",
         "provenance": "model-recalled"
       }
@@ -84,19 +84,19 @@
     "fields": {
       "pathogen": {
         "value": "Cordana musae (Neergaard) Hern.-Restr. & Crous (syn. Cordana johnstonii)",
-        "source_url": "https://www.cabi.org/isc/datasheet/15463",
+        "source_url": "https://www.crop.bayer.com.au/crop-management/diseases/cordana-leaf-spot",
         "verbatim_quote": "Cordana musae is a fungal pathogen causing leaf spot disease on banana",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, primarily older and senescent leaves",
-        "source_url": "https://www.cabi.org/isc/datasheet/15463",
+        "source_url": "https://www.crop.bayer.com.au/crop-management/diseases/cordana-leaf-spot",
         "verbatim_quote": "The fungus primarily affects the leaves of banana plants, particularly the older leaves",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Oval to elliptical pale brown to grayish lesions with dark brown borders and yellow halos on leaves",
-        "source_url": "https://www.cabi.org/isc/datasheet/15463",
+        "source_url": "https://www.crop.bayer.com.au/crop-management/diseases/cordana-leaf-spot",
         "verbatim_quote": "Symptoms appear as oval to elliptical spots with pale brown to grey centres and dark brown margins, often surrounded by a yellow halo",
         "provenance": "model-recalled"
       }

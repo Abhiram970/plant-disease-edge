@@ -6,126 +6,65 @@
 
 **Priority order.** Rows are sorted: dead links first, then **HELD-OUT** crops (these carry the paper's cross-crop claim), then `model-recalled` quotes (never checked against the page). Rows marked `page-verified` were already read off the page — lowest priority.
 
-- URLs: **181**
+- URLs: **175**
 - Citing fields: **374**
 - Fields on held-out crops: **118**
 
 ---
 
-### 1. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 1. [not checked] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/diseases/angular-leaf-spot-cucumbers> - <https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/angular-leaf-spot>
+<https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_1.html>
 
-- **Cited by:** Cucumber/Angular_Leaf_Spot  (fields: affected_organs)
-- **Must contain:** "Angular leaf spot affects leaves, fruit, and stems of cucumbers."
-- **Should support:** Leaves, fruit, stems
-- **Additional info:** - Angular leaf spot is a bacterial disease caused by Pseudomonas syringae pv. lachrymans. 
-Although angular leaf spot can infect any of the cucurbit crops, it is less common on cucumber due to the availability of resistant varieties.
-Angular leaf spot thrives in warm, humid conditions.
-The bacteria can infect all cucurbit crops and will infect all above-ground parts of the plant, including leaves, fruit and vines.
-When bacteria infect the fruit, it moves deep into the fruit and infect the seed.
-Contaminated seed can introduce the disease into a field.
-When humidity is high, a drop of clear to white sticky bacterial ooze forms on infections. These bacteria move from plant to plant on the hands and tools of workers, by insects, or by splashing water.
-The pathogen can survive in plant debris for over two years. 
+- **Cited by:** Banana/Anthracnose  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms appear as small, sunken, dark brown to black lesions on the peel of ripening fruit; under moist conditions, salmon-pink masses of conidia may be visible on the lesions."
+- **Should support:** Colletotrichum musae; Fruits (peel and pulp); Sunken, dark brown to black circular lesions on the peel that enlarge and coalesce; salmon-pink spore masses m
+- **Additional info:** - Small, black, circular specks on the skin- sunken & coalesce to form large spots.
+Bright salmon-coloured conidial mass appears on the spots.
+Severely infected fruits become dark due to blemishes.
+Acervuli also develop on the skin and the pulp becomes partially soft.
+Non-latent infection usually starts during or after the harvest of bunches in small peel wounds and it continues to develop without a dormant period.
+Many latent infections at the time of harvest show large number of appressoria on the surface of the peel.
+The spread of the disease is by air-borne conidia and numerous insects which frequently visit banana flowers also spread the disease.
+Temp.30 to 35°C and RH- 85.7 -100 %
 
-### 2. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 2. [not checked] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/diseases/bacterial-wilt-cucurbits> - <https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-wilt>
+<https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_4.html>
 
-- **Cited by:** Cucumber/Bacterial_Wilt  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand "
-- **Should support:** Erwinia tracheiphila; Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pull; leaves, stems, vascular tissue, entire plant
-- - **Additional info:** - The bacterium Erwinia tracheiphila causes bacterial wilt. This pathogen can cause severe losses in cucumbers and muskmelons. It does not affect squash and pumpkins as much. Bacterial wilt does not affect watermelon. 
-The bacteria overwinter in the gut of striped and spotted cucumber beetles. Not all beetles carry the bacteria. Beetles that feed on infected plants pick up the bacteria. They then move to new plants, creating wounds through feeding. The bacteria are on the mouthparts or in the fecal matter of the beetle and enter the plant through the feeding wounds.
-The bacteria multiply rapidly within the plant and plug the vascular tissue, resulting in wilting of the vines. Once bacterial wilt infects a plant, there is no way to control the disease. The bacteria cannot transmit in seed, does not survive in soil, and only survives in plant debris for a short period. It cannot overwinter in Minnesota in plant debris.
-Bacterial wilt does not occur every year in Minnesota.
+- **Cited by:** Banana/Cigar_End_Rot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Cigar-end rot is caused by two fungi, Stachylidium theobromae (Verticillium theobromae) and Trachysphaera fructigena"
+- **Should support:** Dry, wrinkled, grayish-black necrotic tissue at fruit tip resembling cigar ash; distinct boundary between heal; Fruit (distal end/tip), flower remnants; Trachysphaera fructigena, Verticillium theobromae (Stachylidium theobromae)
+- **Additional info:** - 
+Tip of immature fruit and spreads upward.
+Ashy conidia and conidiophores cover the rotted portion.
+Imparting burnt ashy cigar-end appearance with a dark border.
+Decay may extend up to one-third of the fruit but internal tissues develop a dry rot.
+Conidia are hyaline, oblong to cylindrical, borne at the ends of tapering phialides, aggregated into rounded, mucilaginous transluscent heads.
+The fungus – plant debris – microsclerotia.
+Infected plant parts – irrigation water – implements.
 
-### 3. [429 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 3. [not checked] `HELD-OUT` — model-recalled
 
-<https://extension.umn.edu/small-grains-pest-management/loose-smut-wheat-and-barley> - <https://www.albertagrains.com/the-growing-point/articles-library/true-loose-smut-in-barley>
-
-- **Cited by:** Wheat/Loose_Smut  (fields: affected_organs)
-- **Must contain:** "The entire head, including the kernels, glumes, and rachis, is replaced by a mass of dark, olive-brown spores."
-- **Should support:** Heads (spikes), kernels, glumes, rachis
-- **Additional info:** - A foundational step in establishing a high yield potential crop is minimizing the impact of seed-bourne diseases on yield and quality. True loose smut (TLS) is a seed-bourne disease that can reduce both the yield of barley. Caused by the fungus Ustilago nuda, TLS infects the embryo of barley seed. Infection of the seed occurs when a previously infected seed is sown. Sowing TLS infected barely seed will reduce the yield of the crop because the flowering spikes will be replaced by spikes of fungal spores. In addition, heads with loose smut spores act as a source of TLS leading to infected seed that can result in TLS when planted the next growing season.
-
-Although TLS will not impact seed germination, it infects and survives within the growing plant throughout the season. When the seed germinates, the fungus is activated and colonizes the growing point of the plant. As the head develops, all the tissue except the central spike is invaded and converted to spores that are covered by a delicate, easily ruptured membrane (Figure 1). These infected heads typically emerge before healthy plants in the crop. Wind easily disperses spores that land on healthy heads eventually germinating and infecting embryo tissues leading to infected grain. Sowing TLS-infected barley seed will reduce crop yield given the plants that are produced do not produce seed. Losses from infection can range from 1% to 40% and in general, the percent yield loss is equal to the percent of the heads infected with TLS.
-
-
-
-### 4. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://extension.umn.edu/wheat-diseases/powdery-mildew-wheat> - <https://www.sciencedirect.com/science/article/pii/S2589721725000844>
-
-- **Cited by:** Wheat/Powdery_Mildew  (fields: visual_symptoms)
-- **Must contain:** "Powdery mildew first appears as white, powdery spots or patches on leaves and other above-ground plant parts. The white, fluffy growth is composed of fungal mycelium and spores. As the disease progresses, the white patches turn gray to tan, and small, black fr"
-- **Should support:** White to gray powdery colonies on upper leaf surfaces; colonies turn tan-brown with age; dark cleistothecia em
-- **Additional info:** - Powdery mildew seriously hinders photosynthesis and nutrient accumulation in wheat, and its early detection holds the key to enhancing control efficacy. In this research, solar-induced chlorophyll fluorescence (SIF) parameters were derived from radiance and reflectance data, while vegetation indices (VI) were computed using reflectance. A suite of feature selection methods, including shadow feature (Boruta), feature selection (ReliefF), minimum redundancy maximum correlation (mRMR), and random forest (RF). Models were developed on the back propagation (BP) neural network, support vector regression (SVR), and partial least squares regression (PLSR). Furthermore, a stacking ensemble strategy was adopted, utilizing RF and decision tree (DT) algorithms as meta-models to integrate the predictions from base models. The findings revealed that the Boruta method selected a well-balanced number of feature parameters with normalized weights. The multi-source model (SIF + VI) is superior to the single-source model (SIF or VI). The BP model exhibited high accuracy in wheat disease monitoring, particularly during the initial infection phases. The multi-regressor stacked with RF ensemble model (MRSRF) generally surpassed the multi-regressor stacked with DT ensemble model (MRSDT), especially in the initial infection stage, where the MRSRF model's average R2 was 13.03 % higher than that of the BP model. To validate these conclusions, reflectance data simulated by the PROSAIL model (PROSPECT and SAIL) were utilized. The Boruta-MRSRF model demonstrated exceptional advantages in early detection, achieving an R2 greater than 0.90 at all infection stages. This study provides effective ideas and methods for the active prevention and control of crop diseases, which are of great significance for ensuring agricultural production.
-
-### 5. [OK] `HELD-OUT` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx> - <https://agritech.tnau.ac.in/crop_protection/wheat/crop_prot_crop%20diseases_cereals_wheat_5.html>
+<https://agritech.tnau.ac.in/crop_protection/wheat/crop_prot_crop%20diseases_cereals_wheat_5.html>
 
 - **Cited by:** Wheat/Powdery_Mildew  (fields: affected_organs, pathogen)
 - **Must contain:** "The fungus can infect all above-ground parts of the plant including leaves, leaf sheaths, stems, and spikes."
 - **Should support:** Blumeria graminis f. sp. tritici; Leaves, leaf sheaths, stems, and spikes
+- **Additional info:** -
 
-### 6. [OK] `HELD-OUT` — model-recalled
+### 4. [not checked] `HELD-OUT` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx> - <https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/plant/identify/karnal-bunt>
+<https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-18-1098-PDN>
 
-- **Cited by:** Wheat/Karnal_Bunt  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Infected kernels are partially or entirely converted to a black, powdery mass of teliospores. Infected kernels have a distinctive fishy odor caused by the production of trimethylamine. Usually only part of the kernel is infected, with the embryo end often rema"
-- **Should support:** Kernels (grain/seed); Partial replacement of kernel tissue by dark brown to black powdery teliospore mass; fishy odor; only part of ; Tilletia indica
-- **Additional info:** - Karnal bunt (also called partial bunt) is caused by the fungus Tilletia indica which infects grains at flowering. It reduces grain quality through the production of masses of powdery spores that discolour the grain and grain products. It is recognised by a fishy smell which taints the grain.
+- **Cited by:** Orange/Whisker_Mold  (fields: affected_organs, pathogen)
+- **Must contain:** "Penicillium ulaiense causes whisker mold of citrus fruits"
+- **Should support:** Fruit; Penicillium ulaiense
+- **Additional info:** -  In a survey of postharvest losses in citrus packinghouses located in Valencia province (Spain) conducted during the 2017 to 2018 citrus season, mold symptoms distinctive from those of the most frequent and well-known citrus green and blue molds (caused by Penicillium digitatum [Pers.] Sacc. and Penicillium italicum Wehmer, respectively) were observed in about 1 to 2% of the sampled molded orange fruits (Citrus sinensis L.). Distinctive symptoms on sporulated soft lesions were the grayish blue color of the conidial masses and the presence of whisker-like coremia with tall whitish stalks. This whisker mold was often found in mixed infections with green and/or blue molds in the same fruit. The potential causal agent (isolate IVIA NAV-1) was transferred to potato dextrose agar (PDA) plates and purified by consecutive replating after 7 days of incubation at 25°C. At this time, colonies were mostly circular, compact, 30 to 40 mm in diameter, with dense velvety grayish mycelium and abundant bluish conidia. Conidiophores were sinoid, mostly terverticillate, and conidia were cylindrical to ellipsoidal, smooth, and thin walled, measuring 4.8 to 8.4 × 2.0 to 3.2 μm. Based on these morphological characteristics, the isolate IVIA NAV-1 was tentatively identified as Penicillium ulaiense H.M. Hsieh, H.J. Su & Tzean (Frisvad and Samson 2004). To confirm the identity, molecular identification was performed in a specialized laboratory. The rDNA internal transcribed spacer regions ITS 1 and ITS 2 and the β-tubulin gene were amplified, sequenced, and deposited in GenBank (accessions nos. MH477872 and MH477873, respectively). A BLAST search for ITS showed 100% identity and 100% query coverage with P. ulaiense strain CBS 210.92 (accession no. KC411695.1). A BLAST search for the β-tubulin gene showed 99% identity and 100% query coverage with P. ulaiense isolate 1399 (accession no. LT629297.1). Selected healthy oranges of cultivar Valencia were surface disinfected by dipping in 0.5% sodium hypochlorite for 2 min followed by thorough rinsing in deionized water. Pathogenicity was tested by pipetting 30 µl of a spore suspension (1 × 106 conidia/ml), prepared from 7- to 10-day-old PDA cultures, onto fresh rind wounds, which were made on the equatorial area of disinfected fruit using a sterile, stainless steel rod with a probe tip of 1 mm in width × 2 mm in length (one wound per fruit, total of 20 oranges). Additionally, 10 disinfected, wounded, noninoculated oranges were used as controls. The same procedure was repeated 15 days later with another lot of Valencia oranges. In both tests, disease symptoms were observed on all inoculated fruit after 7 days of incubation at 25°C, and P. ulaiense was consistently reisolated, thereby fulfilling Koch’s postulates. No decay was observed on any of the control fruit. To our knowledge, this is the first report of P. ulaiense causing whisker mold of citrus fruit in Spain. The disease has been previously reported in important citrus-producing areas such as California (Holmes et al. 1993), Egypt (Youssef et al. 2010), Pakistan (Khan et al. 2017), and Korea (Park et al. 2018).
 
-The name comes from the city in India, Karnal, where the disease was first identified. Unlike other bunt diseases, only some grains are affected on each wheat ear.
+### 5. [not checked] `HELD-OUT` — model-recalled
 
-If Karnal bunt made it to Australia, it would have a major economic impact—over 45 international markets would reject our grains and grain prices would plummet.
-
-The fungus would be almost impossible to eradicate once here since its spores can persist in soil for up to four years and they can be carried over long distances by wind.
-
-### 7. [OK] `HELD-OUT` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/LooseSmut.aspx> - <https://cropprotectionnetwork.org/encyclopedia/loose-smut-of-wheat>
-
-- **Cited by:** Wheat/Loose_Smut  (fields: pathogen)
-- **Must contain:** "Loose smut of wheat is caused by the fungus Ustilago tritici."
-- **Should support:** Ustilago tritici
-- **Additional info:** - Loose smut has a wide distribution and can occur anywhere wheat is produced. It is caused by the fungus Ustilago tritici. Mild symptoms may be present prior to heading, including yellowish leaf streaks and stiff, dark green leaves. Affected plants head out early, producing sterile heads with clumped, sooty olive-black spores in place of healthy glumes and kernels. Spores are not enclosed by the seed coat, so are quickly dispersed by rain or wind after emergence. After spores disperse, only a bare rachis remains with a few fragments of glumes or awns. These spores infect other wheat plants at flowering, causing seed infection. Infected seed appear healthy. The best time to scout is after heading. The fungus is seedborne, and unless infected seed is planted, no disease will occur in a field. New infections are favored by humid, cool weather 60-72°F during flowering (FGS 10.5.1 - 10.5.3).
-
-Less susceptible varieties of wheat are available. Plant certified seed to reduce disease risk. Do not save seed from fields with loose smut. Fungicide seed treatments can effectively manage loose smut.
- 
-
-### 8. [OK] `HELD-OUT` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx> - <https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/>
-
-- **Cited by:** Cucumber/Angular_Leaf_Spot, Cucumber/Angular_Leaf_Spot_Of_Cucumber  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a w"
-- **Should support:** Leaves, fruit, stems; Pseudomonas syringae pv. lachrymans; Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf un
-- **Additional info:** - Cucurbit angular leaf spot is a bacterial disease that can be economically damaging to leaves, stems, and fruit of cucumbers, honeydew melon, and zucchini squash growers in Wisconsin. This disease looks somewhat like downy mildew, but is caused by a bacterial pathogen Pseudomonas syringae pv. lachrimans. Initial lesions appear as small, tan, water-soaked spots that are delineated by the veins of the leaf giving the ’angled’ or straight edge appearance of lesions on the leaves. As the lesions expand and develop, they typically turn white and papery in texture until the dead tissue falls out of the leaf, leaving a hole and often a tattered appearance to the leaf. Under humid conditions, a milky substance (bacterial ooze) may be notes on the infected foliage. This ooze dries to a white crust around the lesions. While fruit may appear healthy during leaf infection, the infection may continue to develop later in the season or post harvest as the lesions develop into soft areas of fruit under the cuticle or skin.
-
-The pathogen may be seedborne or debris-borne (for up to 2 years). To manage this disease, reduce the likelihood of infection by rotating out of cucurbit crops for at least 2 years and use disease free seed. In greenhouse cucumbers, lowering the humidity to 80-90% will help reduce the spread of the disease. Hot water and chemical seed treatments are not effective for totally eliminating the pathogen on infested seed (pathogen is beneath the seed coat). Breeding efforts have resulted in a large selection of cucurbits with tolerance to angular leaf spot. In some cultivars, tolerance to the disease is most strongly expressed in the fruit while significant infection can still occur in the foliage during cool, wet weather.
-
-Prolonged leaf wetness favors infection. The bacterium enters the leaf through respiration pores (stomates), water excreting pores (hydathodes), or wounds. Infections spread from leaf to leaf by splashing rain, human activity, and cucumber beetles.
-
-Copper containing fungicides can limit plant to plant spread of this disease. Treatments must be made every 5-7 days when the pressure is high and fruit require further expansion and maturity.
-
-### 9. [OK] `HELD-OUT` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/BananaBunchyTop.aspx> - <https://pmc.ncbi.nlm.nih.gov/articles/PMC7757248/>
-
-- **Cited by:** Banana/Bunchy_Top  (fields: pathogen, visual_symptoms)
-- **Must contain:** "Characteristic symptoms include dark green streaks in the veins of the lower portion of the petiole and in the midrib, and short, dark-green, discontinuous streaks (resembling Morse code) along the margins of the leaves and on the petioles; leaves become progr"
-- **Should support:** Banana bunchy top virus (BBTV); Stunted, narrow, upright leaves clustered at crown; dark green 'Morse code' streaks on leaf margins, petioles,
-- **Additional info:** - Banana bunchy top disease (BBTD) is one of the world's most destructive viral diseases of banana and plantain, causing up to 100% yield loss in severe cases. The disease is vectored by banana aphids (Pentalonia nigronervosa) and carried long distances through the movement of infected plant materials. The banana aphids harboring banana bunchy top virus (BBTV) present in banana producing regions are the sole vector and the most efficient method of transmitting the virus to the healthy plants. Controlling the spread of BBTD has been very challenging since no known banana germplasm is immune to BBTV. The disease can be managed with the use of virus‐free planting material and roguing. However, once BBTD is established in the field, it is very difficult to eradicate or manage it. Therefore, a more sustainable way of controlling the disease is developing host plant resistance against the virus and the vector. Biotechnological strategies via RNA interference (RNAi) could be used to target the banana aphid as well as BBTV to reduce virus‐associated yield losses of banana and plantain, which feed over 500 million people around the world. This review discusses the status of BBTD and perspectives on effective RNAi technologies for controlling BBTV and the vector, banana aphid, transmitting the virus as sustainable management of the disease.
-
-Banana bunchy top disease (BBTD) is one of the world's most destructive viral disease of banana and plantain causing up to 100% yield loss in severe cases. Biotechnological strategies via RNAi could be used to target banana aphid as well as__banana bunchy top virus__(BBTV) to reduce virus‐passociated yield losses of banana and plantain, which feed over 500 million people around the world. This review discusses the status of BBTD and perspectives on effective RNAi technologies for controlling BBTV and the vector, banana aphid, transmitting the virus as management of the disease.
-
-### 10. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/10968> - <https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/mpp.70128>
+<https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/mpp.70128>
 
 - **Cited by:** Cotton/Powdery_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Leveillula taurica is an obligate parasite causing powdery mildew on a wide range of hosts including cotton"
@@ -140,64 +79,9 @@ Leveillula taurica and its asexual stage Oidiopsis taurica (Lév.) Salmon 1906 a
 
 This review provides a comprehensive overview of current knowledge on L. taurica and the genetic basis of resistance to this pathogen in pepper (Capsicum spp.). We begin by exploring the taxonomic classification of L. taurica, highlighting its hemi-endophytic life cycle. Next, we examine its geographical distribution and the various strategies available for disease control. We then review sources of resistance identified in pepper and the genetic determinism of resistance to L. taurica. Finally, we highlight knowledge gaps in the understanding of this pathosystem and discuss potential directions for future research.
 
+### 6. [not checked] `HELD-OUT` — model-recalled
 
-
-### 11. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/12648> - <https://en.wikipedia.org/wiki/Banana_bunchy_top_virus>
-
-- **Cited by:** Banana/Bunchy_Top  (fields: affected_organs)
-- **Must contain:** "Symptoms appear on leaves, petioles, midribs and pseudostems of infected plants."
-- **Should support:** Leaves, petioles, midribs, pseudostem
-- **Additional info:** - Banana bunchy top disease affects the banana fruit and foliage, and is caused by a single-strand DNA virus, the banana bunchy top virus.[4] BBTV can infect species of the family Musaceae, which includes bananas, plantains, abaca, and more.[1] The aphids also feed on Heliconia and flowering ginger, which are grown in the same regions as bananas and must be considered in management of the disease. It is best to establish a banana production area where these alternate hosts are not present. Any age plants can be infected by this virus, but some varieties of banana, including the Cavendish, are more susceptible to the virus.[2] In areas where the virus is less common, the disease is usually spread by planting diseased suckers at the beginning of the season, which means the season is started with a diseased crop.[1]
-
-The pathogen causes cytopathological effects in the phloem tissue, which is the damaging of the host cells caused by the virus.[1] The damage causes many effects that help to diagnose and characterize the disease. The name of the disease comes from the symptom which occurs in older plants, in which the new leaves that are produced are narrower than normal, yellow, and flat, which causes a "bunchy" appearance at the top of the tree.[2] If any fruit is produced, which is unusual, it will be deformed.[2] In addition, one of the most distinctive symptoms is "Morse code streaking"[2] where the infected cells die and are lighter in color, causing irregular spots and dashes on the leaves that are easier to see when the waxy coating over the petiole is rubbed away.[2]
-
-### 12. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/13573> - <https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_1.html>
-
-- **Cited by:** Banana/Anthracnose  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms appear as small, sunken, dark brown to black lesions on the peel of ripening fruit; under moist conditions, salmon-pink masses of conidia may be visible on the lesions."
-- **Should support:** Colletotrichum musae; Fruits (peel and pulp); Sunken, dark brown to black circular lesions on the peel that enlarge and coalesce; salmon-pink spore masses m
-- **Additional info:** - Small, black, circular specks on the skin- sunken & coalesce to form large spots.
-Bright salmon-coloured conidial mass appears on the spots.
-Severely infected fruits become dark due to blemishes.
-Acervuli also develop on the skin and the pulp becomes partially soft.
-Non-latent infection usually starts during or after the harvest of bunches in small peel wounds and it continues to develop without a dormant period.
-Many latent infections at the time of harvest show large number of appressoria on the surface of the peel.
-The spread of the disease is by air-borne conidia and numerous insects which frequently visit banana flowers also spread the disease.
-Temp.30 to 35°C and RH- 85.7 -100 %
-
-
-### 13. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/15463> - <https://www.crop.bayer.com.au/crop-management/diseases/cordana-leaf-spot>
-
-- **Cited by:** Banana/Cordana_Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms appear as oval to elliptical spots with pale brown to grey centres and dark brown margins, often surrounded by a yellow halo"
-- **Should support:** Cordana musae (Neergaard) Hern.-Restr. & Crous (syn. Cordana johnstonii); Leaves, primarily older and senescent leaves; Oval to elliptical pale brown to grayish lesions with dark brown borders and yellow halos on leaves
-- **Additional info:** - Affecting bananas, cordana leaf spot (CLS), also known as banana diamond leaf spot, is caused by two fungi species; C. musae, which is more commonly found in tropical regions and C. johnstonii, which is found in the cooler banana growing regions of Australia. Although being widespread, CLS is not considered a major pest of bananas and is usually a secondary invader of leaf lesions caused by other fungi. Growth and spread of CLS can be accelerated by frequent rain and hot, humid conditions.
-
-Leaf spots (up to 10 cm), which are oval to diamond-shaped and pale brown with a yellow border, appear on the upper leaf side. Often spots merge, affecting large areas of the leaf, which turns brown and dries out. Spores are produced in large quantities on the underside of leaves, causing lesions to appear as greyish-brown and hairy. Dispersal of spores occurs via wet windy weather. Lesions caused by C.musae are generally larger and more elongated compared to C.johnstonii.
-
-Plants are more susceptible to CLS under adverse environmental conditions (waterlogging or drought), nutritional deficiencies and injury or infection from other diseases, which provide an entry point for CLS to invade. Cavendish bananas appear to be more tolerant to CLS than native banana species (plantain).
-
-
-### 14. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/39444> - <https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-18-1098-PDN>
-
-- **Cited by:** Orange/Whisker_Mold  (fields: affected_organs, pathogen)
-- **Must contain:** "Penicillium ulaiense causes whisker mold of citrus fruits"
-- **Should support:** Fruit; Penicillium ulaiense
-- **Additional info:** -  In a survey of postharvest losses in citrus packinghouses located in Valencia province (Spain) conducted during the 2017 to 2018 citrus season, mold symptoms distinctive from those of the most frequent and well-known citrus green and blue molds (caused by Penicillium digitatum [Pers.] Sacc. and Penicillium italicum Wehmer, respectively) were observed in about 1 to 2% of the sampled molded orange fruits (Citrus sinensis L.). Distinctive symptoms on sporulated soft lesions were the grayish blue color of the conidial masses and the presence of whisker-like coremia with tall whitish stalks. This whisker mold was often found in mixed infections with green and/or blue molds in the same fruit. The potential causal agent (isolate IVIA NAV-1) was transferred to potato dextrose agar (PDA) plates and purified by consecutive replating after 7 days of incubation at 25°C. At this time, colonies were mostly circular, compact, 30 to 40 mm in diameter, with dense velvety grayish mycelium and abundant bluish conidia. Conidiophores were sinoid, mostly terverticillate, and conidia were cylindrical to ellipsoidal, smooth, and thin walled, measuring 4.8 to 8.4 × 2.0 to 3.2 μm. Based on these morphological characteristics, the isolate IVIA NAV-1 was tentatively identified as Penicillium ulaiense H.M. Hsieh, H.J. Su & Tzean (Frisvad and Samson 2004). To confirm the identity, molecular identification was performed in a specialized laboratory. The rDNA internal transcribed spacer regions ITS 1 and ITS 2 and the β-tubulin gene were amplified, sequenced, and deposited in GenBank (accessions nos. MH477872 and MH477873, respectively). A BLAST search for ITS showed 100% identity and 100% query coverage with P. ulaiense strain CBS 210.92 (accession no. KC411695.1). A BLAST search for the β-tubulin gene showed 99% identity and 100% query coverage with P. ulaiense isolate 1399 (accession no. LT629297.1). Selected healthy oranges of cultivar Valencia were surface disinfected by dipping in 0.5% sodium hypochlorite for 2 min followed by thorough rinsing in deionized water. Pathogenicity was tested by pipetting 30 µl of a spore suspension (1 × 106 conidia/ml), prepared from 7- to 10-day-old PDA cultures, onto fresh rind wounds, which were made on the equatorial area of disinfected fruit using a sterile, stainless steel rod with a probe tip of 1 mm in width × 2 mm in length (one wound per fruit, total of 20 oranges). Additionally, 10 disinfected, wounded, noninoculated oranges were used as controls. The same procedure was repeated 15 days later with another lot of Valencia oranges. In both tests, disease symptoms were observed on all inoculated fruit after 7 days of incubation at 25°C, and P. ulaiense was consistently reisolated, thereby fulfilling Koch’s postulates. No decay was observed on any of the control fruit. To our knowledge, this is the first report of P. ulaiense causing whisker mold of citrus fruit in Spain. The disease has been previously reported in important citrus-producing areas such as California (Holmes et al. 1993), Egypt (Youssef et al. 2010), Pakistan (Khan et al. 2017), and Korea (Park et al. 2018).
-
-
-
-### 15. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/40339> - <https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.13556>
+<https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.13556>
 
 - **Cited by:** Bean/Angular_Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "On leaves, lesions are angular, delimited by veins, initially water-soaked, later turning brown to grey-brown, with a darker border; on the lower leaf surface a grey, powdery sporulation is visible; on pods, lesions are circular to irregular, reddish-brown spo"
@@ -210,9 +94,124 @@ In Brazil, 151 commercial fungicides are registered for the control of ALS in co
 
 The emergence of fungicide-resistant pathogens is a problem because the fungicide efficiency is significantly reduced (Hollomon, 2015). Therefore, it is necessary to monitor the pathogenic and morphophysiological variability of P. griseola strains and their sensitivity to commonly used fungicides. In addition, it is important to know the aggressiveness of P. griseola strains present in different locations. In this study, the morphophysiological and pathogenic characterization of different P. griseola strains was performed. Moreover, the sensitivity of these strains to the commonly used fungicides to control ALS was evaluated.
 
-### 16. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 7. [not checked] `HELD-OUT` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/55952> - <https://www.crop.bayer.com.au/crop-management/diseases/covered-smut>
+<https://cropprotectionnetwork.org/encyclopedia/loose-smut-of-wheat>
+
+- **Cited by:** Wheat/Loose_Smut  (fields: pathogen)
+- **Must contain:** "Loose smut of wheat is caused by the fungus Ustilago tritici."
+- **Should support:** Ustilago tritici
+- **Additional info:** - Loose smut has a wide distribution and can occur anywhere wheat is produced. It is caused by the fungus Ustilago tritici. Mild symptoms may be present prior to heading, including yellowish leaf streaks and stiff, dark green leaves. Affected plants head out early, producing sterile heads with clumped, sooty olive-black spores in place of healthy glumes and kernels. Spores are not enclosed by the seed coat, so are quickly dispersed by rain or wind after emergence. After spores disperse, only a bare rachis remains with a few fragments of glumes or awns. These spores infect other wheat plants at flowering, causing seed infection. Infected seed appear healthy. The best time to scout is after heading. The fungus is seedborne, and unless infected seed is planted, no disease will occur in a field. New infections are favored by humid, cool weather 60-72°F during flowering (FGS 10.5.1 - 10.5.3).
+
+Less susceptible varieties of wheat are available. Plant certified seed to reduce disease risk. Do not save seed from fields with loose smut. Fungicide seed treatments can effectively manage loose smut.
+
+### 8. [not checked] `HELD-OUT` — model-recalled
+
+<https://en.wikipedia.org/wiki/Banana_bunchy_top_virus>
+
+- **Cited by:** Banana/Bunchy_Top  (fields: affected_organs)
+- **Must contain:** "Symptoms appear on leaves, petioles, midribs and pseudostems of infected plants."
+- **Should support:** Leaves, petioles, midribs, pseudostem
+- **Additional info:** - Banana bunchy top disease affects the banana fruit and foliage, and is caused by a single-strand DNA virus, the banana bunchy top virus.[4] BBTV can infect species of the family Musaceae, which includes bananas, plantains, abaca, and more.[1] The aphids also feed on Heliconia and flowering ginger, which are grown in the same regions as bananas and must be considered in management of the disease. It is best to establish a banana production area where these alternate hosts are not present. Any age plants can be infected by this virus, but some varieties of banana, including the Cavendish, are more susceptible to the virus.[2] In areas where the virus is less common, the disease is usually spread by planting diseased suckers at the beginning of the season, which means the season is started with a diseased crop.[1]
+
+The pathogen causes cytopathological effects in the phloem tissue, which is the damaging of the host cells caused by the virus.[1] The damage causes many effects that help to diagnose and characterize the disease. The name of the disease comes from the symptom which occurs in older plants, in which the new leaves that are produced are narrower than normal, yellow, and flat, which causes a "bunchy" appearance at the top of the tree.[2] If any fruit is produced, which is unusual, it will be deformed.[2] In addition, one of the most distinctive symptoms is "Morse code streaking"[2] where the infected cells die and are lighter in color, causing irregular spots and dashes on the leaves that are easier to see when the waxy coating over the petiole is rubbed away.[2]
+
+### 9. [not checked] `HELD-OUT` — model-recalled
+
+<https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/angular-leaf-spot>
+
+- **Cited by:** Cucumber/Angular_Leaf_Spot  (fields: affected_organs)
+- **Must contain:** "Angular leaf spot affects leaves, fruit, and stems of cucumbers."
+- **Should support:** Leaves, fruit, stems
+- **Additional info:** - Angular leaf spot is a bacterial disease caused by Pseudomonas syringae pv. lachrymans. 
+Although angular leaf spot can infect any of the cucurbit crops, it is less common on cucumber due to the availability of resistant varieties.
+Angular leaf spot thrives in warm, humid conditions.
+The bacteria can infect all cucurbit crops and will infect all above-ground parts of the plant, including leaves, fruit and vines.
+When bacteria infect the fruit, it moves deep into the fruit and infect the seed.
+Contaminated seed can introduce the disease into a field.
+When humidity is high, a drop of clear to white sticky bacterial ooze forms on infections. These bacteria move from plant to plant on the hands and tools of workers, by insects, or by splashing water.
+The pathogen can survive in plant debris for over two years.
+
+### 10. [not checked] `HELD-OUT` — model-recalled
+
+<https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-wilt>
+
+- **Cited by:** Cucumber/Bacterial_Wilt  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand "
+- **Should support:** Erwinia tracheiphila; Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pull; leaves, stems, vascular tissue, entire plant
+- **Additional info:** - The bacterium Erwinia tracheiphila causes bacterial wilt. This pathogen can cause severe losses in cucumbers and muskmelons. It does not affect squash and pumpkins as much. Bacterial wilt does not affect watermelon. 
+The bacteria overwinter in the gut of striped and spotted cucumber beetles. Not all beetles carry the bacteria. Beetles that feed on infected plants pick up the bacteria. They then move to new plants, creating wounds through feeding. The bacteria are on the mouthparts or in the fecal matter of the beetle and enter the plant through the feeding wounds.
+The bacteria multiply rapidly within the plant and plug the vascular tissue, resulting in wilting of the vines. Once bacterial wilt infects a plant, there is no way to control the disease. The bacteria cannot transmit in seed, does not survive in soil, and only survives in plant debris for a short period. It cannot overwinter in Minnesota in plant debris.
+Bacterial wilt does not occur every year in Minnesota.
+
+### 11. [not checked] `HELD-OUT` — model-recalled
+
+<https://pmc.ncbi.nlm.nih.gov/articles/PMC7757248/>
+
+- **Cited by:** Banana/Bunchy_Top  (fields: pathogen, visual_symptoms)
+- **Must contain:** "Characteristic symptoms include dark green streaks in the veins of the lower portion of the petiole and in the midrib, and short, dark-green, discontinuous streaks (resembling Morse code) along the margins of the leaves and on the petioles; leaves become progr"
+- **Should support:** Banana bunchy top virus (BBTV); Stunted, narrow, upright leaves clustered at crown; dark green 'Morse code' streaks on leaf margins, petioles,
+- **Additional info:** - Banana bunchy top disease (BBTD) is one of the world's most destructive viral diseases of banana and plantain, causing up to 100% yield loss in severe cases. The disease is vectored by banana aphids (Pentalonia nigronervosa) and carried long distances through the movement of infected plant materials. The banana aphids harboring banana bunchy top virus (BBTV) present in banana producing regions are the sole vector and the most efficient method of transmitting the virus to the healthy plants. Controlling the spread of BBTD has been very challenging since no known banana germplasm is immune to BBTV. The disease can be managed with the use of virus‐free planting material and roguing. However, once BBTD is established in the field, it is very difficult to eradicate or manage it. Therefore, a more sustainable way of controlling the disease is developing host plant resistance against the virus and the vector. Biotechnological strategies via RNA interference (RNAi) could be used to target the banana aphid as well as BBTV to reduce virus‐associated yield losses of banana and plantain, which feed over 500 million people around the world. This review discusses the status of BBTD and perspectives on effective RNAi technologies for controlling BBTV and the vector, banana aphid, transmitting the virus as sustainable management of the disease.
+
+Banana bunchy top disease (BBTD) is one of the world's most destructive viral disease of banana and plantain causing up to 100% yield loss in severe cases. Biotechnological strategies via RNAi could be used to target banana aphid as well as__banana bunchy top virus__(BBTV) to reduce virus‐passociated yield losses of banana and plantain, which feed over 500 million people around the world. This review discusses the status of BBTD and perspectives on effective RNAi technologies for controlling BBTV and the vector, banana aphid, transmitting the virus as management of the disease.
+
+### 12. [not checked] `HELD-OUT` — model-recalled
+
+<https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/>
+
+- **Cited by:** Cucumber/Angular_Leaf_Spot, Cucumber/Angular_Leaf_Spot_Of_Cucumber  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a w"
+- **Should support:** Leaves, fruit, stems; Pseudomonas syringae pv. lachrymans; Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf un
+- **Additional info:** - Cucurbit angular leaf spot is a bacterial disease that can be economically damaging to leaves, stems, and fruit of cucumbers, honeydew melon, and zucchini squash growers in Wisconsin. This disease looks somewhat like downy mildew, but is caused by a bacterial pathogen Pseudomonas syringae pv. lachrimans. Initial lesions appear as small, tan, water-soaked spots that are delineated by the veins of the leaf giving the ’angled’ or straight edge appearance of lesions on the leaves. As the lesions expand and develop, they typically turn white and papery in texture until the dead tissue falls out of the leaf, leaving a hole and often a tattered appearance to the leaf. Under humid conditions, a milky substance (bacterial ooze) may be notes on the infected foliage. This ooze dries to a white crust around the lesions. While fruit may appear healthy during leaf infection, the infection may continue to develop later in the season or post harvest as the lesions develop into soft areas of fruit under the cuticle or skin.
+
+The pathogen may be seedborne or debris-borne (for up to 2 years). To manage this disease, reduce the likelihood of infection by rotating out of cucurbit crops for at least 2 years and use disease free seed. In greenhouse cucumbers, lowering the humidity to 80-90% will help reduce the spread of the disease. Hot water and chemical seed treatments are not effective for totally eliminating the pathogen on infested seed (pathogen is beneath the seed coat). Breeding efforts have resulted in a large selection of cucurbits with tolerance to angular leaf spot. In some cultivars, tolerance to the disease is most strongly expressed in the fruit while significant infection can still occur in the foliage during cool, wet weather.
+
+Prolonged leaf wetness favors infection. The bacterium enters the leaf through respiration pores (stomates), water excreting pores (hydathodes), or wounds. Infections spread from leaf to leaf by splashing rain, human activity, and cucumber beetles.
+
+Copper containing fungicides can limit plant to plant spread of this disease. Treatments must be made every 5-7 days when the pressure is high and fruit require further expansion and maturity.
+
+### 13. [not checked] `HELD-OUT` — model-recalled
+
+<https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/plant/identify/karnal-bunt>
+
+- **Cited by:** Wheat/Karnal_Bunt  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Infected kernels are partially or entirely converted to a black, powdery mass of teliospores. Infected kernels have a distinctive fishy odor caused by the production of trimethylamine. Usually only part of the kernel is infected, with the embryo end often rema"
+- **Should support:** Kernels (grain/seed); Partial replacement of kernel tissue by dark brown to black powdery teliospore mass; fishy odor; only part of ; Tilletia indica
+- **Additional info:** - Karnal bunt (also called partial bunt) is caused by the fungus Tilletia indica which infects grains at flowering. It reduces grain quality through the production of masses of powdery spores that discolour the grain and grain products. It is recognised by a fishy smell which taints the grain.
+
+The name comes from the city in India, Karnal, where the disease was first identified. Unlike other bunt diseases, only some grains are affected on each wheat ear.
+
+If Karnal bunt made it to Australia, it would have a major economic impact—over 45 international markets would reject our grains and grain prices would plummet.
+
+The fungus would be almost impossible to eradicate once here since its spores can persist in soil for up to four years and they can be carried over long distances by wind.
+
+### 14. [not checked] `HELD-OUT` — model-recalled
+
+<https://www.albertagrains.com/the-growing-point/articles-library/true-loose-smut-in-barley>
+
+- **Cited by:** Wheat/Loose_Smut  (fields: affected_organs)
+- **Must contain:** "The entire head, including the kernels, glumes, and rachis, is replaced by a mass of dark, olive-brown spores."
+- **Should support:** Heads (spikes), kernels, glumes, rachis
+- **Additional info:** - A foundational step in establishing a high yield potential crop is minimizing the impact of seed-bourne diseases on yield and quality. True loose smut (TLS) is a seed-bourne disease that can reduce both the yield of barley. Caused by the fungus Ustilago nuda, TLS infects the embryo of barley seed. Infection of the seed occurs when a previously infected seed is sown. Sowing TLS infected barely seed will reduce the yield of the crop because the flowering spikes will be replaced by spikes of fungal spores. In addition, heads with loose smut spores act as a source of TLS leading to infected seed that can result in TLS when planted the next growing season.
+
+Although TLS will not impact seed germination, it infects and survives within the growing plant throughout the season. When the seed germinates, the fungus is activated and colonizes the growing point of the plant. As the head develops, all the tissue except the central spike is invaded and converted to spores that are covered by a delicate, easily ruptured membrane (Figure 1). These infected heads typically emerge before healthy plants in the crop. Wind easily disperses spores that land on healthy heads eventually germinating and infecting embryo tissues leading to infected grain. Sowing TLS-infected barley seed will reduce crop yield given the plants that are produced do not produce seed. Losses from infection can range from 1% to 40% and in general, the percent yield loss is equal to the percent of the heads infected with TLS.
+
+### 15. [not checked] `HELD-OUT` — model-recalled
+
+<https://www.crop.bayer.com.au/crop-management/diseases/cordana-leaf-spot>
+
+- **Cited by:** Banana/Cordana_Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms appear as oval to elliptical spots with pale brown to grey centres and dark brown margins, often surrounded by a yellow halo"
+- **Should support:** Cordana musae (Neergaard) Hern.-Restr. & Crous (syn. Cordana johnstonii); Leaves, primarily older and senescent leaves; Oval to elliptical pale brown to grayish lesions with dark brown borders and yellow halos on leaves
+- **Additional info:** - Affecting bananas, cordana leaf spot (CLS), also known as banana diamond leaf spot, is caused by two fungi species; C. musae, which is more commonly found in tropical regions and C. johnstonii, which is found in the cooler banana growing regions of Australia. Although being widespread, CLS is not considered a major pest of bananas and is usually a secondary invader of leaf lesions caused by other fungi. Growth and spread of CLS can be accelerated by frequent rain and hot, humid conditions.
+
+Leaf spots (up to 10 cm), which are oval to diamond-shaped and pale brown with a yellow border, appear on the upper leaf side. Often spots merge, affecting large areas of the leaf, which turns brown and dries out. Spores are produced in large quantities on the underside of leaves, causing lesions to appear as greyish-brown and hairy. Dispersal of spores occurs via wet windy weather. Lesions caused by C.musae are generally larger and more elongated compared to C.johnstonii.
+
+Plants are more susceptible to CLS under adverse environmental conditions (waterlogging or drought), nutritional deficiencies and injury or infection from other diseases, which provide an entry point for CLS to invade. Cavendish bananas appear to be more tolerant to CLS than native banana species (plantain).
+
+### 16. [not checked] `HELD-OUT` — model-recalled
+
+<https://www.crop.bayer.com.au/crop-management/diseases/covered-smut>
 
 - **Cited by:** Wheat/Loose_Smut  (fields: visual_symptoms)
 - **Must contain:** "Infected ears emerge earlier than healthy ones and the entire ear is transformed into a mass of dark brown powdery spores (teliospores), initially covered by a greyish membrane which soon ruptures, exposing the spore mass which is dispersed by wind, leaving on"
@@ -223,26 +222,123 @@ Covered smut is a disease affecting seed heads and generally remains undetected 
 
 Spores from covered smut are seed and soil-borne. During harvest, spores from infected heads contaminate healthy clean seed, soil and machinery, where they remain dormant. Spores on contaminated seed used for planting germinate at the same time as seedlings, infecting the plant. Conditions favouring infection are early sowing into dry soil and warm (15 - 21 °C) temperatures. Following infection, the fungus grows within the plant, appearing later in the heads as masses of spores, replacing grains.
 
-### 17. [403 bot-blocked (page exists)] `HELD-OUT` — model-recalled
+### 17. [not checked] `HELD-OUT` — model-recalled
 
-<https://www.plantwise.org/knowledgebank/datasheet/54349> - <https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_banana_4.html>
+<https://www.sciencedirect.com/science/article/pii/S2589721725000844>
 
-- **Cited by:** Banana/Cigar_End_Rot  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Cigar-end rot is caused by two fungi, Stachylidium theobromae (Verticillium theobromae) and Trachysphaera fructigena"
-- **Should support:** Dry, wrinkled, grayish-black necrotic tissue at fruit tip resembling cigar ash; distinct boundary between heal; Fruit (distal end/tip), flower remnants; Trachysphaera fructigena, Verticillium theobromae (Stachylidium theobromae)
-- **Additional info:** - 
-Tip of immature fruit and spreads upward.
-Ashy conidia and conidiophores cover the rotted portion.
-Imparting burnt ashy cigar-end appearance with a dark border.
-Decay may extend up to one-third of the fruit but internal tissues develop a dry rot.
-Conidia are hyaline, oblong to cylindrical, borne at the ends of tapering phialides, aggregated into rounded, mucilaginous transluscent heads.
-The fungus – plant debris – microsclerotia.
-Infected plant parts – irrigation water – implements.
+- **Cited by:** Wheat/Powdery_Mildew  (fields: visual_symptoms)
+- **Must contain:** "Powdery mildew first appears as white, powdery spots or patches on leaves and other above-ground plant parts. The white, fluffy growth is composed of fungal mycelium and spores. As the disease progresses, the white patches turn gray to tan, and small, black fr"
+- **Should support:** White to gray powdery colonies on upper leaf surfaces; colonies turn tan-brown with age; dark cleistothecia em
+- **Additional info:** - Powdery mildew seriously hinders photosynthesis and nutrient accumulation in wheat, and its early detection holds the key to enhancing control efficacy. In this research, solar-induced chlorophyll fluorescence (SIF) parameters were derived from radiance and reflectance data, while vegetation indices (VI) were computed using reflectance. A suite of feature selection methods, including shadow feature (Boruta), feature selection (ReliefF), minimum redundancy maximum correlation (mRMR), and random forest (RF). Models were developed on the back propagation (BP) neural network, support vector regression (SVR), and partial least squares regression (PLSR). Furthermore, a stacking ensemble strategy was adopted, utilizing RF and decision tree (DT) algorithms as meta-models to integrate the predictions from base models. The findings revealed that the Boruta method selected a well-balanced number of feature parameters with normalized weights. The multi-source model (SIF + VI) is superior to the single-source model (SIF or VI). The BP model exhibited high accuracy in wheat disease monitoring, particularly during the initial infection phases. The multi-regressor stacked with RF ensemble model (MRSRF) generally surpassed the multi-regressor stacked with DT ensemble model (MRSDT), especially in the initial infection stage, where the MRSRF model's average R2 was 13.03 % higher than that of the BP model. To validate these conclusions, reflectance data simulated by the PROSAIL model (PROSPECT and SAIL) were utilized. The Boruta-MRSRF model demonstrated exceptional advantages in early detection, achieving an R2 greater than 0.90 at all infection stages. This study provides effective ideas and methods for the active prevention and control of crop diseases, which are of great significance for ensuring agricultural production.
 
+### 18. [not checked] `HELD-OUT` — none
 
-### 18. [OK] `HELD-OUT` — page-verified
+<http://www.agritech.tnau.ac.in/expert_system/paddy/cpdisbls.html>
 
-<https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton> - Perfect link
+- **Cited by:** Wheat/Bacterial_Leaf_Streak_Black_Chaff  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Xanthomonas translucens pv. undulosa
+- **Additional info:** - Initially, small, dark-green and water-soaked streaks on interveins from tillering to booting stage
+The progress of the streaks is longitudinal, limited by the veins and soon turn yellow or orange brown.
+All along the streaks bacterial exudates could be observed as tiny yellow or amber colored droplets.
+These streaks may coalesce to form large patches and cover the entire leaf surface.
+Lesions turn brown to greyish white then dry when disease is severe
+Infection in the florets and seeds results in brown or black discoloration and death of ovary, stamens and endosperm and browning of glumes
+
+The bacteria causing the disease X. oryzae pv.oryzicola occur as rods.
+The bacteria have no spores and no capsules.
+They move with the aid of a single polar flagellum.
+They are Gram-negative and aerobic and can grow favorably at 28 °C.
+The bacterial colonies on nutrient agar are pale yellow, circular, smooth, convex, and viscid and have an entire margin.
+
+Factors favoring disease development
+Presence of the bacteria on leaves and in the water or those surviving in the debris left after harvest
+Warm temperature and high humidity
+Early stage of planting from maximum tillering to panicle initiation
+
+### 19. [not checked] `HELD-OUT` — none, page-verified
+
+<https://agritech.tnau.ac.in/crop_protection/beans_diseases_3.html>
+
+- **Cited by:** Bean/Rust  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Plants infected with rust have dry reddish, yellowish, or orange spore masses or pustules primarily on the lower surface of leaves."
+- **Should support:** Dry reddish, yellowish or orange powdery spore pustules, mainly on the underside of leaves; Leaves, primarily the lower surface; pods may also be affected; Uromyces phaseoli (syn. U. appendiculatus)
+- **Additional info:** - Rust: Uromyces appendiculaters
+Symptoms
+
+Bean rust is mainly a disease of bean leaves that causes rust-colored spots to form on the lower leaf surfaces.
+Severely infected leaves turn yellow, wilt, and then drop off of the plant.
+Stems and pods may also be infected. This disease is caused by the fungus Uromyces appendiculaters.
+It affects most types of beans under humid conditions.
+Management
+
+The fungus survives the winter in the soil, on plant debris and even on poles used the previous year. In gardens where rust has been severe, crop rotation is important.
+As plants begin to bloom, sulfur or chlorothalonil can be sprayed weekly on snap and green beans only.
+Do not apply chlorothalonil to lima (butter) beans. Wait seven days between spraying and harvest when using chlorothalonil on beans, and 14 days on Southern peas.
+Apply chemicals according to directions on the label.
+
+### 20. [not checked] `HELD-OUT` — none
+
+<https://agritech.tnau.ac.in/crop_protection/cucurbit_phdiseases_4.html>
+
+- **Cited by:** Cucumber/Pythium_Fruit_Rot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Pythium aphanidermatum (and other Pythium spp.)
+- **Additional info:** - Post Harvest Diseases:: Vegetables:: Cucurbits
+
+Fruit rot: Pythium aphanidermatum
+Symptom:
+Fruits in intimate contact with soil is affected
+Forms a luxuriant wooly mycelial mat on the affected fruits
+Skin of the friut shows soft, dark green, water soaked lesions
+Interior tissue become watery and soft and decaying matter emits a bad odour
+			
+Identification of pathogen:
+Mycelium - intra-cellular, hyaline and coenocytic
+Oogonia - smooth and spherical
+Antheridia - broadly clavate, terminal or intercallary
+Spreads among the fruits during the storage and transit
+High moisture and temperature - favours the growth
+Management:
+Soil drenching with copperoxychloride - 0.25%
+Fruits should be kept away from soil
+
+### 21. [not checked] `HELD-OUT` — page-verified
+
+<https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html>
+
+- **Cited by:** Peach/Leaf_Curl, Peach/Peach_Leaf_Curl  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus."
+- **Should support:** Blossoms, fruit, leaves, and shoots; Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores; Taphrina deformans
+- **Additional info:** - Peach leaf curl: Taphrina deformans
+Symptom
+
+It attacks the leaves, causing curling and blister formation.
+The leaves start turning yellowish or reddish and fall off prematurely.
+The infected portion develops a pink or reddish bronze colour.
+Growth of the tree is affected with a reduction of yield.
+Management
+
+Remove and burning of infected shoots.
+Spray the plants with Bordeaux mixture 1% or 0.1% Carbendazim.
+Spray Mancozeb 0.25 % at 20 days before harvesting.
+
+### 22. [not checked] `HELD-OUT` — none
+
+<https://agritech.tnau.ac.in/crop_protection/rubber_diseases_3.html>
+
+- **Cited by:** Cucumber/Corynespora_Leaf_Spot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Corynespora cassiicola
+- **Additional info:** - Corynespora leaf spot: Corynespora cossicola
+Symptoms:
+Circular spots with brown or papery centre and with a dark brown ring appear on the young leaves.
+An yellow hallo develop around the ring. Short holes occur. Affected leaves dries up.
+Management: Spray with 1% Bordeaux mixture
+
+### 23. [not checked] `HELD-OUT` — page-verified
+
+<https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-cotton>
 
 - **Cited by:** Cotton/Bacterial_Blight  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls"
@@ -250,1312 +346,3948 @@ Infected plant parts – irrigation water – implements.
 - **Additional info:** - Bacterial blight of cotton, also known as angular leaf spot and black arm, is an important disease of cotton. It is caused by Xanthomonas citri subsp. malvacearum, and it affects all parts of the cotton plant, reducing yield and fiber quality. Symptoms include water-soaked lesions on leaves constricted by the leaf veins, black lesions on stems and petioles (black arm), and round water-soaked lesions on bolls. The causal pathogen is primarily transmitted through infected seed. However, in situations where continuous cotton is grown, the pathogen can survive on residue on the soil surface for short periods. High humidity, rain, and wind contribute to disease risk and spread.
 Managing the disease involves using resistant cultivars, practicing crop rotation, destroying crop residue, and maintaining sanitary practices during ginning and seed processing.
 
-### 19. [OK] `HELD-OUT` — none, page-verified
+### 24. [not checked] `HELD-OUT` — none, page-verified
 
-<https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton> - Perfect link
+<https://cropprotectionnetwork.org/encyclopedia/target-spot-of-cotton>
 
 - **Cited by:** Cotton/Target_Spot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings."
 - **Should support:** Brick-red spots enlarging to tan/light-brown centres with concentric rings; Corynespora cassiicola; Leaves
 - **Additional info:** - Target spot, caused by the fungus Corynespora cassiicola, occurs in all U.S. cotton-producing states but is more problematic in the Gulf-coastal region due to frequent rainfall and high humidity. Initial symptoms are brick-red spots that expand into tan to light brown centers with concentric rings. The disease primarily affects the lower canopy, leading to premature defoliation, and lesions can be observed on petioles, bracts, and bolls. Effective management includes crop rotation, sanitation, selection of less susceptible cultivars, timely application of fungicides during bloom, and regulating excessive canopy growth.
 
-### 20. [OK] `HELD-OUT` — page-verified
+### 25. [not checked] `HELD-OUT` — page-verified
 
-<https://en.wikipedia.org/wiki/Cercospora_coffeicola> - Perfect link
+<https://en.wikipedia.org/wiki/Cercospora_coffeicola>
 
 - **Cited by:** Coffee/Berry_Blotch, Coffee/Cerscospora  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "These spots often have a discolored, light center where sporulation can occur, and many have a yellow 'halo' around the margins."
-- **Should support:** Berries (green cherries and ripe red cherries); Brown necrotic leaf spots with a pale/light sporulating centre and a yellow halo; lesions coalesce into large ; Cercospora coffeicola (teleomorph Mycosphaerella coffeicola); Leaves and berries; Tan-to-brown sunken berry lesions with a purple halo, maturing to a deeply depressed ashy centre that can react
+- **Should support:** Berries (green cherries and ripe red cherries); Brown necrotic leaf spots with a pale/light sporulating centre and a yellow halo; lesions coalesce into large ; Cercospora coffeicola (teleomorph Mycosphaerella coffeicola); Leaves and berries; Tan-to-brown sunken berry lesions with a purple halo, maturing to a deeply depressed ashy centre that can reac
 - **Additional info:** - Mycosphaerella coffeicola is a sexually reproducing fungal plant pathogen. It is most commonly referred to as the asexual organism Cercospora coffeicola. There are 40 species in the genus Coffea (family Rubiaceae) that are susceptible to the disease caused by M. coffeicola, but only a few that are commercially relevant.[1] Arabica coffee (Coffea arabica L.) is the most significant of the susceptible species, affecting 70% of the world's coffee production.[2] Coffea arabica ranges in growth habit from a shrub to a small tree and has ovate, shiny, pointed leaves, with clustered white flowers.[1] The fruits begin as green berries which ripen to a deep red color. These are often called the coffee "cherries". Each fruit contains two seeds (i.e. coffee beans) in a drupe.[2]
 
 Symptoms of M. coffeicola vary depending on the plant organ affected. These differing symptoms help explain the various common names for the disease: Cercospora "Leaf Spot" and Cercospora "Berry Blotch" (Cercospora is reference to the deuteromycete stage).[1] On leaves, lesions begin as chlorotic (yellow) spots that expand to become deep brown and necrotic on the upper leaf surface.[3] These spots often have a discolored, light center where sporulation can occur, and many have a yellow "halo" around the margins. This halo is caused by the toxin cercosporin, produced by Cercospora species.[1] Not all lesions have distinct edges or a halo, however, and some occur in concentric rings. In general, lesions of this species are able to fuse, and can form large irregular areas of necrotic tissue.[4] Leaves may drop in extreme cases.[3] Fruit symptoms typically appear 90 days after flowering.[4] On green berries, this includes irregularly shaped brown, sunken lesions that are surrounded by a purple halo. Infected red cherries also have large, dark areas of sunken flesh. At this stage, fruit is susceptible to attack by opportunistic bacteria and fungi (such as Colletotrichum gloeosporioides), though symptoms from these organisms should not be falsely attributed to M. coffeicola.
 
-Prevention is the most effective method of managing M. coffeicola. Risk factors for this pathogen include: prolonged (24–72 hours) humid environment, poor soil nutrition, and plant stress caused by increased planting density, herbicide injury, weeds, drought, and over irrigation. To manage humidity a farmer can prune to allow for air circulation and ensure the soil has proper drainage.[1] In order to maintain proper plant nutrition, soil testing and a fertilization regiment are essential for combating this pathogen. Plant symptoms such as chlorosis, leaf curling, and bronzing along the edges of leaves can be used to diagnose specific nutrient deficiencies. For example, if a plant has leaves bronzed along edges, cupped down-ward; new leaves dead; eventual die back of shoot tips, then it is likely the plant has a calcium deficiency.[7] To reduce plant stress, a farmer can use herbicides to combat weeds but must be careful not to damage the plant in process. Also to minimize competition between adjacent crops, it is important to properly space coffee plants in 8 ft. by 8 ft. areas. Stress can further be minimized if post and pre-harvest damage by machinery or laborers is avoided. To avoid wilting stress plants should be properly irrigated .[8] However, if a crop already has M. coffeicola, copper fungicide is effective. In Hawaii, farmers often spray tri-annually, using 1.5–6 lbs of fungicide per 50–100 gallons water, containing 30–80% copper hydroxide.[1] "Sprays should coincide with dry weather and calm winds. Three spray applications per season should suffice (occurring approximately once per month), beginning at flowering. Thorough coverage of the plant canopy is very important. Large farms in Hawai‘i utilize tractor-mounted mist blowers."[1] 
+Prevention is the most effective method of managing M. coffeicola. Risk factors for this pathogen include: prolonged (24–72 hours) humid environment, poor soil nutrition, and plant stress caused by increased planting density, herbicide injury, weeds, drought, and over irrigation. To manage humidity a farmer can prune to allow for air circulation and ensure the soil has proper drainage.[1] In order to maintain proper plant nutrition, soil testing and a fertilization regiment are essential for combating this pathogen. Plant symptoms such as chlorosis, leaf curling, and bronzing along the edges of leaves can be used to diagnose specific nutrient deficiencies. For example, if a plant has leaves bronzed along edges, cupped down-ward; new leaves dead; eventual die back of shoot tips, then it is likely the plant has a calcium deficiency.[7] To reduce plant stress, a farmer can use herbicides to combat weeds but must be careful not to damage the plant in process. Also to minimize competition between adjacent crops, it is important to properly space coffee plants in 8 ft. by 8 ft. areas. Stress can further be minimized if post and pre-harvest damage by machinery or laborers is avoided. To avoid wilting stress plants should be properly irrigated .[8] However, if a crop already has M. coffeicola, copper fungicide is effective. In Hawaii, farmers often spray tri-annually, using 1.5–6 lbs of fungicide per 50–100 gallons water, containing 30–80% copper hydroxide.[1] "Sprays should coincide with dry weather and calm winds. Three spray applications per season should suffice (occurring approximately once per month), beginning at flowering. Thorough coverage of the plant canopy is very important. Large farms in Hawai‘i utilize tractor-mounted mist blowers."[1]
 
-### 21. [OK] `HELD-OUT` — page-verified
+### 26. [not checked] `HELD-OUT` — page-verified
 
 <https://en.wikipedia.org/wiki/Citrus_canker>
 
 - **Cited by:** Orange/Canker, Orange/Citrus_Canker  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Plants infected with citrus canker have characteristic lesions on leaves, stems, and fruit with raised, brown, water-soaked margins, usually with a yellow halo or ring effect around the lesion. Older lesions have a corky appearance, still in many cases retaini"
 - **Should support:** Leaves, stems, and fruit; Raised brown water-soaked lesions with a yellow halo; older lesions corky; Xanthomonas citri
+- **Additional info:** - Citrus canker is a disease affecting Citrus species caused by the bacterium Xanthomonas citri. Infection causes lesions on the leaves, stems, and fruit of citrus trees, including lime, oranges, and grapefruit. While not harmful to humans, canker significantly affects the vitality of citrus trees, causing leaves and fruit to drop prematurely; a fruit infected with canker is safe to eat, but too unsightly to be sold. Citrus canker is mainly a leaf-spotting and rind-blemishing disease, but when conditions are highly favorable, it can cause defoliation, shoot dieback, and fruit drop.[1]
 
-### 22. [OK] `HELD-OUT` — page-verified
+The disease, which is believed to have originated in Southeast Asia,[2] is extremely persistent when it becomes established in an area. Citrus groves have been destroyed in attempts to eradicate the disease.
+
+Countries like Brazil and the United States also suffer from canker outbreaks
+
+### 27. [not checked] `HELD-OUT` — page-verified
 
 <https://en.wikipedia.org/wiki/Citrus_greening_disease>
 
 - **Cited by:** Orange/Greening_Disease, Orange/Huanglongbing  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "followed by splotchy mottling of the entire leaf, premature defoliation, dieback of twigs, decay of feeder rootlets and lateral roots"
 - **Should support:** Asymmetrical (blotchy mottle) leaf yellowing; small lopsided fruit green at the bottom; Candidatus Liberibacter spp.; Leaves, twigs, fruit, and roots
+- **Additional info:** - Citrus greening disease[4] (Chinese: 黃龍病; pinyin: huánglóngbìng abbr. HLB)[5] is a disease of citrus trees caused by bacteria of the genus Liberibacter. These microbes are transmitted by two species of bug: the Asian citrus psyllid Diaphorina citri and the African citrus psyllid Trioza erytreae. It has no known cure.[6] It is graft-transmissible.[7]
 
-### 23. [OK] `HELD-OUT` — page-verified
+There are three different types of the disease: a heat-tolerant Asian form, and the heat-sensitive African and American forms. It was first described and reported in southern China in 1919.[1][8] The African variation was first reported in 1937 in South Africa, where it is still widespread.[8] It reached Florida in 2005, and within three years had spread to the majority of citrus farms. The rapid increase in this disease has threatened the citrus industry in the entire US. As of 2009, 33 countries had reported the infection in their citrus crop
+
+### 28. [not checked] `HELD-OUT` — page-verified
 
 <https://en.wikipedia.org/wiki/Coffee_leaf_rust>
 
 - **Cited by:** Coffee/Rust  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Hemileia vastatrix is a multicellular basidiomycete fungus of the order Pucciniales (previously also known as Uredinales) that causes coffee leaf rust (CLR)."
 - **Should support:** Hemileia vastatrix; Leaves (rarely young stems and fruit); Yellow-orange powdery uredinia on the underside of leaves; chlorotic pale-yellow spots
+- **Additional info:** - Hemileia vastatrix is a multicellular basidiomycete fungus of the order Pucciniales (previously also known as Uredinales) that causes coffee leaf rust (CLR), a disease affecting the coffee plant. Coffee serves as the obligate host of coffee rust, that is, the rust must have access to and come into physical contact with coffee (Coffea sp.) in order to survive.
 
-### 24. [OK] `HELD-OUT` — page-verified
+CLR is one of the most economically important diseases of coffee, worldwide.[1] Previous epidemics have destroyed coffee production of entire countries.[2] In more recent history, an epidemic in Central America in 2012 reduced the region's coffee output by 16%.[1]
+
+The primary pathological mechanism of the fungus is a reduction in the plant's ability to derive energy through photosynthesis[3] by covering the leaves with fungus spores and/or causing leaves to drop from the plant.[1] The reduction in photosynthetic ability (plant's metabolism) results in a reduction in quantity and quality of flower and fruit production, which ultimately reduces the beverage quality.
+
+### 29. [not checked] `HELD-OUT` — page-verified
 
 <https://en.wikipedia.org/wiki/Fusarium_ear_blight>
 
 - **Cited by:** Wheat/Fusarium_Graminearum_Schwabe, Wheat/Head_Scab  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Macroconidia are produced in sporodochia, which gives the spike a bright pink or orange color."
 - **Should support:** Bright pink/orange sporulation on the spike; bleached, shrivelled chalky-white kernels; Fusarium graminearum; Wheat head/spike and kernels
+- **Additional info:** - Fusarium ear blight (FEB) (also called Fusarium head blight, FHB, or scab), is a fungal disease of cereals, including wheat, barley, oats, rye and triticale.[1] FEB is caused by a range of Fusarium fungi, which infects the heads of the crop, reducing grain yield. The disease is often associated with contamination by mycotoxins produced by the fungi already when the crop is growing in the field. The disease can cause severe economic losses as mycotoxin-contaminated grain cannot be sold for food or feed.
 
-### 25. [OK] `HELD-OUT` — page-verified
+Causal organism
+Fusarium ear blight is caused by several species of Fusarium fungi, belonging to the Ascomycota. The most common species causing FEB are:[1]
+
+Fusarium avenaceum (teleomorph: Gibberella avenacea)
+Fusarium culmorum
+Fusarium graminearum (teleomorph: Gibberella zeae)
+Fusarium poae
+Microdochium nivale (teleomorph: Monographella nivalis, formerly Fusarium nivale)
+Fusarium tricinctum[2]
+Fusarium graminearum was considered the most important causal organism.
+
+Fusarium species causing FEB can produce several types of spores. The asexual stage of the fungus produces spores called macroconidia. Some Fusarium fungi have a more complex life cycle including a sexual stage, for example F. graminearum. In the sexual stage the fungus produces spores called ascospores. The sexual stage form fruiting bodies called perithecia, in which ascospores are formed in a sac known as an ascus (plural asci).[3] Some species, including F. culmorum, produce resistant chlamydospores which can survive for a long time in the soil.
+
+### 30. [not checked] `HELD-OUT` — page-verified
 
 <https://en.wikipedia.org/wiki/Monilinia_fructicola>
 
 - **Cited by:** Peach/Brown_Rot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Fruit rot appears as small, circular brown spots that increase rapidly in size causing the entire fruit to rot. Greyish spores appear in tufts on rotted areas."
 - **Should support:** Blossoms, twigs, and fruit; Monilinia fructicola; Small circular brown fruit spots enlarging to rot the whole fruit; greyish spore tufts; mummified fruit
+- **Additional info:** - Monilinia fructicola is a species of fungus in the order Helotiales. A plant pathogen, it is the causal agent of brown rot of stone fruits.
 
-### 26. [OK] `HELD-OUT` — none, page-verified
+Stone fruit (summer fruit)
+Stone fruits such as apricot and peaches originated in China and spread through old trade routes 3–4000 years ago. Nectarines are more recent (at least 2000 years). Cherries and European plums originated in Europe, although the Japanese plum originated in China.[2]
+
+Trees exposed to cold in autumn and early spring can develop cankers under the bark of the trunk or branches. Cankers are usually associated with the production of amber-coloured gum that contains bacteria and oozes on to the outer bark. Unfortunately, there are few control methods for fungal spores apart from copper sprays.[2]
+
+Symptoms
+Brown rot causes blossom blight, twig blight; twig canker and fruit rot.[3] Brown rot is caused by a fungus that produces spores, and can be a major problem during particularly wet seasons. Prolonged wet weather during bloom may result in extensive blossom infection. The length of wet periods required for blossom infection depends upon the temperature. Humid wet conditions are when the fruit trees are most at risk from infection. Young green fruit can be infected just before autumn, but the infection often remains inactive until near maturity of the fruit. Brown rot can spread after harvest. Mature fruit can decay in only 2 days under warm conditions.[3]
+
+Blossom Blight: Infected blossoms wilt, shrivel and become covered with greyish mould. Petals may appear light brown or water-soaked. Blighted blossoms do not produce fruit. Dead blossoms may stick to spurs and twigs until harvest, providing a source of spores for the fruit rot phase.[3]
+
+Twig Blight and Canker: On peaches and apricots the infection may spread to twigs, causing brownish, oval cankers that may girdle and kill twigs.[3]
+
+### 31. [not checked] `HELD-OUT` — none, page-verified
 
 <https://en.wikipedia.org/wiki/Mycosphaerella_fijiensis>
 
 - **Cited by:** Banana/Yellow_And_Black_Sigatoka  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "In the early stages of the infection of the plant, the lesions have a rusty brown appearance and appear to be faint, paint-like specks on the leaves."
 - **Should support:** Banana leaves; Mycosphaerella fijiensis; Streaks parallel to secondary veins; rusty-brown paint-like specks darkening to sunken depressions
+- **Additional info:** - Black sigatoka is a leaf-spot disease of banana plants caused by the ascomycete fungus Mycosphaerella fijiensis (Morelet), also known as black leaf streak. It was discovered in 1963 and named for its similarities with yellow Sigatoka, which is caused by Mycosphaerella musicola (Mulder), which was itself named after the Sigatoka Valley in Fiji. In the same valley an outbreak of this disease reached epidemic proportions from 1912 to 1923.[1]
 
-### 27. [OK] `HELD-OUT` — none, page-verified
+According to new terminology, the Sigatoka disease complex is a cluster of three closely related fungi: Black Sigatoka and its congeners Yellow Sigatoka (Ps. musae) and eumusae leaf spot (Ps. eumusae).[2]
+
+Plants with leaves damaged by the disease may have up to 50% lower yield of fruit, and control can take up to 50 sprays a year.[3]
+
+### 32. [not checked] `HELD-OUT` — none, page-verified
 
 <https://en.wikipedia.org/wiki/Panama_disease>
 
 - **Cited by:** Banana/Panama_Disease  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Externally, the oldest leaves start turning yellow and there is often a longitudinal splitting of the lower part of the outer leaf sheaths on the pseudostem. The leaves begin to wilt and may buckle at the base of the petiole."
 - **Should support:** Feeder roots, rhizome, pseudostem, leaves; Fusarium oxysporum f. sp. cubense; Oldest leaves yellow, wilt and buckle; outer leaf sheaths split; xylem reddish-brown
+- **Additional info:** - Panama disease (or Fusarium wilt) is a plant disease that infects banana plants (Musa spp.). It is a wilting disease caused by the fungus Fusarium oxysporum f. sp. cubense. The pathogen is resistant to fungicides, and its control is limited to phytosanitary measures.[1]
 
-### 28. [OK] `HELD-OUT` — page-verified
+During the 1950s, an outbreak of Panama disease almost wiped out commercial Gros Michel banana production. The Gros Michel banana was the dominant cultivar of bananas, and Fusarium wilt inflicted enormous costs and forced producers to switch to other, disease-resistant cultivars. Since the 2010s, a new outbreak of Panama disease caused by the strain Tropical Race 4 (TR4) has threatened the production of the Cavendish banana, today's most popular cultivar
+
+### 33. [not checked] `HELD-OUT` — none
+
+<https://en.wikipedia.org/wiki/Peach_scab>
+
+- **Cited by:** Peach/Leaf_Scab  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Cladosporium carpophilum
+- **Additional info:** -
+
+### 34. [not checked] `HELD-OUT` — none
+
+<https://en.wikipedia.org/wiki/Penicillium_digitatum>
+
+- **Cited by:** Orange/Green_Mold  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Penicillium digitatum
+- **Additional info:** - Penicillium digitatum (/ˌpɛnɪˈsɪliəm ˌdɪdʒɪˈteɪtəm/) is a mesophilic fungus found in the soil of citrus-producing areas.[1][2][3] It is a major source of post-harvest decay in fruits, and is responsible for the widespread post-harvest disease in Citrus fruit known as green rot or green mould.[1][4][5] In nature, this necrotrophic wound pathogen grows in filaments and reproduces asexually through the production of conidiophores and conidia.[1][6][7] P. digitatum can also be cultivated in the laboratory setting.[1] Alongside its pathogenic life cycle, P. digitatum is also involved in other human, animal, and plant interactions, and is currently being used in the production of immunologically based mycological detection assays for the food industry
+Control of green mould initially relies on the proper handling of fruit before, during, and after harvesting.[2][7] Spores can be reduced by removing fallen fruit.[1][7] Risk of injury can be decreased in a variety of ways, including storing fruit in high humidity and low temperature conditions, and harvesting before irrigation or rainfall in order to minimize fruit susceptibility to peel damage.[7] Degreening practices can also be conducted at humidities above 92% in order to heal injuries.[7]
+
+Chemical control in the form of fungicides is also commonly used.[1] Examples include imazalil, thiabendazole, and biphenyl, all of which suppress the reproductive cycle of P. digitatum.[3] Post-harvest chemical treatment usually consists of washes conducted at 40–50 °C (104–122 °F), containing detergents, weak alkalines, and fungicides.[1] California packing houses typically use a fungicide cocktail containing sodium o-phenylphenate, imazalil, and thiabendazole.[22]
+
+In Australia, guazatine is commonly used, although this treatment is restricted to the domestic market.[1] In terms of the export market, Generally recognized as safe (GRAS) substances are currently being explored as alternatives.[1][needs update?] GRAS substances such as sodium bicarbonate, sodium carbonate, and ethanol, have displayed an ability to control P. digitatum by decreasing germination rate.
+
+### 35. [not checked] `HELD-OUT` — page-verified
 
 <https://en.wikipedia.org/wiki/Pseudoperonospora_cubensis>
 
 - **Cited by:** Cucumber/Downy_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "The pathogen causes angular chlorotic lesions on the foliage. These lesions appear angular because they are bound by leaf veins. During humid conditions, inspection of the underside of the leaf reveals gray-brown to purplish-black fungal growth."
 - **Should support:** Angular chlorotic lesions bound by leaf veins; gray-brown to purplish-black growth on the underside; Leaves only (not fruit, flowers, stems or roots); Pseudoperonospora cubensis
+- **Additional info:** - Pseudoperonospora cubensis is a species of water mould known for causing downy mildew on cucurbits such as cantaloupe, cucumber, pumpkin, squash and watermelon. This water mould is an important pathogen of all these crops, especially in areas with high humidity and rainfall, such as the eastern United States. In most years the disease is an annual, late-season problem on squash and pumpkin in the eastern and central United States, however, since 2004 it has become one of the most important diseases in cucumber production.[1] Considered a highly destructive foliar disease of cucurbits, successful breeding in the mid-twentieth century provided adequate control of downy mildew in cucumber without the use of fungicides. The resurgence in virulence has caused growers great concern and substantial economic losses, while downy mildew in other cucurbit crops continues to be a yearly hindrance.
 
-### 29. [403 bot-blocked (page exists)] `HELD-OUT` — none
+### 36. [not checked] `HELD-OUT` — none
 
-<https://extension.umn.edu/vegetable-diseases/belly-rot-cucumber>
+<https://extension.wvu.edu/lawn-gardening-pests/plant-disease/tree-fruit-disease/bacterial-spot>
 
-- **Cited by:** Cucumber/Belly_Rot  (fields: pathogen)
+- **Cited by:** Peach/Bacterial_Leaf_Spot  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Rhizoctonia solani
+- **Should support:** Xanthomonas arboricola pv. pruni
+- **Additional info:** - Bacterial spot is a disease commonly occurring on stone fruit trees, like peaches, nectarines, apricots, Japanese plums and European plums, throughout the eastern United States. Home gardeners and commercial growers alike are facing this serious problem that can wipe out entire crops in a year with prolonged humid, wet and warm weather. 
 
-### 30. [OK] `HELD-OUT` — none, page-verified
+One way to minimize the problem is to select cultivars that are tolerant to this disease. Varieties differ in their susceptibility to this disease. For example, Redhaven is resistant, while Babygold 5 appears to be a standard for high susceptibility. Bacterial spot is caused by Xanthomonas campestris, pv. Pruni (Smith) Dye (2). 
 
-<https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html>
+Symptoms
+Lesions appear on leaves, current season shoots and fruit. Initially, they are just small, water-soaked spots that first show up on the underside of the leaf blade. As the season progresses, they become purplish-black spots that grow and merge, creating irregular spots that will die, dry and fall out, giving the leaf tattering effect. Infected leaves turn yellow and drop off. In severe cases, trees may defoliate early in a season. Similar, sunken areas with purple margins may appear on the young shoots. These can develop into cankers, harboring inoculum for future early infections. Infections on the fruit result in blemishes on the skin, cracking and gumming, diminishing the value and fruit marketability.  The best control is to avoid susceptible and plant resistant varieties. The other consideration is to avoid frost-prone sites and prevent winter injuries that may serve as entry points for this opportunistic pathogen. 
+In cases where there are existing older blocks planted with susceptible varieties, maintaining good vigor through slightly higher nitrogen supply to compensate for early defoliation is desirable cultural practice. 
 
-- **Cited by:** Bean/Rust  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Plants infected with rust have dry reddish, yellowish, or orange spore masses or pustules primarily on the lower surface of leaves."
-- **Should support:** Dry reddish, yellowish or orange powdery spore pustules, mainly on the underside of leaves; Leaves, primarily the lower surface; pods may also be affected; Uromyces phaseoli (syn. U. appendiculatus)
+Chemical control is targeting inoculum reduction early in spring. Dormant and early spring applications of copper or copper-based materials will reduce the population of epiphytic bacteria. There is a need for caution whenever we spray copper. To minimize phytotoxicity, it is better to apply lower rates of copper during or following cool weather. Multiple applications may result in phytotoxicity if there has been no rain since the last application and the residual levels are still high. 
 
-### 31. [OK] `HELD-OUT` — page-verified
+Materials showing good efficacy levels are antibiotic, like Mycoshield 17 WP or Oxytetracycline, when applied from petal fall and within three weeks thereafter. The other materials that provide good control are Captan 50 WP in combination with Syllit (Dodine). Caution: Syllit (Dodine) applications may be phytotoxic if combined with, or applied near, solvent formulations of insecticides or sulfur. Do not spray Syllit during the hot temperatures or near harvest. Pre-harvest interval is 15 days (3, 5 Farm Chemical handbook – Global Guide to Crop Protection).
 
-<https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html>
-
-- **Cited by:** Peach/Leaf_Curl, Peach/Peach_Leaf_Curl  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus."
-- **Should support:** Blossoms, fruit, leaves, and shoots; Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores; Taphrina deformans
-
-### 32. [OK] `HELD-OUT` — none, page-verified
+### 37. [not checked] `HELD-OUT` — none, page-verified
 
 <https://ipm.ucanr.edu/agriculture/dry-beans/bean-common-mosaic/>
 
 - **Cited by:** Bean/Leaf_Mosaic_Virus  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "mosaic patterns of light green-yellow leaf tissue, dark green tissue, or both light and dark mosaics together on the trifoliolate leaves. Leaf discoloration is usually accompanied by puckering, blistering, distortion, and a downward curling and rolling."
 - **Should support:** Bean common mosaic virus; Light green-yellow and dark green mosaic on trifoliolate leaves with puckering, blistering, distortion and dow; Trifoliolate leaves
+- **Additional info:** - Symptoms and Signs
+There are two main types of symptoms associated with bean common mosaic disease: common mosaic symptoms and common mosaic necrosis symptoms. The occurrence of either type of symptoms depends on the particular virus present and whether or not the bean variety possesses the dominant I resistance gene. If the variety has the dominant I gene, it is resistant to strains of the Bean common mosaic virus, but hypersensitive to strains of the Bean common mosaic necrosis virus.
 
-### 33. [OK] `HELD-OUT` — none, page-verified
+Common mosaic symptoms. In California, Bean common mosaic virus is the more prevalent of the two pathogens because it spreads both by seed and aphid. When it infects susceptible cultivars, Bean common mosaic virus causes mosaic patterns of light green-yellow leaf tissue, dark green tissue, or both light and dark mosaics together on the trifoliolate leaves. Leaf discoloration is usually accompanied by puckering, blistering, distortion, and a downward curling and rolling. The intensity and severity of the symptoms depends on the strain of Bean common mosaic virus, the bean variety, and the age of the plant when infected. Plants infected at a young age may be stunted and distorted.
+
+Common mosaic necrosis symptoms. Common mosaic necrosis symptoms are rare in California because the Bean common mosaic necrosis virus is not widespread. Necrosis symptoms only develop when the virus infects varieties that possess the dominant I gene. The symptoms begin as small, red-brown spots that appear on primary or trifoliolate leaves shortly after the virus has been introduced via an aphid vector. The veins around these spots become brown-black, and this vein necrosis then spreads into the phloem tissue of the plant, causing first a wilting, and then death (necrosis) of young leaves and the meristem. The entire plant eventually dies. Cross sections of stems and pods reveal a red-brown streaking in the vascular tissue. These symptoms are often referred to as black root rot (not to be confused with the fungal disease black root rot caused by Thielaviopsis basicola). Common mosaic necrosis symptoms can be confused with those of Fusarium wilt caused by Fusarium oxysporum f. sp. phaseoli. However, necrosis in the vascular tissue of the pods, which is absent in plants having Fusarium wilt, is diagnostic of bean common mosaic necrosis disease (see photo comparison).
+
+In bean varieties that lack the I gene, Bean common mosaic necrosis virus induces common mosaic symptoms that are similar to those caused by Bean common mosaic virus. Certain other viruses can also cause necrosis symptoms in common bean. Thus, development of necrosis alone is not sufficient for a positive diagnosis of bean common mosaic necrosis disease, and additional tests must be performed.
+
+### 38. [not checked] `HELD-OUT` — none, page-verified
 
 <https://ipm.ucanr.edu/agriculture/dry-beans/common-bacterial-blight/>
 
 - **Cited by:** Bean/Common_Bacterial_Blight_Of_Beans  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "These irregularly shaped spots are bordered by a lemon yellow ring, which serves as a diagnostic symptom of common bacterial blight."
 - **Should support:** Leaf margins and interveinal areas; whole leaves in severe cases; Water-soaked or light green spots enlarging to brown necrotic centres, bordered by a diagnostic lemon-yellow r; Xanthomonas campestris (axonopodis) pv. phaseoli; Xanthomonas fuscans subsp. fuscans
+- **Additional info:** - Symptoms and Signs
+Symptoms of common bacterial blight first appear on leaves as small, water-soaked spots, light green areas, or both. As these spots enlarge, the tissue in the center dies and turns brown. These irregularly shaped spots are bordered by a lemon yellow ring, which serves as a diagnostic symptom of common bacterial blight. The spots or lesions develop on the edges or interveinal areas of leaves. The spots may grow together, resulting in the death of the entire leaf and defoliation of the plant.
 
-### 34. [OK] `HELD-OUT` — none, page-verified
+Infected pods will have small, water-soaked spots that develop into large, dark red irregular spots, sometimes with a yellow slimy ooze. Pod symptoms of common and halo blight diseases are virtually indistinguishable (see photo comparison). Pod infections can transfer to the seeds inside. White-colored seed may show butter-yellow spots when infected. Heavily infected seed may be shriveled and germinate poorly.
+
+Comments on the Disease
+Like most bacterial diseases, common bacterial blight is favored by high moisture and humidity. Because of dry summers and the predominance of furrow or drip over sprinkler irrigation, this disease is uncommon in California. Although common blight bacteria can overwinter in infected debris, survival and dissemination in association with seed is more important. In fact, bean seed for other states is often produced in California because environmental conditions are unfavorable for the development of bacterial diseases. Use the table below and photo comparison to distinguish the symptoms of common blight from halo blight and bacterial brown spot.
+
+### 39. [not checked] `HELD-OUT` — none, page-verified
 
 <https://ipm.ucanr.edu/agriculture/dry-beans/halo-blight/>
 
 - **Cited by:** Bean/Halo_Blight  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "small, angular, water-soaked spots (almost resembling little pin pricks) on the undersurfaces of leaves"
 - **Should support:** Angular water-soaked spots with a light green to yellow halo; general chlorosis of leaves and upper plant in s; Leaves (undersurfaces first), extending to upper plant parts; Pseudomonas syringae pv. phaseolicola
+- **Additional info:** - Symptoms and Signs
+Halo blight symptoms first appear as small, angular, water-soaked spots (almost resembling little pin pricks) on the undersurfaces of leaves. As these spots grow and turn brown, a characteristic light green to yellow halo appears around the spots. This halo is due to the action of a toxin produced by the bacteria and is a diagnostic symptom of the disease. In severe infections, the leaves and upper parts of plants turn yellow (chlorotic). On pods, small water-soaked spots, about the size of pinpricks, develop that grow into sunken spots and turn reddish brown. Sometimes a creamy white ooze may be seen inside these spots. Pod symptoms of common and halo blight diseases are virtually indistinguishable (see photo comparison). Pod infections can transfer to the seeds inside, causing them to be shriveled, discolored, or smaller than normal size.
 
-### 35. [OK] `HELD-OUT` — page-verified
+Comments on the Disease
+Halo blight disease occurs worldwide. It can cause extensive losses under humid, moist conditions and moderate temperatures (60° to 73°F, 16° to 23°C). Fortunately, such conditions are unusual in California and thus halo blight is relatively uncommon. Halo blight bacteria can overwinter in infested debris or seed. Infested seed is the most important inoculum source. Use the table below to distinguish the symptoms of halo blight from common blight and bacterial brown spot.
+
+### 40. [not checked] `HELD-OUT` — page-verified
 
 <https://pmc.ncbi.nlm.nih.gov/articles/PMC8707027/>
 
 - **Cited by:** Coffee/Miner  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "the injuries area evolves from some millimeters to several centimeters...ending up to the falling of the leaves"
 - **Should support:** Irregular pale-to-brown mines on the upper leaf surface that enlarge from millimetres to centimetres into necr; Leaves (mesophyll / palisade parenchyma); severe attack causes defoliation; Leucoptera coffeella (coffee leaf miner) — an insect pest, not a pathogen
+- **Additional info:** - Coffee is produced in more than 60 countries by 25 million coffee producers, most of whom are smallholders in emergent countries. More than a beverage intake, coffee has become a ritual for an increasing number of consumers across the globe. This rising market demands modern management to improve grain quality, environment protecting, and produce pesticide-free products. Among several challenges to overcome, the coffee leaf miner (CLM) pest is one of the most severe threats to the coffee crop, especially in neotropical countries, such as Brazil, the world’s largest producer. Responsible for losses ranging from 30–70%, the CLM impairs the grain production and quality, which negatively reflects on the coffee production chain. Drawback aspects caused by chemical control with pesticides, such as the harmful effects to human health and environment and the selection of resistant-insect populations, prompt scientists to improve integrated pest management (IPM) tools. Therefore, the development of new resistant cultivars, biological control, nano-biopesticide products and other approaches are important strategies to a sustainable CLM control design. This review addresses basic knowledge of the insect L. coffeella and proposes novel insights for an IPM view.
 
-### 36. [403 bot-blocked (page exists)] `HELD-OUT` — page-verified
+Abstract
+The coffee leaf miner (CLM) Leucoptera coffeella moth is a major threat to coffee production. Insect damage is related to the feeding behavior of the larvae on the leaf. During the immature life stages, the insect feeds in the mesophyll triggering necrosis and causing loss of photosynthetic capacity, defoliation and significant yield loss to coffee crops. Chemical control is used to support the coffee production chain, though market requirements move toward conscious consumption claiming for more sustainable methods. In this overview, we discuss aspects about the CLM concerning biology, history, geographical distribution, economic impacts, and the most relevant control strategies in progress. Insights to develop an integrated approach for a safer and eco-friendly control of the CLM are discussed here, including bio-extracts, nanotechnology, pheromones, and tolerant cultivars.
+
+### 41. [not checked] `HELD-OUT` — page-verified
 
 <https://revistacultivar.com/articles/phoma-spot-or-ascochyta-spot-of-coffee>
 
 - **Cited by:** Coffee/Phoma  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Phoma spot can also affect floral rosettes, indirectly causing necrosis of flowers and fruits"
 - **Should support:** Dark circular leaf spots up to ~2 cm; leaf edges curl and crack; dark sunken lesions girdling branches (dry sh; Leaves, branches and floral rosettes (indirectly flowers and fruit); Phoma tarda and Phoma costarricensis
+- **Additional info:** - The phoma stain, Phoma spp., is a fungal disease that occurs in several countries around the world where coffee is grown in areas of higher altitudes. The aerial part of the coffee plant can harbor several species of the genus Phoma. The gender Phoma comprises more than 2.000 species that are grouped into nine sections, and some species are related as important pathogens of the aerial part of the coffee plant, constituting one of its most important fungal diseases, as it occurs from the formation of seedlings in the nursery to the coffee production phase.
 
-### 37. [OK] `HELD-OUT` — none
+In Brazil, the etiological agents of phoma spot are fungi Phoma tarda (RB Stewart) H. Verm. and Phoma costarricensis Echandi, 1957 (Pleosporales: Didymellaceae). THE P. late was first observed in Ethiopia in 1954 and the P. costarricensis was first described in 1957 in Costa Rica. Both are responsible for one of the most important coffee diseases in Brazil, phoma spot or ascochyta spot.
 
-<https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/PhytophthoraBlight.aspx>
+The phoma stain, P. late, which is synonymous with Ascochyta tarda Stewart 1957 and Ascochyta coffeae Hennings 1902, and is the main etiological agent of tip blight and phoma leaf spot on coffee plants in Brazil and Africa.
 
-- **Cited by:** Cucumber/Phytophthora_Blight  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Phytophthora capsici
+In some coffee-producing regions, the disease has gained importance due to the occurrence of lesions on leaves and branches and the fall of fruits, compromising fruiting and future crop production.
 
-### 38. [OK] `HELD-OUT` — none
+Disease damage
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Anthracnose.aspx>
-
-- **Cited by:** Cucumber/Anthracnose  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Colletotrichum orbiculare (syn. C. lagenarium)
-
-### 39. [OK] `HELD-OUT` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GreenMold.aspx>
-
-- **Cited by:** Orange/Green_Mold  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Penicillium digitatum
-
-### 40. [OK] `HELD-OUT` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GummyStemBlight.aspx>
-
-- **Cited by:** Cucumber/Gummy_Stem_Blight  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Stagonosporopsis cucurbitacearum (syn. Didymella bryoniae)
-
-### 41. [OK] `HELD-OUT` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PeachScab.aspx>
-
-- **Cited by:** Peach/Leaf_Scab  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Cladosporium carpophilum
-
-### 42. [OK] `HELD-OUT` — none
+### 42. [not checked] `HELD-OUT` — none
 
 <https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PoweryMildewCucurbits.aspx>
 
 - **Cited by:** Cucumber/Powdery_Mildew  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Podosphaera xanthii (formerly Sphaerotheca fuliginea)
+- **Additional info:** - Peach scab, also known as peach freckles,[1] is a disease of stone fruits caused by the fungus Cladosporium carpophilum.[2] The disease is most prevalent in wet and warm areas especially southern part of the U.S. as the fungi require rain and wind for dispersal.[3] The fungus causes scabbing, lesions, and defoliating on twig, fruit, and leaf resulting in downgrade of peach quality or loss of fruits due to rotting in severe cases.[2]
 
-### 43. [OK] `HELD-OUT` — none
+Symptoms
 
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialLeafStreak.aspx>
+The disease affects most stone plants including peaches, apricots and plums.[4] The symptoms can generally be found in three major parts of plant: fruits, twigs, and leaves. The symptoms on leaves and twigs are often considered as the least notable.[5] Infected leaves initially show small and green colored lesions on under the leaves. They progress into yellowish brown and eventually appear as dark brown or black spots.[6] Twig lesions start to form on green young stems. The lesions are about 3 up to 6.5 mm in diameter size.[6] They usually first have reddish brown colors then which will turn into darker colors as they enlarge to an oval shape of 3 x 6mm approximately.[7]
 
-- **Cited by:** Wheat/Bacterial_Leaf_Streak_Black_Chaff  (fields: pathogen)
+About six weeks after petals are fallen, the first and most notable and serious symptoms appear on fruits.[4] Spots, which generally range from 1 to 2 mm in diameter size, are formed on the end of stem. They gradually change its color into dark green or black and grow about a few millimeters in diameter. As they enlarge, yellow circles will form around the velvety dark green spots. The spots have raised appearance on fruits instead of sunken figures which can be found most prevalently in other fungal infections.[7] In some severe cases, fruits may be stunted or opened and exposed to further infection by airborne microorganisms.
+
+### 43. [not checked] `HELD-OUT` — none
+
+<https://www.bighaat.com/kisan-vedika/blogs/defeating-gummy-stem-blight-strategies-for-cucurbit-growers?srsltid=AfmBOorpEy4-EEedtjOKu6gJEMd0RoDl7kiOK6aYPU1hrR_wPDb_Cyp3>
+
+- **Cited by:** Cucumber/Gummy_Stem_Blight  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Xanthomonas translucens pv. undulosa
+- **Should support:** Stagonosporopsis cucurbitacearum (syn. Didymella bryoniae)
+- **Additional info:** - ummy stem blight is a highly destructive fungal disease affecting cucurbit crops like watermelon, muskmelon, cucumber, and pumpkin. If not controlled early, it can lead to severe yield loss, fruit rot, and poor crop quality.
 
-### 44. [OK] `HELD-OUT` — none
+If you notice leaf yellowing, stem cracking, or gum oozing, immediate action is necessary to protect your crop.
 
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialSpotStoneFruits.aspx>
+Symptoms of Gummy Stem Blight in Cucurbits
+Gummy stem blight symptoms can be observed on all parts of the plant except the roots.
 
-- **Cited by:** Peach/Bacterial_Leaf_Spot  (fields: pathogen)
+Leaf Symptoms
+Water-soaked spots near leaf margins
+Yellowing (chlorosis) around infected areas
+Spots enlarge and merge, causing leaf blight and wilting
+Brown spots on cotyledons in seedlings
+Stem Symptoms
+Brown, water-soaked lesions
+Development of cankers with gummy exudation
+Stem splitting and wilting
+Seedling death in severe cases
+Fruit Symptoms
+Fruit cracking and rotting
+Characteristic black rot
+What causes Gummy Stem Blight in Cucurbits
+Following are the conditions which create favourable conditions for the disease to develop and spread:
+
+High humidity levels of around 85% and moist conditions, especially with frequent rains or overhead irrigation and poor drainage.
+Infected seeds used for planting.
+Wind and rain splashes facilitating the disease’s dissemination within and between fields.
+Undecomposed plant material provides reservoir for fungus survival.
+Alternate host plants and weeds.
+Contaminated tools, equipment or even through clothing of farm workers.
+Gummy Stem Blight Preventive Measures
+Use certified disease-free seeds & treat seeds before sowing
+Maintain clean nursery and remove infected seedlings
+Rotate crops every 2 years with non-host crops (Brassicas, onion, legumes)
+Deep plough the soil during summer to expose and kill the fungal spores.
+Keep the field free from weeds.
+Avoid overcrowding of plants for allowing proper penetration of air and sunlight.
+Avoid any damage to the plants as well as fruits to avoid entry of fungus through wounds.
+Collect and burn all the plant debris after harvest.
+
+### 44. [not checked] `HELD-OUT` — none
+
+<https://www.gardeningknowhow.com/edible/vegetables/cucumber/anthracnose-control-in-cucumbers.htm>
+
+- **Cited by:** Cucumber/Anthracnose  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Xanthomonas arboricola pv. pruni
+- **Should support:** Colletotrichum orbiculare (syn. C. lagenarium)
+- **Additional info:** - Anthracnose in cucumber crops can cause serious economic losses to commercial growers. This disease also afflicts most other cucurbits as well as many non-cucurbit species. The symptoms of cucumbers with anthracnose disease are often confused with other foliar diseases, which makes anthracnose control in cucumbers difficult. The following article discusses how to identify this disease and cucumber anthracnose treatment.
 
-### 45. [403 bot-blocked (page exists)] `HELD-OUT` — none
+What is Cucumber Anthracnose Disease?
+Anthracnose in cucumbers is a fungal disease caused by the fungus Colletotrichum orbiculare (C. lagenarium). It afflicts most cucurbits, other vine crops, and cucurbit weeds. Squash and pumpkins, however, are primarily immune to the disease.
 
-<https://www.cabi.org/isc/datasheet/15942>
+In cucumbers, this disease is fostered by seasons of warm temperatures combined with frequent rain. When anthracnose control in cucumbers is not implemented, losses of 30% or more may be realized. The symptoms of anthracnose vary somewhat from host to host. All aboveground parts of the plant may become infected. The first signs in cucumber crops appear on the leaves. Small water-soaked lesions appear, enlarging rapidly as the disease advances and becoming irregular in shape and darker in color.
 
-- **Cited by:** Cucumber/Corynespora_Leaf_Spot  (fields: pathogen)
+The centers of older leaf lesions may fall out, giving the leaf a “shot hole” appearance. Lesions begin to appear on stems as well as fruit if present. On fruit, the pinkish spore masses are clearly visible.
+
+### 45. [not checked] `HELD-OUT` — none
+
+<https://www.gardeningknowhow.com/edible/vegetables/vgen/avoid-belly-rot-in-vegetables.htm>
+
+- **Cited by:** Cucumber/Belly_Rot  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Corynespora cassiicola
+- **Should support:** Rhizoctonia solani
+- **Additional info:** - An overeager cucurbit producing bushels of cucumbers, melons, or squash feels like a plague in the garden by midsummer, but there are worse things that can happen. Rotting vegetable fruit, caused by rhizoctonia belly rot, is one of those things. As difficult as disposing of healthy vegetables can be when your zucchini explodes into life, it's a much bigger task dealing with bad fruits.
 
-### 46. [SSL-unverifiable (page likely fine)] `HELD-OUT` — none
+What is Belly Rot?
+Belly rot in fruit is caused by the fungus Rhizoctonia solani, which survives in the soil from year to year. The fungus becomes active when humidity is high and temperatures warm, causing obvious signs of infection within 24 hours and entirely rotting fruits in as little as 72. Temperatures below 50 degrees F. (10 C.) can slow or prevent infection. This is primarily a disease of cucumbers but may cause belly rot in fruit of squash and melons as well. Fruits that are in direct contact with the soil develop small, tan to brown water-soaked spots on the ground spot. As the disease spreads, the spots expand and become crusty and irregularly shaped. An advanced case of rhizoctonia belly rot causes these spots to sink, crack, or appear crater-like. Flesh near the lesions is brown and firm, sometimes extending into the seed cavity.
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-72-W.pdf>
+Preventing Rotting Vegetable Fruit
+Crop rotation is one of the best ways to prevent rhizoctonia belly rot, especially if you rotate with grain crops. If your garden is small, though, crop rotation may be difficult. In that case, you must do what you can to minimize contact between fruits and fungal structures. Start by tilling your garden deeply, or even double-digging when possible. The deeper you can bury the fungus in the soil, the less likely you'll be bothered by it. Once plants are growing, a thick, black plastic mulch can prevent fruit from contacting the soil directly, but you must still water carefully to avoid over saturating the fruits or the soil. Some gardeners put their young fruits onto small mounds made from wood, shingles, wire, or mulch but this can be labor intensive. Another way to get your fruits off the ground is to train them to a trellis. Not only does trellising save space, it can prevent many different problems caused when fruits are in contact with the soil. Trellises keep your beds tidy and fruits within easy reach for harvesting. Just remember to support growing fruits with stretchy hammocks made from material such as pantyhose.
 
-- **Cited by:** Cucumber/Pythium_Fruit_Rot  (fields: pathogen)
+### 46. [not checked] `HELD-OUT` — none
+
+<https://www.vegetables.cornell.edu/pest-management/disease-factsheets/phytophthora-blight-of-cucurbits/>
+
+- **Cited by:** Cucumber/Phytophthora_Blight  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Pythium aphanidermatum (and other Pythium spp.)
+- **Should support:** Phytophthora capsici
+- **Additional info:** - Phytophthora blight is a disease that should be a concern to all cucurbit growers. It has been described as the “most destructive disease of cucurbits” because “nothing causes greater loss.” Total crop loss is possible.
 
-### 47. [403 bot-blocked (page exists)] `seen` — model-recalled
+While all cucurbits are susceptible, squash, cucumber and pumpkin seem to be affected more commonly than cantaloupe. It has been increasing in importance in the U.S. Fruit rot was first reported in Colorado and California in the late 1930’s. The disease was found sporadically in most of the U.S. until the 1980’s, except in California, where it occurred more regularly. Then incidence increased notably in Florida, Georgia, North Carolina, New Jersey, Michigan, and the Northeastern U.S. The increase followed a hurricane in some areas. Phytophthora blight also commonly affects peppers and less commonly affects eggplant and tomato.
+
+Symptoms and Signs
+The pathogen, Phytophthora capsici, causes seedling damping-off, leaf spots, foliar blight, root and crown rot, stem lesions, and fruit rot.
+
+Fig. 2: Leaf spots are an uncommon symptom of Phytophthora blight, possibly reflecting fungicide use. They often resemble those caused by Phytophthora infestans, the late blight fungus, being dark brown and typically large with a border of wilted light green tissue which is where the pathogen is progressing as it infects. Initially leaf spots can be mostly wilted light green tissue with little or no necrotic tissue. Leaf spots occur when pathogen spores are splashed onto leaves and when leaf edge is in contact with contaminated soil.
+
+### 47. [not checked] `seen` — model-recalled
+
+<http://www.agritech.tnau.ac.in/expert_system/paddy/cpdisblb.html>
+
+- **Cited by:** Rice/Bacterial_Leaf_Blight, Rice/Severe_Bacterial_Blight  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms first appear as water-soaked to yellowish stripes along the leaf margins or tips, which later turn yellow to straw-colored and then white, with a wavy margin between diseased and healthy tissue; under humid conditions, bacterial exudate may be observe"
+- **Should support:** Leaves (leaf margins and tips); vascular system; Leaves, leaf margins, vascular tissue, seedlings (kresek phase); Water-soaked to yellowish stripes along leaf margins and tips that turn straw-yellow to white; wavy lesion mar; Water-soaked to yellowish stripes along leaf margins expanding to straw-yellow or white lesions; entire leaf b; Xanthomonas oryzae pv. oryzae
+- **Additional info:** - 
+Symptoms	 
+Seedling wilt or kresek
+Observed 1-3 weeks after transplanting
+Green water-soaked layer along the cut portion or leaf tip of leaves as early symptom
+Leaves wilt and roll up and become grayish green to yellow
+Entire plant wilt completely
+
+Leaf blight
+Water-soaked to yellowish stripes on leaf blades or starting at leaf tips with a wavy margin
+Leaves with undulated yellowish white or golden yellow marginal necrosis, drying of leaves back from tip and curling, leaving mid rib intact are the major symptoms.
+Appearance of bacterial ooze that looks like a milky or opaque dewdrop on young lesions early in the morning
+Severely infected leaves tend to dry quickly
+loss in grain yield may be up to 60%.
+
+Confirmation
+To distinguish kresek symptoms from stem borer damage, the lower end of the infected seedling can be squeezed between the fingers.
+Yellowish bacterial ooze may be seen coming out of the cut ends.
+The cut portion can be observed against the light to see the bacterial ooze streaming out from the cut ends into the water.
+ After 1-2 hours, the water becomes turbid.
+ 	 
+	
+Seedling wilt-Kresek	Leaves with wavy yellow
+marginal necrosis
+	
+Drying and curling of
+leaves leaving midrib
+intact	Affected leaves with wavy
+yellow marginal necrosis
+ 	 
+Top
+
+ 	Identification of pathogen
+		
+The bacteria causing the disease are rods, 1.2 x 0.3-0.5 µm. They are single, occasionally in pairs but not in chains.
+ They are Gram negative, non-spore-forming, and devoid of capsules.
+ Their colonies on nutrient agar are pale yellow, circular, and smooth with an entire margin. They are convex and viscid.
+
+Factors favouring disease development
+
+presence of weeds
+presence of rice stubbles and ratoons of infected plants
+presence of bacteria in the rice paddy and irrigation canals
+warm temperature(25-30° C), , high humidity, rain and deep water.
+Severe winds, which cause wounds, and over fertilization are suitable factors for the development of the disease.
+Irrigation water and splashing or windblown rain can disseminate the bacterium from plant to plant.
+The use of trimming tools for transplanting and by handling during transplanting can also trigger new infection.
+Bacterial Ooze	Microscopic View of
+Xanthomonas Oryzae
+
+Xanthomonas Oryzae
+Top
+
+Management Strategies	 
+Preventive method
+Seed treatment with bleaching powder (100g/l) and zinc sulfate (2%) reduce bacterial blight.
+Seed treatment - seed soaking for 8 hours in Agrimycin (0.025%) and wettable ceresan (0.05%) followed by hot water treatment for 30 min at 52-54oC;
+ seed soaking for 8 hours in ceresan (0.1%) and treat with Streptocyclin (3g in 1 litre);
+Spray neem oil 3% or NSKE 5%
+Spray fresh cowdung extract for the control of bacterial blight. Dissolve 20 g cowdung in one litre of water; allow to settle and sieve. Use supernatant liquid. (starting from initial appearance of the disease and another at fortnightly interval)
+
+	
+Soak the Seeds in
+Agrimycin for 8 hours	Spray Fresh Cowdung
+Extract
+	
+ 	Spray Neem Oil	Treat the Seeds with
+Bleaching Powder
+
+Cultural methods
+Grow Tolerant varieties (IR 20 IR 72,PONMANI , TKM 6).
+Secure disease free seed
+Grow nurseries preferably in isolated upland conditions
+Avoid clipping of seedlings during transplanting.
+Balanced fertilization, avoid excess N - application
+Skip N - application at booting (if disease is moderate)
+Drain the field (except at flowering stage of the crop)
+Destruction of weeds and  collateral hosts
+Avoid flow of water from affected fields
+ Maintain proper plant spacing
+ 	 
+	
+Avoid Field to Field
+Irrigation	Maintain Proper Spacing
+
+Chemical methods
+Seed treatment with bleaching powder (100g/l) and zinc sulfate (2%) reduce bacterial blight.
+Seed treatment - seed soaking for 8 hours in Agrimycin (0.025%) and wettable ceresan (0.05%) followed by hot water treatment for 30 min at 52-54oC;
+ seed soaking for 8 hours in ceresan (0.1%) and treat with Streptocyclin (3g in 1 litre);
+Spray Streptomycin sulphate + Tetracycline combination 300 g + Copper oxychloride 1.25kg/ha. If necessary repeat 15 days later.
+Application of bleaching powder @ 5 kg/ha in the irrigation water is recommended in the kresek stage.
+ Foliar spray with copper fungicides alternatively with Strepto-cyclin (250 ppm) to check secondary spread
+
+### 48. [not checked] `seen` — model-recalled
+
+<http://www.agritech.tnau.ac.in/expert_system/paddy/cpdissheathblight.html>
+
+- **Cited by:** Rice/Sheath_Blight  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Lesions are initially oval to elliptical or irregular, about 1-3 cm long, and greenish-gray. As lesions mature, the center becomes grayish-white with an irregular, light brown to dark brown border."
+- **Should support:** Leaf sheaths, leaf blades, stems; Oval to elliptical lesions with grayish-white centers and dark brown to purple-brown borders; sclerotia on inf; Rhizoctonia solani Kühn (teleomorph: Thanatephorus cucumeris)
+- **Additional info:** - The fungus affects the crop from tillering to heading stage.
+Initial symptoms are noticed on leaf sheaths near water level.
+On the leaf sheath oval or elliptical or irregular greenish grey spots are formed.
+As the spots enlarge, the centre becomes greyish white with an irregular blackish brown or purple brown border.
+Lesions on the upper parts of plants extend rapidly coalesing with each other to cover entire tillers from the water line to the flag leaf.
+The presence of several large lesions on a leaf sheath usually causes death of the whole leaf, and in severe cases all the leaves of a plant may be blighted in this way.
+The infection extends to the inner sheaths resulting in death of the entire plant.
+Older plants are highly susceptible.
+Five to six week old leaf sheaths are highly susceptible.
+Plants heavily infected in the early heading and grain filling growth stages produce poorly filled grain, especially in the lower part of the panicle.
+A yield loss of 25% was reported if the flag leaves are infected.  
+1-elliptical or irregular greenish grey spots on sheaths	2-Blightening of sheath near water level
+Elliptical or Irregular Greenish Grey Spots on Sheaths	Blightening of Sheath near Water Level
+3-Blightening of sheath	4-discoloration of sheath
+Blightening of Sheath	Discoloration of Sheath
+Top
+
+ 	Identification of pathogen
+Old culture of Rhizoctonia solani	rhizoctania solani	
+The disease is soilborne
+The fungus produces usually long cells of septate mycelium which are hyaline when young, yellowish brown when old.
+It produces large number of globoses sclerotia, which are initially white, later turn to brown or purplish brown.
+ There are three types of mycelium produced: runner hyphae, lobate hyphae, and monilioid cells.
+Sclerotia consist of compact masses of mycelia. They are irregular, hemispherical, flattened at the bottom, white when young, and turn brown or dark brown when older. Individual sclerotia are 1-6 mm in diameter. They may unite to form a larger mass. Large sclerotia are significantly more virulent than smaller ones.
+
+Favourable conditions
+
+presence of sclerotia or infection bodies floating on the water
+presence of the disease in the soil
+relative humidity from 96 to 100%
+temperature from 28-32 °C
+high levels of nitrogen fertilizer
+High seeding rate or closing plant spacing
+Frequent rain
+
+Mode of Spread and Survival
+
+The pathogen can survive as sclerotia or mycelium in dry soil for about 20 months but for 5-8 months in moist soil.
+Sclerotia spread through irrigation water.
+Old Culture of Rhizoctonia Solani	Rhizoctania Solani
+sheath blight pathogen	Young culture of Rhizoctonia solani
+Sheath Blight Pathogen	Young Culture of Rhizoctonia Solani
+Top
+
+Management Strategies	 
+Preventive method
+Seed treatment with Pseudomonas fluorescens @ of 10g/kg of seed followed by seedling dip @ of 2.5 kg or products/ha dissolved in 100 litres and dipping for 30 minutes.
+Soil application of P.fluorescens @ of 2.5 kg/ha after 30 days of transplanting (This product should be mixed with 50 kg of FYM/Sand and then applied.
+Foliar spray of Pseudomonas fluorescens at 0.2% concentration ,commencing from 45 days after transplanting at 10 days interval for 3 times depending upon the intensity of disease.
+mixing of PSEUDOMONAS with FYM	SEED TREATMENT with pseudomonas
+Mixing of Pseudomonas with FYM	Seed Treatment with pseudomonas
+
+Cultural methods
+Apply FYM 12.5 t/ha or green manure 6.25 t/ha to promote antagonistic microflora
+Avoid excess doses of fertilizers.
+Adopt optimum spacing.
+Eliminate weed hosts.
+Apply organic amendments.
+Avoid flow of irrigation water from infected fields to healthy fields.
+Deep ploughing in summer and burning of stubbles.
+apply organic amendments	deep summer ploughing
+Apply Organic Amendments	Deep Summer Ploughing
+
+Chemical methods
+Control of sheath blight has been mainly through the use of foliar fungicides.
+Carbendazim (1 g/lit), Propiconazole (1ml/lit) may be applied.
+Spraying of infected plants with fungicides, such as Benomyl and Iprodione, and antibiotics, such as Validamycin and Polyoxin, is effective against the disease
+Spray Carbendazim 250 g or Chlorothalonil 1 kg or Edifenphos 1 lit/ha.
+
+### 49. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_apple_4.html>
+
+- **Cited by:** Apple/Apple_Scab  (fields: pathogen)
+- **Must contain:** "Apple scab is caused by the fungus Venturia inaequalis."
+- **Should support:** Venturia inaequalis
+- **Additional info:** - Symptoms:
+Small, rough, black, circular lesions on their skin
+Fruits after keeping in cold storage.
+Affected fruits rot due to secondary infection of the lesions
+Ascus is slightly spatulate  in shape
+Ascospores are 2-celled, yellowish with the upper cell shorter and sowewhat wider than the lower cell, oval shaped
+low temperatures of 4 and 8°C favours for the development of disease.
+		
+Management:
+
+Infected spurs and cankers should be pruned during summer.
+Affected fruits whether on trees or fallen on the ground should be collected and buried in the soil.
+Diseased mummies should be ploughed into the soil.
+
+### 50. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_1.html>
+
+- **Cited by:** Potato/Late_Blight, Tomato/Late_Blight  (fields: pathogen)
+- **Must contain:** "Late blight is caused by the oomycete pathogen Phytophthora infestans."
+- **Should support:** Phytophthora infestans
+- **Additional info:** - Late blight of potato: Phytopthora infestans
+Symptom:
+It affects leaves, stems and tubers.
+Water soaked spots appear on leaves, increase in size, turn purple brown& finally black colour
+White growth develops on under surface of leaves.
+This spreads to petioles, rachis& stems.
+It frequently develops at nodes.
+Stem breaks at these points and the plant topples over. In tubers, purplish brown spots and spread to the entire surface on cutting, the affected tuber show rusty brown necrosis spreading from surface to the center.
+	 		 	
+Identification of pathogen:
+
+Mode of spread and survival:
+
+The infected tubers and the infected soil may serve as a source of primary infection.
+The diseased tubers are mainly responsible for persistence of the disease from crop to crop.
+The air borne infection is caused by the sporangia.
+Epidemiology:
+
+RH->90% , Temp.-10-25°C and Night temperature:10°C.
+Cloudness before rainfall and Rainfall at least 0.1mm and subsequent days after rainfall.
+Management:
+Protective spraying with mancozeb or zineb 0.2 % should be done to prevent infection of tubers.
+Tuber contamination is minimized if injuries are avoided at harvest time and storing of visibly infected tubers before storage.
+The resistant varities recommended for cultivation are Kufri Naveen, Kufri Jeevan, Kufri Alenkar, Kufri Khasi Garo and Kufri Moti.
+Destruction of the foliage few days before harvest is beneficial and this is accomplished by spraying with suitable herbicide.
+
+### 51. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_2.html>
+
+- **Cited by:** Potato/Early_Blight  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms appear first on the older, lower leaves as small, irregular to circular, brown to black spots. The spots enlarge and concentric rings form in the spots giving them a target-board effect. A yellow area often surrounds each spot."
+- **Should support:** Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow chlorot; Leaves, stems, petioles, tubers
+- **Additional info:** - Early blight: Alternaria solani
+Symptom:
+It is present in both hills & plains.
+Brown-black necrotic spot-angular, oval shape characterized by concentric rings.
+Several spot coalesce & spread all over the leaf.
+Shot holes on fruits.
+Identification of pathogen:
+
+Mode of spread and survival:
+
+The conidia and the mycelium in the soil or in the debris of the affected plants can remain viable for more than 17 months.
+These conidia or the new conidia found on the overwintered mycelium bring about the primary infection of the succeeding potato crop.
+Secondary infection is more important in the spread of the disease.
+The conidia formed on the spots developed due to primary infection are disseminated by wind to long distances.
+The conidia from the affected plant may also be disseminated to the adjoining plants by rain and insects.
+Epidemiology:
+
+Dry warm weather with intermittent rain.
+Poor vigor. Temperature: 25-30°C.
+Poorly manured crop.
+Management:
+Disease free seed tubers should be used for planting.
+Removal and destruction of infected plant debris should be done because the spores lying in the soil are the primary source of infection.
+Very early spraying with Zineb or captan 0.2% and repeating it for every 15 – 20 days gives effective control.
+The variety Kufri Sindhuri possesses a fair degree of resistance.
+
+### 52. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/mustard_diseases/mustard_d1.html>
+
+- **Cited by:** Soybean/Sclerotinia_Timber_Rot  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Infected stems are bleached white and may be covered with white, cottony mycelium. Black, hard sclerotia (resting structures) form on the outside and inside of infected stems. Plants wilt and die prematurely."
+- **Should support:** Stems, branches, pith; Water-soaked lesions on stems that bleach white; white cottony mycelium on stem surface; hard black sclerotia 
+- **Additional info:** - 
+Symptom
+The stems develop water-soaked spots which later may be covered with a cottony white growth.
+As the disease progresses, affected portions of the stem develop a bleached appearance, and eventually the tissues shred.
+Girdling of the stem results in premature ripening and in lodging of plants.
+Hard black bodies, the sclerotia, are formed inside the stem and occasionally on the stem surface. Basal stalk infections rarely occur.
+Yield loss of 10 to15% has occurred in Saskatchewan, Manitoba and North Dakota; occasionally losses of 50% have occurred in Manitoba
+Management
+Use crop rotation; do not plant highly susceptible crops more than once in four years, including dry edible beans, sunflowers, mustard and canola. Use at least a five year rotation for severely infested fields.
+Avoid planting next to a field that had severe Sclerotinia in the past four or five years. Control broad-leaved weeds.
+Plant thoroughly cleaned seed. Avoid dense stands of canola.
+
+### 53. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/ragi_diseases/crop_prot_crop%20diseases_cereals_ragi_2.html>
+
+- **Cited by:** Corn/Leaf_Blight, Corn/Northern_Leaf_Blight  (fields: affected_organs, pathogen)
+- **Must contain:** "Northern leaf blight of corn is caused by the fungus Exserohilum turcicum (pass.) Leonard & Suggs (syn. Helminthosporium turcicum Pass.), the teleomorph of which is Setosphaeria turcica (Luttrell) Leonard & Suggs."
+- **Should support:** Exserohilum turcicum (teleomorph: Setosphaeria turcica); Leaves (leaf blades); husks and leaf sheaths in severe cases
+- **Additional info:** - Symptom:
+The pathogen affects both seedling and the adult plants
+Minute, oval, light brown lesions on the young leaves and become dark brown
+Several such lesions coalesce to form large patches of infection on the leaf blade. The affected blades wither prematurely and the seedlings may be killed.
+Linear oblong and dark brown spots appear on the leaves of grown up plants. The leaves give blightening appearance.
+Prominent brown to dark brown discoloration in the neck region  and followed by weakening of neck tissue that causes it to break and the ears hanging down from the plant
+While nursery infection causes heavy damage due to the seedling blight, neck infection causes heavy chaffiness and severe loss in grain yield.
+It is seed-borne and primary infection is through seed
+Secondary infection through air borne conidia and stubbles
+ 		 		 		 
+Identification of pathogen:
+
+The mycelium is intra and inter-cellular septate and light brown in colour
+Conidia are erect or curved septate and dark brown. They are borne at the tip of conidiophores
+Conidiophores are thick walled cylindrical or obcavate straight or curved and light green in color and 3-10 septate
+The spores germinate either through the stomata or epidermal cells.
+11 spores may be formed in one conidiophore
+MANAGEMENT:
+
+Chemical method
+
+Treat the seeds with Captan or Thiram @4g/Kg
+Spray Mancozeb @ 1.25Kg/ha
+Spray 1% Bordeaux mixture or Copper oxy chloride or Dithane Z-78 (2g/lit. water)
+
+### 54. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/rose_diseases_1.html>
+
+- **Cited by:** Rose/Black_Spot  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms appear as circular, black spots with fringed margins on the upper surface of leaves. Yellow halos often surround the spots. Infected leaves turn yellow and drop prematurely."
+- **Should support:** Circular black spots with fringed margins on upper leaf surface, surrounded by yellow halos, leading to yellow; Leaves, petioles, young canes, flower petals
+- **Additional info:** - Symptoms
+Black lesions with feathery margins surrounded by yellow tissue are found on the leaves. Infected leaves drop prematurely.
+Purple/red bumpy areas on first year canes may be evident.
+Plants may be weakened due to defoliation and reduced flower production may be observed.
+		
+Management
+
+Cultural-Roses should be planted where the sun can quickly dry the night's dew.
+Space roses far enough apart for good air circulation Avoid overhead watering and keep foliage as dry as possible.
+Remove infected canes and burn diseased leaves.
+
+### 55. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/soyabean_disease/soybean_d3.html>
+
+- **Cited by:** Soybean/Bacterial_Blight  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms first appear as small, angular, water-soaked spots on leaves. These spots turn brown and are surrounded by a yellow halo. The centers of the spots dry out and may fall out, giving the leaf a ragged appearance."
+- **Should support:** Leaves (primarily); also pods and stems; Small, angular, water-soaked lesions with yellow halos that turn brown to black and necrotic; lesions bounded 
+- **Additional info:** -  
+Symptom
+Seeds may develop raised or sunken lesions and become shriveled and discolored.
+Small, angular, translucent, water-soaked, yellow to light brown spots appear on leaves.
+Young leaves are most infected and are destroyed, stunted and chlorotic.
+Angular lesions enlarge and merge to produce large, irregular dead areas.
+Early defoliation of lower leaves may occur.
+Large, black lesions develop on stems and petioles.
+Management
+
+Deep summer poughing.
+Use healthy/certified seeds.
+Destroy infected crop debris
+Seed treatment with streptocyclin @ 250 ppm (2.5 g/10 kg seeds).
+Application of any copper fungicides @ 2 g/lit along with streptocyclin at the rate of 250 ppm (2.5 g/10 lit water)
+
+### 56. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/soyabean_disease/soybean_d5.html>
+
+- **Cited by:** Soybean/Charcoal_Rot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "The pith and vascular tissue of the lower stem and taproot turn silver-gray, and the tiny, black microsclerotia of the pathogen can be seen with the naked eye on and beneath the epidermis of the lower stem and taproot, giving the tissue a charcoal-gray appeara"
+- **Should support:** Macrophomina phaseolina; Silver-gray to ash-gray discoloration of internal stem and root tissue; dense black microsclerotia visible ben; roots, lower stem (hypocotyl), vascular tissue, pith
+- **Additional info:** -  Symptom
+This disease occurs when the plants are under moisture stress or under nematode attack or through soil compaction or may be through nutrient deficiencies.
+It is a most common basal stem and root disease of the soybean plant.
+Lower leaves become chlorotic and wilting and drying is apparent.
+The diseased tissues generally develop grayish  discolouration.
+The sclerotia look like black powdery mass hence the disease is known as charcoal rot.
+Blacking and cracking of roots is the most common symptom.
+The fungus survives in soil and crop debris in dry conditions.
+Dry conditions, relatively low soil moisture and nutrient and temperature ranging from 25o C to 35o C are favourable for the disease.
+Management
+
+Deep ploughing in summer.
+Ensure balanced fertilization of the crop.
+Rotate soybean with cereals.
+Maintain well drained field
+Destroy last years infected stubble.
+Seed treatment with T. viride @4g/kg or P. fluorescens @ 10g/ kg of seed or Carbendazim or Thiram 2g/kg of seed.
+Spot drenching with Carbendazim 1g/lit or P. fluorescens / T. viride 2.5 kg/ha with 50 kg FYM
+
+### 57. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/soyabean_disease/soybean_d7.html>
+
+- **Cited by:** Soybean/Brown_Spot  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms first appear on the lower leaves as irregular dark brown spots on both the upper and lower leaf surfaces. Spots may have a yellow halo. As the disease progresses, spots may coalesce, causing the leaves to turn yellow and drop prematurely."
+- **Should support:** Irregular, angular dark brown lesions on upper and lower leaf surfaces, often with yellow halos; lesions coale; Leaves, pods, stems
+- **Additional info:** -  
+Symptom
+Light to dark gray or brown areas varying from specks to large blotches appear on seeds.
+The disease primarily affect foliage, but, stems, pods and seeds may also be infected.
+Leaf lesions are circular or angular, at first brown then light brown to ash grey with dark margins.
+The leaf spot may coalesce to form larger spots.
+When lesions are numerous the leaves wither and drop prematurely.
+Lesions on pods are circular to elongate, light sunken and reddish brown.
+Management
+Use healthy or certified seeds.
+Rotate soybean with cereals.
+Completely remove plant residue by clean ploughing the field soon after harvest.
+Seed treatment with Thiram + Carbendazim (2:1) @ 3g/kg seed.
+Spray Mancozeb @ 2.5g/lit or Carbendazim 1g/lit.
+
+### 58. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/sugarcane_diseases/sugarcane_d1.html>
+
+- **Cited by:** Sugarcane/Yellow_Leaf  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms include yellowing of the midrib on the underside of the leaf, which may extend to the upper surface, followed by necrosis and death of the leaf. Affected plants may also be stunted."
+- **Should support:** Bright yellowing of the abaxial midrib of lower-canopy leaves, progressing to yellowing of the entire leaf bla; Leaves (midrib and leaf blade); stalks (secondary effect — stunting); Sugarcane yellow leaf virus (SCYLV), genus Polerovirus, family Luteoviridae
+- **Additional info:** - Symptoms:            
+This disease affects the 5 to 6 months crop.
+Yellowing of midrib and adjacent laminar region also yellowing.
+Subsequent leaf drying along the mid rib in 3 to 5 leaves from top.
+In some cases reddish discolouration is also seen
+In severe cases drying of spindle along with leaves.
+Stunted growth of cane, particularly internodes are affected
+Identify the disease in long distance itself
+Some times in severe cases it shows the bunchy top appearance at top of cane
+In matured cane this disease will spreads heavily
+ 		 		 	
+Pathogen:
+The virus is transmitted by aphids, Melanaphis sacchari and Rhopalosiphum maidis, in a semi-persistent manner.
+SCYLV is a member of the Luteoviridae family. The virus is localized within the phloem cells of the plant.
+ 		 		 	 
+Management strategies
+
+Cultural method:
+
+Selection of disease free setts for planting
+Field should be maintain with proper hygiene
+Application proper nutritional management and use resistant varieties.
+To avoid this disease first plant the setts in nursery and then transplant to main field
+Selection of tissue culture plant especially meristem culture plant is used for planting in field
+Chemical method:
+
+Secondary transmission of the disease by insect vectors can be controlled by application of Malathion(0.1%) or Dimecron(0.2%).
+Soil application of carbofuran @2.0 kg./ha or phorate @ 6.0 kg./ha
+Two sprayings of malathion @ 1.5 kg /ha at monthly intervals during September and October after detrashing of dry leaves.
+
+### 59. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/tomato_diseases_11.html>
+
+- **Cited by:** Tomato/Bacterial_Leaf_Spot  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "On leaves, bacterial spot first appears as small, water-soaked, circular to irregular spots. The spots turn brown to black, and are often surrounded by a yellow halo. Severely infected leaves turn yellow and drop from the plant. On fruit, the disease first app"
+- **Should support:** Leaves, stems, petioles, and fruit; Small water-soaked lesions that turn dark brown to black, often with yellow halos; lesions may coalesce; fruit
+- **Additional info:** - Field Diagnostic Symptoms
+
+Small, brown, water soaked, circular spots with yellow halo on leaves.
+Defoliation of older leaves.
+Small, water-soaked spots on green fruit .
+Centre of spots become irregular, light brown with sunken and scabby surface.
+
+Symptoms on leaves
+
+Causal organism
+
+Xanthomonas axonopodis pv. vesicatoria (ex Doidge) Vauterin
+Survival and Mode of Spread
+
+Survival :
+
+Infected debris
+Primary spread:
+
+Infected plant debris and seed
+Secondary spread:
+
+Rain splash
+Favourable conditions :
+
+Moist weather and splattering rains
+High humidity or persistent dew.
+Integrated Disease Management:
+
+Use of disease free seed
+Spray Streptocycline 40-100 ppm (20 g/ac)
+
+### 60. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/tomato_diseases_8.html>
+
+- **Cited by:** Tomato/Phytophthora_Blight  (fields: pathogen)
+- **Must contain:** "Late blight is caused by the oomycete pathogen Phytophthora infestans."
+- **Should support:** Phytophthora infestans
+- **Additional info:** - Symptoms
+
+Water-soaked black lesions on leaves and stems
+Lesions expand rapidly and the entire leaf becomes necrotic.
+White sporulation (sporangia and sporangiophores) on leaves.
+Fruit
+
+Dark brown lesions on fruit
+Soft rot and disintegration of fruits.
+
+Causal organism
+
+Phytophthora infestans (Mont.) de Bary
+
+Asexual spores :
+
+Indeterminate sporangiophores, Zoospores: Biflagellate with one tinsel flagellum directed anteriorly and one whiplash flagellum directed posteriorly
+
+Pathogen:
+
+Hyaline and coenocytic
+
+Sexual spores :
+
+Thick-walled oospore
+Survival and Mode of Spread
+
+
+Survival :
+
+Infected Debris
+
+Primary spread:
+
+Infected debris
+
+Secondary spread:
+
+Wind
+Favourable conditions :
+
+Cool nights, warm days and extended wet conditions from rain and fog
+Sporangia formed when RH is < 90%
+Optimum temp for sporulation is 18 - 22oC
+Integrated Disease Management:
+
+Proper drainage
+Crop rotation
+Soil application of Trichoderma asperellum (viride) @ 1.0 kg/ac
+Spray Cyazofamid 34.5% SC @ 80 ml/ac or Azoxystrobin 23% SC @ 200 ml/ac or Mancozeb 35% SC @ 1000 g/ac or Zineb 75% WP @ 800 g/ac or Azoxystrobin 18.2%+ Difenoconazole 11.4% SC @ 200 ml/ac
+
+### 61. [not checked] `seen` — model-recalled
+
+<https://agritech.tnau.ac.in/crop_protection/tomato_phdiseases_1.html>
+
+- **Cited by:** Tomato/Phytophthora_Blight  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Leaf lesions are large, irregularly shaped, and appear water-soaked or greasy. Lesions turn brown to black. White sporulation may be visible on the underside of leaves. Stem lesions are dark brown to black. Fruit lesions are firm, brown, and greasy-looking."
+- **Should support:** Water-soaked, irregularly shaped lesions that turn brown to black on leaves and stems; white sporulation on le; leaves, stems, fruit
+- **Additional info:** - Gray Mold: Botrytis cinerea
+Symptom:
+Lesion - a watery area with a light brown or tan-colored central region.
+Converted into a soft, watery mass within a few days.
+Skin is broken, the grayish mycelium and spore clusters develop within a few hours.
+Halo forms around the point of entry -small whitish rings approximately - develop on young green fruit.
+"ghost spots" are usually single rings but may be solid white spots;the center of which contain dark-brown specks.
+			
+Identification of pathogen:
+Greek botrys, meaning a bunch of grapes
+One-celled spores are borne on branched conidiophores
+Sclerotia -measure up to 3 mm - smaller & thinner 
+Germinate to produce conidiophores or, rarely, give rise to small cup-shaped structures (apothecia)
+Favourable condition:
+
+Optimum RH for spore production is about 90%
+Spores are produced during the night when the temperature is lower and the RH is higher than during the day.
+Ideal Temperatures of 17–23 °C
+The length of the surface wetness period needs to be longer at the lower temperatures for disease development
+Spread and survival:
+
+Botrytis produces sclerotia which survive in soil, dead plant material, or on different host plants
+Easily disperse large distances by wind & shorter distances by splashing and windblown rain
+Fruit can be infected through the stem scar, growth cracks, or other breaks in the skin
+Plants approaching maturity are more susceptible
+Management:
+
+Ensure good drainage facility
+In the greenhouse, maintain a RH of less than 80%, during the night
+Remove decaying plant material from the plant bed
+Avoid bruising during packing and transport
+Pre harvest spray 0.2% captan at monthly intervals
+
+### 62. [not checked] `seen` — model-recalled
+
+<https://corn.ipmpipe.org/southerncornrust/>
+
+- **Cited by:** Corn/Southern_Rust  (fields: pathogen)
+- **Must contain:** "Southern rust is caused by the fungus Puccinia polysora Underw."
+- **Should support:** Puccinia polysora
+- **Additional info:** - Southern Corn Rust can occur in major regions for corn production in the US and Canada.
+
+Southern Corn Rust can occur in major regions for corn production in the US and Canada despite being a tropical disease. High humidity and temperatures around 80°F create a supportive environment for Southern Corn Rust to thrive.
+
+Symptoms are similar to common rust, but pustules are smaller and occur almost exclusively on the upper leaf surface. Pustules are usually circular or oval, very numerous, and densely scattered over the leaf surface. Spores are orange when they erupt from the pustule. As pustules age, they become chocolate brown to black, often forming dark circles around the original pustule.
+
+To protect corn crops, foliar fungicides labeled for Southern Corn Rust are available. Hybrids and inbreds showing resistance are also useful.
+
+### 63. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/bacterial-blight-of-soybean>
+
+- **Cited by:** Soybean/Bacterial_Blight  (fields: pathogen)
+- **Must contain:** "Bacterial blight of soybean is caused by Pseudomonas savastanoi pv. glycinea"
+- **Should support:** Pseudomonas savastanoi pv. glycinea
+- **Additional info:** - Bacterial blight is caused by Pseudomonas savastanoi pv. glycinea, and is usually one of the first foliar diseases to occur on soybean. Bacterial blight seldom causes serious yield loss. Symptoms usually begin in the upper canopy because young leaves are most susceptible. Small, angular, reddish-brown lesions are surrounded by a yellow halo. As the disease progresses, lesions often grow together to produce large, irregularly shaped dead areas. Centers of older lesions frequently fall out, causing leaves to appear tattered.
+
+The bacteria survive winters in crop residue and seed and are spread by rain and wind. Bacteria can survive on leaf surfaces during the season and infect plants when conditions are suitable. Infection occurs through stomates (natural leaf openings allowing air exchange) and wounds caused by wind, hail, etc. Thus, outbreaks are common after rainstorms with high winds. Cool temperatures favor bacterial blight; warmer temperatures will slow or stop disease development.
+
+Crop rotation and tillage reduce survival of the bacteria. Non-hosts include alfalfa, corn, and small grains; other legume crops can be alternative hosts.
+
+### 64. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/bacterial-pustule-of-soybean>
+
+- **Cited by:** Soybean/Bacterial_Pustule  (fields: visual_symptoms)
+- **Must contain:** "Symptoms appear as small, pale green spots with raised pustules in the center, usually on the lower leaf surface. The center of the lesion is tan to brown and is surrounded by a yellow-green halo."
+- **Should support:** Small, pale green to yellow spots with raised pustules on the lower leaf surface; lesions have tan to brown ce
+- **Additional info:** - Bacterial pustule is caused by Xanthomonas axonopodis pv. glycines. This disease occurs mid- to late season when temperatures are warmer. Lesions are found on outer leaves in the mid- to upper canopy. Lesions start as small, pale green specks with elevated centers and develop into large, irregularly shaped infected areas. A greenish-yellow halo surrounds each lesion. A pustule may form in the center of some lesions, usually on the lower leaf surface. Bacterial pustule will not cause leaves to tatter like bacterial blight.
+
+Disease development is favored by hot, wet weather.
+
+Avoid extremely susceptible varieties where disease is a potential problem; some varieties are marketed as resistant to bacterial pustule. Crop rotation and tillage reduce survival of the bacteria.
+
+### 65. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/downy-mildew-of-soybean>
+
+- **Cited by:** Soybean/Downy_Mildew  (fields: pathogen)
+- **Must contain:** "Downy mildew of soybean is caused by the oomycete pathogen Peronospora manshurica."
+- **Should support:** Peronospora manshurica
+- **Additional info:** - Downy mildew is caused by the oomycete Peronospora manshurica. It is common but seldom causes serious yield loss. Lesions occur on upper leaf surfaces as irregularly shaped, pale green to light yellow spots that enlarge into pale to bright yellow spots. Older lesions turn brown with yellow-green margins. Young leaves are more susceptible, so disease is often found in the upper canopy. On the leaf underside, fuzzy, gray tufts may be seen growing from lesions, particularly when humidity is high or leaves are wet (e.g., early in the morning). Downy mildew-infected pods show no external symptoms, but the inside of the pod and seed may be covered with a dried, whitish fungal mass that appears crusty and contains spores. Infected seed can be smaller, appear dull white and have cracks in the seed coat.
+
+High humidity or extended leaf wetness and moderate temperatures favor disease development. The increased resistance of older leaves and higher temperatures midseason usually stop disease development before extensive damage occurs.
+
+Many sources of resistance are available. Crop rotation and burial of infested crop residue can reduce pathogen levels.
+
+### 66. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/eyespot-of-corn>
+
+- **Cited by:** Corn/Eyespot  (fields: pathogen)
+- **Must contain:** "Eyespot of corn is caused by the fungus Aureobasidium zeae (Narita & Hiratsuka) J.M. Dingley (syn. Kabatiella zeae Narita & Hiratsuka)."
+- **Should support:** Aureobasidium zeae (formerly Kabatiella zeae)
+- **Additional info:** - Eyespot is caused by the fungus Kabatiella zeae. The initial symptoms of eyespot are small, water-soaked or chlorotic circular spots. The tissue at the center of the spot later dies and turns tan-colored with a brown ring at the margin. The spot is surrounded by a yellow "halo" that can be seen clearly when the leaf is lighted from behind. Spots may join together into large necrotic areas and the entire leaf may die. The spots remain visible even after the leaf dies.
+
+The disease is more common when corn follows corn. Cool temperatures (60s°F to low 70s°F) favor disease development; thus, eyespot may appear early in the season on lower leaves and again near the end of the season on upper leaves.
+
+Corn leaf with tan spots on it with dark brown margins and yellow 'halos' surrounding the spots.
+Eyespot lesions on corn leaf.
+
+Backlit eyespot lesions showing yellow 'halo.'
+
+### 67. [not checked] `seen` — model-recalled, none
+
+<https://cropprotectionnetwork.org/encyclopedia/frogeye-leaf-spot-of-soybean>
+
+- **Cited by:** Apple/Frogeye_Leaf_Spot, Soybean/Frogeye_Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Lesions are circular to irregular, 2 to 5 mm in diameter, with gray to brown centers and reddish-purple borders. Under humid conditions, gray sporulation may be seen on the lower leaf surface."
+- **Should support:** Botryosphaeria obtusa (anamorph: Diplodia seriata / Sphaeropsis malorum); Cercospora sojina; Circular to irregular lesions with gray-brown centers and reddish-purple borders on leaves; gray sporulation o; Leaves, pods, seeds
+- **Additional info:** - Frogeye leaf spot is caused by the fungus Cercospora sojina. The disease occurs across the United States and in Ontario, Canada. Frogeye leaf spot can cause significant yield loss when widespread within a field. Leaf lesions are small, irregular to circular in shape, and gray with reddish-brown borders. Most commonly occurring on the upper leaf surface, lesions start as dark, water-soaked spots that vary in size. As lesions age, the central area becomes gray to light brown with dark, red-brown margins. In severe cases, disease can cause premature leaf drop and will spread to stems and pods.
+
+Small gray spots with brown boarders on soybean leaves.
+Frogeye leaf spot symptoms start as small dark lesions.
+
+The fungus survives in infested crop residue and infected seed. Early season infections contribute to infection of foliage and pods later in the season. Warm, humid weather promotes spore production, infection, and disease development. Young leaves are more susceptible to infection than older leaves, but visible lesions are not seen on young, expanding leaves because the lesions take two weeks to develop after infection.
+
+Resistant soybean varieties are available and should be used where disease is a potential problem. Several races of the pathogen have been identified, and varieties with resistance to all known races are available. Rotating to a non-host crop and tillage will reduce survival of C. sojina. Crops not susceptible to this pathogen are alfalfa, corn, and small grains. Foliar fungicides applied during late flowering and early pod set to pod filling stages can reduce frogeye leaf spot.If you believe fungicide resistance may be an issue in your field, contact your local extension specialist. To learn more about fungicide resistance, visit Plant Management Network's Soybean Fungicide Resistance Hub.
+
+### 68. [not checked] `seen` — model-recalled, none
+
+<https://cropprotectionnetwork.org/encyclopedia/fusarium-ear-rot-of-corn>
+
+- **Cited by:** Corn/Ear_Rots, Corn/Fusarium_Disease  (fields: pathogen, visual_symptoms)
+- **Must contain:** "Gibberella ear rot is characterized by a pink to reddish mold that usually starts at the tip of the ear. Fusarium ear rot appears as white to pink mold on individual kernels, often in a 'starburst' pattern. Diplodia ear rot produces a white to grayish-white mo"
+- **Should support:** Fusarium verticillioides (formerly F. moniliforme), Fusarium graminearum, and other Fusarium spp.; Pink to red mold at ear tip (Gibberella); white to pink starburst kernel discoloration (Fusarium); white-gray 
+- **Additional info:** - Fusarium ear rot is the most common ear disease, caused by several fungi in the genus Fusarium. Symptoms are a white to pink or salmon-colored, cottony mold that occurs on single or multiple kernels scattered or clustered on the ear. Decay often begins with insect-damaged kernels. Infected kernels are frequently tan or brown or have white streaks.
+
+Causal fungi overwinter in corn residue and on dead, grassy weeds. Fusarium spores are spread by wind and splashing rain to silks. Infections also occur through wounds made by insects or other types of wounds in kernels. Insects also act as vectors of Fusarium. F. verticillioides can grow throughout the corn plant, and some ear infections may result from the fungus entering the ear through the stalk. Disease is favored by hot and dry weather during and after silking. Several Fusarium species causing ear rot also can produce harmful mycotoxins, so caution should be used when feeding moldy corn to animals. Moldy corn should be tested for mycotoxin contamination prior to feeding.
+
+Scouting prior to physiological maturity is important to identify areas with mold problems. These areas should be harvested as soon as possible to prevent further mold development. Harvested grain should be cooled, dried, and cleaned immediately after harvest, and stored apart from grain harvested from healthy fields. Insect management reduces the risk of ear rot infection.
+
+### 69. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/gray-leaf-spot-of-corn>
+
+- **Cited by:** Corn/Gray_Leaf_Spot, Corn/Leaf_Spot  (fields: pathogen, visual_symptoms)
+- **Must contain:** "Mature lesions are rectangular, tan to gray in color, and delimited by leaf veins. Lesions are typically 1 to 4 cm long and 2 to 4 mm wide."
+- **Should support:** Cercospora zeae-maydis; Rectangular, tan to gray, vein-delimited lesions that are initially small with yellow halos, elongating parall
+- **Additional info:** - Gray leaf spot, caused by the fungus Cercospora zeae-maydis, occurs virtually every growing season. If conditions favor disease development, economic losses can occur. Symptoms first appear on lower leaves about two to three weeks before tasseling. The leaf lesions are long (up to 2 inches), narrow, rectangular, and light tan colored. Later, the lesions can turn gray. They are usually delimited by leaf veins but can join together and kill entire leaves. 
+
+Rectangular gray leaf spot lesions delimited by leaf veins.
+
+The fungus survives in corn residue, and, consequently, the disease is often more severe in corn following corn. Spores are dispersed by wind and splashing water. Infection of corn leaves and disease development are favored by warm (80s°F), humid (>90% for 12+ hours) weather. Disease severity depends on hybrid susceptibility and environmental conditions.
+
+Resistant hybrids and inbreds are available. Crop rotation and tillage reduce survival of the fungus. Foliar fungicides labeled for gray leaf spot are available.
+
+### 70. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/iron-fe-deficiency-chlorosis-idc-of-soybean>
+
+- **Cited by:** Soybean/Iron_Deficiency_Chlorosis  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms include yellowing of leaf tissue between the veins (interveinal chlorosis) on the youngest leaves. In severe cases, leaves may turn almost white and develop brown, necrotic edges and tips."
+- **Should support:** Abiotic – iron (Fe) deficiency; no pathogen involved; Interveinal chlorosis on young leaves with yellow to white leaf tissue between green veins; severe cases show ; Young leaves (newest trifoliate leaves and growing points)
+- **Additional info:** - Iron deficiency chlorosis (IDC) causes interveinal chlorosis, which appears as pale-yellow leaves with green leaf veins. Symptoms appear on newly formed leaves, often starting with the first trifoliate leaves, because iron (Fe) is not mobile within the plant. Plants can grow out of the chlorosis. Plant growth may be stunted in severe situations, reducing yield potential. Varieties vary in their susceptibility to IDC. Symptoms can be confused with those caused by manganese deficiency or soybean cyst nematode (SCN).
+
+Soybean plant with yellowing leaves.
+Iron deficiency chlorosis (IDC) foliar symptoms.
+
+A soybean field with yellowing patches.
+Iron deficiency chlorosis (IDC) visible in soybean field.
+
+IDC can occur on soils with sufficient Fe, as Fe may not be present in the soluble form required by the plant. IDC normally occurs on calcareous soils with high pH. Wet soils, soils high in nitrate, and/or soils with decaying organic matter like crop residues or manure, are also more likely to cause IDC of soybean. Herbicide injury or plant disease may limit the uptake of Fe. Factors that limit root growth such as cultivation resulting in root injury, nematode injury, and compaction may increase IDC risk.
+
+Management of IDC starts with selecting a soybean variety with the best tolerance rating to IDC. Companion crops, such as oats or rye, have been shown to reduce nitrate in the soil, reducing IDC. Plants closer together, for instance by increasing the seeding rate, will reduce IDC. In-furrow application of an iron chelate in the ortho-ortho form has also been shown to reduce IDC.
+
+### 71. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/phytophthora-root-and-stem-rot-of-soybean>
+
+- **Cited by:** Soybean/Phytophthora  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "The most diagnostic symptom is a chocolate brown discoloration of the lower stem that advances up from the soil line. Leaves turn yellow, wilt, and die but remain attached to the plant."
+- **Should support:** Chocolate-brown discoloration of the lower stem advancing upward from the soil line; wilting and yellowing of ; roots, lower stem, leaves
+- **Additional info:** - Phytophthora sojae can infect soybeans at any growth stage from seed to maturity. Early season symptoms include seed rot and pre- and postemergence damping off. The most characteristic symptom of Phytophthora root and stem rot is a dark brown lesion on the lower stem that extends up from the taproot of the plant. The lesion often reaches as high as several nodes and will girdle soybean stems, restricting flow of nutrients and water, and stunting or killing the plant.
+
+Phytophthora root and stem rot is more severe in no-till fields, poorly drained soils, or low-lying areas that are prone to flooding.
+
+Characteristic brown stem lesion at the soil line of a soybean plant symptomatic of Phytophthora root and stem rot.
+Characteristic stem lesion symptomatic of Phytophthora root and stem rot.
+
+The oomycete pathogen survives on crop residue or in the soil as oospores. When soil temperatures reach 60°F and soil is saturated, oospores germinate and produce swimming spores, called zoospores. Warm, saturated soil, especially shortly after planting, are conducive to disease. Infection occurs via the roots, and from there the pathogen colonizes the roots and stems.
+
+Phytophthora root and stem rot is best managed by planting resistant varieties. There are soybean varieties available that have complete resistance to specific pathotypes (races) of P. sojae. There are numerous pathotypes, and many pathotypes can exist in a single field. Partial resistance (resistance made up of more than one gene) is available and is effective against all pathotypes. Where Phytophthora root and stem rot is a problem, seed treatments targeting oomycetes can provide some protection.
+
+### 72. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/potassium-k-deficiency-of-soybean>
+
+- **Cited by:** Soybean/Potassium_Deficiency  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms include yellowing of leaf margins that progresses to necrosis (dead tissue), giving the leaf a scorched appearance. Symptoms appear first on the lower, older leaves and progress upward."
+- **Should support:** Leaves (older, lower leaves primarily); pods and seeds under severe deficiency; Yellowing and necrosis of leaf margins and tips on older leaves, progressing inward; scorched or burned appear
+- **Additional info:** - Potassium (K) deficiency symptoms appear as a yellowing of the leaves that begins at the tip and extends along edges or margins and continues toward the base as severity increases. These symptoms may appear as early as the V3 stage and occur in the lower to middle canopy early in the season; symptoms may also appear in the upper canopy during mid to late reproductive stages. Eventually, the yellow tissue will die and become necrotic, before falling from the plant. Plants with K deficiency are often stunted and may also exhibit premature advanced plant maturity. K deficiency often occurs in patches within a field. K is mobile in the soybean plant, which can be used to help differentiate it from other nutrient deficiency symptoms. From the edge of the field, patches of K deficient plants can be confused with soybean foliar diseases such as sudden death syndrome (SDS) or brown stem rot.
+
+Yellowing soybean leaf beginning at the tip and on the edges.
+Soybean leaf showing potassium (K) deficiency symptoms.
+
+Daren Mueller
+
+Yellowing soybean leaves with brown spots in a field.
+Soybean plants with potassium (K) deficiency symptoms.
+
+Daren Mueller
+
+Symptoms are more likely to occur in soils with low K levels or low availability due to dry or cool soils. K deficiency may be more likely on soils with coarse textures and low cation exchange capacity. Factors that limit root growth can also result in K deficiency symptoms such as compaction, sidewall compaction, nematode infection, and nutrient stratification within the soil.
+
+Soil testing for K is often used to determine how much fertilizer to apply, however, tissue testing is also available. Nutrient deficiency can occur without visible symptoms. Dry fertilizer application according to soil test levels is often the only economical option.
+
+Prepared and reviewed by the Science for Success team and the Integrated Pest Management Program at Iowa State University.
+
+Soybean leaf showing potassium (K) deficiency symptoms.Soybean leaf showing potassium (K) deficiency symptoms.Soybean plants with potassium (K) deficiency symptoms.Soybean plants with potassium (K) deficiency symptoms.Soybean field with potassium (K) deficiency symptoms.
+
+### 73. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/pythium-seedling-blight-and-root-rot-of-soybean>
+
+- **Cited by:** Soybean/Damping_Off  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms include water-soaked, brown lesions on the hypocotyl and roots, seedling collapse at or below the soil line, and both pre- and post-emergence damping-off."
+- **Should support:** Pythium spp., Phytophthora sojae, Fusarium spp., Rhizoctonia solani; Water-soaked lesions on hypocotyl and roots; brown to reddish-brown discoloration; seedling collapse at soil l; roots, hypocotyl, cotyledons, seeds
+- **Additional info:** - Globisporangium species (formerly Pythium species) cause pre- or postemergence damping off. Infected seeds appear rotted and soil sticks to them. Infected seedlings have water-soaked lesions on the hypocotyl or cotyledons that develop into a brown soft rot. Diseased plants are easily pulled from the soil because of rotted roots.
+
+A rotted and wilted soybean seedling on the soil.
+Rotted seedling root from Pythium infection.
+
+The oomycete pathogens survive as oospores either in plant residue or in soil. Saturated soil is critical for infection for all Globisporangium species. In general, Globisporangium species that are prevalent in the northern United States infect plants at lower temperatures (50 to 60°F), and Globisporangium species in the South infect plants at warmer temperatures (85 to 95°F), although there are exceptions. Diseased plants are more common in no-till fields or low-lying areas of the field that are prone to flooding.
+
+Planting in cold, wet soils should be avoided to reduce infection by Globisporangium species that infect at low temperatures. Where Globisporangium is a problem, seed treatments targeting oomycetes can provide some protection. Resistance to metalaxyl/mefenoxam has been documented.
+
+### 74. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/septoria-brown-spot-of-soybean>
+
+- **Cited by:** Soybean/Brown_Spot  (fields: pathogen)
+- **Must contain:** "Brown spot of soybean is caused by the fungus Septoria glycines Hemmi."
+- **Should support:** Septoria glycines
+- **Additional info:** - Septoria brown spot is caused by the fungus Septoria glycines. It is the most common foliar disease of soybean. Disease develops soon after planting and is usually present throughout the growing season. Symptoms are typically mild during vegetative growth stages of the crop and progress upward from lower leaves during grain fill. Infected young plants have purple lesions on the unifoliate leaves. Lesions on later leaves are small, irregularly shaped, dark brown, and are found on both leaf surfaces. Adjacent lesions can grow together and form larger, irregularly shaped blotches. Infected leaves quickly turn yellow and drop. Disease starts in the lower canopy and, if favorable conditions continue, will progress to the upper canopy. Yield losses depend on how far up the canopy the disease progresses during grain fill.
+
+Soybean leaves that are yellowing and have dark brown, irregular shaped lesions all over.
+Septoria brown spot lesions on soybean leaves.
+
+The fungus survives on infected leaf and stem residue. Warm, wet weather favors disease development. Disease usually stops developing during hot, dry weather but may become active again near maturity or when conditions are more favorable.
+
+There are no known sources of resistance, but differences in susceptibility occur among soybean varieties. The host range of the pathogen includes some other legume species and common weeds such as velvetleaf. Rotation to non-host crops such as alfalfa, corn, and small grains and incorporation of infested crop residue into the soil will reduce survival of S. glycines. Foliar fungicides labeled for Septoria brown spot control are available. Applications made during R3 through R5 soybean growth stages may slow the rate of disease development into the middle and upper canopy and protect yield.
+
+### 75. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/encyclopedia/white-mold-of-soybean>
+
+- **Cited by:** Soybean/White_Mold  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms include water-soaked lesions on the stem that later turn tan or white. A white, cottony mold grows on infected tissue. Hard, black structures called sclerotia form on and inside infected stems."
+- **Should support:** Water-soaked lesions on stems that bleach white; cottony white mycelium; hard black sclerotia on and inside st; stems, petioles, pods, leaves
+- **Additional info:** -  White mold (also called Sclerotinia stem rot) is a significant problem in the North Central soybean production region and Canada. Caused by the fungus Sclerotinia sclerotiorum, white mold is often recognized by fluffy, white growth on soybean stems. Initial symptoms generally develop from R3 to R6 as gray to white lesions at the nodes. Lesions rapidly progress above and below the nodes, sometimes girdling the stem. White, fluffy mold soon covers the infected area, especially during periods of high relative humidity. Characteristic black sclerotia eventually are visible and embedded within mold on stem lesions, and inside the stem as the plant approaches death. Initial foliar symptoms include leaf tissues between major veins turning a gray-green cast; eventually leaves die and turn completely brown while remaining attached to the stem. Pods affected by white mold generally contain seeds that are smaller, lighter, white, and cottony. Seeds may be replaced by sclerotia. It is unusual for an infected seed to look normal. Soybean seed lots can be contaminated with sclerotia, the survival structures produced by S. sclerotiorum in infected plants.
+
+The fungus survives in the soil for several years as sclerotia. The disease cycle begins when mushroom-like structures called apothecia are formed on the soil surface from sclerotia. Spores from apothecia infect senescing soybean flowers and the fungus eventually grows to the stem. The disease is more prevalent during cool, wet, or humid seasons and in fields where the canopy closes during soybean flowering and early pod development.
+
+No soybean variety is completely resistant to white mold, but varieties do range from moderately resistant to very susceptible. At least two or three years of a non-host crop can reduce the number of sclerotia in soil. Crops that should not be in rotation with soybean in fields with white mold risk are beans, peas, sunflowers, and cole crops (mustard or Brassicaceae family). More sclerotia are found near the soil surface in no-till systems, but sclerotia numbers begin to decline if left undisturbed. Early planting, narrow row width, and high plant populations all accelerate canopy closure and favor disease development. However, modification of these practices also may reduce yield potential. Weed control is critical as many broadleaf weeds are hosts of the white mold pathogen. Also, some herbicides may suppress the activity of the fungus or disrupt germination of sclerotia. Some antagonistic fungi may be applied to the soil to colonize and reduce sclerotia numbers. Foliar fungicides can manage white mold, or at least reduce disease severity; however, application timing is critical. Fungicides are most effective when applied immediately before infection.
+
+### 76. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/publications/an-overview-of-ear-rots>
+
+- **Cited by:** Corn/Ear_Rots  (fields: pathogen)
+- **Must contain:** "Several different fungi can cause ear rots in corn, including Gibberella zeae (also known as Fusarium graminearum), Fusarium verticillioides (formerly F. moniliforme), Stenocarpella maydis (formerly Diplodia maydis), Aspergillus flavus, and Penicillium species"
+- **Should support:** Multiple fungi including Gibberella zeae (Fusarium graminearum), Fusarium verticillioides, Diplodia maydis (St
+- **Additional info:** - Ear rots are some of the most important corn diseases throughout the United States and Canada. Ear rots decrease yield and can greatly reduce grain, feed, and food quality. From 2012 to 2023, ear rot fungi were estimated to have reduced grain yield by 1.9 billion bushels, worth approximately $8.6 billion USD. Depending on the price of grain and disease severity in a given year, estimated average per acre losses range from $2-21 USD across corn production regions. 
+
+It is critical to identify ear rots in the field because many of the fungi responsible for ear rots produce toxic chemicals (known as mycotoxins), which can harm livestock and humans. Grain that has been contaminated with mycotoxins can be difficult to market and may be docked in price.
+
+Therefore, it is important that farmers and others that work in agriculture can diagnose corn ear rots and manage affected grain according to the specific ear rot present. This publication:
+
+Describes how to identify the most common corn ear rots observed in the United States and Canada
+
+Discusses the mycotoxins associated with each ear rot
+
+Describes diseases and disorders easily confused with corn ear rots
+
+Briefly addresses how to manage ear rots and affected grain
+
+Aspergillus Ear Rot (disease) & Aflatoxin (mycotoxin)
+Aspergillus ear rot is one of the most important diseases of corn. It is caused primarily by the fungus Aspergillus flavus, but a few other Aspergillus species may be involved. Typically, this disease is more common in the southern United States than in other areas.
+
+Some Aspergillus species can produce a mycotoxin called aflatoxin. Aflatoxin affects grain quality and marketability and is primarily a threat to livestock health. Aflatoxin is extremely carcinogenic and most countries (including the United States and Canada) have regulations in place to prevent aflatoxins from entering the human food and livestock feed supply.
+
+Aspergillus fungi survive in soil or crop residue and generally infect ears during late silking (Figure 1). Hot, dry conditions favor infection. Stressed plants (from nutrient deficiencies, drought, hail or feeding damage such as birds, or ear-invading insects) are often more susceptible to this disease.
+
+Aflatoxin accumulates in corn kernels as the fungus spreads in subsequent hot and dry weather. Aspergillus fungi can infect the ear and produce more aflatoxin after physiological maturity, particularly during periods when rainfall delays harvest.
+
+It’s important to note that kernels with no visible injury or mold may still contain aflatoxin.
+
+### 77. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/publications/an-overview-of-northern-corn-leaf-blight>
+
+- **Cited by:** Corn/Leaf_Blight  (fields: pathogen)
+- **Must contain:** "Northern corn leaf blight is caused by the fungus Exserohilum turcicum (formerly known as Helminthosporium turcicum)."
+- **Should support:** Exserohilum turcicum (formerly Helminthosporium turcicum)
+- **Additional info:** - Introduction
+Northern corn leaf blight (NCLB) is a yield-limiting disease in the United States and Canada. Despite its name, the disease can be severe across a broad geography, including the southeastern U.S. This publication describes the symptoms and signs of NCLB, environmental conditions that favor the disease, how to differentiate NCLB from other corn diseases and disorders, and effective management practices.
+
+Symptoms and Signs
+Symptoms of NCLB vary depending on hybrid resistance and the genotype of Exserohilum turcicum (commonly called race or races) that infects corn. On susceptible hybrids, early symptoms of NCLB appear as small, light-colored elliptical lesions that develop parallel to leaf margins or veins and have a diffuse margin and a water-soaked appearance (Figures 1,2). These lesions continue to expand as the disease progresses, sometimes reaching up to 6 inches long and expanding across leaf veins into the classic “cigar-shape” that is commonly associated with NCLB (Figure 2).  Over time, the lesions become grayish or tan, and can have dark-gray or green masses of fungal spores in the center that are visible with a hand lens or the zoom feature on a smartphone camera (Figure 3). Multiple lesions can develop on individual leaves and cover large portions of leaves. On susceptible hybrids, lesions can coalesce resulting in severe leaf blighting (Figure 4).
+
+On hybrids resistant to NCLB, the symptoms of NCLB will express differently than on susceptible hybrids. In hybrids that have partial (non-race specific) resistance, lesions may be small and restricted in size, with fewer spores produced in the lesion. In this situation, symptoms of NCLB may be overlooked in the field because lesions will not be classically “cigar-shaped,” but could be small, narrow yellow or chlorotic streaks on the leaves (Figure 6).
+
+Disease Cycle
+The fungus E. turcicum causes NCLBand survives winter on corn residue.
+
+In areas with large amounts of residue, lesions may be observed first on the lower leaves as spores are rainsplash- and wind-dispersed from residue within the field. Symptoms of NCLB will continue to develop in the middle and upper canopy if conditions favor secondary spore dispersal and disease development. Since spores of E. turcicum can spread by wind, disease symptoms may also be observed first in the upper canopy as spores produced in surrounding areas are deposited in new fields. Symptoms of NCLB can appear at any time in the season, but are typically observed from the late vegetative stages (V10-V14) through physiological maturity (R6).
+
+Conditions that Favor Disease
+The fungus that causes NCLB requires relatively long periods of leaf moisture (6 hours) for infection, which may be supplied by rain, heavy dew, or overhead irrigation. Subsequent disease development is favored by high environmental moisture and moderate temperatures (64°to 81°F; 18° to 27°C), although infection can occur at temperatures outside of this range. Under favorable conditions lesions can appear on leaves within a week after infection. Hot, dry weather reduces spread of the NCLB fungus and slows development of NCLB.
+
+Yield Losses and Impact
+If NCLB lesions are present in the canopy prior to and just after tasseling (VT), and conditions are favorable for disease development, significant yield losses can occur in susceptible hybrids. Up to 50% yield losses have been observed in susceptible hybrids if the disease is established prior to tasseling. Late season development of NCLB (after dough/R4) will likely have a reduced impact on yield.
+
+Diagnosis
+In mature NCLB lesions, fungal spores on the ends of fine fungal threads (hyphae) may be visible with the aid of a magnifying tool (x20), such as a hand lens or smartphone camera. These dark gray-green spores are typically in the center of a lesion and not confined within another fungal structure (Figure 7). Spores of E. turcicum are most noticeable after periods of dew or rain. Spores may be less easy to distinguish in dry conditions or in older lesions, where the lesion center may degrade. Submitting samples to a diagnostic laboratory can help ensure an accurate diagnosis.
+
+Management
+Multiple management options are available to minimize the impact of NCLB. One of the most effective options is to plant hybrids that are less susceptible to NCLB (Figure 10). Partial resistance and hybrids with race-specific (Ht genes) resistance are available. However, it may be difficult to obtain information on which Ht genes are available in certain hybrids, and which race-specific resistance Ht gene(s) are needed in some states/provinces to manage NCLB. Research characterizing the race structure of E. turcicum in the United States is most likely outdated, so it is important to speak with state Extension specialists to determine what is known about the local E. turcicum populations (frequency) within a given state. Discussions with local seed dealers can also help to select hybrids that have reliable NCLB resistance ratings, including the source of any resistance (Ht genes), in a given hybrid for your area.
+
+### 78. [not checked] `seen` — model-recalled
+
+<https://cropprotectionnetwork.org/publications/an-overview-of-soybean-cyst-nematode>
+
+- **Cited by:** Soybean/Soybean_Cyst_Nematode  (fields: pathogen)
+- **Must contain:** "Soybean cyst nematode, caused by Heterodera glycines, is the most damaging pathogen of soybean in the United States."
+- **Should support:** Heterodera glycines
+- **Additional info:** - Introduction
+Soybean cyst nematode (SCN; Heterodera glycines) is an important nematode pest of soybean in the U.S. and Canada that is responsible for over a billion U.S. dollars in losses annually. Since SCN was first identified in North Carolina in 1954, the nematode has continued to spread through soybean producing areas in North America. As of January 2020, SCN has been detected in 30 states in the continental U.S., three Canadian provinces, and Puerto Rico. Soil sampling for SCN is the most effective way to identify the presence of the nematode and its presence in a field. This information enables growers to make the best management decisions for their farms.
+
+Symptoms and Signs
+Soybean cyst nematode is a plant-parasitic nematode that feeds and reproduces on soybean roots. The nematode interferes with the uptake of water and nutrients by the soybean plant and may increase the severity of diseases caused by other root-infecting pathogens. In many cases, symptoms may not be visible in a field until SCN populations build to a high enough level that substantial yield loss is already occurring. When aboveground symptoms are apparent, they commonly appear as yellowing of the leaves, stunting of plants, and early maturity (Figure 1). Symptoms are most commonly observed in circular or lens-shaped patterns in the field, and in areas with lighter soils (e.g., sandy or loam), high pH, and under dry conditions. Aboveground symptoms are not diagnostic, and may be confused with nutrient deficiency, flooding, herbicide injury, compaction, drought, or root rot damage.
+
+During the cropping season, SCN is relatively easy to detect without magnification as small, white or yellow, lemon-shaped females (immature cysts) on the root surface (Figure 2). Each SCN female is approximately one-tenth the size of an average Rhizobium root nodule. As the females age, they turn brown and die, becoming egg filled cysts for which the nematode is named (Figure 3). The females and cysts are signs of this nematode and can be observed on susceptible soybean roots as early as 30 to 45 days after planting.
+
+Management
+Management of SCN requires an integrated approach of host plant resistance, crop rotation, scouting/soil testing, and seed-applied nematode protectants or nematicides.
+
+Host plant resistance can be an effective management tool, but careful selection and rotation of soybean varieties is necessary to maximize the effectiveness of the resistance. Several sources of resistance to SCN are known in the soybean germplasm, but the majority (over 90%) of SCN-resistant soybean varieties contain ‘PI 88788’. A minority of varieties to date contain the ‘Peking’ (aka PI 548402) source, and fewer yet contain ‘Hartwig’ (aka PI 437654) or ‘PI 89772’. As resistance to SCN is not conferred by a single resistance gene, soybean varieties developed from the same source of resistance do not all perform the same under similar SCN pressure. The most effective varieties may perform very well, while the least effective varieties may experience the same level of yield loss as a variety with no genetic resistance. 
+
+Additionally, the nematode populations are slowly but steadily overcoming the resistance genes from the PI 88788 source of resistance and to a lesser extent Peking.  Thus, it is critical that soybean growers rotate the sources of resistance in varieties they select. Similarly, it is just as important to rotate varieties developed from the same source of resistance, as this is likely to result in rotation of the resistance genes that are deployed in a given field. 
+
+The use of a non-host or poor host crop such as barley, canola, corn, cotton, durum, flax, rice, grain sorghum, sugarbeet, sunflower, or wheat in a crop rotation sequence can help to reduce SCN population densities. Alternately, avoid SCN host crops like dry edible bean (such as pinto, navy, and kidney), snap bean, and edamame in a crop rotation sequence. Soybean volunteer and weed management is also an important consideration in fields where weed hosts or cover crops such as lespedeza, crimson clover, henbit, purple deadnettle, field pennycress, vetch species, and other legumes are present that can sustain an SCN population for the subsequent soybean crop.
+
+Soil movement plays an important role in the introduction of SCN into new fields and new geographies. Cysts in soil particles can be moved via water, equipment, wind, as tare soil, or any other method by which soil can be moved. To reduce soil movement, it is important to ensure newly purchased or borrowed equipment is properly cleaned of soil and soil particles before introduction into a new field.
+
+Other management options include chemical or biological seed-applied nematicides. Efficacy of these seed treatments have been highly variable in university field research trials conducted in multiple states, thus, they are often best used in combination with host plant resistance, especially in fields with multiple species of soybean nematodes.
+
+### 79. [not checked] `seen` — model-recalled, none
+
+<https://en.wikipedia.org/wiki/Black_rot_(grape_disease)>
+
+- **Cited by:** Apple/Black_Rot, Grape/Leafroll_Disease  (fields: pathogen)
+- **Must contain:** "Black rot is caused by the fungus Botryosphaeria obtusa."
+- **Should support:** Botryosphaeria obtusa (anamorph: Sphaeropsis malorum); Grapevine leafroll-associated viruses (GLRaVs), primarily GLRaV-1 and GLRaV-3
+- **Additional info:** - Grape black rot is a fungal disease caused by an ascomycetous fungus, Guignardia bidwellii, that attacks grape vines during hot and humid weather. The disease "originated in eastern North America, but now occurs in portions of Europe, South America, and Asia. It can cause complete crop loss in warm, humid climates, but is virtually unknown in regions with arid summers."[1] The name comes from the black fringe that borders growing brown patches on the leaves. The disease also attacks other parts of the plant, "all green parts of the vine: the shoots, leaf and fruit stems, tendrils, and fruit. The most damaging effect is to the fruit".[2]
+
+Grape black rot affects many grape growers throughout the World, therefore, it is important to understand the disease life cycle and environmental conditions to best manage the disease. Once infection takes place, different methods are available to control the disease.
+
+Disease cycle
+The disease cycle begins with the overwintering structures. The grape black rot pathogen overwinters in many parts of the grape vine, especially mummies and lesions, and is able to overwinter on the vineyard floor.[3] In fact, "[v]iable lesions capable of producing conidia can persist in wood for at least 2 years."[4] Spring rains release the ascospores and conidia contained in the overwintering structures and these spores are "spread by wind and rain-splash to infect leaves, blossoms and young fruit".[5] Some of the mummies on the ground can have a significant discharge of ascospores that begins about two to three weeks after bud breaks and will mature one to two weeks after the start of bloom.[1] In the presence of moisture, these ascospores germinate slowly, taking 36 to 48 hours, but eventually penetrate the young leaves and fruit stems (pedicels). The infections become visible after 8 to 25 days. The period that overwintering spores require to cause infection depends on the inoculum source. If there is a large source of inoculum, the infection will set in earlier. The second type of spore, conidia, "are dispersed short distances (centimetres to metres/inches to feet) by splashing rain drops" in rain storms throughout the summer.[1]
+
+Infection occurs when either of the two spore types lands on green grape tissue and the tissue remains wet for a "sufficient length of time, which is dependent on temperature."[1] For example, at 7 °C (45 °F) no infection will occur regardless of moisture, while at 10 °C (50 °F) it takes 24 hours of leaf wetness for a spore to germinate and infect the green grape tissue.[4] When a leaf or berry becomes infected, pycnidia form and produce conidia, contributing to repeated cycles of infections in summer rains.[6] At the end of the season, the fungus overwinters as pycnidia or pseudothecia within cane lesions or mummified fruit.[6] In the spring, the pycnidia will produce conidia once again and the pseudothecia produce ascospores.[6]  
+
+Environmental conditions for infection
+When the weather is moist, ascospores are produced and released throughout the entire spring and summer, providing continuous primary infection. The black rot fungus requires warm weather for optimal growth; cool weather slows its growth. A period of two to three days of rain, drizzle, or fog is also required for infection.[2] "Conidia spores can also form, within cane lesions or on mummies that have remained within the trellis,"[1] and raindrops transfer these spores by moving the spores to different plant parts, especially susceptible young leaves. "If water is present, the conidia germinate in 10 to 15 hours and penetrate young tissue." New black rot infections continue into late spring and summer during prolonged periods of warm, rainy weather. The conidia are capable of germinating and causing infection several months after being formed. During August, the pycnidia are transformed into an overwintering stage that, in turn, gives rise to pseudothecia within which the spring spores (ascospores) are produced. This ascospore is "forcibly discharged into the air and can travel considerable distances"[5] and "ascospores are an important source of primary infections in the spring."[5] In the spring during wet weather, the "pycnidia on infected tissues absorb water and conidia are squeezed out."[5] Conidia spores dispersed by rain "can infect any young tissue in less than 12 hours at temperatures between 20 to 30 °C (60 to 90 °F)."[5] A film of water on the vine surface is necessary for the infection to inoculate.[5] This completes the disease cycle.
+
+### 80. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Common_spot_of_strawberry>
+
+- **Cited by:** Strawberry/Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Spots are circular, 1 to 5 mm in diameter, with centers that are tan to white or gray and margins that are dark purple to reddish purple."
+- **Should support:** Leaves, petioles, runners, fruit caps (calyxes), and berry surfaces; Mycosphaerella fragariae (anamorph: Ramularia tulasnei); Small circular spots with dark purple to reddish-purple margins and tan to white or gray centers ('bird's-eye'
+- **Additional info:** - Common spot of strawberry is one of the most common and widespread diseases afflicting the strawberry. Common spot of strawberry is caused by the fungus Mycosphaerella fragariae (imperfect stage is Ramularia tulasnei). Symptoms of this disease first appear as circular, dark purple spots on the leaf surface. Mycosphaerella fragariae is very host-specific and only infects strawberry.[2]
+
+Hosts and symptoms
+This disease affects strawberry plant foliage causing purple spots 1⁄8 to 1⁄4 in (3.2 to 6.4 mm) in diameter across on the upper side of the leaves.[3] At first, the whole spot is purple but as the disease matures the center of the leaf spots on older leaves become tan or gray, then almost white. Lesions on younger leaves remain light brown.[4] When numerous spots merge foliage death can occur; this can stunt or kill infected plants when severe.[5]
+
+On petioles, stolons, calyxes, and fruit trusses, elongated lesions may form and interfere with water transport in the plant, weakening the plant and making it more susceptible to invasion by a secondary organism.[6] The fungus may infect the fruit in the form of black seed disease, discoloring the achenes.[7]
+
+Disease cycle
+The disease cycle starts when the pathogen overwinters as mycelium or fruiting structures in leaf debris and spores are spread by rain splash infecting new leaves as they emerge in the spring when conditions are favorable. Disease development is most successful in cool daytime temperatures and cold nighttime temperatures, high relative humidity, and wet conditions.[6]
+
+Common spot on strawberry is a polycyclic disease, and under favorable conditions it will continue to reinfect the host and surrounding plants. The fungus overwinters as mycelium, sclerotia, and perithecia in infected leaf tissues. This disease on strawberry can generate two types of spores that infect newly emerging leaves in the spring, conidia spores and ascospores.
+
+Older infected leaves that remain alive during winter may give rise to conidia that are spread to new foliage by splashing water or human contamination.[3] Another type of spore (ascospore) is generated in speck-sized black perithecia, which are produced at the edges of the leaf spots during autumn. In the spring, these ascospores are ejected from the perithecia and spread by wind or water to infect new leaf tissue.[8] Infected leaves that survive the winter can reinfect. Under favorable conditions, dispersal of this disease will continue by splashing water or machinery.[3]
+
+### 81. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Corn_smut>
+
+- **Cited by:** Corn/Corn_Smut, Corn/Smut  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Galls are white to silvery gray and shiny when young. As galls mature, they become filled with a dark, olive-brown to black powdery mass of spores. The outer membrane eventually ruptures, releasing the spores."
+- **Should support:** Large galls that are white to gray when young, turning dark brown to black and powdery as spores mature; galls; White to silvery-gray galls that mature to dark olive-brown or black powdery spore masses; galls can reach sof; ears, tassels, stalks, leaves
+- **Additional info:** -
+
+### 82. [not checked] `seen` — model-recalled, none
+
+<https://en.wikipedia.org/wiki/Gymnosporangium_juniperi-virginianae>
+
+- **Cited by:** Apple/Cedar_Apple_Rust, Apple/Rust  (fields: pathogen)
+- **Must contain:** "Cedar-apple rust is caused by the fungus Gymnosporangium juniperi-virginianae."
+- **Should support:** Gymnosporangium juniperi-virginianae
+- **Additional info:** - Gymnosporangium juniperi-virginianae is a plant pathogen that causes cedar-apple rust.[1] In virtually any location where apples or crabapples (Malus) and eastern red cedar (Juniperus virginiana) coexist, cedar apple rust can be a destructive or disfiguring disease on both the apples and cedars. Apples, crabapples, and eastern red cedar are the most common hosts for this disease.[2] Similar diseases can be found on quince and hawthorn[3] and many species of juniper can substitute for the eastern red cedars.[2]
+
+Symptoms
+On the apple tree, the infections occur on leaves, fruit and young twigs.[4] The brightly colored spots produced on the leaves make it easy to identify. Small, yellow-orange spots appear on the upper surfaces of the leaves, anytime from April to June.[5] These spots gradually enlarge and turn orange or red and may show concentric rings of color. Drops of orange liquid may be visible on the spots. Later in the season, black dots appear on the orange spots on the upper leaf surface. In late summer, tube-like structures develop on the undersurface of the apple leaf. Infected leaves sometimes drop prematurely, particularly during drought conditions or when the tree is under additional stress. Infections on fruit are usually near the blossom end and are somewhat similar to the leaf lesions.
+
+On the eastern red cedar host, the fungus produces reddish-brown galls from 1⁄4 to 2 inches (6 to 50 mm).[3][6] After reaching a diameter of about 1⁄2 inch (13 mm), the galls show many small circular depressions. In the center of each depression is a small, pimple-like structure. In the spring these structures absorb water during rainy periods and elongate into orange gelatinous telial horns that are 10–20 mm long.[3] The wind carries the microscopic spores to infect apple leaves, blossoms, fruit and young twigs on trees within a radius of several miles of the infected tree.
+
+On other species of juniper more common in landscaping and bonsai, the sizes of the infections are reduced. Early in the infection, the galls are small bumps on the woody portions of the plant. They maintain the orange gelatinous form after the first warm rains of spring but generally on a greatly reduced scale.
+
+Disease cycle
+
+Depiction of the life cycle of cedar apple rust
+Cedar apple rust is caused by the fungi Gymnosporangium or more specifically Gymnosporangium juniperi-virginianae that spend part of their life cycles on Eastern Red Cedars growing near orchards. The complex disease cycle of cedar apple rust, alternating between two host plants, was first delineated by Anders Sandøe Ørsted.[7]
+
+When exposed to the first warm rain of spring, the small bumps on the galls absorb water, swell, and produce telial horns –gelatinous masses that produce teliospores.[3] When swollen, teliospores will germinate and produce basidiospores which are forcibly discharged and travel along air currents to infect apple trees and other alternate hosts.[8] The telial horns will dry out once the rain passes and will lose their gelatinous appearance, instead resembling dark brown threads.[8] When the rain returns, the horns will swell again. This process can repeat eight to ten times during the spring.[8] It can take as little as four hours for basidiospores to form inside the telial horns under optimal conditions.[8]
+
+
+Gall on eastern red cedar (Juniperus virginiana) before rain.
+Wind[3] carries the spores to apple leaves at about the time that apple buds are in the pink or early blossom stage.[5] Upon reaching apple buds or leaves covered by films of water,[8] the spores attach themselves to the young leaves, germinate, and enter the leaf or fruit tissues. Light infection can take place in as little as two hours under favorable conditions.[8] Heavy infections take at least four hours to develop.[8] Lower temperatures delay infection.[8] Yellow-orange lesions develop on the upper sides of leaves or on fruit one to two weeks following infection. These lesions contain pycnia and pycniospores.[8] These lesions will produce a sticky honeydew like substance to attract insects that assist in the transport of the pycniospores to different lesions, allowing for sexual recombination.[9]
+
+One to two months later, in July and August, orange-yellow aecia are produced in concentric rings on the bottom of the apple leaves or surrounding the pycnia on the fruit.[3] The aecia produce aeciospores. The wind carries the spores back to eastern red cedars, completing the infectious cycle. The spores land on cedar needle bases or in cracks or crevices of twigs. There, they germinate and produce small, green-brown swellings about the size of a pea. Galls do not produce spores until the second spring. However, mature galls usually are present every year. This fungus produces four out of five of the spores known to be produced by the class Urediniomycetes during its life cycle. (These include teliospores, basidiospores, spermatia (also called pycniospores), and aeciospores. The type of spore it does not produce is urediniospores.) Rust fungi have a complicated life-cycle with up to five types of spores (each borne on a different type of structure) in its life cycle and often an alternate host, and an "alternate alternate host" as well. Basidiomycetes that have all 5 spore stages and those with less are said to be "macrocyclic" or "microcyclic" respectively.
+
+Control
+Because apples are an economically important crop, control is usually focused there. Interruption of the disease cycle is the only effective method for control of the cedar apple rust. Removing as many cedar trees within close proximity of an apple orchard will reduce potential sources of inoculum. The closer the tree to the orchard the greater impact removal will have. Removing all junipers within the 4–5 miles (6.5–8 km) would provide complete control of the disease.[10] Additionally, pruning and disposing of galls from infected cedar trees would reduce sources of inoculum for infection of apple trees, however this would likely be time consuming and uneconomical.[6] For those doing bonsai, it is common to have the trees within feet of each other and on the central eastern seaboard of the United States, eastern red cedar is a common first-growth conifer along roadsides.
+
+### 83. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Magnaporthe_grisea>
+
+- **Cited by:** Rice/Blast  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Leaf lesions are typically spindle-shaped with gray or white centers and brown to reddish-brown borders. Neck blast causes a dark brown to black discoloration at the base of the panicle, which can result in the panicle falling over, a condition known as 'rotte"
+- **Should support:** Diamond- or spindle-shaped leaf lesions with gray-white centers and brown to reddish-brown borders; neck rot c; Leaves, leaf collars, culm nodes, panicle necks, panicles; Magnaporthe oryzae (anamorph: Pyricularia oryzae)
+- **Additional info:** -  Magnaporthe grisea, also known as rice blast fungus, rice rotten neck, rice seedling blight, blast of rice, oval leaf spot of graminea, pitting disease, ryegrass blast, Johnson spot,[1][2][3][4][5][6][7] neck blast,[8][9][10][11] wheat blast[12] and Imochi (稲熱), is a plant-pathogenic fungus and model organism[13] that causes a serious disease affecting rice. It is now known that M. grisea consists of a cryptic species complex containing at least two biological species that have clear genetic differences and do not interbreed.[14] Complex members isolated from Digitaria have been more narrowly defined as M. grisea. The remaining members of the complex isolated from rice and a variety of other hosts have been renamed Magnaporthe oryzae, within the same M. grisea complex.[14] Confusion on which of these two names to use for the rice blast pathogen remains, as both are now used by different authors.
+
+Members of the M. grisea complex can also infect other agriculturally important cereals including wheat, rye, barley, and pearl millet causing diseases called blast disease or blight disease. Rice blast causes economically significant crop losses annually. Each year it is estimated to destroy enough rice to feed more than 60 million people. The fungus is known to occur in 85 countries worldwide[15] and as of 2003 was the most devastating fungal plant pathogen in the world.[13]
+
+Hosts and symptoms
+Differential of lesions on rice leaves
+Differential on rice
+M. grisea is an ascomycete fungus. It is an extremely effective plant pathogen as it can reproduce both sexually and asexually to produce specialized infectious structures, appressoria, that infect aerial tissues and hyphae that can infect root tissues.
+
+Rice blast has been observed on rice strains M-201, M-202, M-204, M-205, M-103, M-104, S-102, L-204, Calmochi-101, with M-201 being the most vulnerable.[16] Initial symptoms are white to gray-green lesions or spots with darker borders produced on all parts of the shoot, while older lesions are elliptical or spindle-shaped and whitish to gray with necrotic borders. Lesions may enlarge and coalesce to kill the entire leaf. Symptoms are observed on all above-ground parts of the plant.[17] Lesions can be seen on the leaf collar, culm, culm nodes, and panicle neck node. Internodal infection of the culm occurs in a banded pattern. Nodal infection causes the culm to break at the infected node (rotten neck).[18] It also affects reproduction by causing the host to produce fewer seeds. This is caused by the disease preventing maturation of the actual grain.[15]
+
+Disease cycle
+
+Spores
+The pathogen infects as a spore that produces lesions or spots on parts of the rice plant such as the leaf, leaf collar, panicle, culm and culm nodes. Using a structure called an appressorium, the pathogen penetrates the plant. The appressorium cell wall is chitinous and its inner side contains melanin.[1]: 184  which is necessary to damage host structures.[1]: 184  [13] The turgor pressure generated during this process is sufficient to penetrate the plants' cuticles routinely, and experimentally can penetrate Kevlar. This impressive turgor is produced by synthesis of glycerol and maintained by the aforementioned appressorial melanin.[13] The pathogen is able to move between the plant cells using its invasive hyphae to enter through plasmodesmata.[19] M. grisea then sporulates from the diseased rice tissue to be dispersed as conidiospores.[20] After overwintering in sources such as rice straw and stubble, the cycle repeats.[15]
+
+A single cycle can be completed in about a week under favorable conditions where one lesion can generate up to thousands of spores in a single night. Disease lesions, however, can appear in three to four days after infection.[21] With the ability to continue to produce the spores for over 20 days, rice blast lesions can be devastating to susceptible rice crops.[22]
+
+Infection of rice induces phosphorylation of the light-harvesting complex II protein LHCB5 .[23] LHCB5 is required for a reactive oxygen species burst produced by the host which provides resistance against this pathogen.
+
+### 84. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Maize_dwarf_mosaic_virus>
+
+- **Cited by:** Corn/Maize_Dwarf_Mosaic_Virus  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms appear on leaves as a mosaic or mottle of light and dark green areas. In some cases, leaves may show necrotic streaking. Infected plants are often stunted."
+- **Should support:** Leaves, stalks, ears; Maize dwarf mosaic virus (MDMV), genus Potyvirus, family Potyviridae; Mosaic or mottle of light and dark green on leaves; yellow-green streaking on young leaves; stunting; necrotic
+- **Additional info:** -  Maize dwarf mosaic virus (MDMV) is a pathogenic plant virus of the family Potyviridae. Depending on the corn plant’s growth stage, the virus can have severe implications to the corn plant’s development which can also result in economic consequences to the producer of the crop.[1]
+
+Importance
+Maize (Zea mays) is a major cereal crop; it is third behind rice and wheat in production. An average of 380 million tons are produced annually by 53 countries. Maize is the most widely grown crop ranging from tropical areas with altitudes over 3000 m to temperate areas extending as far north as the 65th latitude.[2] MDMV is the most serious virus of sweet corn.[3]
+
+If corn plants are infected with MDMV, ear formation and development are slowed leading to grain yield loss.[4] The damage from MDMV can cause the halting of ear formation and development, ultimately leading to the production of barren ears and direct yield loss.[5] There can be losses of up to 42% on early-planted field corn.[6] If corn is planted late MDMV can cause 75% or more loss on inbred and hybrid varieties.[6][7] The number of ears per plant is reduced by MDMV infection and the fresh weight of these ears can be reduced by 30%.[8]
+
+Pathogenesis
+
+Interaction between maize dwarf mosaic virus and the aphid appendage
+MDMV is caused by various strains.[7] There are five strains A, C, D, E, and F. They differ in biological, serological, and nucleotide sequences.[9] The vector for MDMV transmission is aphids.
+
+There are 15 aphid species that can non-persistently transmit MDMV.[10] The aphids mainly feed on the family Poaceae.[11] MDMV overwinters in alternate hosts. These alternate hosts include sorghum, maize, and Johnson grass. Symptoms appear six weeks after aphids feed and transmit the virus. The aphid acquires the virus within seconds of feeding on an infected plant, either maize, Johnson grass, or sorghum.[7] There is no latent period for transmission to new host plants.[5] After acquiring MDMV an aphid is able to transmit the virus within 15–30 minutes.[7] Aphids do not retain MDMV after molting.[5]
+
+Maize dwarf mosaic virus can be managed in several ways. One way is the removal of the local population of Johnson grass as this can harbor the disease. It is best if all producers (farmers) in the area participate in this practice or the disease can remain in sporadic plant populations and be spread in the ways described above (Lipps & Mills, n.d.). Another way to help avoid MDMV is by selecting corn varieties that are tolerant of the virus and by planting corn crops earlier in the season to help seedlings avoid key aphid population times (Lipps & Mills, n.d.).
+
+### 85. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Phytophthora_infestans>
+
+- **Cited by:** Potato/Late_Blight  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Leaf symptoms begin as pale green, water-soaked spots, usually at leaf tips or edges. These spots turn brown to black, and under moist conditions, a white cottony growth (sporangiophores and sporangia) can be seen on the underside of leaves at the edge of the "
+- **Should support:** Leaves, stems, tubers; Water-soaked pale green to brown-black lesions on leaf tips and margins; white sporulating growth on leaf unde
+- **Additional info:** - Phytophthora infestans is an oomycete or water mold, a fungus-like microorganism (oomycete) that causes the serious potato and tomato disease known as late blight or potato blight. Early blight, caused by Alternaria solani, is also often called "potato blight". Late blight was a major culprit in the 1840s European, the 1845–1852 Irish, and the 1846 Highland potato famines. The organism can also infect some other members of the Solanaceae.[1][2][3] The pathogen is favored by moist, cool environments: sporulation is optimal at 12–18 °C (54–64 °F) in water-saturated or nearly saturated environments, and zoospore production is favored at temperatures below 15 °C (59 °F). Lesion growth rates are typically optimal at a slightly warmer temperature range of 20 to 24 °C (68 to 75 °F).[4]
+
+Etymology
+The genus name Phytophthora comes from the Greek φυτόν (phyton), meaning 'plant' – plus the Greek φθορά (phthora), meaning 'decay, ruin, perish'.[5] The species name infestans is the present participle of the Latin verb infestare, meaning 'attacking, destroying', from which the word "to infest" is derived. The name Phytophthora infestans was coined in 1876 by the German mycologist Heinrich Anton de Bary (1831–1888).
+
+### 86. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Sclerotinia_sclerotiorum>
+
+- **Cited by:** Soybean/Sclerotinia_Timber_Rot  (fields: pathogen)
+- **Must contain:** "Sclerotinia stem rot is caused by the fungus Sclerotinia sclerotiorum."
+- **Should support:** Sclerotinia sclerotiorum
+- **Additional info:** -  Sclerotinia sclerotiorum is a plant pathogenic fungus and can cause a disease called white mold if conditions are conducive. S. sclerotiorum can also be known as cottony rot, watery soft rot, stem rot, drop, crown rot and blossom blight. A key characteristic of this pathogen is its ability to produce black resting structures known as sclerotia and white fuzzy growths of mycelium on the plant it infects. These sclerotia give rise to a fruiting body in the spring that produces spores in a sac which is why fungi in this class are called sac fungi (Ascomycota). This pathogen can occur on many continents and has a wide host range of plants. When S. sclerotiorum is onset in the field by favorable environmental conditions, losses can be great and control measures should be considered.
+
+Hosts and symptoms
+Sclerotia from sunflower
+Sclerotinia sclerotiorum” (sometimes called white mold) is a fungal (Ascomycota) pathogen that infects a broad range of plants, affecting over 400 species across multiple families, including Brassicaceae (Cruciferae), Fabaceae (Leguminosae), Solanaceae, Asteraceae, and Apiaceae (Umbelliferae). Notably it is not known to infect grass species, and appears to be incapable of causing disease in clover. Common hosts of white mold are herbaceous, succulent plants, particularly flowers and vegetables. Sunflowers are common hosts for white mold. It can also affect woody ornamentals occasionally, usually on juvenile tissue. White mold can affect their hosts at any stage of growth, including seedlings, mature plants, and harvested products. It can usually be found on tissues with high water content and in close proximity to the soil. One of the first symptoms noticed is an obvious area of white, fluffy mycelial growth. Usually this is preceded by pale to dark brown lesions on the stem at the soil line. The mycelium then cover this necrotic area. Once the xylem is affected, other symptoms occur higher up in the plant. These can include chlorosis, wilting, leaf drop, and death quickly follows. On fruits, the initial dark lesions occur on the tissue that comes in contact with the soil. Next, white fungal mycelium covers the fruit and it decays. This can occur when the fruit is in the field or when in storage.[1]
+
+Importance
+White mold affects a wide range of hosts and causes sclerotinia stem rot. It is known to infect 408 plant species. As a nonspecific plant pathogen,[2] diverse host range and ability to infect plants at any stage of growth makes white mold a serious disease. The fungus can survive on infected tissues, in the soil, and on living plants. It affects young seedlings, mature plants, and fruit in the field or in storage. White mold can spread quickly in the field from plant to plant. It can also spread in a storage facility throughout the harvested crop. Some crops it affects commonly are soybeans,[3] green beans, sunflowers, canola, and peanuts.[4] White mold is the most common pathogen that affects sunflower and has been found to cause reduction in yield throughout the world including the United States, northern Europe, Great Britain and Russia.[5] Economically significant hosts include Vicia faba, for which Lithourgidis et al. have done extensive work over the years.[6]
+
+Sclerotinia stem rot (or 'white stem rot',[7] ) can cause economically significant yield losses in temperate climates, especially during cool and moist growing seasons. An analysis of soybean yields from 1996 to 2009 in the United States found that sclerotinia stem rot reduced yields by over ten million bushels in half of the studied growing seasons.[8][9] During particularly bad years, these soybean yield reductions caused producers to lose millions of dollars.[10] Compared to 23 common soybean diseases, sclerotinia stem rot was the second most problematic disease in the United States from 1996 to 2009.[8][9] For soybeans, crop yields are inversely correlated with the incidence of Sclerotinia stem rot; an estimated 0.25 metric ton per ha is lost for each 10% increment of diseased plants.
+
+### 87. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Southern_corn_leaf_blight>
+
+- **Cited by:** Corn/Southern_Corn_Leaf_Blight  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Lesions are tan to brown, rectangular in shape, and limited in width by the leaf veins. Lesions range from 1 to 3 cm in length and have tan centers with brown borders."
+- **Should support:** Cochliobolus heterostrophus (anamorph: Bipolaris maydis); Leaves, leaf sheaths, husks, ear shanks; Tan to brown, elongated rectangular lesions limited by leaf veins, with tan centers and brown borders, ranging
+- **Additional info:** -
+
+### 88. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Soybean_cyst_nematode>
+
+- **Cited by:** Soybean/Soybean_Cyst_Nematode  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "The most reliable way to confirm SCN is to look for the tiny, white, lemon-shaped females on the roots of plants dug from the field. The females are about the size of a period at the end of a sentence."
+- **Should support:** Roots, above-ground plant (stunting and yellowing of shoots and leaves); Stunted, yellowing plants in irregular field patches; white to yellow lemon-shaped females on roots turning br
+- **Additional info:** - The soybean cyst nematode (SCN), Heterodera glycines, is a species of nematode and agricultural pest notable for being the most damaging to soybean crop yields in the U.S.,[1] targeting the roots of soybean and other legume plants. When infection is severe SCNs cause stunting, yellowing, impaired canopy development, and yield loss.[2] The symptoms caused by SCNs can go easily unrecognized by farmers—in some cases there are no warning symptoms before a loss of 40% of the yield.[RM 1][3] Due to the slight stunting and yellowing, many farmers may mistake these symptoms as environmental problems when in fact they are SCNs.[4] Another symptom of SCNs that may affect farmers' yields is stunted roots with fewer nitrogen-fixing nodules.[5] Due to the fact that soybean cyst nematodes can only move a few centimeters in the soil by themselves, they mostly are spread via tillage or plant transplants. This area of infection will look patchy and nonuniform making diagnosis more difficult for farmers.[2] They can be seen in the roots of summer soybean plants if the roots are taken out very carefully and gently washed with water.[RM 2] The egg masses should be seen as bright white or yellow "pearls" on the roots. The later the roots are pulled the harder it will be to diagnose due to the SCNs female dying and turning a much darker color, forming a "cyst".
+
+Management of soybean cyst nematodes can be very difficult. Due to symptoms being hard to spot early on,[RM 1] they can infect a field rather quickly and persist indefinitely. SCNs can survive in the soil for long periods of time under adverse conditions, can work up on infecting previously resistant varieties of plants,[RM 3] and can never be completely eliminated (only suppressed).[1] For these reasons SCNs is a very economically devastating pest. SCNs cause up to $1.3 billion in annual losses due to their resilience and persistence in the soil. In addition, SCNs can cause yield losses that exceed 30%.[11] Soybean cyst nematodes can easily be prevented by thoroughly cleaning farm equipment to prevent introduction to the field.[6] If a field is already infected on the other hand, that will not do much except help contain the infection from spreading to other fields. Right now, the most effective way of management is reducing tillage, planting resistant varieties,[RM 4] and crop rotation.[6] Crop rotation is a very effective measure of control in heavily infested fields. Growing nonhost plants for two consecutive years is generally appropriate to allow for the growth of susceptible soybean cultivars. The more consecutive years of crop rotation used, the more effective this method will be in fields with high infestations. One full year may be sufficient in fields in which the nematode population is low or is heavily parasitized by fungi.[12] Reducing tillage will help isolate the SCNs into just the infected area because they are small and do not travel very far. SCNs in the cyst form will have about 50% of their eggs hatch each year so numbers can be greatly reduced if they do not have a host to infect for several years.[6] Planting resistant cultivars,[RM 4] rotating crops from soybean to corn, and planting cover crops are very effective management strategies to reduce the SCN population in a field. Studies have been done on using fungal root endophytes, such as Fusarium, in deterring against nematodes which could be the next step in SCN prevention.
+
+### 89. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Soybean_rust>
+
+- **Cited by:** Soybean/Rust, Soybean/Soybean_Rust  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Lesions are angular and limited by leaf veins, and range in color from gray-green to tan, dark brown, or reddish-brown. Uredinia (pustules) form on the lower leaf surface and appear as small, raised blisters that break through the epidermis and release powdery"
+- **Should support:** Leaves (primarily), petioles, stems, pods; Phakopsora pachyrhizi; Small tan to dark brown angular lesions on lower leaf surface with raised uredinia producing powdery brown spo
+- **Additional info:** -
+
+### 90. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Sugarcane_mosaic_virus>
+
+- **Cited by:** Sugarcane/Sugarcane_Mosaic_Virus  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "The most characteristic symptom is a mosaic of light and dark green areas on the leaves. In susceptible varieties, reddish streaking or necrosis may also occur, and plants may be severely stunted."
+- **Should support:** Leaves (primarily young, emerging leaves); stalks (secondary, showing stunting and reduced internode length); Mosaic pattern of intermingled light green, yellow-green, and dark green patches on leaves; chlorotic streakin; Sugarcane mosaic virus (SCMV), a member of the genus Potyvirus, family Potyviridae
+- **Additional info:** - Sugarcane mosaic virus (SCMV) is a plant virus of the family Potyviridae.[2] The virus was first noticed in Puerto Rico in 1916 and spread rapidly throughout the southern United States in the early 1920s.[3] SCMV causes sugarcane mosaic disease, which is of great concern because of the high economic impact it has on sugarcane and maize.
+
+Hosts
+Sugarcane mosaic virus causes mosaic symptoms in sugarcane, maize, sorghum, and other poaceous plants.[4] In sugarcane, this is the most widespread virus and 21 strains of it have been found in the United States.[4] The SCMV complex has been shown to consist of four distinct potyviruses and includes strains of Johnsongrass mosaic virus (JGMV), Maize dwarf mosaic virus (MDMV), Sorghum mosaic virus (SrMV), and SCMV.[5]
+
+Vectors
+The aphid Myzus persicae was first found to vector SCMV from sorghum to sorghum by Anzalone 1962.[6]
+
+Symptoms
+Symptoms of sugarcane mosaic virus include intense mottling throughout the laminar region of the plant, characterized by discoloration of the plants leaves, and growth stunting.[7] In maize, the infection occurs first in the youngest leaves with symptoms such as irregular, light or dark green mosaic coloring developing along the veins. The virus can result in severe yield loss of the infected host and the disease eventually leads to necrosis.[8] Diagnosis of sugarcane mosaic virus is achieved first through recognizing the typical light green mosaic pattern of the infection, electron microscopy of leaf dips, as well as virus isolation and purification methods. One diagnosis technique being studied is the next-generation sequencing method (NGS) or sap inoculation, which was found to have a 90% success rate in a 2011 study. NGS could allow quick assessment of disease and be used for routine diagnosis against potential disease-causing agents.[9]
+
+Management
+The disease is spread through sap containing the virus and can be transferred to other areas mostly by mechanical means such as lawn mowers and other equipment.[8] To minimize spread of sugarcane mosaic virus all equipment used should be sanitized. Fungicides and other pesticides have been shown to be ineffective when dealing with viral disease. The best way to deal with a viral disease is through plant host resistance.[8] The leading management tool has been to transform viral genes into maize plants, but transgenic plants have increasingly raised concerns for their potential negative ecological effects, such as reversal of silencing by viral suppressors, complementation, synergy, and gene flow among closely related organisms.[10] Resistant strains have been utilized to control the virus in southern United States and tropical regions; however, these strains have not been able to be adapted in cooler conditions present in central and north-west Europe.[11]
+
+Importance
+The family Potyviridae causes significant losses in agricultural, pasture, horticultural and ornamental crops.[3] Sugarcane mosaic virus is one of the largest and most economically important plant viruses due to its wide host range. In the mid-1920s, epidemics of the disease nearly collapsed the sugarcane industry in Argentina, Brazil, Cuba, and southern United States.[7] In Australia, losses have been reported between SCMV causes major problems in most of the sugarcane growing countries and many varieties have gone out of cultivation due to yield losses of up to 50%.[12] SCMV has also had a high incidence rate on maize being grown in China, the second largest maize producing country in the world. The virus, particularly maize dwarf mosaic disease caused by SCMV, has been among the most damaging diseases affecting maize production in China due to the large affect it has on yield.[10] The high incidence of co-infection and the occurrence of new strains or genome variations indicate that SCMV will continue to be a threat to industry.
+
+### 91. [not checked] `seen` — model-recalled
+
+<https://en.wikipedia.org/wiki/Sugarcane_smut>
+
+- **Cited by:** Sugarcane/Smut  (fields: pathogen, visual_symptoms)
+- **Must contain:** "The most obvious symptom is the smut whip, a long whip-like structure that emerges from the growing point of infected shoots. The whip is initially covered by a thin, silvery-white membrane, which soon ruptures to expose a mass of black powdery teliospores."
+- **Should support:** Long whip-like structure of black teliospores emerging from the growing point; thin silver membrane ruptures r; Sporisorium scitamineum (syn. Ustilago scitaminea)
+- **Additional info:** - Sugarcane smut is a fungal disease of sugarcane caused by the fungus Sporisorium scitamineum. The disease is known as culmicolous, which describes the outgrowth of fungus of the stalk on the cane. It attacks several sugarcane species and has been reported to occur on a few other grass species as well, but not to a critical amount. The most recognizable characteristic of this disease is a black or gray growth that is referred to as a "smut whip".[1] Resistance to sugarcane smut is the best course of action for management, but also the use of disease free seed is important. On smaller scale operations treatments using hot water and removing infected plants can be effective. The main mode of spore dispersal is the wind but the disease also spreads through the use of infected cuttings. Sugarcane smut is a devastating disease in sugarcane growing areas globally.[2]
+
+Hosts and symptoms
+Sugarcane smut infects all sugarcane species unless the species is resistant. The damage caused depends on the susceptibility of the species. Sugarcane fields are planted using vegetative cuttings from mother plants so they have the same genetic make-up of the parent plant. Seeds are not used in propagation because sugarcane is a multi-species hybrid and therefore is difficult to breed.[3] Sugarcane smuts can also infect some other grass species outside of sugarcane. However, mostly it remains on plants of the genus Saccharum.
+
+Two to four months after the fungus has infected the plant, black whip-like structures, instead of a spindle leaf, emerge from the meristem, or growing point, of the plant. The developing whip is a mixture of plant tissue and fungal tissue. The whip reaches maturity between the sixth and the seventh month. When spores that are contained inside the whip are released, the core of the whip remains behind and is a straw-like color.[4]
+
+Plants infected with the fungus usually appear to have thin stalks and are often stunted. They end up tillering much more than normal and this results in leaves that are more slender and much weaker. They sometimes appear more grass-like than non-infected plants. Less common symptoms of the disease are stem or leaf galls and proliferating buds.[5]
+
+Disease cycle
+Sugarcane smut is disseminated via teliospores that are produced in the smut whip. These teliospores located either in the soil or on the plant, germinate in the presence of water.[6] After germination they produce promycelium and undergo meiosis to create four haploid sporidia. Sugarcane smut is bipolar and therefore produces two different mating types of sporida. For infection to occur, two sporida from different mating types must come together and form a dikaryon. This dikaryon then produces hyphae that penetrate the bud scales of the sugarcane plant and infect the meristematic tissue. The fungus grows within the meristematic tissue and induces formation of flowering structures which it colonises to produce its teliopores.[7] The flowering structures, usually typical grass arrows, are transformed into a whip like sorus that grows out between the leaf sheaths. At first it is covered by a thin silvery peridium (this is the host tissue) which easily peels back when desiccated to expose the sooty black-brown teliospores. These teliospores are then dispersed via wind and the cycle continues. The spores are reddish brown, round and subovoid and may be smooth to moderately echinulate. The size varies from 6.5 to 8 um. Sugarcane cultivars intended for distribution to other geographical areas should be tested for susceptibility to S. scitamineum populations in each area.
+
+### 92. [not checked] `seen` — model-recalled
+
+<https://extension.psu.edu/strawberry-disease-gray-mold>
+
+- **Cited by:** Strawberry/Gray_Mold, Tomato/Gray_Mold  (fields: pathogen)
+- **Must contain:** "Gray mold, caused by Botrytis cinerea, is one of the most common and economically important diseases of tomato worldwide."
+- **Should support:** Botrytis cinerea
+- **Additional info:** - Symptoms
+Botrytis blight usually starts as a blossom blight that eventually invades developing fruits, causing them to rot. This rot can destroy the berry within 48 hours and may appear first at the base of the fruit or when the berry is in contact with the soil, other damp surfaces, or other rotten fruit. As ripening increases and humidity remains high, a characteristic gray, fuzzy coating or web, produced by the fruiting of the fungus, covers the strawberry fruit. As the disease progresses, spores are produced and are easily blown or splashed onto healthy foliage. Once established, the fungus can produce spores continuously throughout the growing season.
+
+Disease Cycle
+The causal organism, Botrytis cinerea, can live as both a parasite and a saprophyte on decaying plant debris. Under favorable conditions, the fungus produces spores that are spread by air currents and rain. The flower parts become infected first, and the disease spreads to developing fruit. Gray mold thrives in cold temperatures and high humidity.
+
+Disease Management
+Moisture is necessary for the spores to germinate and infect plants; therefore, the disease is favored by high humidity and relatively cool conditions. Practices that help reduce humidity and increase air movement, such as opening up plants by cultivation, controlling weeds, spacing rows and plants farther apart, help control gray mold. The fungus thrives on debris, and sanitation is essential for control. Dead plants and fallen leaves should be removed and burned or buried. Some strawberry varieties are less susceptible to gray mold than others.
+
+### 93. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/crop-production/corn/common-rust-on-corn>
+
+- **Cited by:** Corn/Common_Rust, Corn/Rust  (fields: pathogen)
+- **Must contain:** "Common rust of corn is caused by the fungus Puccinia sorghi Schwein."
+- **Should support:** Puccinia sorghi
+- **Additional info:** - Common rust frequently occurs in the northern U.S. in mid to later summer. It rarely reaches levels that cause yield loss in commercial hybrids. It is most problematic during prolonged periods of cool, wet weather. Rust diseases are generally easy to identify by the appearance of brown pustules.
+
+Symptoms
+Common rust produces rust-colored to dark brown, elongated pustules on both leaf surfaces. The pustules contain rust spores (urediniospores) that are cinnamon brown in color. Pustules darken as they age. Leaves, as well as sheaths, can be infected. Under severe conditions leaf chlorosis and death may occur. Common rust can be differentiated from Southern rust by the brown pustules occurring on both top and bottom leaf surfaces with common rust.
+
+Conditions and timing that favor disease
+close up of corn leaf with raised brown spots.
+The common rust fungus overwinters in the southern U.S. and Mexico. Urediniospores are blown north to the Midwestern Corn Belt in the summer and infection occurs in June or July. Young leaves are most susceptible to infection and pustules are more likely to form after corn silking. The disease favors cool temperatures (60 - 76 degrees F), heavy dews, about six hours of leaf wetness, and relative humidity greater than 95 percent. Temperatures above 80 degrees F suppress disease development and spread.
+
+Causal pathogen
+The pathogen is a rust fungus called Puccinia sorghi.
+
+Disease management
+The best management practice is to use resistant corn hybrids. Fungicides can also be beneficial, especially if applied early when few pustules have appeared on the leaves.
+
+### 94. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/crop-production/soybean/downy-mildew>
+
+- **Cited by:** Soybean/Downy_Mildew  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "Symptoms appear as pale green to light yellow spots on the upper surface of leaves. On the lower leaf surface, a grayish-white to pale purple sporulation (sporangiophores and sporangia) is visible beneath the spots. Infected seeds may be covered with a white, "
+- **Should support:** Leaves, seeds, pods; Pale green to yellow spots on upper leaf surface with grayish-white sporulation on lower leaf surface; seeds m
+- **Additional info:** - Downy mildew is a widespread disease that occurs during periods of high humidity and moderate temperatures. The disease is typically superficial and causes no yield loss, but can cause defoliation of plants and reduced yields under rare conditions. Downy mildew can be distinguished from other foliar soybean diseases by the tufts of tan-colored fungal growth on the underside of infected leaves.
+
+Symptoms
+The initial symptoms of downy mildew are small, light green spots (not water-soaked) on upper leaf surfaces. The spots enlarge and turn pale to bright yellow. They may coalesce into large irregular brown areas. Tan to gray tufts of fungal growth often develop on lower leaf surfaces, especially under wet and humid conditions. Infection of pods and seed can also occur. Seeds may become covered with a whitish coating of fungal hyphae and spores.
+
+top side of leaf with a hole and light green random areas.
+underside of a leaf with a hole and raised yellowish-tan areas.
+Conditions and timing that favor disease
+Downy mildew can occur on plants of all ages, although the disease is most common after flowering begins. Young leaves are most susceptible and infected leaves are often seen on the tops of plants. Dew and high humidity favor disease development, as well as mild temperatures.
+
+Causal pathogen
+Downy mildew is caused by the fungal-like organism Peronospora manshurica. Common snap bean is also a host. The fungus overwinters on infected leaves and seeds, and can be transmitted by seed.
+
+top side of leaf with light green random spots.
+underside of a leaf with raised yellowish-tan areas.
+Disease management
+Select resistant soybean varieties and use appropriate seed treatments. Bury infested residue where feasible and where disease has been severe. Rotate soybeans with a non-bean crop for at least one year.
+
+### 95. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/crop-production/soybean/phytophthora-root-and-stem-rot-on-soybean>
+
+- **Cited by:** Soybean/Phytophthora  (fields: pathogen)
+- **Must contain:** "Phytophthora root and stem rot of soybean is caused by Phytophthora sojae, an oomycete (water mold) pathogen."
+- **Should support:** Phytophthora sojae
+- **Additional info:** - Phytophthora root and stem rot is a significant disease in many areas where soybeans are grown. It can kill and damage seedlings and plants throughout the growing season from the time of planting nearly until harvest. This disease is favored by wet and warm soil conditions, especially saturated conditions early in the growing season. Disease management has been based largely on using soybean cultivars with major gene (Rps) resistance, but races of the pathogen now exist in many areas that overcome the major resistance genes. Thus, this disease continues to be a destructive problem in many areas.
+
+Symptoms
+Early season: Seedlings can be attacked and killed in the ground or soon after emergence. At seedling and later vegetative stages, infected stems appear bruised and are soft, secondary roots are rotted, the leaves turn yellow, and brown and plants can wilt and die. It is important to recognize that Pythium is a related pathogen that causes similar damage and symptoms on seeds and seedlings.
+
+Mid or Late Season: Plants may die throughout the season. On infected plants, brown lesions form on the roots, the roots rot and degrade, and a dark chocolate-brown discoloration of the stem often extends from below the soil line upward into lower parts of the plant. Leaves turn yellow, wilt, and typically stay attached after plant death. Plants are often killed in patches or in sections of rows. In tolerant varieties, plants may be stunted but not killed. Symptoms on tolerant varieties may be restricted to root rot that results in hidden damage that may reduce yields. This disease can be confused with stem canker, which usually starts at a node and spreads up and down the stems of infected plants.
+
+Conditions and timing that favor disease
+young soybean plant that is tan with wilted and dried leaves.
+Phytophthora can attack and rot seeds and seedling prior to or anytime after emergence. Plants can be infected early in the season and not show severe symptoms until later in the summer. The disease often occurs after wet weather, especially in low, poorly drained areas where saturated soil occurred early in the season. Clay and compacted soils favor this disease.
+
+Causal pathogen
+Phytophthora sojae is a fungal-like pathogen that survives in soil in the form of oospores for up to five to 10 years. The oospores are produced in infected plant tissue as it decomposes. Soybean is the only known crop host for this pathogen. This pathogen is most active and causes most damage in wet soils. P. sojae is the primary species that causes Phytophthora root and stem rot in most areas, but another unidentified Phytophthora species has been found in the Midwest that can also kill soybeans. The geographical range of this other species is not well understood.
+
+Disease management
+Several items should be considered for management of Phytophtora root and stem rot. Try to create a field environment that reduces the likelihood of saturated soil by taking steps to increase drainage where possible. Treatment of seed with the highest labeled rates of fungicidal compounds such as mefenoxam (Apron XL®) or metalaxyl (Apron®) can be beneficial. In all areas where Phytophthora root and stem rot has been a problem, resistant cultivars should be planted. The most common resistance genes that are widely effective are Rps 1c and 1k. Rps1a can be effective, but is not as effective in many areas as the other genes. Rps 3 and other genes can also be effective. For areas where the Rps genes are not working well due to the presence of pathogen races that overcome the resistance, cultivars with high levels of field tolerance (or partial resistance) should be planted. Crop rotation and tillage may be of some benefit.
+
+### 96. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/crop-production/soybean/soybean-rust>
+
+- **Cited by:** Soybean/Soybean_Rust  (fields: visual_symptoms)
+- **Must contain:** "Lesions are angular and limited by leaf veins. They are initially small and pale green to yellow, but turn tan to dark brown or reddish-brown as they mature. Uredinia (pustules) form on the lower leaf surface and release tan to brown powdery spores."
+- **Should support:** Small angular lesions on lower leaf surface, tan to brown or reddish-brown in color, with raised uredinia (pus
+- **Additional info:** -
+
+### 97. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/crop-production/soybean/sudden-death-syndrome-on-soybean>
+
+- **Cited by:** Soybean/Sudden_Death_Syndrome  (fields: pathogen, visual_symptoms)
+- **Must contain:** "Foliar symptoms are characterized by scattered, irregular yellow blotches between the veins (interveinal chlorosis) that eventually turn brown (interveinal necrosis). Veins remain green. Severely affected leaflets drop, leaving the petioles attached to the ste"
+- **Should support:** Fusarium virguliforme; Interveinal chlorosis and necrosis on leaves with green veins remaining; premature defoliation leaving bare pe
+- **Additional info:** - Sudden death syndrome (SDS) is an important disease of soybeans throughout much of the U.S. SDS has been spreading north and west into states including Minnesota, Nebraska, and Wisconsin. SDS also appears also to be spreading across soybean production areas of Minnesota. Severe SDS can result in yield losses greater than 50 percent. SDS is primarily a root disease but typically also affects leaves and causes defoliation. SDS often occurs in fields infested with the soybean cyst nematode (SCN).
+
+Symptoms
+The first symptoms are typically on leaves in late July or early August in the Midwestern U.S. Leaf symptoms often begin as scattered yellow, diffuses pots between veins. The spots typically expand between veins to become brown lesions surrounded by chlorotic areas, and the leaves may be cupped or curled. Leaves detach from the petioles as the disease progresses. Brown to grey discolored areas develop in the vascular tissue of the lower stem, and can typically be seen by removing the epidermis of the stem of fresh plants. The pith remains white, which is a diagnostic feature that distinguishes SDS from brown stem rot (BSR). SDS also causes root rot, and roots may have surface blue fungal growth in moist conditions.
+
+three yellow and brown discolored soybean leaves with lower stem and white pith showing laying on top of the leaves.
+up close view of three soybean leaves that are discolored with brown spots encircled by yellow edges with a few holes in the leaves.
+Conditions and timing that favor disease
+State of Minnesota map with counties identified, southern portion of state coded in yellow.
+Infection of roots may occur early in the season, but symptoms of SDS usually don't develop until late July or in August. Infection and disease development are favored by early planting; cool and wet soil; SCN infection, and susceptible varieties.
+
+Causal pathogen
+Fusarium virgulifome (previously named Fusaium solani f.sp. glycines). This is a soilborne fungus that appears to primarily infect soybean, although snap and lima bean may be infected. This pathogen overwinters in soil and may survive for long periods of time in soil.
+
+Disease management
+The key in most areas is planting soybean varieties with the highest level of SDS resistance. Varieties should also be resistant to SCN, and crops should be rotated to manage SCN populations. Other tactics include reducing excessive soil moisture with drainage, minimizing compaction, and staggering planting dates.
+
+### 98. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato>
+
+- **Cited by:** Potato/Early_Blight, Tomato/Early_Blight  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms first appear on the older, lower leaves as small, brown spots with concentric rings that form a target-board effect. Spots are surrounded by a yellow halo. As the disease progresses, the entire leaf may turn yellow and drop."
+- **Should support:** Alternaria solani; Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow halos o; Leaves, stems, petioles, fruit
+- **Additional info:** - Initially, small dark spots form on older foliage near the ground. Leaf spots are round, brown and can grow up to 1/2 inch in diameter.
+Larger spots have target-like concentric rings. The tissue around spots often turns yellow.
+Severely infected leaves turn brown and fall off, or dead, dried leaves may cling to the stem.
+Seedling stems are infected at or just above the soil line. The stem turns brown, sunken and dry (collar rot). If the infection girdles the stem, the seedling wilts and dies.
+Stem infections on older plants are oval to irregular, dry brown areas with dark brown concentric rings.
+Fruit can be infected at any stage of maturity.
+Fruit spots are leathery and black, with raised concentric ridges. They generally occur near the stem. Infected fruit may drop from the plant.
+Biology
+A caged tomato plant with a green, healthy top but the bottom leaves are yellow with brown spots.
+Early blight starts at the bottom of the plant.
+Early blight can be caused by two closely related species: Alternaria tomatophila and Alternaria solani.
+Both pathogens can infect tomatoes, potatoes, peppers, and several weeds in the Solanaceae family including black nightshade (Solanum ptycanthum), and hairy nightshade (Solanum physalifolium).
+Disease develops at moderate to warm (59 to 80 F) temperatures; 82 to 86 F is its optimum temperature range.
+The pathogen is most likely to spread with wet weather or heavy dew, or when relative humidity is 90% or greater.
+The early blight pathogens both overwinter in infected plant debris and soil in Minnesota. The pathogen also survives on tomato seed or may be introduced on tomato transplants.
+Lower leaves become infected when they come into contact with contaminated soil, either through direct contact or when raindrops splash soil onto the leaves.
+Spores (reproductive structures) can germinate between 47° and 90° F and need free water or relative humidity of 90% or greater.
+Spores infect plants and form leaf spots as small as 1/8 inch in diameter in as little as five days.
+Spores can be spread throughout a field by wind, human contact or equipment, resulting in many reinfection opportunities throughout a growing season.
+Managing early blight in the home garden
+ A yellow tomato leaf with brown concentric circles.
+Early blight lesions on tomato leaves
+Resistant varieties
+Early blight-resistant varieties are readily available.  As early blight occurs commonly in Minnesota, gardeners should look into these varieties.
+
+Resistance does not mean you will not see any early blight; rather, resistant varieties can better tolerate the pathogens, and so the damage will be less severe than with non-resistant varieties.
+
+Cornell University keeps track of varieties sold as having disease resistance. You can often find this information in seed catalogs.
+
+Cultural controls
+Cover the soil under the plants with mulch, such as fabric, straw, plastic mulch, or dried leaves.
+Water at the base of each plant, using drip irrigation, a soaker hose, or careful hand watering.
+Increase airflow by staking or trellising, removing weeds, and spacing plants adequately apart
+Pruning the bottom leaves can also prevent early blight spores from splashing up from the soil onto leaves. 
+Let two years pass before you plant tomatoes or peppers in the same location.
+Physical controls
+Green leaves in the potato canopy with brown early blight lesions.
+Early blight on potato
+Remove leaves with leaf spots and bury or burn them. You may opt to bury them in your home compost pile if you maintain your compost pile according to Composting in home gardens.
+If you touch infected leaves, wash your hands well before working in healthy tomato plants. If you use pruning tools, wash and sanitize them after touching infected plants.
+It is okay to remove up to one-third of the plant's leaves if you catch the disease early. Do not remove more than one-third of the plant's leaves.
+Keep leaves dry to reduce the spreading of disease.
+Fungicides
+Most home gardeners don’t need to treat tomatoes with a fungicide. Tomato plants can tolerate a lot of early blight without reducing the number of tomatoes they produce.
+
+### 99. [not checked] `seen` — model-recalled, none
+
+<https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-leaf-mold>
+
+- **Cited by:** Tomato/Leaf_Mold, Tomato/Tomato_Leaf_Mould  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Pale green to yellow spots form on the upper surface of leaves. On the lower leaf surface, olive-green to grayish-purple velvety sporulation (spores and fruiting structures of the fungus) develops beneath these spots."
+- **Should support:** Leaves (primarily); occasionally petioles, blossoms, and fruit; Pale green to yellow spots on upper leaf surface with olive-green to grayish-purple velvety sporulation on the; Passalora fulva (formerly Fulvia fulva / Cladosporium fulvum); Passalora fulva (syn. Fulvia fulva, Cladosporium fulvum)
+- **Additional info:** - Leaf mold is caused by the fungus Passalora fulva (previously called Fulvia fulva or Cladosporium fulvum). It is not known to be pathogenic on any plant other than tomato. There are many races of P. fulva.
+
+Spores of P. fulva can survive for 6 months to a year above ground at room temperature.
+It is unknown if spores will survive on the surface of stakes, tools and high tunnel walls from one season to the next in Minnesota's climate.
+The pathogen forms dark, hard resting structures within infected plant debris.
+These structures will produce an abundance of new spores when exposed to air.
+They are the most likely means for P. fulva to survive from one season to the next.
+The leaf mold pathogen can survive on and in tomato seed and may be introduced to a new area by this route.
+Spores of P. fulva can start an infection at a wide range of temperatures.
+Relative humidity at or above 85% will favor severe leaf mold epidemics, but some disease can occur at humidity less than 85 %.
+New spores form on the lower surface of infected leaves within 10 to 12 days. If humidity remains over 85%, these spores will infect new leaves.
+Within the growing season, multiple generations of the pathogen can be completed.
+It can spread from leaf to leaf and plant to plant by wind, rain/overhead irrigation, tools, workers and perhaps insects.
+
+### 100. [not checked] `seen` — model-recalled
+
+<https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-viruses>
+
+- **Cited by:** Tomato/Leaf_Mosaic_Virus  (fields: pathogen)
+- **Must contain:** "Tomato mosaic virus (ToMV) is a member of the genus Tobamovirus in the family Virgaviridae."
+- **Should support:** Tomato mosaic virus (ToMV)
+- **Additional info:** - Many viruses produce similar symptoms.
+
+If plants are infected early, they may appear yellow and stunted overall.
+Mottled light and dark green on leaves.
+Leaves may be curled, malformed, or reduced in size.
+Spots of dead leaf tissue may become apparent with certain varieties at warm temperatures.
+Fruits may ripen unevenly.
+Reduced fruit number and size.
+Fruit with raised or depressed off-color circles.
+Fruits may show internal browning just under the skin (brownwall).
+Viruses can be very hard to tell apart from each other; the naked eye can only diagnose that an issue is potentially caused by a virus. Get a firm diagnosis by submitting a sample to a lab such as the University of Minnesota Plant Disease Clinic.
+
+Biology
+Many viruses can infect tomatoes. They are often capable of infecting many other species of plants as well.
+
+For example, tomato mosaic virus most often infects tomatoes, but can also infect pepper, potato, apple, pear, cherry and numerous weeds, including pigweed and lamb's quarters.
+
+Tobacco mosaic virus can infect ornamentals and weeds, including cucumber, lettuce, beet, pepper, tomato, petunia, jimson weed and horsenettle. The symptoms for each virus on each host appear differently, though there are some commonalities.
+
+Each species of virus has its own specific biology. 
+
+The source of the virus can be other plants, plant debris, seeds and insects.
+Thrips and aphids spread some viruses, especially in transplant production settings.
+Hands, tools and clothes can spread viruses during normal activities like plant tying, removing suckers, and harvesting.
+
+### 101. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/common-rust-corn>
 
 - **Cited by:** Corn/Common_Rust, Corn/Rust  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Pustules are small, circular to elongate, and golden brown to cinnamon brown in color. As the pustules age, they turn dark brown to black."
 - **Should support:** Leaves, husks, leaf sheaths; Leaves, leaf sheaths, husks; Small, circular to elongate, golden-brown to brick-red powdery pustules on both leaf surfaces, turning dark br; Small, circular to elongated, brick-red to brown powdery pustules on both leaf surfaces, darkening to black wi
+- **Additional info:** - Common rust frequently occurs in the northern U.S. in mid to later summer. It rarely reaches levels that cause yield loss in commercial hybrids. It is most problematic during prolonged periods of cool, wet weather. Rust diseases are generally easy to identify by the appearance of brown pustules.
 
-### 48. [403 bot-blocked (page exists)] `seen` — model-recalled
+Symptoms
+Common rust produces rust-colored to dark brown, elongated pustules on both leaf surfaces. The pustules contain rust spores (urediniospores) that are cinnamon brown in color. Pustules darken as they age. Leaves, as well as sheaths, can be infected. Under severe conditions leaf chlorosis and death may occur. Common rust can be differentiated from Southern rust by the brown pustules occurring on both top and bottom leaf surfaces with common rust.
+
+Conditions and timing that favor disease
+close up of corn leaf with raised brown spots.
+The common rust fungus overwinters in the southern U.S. and Mexico. Urediniospores are blown north to the Midwestern Corn Belt in the summer and infection occurs in June or July. Young leaves are most susceptible to infection and pustules are more likely to form after corn silking. The disease favors cool temperatures (60 - 76 degrees F), heavy dews, about six hours of leaf wetness, and relative humidity greater than 95 percent. Temperatures above 80 degrees F suppress disease development and spread.
+
+### 102. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/common-smut-corn>
 
-- **Cited by:** Corn/Common_Smut  (fields: affected_organs, visual_symptoms)
+- **Cited by:** Corn/Common_Smut, Corn/Corn_Smut, Corn/Smut  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Galls are white to gray and shiny when young, and turn black and powdery at maturity when the outer membrane breaks open to release the dark mass of spores."
-- **Should support:** Large white to gray galls that turn black and powdery at maturity as the membrane ruptures and releases dark t; ears, tassels, stalks, leaves
+- **Should support:** Large white to gray galls that turn black and powdery at maturity as the membrane ruptures and releases dark t; Ustilago maydis; ears, tassels, stalks, leaves
+- **Additional info:** - Common smut is common in most places were corn is grown, but does not usually cause significant economic losses.
 
-### 49. [403 bot-blocked (page exists)] `seen` — model-recalled
+Symptoms
+Galls (abnormal growths) can appear anytime throughout the growing season on any above ground plant part. Young, actively growing tissue is especially susceptible. Galls commonly develop on ears, leaves, stalk, or tassels and are initially covered with white to silvery tissue. Later, dark masses of spores develop inside the galls. Leaf galls generally remain small.
 
-<https://extension.umn.edu/corn-pest-management/corn-ear-rots>
+large brown growth covered with silk on ear of corn.
+silvery-blue growths on exposed ear of corn.
+white growths on corn leaves.
+Conditions and timing that favor disease
+Common smut is often most severe when young tissue is wounded by hail, wind, or mechanical damage. Rainy, wet weather may enhance this disease, as may poor pollination and excessive nitrogen fertilization. Dry or other conditions that interfere with pollination may also favor common smut infection of ears.
 
-- **Cited by:** Corn/Ear_Rots  (fields: pathogen)
-- **Must contain:** "Several different fungi can cause ear rots in corn, including Gibberella zeae (also known as Fusarium graminearum), Fusarium verticillioides (formerly F. moniliforme), Stenocarpella maydis (formerly Diplodia maydis), Aspergillus flavus, and Penicillium species"
-- **Should support:** Multiple fungi including Gibberella zeae (Fusarium graminearum), Fusarium verticillioides, Diplodia maydis (St
+Causal pathogen
+The pathogen is a fungus called Ustilago maydis. It overwinters in crop debris or soil and can remain viable for several years.
 
-### 50. [403 bot-blocked (page exists)] `seen` — model-recalled
+Disease management
+This disease can be managed with resistant hybrids, crop rotation, and by maintaining proper soil fertility.
 
-<https://extension.umn.edu/corn-pest-management/corn-smut>
-
-- **Cited by:** Corn/Corn_Smut, Corn/Smut  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Galls are white to silvery gray and shiny when young. As galls mature, they become filled with a dark, olive-brown to black powdery mass of spores. The outer membrane eventually ruptures, releasing the spores."
-- **Should support:** Large galls that are white to gray when young, turning dark brown to black and powdery as spores mature; galls; White to silvery-gray galls that mature to dark olive-brown or black powdery spore masses; galls can reach sof; ears, tassels, stalks, leaves
-
-### 51. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 103. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/eyespot-corn>
 
 - **Cited by:** Corn/Eyespot  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Lesions are small (1/8 inch diameter), circular, with a pale tan center, brown border, and yellow halo, giving the appearance of an eye."
 - **Should support:** Leaves; Small circular lesions with pale tan centers, brown borders, and yellow halos on leaves
+- **Additional info:** - Corn smut is a plant disease caused by the pathogenic fungus Mycosarcoma maydis, synonym Ustilago maydis. One of several cereal crop pathogens called smut, the fungus forms galls on all above-ground parts of corn species such as maize and teosinte. The infected corn is edible; in Mexico, it is considered a delicacy, called huitlacoche,[5] often eaten as a filling in quesadillas and other tortilla-based dishes, as well as in soups.[6]
 
-### 52. [403 bot-blocked (page exists)] `seen` — model-recalled
+Taxonomy
+Mycosarcoma maydis is the best known and studied fungus of the Ustilaginomycetes, a sub class of Basidiomycota, and is often used as the exemplar species when talking about its entire class.[7]
+
+Formerly it was placed in genus Ustilago, but in 2016, it was placed in genus Mycosarcoma.[8]
+
+Description
+
+This ear of corn has been infected with Mycosarcoma maydis.
+The fungus infects all parts of the host plant by invading the ovaries of its host. The infection causes the corn kernels to swell up into tumor-like galls, wherein the tissues, texture, and developmental pattern are mushroom-like. The galls grow to 4 to 5 inches in diameter. These galls are made up of hypertrophied cells of the infected plant, along with resulting fungal threads and blue-black spores.[9] These dark-colored spores give the cob a burned, scorched appearance.[citation needed]
+
+
+Mycosarcoma maydis haploid sporidia
+When grown in the lab on very simple media, M. maydis behaves like baker's yeast, forming single cells called sporidia. These cells multiply by budding off daughter cells. When two compatible sporidia meet on the surface of the plant, however, they switch to a different mode of growth. First, they produce one or another pheromone, and begin producing one or the other type of pheromone receptor; this depends on mating type a or b, as determined by alleles at two unlinked mating loci. If this signaling is successful, they then send out conjugation tubes to find each other,[7] after which they fuse and make a hypha to enter the corn plant. Hyphae growing in the plant are dikaryotic; they possess two haploid nuclei per hyphal compartment. In contrast to sporidia, the dikaryotic phase of M. maydis only occurs during successful infection of a corn plant, and cannot be maintained in the laboratory.
+
+Mature tumors release spores that are dispersed by rain and wind. Under appropriate conditions, a metabasidium is formed in which meiosis occurs. Resulting haploid nuclei migrate into elongated single cells. These cells detach from the metabasidium to become the sporidia, thus completing the life cycle.
+
+### 104. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/gray-leaf-spot-corn>
 
 - **Cited by:** Corn/Gray_Leaf_Spot, Corn/Leaf_Spot  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Lesions are rectangular, tan to gray in color, and have distinct parallel edges that are limited by leaf veins. Lesions run parallel to the leaf veins."
 - **Should support:** Leaves (leaf blades); occasionally leaf sheaths and husks; Leaves (primarily leaf blades); Rectangular, tan to gray lesions bounded by leaf veins; lesions run parallel to leaf veins and may coalesce ca
+- **Additional info:** -
 
-### 53. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 105. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/northern-corn-leaf-blight>
 
 - **Cited by:** Corn/Leaf_Blight, Corn/Northern_Leaf_Blight  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Symptoms of northern corn leaf blight are cigar- or canoe-shaped lesions 1 to 6 inches long. Lesions are initially small, oval, tan spots that expand into the characteristic elongated, grayish-green to tan lesions with wavy margins that run parallel to the lea"
 - **Should support:** Large, elongated, cigar-shaped tan to grayish-green lesions, 1–6 inches long, running parallel to leaf veins w; Large, elongated, cigar-shaped tan to grayish-green lesions, 1–6 inches long, with wavy margins; dark olive sp; Leaves (primarily); husks and leaf sheaths in severe cases
+- **Additional info:** - Gray leaf spot is typically the most serious foliar disease of corn in the U.S. corn belt, although other diseases can be more important in areas and years where weather conditions do not favor gray leaf spot. Gray leaf spot requires extended periods of high humidity and warm conditions. It can be confused with other foliar diseases of corn.
 
-### 54. [403 bot-blocked (page exists)] `seen` — model-recalled
+Symptoms
+The disease first appears in the form of small, necrotic spots with halos. These usually expand to become rectangular lesions, about 1/8 inch wide by up to 2 inches to 3 inches long and gray to brown in appearance. Mature lesions usually have distinct parallel edges and appear opaque when put up to the light, but the lesions hybrids vary widely in shape and color. Symptoms can sometimes be confused with northern corn leaf spot, although gray leaf spot lesions are usually limited on the sides by veins.
 
-<https://extension.umn.edu/corn-pest-management/southern-corn-leaf-blight>
+corn leaf with tan rectangular lesions.
+corn leaf with tan lesions that appear to be brittle, dry and opaque.
+Conditions and timing that favor disease
+Conditions that favor infection include moderate to warm temperatures during extended periods (greater than 24 hr) of high humidity (greater than 95 percent) or wet weather. Gray leaf spot is a problem in areas with minimum tillage and corn on corn rotations. In susceptible hybrids, the disease typically develops from silking to maturity.
 
-- **Cited by:** Corn/Southern_Corn_Leaf_Blight  (fields: visual_symptoms)
-- **Must contain:** "Lesions are tan to brown, rectangular in shape, and limited in width by the leaf veins. Lesions range from 1 to 3 cm in length and have tan centers with brown borders."
-- **Should support:** Tan to brown, elongated rectangular lesions limited by leaf veins, with tan centers and brown borders, ranging
+Causal pathogen
+The pathogen is a fungus called Cercospora zeae-maydis. It's only known host is corn and it overwinters in debris on the soil surface.
 
-### 55. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 106. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/corn-pest-management/southern-rust-corn>
 
 - **Cited by:** Corn/Southern_Rust  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Pustules of southern rust are smaller, more circular, and more orange in color than those of common rust. They are densely packed on the upper leaf surface and produce powdery, orange urediniospores."
 - **Should support:** Leaves (primarily upper surface), leaf sheaths, husks; Small, circular to oval, orange to tan pustules densely clustered on upper leaf surfaces, releasing powdery or
+- **Additional info:** - Southern corn leaf blight (SCLB) is a fungal disease of maize caused by the plant pathogen Bipolaris maydis (also known as Cochliobolus heterostrophus in its teleomorph state).
 
-### 56. [403 bot-blocked (page exists)] `seen` — model-recalled
+The fungus is an Ascomycete and can use conidia or ascospores to infect.[1] There are three races of B. maydis: Race O, Race C, and Race T; SCLB symptoms vary depending on the infectious pathogen's race. Race T is infectious to corn plants with the Texas male sterile cytoplasm (cms-T maize) and this vulnerability was the cause of the United States SCLB epidemic of 1969-1970[2] For this reason, Race T is of particular interest. While SCLB thrives in warm, damp climates, the disease can be found in many of the world's maize-growing areas.[3] Typical management practices include breeding for host resistance, cultural controls and fungicide use.
 
-<https://extension.umn.edu/crop-specific-needs/soybean-nutrient-management#potassium-deficiency-symptoms-1870913>
+Hosts
+The primary host for Southern corn leaf blight is Zea mays, or maize, known as corn in the United States.
 
-- **Cited by:** Soybean/Potassium_Deficiency  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms include yellowing of leaf margins that progresses to necrosis (dead tissue), giving the leaf a scorched appearance. Symptoms appear first on the lower, older leaves and progress upward."
-- **Should support:** Leaves (older, lower leaves primarily); pods and seeds under severe deficiency; Yellowing and necrosis of leaf margins and tips on older leaves, progressing inward; scorched or burned appear
+Various types of corn with normal cytoplasm (N) are vulnerable to Race O. They have cytoplasmic resistance to the T-toxin of Bipolaris maydis (produced by Race T). The absence of a gene found only in plants with Texas male sterile cytoplasm is the reason for this resistance.[1] Corn plants with T-cms cytoplasm have maternally inherited the gene T-urf 13, which encodes for a protein component of the inner mitochondrial membrane. T-toxin acts on this portion of the mitochondria.[4] In a similar manner, Race C is only pathogenic to hosts with cytoplasm male-sterile C.[3]
 
-### 57. [403 bot-blocked (page exists)] `seen` — model-recalled
+Bipolaris maydis can also infect sorghum and teosinte.
 
-<https://extension.umn.edu/disease-management/early-blight-potato-and-tomato>
-
-- **Cited by:** Potato/Early_Blight  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms appear first on the older, lower leaves as small, irregular to circular, brown to black spots. The spots enlarge and concentric rings form in the spots giving them a target-board effect. A yellow area often surrounds each spot."
-- **Should support:** Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow chlorot; Leaves, stems, petioles, tubers
-
-### 58. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/disease-management/late-blight-potato-and-tomato>
-
-- **Cited by:** Potato/Late_Blight  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Leaf symptoms begin as pale green, water-soaked spots, usually at leaf tips or edges. These spots turn brown to black, and under moist conditions, a white cottony growth (sporangiophores and sporangia) can be seen on the underside of leaves at the edge of the "
-- **Should support:** Leaves, stems, tubers; Water-soaked pale green to brown-black lesions on leaf tips and margins; white sporulating growth on leaf unde
-
-### 59. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 107. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/disease-management/late-blight-tomato-and-potato>
 
 - **Cited by:** Tomato/Late_Blight  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Leaf symptoms begin as small, water-soaked lesions that are often pale green to yellow. These lesions enlarge rapidly and turn brown to dark brown. Under humid conditions, a white, cottony growth (sporangia and sporangiophores) may be visible on the underside "
 - **Should support:** Large, irregularly shaped, water-soaked, brown to dark brown lesions on leaves with white sporulation on under; Leaves, stems, fruit
+- **Additional info:** - Horticultural crops :: Vegetables:: Tomato
 
-### 60. [429 bot-blocked (page exists)] `seen` — model-recalled
+Late blight:  Phytophthora infestans 
+Symptoms
 
-<https://extension.umn.edu/diseases/bacterial-spot-tomato>
+Water-soaked black lesions on leaves and stems
+Lesions expand rapidly and the entire leaf becomes necrotic.
+White sporulation (sporangia and sporangiophores) on leaves.
+Fruit
 
-- **Cited by:** Tomato/Bacterial_Leaf_Spot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "On leaves, bacterial spot first appears as small, water-soaked, circular to irregular spots. The spots turn brown to black, and are often surrounded by a yellow halo. Severely infected leaves turn yellow and drop from the plant. On fruit, the disease first app"
-- **Should support:** Leaves, stems, petioles, and fruit; Small water-soaked lesions that turn dark brown to black, often with yellow halos; lesions may coalesce; fruit
+Dark brown lesions on fruit
+Soft rot and disintegration of fruits.
 
-### 61. [403 bot-blocked (page exists)] `seen` — model-recalled
+Symptoms on leaves
 
-<https://extension.umn.edu/diseases/early-blight-tomato>
+Fruit infection
 
-- **Cited by:** Tomato/Early_Blight  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms first appear on the older, lower leaves as small, brown spots with concentric rings that form a target-board effect. Spots are surrounded by a yellow halo. As the disease progresses, the entire leaf may turn yellow and drop."
-- **Should support:** Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow halos o; Leaves, stems, petioles, fruit
+Sporangiophores and sporangium
 
-### 62. [403 bot-blocked (page exists)] `seen` — model-recalled
+Oospore
+
+
+Causal organism
+
+Phytophthora infestans (Mont.) de Bary
+
+Asexual spores :
+
+Indeterminate sporangiophores, Zoospores: Biflagellate with one tinsel flagellum directed anteriorly and one whiplash flagellum directed posteriorly
+
+Pathogen:
+
+Hyaline and coenocytic
+
+Sexual spores :
+
+Thick-walled oospore
+Survival and Mode of Spread
+
+
+Survival :
+
+Infected Debris
+
+Primary spread:
+
+Infected debris
+
+Secondary spread:
+
+Wind
+Favourable conditions :
+
+Cool nights, warm days and extended wet conditions from rain and fog
+Sporangia formed when RH is < 90%
+Optimum temp for sporulation is 18 - 22oC
+Integrated Disease Management:
+
+Proper drainage
+Crop rotation
+Soil application of Trichoderma asperellum (viride) @ 1.0 kg/ac
+Spray Cyazofamid 34.5% SC @ 80 ml/ac or Azoxystrobin 23% SC @ 200 ml/ac or Mancozeb 35% SC @ 1000 g/ac or Zineb 75% WP @ 800 g/ac or Azoxystrobin 18.2%+ Difenoconazole 11.4% SC @ 200 ml/ac
+
+### 108. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/diseases/gray-mold-tomato>
 
 - **Cited by:** Tomato/Gray_Mold  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Infected tissue initially appears water-soaked and then turns tan to brown. Under moist conditions, a gray, fuzzy mass of spores (conidia) develops on the surface of infected tissue, giving the disease its common name."
 - **Should support:** Water-soaked lesions turning tan to brown, covered with gray fuzzy sporulation; stem cankers; blighted blossom; leaves, stems, blossoms, fruit
+- **Additional info:** -
 
-### 63. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 109. [not checked] `seen` — model-recalled
 
-<https://extension.umn.edu/diseases/late-blight-tomato>
+<https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/black-rot-of-apple>
 
-- **Cited by:** Tomato/Phytophthora_Blight  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Leaf lesions are large, irregularly shaped, and appear water-soaked or greasy. Lesions turn brown to black. White sporulation may be visible on the underside of leaves. Stem lesions are dark brown to black. Fruit lesions are firm, brown, and greasy-looking."
-- **Should support:** Water-soaked, irregularly shaped lesions that turn brown to black on leaves and stems; white sporulation on le; leaves, stems, fruit
+- **Cited by:** Apple/Black_Rot  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "On fruit, black rot first appears as a small reddish brown spot. As the spot enlarges, it remains firm and turns brown to black. Concentric rings of black pycnidia often form on the surface of the rotted area. On leaves, infections appear as circular spots wit"
+- **Should support:** Frog-eye leaf spots (purple-bordered tan lesions), concentric-ringed black fruit rot with pycnidia, sunken bar; Fruit, leaves, bark/woody limbs
+- **Additional info:** - Fruit symptoms
+Black rot fruit infection
+Black rot fruit infection. Photo: Clemson University, USDA Cooperative Extension Slide Series, Bugwood.org.
+Large brown rotten areas can form anywhere on the fruit but are most common on the blossom end.
+Brown to black concentric rings can often be seen on larger infections.
+The flesh of the apple is brown but remains firm.
+Small, black spots can be seen on older fruit infections. These are fungal spore-producing structures, called pycnidia.
+Some fruit mummify (shrivel and dry out) and remain attached to the tree.
+Occasionally, fruit are infected early in the season. This results in fruit that ripen early and are rotten at the core.
+Leaf symptoms
+Frogeye leaf spot and mummified fruit
+Frogeye leaf spot and mummified fruit. Photo: Clemson University, USDA Cooperative Extension Slide Series, Bugwood.org.
+Infected leaves develop "frog-eye leaf spot."
+These are circular spots with purplish or reddish edges and light tan interiors that tend to appear around petal fall.
+Branch symptoms
+Cankers appear as a sunken, reddish-brown area on infected branches. Cankers often have rough or cracked bark.
+Cankers may be hard to see. If you see rotten fruit or frog-eye leaf spot, inspect your trees for cankers.
+Sunken cankers may appear:
+On the southwest side of young trees, where winter injury is common.
+Or at crotches where branches join the main trunk. These areas are typically the last to harden off in fall.
+Note: Don’t mistake damaged pruning wounds for black rot symptoms on cut branches. If a pruning wound doesn't heal well, it can start to leak sap from the wound site partway through the growing season. After the sap leaks out, it can be colonized by an opportunistic fungus that leads to a black color. 
 
-### 64. [403 bot-blocked (page exists)] `seen` — model-recalled
+How does black rot survive and spread?
+Black rot is primarily caused by the fungus Diplodia seriata (syn Botryosphaeria obtusa).
+The fungus can infect dead tissue as well as living trunks, branches, leaves and fruits.
+The black rot fungi survive Minnesota winters in branch cankers and mummified fruit (shriveled and dried fruit) attached to the tree.
+In wet weather, spores are released from infected apples and leaves and are spread by wind or splashing water. Infections are more likely to occur with prolonged leaf wetness and warmer temperatures. 
+The fungus infects leaves and fruit through natural openings or minor wounds.
+Branches and the trunk are most likely to be infected through dead or damaged wood.
+Leaf spots don’t seriously affect the health of the tree unless many leaves turn yellow and fall off because of the infection (this is rare).
+How does tree stress affect black rot?
+Branch dieback from black rot
+Branch dieback from black rot. Photo: M. Grabowski
+Minnesota’s severe cold often injures apple trees. Tree tissue that is damaged by cold is susceptible to infection by black rot.
+Trees damaged by drought stress or waterlogged soils are more likely to be affected by black rot, including:
+Apple trees grown on sandy soils without supplemental irrigation.
+Trees that are not irrigated during particularly dry spells.
+Trees grown in poorly drained soils.
+Trees infected by fire blight often later develop black rot. Fireblight results in dead wood that is easily infected by the black rot fungus.
+How to manage black rot
+Practice good sanitation
+Reduce sources of spores for future infections.
+Prune out dead or diseased branches.
+Pick all dried and shriveled fruits remaining on the trees.
+Remove infected plant material from the area. Do not compost on site.
+Be sure to remove the stumps of any apple trees you cut down. Dead stumps can be a source of spores.
+Prune correctly
+Prune trees when temperatures are below 45 F, and the weather is dry. February and March are good months to prune in Minnesota. The fungus is not active until spring.
+First, prune out all dead branches. Next, prune to shape the tree.
+Maintain tree health by reducing stress
+Choose an appropriate site for all new apple trees.
+Plant only cultivars that are truly hardy for your area.
+Provide trees with adequate water.
+Keep fire blight in check.
+Remove any limbs or trees killed by fire blight to discourage black rot.
+Fungicide sprays
+Fungicide sprays are usually not needed for managing black rot in Minnesota.
 
-<https://extension.umn.edu/diseases/leaf-mold-tomato>
+Consider using fungicides only after you’ve used good cultural practices and the disease hasn’t gone away.
+Refer to the Midwest Fruit Pest Management Guide for up-to-date guidance on product effectiveness and follow the label for use.
 
-- **Cited by:** Tomato/Leaf_Mold  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Pale green to yellow spots form on the upper surface of leaves. On the lower leaf surface, olive-green to grayish-purple velvety sporulation (spores and fruiting structures of the fungus) develops beneath these spots."
-- **Should support:** Leaves (primarily); occasionally petioles, blossoms, and fruit; Pale green to yellow spots on upper leaf surface with olive-green to grayish-purple velvety sporulation on the
+### 110. [not checked] `seen` — model-recalled
 
-### 65. [403 bot-blocked (page exists)] `seen` — model-recalled
+<https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/cedar-apple-rust>
 
-<https://extension.umn.edu/nutrient-management/iron-deficiency-chlorosis-soybeans>
+- **Cited by:** Apple/Cedar_Apple_Rust  (fields: affected_organs, visual_symptoms)
+- **Must contain:** "On apple, symptoms first appear as bright orange-yellow spots on the upper surface of leaves. Later, tube-like structures called aecia form on the lower surface of the leaf directly below the upper surface spots and produce orange spores."
+- **Should support:** Bright orange-yellow spots on upper leaf surface; tube-like aecia on lower leaf surface producing orange spore; Leaves, fruit, and young twigs
+- **Additional info:** - Although cedar-apple rust is the most well-known rust fungi, four different rust fungi cause similar diseases on the same types of trees in Minnesota.
 
-- **Cited by:** Soybean/Iron_Deficiency_Chlorosis  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms include yellowing of leaf tissue between the veins (interveinal chlorosis) on the youngest leaves. In severe cases, leaves may turn almost white and develop brown, necrotic edges and tips."
-- **Should support:** Abiotic – iron (Fe) deficiency; no pathogen involved; Interveinal chlorosis on young leaves with yellow to white leaf tissue between green veins; severe cases show ; Young leaves (newest trifoliate leaves and growing points)
+All four require plants from two different families to complete their life cycles: one plant from the Cupressaceae family (red cedar, juniper) and the other from the Rosaceae family (crabapple, hawthorn, serviceberry, etc.).
 
-### 66. [429 bot-blocked (page exists)] `seen` — model-recalled
+These four related rust diseases have very similar life cycles and biology.
 
-<https://extension.umn.edu/pest-management/soybean-cyst-nematode>
+Cedar-apple rust and related rust fungi over-winter in infected branches and galls on juniper and red cedar trees.
+In wet, spring weather, the galls produce orange, gummy, fungal growths that release spores.
+During dry spring weather, the orange, gummy structures shrivel and dry.
+Galls can rehydrate and dry out several times in one season in response to weather conditions.
+Once the weather becomes consistently warm and dry, spores are no longer produced on infected junipers or red cedar trees.
+After one season of spore release, galls of cedar-apple rust and hawthorn rust die and fall off the tree.
+Cankers of quince rust and witches' broom of juniper broom rust go dormant but may survive for multiple years, releasing new spores each spring.
+Spores produced on infected junipers and red cedar trees are carried by wind to susceptible apple, hawthorn or other plants in the Rosaceae family.
+These spores can infect trees over a mile away.
+If leaves and fruit are wet, spores can start new infections.
+Leaf spot and fruit infections grow slowly over the summer.
+Powdery yellow, orange or chestnut-brown spores are released from infected leaves and fruit mid to late summer.
+These spores cannot infect trees in the Rosaceae family. They must be carried by wind to start new infections on young needles and shoots of juniper or red cedar trees.
+It takes up to two years for galls to form on the juniper or red cedar tree.
+How to identify rust
+These diseases require plants from two different families to complete their life cycles. Symptoms are very different on each type of plant.
 
-- **Cited by:** Soybean/Soybean_Cyst_Nematode  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "The most reliable way to confirm SCN is to look for the tiny, white, lemon-shaped females on the roots of plants dug from the field. The females are about the size of a period at the end of a sentence."
-- **Should support:** Roots, above-ground plant (stunting and yellowing of shoots and leaves); Stunted, yellowing plants in irregular field patches; white to yellow lemon-shaped females on roots turning br
-
-### 67. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/pest-management/soybean-rust>
-
-- **Cited by:** Soybean/Soybean_Rust  (fields: visual_symptoms)
-- **Must contain:** "Lesions are angular and limited by leaf veins. They are initially small and pale green to yellow, but turn tan to dark brown or reddish-brown as they mature. Uredinia (pustules) form on the lower leaf surface and release tan to brown powdery spores."
-- **Should support:** Small angular lesions on lower leaf surface, tan to brown or reddish-brown in color, with raised uredinia (pus
-
-### 68. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 111. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/plant-diseases/apple-scab>
 
 - **Cited by:** Apple/Apple_Scab  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Symptoms appear as olive-green to brown spots on leaves and fruit. Spots on leaves may have a velvety appearance due to the presence of spores. Infected fruit have dark, scabby lesions that may be cracked or corky."
 - **Should support:** Leaves, fruit, blossoms, and young shoots; Olive-green to brown velvety lesions on leaves and fruit; lesions on fruit become sunken, corky, and cracked
+- **Additional info:** - Soybean rust is potentially one of the most significant diseases of soybean. It can spread quickly and cause leaf spots and defoliation of soybean plants. Under favorable conditions, the pathogen can cause yield losses greater than 50 percent. Soybean rust was first found in the continental United States in the South in 2004. Since then, the disease has spread northward each growing season and has been found at low levels in the upper Midwest.
 
-### 69. [403 bot-blocked (page exists)] `seen` — model-recalled
+Symptoms
+Symptoms begin on leaves in the lower plant canopy. Tan or reddish-brown lesions (spots) develop first on the underside of leaves. Small pustules (blisters) develop in the lesions, which break open and release masses of tan spores. The lesions and pustules, which can be seen with a 20X hand lens, may also appear on pods and stems. Early symptoms of soybean rust (before pustules develop) are difficult to distinguish from other common leaf diseases on soybean.
 
-<https://extension.umn.edu/plant-diseases/black-rot-apple>
+Conditions and timing that favor disease
+top side of a green soybean leaf with holes surrounded by tannish-brown edges and brown spots on yellow patches.
+green leave on stem with brown spots within yellow patches.
+Soybean rust can occur at all stages of soybean development, but is most common in or after the plants begin flowering and pods start developing in the middle of the growing season. Plants are most susceptible during reproductive stages. Extended periods of wet weather, moderate temperatures (59 degrees F to 85 degrees F), and high humidity (over 75 percent) favor disease development.
 
-- **Cited by:** Apple/Black_Rot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "On fruit, black rot first appears as a small reddish brown spot. As the spot enlarges, it remains firm and turns brown to black. Concentric rings of black pycnidia often form on the surface of the rotted area. On leaves, infections appear as circular spots wit"
-- **Should support:** Frog-eye leaf spots (purple-bordered tan lesions), concentric-ringed black fruit rot with pycnidia, sunken bar; Fruit, leaves, bark/woody limbs
+Causal pathogen
+underside of green leaf with two holes and many brown spots and several clusters of brown spots.
+Two species of rust fungi cause soybean rust - Phakopsora pachyrhizi(aggressive Asian pathogen) and P. meibomiae (mild pathogen). OnlyP. pachyrhizi causes significant yield losses. Both fungi cause the same symptoms and can only be distinguished with specialized laboratory tests. P. meibomiae has not yet been found in the continental U.S. These fungi are obligate pathogens that survive only on green, living host plant tissue and are readily dispersed long distances by wind. The fungus survives winter on living plant tissue in the southern states and Mexico. Spores must be transported northward each growing season from areas in the south.
 
-### 70. [403 bot-blocked (page exists)] `seen` — model-recalled
+Disease management
+Scout the lower canopy of fields weekly, especially during wet weather after soybeans begin to flower. Soybean rust must be diagnosed at an early stage to be successfully managed. Cultural practices have had little effect on the disease. Soybean rust must be managed with the judicious use of fungicides applied properly and at the correct time. Soybean varieties that are resistant to soybean rust are in development.
 
-<https://extension.umn.edu/plant-diseases/black-spot-rose>
-
-- **Cited by:** Rose/Black_Spot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms appear as circular, black spots with fringed margins on the upper surface of leaves. Yellow halos often surround the spots. Infected leaves turn yellow and drop prematurely."
-- **Should support:** Circular black spots with fringed margins on upper leaf surface, surrounded by yellow halos, leading to yellow; Leaves, petioles, young canes, flower petals
-
-### 71. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/plant-diseases/cedar-apple-rust>
-
-- **Cited by:** Apple/Cedar_Apple_Rust  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "On apple, symptoms first appear as bright orange-yellow spots on the upper surface of leaves. Later, tube-like structures called aecia form on the lower surface of the leaf directly below the upper surface spots and produce orange spores."
-- **Should support:** Bright orange-yellow spots on upper leaf surface; tube-like aecia on lower leaf surface producing orange spore; Leaves, fruit, and young twigs
-
-### 72. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/bacterial-blight-soybean>
-
-- **Cited by:** Soybean/Bacterial_Blight  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms first appear as small, angular, water-soaked spots on leaves. These spots turn brown and are surrounded by a yellow halo. The centers of the spots dry out and may fall out, giving the leaf a ragged appearance."
-- **Should support:** Leaves (primarily); also pods and stems; Small, angular, water-soaked lesions with yellow halos that turn brown to black and necrotic; lesions bounded 
-
-### 73. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/bacterial-pustule>
-
-- **Cited by:** Soybean/Bacterial_Pustule  (fields: visual_symptoms)
-- **Must contain:** "Symptoms appear as small, pale green spots with raised pustules in the center, usually on the lower leaf surface. The center of the lesion is tan to brown and is surrounded by a yellow-green halo."
-- **Should support:** Small, pale green to yellow spots with raised pustules on the lower leaf surface; lesions have tan to brown ce
-
-### 74. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/brown-spot-soybean>
-
-- **Cited by:** Soybean/Brown_Spot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms first appear on the lower leaves as irregular dark brown spots on both the upper and lower leaf surfaces. Spots may have a yellow halo. As the disease progresses, spots may coalesce, causing the leaves to turn yellow and drop prematurely."
-- **Should support:** Irregular, angular dark brown lesions on upper and lower leaf surfaces, often with yellow halos; lesions coale; Leaves, pods, stems
-
-### 75. [429 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/charcoal-rot>
-
-- **Cited by:** Soybean/Charcoal_Rot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "The pith and vascular tissue of the lower stem and taproot turn silver-gray, and the tiny, black microsclerotia of the pathogen can be seen with the naked eye on and beneath the epidermis of the lower stem and taproot, giving the tissue a charcoal-gray appeara"
-- **Should support:** Silver-gray to ash-gray discoloration of internal stem and root tissue; dense black microsclerotia visible ben; roots, lower stem (hypocotyl), vascular tissue, pith
-
-### 76. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/downy-mildew-soybean>
-
-- **Cited by:** Soybean/Downy_Mildew  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms appear as pale green to light yellow spots on the upper surface of leaves. On the lower leaf surface, a grayish-white to pale purple sporulation (sporangiophores and sporangia) is visible beneath the spots. Infected seeds may be covered with a white, "
-- **Should support:** Leaves, seeds, pods; Pale green to yellow spots on upper leaf surface with grayish-white sporulation on lower leaf surface; seeds m
-
-### 77. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/frogeye-leaf-spot>
-
-- **Cited by:** Soybean/Frogeye_Leaf_Spot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Lesions are circular to irregular, 2 to 5 mm in diameter, with gray to brown centers and reddish-purple borders. Under humid conditions, gray sporulation may be seen on the lower leaf surface."
-- **Should support:** Circular to irregular lesions with gray-brown centers and reddish-purple borders on leaves; gray sporulation o; Leaves, pods, seeds
-
-### 78. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/phytophthora-root-and-stem-rot-soybean>
-
-- **Cited by:** Soybean/Phytophthora  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "The most diagnostic symptom is a chocolate brown discoloration of the lower stem that advances up from the soil line. Leaves turn yellow, wilt, and die but remain attached to the plant."
-- **Should support:** Chocolate-brown discoloration of the lower stem advancing upward from the soil line; wilting and yellowing of ; roots, lower stem, leaves
-
-### 79. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/sclerotinia-stem-rot-soybeans>
-
-- **Cited by:** Soybean/Sclerotinia_Timber_Rot  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Infected stems are bleached white and may be covered with white, cottony mycelium. Black, hard sclerotia (resting structures) form on the outside and inside of infected stems. Plants wilt and die prematurely."
-- **Should support:** Stems, branches, pith; Water-soaked lesions on stems that bleach white; white cottony mycelium on stem surface; hard black sclerotia 
-
-### 80. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/soybean-seedling-diseases>
-
-- **Cited by:** Soybean/Damping_Off  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms include water-soaked, brown lesions on the hypocotyl and roots, seedling collapse at or below the soil line, and both pre- and post-emergence damping-off."
-- **Should support:** Pythium spp., Phytophthora sojae, Fusarium spp., Rhizoctonia solani; Water-soaked lesions on hypocotyl and roots; brown to reddish-brown discoloration; seedling collapse at soil l; roots, hypocotyl, cotyledons, seeds
-
-### 81. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://extension.umn.edu/soybean-diseases/white-mold-soybean>
-
-- **Cited by:** Soybean/White_Mold  (fields: affected_organs, visual_symptoms)
-- **Must contain:** "Symptoms include water-soaked lesions on the stem that later turn tan or white. A white, cottony mold grows on infected tissue. Hard, black structures called sclerotia form on and inside infected stems."
-- **Should support:** Water-soaked lesions on stems that bleach white; cottony white mycelium; hard black sclerotia on and inside st; stems, petioles, pods, leaves
-
-### 82. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 112. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/soybean-pest-management/soybean-rust>
 
 - **Cited by:** Soybean/Rust  (fields: affected_organs)
 - **Must contain:** "The fungus can infect leaves, petioles, stems, and pods."
 - **Should support:** Leaves, petioles, stems, pods
+- **Additional info:** - Soybean rust is potentially one of the most significant diseases of soybean. It can spread quickly and cause leaf spots and defoliation of soybean plants. Under favorable conditions, the pathogen can cause yield losses greater than 50 percent. Soybean rust was first found in the continental United States in the South in 2004. Since then, the disease has spread northward each growing season and has been found at low levels in the upper Midwest.
 
-### 83. [403 bot-blocked (page exists)] `seen` — model-recalled
+Symptoms
+Symptoms begin on leaves in the lower plant canopy. Tan or reddish-brown lesions (spots) develop first on the underside of leaves. Small pustules (blisters) develop in the lesions, which break open and release masses of tan spores. The lesions and pustules, which can be seen with a 20X hand lens, may also appear on pods and stems. Early symptoms of soybean rust (before pustules develop) are difficult to distinguish from other common leaf diseases on soybean.
+
+Conditions and timing that favor disease
+top side of a green soybean leaf with holes surrounded by tannish-brown edges and brown spots on yellow patches.
+green leave on stem with brown spots within yellow patches.
+Soybean rust can occur at all stages of soybean development, but is most common in or after the plants begin flowering and pods start developing in the middle of the growing season. Plants are most susceptible during reproductive stages. Extended periods of wet weather, moderate temperatures (59 degrees F to 85 degrees F), and high humidity (over 75 percent) favor disease development.
+
+Causal pathogen
+underside of green leaf with two holes and many brown spots and several clusters of brown spots.
+Two species of rust fungi cause soybean rust - Phakopsora pachyrhizi(aggressive Asian pathogen) and P. meibomiae (mild pathogen). OnlyP. pachyrhizi causes significant yield losses. Both fungi cause the same symptoms and can only be distinguished with specialized laboratory tests. P. meibomiae has not yet been found in the continental U.S. These fungi are obligate pathogens that survive only on green, living host plant tissue and are readily dispersed long distances by wind. The fungus survives winter on living plant tissue in the southern states and Mexico. Spores must be transported northward each growing season from areas in the south.
+
+Disease management
+Scout the lower canopy of fields weekly, especially during wet weather after soybeans begin to flower. Soybean rust must be diagnosed at an early stage to be successfully managed. Cultural practices have had little effect on the disease. Soybean rust must be managed with the judicious use of fungicides applied properly and at the correct time. Soybean varieties that are resistant to soybean rust are in development.
+
+### 113. [not checked] `seen` — model-recalled
 
 <https://extension.umn.edu/soybean-pest-management/sudden-death-syndrome-soybean>
 
 - **Cited by:** Soybean/Sudden_Death_Syndrome  (fields: affected_organs)
 - **Must contain:** "SDS infects soybean roots early in the season, but foliar symptoms do not appear until reproductive stages. The fungus colonizes the roots and lower stem, causing root rot and cortical decay."
 - **Should support:** roots, lower stem cortex, leaves
+- **Additional info:** -
 
-### 84. [OK] `seen` — model-recalled
+### 114. [not checked] `seen` — model-recalled
+
+<https://hort.extension.wisc.edu/articles/white-mold/>
+
+- **Cited by:** Soybean/White_Mold  (fields: pathogen)
+- **Must contain:** "White mold of soybean is caused by the fungus Sclerotinia sclerotiorum."
+- **Should support:** Sclerotinia sclerotiorum
+- **Additional info:** - White mold, also known as Sclerotinia stem rot, is a serious and typically lethal fungal disease that affects over 400 species of plants in many plant families.  White mold causes severe damage in commercially grown snap beans, kidney beans, lima beans and soybeans, as well as commercially grown sunflowers.  White mold also can be a serious problem in home vegetable gardens on tomatoes, potatoes, cucurbits (e.g., cucumber, pumpkin and squash), carrots, lettuce, celery, brassicas (e.g., cabbage, broccoli, and cauliflower), basil, and rosemary.  White mold is a common disease on many annual and perennial ornamentals as well.
+
+What does white mold look like?  
+Symptoms of white mold vary depending on the plant infected.  White mold can lead to crown and stem cankers (i.e., localized infected areas), root rots, wilts, damping-off of seedlings, and blossom and fruit rots.  Plants affected by white mold can wilt rapidly due to stem-girdling cankers at or near the soil line.  Brown spots can appear on flower petals and buds.  Cottony masses of fungal threads (called mycelia) may appear on stems or on nearby soil.  Hard, irregularly-shaped masses (called sclerotia) develop within or on the surface of infected plants.  The sclerotia are white at first and then turn dark brown or black as they mature, resembling mouse or rat droppings.
+
+Where does white mold come from? 
+White mold is caused by several species of the fungus Sclerotinia, most commonly Sclerotinia sclerotiorum.  White mold fungi overwinter as sclerotia in dead plant material or in infested soil.  Sclerotia can survive in soil for at least five years.  During periods of cool, wet or humid weather, sclerotia germinate to form either fungal threads (called hyphae) or tiny, mushroom-like spore-producing structures (called apothecia).  Apothecia can release millions of spores over a period of several days.  Spores are dispersed primarily by wind, but also by rainsplash and insects.  Both spores and hyphae can infect plant tissue, with infection often occurring through dead or declining plant parts (e.g., flowers, leaves), and then spreading to healthy tissue.  Infections may also occur through healthy plant parts that are growing near or in contact with the soil.  In some plants, seeds can be contaminated by sclerotia or mycelia of white mold fungi.
+
+
+White mold can be destructive on ornamentals such as Liatris.
+How do I save plants with white mold? 
+White mold is difficult to manage once infections have occurred.  Prune four to five inches below obviously disease tissue or remove entire plants if they are severely affected.  Do not compost these materials because of the risk of spreading white mold fungi via long-lived sclerotia.  Burn these materials instead.
+
+How do I avoid problems with white mold in the future? 
+Check seed for sclerotia and remove these structures if you find them.  Make sure your soils are well-drained, and avoid overwatering as well as frequent, light watering.  Do not overhead water (e.g., with a sprinkler).  Instead water deeply early in the day with a drip or soaker hose.  Promote good air circulation in your garden so that plants more rapidly dry when they do get wet (e.g., from natural rain).  Better air circulation can be achieved by choosing cultivars or varieties of plants that have a more open growth form, by spacing plants farther apart, by avoiding excessive use of nitrogen fertilizers (which can promote excessive production of lush, thick foliage), and by keeping weeds under control.  Weed control also eliminates potential alternate hosts that white mold fungi can infect.  As leaves and flowers or your plants naturally wither and die, remove them, as well as any other plant debris that may harbor white mold fungi.  Finally, in beds where severe cases of white mold have occurred, consider removing and replacing infested soil.
+
+### 115. [not checked] `seen` — model-recalled
 
 <https://ipm.ucanr.edu/PMG/r302100211.html>
 
 - **Cited by:** Grape/Black_Measles  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Leaf symptoms appear as a 'tiger stripe' pattern with interveinal areas turning yellow to reddish brown while the veins remain green. Berries develop small, dark spots surrounded by a lighter halo, giving the fruit a measles-like appearance."
 - **Should support:** Interveinal chlorosis and necrosis on leaves forming tiger-stripe pattern; dark spots with lighter halos on be; Leaves, berries, woody canes and trunk
+- **Additional info:** - Sudden death syndrome (SDS) is an important disease of soybeans throughout much of the U.S. SDS has been spreading north and west into states including Minnesota, Nebraska, and Wisconsin. SDS also appears also to be spreading across soybean production areas of Minnesota. Severe SDS can result in yield losses greater than 50 percent. SDS is primarily a root disease but typically also affects leaves and causes defoliation. SDS often occurs in fields infested with the soybean cyst nematode (SCN).
 
-### 85. [OK] `seen` — model-recalled
+Symptoms
+The first symptoms are typically on leaves in late July or early August in the Midwestern U.S. Leaf symptoms often begin as scattered yellow, diffuses pots between veins. The spots typically expand between veins to become brown lesions surrounded by chlorotic areas, and the leaves may be cupped or curled. Leaves detach from the petioles as the disease progresses. Brown to grey discolored areas develop in the vascular tissue of the lower stem, and can typically be seen by removing the epidermis of the stem of fresh plants. The pith remains white, which is a diagnostic feature that distinguishes SDS from brown stem rot (BSR). SDS also causes root rot, and roots may have surface blue fungal growth in moist conditions.
+
+three yellow and brown discolored soybean leaves with lower stem and white pith showing laying on top of the leaves.
+up close view of three soybean leaves that are discolored with brown spots encircled by yellow edges with a few holes in the leaves.
+Conditions and timing that favor disease
+State of Minnesota map with counties identified, southern portion of state coded in yellow.
+Infection of roots may occur early in the season, but symptoms of SDS usually don't develop until late July or in August. Infection and disease development are favored by early planting; cool and wet soil; SCN infection, and susceptible varieties.
+
+Causal pathogen
+Fusarium virgulifome (previously named Fusaium solani f.sp. glycines). This is a soilborne fungus that appears to primarily infect soybean, although snap and lima bean may be infected. This pathogen overwinters in soil and may survive for long periods of time in soil.
+
+Disease management
+The key in most areas is planting soybean varieties with the highest level of SDS resistance. Varieties should also be resistant to SCN, and crops should be rotated to manage SCN populations. Other tactics include reducing excessive soil moisture with drainage, minimizing compaction, and staggering planting dates.
+
+### 116. [not checked] `seen` — model-recalled
 
 <https://ipm.ucanr.edu/PMG/r734100111.html>
 
 - **Cited by:** Strawberry/Powdery_Mildew  (fields: affected_organs, visual_symptoms)
 - **Must contain:** "Infected leaves curl upward, exposing the lower surface, which is covered with a white, powdery growth. Upper leaf surfaces may show reddish or purple blotches. Infected fruit are covered with a white, powdery coating."
 - **Should support:** Leaves, petioles, flowers, fruit; White powdery mycelial growth on leaf surfaces; leaves curl upward; reddish or purple blotches on upper leaf s
+- **Additional info:** - Symptoms and Signs
+The fungus that causes Botrytis fruit rot, also known as gray mold, is widespread in the environment. It can infect strawberry flowers when spores landing on them and are exposed to free water during cool weather. Infections can either cause flowers to rot or Botrytis can become dormant in floral tissues. Dormant infections resume activity on the berry later in the season anytime before or after harvest when sugars increase and conditions become favorable to disease development.
 
-### 86. [OK] `seen` — model-recalled
+Infections first appear as small brown lesions, often under the calyx. Lesions begin to sporulate within a day after resumption of growth, and sporulation appears under the calyx as a gray velvety mold. Lesion size increases rapidly. Both green and red berries are susceptible. Infected berries maintain their original shape and take on a velvety, gray-brown coat of spores. Initially, rotted areas are soft and mushy, becoming leathery and dry in the absence of high humidity. Millions of spores are produced on each berry and become airborne at the slightest touch or breeze.
 
-<https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/LateBlight.aspx>
+Direct infection of the berries also occurs if berries are exposed to free water. These infections develop in the same manner as flower-infected berries but differ in that multiple initial lesions may appear anywhere on the berry's surface.
 
-- **Cited by:** Potato/Late_Blight, Tomato/Late_Blight  (fields: pathogen)
-- **Must contain:** "Late blight is caused by the oomycete pathogen Phytophthora infestans."
-- **Should support:** Phytophthora infestans
+Comments on the Disease
+During the growing season, the fungus is constantly present and is often found in new plantings. Nothing can be done to escape the presence of this fungus, but the level of inoculum in a particular field can be reduced by removing dead leaves and infected fruit. After harvest, the fungus survives in the soil as small, black, inactive sclerotia on tilled-in leaves and fruit. In addition, the fungus lives on decomposing, dead organic matter of many plant species in and around the growing area. Because wet, cool weather is necessary for development of this disease, it is mostly limited to the coastal growing regions and northern nurseries and causes very little damage in inland growing regions except during periods of unusually wet weather during fruit production.
 
-### 87. [OK] `seen` — model-recalled
+Management
+Presently, control of Botrytis fruit rot ranges from repetitive fungicide treatments with no cultural control to intensive cultural methods with no fungicide applications. Environmental conditions in various microclimates play an important role in determining control strategies. Planting in areas where wind can rapidly dry out the plants and interrupt disease progress helps to reduce disease incidence.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/AppleScab.aspx>
+Cultural Control
+Remove and destroy dead or infected plant material to help reduce the amount of inoculum capable of producing new infections. Also, remove all ripe fruit during harvest as well as any fruit with signs of decay or rain damage. Growing strawberries in plastic tunnels has proven to effectively reduce the incidence of Botrytis infections. Using plastic mulches to prevent berry-soil contact also reduces disease except where water puddles under the fruit on the plastic.
 
-- **Cited by:** Apple/Apple_Scab  (fields: pathogen)
-- **Must contain:** "Apple scab is caused by the fungus Venturia inaequalis."
-- **Should support:** Venturia inaequalis
+Some cultivars have flowers and fruit that develop with an upright stature, which allows fruit to be exposed to better air movement and sunlight, and this reduces the risk of infection, but fruit tend to be more exposed to rain and hail. Fruit types with a "neck" or reflexed calyx (a calyx that grows away from the fruit) are less susceptible to the disease simply by eliminating or reducing primary infection sites.
 
-### 88. [OK] `seen` — model-recalled
+Organically Acceptable Methods
+Select fields that are isolated from conventional growing areas and have environmental conditions that are not conducive to disease development (i.e., warm, dry spring weather or areas where wind is prevalent at some point during the day).
+Use varieties that are suited to the growing area with necked fruit or reflexed calyx.
+Remove all fruit after spring and summer rains and all plant residue after harvest, as sanitation is crucial for good control.
+There are several organic fungicides available, but none have shown consistent efficacy against gray mold.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BlackSpotRose.aspx>
+Monitoring and Treatment Decisions
+In areas without heavy coastal summer fog, inoculum levels may be low enough in clean fields that early sprays in spring can be omitted. In dry areas, leaf wetness seldom is of sufficient duration to cause epidemics, and some growers are finding it possible to grow strawberries without fungicides when strict sanitation practices are adhered to. In dense fog areas, inoculum density and environmental conditions conducive to disease development (i.e., cool, wet weather) should always determine when to apply fungicides. Because these conditions are usually seasonal, use a protective fungicide to prevent germination of spores when weather forecasts predict conditions ideal for disease development. Thereafter, set spray schedules according to disease pressure and environmental conditions.
 
-- **Cited by:** Rose/Black_Spot  (fields: pathogen)
-- **Must contain:** "Black spot is caused by the fungus Diplocarpon rosae Wolf (sexual stage); the asexual stage is Marssonina rosae (Lib.) Died."
-- **Should support:** Diplocarpon rosae
+No fungicide is recommended when conditions are not determined to be suitable for infection.
 
-### 89. [OK] `seen` — model-recalled
+Fungicide Resistance
+Botrytis cinerea has developed resistance to almost every mode of action chemistry, including pyraclostrabin/boscalid, fenhexamid, and iprodione.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BotrytisGrayMold.aspx>
+### 117. [not checked] `seen` — model-recalled
 
-- **Cited by:** Strawberry/Gray_Mold, Tomato/Gray_Mold  (fields: pathogen)
-- **Must contain:** "Gray mold, caused by Botrytis cinerea, is one of the most common and economically important diseases of tomato worldwide."
-- **Should support:** Botrytis cinerea
+<https://ipm.ucanr.edu/agriculture/strawberry/botrytis-fruit-rot/#gsc.tab=0>
 
-### 90. [OK] `seen` — model-recalled
+- **Cited by:** Strawberry/Gray_Mold  (fields: visual_symptoms)
+- **Must contain:** "Infected fruit first appear water-soaked and light brown, then become covered with a gray, dusty mass of spores."
+- **Should support:** Water-soaked lesions on fruit turning brown and covered with gray sporulating mycelium; blighted blossoms; tan
+- **Additional info:** - Symptoms and Signs
+The fungus that causes Botrytis fruit rot, also known as gray mold, is widespread in the environment. It can infect strawberry flowers when spores landing on them and are exposed to free water during cool weather. Infections can either cause flowers to rot or Botrytis can become dormant in floral tissues. Dormant infections resume activity on the berry later in the season anytime before or after harvest when sugars increase and conditions become favorable to disease development.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CharcoalRot.aspx>
+Infections first appear as small brown lesions, often under the calyx. Lesions begin to sporulate within a day after resumption of growth, and sporulation appears under the calyx as a gray velvety mold. Lesion size increases rapidly. Both green and red berries are susceptible. Infected berries maintain their original shape and take on a velvety, gray-brown coat of spores. Initially, rotted areas are soft and mushy, becoming leathery and dry in the absence of high humidity. Millions of spores are produced on each berry and become airborne at the slightest touch or breeze.
 
-- **Cited by:** Soybean/Charcoal_Rot  (fields: pathogen)
-- **Must contain:** "Charcoal rot is caused by the soilborne fungus Macrophomina phaseolina."
-- **Should support:** Macrophomina phaseolina
+Direct infection of the berries also occurs if berries are exposed to free water. These infections develop in the same manner as flower-infected berries but differ in that multiple initial lesions may appear anywhere on the berry's surface.
 
-### 91. [OK] `seen` — model-recalled
+Comments on the Disease
+During the growing season, the fungus is constantly present and is often found in new plantings. Nothing can be done to escape the presence of this fungus, but the level of inoculum in a particular field can be reduced by removing dead leaves and infected fruit. After harvest, the fungus survives in the soil as small, black, inactive sclerotia on tilled-in leaves and fruit. In addition, the fungus lives on decomposing, dead organic matter of many plant species in and around the growing area. Because wet, cool weather is necessary for development of this disease, it is mostly limited to the coastal growing regions and northern nurseries and causes very little damage in inland growing regions except during periods of unusually wet weather during fruit production.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CornEyespot.aspx>
+Management
+Presently, control of Botrytis fruit rot ranges from repetitive fungicide treatments with no cultural control to intensive cultural methods with no fungicide applications. Environmental conditions in various microclimates play an important role in determining control strategies. Planting in areas where wind can rapidly dry out the plants and interrupt disease progress helps to reduce disease incidence.
 
-- **Cited by:** Corn/Eyespot  (fields: pathogen)
-- **Must contain:** "Eyespot of corn is caused by the fungus Aureobasidium zeae (Narita & Hiratsuka) J.M. Dingley (syn. Kabatiella zeae Narita & Hiratsuka)."
-- **Should support:** Aureobasidium zeae (formerly Kabatiella zeae)
+Cultural Control
+Remove and destroy dead or infected plant material to help reduce the amount of inoculum capable of producing new infections. Also, remove all ripe fruit during harvest as well as any fruit with signs of decay or rain damage. Growing strawberries in plastic tunnels has proven to effectively reduce the incidence of Botrytis infections. Using plastic mulches to prevent berry-soil contact also reduces disease except where water puddles under the fruit on the plastic.
 
-### 92. [OK] `seen` — model-recalled
+Some cultivars have flowers and fruit that develop with an upright stature, which allows fruit to be exposed to better air movement and sunlight, and this reduces the risk of infection, but fruit tend to be more exposed to rain and hail. Fruit types with a "neck" or reflexed calyx (a calyx that grows away from the fruit) are less susceptible to the disease simply by eliminating or reducing primary infection sites.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/EarlyBlight.aspx>
+### 118. [not checked] `seen` — model-recalled
 
-- **Cited by:** Potato/Early_Blight, Tomato/Early_Blight  (fields: pathogen)
-- **Must contain:** "Early blight is caused by the fungus Alternaria solani."
-- **Should support:** Alternaria solani
-
-### 93. [OK] `seen` — model-recalled, none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/FrogeyeLeafSpot.aspx>
-
-- **Cited by:** Apple/Frogeye_Leaf_Spot, Soybean/Frogeye_Leaf_Spot  (fields: pathogen)
-- **Must contain:** "Frogeye leaf spot is caused by the fungus Cercospora sojina Hara."
-- **Should support:** Botryosphaeria obtusa (anamorph: Diplodia seriata / Sphaeropsis malorum); Cercospora sojina
-
-### 94. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrayLeafSpot.aspx>
-
-- **Cited by:** Corn/Gray_Leaf_Spot, Corn/Leaf_Spot  (fields: pathogen, visual_symptoms)
-- **Must contain:** "Mature lesions are rectangular, tan to gray in color, and delimited by leaf veins. Lesions are typically 1 to 4 cm long and 2 to 4 mm wide."
-- **Should support:** Cercospora zeae-maydis; Rectangular, tan to gray, vein-delimited lesions that are initially small with yellow halos, elongating parall
-
-### 95. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/NorthernLeafBlight.aspx>
-
-- **Cited by:** Corn/Leaf_Blight, Corn/Northern_Leaf_Blight  (fields: affected_organs, pathogen)
-- **Must contain:** "Northern leaf blight of corn is caused by the fungus Exserohilum turcicum (pass.) Leonard & Suggs (syn. Helminthosporium turcicum Pass.), the teleomorph of which is Setosphaeria turcica (Luttrell) Leonard & Suggs."
-- **Should support:** Exserohilum turcicum (teleomorph: Setosphaeria turcica); Leaves (leaf blades); husks and leaf sheaths in severe cases
-
-### 96. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBlast.aspx>
-
-- **Cited by:** Rice/Blast  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Leaf lesions are typically spindle-shaped with gray or white centers and brown to reddish-brown borders. Neck blast causes a dark brown to black discoloration at the base of the panicle, which can result in the panicle falling over, a condition known as 'rotte"
-- **Should support:** Diamond- or spindle-shaped leaf lesions with gray-white centers and brown to reddish-brown borders; neck rot c; Leaves, leaf collars, culm nodes, panicle necks, panicles; Magnaporthe oryzae (anamorph: Pyricularia oryzae)
-
-### 97. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SclerotiniaStemRot.aspx>
-
-- **Cited by:** Soybean/Sclerotinia_Timber_Rot  (fields: pathogen)
-- **Must contain:** "Sclerotinia stem rot is caused by the fungus Sclerotinia sclerotiorum."
-- **Should support:** Sclerotinia sclerotiorum
-
-### 98. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SouthernLeafBlight.aspx>
-
-- **Cited by:** Corn/Southern_Corn_Leaf_Blight  (fields: affected_organs, pathogen)
-- **Must contain:** "Southern corn leaf blight is caused by the fungus Cochliobolus heterostrophus (Drechsler) Drechsler (anamorph: Bipolaris maydis (Nisikado & Miyake) Shoemaker)."
-- **Should support:** Cochliobolus heterostrophus (anamorph: Bipolaris maydis); Leaves, leaf sheaths, husks, ear shanks
-
-### 99. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanBrownSpot.aspx>
-
-- **Cited by:** Soybean/Brown_Spot  (fields: pathogen)
-- **Must contain:** "Brown spot of soybean is caused by the fungus Septoria glycines Hemmi."
-- **Should support:** Septoria glycines
-
-### 100. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx>
-
-- **Cited by:** Strawberry/Leaf_Scorch  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Leaf scorch symptoms first appear as numerous small, irregular, purplish spots or 'blotches' on the upper leaf surface. Unlike leaf spot, the centers of these lesions do not turn white or gray, but remain dark purple, giving the leaf a 'scorched' appearance."
-- **Should support:** Diplocarpon earlianum (anamorph: Marssonina fragariae); Leaves (leaflets), petioles, runners, fruit caps (calyxes); Numerous small, irregular, dark purple to reddish-purple spots on upper leaf surface; centers remain dark (no 
-
-### 101. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx>
-
-- **Cited by:** Strawberry/Leaf_Spot  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Spots are circular, 1 to 5 mm in diameter, with centers that are tan to white or gray and margins that are dark purple to reddish purple."
-- **Should support:** Leaves, petioles, runners, fruit caps (calyxes), and berry surfaces; Mycosphaerella fragariae (anamorph: Ramularia tulasnei); Small circular spots with dark purple to reddish-purple margins and tan to white or gray centers ('bird's-eye'
-
-### 102. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryPowderyMildew.aspx>
+<https://ipm.ucanr.edu/agriculture/strawberry/powdery-mildew/#gsc.tab=0>
 
 - **Cited by:** Strawberry/Powdery_Mildew  (fields: pathogen)
 - **Must contain:** "Powdery mildew of strawberry is caused by Podosphaera aphanis (Wallr.) U. Braun & S. Takam. (syn. Sphaerotheca macularis (Fr.) Lind f. sp. fragariae Peries)."
 - **Should support:** Podosphaera aphanis (syn. Sphaerotheca macularis f. sp. fragariae)
+- **Additional info:** - Symptoms and Signs
+Leaves infected with powdery mildew initially have small, white powdery colonies on the undersides of leaves. These colonies enlarge to cover the entire lower leaf surface, causing the edges of the leaves to roll up. Purple reddish blotches appear on the upper and lower surface of leaves. Infected flowers produce deformed fruit or no fruit at all. Severely infected flowers may be completely covered by mycelium and killed. Infected immature fruits become hardened and desiccated. Infected mature fruits become seedy in appearance and support spore-producing colonies that look powdery and white.
 
-### 103. [OK] `seen` — model-recalled
+Comments on the Disease
+The disease overwinters as mycelium on leaves in California, so it is most likely introduced into the field through planting material or spores from neighboring fields. Spores are wind disseminated and short-lived. The pathogen also survives as mycelium and chasmothecia (closed spore-bearing structures) on plants coming from nurseries. Ideal conditions for infection are dry leaf surfaces, high relative humidity, and cool to warm air temperatures. Accordingly, the disease is mostly limited to the coastal growing regions and northern nurseries and causes very little damage in inland growing regions. Powdery mildew is particularly severe in greenhouse and plastic tunnel production systems.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SuddenDeath.aspx>
+Management
+During routine field surveys, watch for the leaf distortion and discoloration that are the first signs of powdery mildew, especially in fall and spring. To control powdery mildew, apply fungicides when disease is first detected. This is especially important for protectants such as sulfur. Controlling powdery mildew in the fall reduces the amount of disease that develops the following spring, and controlling foliar disease helps prevent fruit infections. The standard nursery practice of removing leaves from transplants during harvest and packing helps minimize introduction of the disease, although inoculum may still be present on crowns. Cultural practices are important in helping to prevent disease buildup.
 
-- **Cited by:** Soybean/Sudden_Death_Syndrome  (fields: pathogen, visual_symptoms)
-- **Must contain:** "Foliar symptoms are characterized by scattered, irregular yellow blotches between the veins (interveinal chlorosis) that eventually turn brown (interveinal necrosis). Veins remain green. Severely affected leaflets drop, leaving the petioles attached to the ste"
-- **Should support:** Fusarium virguliforme; Interveinal chlorosis and necrosis on leaves with green veins remaining; premature defoliation leaving bare pe
+Cultural Control
+Avoid overhead irrigation and excess use of nitrogen. Use less-susceptible cultivars, such as Albion, San Andreas, and Fronteras, where practical.
 
-### 104. [OK] `seen` — model-recalled, none
+Organically Acceptable Methods
+Apply mined sulfur or insecticidal soap on organically certified strawberries. Use less-susceptible cultivars where practical. Select field sites where environmental conditions are not conducive to disease development.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TomatoLeafMold.aspx>
+Treatment Decisions
+Apply fungicides about 1 month after planting and again 3 to 4 weeks later. Make additional fungicide applications when plants begin to bloom.
 
-- **Cited by:** Tomato/Leaf_Mold, Tomato/Tomato_Leaf_Mould  (fields: pathogen)
-- **Must contain:** "Leaf mold of tomato is caused by the fungus Passalora fulva (previously known as Fulvia fulva or Cladosporium fulvum)."
-- **Should support:** Passalora fulva (formerly Fulvia fulva / Cladosporium fulvum); Passalora fulva (syn. Fulvia fulva, Cladosporium fulvum)
+### 119. [not checked] `seen` — model-recalled
 
-### 105. [OK] `seen` — model-recalled
+<https://ipm.ucanr.edu/agriculture/tomato/bacterial-spot/#gsc.tab=0>
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Verticillium.aspx>
+- **Cited by:** Tomato/Bacterial_Leaf_Spot  (fields: pathogen)
+- **Must contain:** "Bacterial spot of tomato and pepper is caused by four species of Xanthomonas: X. euvesicatoria, X. vesicatoria, X. perforans, and X. gardneri."
+- **Should support:** Xanthomonas vesicatoria, X. euvesicatoria, X. gardneri, X. perforans
+- **Additional info:** - 
+Symptoms and Signs
+Bacterial spot develops on seedlings and mature plants. On seedlings, infections may cause severe defoliation. On older plants, infections occur primarily on older leaves and appear as water-soaked areas. Leaf spots turn from yellow or light green to black or dark brown. Older spots are black, slightly raised, superficial and measure up to 0.3 inch (7.5 mm) in diameter. Larger leaf blotches may also occur, especially on the margins of leaves. Symptoms on immature fruit are at first slightly sunken and surrounded by a water-soaked halo, which soon disappears. Fruit spots enlarge, turn brown, and become scabby.
+
+Comments on the Disease
+The bacterial spot bacterium persists from one season to the next in crop debris, on volunteer tomatoes, and on weed hosts such as nightshade and groundcherry. The bacterium is seedborne and can occur within the seed and on the seed surface. The pathogen is spread with the seed or on transplants. Secondary spread within a field occurs by splashing water from sprinkler irrigation or rain. Infection is favored by high relative humidity and free moisture on the plant. Symptoms develop rapidly at temperatures of 68°F (20°C) and above. Night temperatures of 61°F (16°C) or below suppress disease development regardless of day temperatures. Some pathogen strains are virulent on either tomato or pepper and some may be virulent on both.
+
+Management
+Cultural practices and preventive sprays of copper help to manage bacterial spot.
+
+Cultural Control
+Bacterial spot occurs commonly in tomatoes throughout California. Using pathogen-free seed and disease-free transplants, when possible, is the best way to avoid bacterial spot on tomato. Avoiding sprinkler irrigation and cull piles near greenhouse or field operations, and rotating with a nonhost crop also helps control the disease.
+
+Organically Acceptable Methods
+Cultural controls and some copper formulations are acceptable for use on organically certified produce.
+
+Monitoring and Treatment Decisions
+Copper-containing bactericides provide partial disease control. Apply at first sign of disease and repeat at 10- to 14-day intervals when warm, moist conditions prevail. Copper is strictly a protectant and must be applied before an infection period occurs.
+
+Resistance to copper has been observed, but can be somewhat overcome by combining copper with mancozeb.
+
+### 120. [not checked] `seen` — model-recalled
+
+<https://ipm.ucanr.edu/agriculture/tomato/verticillium-wilt/#gsc.tab=0>
 
 - **Cited by:** Tomato/Verticillium_Wilt  (fields: pathogen)
 - **Must contain:** "Verticillium wilt is caused by the soilborne fungi Verticillium dahliae and V. albo-atrum."
 - **Should support:** Verticillium dahliae
+- **Additional info:** - Symptoms and Signs
+Older leaves on tomato plants infected with Verticillium appear as yellow, V-shaped areas that narrow from the margin. The leaf progressively turns from yellow to brown and eventually dies. Older and lower leaves are the most affected. Sun-related fruit damage is increased because of the loss of foliage. A light tan discoloration develops in the vascular tissue, especially near the base of the plant. The discoloration extends a short distance up the plant and may occur in patches. Symptoms are most noticeable during later stages of plant development when fruit begin to size.
 
-### 106. [OK] `seen` — model-recalled
+Comments on the Disease
+The fungus survives as microsclerotia in the soil. Once established in a field, it persists indefinitely and can cause disease whenever a susceptible host is planted. A large number of crops and weeds serve as hosts. The disease is favored by cool soil and air temperatures.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WhiteMold.aspx>
+Verticillium wilt is difficult to distinguish from Fusarium wilt and positive identification may require cultivating the fungus in a laboratory. Verticillium wilt seldom kills tomato plants but reduces their vigor and yield.
 
-- **Cited by:** Soybean/White_Mold  (fields: pathogen)
-- **Must contain:** "White mold of soybean is caused by the fungus Sclerotinia sclerotiorum."
-- **Should support:** Sclerotinia sclerotiorum
+Management
+Use resistant cultivars effective against Race 1. No source of resistance to Race 2 is commercially available.
+Sanitation, especially washing equipment to prevent movement of infested soil, may help to slow spread of the Race 2 strain of the pathogen.
+Rotation to nonsusceptible crops, such as small grains and corn, helps reduce inoculum.
 
-### 107. [OK] `seen` — model-recalled
+### 121. [not checked] `seen` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornRust.aspx>
+<https://ipm.ucanr.edu/home-and-landscape/leaf-scorch-of-strawberries/#gsc.tab=0>
 
-- **Cited by:** Corn/Common_Rust, Corn/Rust  (fields: pathogen)
-- **Must contain:** "Common rust of corn is caused by the fungus Puccinia sorghi Schwein."
-- **Should support:** Puccinia sorghi
+- **Cited by:** Strawberry/Leaf_Scorch  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Leaf scorch symptoms first appear as numerous small, irregular, purplish spots or 'blotches' on the upper leaf surface. Unlike leaf spot, the centers of these lesions do not turn white or gray, but remain dark purple, giving the leaf a 'scorched' appearance."
+- **Should support:** Diplocarpon earlianum (anamorph: Marssonina fragariae); Leaves (leaflets), petioles, runners, fruit caps (calyxes); Numerous small, irregular, dark purple to reddish-purple spots on upper leaf surface; centers remain dark (no 
+- **Additional info:** - Leaf scorch is a fungal disease that spots and kills strawberry leaves and reduces fruit abundance and quality.
 
-### 108. [OK] `seen` — model-recalled
+Identification
+Leaf scorch causes brown to purple spots on the upper surface of strawberry leaves. When infections are abundant, the leaf tissue between lesions commonly takes on a bright red to purplish color, but coloration varies with the cultivar, temperature, and other factors. Spotted leaves eventually turn brown, dry up, and curl at the margins, giving the leaf an overall burnt or scorched appearance for which the disease is named. Infected fruit may develop discolored streaks or sunken lesions.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornSmut.aspx>
+Leaf scorch damage symptoms resemble those of common leaf spot, Mycosphaerella fragariae =Ramularia tulasnei. However common leaf spots have a sharply defined border while the borders of spots from leaf scorch are indistinct. Leaf scorch symptoms can also resemble other leaf spot diseases of strawberry.
 
-- **Cited by:** Corn/Common_Smut, Corn/Corn_Smut, Corn/Smut  (fields: pathogen)
-- **Must contain:** "Common smut is caused by the fungus Ustilago maydis (DC.) Corda."
-- **Should support:** Ustilago maydis
+Life cycle
+The leaf scorch fungus overwinters in strawberry debris on soil and in strawberries grown as perennials. The small, asexual fungal fruiting bodies (acervuli) can continue to develop in decomposing, old foliage and overwintering strawberries. When conditions are wet during the spring, the fungus produces spores that are spread by splashing water and wind to infect strawberry plants. The development and spread of the fungus are favored by overhead irrigation and wet, warm weather. In addition to infecting leaf blades, the fungus can infect strawberry berry caps (calyxes), flowers, fruit stalks (pedicels), and leaf stems (petioles).
 
-### 109. [OK] `seen` — model-recalled
+Damage
+The disease is characterized by numerous small, brown to purplish lesions. Each spot on the upper surface of strawberry leaves commonly is 1/16 to 3/16 inch (1.5–4.5 mm) in diameter with indistinct borders. In severe infestations, infected flowers and fruit may die. Infected fruit can develop discolored, sunken lesions that make the fruit unappetizing even though it is still edible.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/RiceSheath.aspx>
+Solutions
+Seek resistant varieties for planting where leaf scorch has been a problem or conditions are commonly wet. Grow strawberries as an annual so the fungus cannot persist in the same plant for multiple growing seasons and become more abundant over time.
 
-- **Cited by:** Rice/Sheath_Blight  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Lesions are initially oval to elliptical or irregular, about 1-3 cm long, and greenish-gray. As lesions mature, the center becomes grayish-white with an irregular, light brown to dark brown border."
-- **Should support:** Leaf sheaths, leaf blades, stems; Oval to elliptical lesions with grayish-white centers and dark brown to purple-brown borders; sclerotia on inf; Rhizoctonia solani Kühn (teleomorph: Thanatephorus cucumeris)
+Plant strawberries in a sunny, open location and on a berm or mound of raised soil. Avoid crowding plants and control nearby weeds. These cultural practices will increase air circulation around plants and can reduce the abundance of leaf scorch. Where the fungus has been a problem, remove all strawberry plant debris from the site at the end of the growing season and dispose of it away from where strawberries will be planted the next growing season.
 
-### 110. [OK] `seen` — model-recalled
+To keep foliage drier, use drip or furrow irrigation instead of overhead sprinkling. Irrigate in the morning instead of late during the day or at night so that foliage dries more quickly. Where leaf scorch has been a problem, these recommended cultural practices (plant care activities, such as irrigation and planting methods) should provide good control.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SouthernRust.aspx>
+Disease abundance also can be reduced by spraying thiophanate-methyl fungicide to thoroughly cover plants beginning during bloom. If wet conditions persist, repeated application at 2 week intervals may be warranted. For better control, use fungicide only in combination with the cultural controls described above.
 
-- **Cited by:** Corn/Southern_Rust  (fields: pathogen)
-- **Must contain:** "Southern rust is caused by the fungus Puccinia polysora Underw."
-- **Should support:** Puccinia polysora
+Adapted from Diplocarpon earlianum, Wikipedia and Leaf Scorch of Strawberry, North Carolina State University.
 
-### 111. [OK] `seen` — model-recalled
+### 122. [not checked] `seen` — model-recalled
 
-<https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SoybeanRust.aspx>
+<https://solvepestproblems.oregonstate.edu/plant-problems/roses/downy-mildew>
 
-- **Cited by:** Soybean/Rust, Soybean/Soybean_Rust  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Lesions are angular and limited by leaf veins, and range in color from gray-green to tan, dark brown, or reddish-brown. Uredinia (pustules) form on the lower leaf surface and appear as small, raised blisters that break through the epidermis and release powdery"
-- **Should support:** Leaves (primarily), petioles, stems, pods; Phakopsora pachyrhizi; Small tan to dark brown angular lesions on lower leaf surface with raised uredinia producing powdery brown spo
+- **Cited by:** Rose/Downy_Mildew  (fields: pathogen)
+- **Must contain:** "Downy mildew of rose is caused by the oomycete pathogen Peronospora sparsa."
+- **Should support:** Peronospora sparsa
+- **Additional info:** - Downy mildew causes purplish to dark-brown, irregular spots on leaves, stems & flowers.
+The spots become angular as they enlarge and stop growing at major leaf veins.
+Pale, felty spore masses form on the underside of leaves.
+Infected leaves turn yellow and drop from the plant earlier than healthy leaves.
 
-### 112. [OK] `seen` — model-recalled
+### 123. [not checked] `seen` — model-recalled
+
+<https://soybeanresearchinfo.com/soybean-disease/bacterial-pustule/>
+
+- **Cited by:** Soybean/Bacterial_Pustule  (fields: pathogen)
+- **Must contain:** "Bacterial pustule is caused by Xanthomonas axonopodis pv. glycines."
+- **Should support:** Xanthomonas axonopodis pv. glycines
+- **Additional info:** - Overview
+Bacterial pustule is a soybean disease caused by the bacterium Xanthomonas campestris pv. glycines. Although the pathogen is common in soybean producing regions, it is of minor importance because of the high level of resistance in most commercial soybean varieties. Bacterial pustule can also infect snap beans.
+
+Because this pathogen produces a pustule, it can easily be confused with soybean rust, a much more serious disease. Bacterial pustules will differ from those of soybean rust, however, because they will not have a natural opening in the pustule, or masses of spores like those of soybean rust.
+
+Cycle
+The bacteria overwinter on surface crop residue and on seeds. The bacterial cells are spread during the season by wind-blown rain, rain splashing up from old crop residue, and mechanically during field work when the canopy is wet. The bacteria enter the plant through natural openings and wounds in the leaves.
+
+Unlike bacterial blight, which develops best in moderate temperatures of 70 to 80° F., bacterial pustule develops best during very warm temperatures of 85-90° F., if conditions remain wet.
+
+Agronomic Impact
+Research studies have reported yield loss potential for this disease to range from 4% to as high as 35% under extremely favorable conditions, but bacterial blight rarely reaches high levels of severity in the Midwest. Severe infection may causes some defoliation of young leaves.
+
+Scouting
+Symptoms typically develop later in the season when temperatures are hotter. Lesions will generally be in the upper canopy. Symptoms begin as small, light green spots (without water-soaking). Light-colored, raised blisters (pustules) often develop in the center of lesions on both the upper and lower surface of leaves. The lesions can grow together into large, irregular patches of dead tissue. Loss of tissue in the infected areas may give the leaves a ragged appearance like bacterial blight. Small raised spots may also develop on pods.
+
+Management
+There are high levels of resistance to bacterial pustule in most soybean varieties. Should bacterial pustule develop in a field, a note of the variety should be made, and it should be replaced in future years with resistant ones. Since the disease can be seed borne, it is important to use disease-free, certified seed. If a field develops bacteria pustule, it should be rotated out of soybeans until all infested debris has decomposed. Tillage can shorten the length of rotation where soil erosion is not an issue. Avoid moving equipment through fields or scouting when the foliage is wet.
+
+Foliar fungicides are not effective against bacterial pustule because it is caused by a bacterial pathogen, not a fungus.
+
+Resources
+For information about Bacterial Pustule, and other soybean diseases visit our resource page
+
+Additional Resources:
+
+Bacterial Pustule on Soybean, University of Minnesota, 2018
+
+Bacterial Pustule, University of Nebraska, 2015
+
+Bacterial Diseases: Identification and Management, University of Nebraska, 2015
+
+### 124. [not checked] `seen` — model-recalled
+
+<https://www.aphis.usda.gov/plant-pests-diseases/sugarcane-disease>
+
+- **Cited by:** Sugarcane/Leaf_Scald  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Symptoms include one or more white or cream-coloured stripes running the length of the leaf, parallel to the veins; in the acute phase, plants may suddenly wilt and die with leaves turning a pale straw colour."
+- **Should support:** Leaves, stems, vascular tissue; White to cream pencil-line stripes parallel to leaf veins; acute wilting and bleaching of shoots; chronic narr; Xanthomonas albilineans
+- **Additional info:** - Gummosis and leaf scald can cause severe damage in sugarcane and other plants in the Poaceae family. The bacterium Xanthomonas axonopodis pv. vasculorum causes gummosis and the bacterium Xanthomonas albilineans causes leaf scald. These diseases are not widely prevalent in the United States.
+
+Gummosis primarily attacks sugarcane, but can also affect corn, Guatemala grass, broom bamboo, hurricane palm, royal palm, and nut palm. Leaf scald can cause severe damage in sugarcane and corn intercropped with sugarcane. Globally, other countries have reported the presence of one or both diseases.
+
+Gummosis causes two distinct symptoms in sugarcane plants. Mature leaves develop longitudinal stripes or streaks that are 3-7 mm in width and several centimeters in length. The stripes appear around the affected veins and near the tip. Initially the stripes are pale yellow in color and later turn brown. The affected tissues slowly dry up.
+
+Infected canes are stunted with short internodes giving them a bushy appearance. When stunted canes are cut, a dull yellow bacterial ooze (gum) comes out from the cut ends. The vascular bundles are deep red.
+
+Leaf Scald
+The most common symptom of leaf scald is a white line about 1–2 mm wide (also called a pencil line) on the leaf. This line extends from the midrib to the leaf margin running parallel to the veins. A diffuse yellow border of varying widths runs parallel to the pencil line. The pencil line may have areas of reddish discoloration along part of its length. As the disease progresses, brown, dead tissue (necrosis) develops from the leaf tip or leaf margin and eventually extends the entire leaf. Leaves look burned and curl inward, giving them a scalded appearance–hence the disease's name. Ultimately, the entire plant dies
+
+### 125. [not checked] `seen` — model-recalled
 
 <https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SugarcaneSmut.aspx>
 
 - **Cited by:** Sugarcane/Smut  (fields: affected_organs)
 - **Must contain:** "The most characteristic symptom is the smut whip, which emerges from the growing point of the infected shoot."
 - **Should support:** Growing point (apical meristem), shoots, tillers, leaves
+- **Additional info:** - Soybean rust is a disease that affects soybeans and other legumes. It is caused by two types of fungi, Phakopsora pachyrhizi, commonly known as Asian soybean rust, and Phakopsora meibomiae, commonly known as New World soybean rust. P. meibomiae is the weaker pathogen of the two and generally does not cause widespread problems. The disease has been reported across Asia, Australia, Africa, South America and the United States.
 
-### 113. [OK] `seen` — model-recalled
+Importance
+Soybean is one of the most important commercial crops around the world. Asian soybean rust is the major disease that affects soybeans. It causes lesions on the leaves of soybean plants and eventually kills the plants. The disease has caused serious yield loss of soybeans.[1] In the areas where this disease is common, the yield losses can be up to 80%.[2] The first reported cases in the United States occurred in 2004.[3] This population originated in northern South America or the Caribbean.[3] The spores were most likely spread by Hurricane Ivan.[3][2] In 2002, USDA reported 10-60% yield losses in South America and Africa.[4] in countries where this pathogen is established, estimated losses are between 10 and 80% depending on the inoculation and environmental conditions.[5]
 
-<https://www.apsnet.org/edcenter/disandpath/nematode/pdlessons/Pages/SoybeanCystNematode.aspx>
+Host and symptoms
+Soybean rust is caused by two types of fungi, Phakopsora pachyrhizi and Phakopsora meibomiae.[6] It affects several important commercial plants, however, most notable for soybeans. Asian Soybean Rust can infect and reproduce on 90 known plant species, 20 of which are found in the United States, such as, soybeans, dry beans, kidney beans, peas. Asian soybean rust also infects yellow sweet lover, vetch, medic, lupine, green and kidney bean, and lima and butter bean.[7] leguminous forage crops such as trefoil and sweet clover and weeds such as kudzu.[1]
 
-- **Cited by:** Soybean/Soybean_Cyst_Nematode  (fields: pathogen)
-- **Must contain:** "Soybean cyst nematode, caused by Heterodera glycines, is the most damaging pathogen of soybean in the United States."
-- **Should support:** Heterodera glycines
 
-### 114. [OK] `seen` — model-recalled
+Soybean leaves infected with ASR (photo from USDA)[8]
+At the early stage of Asian Soybean Rust, it causes yellow mosaic discoloration on the upper surfaces of older foliage. At this stage, it is usually hard to identify since the symptoms are relatively small and poorly defined.[9]
 
-<https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/LateBlight.aspx>
+Later as the disease continues to progress, the leaves will turn yellow and there will be lesions mostly on the undersides of the leaves and sometimes on petioles, stems or pods and premature defoliation can also be observed.[10] In Phakopsora pachyrhizi will begin to form small brown and brick red sports on the lower canopy of the leaves that will begin to turn into lesions.
 
-- **Cited by:** Tomato/Phytophthora_Blight  (fields: pathogen)
-- **Must contain:** "Late blight is caused by the oomycete pathogen Phytophthora infestans."
-- **Should support:** Phytophthora infestans
+Asian Soybean Rust produces two types of lesions. Lesions at the later stage will turn from gray to tan or reddish brown. Mature tan lesions consist of small pustules surrounded by discolored necrotic areas. Tan spores can be found at the necrotic areas on the underside of the leaf. In the case of reddish brown lesions, there are larger reddish brown necrotic areas with few pustules and visible spores on the underside of the leaf. A good way to distinguish Asian Soybean Rust from other diseases is to look at the pustules it produces. ASR pustules usually do not have the yellow halo which is typical of bacterial pustules. Besides, ASR pustules are raised and can be commonly found on the underside of the leaf which makes it different from the lesions caused by spot diseases.[9][11]
 
-### 115. [OK] `seen` — model-recalled
+Soybean plants are one of ASR's most known hosts and are susceptible at any stage in the life cycle. However, symptoms are most commonly found during or after flowering.[12] ASR infection will reduce pod production and fill
 
-<https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/PhytophthoraRootRot.aspx>
+### 126. [not checked] `seen` — model-recalled
 
-- **Cited by:** Soybean/Phytophthora  (fields: pathogen)
-- **Must contain:** "Phytophthora root and stem rot of soybean is caused by Phytophthora sojae, an oomycete (water mold) pathogen."
-- **Should support:** Phytophthora sojae
-
-### 116. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/RoseDownyMildew.aspx>
-
-- **Cited by:** Rose/Downy_Mildew  (fields: pathogen)
-- **Must contain:** "Downy mildew of rose is caused by the oomycete pathogen Peronospora sparsa."
-- **Should support:** Peronospora sparsa
-
-### 117. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/SoybeanDownyMildew.aspx>
-
-- **Cited by:** Soybean/Downy_Mildew  (fields: pathogen)
-- **Must contain:** "Downy mildew of soybean is caused by the oomycete pathogen Peronospora manshurica."
-- **Should support:** Peronospora manshurica
-
-### 118. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialBlightRice.aspx>
-
-- **Cited by:** Rice/Bacterial_Leaf_Blight, Rice/Severe_Bacterial_Blight  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms first appear as water-soaked to yellowish stripes along the leaf margins or tips, which later turn yellow to straw-colored and then white, with a wavy margin between diseased and healthy tissue; under humid conditions, bacterial exudate may be observe"
-- **Should support:** Leaves (leaf margins and tips); vascular system; Leaves, leaf margins, vascular tissue, seedlings (kresek phase); Water-soaked to yellowish stripes along leaf margins and tips that turn straw-yellow to white; wavy lesion mar; Water-soaked to yellowish stripes along leaf margins expanding to straw-yellow or white lesions; entire leaf b; Xanthomonas oryzae pv. oryzae
-
-### 119. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialPustule.aspx>
-
-- **Cited by:** Soybean/Bacterial_Pustule  (fields: pathogen)
-- **Must contain:** "Bacterial pustule is caused by Xanthomonas axonopodis pv. glycines."
-- **Should support:** Xanthomonas axonopodis pv. glycines
-
-### 120. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialSpotTomato.aspx>
-
-- **Cited by:** Tomato/Bacterial_Leaf_Spot  (fields: pathogen)
-- **Must contain:** "Bacterial spot of tomato and pepper is caused by four species of Xanthomonas: X. euvesicatoria, X. vesicatoria, X. perforans, and X. gardneri."
-- **Should support:** Xanthomonas vesicatoria, X. euvesicatoria, X. gardneri, X. perforans
-
-### 121. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/SoybeanBlight.aspx>
-
-- **Cited by:** Soybean/Bacterial_Blight  (fields: pathogen)
-- **Must contain:** "Bacterial blight of soybean is caused by Pseudomonas savastanoi pv. glycinea"
-- **Should support:** Pseudomonas savastanoi pv. glycinea
-
-### 122. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/MaizeDwarfMosaic.aspx>
-
-- **Cited by:** Corn/Maize_Dwarf_Mosaic_Virus  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms appear on leaves as a mosaic or mottle of light and dark green areas. In some cases, leaves may show necrotic streaking. Infected plants are often stunted."
-- **Should support:** Leaves, stalks, ears; Maize dwarf mosaic virus (MDMV), genus Potyvirus, family Potyviridae; Mosaic or mottle of light and dark green on leaves; yellow-green streaking on young leaves; stunting; necrotic
-
-### 123. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx>
-
-- **Cited by:** Sugarcane/Yellow_Leaf  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms include yellowing of the midrib on the underside of the leaf, which may extend to the upper surface, followed by necrosis and death of the leaf. Affected plants may also be stunted."
-- **Should support:** Bright yellowing of the abaxial midrib of lower-canopy leaves, progressing to yellowing of the entire leaf bla; Leaves (midrib and leaf blade); stalks (secondary effect — stunting); Sugarcane yellow leaf virus (SCYLV), genus Polerovirus, family Luteoviridae
-
-### 124. [OK] `seen` — model-recalled
-
-<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/TomatoMosaic.aspx>
-
-- **Cited by:** Tomato/Leaf_Mosaic_Virus  (fields: pathogen)
-- **Must contain:** "Tomato mosaic virus (ToMV) is a member of the genus Tobamovirus in the family Virgaviridae."
-- **Should support:** Tomato mosaic virus (ToMV)
-
-### 125. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/11207>
-
-- **Cited by:** Sugarcane/Sugarcane_Mosaic_Virus  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "The most characteristic symptom is a mosaic of light and dark green areas on the leaves. In susceptible varieties, reddish streaking or necrosis may also occur, and plants may be severely stunted."
-- **Should support:** Leaves (primarily young, emerging leaves); stalks (secondary, showing stunting and reduced internode length); Mosaic pattern of intermingled light green, yellow-green, and dark green patches on leaves; chlorotic streakin; Sugarcane mosaic virus (SCMV), a member of the genus Potyvirus, family Potyviridae
-
-### 126. [403 bot-blocked (page exists)] `seen` — model-recalled
-
-<https://www.cabi.org/isc/datasheet/45911>
+<https://www.mdpi.com/2073-4395/5/3/341>
 
 - **Cited by:** Sugarcane/Brown_Rust  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Symptoms appear as small, elongated pustules (uredinia) on both leaf surfaces; pustules are orange-brown to reddish-brown, often surrounded by a yellow halo, and release powdery masses of urediniospores when they rupture through the epidermis."
 - **Should support:** Leaves; Puccinia melanocephala; Small elongated orange-brown to reddish-brown uredinia pustules on leaf surfaces, surrounded by yellow chlorot
+- **Additional info:** - settingsOrder Article Reprints
+Open AccessArticle
+Screening for Sugarcane Brown Rust in the First Clonal Stage of the Canal Point Sugarcane Breeding Program
+by Duli Zhao 1,*,R. Wayne Davidson 2,Miguel Baltazar 2,Jack C. Comstock 1,Per McCord 1 andSushma Sood 1
+1
+USDA-Agricultural Research Service, Sugarcane Field Station, Canal Point, FL 33438, USA
+2
+Florida Sugar Cane League, Inc., Clewiston, FL 33440, USA
+*
+Author to whom correspondence should be addressed.
+Agronomy 2015, 5(3), 341-362; https://doi.org/10.3390/agronomy5030341
+Submission received: 3 July 2015 / Revised: 28 July 2015 / Accepted: 28 July 2015 / Published: 31 July 2015
+(This article belongs to the Special Issue Breeding for Disease Resistance)
+Downloadkeyboard_arrow_down Browse Figures Versions Notes
+Abstract
+Sugarcane (Saccharum spp.) brown rust (caused by Puccinia melanocephala Syd. & P. Syd) was first reported in the United States in 1978 and is still one of the great challenges for sugarcane production. A better understanding of sugarcane genotypic variation in response to brown rust will help optimize breeding and selection strategies for disease resistance. Brown rust ratings were scaled from non-infection (0) to severe infection (4) with intervals of 0.5 and routinely recorded for genotypes in the first clonal selection stage of the Canal Point sugarcane breeding program in Florida. Data were collected from 14,272 and 12,661 genotypes and replicated check cultivars in 2012 and 2013, respectively. Mean rust rating, % infection, and severity in each family and progeny of female parent were determined, and their coefficients of variation (CV) within and among families (females) were estimated. Considerable variation exists in rust ratings among families or females. The families and female parents with high susceptibility or resistance to brown rust were identified and ranked. The findings of this study can help scientists to evaluate sugarcane crosses and parents for brown rust disease, to use desirable parents for crossing, and to improve genetic resistance to brown rust in breeding programs.
+Keywords: sugarcane; Canal Point (CP) sugarcane breeding program; brown rust; screening for rust resistance
+1. Introduction
+Sugarcane (a complex hybrid of Saccharum spp.) is an important cash crop in Florida, USA with an annual economic impact of more than $677 million [1]. Consistent and continuous development of high-yielding sugarcane cultivars with resistance or tolerance to biotic and abiotic stresses is critical for commercial sugarcane production in South Florida [2]. The USDA-ARS Sugarcane Field Station at Canal Point (26.52° N; 80.36° W), Florida was initially established at its present site in 1920 to make sugarcane crosses and produce true seed for the Louisiana sugarcane industry. Since the 1960s, the Canal Point (CP) station has been developing sugarcane cultivars with CP prefixes for Florida under a three-party cooperative agreement among the USDA-ARS, the University of Florida, and the Florida Sugar Cane League, Inc. The CP Sugarcane Field Station also makes crosses for the USDA-ARS in Houma, Louisiana. The CP cultivars now account for more than 90% of the hectarage in Florida. In 2014, the top six major sugarcane cultivars grown in Florida were “CP 96-1252” [3], “CP 00-1101” [4],“CP 01-1372” [5], “CL 88-4730” (a cultivar of the United States Sugar Corporation), “CP 88-1762” [6], and “CP 89-2143” [7], and their percentage hectares were 16.8, 13.2, 11.1, 8.8, 8.8, and 7.7%, respectively [8].
+The CP sugarcane breeding and cultivar development program (CP program) consists of six stages, namely Crossing, Seedlings, and Stages I, II, III, and IV [9]. It takes at least eight years to release a cultivar from the time a cross is made [10]. Cane yield (TCH, Mg ha−1), commercial recoverable sucrose (CRS, kg sucrose Mg−1 cane), and sucrose yield (TSH, Mg ha−1) with disease resistance are the major agronomic traits considered in advancing sugarcane clones during the selection stages. Edmé et al. [11] reported that CRS, TCH, and TSH of the Florida commercial sugarcane cultivars linearly increased by 26.0, 15.5, and 47.0%, respectively, over a 33-year period from 1968 to 2000. Underscoring the critical need for cultivar development for the Florida sugarcane industry, about 69% of the sugar yield gain in Florida was from genetic improvement attributable to the CP program [11], indicating importance of the CP program in sustaining sugarcane production in Florida.
+Brown rust (Figure 1), caused by Puccinia melanocephala Syd. & P. Syd., is an important disease of sugarcane in many production areas around the world [12]. Sugarcane brown rust was first recorded in the United States in 1978. It can cause substantial losses of sugarcane growth, yields, and profits [13,14,15,16,17] and has been responsible for the withdrawal of commercial cultivars in the United States and in most sugarcane growing regions of the world [18]. Although the negative effects of brown rust on sugarcane growth and yield have been reduced by breeding and management practices, the disease is still one of most important concerns in Florida sugarcane production (Figure 1).
+Currently, leaf rust diseases, including brown rust and orange rust (caused by P. kuehnii (W. Krüger) E.J. Butler), are great challenges for sustainable sugarcane production in Florida [19]. Most dominant commercial cultivars in Florida are susceptible to one or both rusts (Figure 1). The typical symptoms of sugarcane brown rust and orange rust are brown and orange colors for their spores, respectively, as their names imply. Pustules of brown rust are easier to distinguish from those of orange rust on the younger, upper leaves than on the older, lower leaves [20]. Numerous coalescing pustules of rusts cause premature tissue death on leaves. Growers use fungicides to control the negative effects of rusts on yields, but the cost of fungicide applications considerably reduce the production profits [21]. Therefore, development of rust resistant cultivars is the first priority for sustainable sugarcane production. Scientists in the CP program and in the sugarcane industry in Florida are using multiple approaches to develop new cultivars with rust resistance/tolerance and high yields. Cultivars developed in the CP program are used not only in the United States, but also in many other countries in Central America [22] and Asia where sugarcane industries use them for either breeding or commercial production. Therefore, evaluation and screening genotypes for rust resistance in the CP program are important for sustainable sugarcane production in the USA and other countries. Although Sood et al. [18] developed a whorl inoculation method to more accurately and efficiently test sugarcane genotype resistance in brown rust, it is still difficult to use the artificial inoculation test in the first clonal stage (Stage I) of the CP program because of a large number (12,000–15,000) of genotypes in this stage and because of limited resources [9]. Therefore, natural infection has been the primary means of assessing rust resistance in the Stage-I clones and further artificial inoculation tests for rust resistance are usually used in later stages (Stages II and III) of the CP program [23].
 
-### 127. [403 bot-blocked (page exists)] `seen` — model-recalled
+### 127. [not checked] `seen` — model-recalled
 
-<https://www.cabi.org/isc/datasheet/56122>
+<https://www.missouribotanicalgarden.org/gardens-gardening/your-garden/help-for-the-home-gardener/advice-tips-resources/insects-pests-and-problems/diseases/fungal-spots/black-spot>
 
-- **Cited by:** Sugarcane/Smut  (fields: pathogen, visual_symptoms)
-- **Must contain:** "The most obvious symptom is the smut whip, a long whip-like structure that emerges from the growing point of infected shoots. The whip is initially covered by a thin, silvery-white membrane, which soon ruptures to expose a mass of black powdery teliospores."
-- **Should support:** Long whip-like structure of black teliospores emerging from the growing point; thin silver membrane ruptures r; Sporisorium scitamineum (syn. Ustilago scitaminea)
+- **Cited by:** Rose/Black_Spot  (fields: pathogen)
+- **Must contain:** "Black spot is caused by the fungus Diplocarpon rosae Wolf (sexual stage); the asexual stage is Marssonina rosae (Lib.) Died."
+- **Should support:** Diplocarpon rosae
+- **Additional info:** -  Overview
 
-### 128. [403 bot-blocked (page exists)] `seen` — model-recalled
+Black spot is caused by the fungus, Diplocarpon rosae. It is one of the most common diseases found everywhere roses are planted. The disease does not kill the plant outright, but over time, the loss of leaves can weaken the plant making it more susceptible to other stresses and winter damage. The disease is active during cool, moist weather. Conversely, extreme summer heat during July and August will limit development of the disease.
 
-<https://www.cabi.org/isc/datasheet/56921>
+Symptoms and Diagnosis
 
-- **Cited by:** Sugarcane/Leaf_Scald  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Symptoms include one or more white or cream-coloured stripes running the length of the leaf, parallel to the veins; in the acute phase, plants may suddenly wilt and die with leaves turning a pale straw colour."
-- **Should support:** Leaves, stems, vascular tissue; White to cream pencil-line stripes parallel to leaf veins; acute wilting and bleaching of shoots; chronic narr; Xanthomonas albilineans
+Black spots, one-tenth to one-half inch in diameter, develop first on upper leaf surfaces. Areas adjacent to the black spots turn yellow and leaves drop prematurely, usually beginning at the bottom of the plant and progressing upward. Less commonly, raised purple-red blotches develop on immature wood of first-year canes. These spots may later become blackened and blistered.
 
-### 129. [OK] `seen` — model-recalled
+Life Cycle
 
-<https://www.canr.msu.edu/resources/gray-mold-botrytis-fruit-rot-of-strawberry>
+The disease overwinters in diseased canes and infested fallen leaves. The fungal spores germinate in the spring and are disseminated by splashing water. Fungal spores on the leaf surface must be continuously wet for at least seven hours for infection to occur. Once infection is established, the fungus will develop fruiting bodies called acervuli in black lesions which, in turn, produce spores that splash to new tissue, spreading the disease.
 
-- **Cited by:** Strawberry/Gray_Mold  (fields: visual_symptoms)
-- **Must contain:** "Infected fruit first appear water-soaked and light brown, then become covered with a gray, dusty mass of spores."
-- **Should support:** Water-soaked lesions on fruit turning brown and covered with gray sporulating mycelium; blighted blossoms; tan
+Integrated Pest Management Strategies
 
-### 130. [SSL-unverifiable (page likely fine)] `seen` — model-recalled, none
+1. Remove diseased leaves. As soon as diseased leaves are noticed, remove and dispose of them. Dead leaves on the ground should also be collected and destroyed. Compost only if this material will not be used back in rose beds. To minimize overwintering of the fungus, collect and remove all leaves from the ground in the fall, mulch with 2–3 inches of leaf mold or fine bark, and prune diseased canes before growth begins in spring.
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-1-W.pdf>
+2. Keep the foliage dry. The fungal spores need a wet surface to germinate and cause infection. Therefore, keep the foliage as dry as possible. Do not use overhead watering, or if you do, water early in the day so the foliage is dry by nighttime. Prune plants to allow more air circulation and facilitate the drying of foliage.
 
-- **Cited by:** Apple/Cedar_Apple_Rust, Apple/Rust  (fields: pathogen)
-- **Must contain:** "Cedar-apple rust is caused by the fungus Gymnosporangium juniperi-virginianae."
-- **Should support:** Gymnosporangium juniperi-virginianae
+3. Use fungicidal sprays. Fungicides applied as a protectant provide good control. Fungicides will not cure infected leaves, but if applied regularly, will prevent infection of new leaves. Pesticides registered for use include captan, chlorothalonil, copper, ferbam, mancozeb, sulfur, thiophanate methyl, and ziram. Many other products listed as rose dust are also effective. Check the label for control of black spot. Most fungicides need to be applied every 7–14 days. Fungicides need to be reapplied following rain or overhead watering in excess of 1/4 inch.
 
-### 131. [SSL-unverifiable (page likely fine)] `seen` — model-recalled, none
+4. Move the plants. You can limit the disease by growing roses in locations where they receive morning or, preferably, all-day sun. This facilitates the drying of the foliage.
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-139-W.pdf>
+5. Replant with more disease-tolerant varieties. Avoid highly susceptible cultivars, including most yellow and copper-colored roses. Roses reported to be highly resistant are: ‘Fortyniner,’ ‘Coronado,’ ‘Carefree Beauty,’ ‘Simplicity,’ ‘Bonica,’ and ‘Grand Opera.’
 
-- **Cited by:** Apple/Black_Rot, Grape/Leafroll_Disease  (fields: pathogen)
-- **Must contain:** "Black rot is caused by the fungus Botryosphaeria obtusa."
-- **Should support:** Botryosphaeria obtusa (anamorph: Sphaeropsis malorum); Grapevine leafroll-associated viruses (GLRaVs), primarily GLRaV-1 and GLRaV-3
+### 128. [not checked] `seen` — none
 
-### 132. [SSL-unverifiable (page likely fine)] `seen` — model-recalled, none
+<http://www.agritech.tnau.ac.in/crop_protection/sugarcane_diseases/sugarcane_pokkah_boe.html>
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-75-W.pdf>
+- **Cited by:** Sugarcane/Pokkah_Boeng  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Fusarium moniliforme (teleomorph: Gibberella fujikuroi)
+- **Additional info:** -  Pokkah boeng
+Pokkah boeng is a re- emerging disease in sugarcane.
+It is a Javanese term denoting a malformation or distorted top.
+It is caused by the Fusarium species complex.
+Severity of Pokkah boeng disease incidence increases with the occurrence of the crown mealybug Phenacoccus saccharifolii coincides with summer months of April-July.
+The mealybug P. saccharifolii colonizes the crown region of the crop and associated with black ant Camponotus compressus.
+Profuse honey dew secretion by the crown mealybugs leads to extensive sooty mould (Capnodium sp.) growth on the leaves.
+Three to seven months old plant crops are most susceptible to the disease, whereas in ratoon one month old crops itself got affected by the Pokkah boeng disease.
+Symptoms:            
+Chlorotic phase (chlorotic, rough, wrinkling, twisting and shortening of the leaves).
+Top rot phase (growing point is killed and the entire top of the plant dies).
+Knife cut phase (Its look like the tissues of the stem are removed with a sharp knife).
+Shortening of internodes.
+Bud sprouting (it occurs during before maturation of crop).
+ 					 
+ 	Chlorotic phase	Wrinkling, twisting and shortening of leaves	Ratoon - Twisting of leaves	Top rot phase	 
+			
+Knife cut phase
+Shortening of internodes and buds sprouting	Crown mealybug associated
+with black ant	Sooty mould	 	 
+Pathogen:
+Pokkah boeng is caused by the Fusarium species complex (Fusarium sacchari, Fusarium proliferatum, Fusarium verticillioides etc.,).
 
-- **Cited by:** Corn/Ear_Rots, Corn/Fusarium_Disease  (fields: pathogen, visual_symptoms)
-- **Must contain:** "Gibberella ear rot is characterized by a pink to reddish mold that usually starts at the tip of the ear. Fusarium ear rot appears as white to pink mold on individual kernels, often in a 'starburst' pattern. Diplodia ear rot produces a white to grayish-white mo"
-- **Should support:** Fusarium verticillioides (formerly F. moniliforme), Fusarium graminearum, and other Fusarium spp.; Pink to red mold at ear tip (Gibberella); white to pink starburst kernel discoloration (Fusarium); white-gray 
+Favourable conditions:
+Pokkah boeng was favoured by warm, moist condition and additionally, summer showers with cloudy weather also favour disease development
+Mode of spread :
+Pokkah boeng is an air-borne disease
+Primary spread : Air-current
+Secondary spread : Infected setts, irrigation water, splashed rains and soil
+Mode of survival :
+The pathogen (Fusarium) can survive for 12 months in the plant debris under natural conditions.
+Management :
+The following Integrated pest and disease Management practices is recommended to manage the Pokkah boeng disease in sugarcane.
+Cultural methods :
+Use moderately tolerant variety
+:	
+Co 86032
+Highly susceptible varieties may be avoided	
+:
+CoV 09356, CoV 94101, Co 11015, Co 06022 and 87 A 298
 
-### 133. [SSL-unverifiable (page likely fine)] `seen` — model-recalled
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-84-W.pdf>
 
-- **Cited by:** Corn/Leaf_Blight  (fields: pathogen)
-- **Must contain:** "Northern corn leaf blight is caused by the fungus Exserohilum turcicum (formerly known as Helminthosporium turcicum)."
-- **Should support:** Exserohilum turcicum (formerly Helminthosporium turcicum)
 
-### 134. [OK] `seen` — none, page-verified
+Physical methods:
 
-<https://agritech.tnau.ac.in/crop_protection/apple_2.html>
+Before spraying ensure detrashing.
+Monitor the movement of ants regularly.
+Removal of infected plant parts showing top rot and knife cut symptoms .
+Chemical method
 
-- **Cited by:** Apple/Powdery_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Small patches of white powdery growth appear on upper side of leaves."
-- **Should support:** Leaves, twigs and fruit buds; Podosphaera leucotricha; Small patches of white powdery growth on the upper leaf surface, on both surfaces when severe; affected leaves
+Sett treatment with Propiconazole 25% EC (1ml/lit.) + Imidacloprid 70 WS (1ml/lit.) for 20 minutes as prophylactic measures (Plant crop).
+Application of recommended dose of fertilizers and micro nutrients after every ratoon and at the time of earthing up.
+Spraying of TNAU Sugarcane Booster @ 1kg, 1.5kg and 2kg at 45, 60, 75 days respectively after planting / ratooning.
+Spraying with Propiconazole 25% EC 1ml + Imidacloprid 17.8% SL 0.4 ml + sticking agent 1ml + water 1lit. soon after the appearance of symptom. If incidence noticed again, spraying with Propiconazole 25% EC (1ml/l) + Flonicamid 50 WG (0.3g/l) or Clothianidine 50 WDG (0.5g/l) @ 20 days interval.
 
-### 135. [OK] `seen` — none, page-verified
+### 129. [not checked] `seen` — none
 
-<https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html>
+<https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_7.html>
 
-- **Cited by:** Grape/Downy_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Irregular, yellowish, translucent sports on the upper surface of the leaves. Correspondingly on the lower surface, white, powdery growth on leaves."
-- **Should support:** Irregular yellowish translucent spots on the upper leaf surface with white powdery growth beneath; leaves yell; Leaves; Plasmopara viticola
+- **Cited by:** Potato/Bacteria_Wilt_And_Soft_Rot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Ralstonia solanacearum (bacterial wilt); Pectobacterium carotovorum subsp. carotovorum and Dickeya spp. (soft 
+- **Additional info:** - 
+Symptom:
+Infection at two phases is black leg and soft rot.
+Black lesion appear on the base of the plant .
+Systemic and browning of infected tubers.
+Yellow appearance of the plant.
+Finally the plants wilt and die.
+Rot and collapse of tubers.
+Soft, reddish or black ring appear on the infected tuber.
+ 				
+Identification of pathogen:
 
-### 136. [OK] `seen` — none, page-verified
+Mode of spread and survival:
 
-<https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html>
+Infected tubers attract the flies (Hymelia and Phorlin sp).
+Spread through immature contaminated soil and tuber.
+Optimum temperature 21 to 29 ºC and RH 94%
+Management:
+The pathogen is difficult to control because of long survival both on seed tubers and in soils.
+However using disease free seed tubers could minimize the disease incidence.
+Before planting the seed tubers are treated with Boric Acid (3% for 30 minutes) and dried in shade.
+The same treatment is repeated before the storage of the tubers.
+The disease can be reduced by soil application of PCNB (30 kg/ha) at the time of planting.
+Following crop rotations with wheat, pea, oats, barley, lupin, soybean, sorghum and bajra checks the disease development.
+In plains, treatment of the seed tubers with TBZ + acetic acid + 0.05% Zinc Sulphate solution or Carbendazim 1% for 15 minutes effectively controls the disease. Soaking of tubers in Mercuric chloride 0.1% formalin.
 
-- **Cited by:** Grape/Powdery_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration of affected leaves."
-- **Should support:** Leaves; Powdery growth mainly on the upper leaf surface, with malformation and discolouration of affected leaves; Uncinula necator
+### 130. [not checked] `seen` — none, page-verified
 
-### 137. [OK] `seen` — none, page-verified
+<https://agritech.tnau.ac.in/crop_protection/crop_prot_postharvest_grapes_2.html>
 
-<https://agritech.tnau.ac.in/expert_system/paddy/cpdisbrownspot.html>
+- **Cited by:** Grape/Gray_Mold  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "At veraison, individually infected berries in a cluster turn brown on white cultivars or reddish in red and black cultivars...resulting in the characteristic gray, velvety appearance of infected berries."
+- **Should support:** Berries and clusters; Botrytis cinerea; Infected berries brown (white cultivars) or redden (red/black cultivars), developing a gray velvety mould
+- **Additional info:** - 
+Symptoms
 
-- **Cited by:** Rice/Brown_Spot  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "The disease appears first as minute brown dots, later becoming cylindrical or oval to circular.(resemble sesame seed)"
-- **Should support:** Helminthosporium oryzae; Leaves; Minute brown dots enlarging to oval-to-circular sesame-seed-like spots 0.5-2.0 mm across that coalesce into la
+Infected berries first appear soft and watery.
+Infected berries of white cultivars become brown and shriveled,
+Purple cultivars develop a reddish color
+Healthy berries touching infected berries will become infected.
+Rotted berries generally shrivel and drop to the ground as hard mummies
+Management:
 
-### 138. [OK] `seen` — none, page-verified
+Preharvest infection can be controlled by three application of captan 0.2 % at monthly intervals before rainfall.
 
-<https://agritech.tnau.ac.in/expert_system/paddy/cpdistungro.html>
+### 131. [not checked] `seen` — none
 
-- **Cited by:** Rice/Severe_Tungro, Rice/Tungro  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"
-- **Should support:** Leaves; Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV); Yellow to orange-yellow leaves with rust-coloured spots, discolouring from the leaf tip downward
+<https://agritech.tnau.ac.in/crop_protection/rice_diseases/rice_2.html>
 
-### 139. [OK] `seen` — none, page-verified
+- **Cited by:** Rice/Severe_Brownspot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Bipolaris oryzae (Breda de Haan) Shoemaker (syn. Helminthosporium oryzae)
+- **Additional info:** - Symptoms
+
+The fungus attacks the crop from seedling to milky stage in main field
+Symptoms appear as minute spots on the coleoptile, leaf blade, leaf sheath, and glume, being most prominent on the leaf blade and glumes.
+The spots become cylindrical or oval, dark brown with yellow halo.
+The several spots coalesce and the leaf dries up.
+The seedlings die and affected nurseries can be often recognised from a distance by scorched appearance.
+Dark brown or black spots also appear on glumes leading to grain discoloration.
+It causes failure of seed germination, seedling mortality and reduces the grain quality and weight.
+
+### 132. [not checked] `seen` — none
+
+<https://agritech.tnau.ac.in/crop_protection/rice_diseases/rice_3.html>
+
+- **Cited by:** Rice/Leaf_Blight  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Xanthomonas oryzae pv. oryzae
+- **Additional info:** - Symptoms:
+
+Bacterial blight syndrome exhibits three types of symptoms: leaf blight, kresek (the seedling blight or wilt phase) and the pale-yellow leaf.
+The disease has been referred to as “bacterial leaf blight” to indicate that the “leaf blight” phase of the syndrome is the most distinct and commonly observed symptom.
+Seedlings in the nursery show circular, yellow spots in the margin, that enlarge, coalesce leading to drying of foliage.
+“Kresek” symptom is seen in seedlings, 1-2 weeks after transplanting.
+The bacteria enter through the cut wounds in the leaf tips, become systemic and cause death of entire seedling.
+In grown up plants water soaked, translucent lesions appear near the leaf margin.
+The lesions enlarge both in length and width with a wavy margin and turn straw yellow within a few days, covering the entire leaf.
+As the disease advances, the lesions cover the entire lamina which turns white or straw coloured.
+Milky or opaque dew drops containing bacterial masses are formed on young lesions in the early morning.
+They dry up on the surface leaving a white encrustation.
+The affected grains have discoloured spots.
+If the cut end of leaf is dipped in water, it becomes turbid because of bacterial ooze.
+Pathogen Character:
+
+The bacterium is aerobic, gram negative, non spore forming, rod with size ranging from 1-2 x 0.8-1.0􀀀m with monotrichous polar flagellum.
+Bacterial colonies are circular, convex with entire margins, whitish yellow to straw yellow colored and opaque.
+Favourable conditions/Epidemiology:
+
+Clipping of tip of the seedling at the time of transplanting
+Heavy rain, heavy dew, flooding, deep irrigation water
+Severe wind and temperature of 25-30 0 C
+Application of excessive nitrogen, especially late top dressing
+
+### 133. [not checked] `seen` — none
+
+<https://agritech.tnau.ac.in/crop_protection/soyabean_disease/soybean_d2.html>
+
+- **Cited by:** Soybean/Anthracnose  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Colletotrichum truncatum
+- **Additional info:** - 
+Symptom
+Infected seeds become shriveled, mouldy and brown.
+Symptoms on cotyledons appear as dark brown sunken cankers.
+In early stage, irregular brown lesions appear on leaves, stems and pods.
+In advanced stages, the infected tissues are covered with black fruiting bodies of fungus.
+Under high humidity, symptoms on leaves are veinal necrosis, leaf rolling, cankers on petioles premature defoliation
+Management
+Use healthy or certified seeds.
+Rotate soybean with cereals.
+Do not cultivate when the foliage is wet.
+Completely remove plant residue by clean ploughing the field soon after harvest.
+Destroy last years infected stubble.
+Maintain well drained field.
+Seed treatment with Thiram or Captan or Carbendazim 3 g/kg and
+Use Mancozeb @ 2.5g/l as spray or Carbendazim 1g/L.
+
+### 134. [not checked] `seen` — none
+
+<https://agritech.tnau.ac.in/crop_protection/tomato_diseases_4.html>
+
+- **Cited by:** Tomato/Septoria_Leaf_Blotch  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Septoria lycopersici
+- **Additional info:** - Symptoms:
+Small, round to irregular spots with grey centre and dark margin on leaves.
+Spots coalesce and leaves are blighted.
+Complete defoliation.
+Stems and flowers are affected.
+
+Causal Organism – Septoria lycopersici Speg.
+
+Mycelium : Hyaline and septate
+
+Fruiting body : Pycnidium: globose, without distinct ostiole
+
+Pathogen: Pycnidiospore : filiform, septate, hyaline
+
+Survival and Mode of Spread
+
+Survival: Infected plant debris
+
+Primary spread: Mycelium or conidia
+
+Secondary spread: Conidia through rain splash or wind
+
+Favourable conditions
+
+High humidity .
+Integrated Disease Management
+
+Cultural:
+
+Removal and destruction of affected plant parts
+Biological :
+
+Seed treatment :Trichoderma asperellum @ 4g/kg seeds
+Chemical:
+
+Fluxapyroxad 250 g/l + Pyraclostrobin 250 g/l SC - 200-250 ml/ha.
+
+### 135. [not checked] `seen` — none
+
+<https://apps.lucidcentral.org/pppw_v10/text/web_full/entities/tomato_powdery_mildew_314.htm>
+
+- **Cited by:** Tomato/Powdery_Mildew  (fields: affected_organs)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Leaves, stems
+- **Additional info:** - Scientific Name
+Leveillula taurica. Other names are Erysiphe taurica and Oidium sicula. It exists as different strains. There are other powdery mildews affecting tomato. They are: Oidium lucopersici and Oidium neolycopersici.
+
+Distribution
+Asia, Africa, North, South and Central America, the Caribbean, Europe, Oceania. It is recorded from Fiji (Euphorbia species), New Caledonia (capsicum, globe artichoke, tomato, Tropaelum), Papua New Guinea (Drymaria, Euphorbia, Oxalis), Solomon Islands (Euphorbia species), and Tonga (capsicum, Euphorbia species).
+
+Hosts
+Tomato, capsicum, chilli, eggplant and others in the potato (Solanaceae) family, as well as members in the cotton (Malvaceae), onion (Amaryllidaceae), cucumber (Cucurbitaceae), legumes (Fabaceae), carrot (Apiaceae), and Euphorbia species (Euphorbiaeae) families, and more. It is particularly known as a disease of onion.
+
+Symptoms & Life Cycle
+A major disease of tomato and many other crops, ornamentals and weeds. Generally, the lower leaves are infected first and then the disease moves up the plant. Whitish powdery patches of the fungus occur on the underside of leaves, causing mild distortions. Sometimes the fungus is restricted by the main leaf veins. On the top side of the leaf there are yellowish irregular-shaped spots, turning brown with age, and shrivelling. Unlike other powdery mildews, the fungus does not grow much over the leaf surface; it is inside the leaf, and the spores form on long stalks growing out of natural openings.
+
+On the top surface of the leaves, the yellowish spots and patches look like those of tomato leaf mould (see Fact Sheet no. 076), but there are no velvety spore masses on the underside typical of leaf mould.
+
+Spread is by spores on the wind. Germination and infection occurs at temperatures under 30°C, and at medium to high humidity. Powdery mildews do not need water on the leaf surface for germination, but humidity must be sufficient.
+
+Impact
+A common and potentially serious disease during warm, dry weather. It can lead to loss of leaves, and early ripening and sunscald of the fruit (see Fact Sheet no. 085). In commercially grown tomatoes in the USA, yield losses may exceed 50%, depending on the age of the crops when the disease occurs, environmental conditions and effectiveness of fungicide control.
+
+Detection & inspection
+Look for the yellow spots and patches on the leaves somewhat bounded by the main leaf veins. Look on the underside of the leaves for white patches of spores protruding through the surface (there is little cottony growth over the leaf blade with this powdery mildew).
+
+Management
+CULTURAL CONTROL
+
+Before planting:
+
+Avoid overcrowding of seedlings in the nursery, and check each for infection before field planting.
+Weed around the nursery, especially removing plants in the potato family (e.g., nightshade).
+Remove volunteer plants from the previous crop.
+During growth:
+
+Do not apply excessive amounts of nitrogen fertilizer; abundant leafy growth promotes conditions for disease development.
+Choose open sites where there is good air movement around the plants.
+Ensure plants have adequate amounts of water as moisture stress may increase susceptibility.
+After harvest:
+
+Collect all the trash and burn or bury it.
+Avoid over-lapping crops to prevent spores from older crops infecting newer ones at an early age.
+Practise crop rotation, choosing a non-host crop, e.g., root crops or those in the cabbage family.
+RESISTANT VARIETIES
+Check company descriptions of varieties. Resistance has been found in cucurbits, chilli and onions, but note that there are strains of the fungus and crop varieties may not be resistant to all of them. And note, there are many species of powdery mildew and crops resistant to one may not be resistant to others.
+
+CHEMICAL CONTROL
+Cultural control and the use of resistant varieties should be sufficient to manage this disease. If the disease is known to be a problem, and based on previous experience fungicides are likely to be needed, inspect the crop regularly to detect when infections first occur. Start spraying immediately symptoms are seen, and spray routinely every 7-10 days, depending on the severity of the disease. Do the following:
+
+For large commercial plantings, apply any of the following: (i) wettable sulphur products, (ii) chlorothalonil (also useful for gummy stem blight control of cucurbits) or (iii) check availability of other products (e.g., triazoles).
+If following an organic regime, use products containing horticultural oil, potassium bicarbonate or wettable sulphur. The last two are best applied before disease symptoms appear. Oils are eradicants, meaning they can cure plants that are already infected, but also have some protectant activity.
+Apply wettable sulphur in the early morning or evening, at the coolest times of the day. Never spray sulphur within 2 weeks of the last application of an oil spray. Also, sulphur can burn the leaves, so read the label carefully before applying. (Wettable sulphur has been used for many years for powdery mildew control.)
+Where the number of plants is small, use milk: normal strength milk diluted 1 part in 10 parts of water. Repeat at 7-10 day intervals, spraying in sunlight.
+
+### 136. [not checked] `seen` — none
+
+<https://content.ces.ncsu.edu/gray-mold-or-botrytis-rot-of-strawberry>
+
+- **Cited by:** Strawberry/Gray_Mold  (fields: affected_organs)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Fruit, flowers, leaves, stems
+- **Additional info:** - Gray mold, or Botrytis Fruit Rot, is a serious fungal disease caused by Botrytis cinerea. In most years it is the primary disease of concern for strawberries and is present in all strawberry production areas. The disease is a problem not only in the field, but also post-harvest during storage, transit, and marketing of strawberries, due to onset of severe rot as the fruits begin to ripen. Besides fruit, the fungus also infects leaves, crown, petals, flower stalks, and fruit caps. Specifics on Botrytis Crown rot can be found in the Extension factsheet: Botrytis Crown Rot of Strawberry. Disease is most severe during bloom and harvest in cool seasons with lengthy periods of clouds and rain.
+
+Gray mold often infects petals and leaves before fruit set and may be prevalent during all stages of fruit development. Infected petals may not develop symptoms until flowers drop and fruit begins to develop. The fungus then progresses down from the calyx to the developing fruit causing light brown lesions at the stem end that quickly spread. Initial fruit infections can also occur where they contact soil, standing water, or other infected berries and flower petals. Infected fruit may remain firm, yet become covered with gray spores and mycelium, giving the fruit a velvety gray appearance. High humidity favors mycelial formation that is visible as a white cottony mass. On undeveloped fruit and under dry conditions, lesions may develop slowly, and fruit may become misshapen and die before maturity. Fruits that are completely rotten become dry, tough and mummified.
+
+Botrytis primarily enters the field on transplant foliage. The fungus can live in the green tissue (leaves, stems, etc.) but be latent, or dormant, and not cause symptoms. Botrytis can affect many different crops and therefore weeds surrounding a field could be an important source of the pathogen. The pathogen can also produce dark hardened structures called sclerotia (overwintering structures of the fungus) and these can persist in soil for years. However, experiments conducted in eastern North Carolina showed no signs of Botrytis on surrounding vegetation and found no indication of sclerotia in the soil. This suggests that those sources may be of limited importance in North Carolina for the spread of disease. In the presence of cool, wet weather with prolonged leaf wetness (13-16 hours) the infected strawberry tissue begins to die, and the pathogen becomes active. It colonizes the leaf and begins obtaining its nutrients from the dead tissue. Spores are formed from these colonized tissues and, once environmental conditions are appropriate (between 65-75 F and damp or rainy weather), they are dispersed by water splash and/or wind onto newly emerging leaves or blossoms. With free moisture, the spores can germinate and begin new infections. Immature fruits become infected primarily through blossom infections as the fungus spreads from flower to fruit tissues. Once the berries begin to ripen, the fungus colonizes them and sporulates, producing the characteristic “gray mold”. Any of these infected tissues become sources for secondary infections in the field. Spring frosts may increase the possibility of flower and fruit infections as the damaged blooms are an ideal infection court. During storage, transport, and other post-harvest situations symptoms can appear after days or weeks on seemingly healthy fruit due to latent infections. These infections spread quickly through contact and on wounds from handling.
+
+Factors of plant growth that are most important for disease development in annual planting systems:
+1. Senescence – Leaf and flower senescence (and eventual death) are triggers for Botrytis to begin rapidly colonizing tissues. The death of transplant foliage results in the production of spores from the initial inoculum introduced at planting. These spores from dead leaf tissue are then spread to newly developing leaves; these newly infected leaves may then senesce two to three months later, moving infections to developing flowers; and when flowers senesce infections begin spreading to young fruit.
+
+2. Leaf emergence - Newly emerging leaves are extremely susceptible to infection. Upon infection in the fall, leaves will appear healthy until senescence occurs in the spring and secondary inoculum is released.
+
+3. Floral development - Release of secondary inoculum results in the infection of flowers and subsequent infection of the fruit. Rarely are the fruit themselves infected by an airborne spore, rather, Botrytis will stay dormant in the developing flower/fruit until factors such as increased ethylene production (ripening) and high humidity/rainfall allow for growth of the fungus.
+
+Best management Practices
+
+1. Plant Source
+B. cinerea is commonly associated with transplant leaves and research has demonstrated that there are no differences due to plant source or variety. This means that it is currently not possible to obtain disease-free plants. Excess use of certain fungicides during the propagating phase results in resistant populations and poor control with these fungicides in fruit production fields. Despite there being no resistant strawberry cultivars, those with upright growth patterns or a reflexed calyx can lower the risk of infections.
+
+2. Cultural Practices
+When planting, adequate spacing between plants will improve airflow in the canopy. However, it is important to use a spacing that will optimize yields while still enhancing disease management. Planting in raised beds also increases air flow and will improve drainage - resulting in lower disease levels. Plastic mulch helps keep down rain splash, plant and soil-surface contact, reduces the incidence of weeds that may harbor Botrytis inoculum, and reduces moisture within the canopy.
+
+Be careful not to over-fertilize as excess nitrogen has been shown to increase fruit rot when weather conditions are favorable. To avoid over-fertilization, base fertilizer programs on leaf tissue nutrient analysis reports. Research has shown that increasing nitrogen levels beyond an optimum level does not increase yield but does increase fruit rot incidence. Use drip irrigation as it provides a direct source of water and eliminates excess moisture on fruit and leaves.
+
+Removal of senescent and dead tissue is most helpful to do in early spring - just prior to bloom- to help lower inoculum levels. Sanitation practices may help lower infection rates, and studies have shown that yields were highest when using them in organic systems without the use of fungicides. However, the input costs for sanitation methods may make using them not economical in all situations. Harvested fruit should be monitored for disease, and infected berries removed. Quickly moving fruit out of warm field conditions, keeping fruit at around 34 F, and increasing carbon dioxide levels during shipping (12-15% concentration in gastight storage bags) will help keep B. cinerea down.
+
+3. Chemical Control
+Fungicides play a major role in the management of this disease and applications are critical in problem fields during early and full bloom. These applications are important for limiting flower infection and fruit infections that follow. They can also limit the need for late season applications to fruit. A few well-timed sprays are less costly and more effective in controlling gray mold than frequent fungicide applications through harvest. A detailed fungicide schedule is available on the Southern Region Small Fruit Consortium website. Botrytis cinerea has developed resistance to many fungicides. Therefore, following label restrictions, alternating between chemistries, or using tank mixes is highly recommended.
+
+For organic growers, vigilantly manage plant growth as described above and incorporate plant sanitation practices like removing dead and dying leaves just prior to bloom. Make sure to harvest fruit in a timely manner, only handle berries when dry, and cool fruit as soon as possible prior to shipping or selling.
+
+### 137. [not checked] `seen` — none
+
+<https://content.ces.ncsu.edu/verticillium-wilt-of-tomato-and-eggplant>
+
+- **Cited by:** Tomato/Verticillium_Wilt  (fields: visual_symptoms)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Yellowing and wilting of lower leaves, V-shaped yellow lesions on leaflets, brown vascular discoloration in st
+- **Additional info:** - Initial symptoms of Verticillium wilt include yellowing of the lower leaves, wilting, stunted growth, and v-shaped lesions that extend inward from the margin of the leaf. Brown, necrotic tissue begins to develop within the lesions as the disease progresses. Symptoms of wilting may only occur late in the season or once the disease is advanced. Because the pathogen affects the vascular tissue (water and nutrient conducting vessels). Plants may wilt in the afternoon when they are actively transpiring and appear to "recover" in the morning, only to wilt again. Lower leaves will begin to die and fall off, eventually leading to plant death. Similar to Fusarium wilt, longitudinal light brown to cream colored streaks can be seen underneath the outside stem tissue and are most prominent at the base of the plant. Vascular streaking can also be observed in the leaves, and this is a characteristic symptom of Verticillium wilt. Plants that do persist in spite of infection will have greatly reduced fruit yields.
+
+Look alike diseases: Lack of moisture or symptoms of other wilt diseases including bacterial wilt, Fusarium wilt, and southern blight may be confused with symptoms of Verticillium wilt. However, V-shaped leaf lesions are distinctive of Verticillium wilt.
+
+V-shaped lesions
+Figure 1. V-shaped lesions on the leaves of a tomato.
+
+Inga Meadows
+
+Foliar symptoms
+Figure 2. Foliar symptoms of Verticillium wilt on tomato plants.
+
+Inga Meadows
+
+Vascular streaking
+Figure 3. Vascular streaking within the stem tissue of an eggplant.
+
+Inga Meadows
+
+cross section of infected eggplant stem
+Figure 4. Infected eggplant stem with vascular streaking.
+
+Inga Meadows
+
+Disease Cycle and Epidemiology
+Skip to Disease Cycle and Epidemiology
+Ideal conditions for Verticillium wilt include cooler weather (75 to 85 ⁰F) and neutral to alkaline soil (pH of 7 to 9). The pathogen can survive in the soil without a host for up to 10 years in the form of structures called microsclerotia that are able to withstand drought and cold temperatures. The root exudates of the host trigger germination of these structures in the soil. Openings or wounds in the roots caused by cultivation, secondary root formation, or plant parasitic nematode feeding allow for pathogen entry and infection. Eventually, fungal growth blocks the vascular tissue, inhibiting the transport of water and nutrients to the rest of the plant and causing yellowing, wilting, and eventual plant death.
+
+Distribution and Host Range
+Skip to Distribution and Host Range
+Verticillium wilt is a widespread and common disease that affects more than 300 host families. Severely affected plants include tomatoes, eggplant, potatoes, and peppers. However, plants within the Brassicaceae (Brussels sprouts, cabbage, and cauliflower), Cucurbitaceae (cucumber and pumpkin), and Fragariaceae (strawberries) families are susceptible, as well. Additionally, asymptomatic weedy hosts can spread and maintain populations of the fungus. Numerous rotation crops (corn, wheat, mustard) have also been documented as hosts of the pathogen, although the degree to which inoculum of the pathogen can increase in the soil under cultivation of these hosts is unknown.
+
+General Disease Management
+Skip to General Disease Management
+Once plants are infected with Verticillium wilt it is impossible to eradicate disease with treatment. Preventative measures to inhibit disease introduction are the most effective options.
+
+Select resistant varieties. Planting resistant varieties will help inhibit severe symptoms of disease. See the Southeastern US Vegetable Crop Handbook for a list of varieties with resistance. However, widespread deployment of resistant varieties has led to the development of pathogen races that can overcome resistance. If a variety that is resistant to Verticillium wilt has been deployed and symptoms are still observed, then non-race 1 strains are likely to be present for which there is no known resistance at this time.
+Incorporate crop rotations. Rotating to non-host plants at 4-5 year intervals is advised for disease control. The wide host range of the Verticillium wilt pathogen may limit possible rotational crops, but non-susceptible grass and wheat species are recommended.
+Discard infected plant material. The fungus can survive for extended periods of time within plant tissue. The immediate removal of infected plants is necessary to discourage the persistence of the pathogen, if possible.
+Soil solarization. Heating the top six inches of soil to high temperatures for an extended period of time can kill the fungus and reduce the number of infected plants. However, this practice is difficult to implement in the southeastern US because it must be done during summer months. Frequent rainfall and cloudy days make it difficult to maintain the high temperatures needed to be successful.
+Sanitize equipment and tools. Tractors and other equipment that travel between fields should be cleaned frequently to avoid transport of infected soil. Rinse pots and tools thoroughly with water and treat for at least 30 seconds in a 10% bleach solution or 70% alcohol.
+Grow early-maturing varieties. Quickly-maturing crops are likely to begin producing fruit before they completely succumb to disease. This can improve fruit yield in fields with a history of Verticillium wilt.
+Control weeds. Asymptomatic weedy plants can spread disease to susceptible crops. Fields should be frequently and diligently maintained.
+Use mulch from resistant trees. Mulch used from susceptible trees may introduce Verticillium wilt. Conifers, beech, hickory, white oak, and poplar trees are resistant to this disease and a safer source of mulch.
+
+### 138. [not checked] `seen` — none, page-verified
 
 <https://cropprotectionnetwork.org/encyclopedia/brown-stem-rot-of-soybean>
 
 - **Cited by:** Soybean/Brown_Stem_Rot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Characteristic foliar symptoms of BSR include chlorosis and necrosis between leaf veins, followed by leaf curling and leaf death."
 - **Should support:** Cadophora gregata; Interveinal chlorosis and necrosis followed by leaf curling and death; internal browning of stem pith while th; Leaves; internal stem vascular tissue and pith, especially at nodes and in the lower stem
+- **Additional info:** - Rice tungro disease is caused by a complex of two viruses, Rice tungro bacilliform virus (RTBV), which is a member of the family Caulimoviridae and Rice tungro spherical virus (RTSV), a member of the family Secoviridae. The viral complex is transmitted by several species of green leafhoppers in a semi-persistent manner. The genomes of RTBV and RTSV are double-stranded DNA and single-stranded RNA respectively and are replicated using very different mechanisms. Genetic resistance against RTBV has not been characterized, but for RTSV, recessive resistance has been mapped to a gene encoding a translational initiation factor. We are reviewing here the status of knowledge for the disease and for both viruses.
 
-### 140. [OK] `seen` — none, page-verified
+Tungroviruses and Waikaviruses: Rice tungro bacilliform virus and Rice tungro spherical virus
+Rice tungro was reported for the first time in the 1940s, but it was years later that the disease was attributed to a viral infection and not to a nutritional deficiency. Rice tungro, which means “degenerated growth” in a Philippine dialect, is a devastating disease caused by coinfection with two morphologically and genetically different viruses, Rice tungro spherical virus (RTSV) and Rice tungro bacilliform virus (RTBV), depicted in Fig. 6.7. The viruses are common in mixed infections in South and South East Asia where they cause economic losses, amounting very often to 100%. The disease affects cultivated rice, but it is also prevalent in wild rice and other plants belonging to the Poaceae family. Infected plants show symptoms of discoloration, stunting, and a reduced number of tillers as well as grains that are either sterile or partly filled. Individually, these viruses elicit mild symptoms. If infected only with RTBV, plants develop milder symptoms of yellowing and reddening of the leaves and stunted growth. If infected only with RTSV, very mild stunting, with no yellowing of the leaves, occurs. The interaction between the two viruses is described as synergistic, involving partial dependence. That is, RTBV on its own cannot be transmitted from plant to plant, but it can do so with the help of RTSV that encodes an insect transmission factor. Both rice tungroviruses are transmitted by leafhoppers (e.g., Nephotettix virescens) in a semipersistent manner. RTSV essentially acts as a helper in the acquisition and transmission of RTBV.
 
-<https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn>
+### 139. [not checked] `seen` — none
 
-- **Cited by:** Corn/Diplodia_Ear_Rot  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "white mold beginning at the base of the ear that eventually becomes grayish-brown and rots the entire ear"
-- **Should support:** Ears, husks and kernels; Stenocarpella maydis and S. macrospora; White mould starting at the ear base, turning grayish-brown; raised black pycnidia on husk or kernels
+<https://cropprotectionnetwork.org/encyclopedia/crazy-top-of-corn>
 
-### 141. [OK] `seen` — none, page-verified
+- **Cited by:** Corn/Crazy_Top  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Sclerophthora macrospora
+- **Additional info:** - Crazy top is caused by infection of Sclerophthora macrospora, an oomycete pathogen. Crazy top-affected plants are distorted and/or stunted. The leaves below the tassel may proliferate, resulting in a very bushy appearance of the top of the plant, which lends this disease its name. Internodes may be short or long; there may be a proliferation of ear shoots, leaves that are narrow and strap-like, excessive tillering, or a complete lack of ear and tassel formation.
+
+Crazy top is more common in fields that are flooded early in the growing season. Proper soil drainage will reduce the risk of infection.
+
+### 140. [not checked] `seen` — none
+
+<https://cropprotectionnetwork.org/encyclopedia/fusarium-root-rot-and-wilt-of-soybean>
+
+- **Cited by:** Soybean/Fusarium_Disease  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Fusarium virguliforme (sudden death syndrome); Fusarium solani, F. oxysporum, and other Fusarium spp. (root an
+- **Additional info:** - Fusarium is a very common soil fungus, and more than 10 different species are known to cause root rot. However, the economic impact on yield is not well documented. Infected seedlings exhibit poor or slow emergence and are often stunted. Root rot appears as reddish-brown to dark brown discolored roots and poor nodulation. Foliar symptoms of Fusarium wilt include scorching of the upper leaves, while middle and lower canopy leaves can turn chlorotic and later wither and drop from the plant. Infected plants have brown vascular tissue in the roots and stems and show wilting of the stem tips. External decay or stem lesions are not seen above the soil line. Cool, wet soil favors early season infection, while hot, dry conditions favor later season symptoms.
+
+Soybean stem tips wilting.
+Soybean stem tips wilting is a symptom of Fusarium root rot and wilt.
+
+Image: D. Mueller
+
+Soybean seedling roots with lesions.
+Fusarium-infected soybean seedlings.
+
+Image: L. Giesler
+
+The causal fungi survive in the soil or in plant residue. Certain weeds may serve as hosts to some pathogenic Fusarium species. Stresses such as herbicide injury, high soil pH, iron chlorosis, nematode feeding, and nutritional disorders can all predispose plants to infection. After infection, damage to plants can be worsened if soil moisture is limited because of the damaged root systems.
+
+Reducing or eliminating stress factors, such as use of herbicides that cause injury to soybeans, wet soils, and soybean cyst nematode, can help reduce root rot problems. Growing varieties tolerant to iron deficiency chlorosis should be considered if the root rot seems associated with iron deficiency chlorosis. No resistant varieties are available, but fungicide seed treatments may protect seedlings.
+
+### 141. [not checked] `seen` — none
+
+<https://cropprotectionnetwork.org/encyclopedia/holcus-leaf-spot-of-corn>
+
+- **Cited by:** Corn/Holcus_Spot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Pseudomonas syringae pv. syringae
+- **Additional info:** - Holcus leaf spot is caused by the bacteria Pseudomonas syringae pv. syringae. Holcus leaf spot usually does not cause major losses. Leaf spots are initially oval to irregular, dark green, water-soaked at the margins, and may have a light brown border. Later, lesions dry out and turn light tan, usually without a border. The dry lesions have a papery texture.
+
+Holcus leaf spot often follows warm (77-86°F), rainy weather early in the season.Most hybrids have adequate resistance. Other management practices are rarely warranted and fungicides are not effective against this bacterial disease.
+
+### 142. [not checked] `seen` — none
+
+<https://cropprotectionnetwork.org/encyclopedia/phomopsis-seed-decay-of-soybean>
+
+- **Cited by:** Soybean/Phomopsis  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Diaporthe longicolla (anamorph: Phomopsis longicolla) and related Diaporthe/Phomopsis species
+- **Additional info:** - Diaporthe (formerly Phomopsis) seed decay is caused by the fungus Diaporthe longicolla, and can greatly affect seed quality. Diaporthe-infected seed are cracked and shriveled and are often covered with chalky, white mold. If infected seeds are planted, emergence may be low due to seed rot or seedling blight. Infected seedlings have reddish-brown, pinpoint lesions on the cotyledons or reddish-brown streaks on the stem near the soil line.
+
+Choose varieties with the best resistance package. Tillage and rotation to non-host crops such as corn can reduce inoculum. Timely harvest will help reduce the risk of seed decay and preserve seed quality. Do not plant seed with a high incidence of Diaporthe seed decay. Currently available fungicide seed treatments generally appear to be effective against Diaporthe seed infection. Foliar fungicide applications between R3 and R5 may reduce seed infection especially in seed production fields. Fungicide may improve seed quality, but yield may not be affected.
+
+### 143. [not checked] `seen` — none
+
+<https://cropprotectionnetwork.org/encyclopedia/physoderma-brown-spot-of-corn>
+
+- **Cited by:** Corn/Physoderma_Brown_Spot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Physoderma maydis
+- **Additional info:** - Physoderma brown spot is caused by the fungus Physoderma maydis. Symptoms of Physoderma brown spot usually appear on mid-canopy leaves. Leaf lesions are numerous, very small (approximately ¼ inch in diameter), round to oval, yellowish to brown in color, and usually occur in broad bands across the leaf. Alternating bands of infected and noninfected tissues are common. Dark purplish to black oval spots also occur on the midrib of the leaf. Symptoms also may occur on the stalk, leaf sheath, and husks.
+
+Physoderma brown spot is more prevalent in wet growing seasons. Infection requires a combination of light, free water, and warm temperatures (75-85°F). Leaf infection occurs in the whorl when water is present for an extended time.
+
+Hybrids vary in their susceptibility to the disease, and crop rotation and tillage reduce survival of inoculum. Foliar fungicides labeled for Physoderma brown spot are available.
+
+### 144. [not checked] `seen` — none
+
+<https://cropprotectionnetwork.org/encyclopedia/stem-canker-of-soybean>
+
+- **Cited by:** Soybean/Stem_Canker  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Diaporthe aspalathi (southern stem canker) and Diaporthe caulivora (northern stem canker)
+- **Additional info:** - Multiple fungi in the genus Diaporthe cause stem canker. The first symptoms of stem canker are often dead plants with dried leaves that remain attached to petioles late in the season. Diseased plants usually occur in patches within fields. Stem lesions start as small, reddish-brown spots at the base of a branch or leaf petiole and then expand to form slightly sunken cankers that are reddish-brown with reddish margins. Cankers may remain on one side of the stem and can extend over several nodes or girdle the stem, killing the plant.
+
+In some cases, Diaporthe fungi cause top dieback by forming a dark brown canker on the upper four to six internodes, which kills only the top of the plant. Diaporthe fungi may also be associated with gray streaking in the lower stem and taproots. Interveinal foliar chlorosis and necrosis can occur as a result of a fungal toxin, but it is difficult to distinguish foliar symptoms from several other soybean diseases that cause similar symptoms.
+
+A soybean stem with a brown lesion.
+Early stem canker lesion near a node on soybean stem.
+
+The fungi that cause stem canker survive in the soil and in infested crop residue. Extended wet weather occurring early in the season is thought to favor disease. Infection occurs when spores are splashed by rain onto plants in early vegetative growth stages.
+
+The best way to manage stem canker is to plant resistant soybean varieties. Rotating crops and incorporating infested crop residue into the soil will reduce the amount of inoculum available to infect the next soybean crop. 
+
+For more information see the Stem Canker publication or the Additional Factors to Consider when Selecting Xtend Soybean Varieties feature article.
+
+### 145. [not checked] `seen` — none, page-verified
 
 <https://cropprotectionnetwork.org/encyclopedia/stewarts-disease-of-corn>
 
 - **Cited by:** Corn/Stewart_S_Disease  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Stewart's disease lesions spread from flea beetle feeding scars (a tiny scratch on the leaf) and are initially pale green to yellow streaks, later becoming brown as tissue dies. The margins of the streaks are usually wavy but generally follow leaf veins."
 - **Should support:** Leaves, spreading from flea beetle feeding scars; Pale green to yellow streaks spreading from flea beetle scars, browning as tissue dies, with wavy margins foll; Pantoea stewartii
+- **Additional info:** - Diplodia stalk and ear rots commonly occur around mid to late ear fill.
+Stalk and ear rots can reduce the quality of the grain and compromise stalk integrity, leading to lodging, premature plant death, and potential yield losses.
+In-season management options are limited but proactive management strategies, such as product selection, reducing inoculum in the field, and minimizing stress, can reduce the incidence of disease next season.
+The Diplodia stalk and ear rot fungus overwinters in corn debris; therefore, corn-on-corn fields managed with reduced tillage have an increased potential for Diplodia stalk and ear rots. Diplodia stalk rot commonly occurs around mid- to late ear fill and is favored by late-season stresses such as moisture and nutrient problems, excessively cloudy weather, and invasive injury to the leaves, stalks, or roots.
 
-### 142. [OK] `seen` — none, page-verified
+Diplodia ear rot is favored by dry conditions during the early vegetative growth stages followed by warm, wet weather within the first 21 days after silking. Ear rot can be particularly problematic when rainfall is above average from silking to harvest, or when insects or birds damage the ear during development. Corn products vary in their level of susceptibility to Diplodia; however, any product can be infected under favorable conditions.
+
+Symptoms of Diplodia stalk rot:
+
+Straw-brown discoloration of the lower nodes.
+Internal disintegration of the pith, only vascular tissues remain intact (Figure 1).
+Squishy stalks that break easily.
+Small black dots (fungal spore-producing structures) around the lower nodes of infected stalks (Figure 3).
+Symptoms of Diplodia ear rot
+
+Tan or bleached appearance on ears at the base of the husk (Figure 2).
+White to gray mold between the kernels beginning at the base of the ear and progressing toward the tip (Figures 1 and 2).
+Small, black spore-producing structures can be found on the husks, cobs, and kernels.
+If left in the field, particularly when weather is rainy and humid, ears with light infections may become completely mummified by the fungus.
+Yield impacts
+
+Lodging.
+Premature plant death.
+Reduced kernel size, grain weight, and nutritional value.
+Lightweight ears subject to breakage and losses during harvest.
+Diplodia does not produce a mycotoxin harmful to livestock but will result in lower quality feed.
+Management
+Scouting. Scout for stalk rots as corn reaches the dough through dent stage. Pay close attention to fields with heavy infestations of leaf diseases as these fields may be more prone to stalk lodging later in the season.
+
+To evaluate stalk quality:
+
+Conduct the push or pinch test by pushing each stalk to approximately a 45-degree angle to see if it breaks or by pinching the lower internodes between your thumb and finger to see if the stalk collapses.
+Conduct either test on 10 plants in a row at several locations throughout the field.
+If stalk quality has been compromised in more than 10% of stalks, then the field should be slated for early harvest.1
+Management. In-season options for managing Diplodia are limited and fungicides are not effective at controlling the disease, but proactive practices can help manage both Diplodia stalk rot and ear rot in future crops.
+
+Plant products with good standability ratings.
+Rotate to crops other than corn for 1-2 years.
+Use tillage to bury infected corn residue.
+Protect stalk integrity by controlling foliar diseases and by minimizing nutrient and moisture stress.
+Protect plants from insect damage.
+Plant products with different relative maturities and/or different GDU requirements to flowering so that the entire crop does not flower during peak environmental conditions for Diplodia ear rot infection.
+Lower planting populations.
+Grain drying and storage
+
+Schedule affected fields for early harvest to prevent further spread of ear rot if weather conditions have been favorable or if stalk lodging is a concern.
+Allow corn to dry in the field to 23 to 25% moisture and dry grain to 13 to 14% moisture prior to storage.2
+Store grain at cool temperatures between 36 and 44°F after drying.
+Limit storage to cold weather and do not store through the next summer.
+Store diseased grain separate from healthy grain.
+Check grain periodically for temperature, wet spots, and insects.
+Clean bins thoroughly before storing.
+
+### 146. [not checked] `seen` — none, page-verified
 
 <https://cropprotectionnetwork.org/encyclopedia/tar-spot-of-corn>
 
 - **Cited by:** Corn/Tar_Spot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Tar spot appears as small, raised, black spots scattered across the upper and lower leaf surfaces."
 - **Should support:** Leaves (upper and lower surfaces); Phyllachora maydis; Small raised black stromata scattered over both leaf surfaces; tan-to-brown 'fisheye' lesions with dark border
+- **Additional info:** - Tar spot is caused by the fungus Phyllachora maydis, and can cause severe yield loss on susceptible hybrids when conditions are favorable for disease. Tar spot appears as small, raised, black spots scattered across the upper and lower leaf surfaces. These spots are stromata (fungal fruiting structures). If viewed under the microscope, hundreds of sausage-shaped asci (spore cases) filled with spores are visible. When severe, stromata can even appear on husks and leaf sheaths.
 
-### 143. [OK] `seen` — none, page-verified
+Tan to brown lesions with dark borders surrounding stromata can also develop. These are known as "fisheye" lesions. In Latin America, where tar spot is more common, fisheye lesions are associated with another fungus, Monographella maydis, that forms a disease complex with P. maydis known as the tar spot complex. M. maydis has not been detected in the United States.
+
+At the end of the growing season, common and southern rust pustules can be mistaken for tar spot stromata as these rusts switch from producing orange-red spores (urediniospores) to black spores (teliospores). However, rust spores burst through the epidermis and the spores can be scraped away from the pustules with a fingernail while tar spots cannot be scraped off the leaf tissue. The pathogen that causes tar spot overwinters on infested corn residue on the soil surface, and it is thought that high relative humidity and prolonged leaf wetness favor disease development.
+
+Residue management, rotation, and avoiding susceptible hybrids may reduce tar spot development and severity. Some fungicides may also reduce tar spot, although little data exists regarding application timing for efficacy and economic response. The Corn ipmPIPE helps track the appearance of tar spot. It is available online at https://corn.ipmpipe.org/tar-spot/.
+
+### 147. [not checked] `seen` — none
+
+<https://cropprotectionnetwork.org/publications/an-overview-of-cercospora-leaf-blight-of-soybean>
+
+- **Cited by:** Soybean/Cercospora, Soybean/Cercospora_Blight  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Cercospora kikuchii
+- **Additional info:** -  Cercospora leaf blight (CLB), caused by multiple species of Cercospora fungi, is an important soybean disease, particularly in the southern United States. This foliar disease can cause premature defoliation and yield loss. Historically, CLB was attributed to infections by C. kikuchii, but C. flagellaris has been reported to be the dominant species based on a recent sampling of symptomatic soybean plants from a large area stretching from Texas east to Alabama and north to Missouri and Kentucky. The main species causing CLB in other areas is not well understood. Additional species associated with CLB in the U.S. include C. alchemillicola, C. iranica, and C. sigesbeckiae, and a previously unidentified species of Cercospora.
+
+Symptoms and Signs
+Symptoms of CLB usually are not observed until beginning seed (R5) or later, and symptoms may not appear at the same time. Small, purplish specks (Figure 1) may be visible on leaflets in the upper canopy. As the disease progresses, the upper canopy of the soybean plant will develop a bronze to purple coloration, and the leaves develop a leathery feel (Figure 2). Purple lesions may develop on the petioles (Figure 3). As the disease progresses, brown necrosis (blighting) may occur on leaflets along with a grayish hue that is attributed to sporulation of the fungi that cause CLB (Figure 4). In severe situations, or on an extremely susceptible variety, petioles, the main stem, and pods can all develop a dark purple coloration. The fungi associated with CLB have also been associated with purple seed stain (Figure 5).
+
+Small brown lesions and discoloration on soybean leaf. Image by Chris Ward.
+Figure 1. Initial symptoms of Cercospora leaf blight are small, purplish specks on leaflets in the upper canopy.
+
+Chris Ward
+
+Bronze and purple discoloration of soybean leaf. Image by Trey Price, LSU AgCenter.
+Figure 2. As the disease progresses, the upper canopy of the soybean plant will develop a bronze to purple coloration, and the leaves develop a leathery feel.
+
+Trey Price, LSU AgCenter
+
+Purple lesions on soybean petiole. Image by Trey Price, LSU AgCenter.
+Figure 3. Purple lesions may develop on soybean petioles.
+
+Trey Price, LSU AgCenter
+
+Dead and dying soybean leaf tissue. Image by Trey Price, LSU AgCenter.
+Figure 4. As disease progresses, brown necrosis may occur on leaflets along with a grayish hue attributed to fungal sporulation.
+
+Trey Price, LSU AgCenter
+
+Purple on soybean seeds. Image by Trey Price, LSU AgCenter.
+Figure 5. Purple seed stain on soybean seed.The fungi associated with Cercospora leaf blight have also been associated with purple seed stain.
+
+Trey Price, LSU AgCenter
+
+Conditions that Favor Disease
+Hot (68 to 86 F) and humid (at least 92.5%) conditions with prolonged dew periods (8 to 24 hours) favor the development of CLB. Rainfall and wind can disperse spores and result in secondary infections (Figure 6). The fungi can also reproduce on additional crop and weed hosts (corn, cotton, pokeweed, ragweed, others) and survive on previous crop residue, which contributes to the inoculum for the subsequent cropping season. Late-planted soybean may have a greater risk of CLB due to the higher inoculum levels being present later in the season. Later planted and later maturing susceptible soybean varieties are more apt to develop CLB. Infected seeds may provide additional inoculum at planting.  
+
+Cercospora leaf blight disease cycle illustration.
+Figure 6. Disease cycle of Cercospora leaf blight on soybean.
+
+Yield Losses and Impact
+Yield losses due to CLB can range from mild to severe. Fields can be completely defoliated under weather conditions favorable for the disease, although this is rare. The annual yield loss estimates compiled by plant pathologists throughout the U.S. soybean production system indicate that the estimated losses occurring between 2013 and 2023 ranged from $46 to $166 million.
+
+Diagnosis
+Since multiple symptoms are attributable to CLB and it can be confused with other problems, diagnosis can be challenging in the field. Symptoms can vary with location and variety, further confounding diagnosis. Extension pathologists can help with CLB identification and/or samples can be sent to diagnostic laboratories to confirm the presence of CLB pathogens. 
+
+Diseases, Disorders, and Injury with Similar Symptoms
+Cercospora leaf blight can be confused with other diseases and disorders. We describe the most common of these below and in Table 1.
+
+Diseases
+Target spot (Corynespora cassiicola)– Target spot infects various soybean plant parts. Initially considered minor, it now causes significant defoliation in susceptible varieties across the southern United States. Lesions are reddish-brown and round to irregular with yellow halos and may contain a concentric ring pattern (Figure 7). Severe infections lead to defoliation, beginning in the lower canopy. Stem and petiole lesions are dark brown and can be confused with CLB lesions (Figure 8).
+
+How to distinguish Target spot from CLB: Petiole lesions caused by target spot generally are first observed in the lower canopy while CLB petiole lesions are initially observed in the upper canopy. Concentric ring patterns in lesions are present in target spot but absent in CLB. The presence of foliar symptoms in conjunction with petiole lesions in the lower canopy indicate target spot. Moreover, lesions associated with target spot tend to be smaller and not confined to the petiole.
+
+Yellowish lesions of target spot on soybean. Image by Trey Price, LSU AgCenter.
+Figure 7. Foliar symptoms of target spot.
+
+Trey Price, LSU AgCenter
+
+Discoloration on soybean petioles from target spot. Image by Trey Price, LSU AgCenter.
+Figure 8. Stem lesions of target spot.
+
+Trey Price, LSU AgCenter
+
+Frogeye leaf spot (Cercospora sojina) – Frogeye leaf spot (FLS) is characterized by the small gray lesions with reddish-brown borders on upper leaf surfaces. Lesions start dark and water-soaked, enlarging over time. Severe cases lead to premature leaf drop and can spread to stems and pods. The fungus that causes frogeye leaf spot may also cause purple petiole lesions (Figure 9) and infect seed. 
+
+Lesions on petioles from frogeye leaf spot. Trey Price, LSU AgCenter.
+Figure 9. Purple petiole lesions of frogeye leaf spot.
+
+Trey Price, LSU AgCenter
+
+How to distinguish frogeye leaf spot from CLB: The foliar phase of FLS is usually severe and easily distinguishable from CLB when FLS petiole lesions occur. The seed stain caused by C. sojina (the causal agent of FLS) is light purple to gray, while seed infection by CLB pathogens results in a royal purple color. 
+
+Injury
+Chloride toxicity – Chloride toxicity symptoms in soybeans include leaf tip scorching, premature yellowing, bronzing of leaves, and leaf loss that may resemble CLB.
+
+How to distinguish chloride toxicity from CLB:  Chloridetoxicity injury typically manifests along leaflet margins as chlorosis and necrosis, while CLB can occur anywhere on leaflets.   
+
+Sunburn – Sunburn, also known as sunscald, appears as brick-red discoloration between veins of soybean leaves. This condition primarily affects the lower leaf surface, distinguishing it from CLB, which causes discoloration on the upper leaf surface. Injury occasionally can be seen on pods.
+
+How to distinguish sunburn from CLB: Sunburn is typically on the lower leaf surface, while CLB is predominately on the upper leaf surface.
+
+Disease/Injury
+
+Symptom Distribution
+
+Symptom Expression
+
+Cercospora leaf blight
+
+Anywhere on upper leaf surface; upper canopy
+
+Small, purplish specks turning to leaf bronzing; leaf loss
+
+Target spot
+
+Lower canopy
+
+Red-brown lesions with yellow halos; may show concentric rings; leaf loss
+
+Frogeye leaf spot
+
+Upper leaf surface
+
+Small, gray lesions with red margins; leaf loss
+
+Chloride toxicity
+
+Usually along leaf margins
+
+Leaf tip scorching; leaf yellowing and bronzing; leaf loss
+
+Sunburn
+
+Upper and lower leaf surface, pods
+
+Brick-red discoloration between leaf veins
+
+Table 1. Symptom distribution and expression for diseases and disorders with symptoms similar to Cercospora leaf blight.
+
+Management
+Soybean varieties with resistance to CLB may be available, and farmers should plant varieties that have been evaluated near their farm. Since the fungi that cause CLB can overwinter on soybean residue, rotation and/or tillage may reduce disease incidence.
+
+Managing CLB mainly relies on using foliar fungicides from multiple fungicide classes, and applying them at appropriate reproductive growth stages. However, QoI (Group 11) and MBC (Group 3) fungicides are likely no longer effective in managing CLB since widespread QoI resistance within the CLB pathogen populations has been confirmed in eight states. However, some SDHI (Group 7) and DMI (Group 3) premixes applied from beginning pod to beginning seed (R3-R5) using appropriate rates and water volumes (10-15 gallons per acre) are still effective. Please refer to the most recent Fungicide Efficacy for Control of Soybean Foliar Diseases for more information.
+
+### 148. [not checked] `seen` — none, page-verified
 
 <https://cropprotectionnetwork.org/publications/an-overview-of-gosss-bacterial-wilt-and-blight>
 
 - **Cited by:** Corn/Goss_S_Wilt  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Dark green to black, scattered, discontinuous water-soaked spots ("freckles") develop within the plant tissue inside the lesions and are diagnostic for Goss's wilt"
 - **Should support:** Clavibacter nebraskensis; Elongated tan to grayish-brown lesions with wavy margins along the veins, carrying diagnostic dark water-soake; Leaves, with systemic infection of the stalk
+- **Additional info:** - Goss’s bacterial wilt and blight of corn is an economically important disease of susceptible dent and specialty corn hybrids. This disease (most commonly called Goss’s wilt) is caused by the bacterium Clavibacter nebraskensis. Grain yield losses from Goss’s wilt can be severe, exceeding 50%.
 
-### 144. [SSL-unverifiable (page likely fine)] `seen` — none, page-verified
+Goss’s wilt was first observed in south-central Nebraska in 1969 and was subsequently reported in neighboring states. The disease’s prevalence was low throughout the region from the 1980s through the early 2000s. However, between 2006 and 2017, Goss’s wilt reemerged in these states and was reported in many other U.S. states and two Canadian provinces.
+
+Currently, the known distribution of Goss’s wilt in the U.S and Canada reaches from Indiana in the east to Colorado in the west, and from Manitoba and Alberta in the north to Texas in the south. More recently, Goss’s wilt was reported in Mexico (2023) and South Africa (2024). These are the first reports of Goss’s wilt outside of the U.S. and Canada.
+
+This publication describes Goss’s bacterial wilt and blight symptoms, describes disorders commonly confused with the disease, and summarizes management strategies.
+
+Symptoms
+Goss’s wilt can cause leaf blight and systemic wilt symptoms. Leaf blight is the most common symptom and may occur at any growth stage. Leaf symptoms often develop from the leaf tips or in association with wounding caused by hail, sandblasting, and additional types of injury. Young lesions appear as streaks of light green tissue with water-soaking on the leaf (Figure 1). Mature leaf lesions are elongated, tan to grayish-brown, and have irregular or wavy margins that extend parallel to the veins (Figure 2). The tan lesions can coalesce to affect large sections of leaf area, killing more than 60% of the leaf area on infected plants (Figure 3).
+
+Dark green to black, scattered, discontinuous water-soaked spots (“freckles”) develop within the plant tissue inside the lesions and are diagnostic for Goss’s wilt (Figures 2 and 4). The freckles appear translucent when they are backlit. In humid conditions, small, orange droplets of bacterial ooze may be observed on the lesions. When dried, this ooze may appear shiny and similar to dried varnish (Figure 5).
+
+The systemic wilt phase is less common than the leaf blight phase and is often first observed in the early vegetative stages of growth (corn growth stages V2-V6). When the wilt phase develops, the infection may discolor xylem elements or cause a slimy stalk rot, which is followed by wilting and plant death (Figures 6-8). Plants that become systemically infected later in the growing season may wilt and appear drought stressed. These plants can also have weak stalks and increased susceptibility to lodging due to wind or other stress.
+
+Disease Cycle
+The Goss’s wilt pathogen, Clavibacter nebraskensis, overwinters in infested corn residue on or near the soil surface, which serves as the primary source of inoculum (Figure 9). Infested residue may allow the pathogen to survive on the soil surface for at least 10 to 15 months. Burying infested residue reduces the pathogen’s survival. With that said, conservation tillage should not be abandoned in areas where it is a critical tool for soil management.
+
+The Goss’s wilt pathogen can also survive in additional plant species. Confirmed hosts include grain sorghum, annual ryegrass, sudangrass, several foxtail species, johnsongrass, large crabgrass, shattercane, big bluestem, little bluestem, and woolly cupgrass. These and several additional grass species grown alone or in cover crop mixes may serve as sources of inoculum that can infect corn.
+
+The bacterium is likely splashed from infested residue or grasses onto the surface of corn leaves. The disease typically develops after the bacterium enters wounds in leaves caused by hail, blown sand/soil, or wind. However, wounds may not be required for infection, and infection can occur through hydathodes at the tips of corn leaves.
+
+The bacterium can spread short distances within a field by leaf contact between adjacent plants and by aerial dispersal between fields across country roads during the growing season. In addition, equipment can spread infested leaves or other plant material from field to field. Seed can be infested at low levels and is not known to be an important means of dissemination; however, it may play a role in introducing the pathogen into new areas or specific sites within fields.
+
+Infection may occur at any growth stage. Infection prior to V6 often results in systemic infections that lead to plant death and stand loss. Infections after V6 result in leaf blight. Symptoms often become most visible and severe after silking (R1 growth stage).
+
+Disease Management
+The best way to manage Goss’s wilt is to plant highly resistant corn hybrids. Additional control can be achieved by rotating crops with non-hosts (such as soybean, dry bean, small grains, or alfalfa) to help reduce the primary inoculum for the subsequent corn crop.
+
+Because the bacterial pathogen survives in infested residue, tillage that buries residue may reduce the presence of inoculum; however, it should not be used if conservation tillage is a top priority. It may also be beneficial (where feasible) to control grassy weed hosts and practice tillage that buries infected residue after harvest. Fungicides are ineffective, and other chemical sprays have not consistently been effective in reducing symptoms or preserving yield.
+
+### 149. [not checked] `seen` — none, page-verified
 
 <https://crops.extension.iastate.edu/post/identifying-common-herbicide-symptoms-soybean>
 
 - **Cited by:** Soybean/Herbicide_Injury  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "2,4-D often causes more of a strapped appearance to leaves, making them longer and skinnier with parallel veins"
 - **Should support:** Leaves and leaflets; hypocotyls and cotyledons after preemergence splash; None - abiotic injury from herbicide drift, carryover or contact, not a pathogen; Symptoms vary by herbicide group: strapped or cupped leaves (auxin mimics), interveinal chlorosis and necrosis
+- **Additional info:** - We’ve seen more herbicide injury to soybean than I recall in past summers, resulting in questions about determining the source and reasons for the damage. This ICM Blog will share some tips on identifying herbicide injury we’ve seen this summer in soybean fields.
 
-### 145. [403 bot-blocked (page exists)] `seen` — none
+Crop injury may be caused by herbicides applied directly to the crop, carryover from herbicides applied the previous year, contaminated sprayers, or drift from adjacent fields. Careful assessment of field history, field topography, and field edges is important to help distinguish between different sources of herbicide injury. Also consider how environmental conditions may influence the crop’s ability to tolerate the herbicide.
 
-<https://extension.ucdavis.edu/sites/default/files/2022-03/gray_mold_strawberry.pdf>
+Carryover injury is typically associated with soil types or may be found in streaks or oddly-shaped field areas where overlap occurs.  Delayed applications and a dry summer in 2019 have increased problems with carryover.
+Misapplication injury from tank contamination usually results in field-wide injury, but symptoms may be worse in areas with overlaps.  Field corners might be missed by a sprayer, resulting in asymptomatic plants.
+Injury from a spray boom that was not cleaned out properly usually begins near a field entrance and often takes on a characteristic W, M, or V pattern as the product works its way out of the spray boom (Figure 1).
+Drift injury from nearby fields or non-crop areas typically has a pattern of declining injury as one moves from the source.  Herbicides that move via volatilization or products applied during inversions may produce field-wide injury. Look carefully for protected areas that may not might show symptoms (i.e. behind trees, terraces, or tall fence lines).
 
-- **Cited by:** Strawberry/Gray_Mold  (fields: affected_organs)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Fruit, flowers, leaves, stems
+### 150. [not checked] `seen` — none, page-verified
 
-### 146. [403 bot-blocked (page exists)] `seen` — none
+<https://en.wikipedia.org/wiki/Cochliobolus_miyabeanus>
 
-<https://extension.umn.edu/diseases/powdery-mildew-tomato>
+- **Cited by:** Rice/Brown_Spot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "The disease appears first as minute brown dots, later becoming cylindrical or oval to circular.(resemble sesame seed)"
+- **Should support:** Helminthosporium oryzae; Leaves; Minute brown dots enlarging to oval-to-circular sesame-seed-like spots 0.5-2.0 mm across that coalesce into la
+- **Additional info:** - Cochliobolus miyabeanus (teleomorph, formerly known as Helminthosporium oryzae, anamorph Bipolaris oryzae) is a fungus that causes brown spot disease in rice. [Bipolaris is the correct name according to https://www.catalogueoflife.org/data/taxon/LVRG]
 
-- **Cited by:** Tomato/Powdery_Mildew  (fields: affected_organs)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Leaves, stems
+It was considered for use by the US as a biological weapon against Japan during World War II.[1]
 
-### 147. [403 bot-blocked (page exists)] `seen` — none
+Hosts and symptoms
+Brown spot of rice is a plant fungal disease that usually occurs on the host leaves and glume, as well as seedlings, sheaths, stems and grains of adult host plants. Hosts include Oryza (Asian rice), Leersia (Cutgrass), Zizania (Wild rice), and other species as well such as Echinochloa colona (junglerice) and Zea mays (maize).[2][3]
 
-<https://extension.umn.edu/diseases/verticillium-wilt-tomatoes>
+Cochliobolus miyabeanus may cause a wide range of symptoms. General symptoms occurring on the hosts can be observed on many parts of the plant, including leaves, seeds, stems and inflorescences, along with the presence of brown spot. Discoloration of stems is another symptom develops from brown spot of rice disease. Oval-shaped brown spots are the fungal growth sign, which have grey colored center developed on host leaves. The fungus produces a toxin known as ophiobolin which inhibits the growth of roots, coleoptiles, and leaves.[4] This pathogen has also been known to produce non-host specific toxins which suppress plant defenses, causing the characteristic brown spots on rice leaves.[4]
 
-- **Cited by:** Tomato/Verticillium_Wilt  (fields: affected_organs)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Leaves, vascular tissue (xylem), stems, roots
+Dark coffee-coloured spots appear in the panicle and severe attacks cause spots in the grain and loss of yield and milling quality.[5]
 
-### 148. [OK] `seen` — none, page-verified
+Also, lesions on glumes and seeds occur if the pathogen associates with other fungi and insects. Such lesions may develop when favorable condition for sporulation is present.[citation needed]
 
-<https://hort.extension.wisc.edu/articles/southern-blight/>
+Importance
+Cochliobolus miyabeanus is an important plant pathogen because it causes a common and widespread rice disease that causes high level of crop yield losses. It was a major cause of the Bengal famine of 1943, where the crop yield was dropped by 40% to 90% and the death of 2 million people was recorded.[3] It is a possible agroterrorism weapon.[6] Other known severe crop loss cases caused by Cochliobolus miyabeanus are globally distributed.[3] In the Philippines, rice seedling mortality rate has been recorded up to 60%.[citation needed] In India and Nigeria, it can reduce total crop yield by up to 40%.[citation needed] Similar losses are observed in Suriname and Sumatra.[citation needed]
 
-- **Cited by:** Tomato/Southern_Blight  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "Sclerotia (small spherical structures that are about the size of mustard seeds) develop on infected tissue and on the soil surface. Sclerotia range in color from light tan to dark reddish-brown to black"
-- **Should support:** Athelia rolfsii (formerly Sclerotium rolfsii); Lower stems and leaves, crown, roots and fruit; Water-soaked lesions on lower stems and leaves, wilting, thick white mycelial mats and mustard-seed-sized tan 
+Environment
+There are several factors influencing the disease cycle and epidemics of brown spot of rice disease.[7]
 
-### 149. [OK] `seen` — none, page-verified
+Rainfall and drought[7] – The first factor affecting Cochliobolus miyabeanus life cycle is rainfall and drought. It tends to proliferate when there is reduced rainfall and in dewy conditions. In addition to a low level of precipitation, severe epidemics of rice brown spot occur during drought season. Compared to well-flooded or irrigated areas, disease occurrence is favored in drier environments where a reduced amount of water is present.
+Temperature and humidity – Another factor affecting disease development for Cochliobolus miyabeanus is temperature and humidity. Infection efficiency is influenced by the humidity level of the leaves, and lowered minimum temperature for crop cultivation favors epidemics of this disease. Infection by this pathogen is favored by long durations of leaf wetness; however, this disease has even been reported without free water when humidity levels are above 89%.[8] Cochliobolus miyabeanus grows well at lower temperatures during its developmental stages compared to the developed stage,[9] so if high temperatures are maintained in the area it is likely that farmers can restrict the growth of this pathogen. The optimal temperature for the pathogen is between 20 and 30 °C, however the pathogen can occur anywhere between 16 and 36 °C.[8]
+Nutrition level[7] – Nutrition of the host plant may also influence the level of disease development. For example, low soil nutrient content is associated with epidemics of rice brown spot. If soil minerals such as nitrogen, potassium, phosphorus, silicon and manganese are deficient, this will likely favor disease development. In specific, in areas where silicon is present in a high amount in the soil, the host becomes less susceptible to this disease because silicon not only alleviates physiological stresses of the host, but also promotes disease resistance ability in the host. Furthermore, soil moisture level contributes to disease occurrence. Brown spot of rice is favored in areas where water content is low in soil.
+Management
+Prevention
+The spread of the fungus can be prevented by using certified disease-free seed and using available resistant varieties such as MAC 18.[5][10][11]
 
-<https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/>
+Avoiding dense sowing will can also help prevent the spread of the fungus as it reduces humidity.[12]
 
-- **Cited by:** Grape/Gray_Mold  (fields: affected_organs, pathogen, visual_symptoms)
-- **Must contain:** "At veraison, individually infected berries in a cluster turn brown on white cultivars or reddish in red and black cultivars...resulting in the characteristic gray, velvety appearance of infected berries."
-- **Should support:** Berries and clusters; Botrytis cinerea; Infected berries brown (white cultivars) or redden (red/black cultivars), developing a gray velvety mould
+Maintaining control of weeds and removal of volunteer crops in the field can also prevent fungal spread,[5][13][14] as well as burning the stubble of infected plants.[10][11][12]
 
-### 150. [OK] `seen` — none, page-verified
+Seed treatments can also be used as a preventative measure. Seeds can be treated with fungicides[5][13][14] or alternatively soaking seeds in cold water for 8 hours before treating with hot water (53–54 °C) for 10–12 minutes prior to planting.[5][12][14]
 
-<https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/>
+Soil treatments can also be used to prevent the spread of C. miyabeanus. The addition of potassium and calcium if the soil is deficient can help boost disease resistance.[14][15] However, excessive application of nitrogen fertilisers should be avoided.[10][13]
+
+Control
+Once symptoms are observed the disease may be controlled by burning removal and burning of any plants and maintaining water levels up to 3 inches at grain formation. below grain formation.[10][11][12][14][15]
+
+### 151. [not checked] `seen` — none, page-verified
+
+<https://en.wikipedia.org/wiki/Colletotrichum_fragariae>
 
 - **Cited by:** Strawberry/Anthracnose  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "salmon or orange-colored spores can form on the lesions of the fruit, petioles, and runners"
 - **Should support:** Colletotrichum acutatum; Dark brown to black sunken lens-shaped spots on petioles and runners; salmon or orange spore masses form on le; Petioles, runners, crown and fruit
+- **Additional info:** - Colletotrichum fragariae is a fungal plant pathogen infecting strawberries. It is part of the Colletotrichum genus and leads to the disease known as anthracnose. This is typically at the crown of the strawberry, which is why it is often called crown rot.[1][2] It is also known as the anthracnose crown rot. It is not a well-known fungus, and there are many similar fungi that are related to it.
 
-### 151. [OK] `seen` — none, page-verified
+The fungus also infects leaves and is known as leaf spot, which is common among all Colletotrichum. This is not as common in the fragariae, as it is more common in the crown. This fungus is also better at infecting younger strawberries/seedlings. The most common way to control this disease is fungicides that are harmful to the environment.[3] There have been studies done to see if the fungus infects other hosts[4] but other than some weeds, it is very specific to strawberries.
+
+The occurrence of this fungus in strawberries fluctuates, and data can be found here.[5] It is one of the more deadly pathogens to the strawberry, as once it is inside and affects the crown, the strawberry is no longer able to reproduce or be consumed.[6]
+
+Morphology
+The Colletotrichum fragariae is a very small, microscopic pathogen. It can be seen under microscopes. In a study by A.N. Brooks, the pathogen had tapering to the base, was about 24 × 4.5 μm, had 3–5 septate, but up to 9. It did occur in fascicles, sometimes sinuous, brown, apical cell hyaline or light brown. The apical cell tapers to an open, truncate apex, apical cells of mature setae functioning as phialides and producing conidia (Brooks, 1931).[7] It also produces cylindrical conidia. There is no above ground body or fruiting body that this fungi makes.[citation needed]
+
+Ecology
+The Colletotrichum fragariae is found in subtropical/tropical moist lowland forests and montane forests. It had been found in both North and South America and Asia. There are 66 records of this species in 5 countries. 85% of those were found in the US.[7] Research has examined the preferred environment of this fungus and found that high soil fertility increases the ability for this fungus to grow.[1][8]
+
+Reproduction
+The Colletotrichum fragariae is a smaller fungus. It reproduces through asexual spores.[9] This is true among all Colletotrichum genus fungi. Growth stages include: flowering stage, fruiting stage, post-harvest stage, seedling stage, and vegetative growing stage.[10]
+
+### 152. [not checked] `seen` — none
+
+<https://en.wikipedia.org/wiki/Maize_lethal_necrosis_disease>
+
+- **Cited by:** Corn/Maize_Lethal_Necrosis  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Maize chlorotic mottle virus (MCMV) in combination with a potyvirus, most commonly Sugarcane mosaic virus (SCM
+- **Additional info:** - Maize lethal necrosis disease (MLN disease, MLND, corn lethal necrosis) is a viral disease affecting maize (corn) predominantly in East Africa, Southeast Asia and South America, which was recognised in 2010. It is caused by simultaneous infection with two viruses, MCMoV and any of several Potyviridae.
+
+Etiology
+MLND is caused by simultaneous infection with two viruses, maize chlorotic mottle virus (MCMoV) of the Tombusviridae family and any of several viruses from the Potyviridae group: the Potyviruses maize dwarf mosaic virus (MDMV), sugarcane mosaic virus (SCMV), Johnsongrass mosaic virus (JGMV), or the Tritimovirus wheat streak mosaic virus (WSMV).[1] JGMV is found to be a contributor - and the other viruses are briefly reviewed and bibliography provided - by Stewart et al. 2017.[2]
+
+Transmission
+Spread of the disease is driven by expansion in the range of maize chlorotic mottle virus, which is thought to be transmitted by species of thrips including maize thrips (Frankliniella williamsi) and possibly western flower thrips (Frankliniella occidentalis). The potyviruses involved in MLND are transmitted by several species of aphids and, in the case of the wheat streak mosaic virus, wheat curl mite. MLN is associated with the presence of maize thrips and the growth of several crops of maize annually.[2]
+
+Epidemiology
+SCMV is the most common second contributor in East Africa, but also JGMV and MDMV. This is the location of Stewart et al. 2017's discovery that JGMV contributes – they also review and provide a bibliography as to SCMV and MDMV.[2]
+
+Economic impact
+In late 2014, it was reported that MLND could cut Kenya's maize production by as much as 30%.[3] In early March 2015, the middle of the rainy season, losses were estimated at 10%.[4]
+
+Symptoms
+Leaves of infected plants become yellow from the tip and margins to the centre. Older leaves (bottom of plant) remain green. Ears and leaves dry up and sometimes look like a mature plant. The whole plant dies and maize cobs remain without kernels. MLND symptoms can be confused with symptoms of nutrient deficiency but plants affected by MLND appear only in some areas and are scattered or clumped in a field while nutrient deficiency appears on many plants over large areas of a field.[5]
+
+In the early stages, MLND causes long yellow stripes on leaves. Unlike maize streak virus disease though, the streaks of MLND are wider. As the disease advances, the maize leaves become yellow and dry out from the outside edges towards the midrib. MLND can also cause dwarfing and premature aging of the plants. Finally, the entire plant dries out and dies. Dead plants can then be seen scattered across the field among healthy looking plants. Late infected plants don't tassel and tend to produce poor grain filled cobs.[6]
+
+MLND presence in a field is also found by Parsons and Munkvold 2010 to increase susceptibility to ear rot conditions. This may be due to earlier stages of thrips feeding on earlier stages of kernels.[2]
+
+Management
+Partners of the CABI-led programme, Plantwise recommend where possible using certified, disease-free seed. They also recommend not moving infected maize plants and seeds to disease-free areas. Plantwise and partners also recommend rotating with non-cereal crops (e.g. beans, faba bean, chickpea etc.) for at least 2–3 years/seasons and removing alternate hosts including, sorghum, grasses, millet, wheat, oats, sudan grass.[6][7][8]
+
+The Ministry of Agriculture and Natural Resources of Ethiopia recommend uprooting and burning of diseased plants.[7]
+
+Another method of prevention is to leave land fallow for 2 months especially where maize is produced using irrigation. It is also recommended to plough and expose soil to sunlight for at least 2 months.[7]
+
+MLN resistance is an important trait to maize breeders.[9] Forward genetics is increasingly being used
+
+### 153. [not checked] `seen` — none, page-verified
+
+<https://en.wikipedia.org/wiki/Plasmopara_viticola>
+
+- **Cited by:** Grape/Downy_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Irregular, yellowish, translucent sports on the upper surface of the leaves. Correspondingly on the lower surface, white, powdery growth on leaves."
+- **Should support:** Irregular yellowish translucent spots on the upper leaf surface with white powdery growth beneath; leaves yell; Leaves; Plasmopara viticola
+- **Additional info:** - Plasmopara viticola, the causal agent of grapevine downy mildew, is a heterothallic oomycete that overwinters as oospores in leaf litter and soil. In the spring, oospores germinate to produce macrosporangia, which under wet condition release zoospores. Zoospores are splashed by rain into the canopy, where they swim to and infect through stomata. After 7–10 days, yellow lesions appear on foliage. During favorable weather the lesions sporulate and new secondary infections occur.[5]
+
+Description
+Plasmopara viticola, also known as grape downy mildew, is considered to be the most devastating disease of grapevines in climates with relatively warm and humid summers. It was first observed in 1834 by Schweinitz on Vitis aestivalis in the southeastern United States.[6] Shortly after this first observation, the pathogen was introduced to European countries where it played a devastating role in the yield and production of their grapes, and consequently their wine. France was among the first of the European countries to gain experience in dealing with the pathogen. Within just a few years of the pathogen's introduction the French attempted to graft American root stock to their own vines in order to produce a more resistant strain of grape. Depending on the year, production of grapes in France has been estimated to have been reduced by as much as 50%.[1] Because of numbers and results like these, downy mildew has been considered the most devastating disease of a filamentous pathogen to affect European vineyards.[3][2][7] When comparing three grape producers in Europe, including some fields that were treated with fungicides or other management strategies, the economic losses ranged from ~2000 euros per hectare to ~4250 euros per hectare.
+
+Symptoms cover a fairly large range depending mostly on the host. Common symptoms include necrosis of the stem or shoot, discoloration including brown spotting (lesions) and yellowish-green tips of the leaves. Grapes may exhibit sporangia and sporangiophores, appearing as white to gray coat on the outer surface.
+
+Downy mildew has a specific set of environmental conditions to reproduce and infect. A warm, moist, and humid environment is required. Studies in Sicily have shown optimum time for oospore germination is between the end of February and the middle of March.[4] With this understanding, if fungicides are used just before optimum conditions occur, they have proven to be an effective control method of the pathogen. Other control methods include proper watering, and a good location where the plant can receive continual sunlight.
+
+Disease cycle
+Oospores are the sexual structures resulting from the fertilization of oogonia by antheridia, that typically occurs in late summer. The pathogen can survive winter as oospores in host tissue like dead leaves on the vineyard floor. There they can survive up to 3–5 years, possibly up to 10 years.[8] Oospores may also be released from decaying plant material on soil surfaces.
+
+The "rule of thumb", 10:10:24, refers to the required environmental condition for primary infection. At least 10mm rainfall (or irrigation) is needed while the temperature should be 10 °C or more over 24 hours.[8] Under favorable conditions, oospores would germinate.
+
+In spring the oospores would produce sporangia, which then produce zoospores, the swimming spores. Zoospores and sporangia can be dispersed by rain and wind to some lower tissue of the grapevines.
+
+Sporangia can decline in viability over time. After 10 days in a 15°C humid chamber sporangia will die. Sporangia that are exposed to direct light for over 15 minutes will not survive.[9][10]
+
+Once the zoospores are produced and land on the host plant tissue, the primary infection would occur. Primary infection is from soil to vine. Zoospores encyst and then germinate. The germ tubes would be formed and then invade into the plant tissue via stomates.[11] After infection, there would be oil spots on the leaf surface.
+
+Active oil spots are necessary for secondary infection and sporangia are responsible for this process. Secondary infection is from leaf to leaf, shoot, inflorescence, berries, and stalk.[8] The sporangia, seen as the white fungal-like organism on the downside of the leaves, are produced after a warm and high humid night.[11] The sporangia can then be dispersed by wind or rain to occur secondary infections. Sporangia is the asexual reproduction structure, which then produce sporangiophores.[8] The secondary infection is repeatable as long as under suitable conditions.[5]
+
+### 154. [not checked] `seen` — none
+
+<https://en.wikipedia.org/wiki/Soybean_mosaic_virus>
+
+- **Cited by:** Soybean/Soybean_Mosaic_Virus  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Soybean mosaic virus (SMV), genus Potyvirus, family Potyviridae
+- **Additional info:** - Soybean mosaic virus (SMV) is a member of the plant virus genus Potyvirus (family Potyviridae). It infects mainly plants belonging to the family Fabaceae but has also been found infecting other economically important crops.[HW 1][1] SMV is the cause of soybean mosaic disease that occurs in all the soybean production areas of the world. Soybean (Glycine max) is one of the most important sources of edible oil and proteins and pathogenic infections are responsible for annual yield losses of about $4 billion in the United States. Among these pathogens, SMV is the most important and prevalent viral pathogen in soybean production worldwide.[2] It causes yield reductions of about 8% to 35%, but losses as high as 94% have been reported.[HW 2]
+
+The virus was first reported from Connecticut in 1915 and described in 1921.[3] Its genome is a single stranded positive sense RNA of about 9.5kb that encodes at least 11 proteins.[2] SMV virion is non enveloped, flexuous and filamentous of about 720–800 nm long and 12–15 nm in diameter.[4] Several strains of the SMV have been fully sequenced, consisting of 9,588 nucleotides (the sequenced data can be found on GenBank).[5]
+
+Host and symptoms
+In terms of economic damage, soybean is the most important host plant for SMV.[HW 2] However, plants belonging to the families Fabaceae[HW 1]/Leguminosae (including G. max, Strongylodon macrobotrys[6] and others), Amaranthaceae[HW 1] (Chenopodiaceae),[HW 1] Passifloraceae,[HW 1] Scrophulariaceae,[HW 1] Cucurbitaceae, Solanaceae,[HW 1] and Caricaceae have also been reported infected with SMV.[HW 2][1] Fabaceae has been shown to have the largest number of genera infected by SMV.[1] Hosts differ in susceptibility depending on the viral strain and latent infection has been reported in several hosts.[HW 2] Based on virulence, SMV has seven strain groupings in the United States (G1–G7) while in China there are 22 strain groups (SC1–SC22).[7]
+
+Symptoms are usually more obvious on young, rapidly growing leaves and are variable depending on the host genotype, virus strain, plant age at the moment of infection and the environment.[8][HW 2] Leaves are the tissue where the viral infection is localized and where the infection starts. Macroscopic symptoms can range from apparently asymptomatic plants to severely mottled and deformed leaves.[8] Most of the infected cultivars become slightly stunted and show fewer pods that are sometimes dwarfed and flattened, without hairs and seeds.[HW 2] Trifoliate leaves show distinct mosaic and mottling symptoms with light and dark green areas that later can become raised or blistered along the main veins.[8][HW 2] Chlorosis has also been reported as a symptom of SMV infection especially between the dark green areas. Leaves can appear curly or waved and some cultivars show necrotic local lesions that can later merge into veinal necrosis followed by yellowing and leaf abscission.[8] Some strains can cause severe stunting, systemic necrosis, leaf yellowing, petiole and stem necrosis, terminal necrosis and defoliation leading to the death of the plant due to systemic spread of the viral infection.[HW 2]
+
+Seeds can also show symptoms of viral infection with SMV showing a brown or black mottle that is thought to be associated with suppression of posttranscriptional gene silencing of chalcone synthase by a silencing suppressor protein encoded by SMV.[HW 2] Germination and size of the seeds is considerably reduced as compared with healthy plants' seeds. Mottling does not indicate that the virus is present in seeds as not all mottled seeds contain virus and not all seeds from virus infected plants are mottled.[HW 2]
+
+Symptoms are sometimes hard to differentiate when temperatures are above 30 °C (86 °F) and can also be confused with growth regulator herbicide damage where the leaves elongate. Rugosity is most severe in plants grown in temperatures of around 18 °C (64 °F), while general symptoms are less severe at 24–25 °C (75–77 °F). Temperature also influences the incubation period and the time between infection and symptom appearance, that ranges from 4 days at 29.5 °C (85 °F) to 14 days at 18.5 °C (65 °F).[HW 2] Additionally, SMV appears to have a synergistic interaction with Bean Pod Mottle Virus (BPMV) as plants infected with both viruses show drastically more severe symptoms than plants infected with only one virus.[8][9] SMV and BPMV also interact in a different way: Either one will predispose soy plants to Phomopsis spp. infection.[10]
+
+Disease cycle
+
+Replication and movement of soybean mosaic virus (SMV) within cell
+The main transmission mechanism of SMV is through aphids. 32 aphid species from 15 different genera, have been shown to transmit SMV in a non-persistent manner, meaning the virus is passed through the aphid's stylet without being incorporated into the aphid's tissue.[11][12][6] The most important species in terms of efficient transmission include Acyrthosiphon pisum, Aphis fabae, A. glycines, Myzus persicae and Rhopalosiphum maidis. Recently, the soybean aphid (A. glycines) was introduced into North America and because of its high transmission efficiency it has caused major concern. However, it has not been shown that the presence of the aphid along with the other migrating non-colonizing aphids that transmit SMV have significantly increased SMV incidence in the region.[13]
+
+SMV is easily transmitted mechanically when the plant is in direct contact with tools, humans or other plants.[1] The virus moves systemically throughout the plant and can be detected in all tissues including the roots.[HW 2]
+
+Transmission through seeds is also considerably important in SMV epidemiology as seeds are the source of primary inoculum with secondary spread by aphids occurring at relatively fast rate.[HW 2] Virus in seeds remains infective for a long period of time and viable virus can be recovered from seeds that no longer have germinating capacity. The transmission efficiency through seeds is dependent upon cultivar with incidence of seed transmission higher in plants infected before the onset of flowering. In the majority of commercial cultivars grown, seed transmission is less than 5% with ranges between no transmission and 75% transmission in older cultivars.[HW 2]
+
+As mentioned before, early plant infection reduces pod sets, increases seed coat mottling and reduces seed size and weight, while late season infection has little effect on seed quality and yield. Additional effects of SMV include reduced oil content and nodulation. SMV also affects nitrogen fixation and can increase susceptibility to other pathogens.
+
+### 155. [not checked] `seen` — none, page-verified
+
+<https://ipm.ucanr.edu/agriculture/apple/powdery-mildew/#gsc.tab=0>
+
+- **Cited by:** Apple/Powdery_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Small patches of white powdery growth appear on upper side of leaves."
+- **Should support:** Leaves, twigs and fruit buds; Podosphaera leucotricha; Small patches of white powdery growth on the upper leaf surface, on both surfaces when severe; affected leaves
+- **Additional info:** - Symptoms and Signs
+Powdery mildew is distinguished by superficial, white powdery growth on leaves and shoots that results in the stunting and distortion of young growth. Infected fruit are stunted and russetted, and fruit set may be reduced.
+
+Comments on the Disease
+This is a major foliage disease of apples. The fungus overwinters in terminal buds that are white, flattened, and pointed. Disease development is favored by warm days and cool, moist nights.
+
+Management
+Powdery mildew is managed primarily by pruning infected shoots during dormancy or in early spring and by applying sprays as necessary in spring to prevent buildup of the fungus and damage to the crop. Remove infected shoot tips at pruning. Chemical control of powdery mildew is done in conjunction with controls for scab. Timing and choice of material may vary from orchard to orchard.
+
+Organically Acceptable Methods
+Pruning and treatments with lime and sulfur, sulfur alone, or certain horticultural oils can be used to treat organically certified produce.
+
+Treatment Decisions
+Preferred timing is an application at pink bud. If powdery mildew continues to be a problem in the orchard, apply additional treatments until terminal growth ceases.
+
+### 156. [not checked] `seen` — none
+
+<https://ipm.ucanr.edu/agriculture/grape/esca-black-measles/#gsc.tab=0>
+
+- **Cited by:** Grape/Black_Measles  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Fungal complex including Phaeoacremonium minimum, Phaeomoniella chlamydospora, and Fomitiporia mediterranea
+- **Additional info:** - Symptoms and Signs
+Esca, Botryosphaeria dieback, Eutypa dieback, and Phomopsis dieback make up a complex of "trunk diseases" caused by different wood-infecting fungi. The foliar symptom of Esca is an interveinal "striping". The "stripes", which start out as dark red in red cultivars and yellow in white cultivars, dry and become necrotic. Foliar symptoms may occur at any time during the growing season, but are most prevalent during July and August. They are often restricted to an individual shoot or to shoots originating from the same spur or cane. Symptomatic leaves can dry completely and drop prematurely. On berries, small, round, dark spots each bordered by a brown-purple ring, may occur. These fruit spots, which are better viewed on white cultivars, may appear at any time between fruit set and ripening. In severely affected vines, the berries often crack and dry or are subject to spoilage. Symptomatic fruit is found only on shoots with symptomatic leaves, but you can find shoots with symptomatic leaves and no symptomatic fruit. Cross-sectional cuts through canes, spurs, cordons, or trunks from which symptomatic shoots originate will reveal concentric rings of dark spots. Eventually the spur or cane from which symptomatic shoots originate may die. The appearance of foliar and especially fruit symptoms is inconsistent from year to year, which is thought to be due to possibly climate-induced variability in toxin production by the pathogen. A severe form of Esca known as "apoplexy", which is more common in Europe, results in a sudden dieback of the entire shoot or adjacent shoots, rather than a gradual development of foliar symptoms.
+
+Comments on the Disease
+Symptoms first become apparent in vineyards 5 to 7 or more years old, but the infections actually occur in younger vines. The overwintering structures that produce spores (perithecia or pycnidia, depending on the pathogen) are embedded in diseased woody parts of vines. During fall to spring rainfall, spores are released and wounds made by dormant pruning provide infection sites. Wounds may remain susceptible to infection for several weeks after pruning with susceptibility declining over time. After a pruning wound is infected, the pathogen establishes a permanent, localized wood infection, which cannot be eradicated by fungicide applications.
+
+Management
+See EUTYPA DIEBACK for management practices.
+
+For more information on choosing a fungicide for grapes, refer to General Properties of Fungicides used in Grapes, Treatment Timing for Key Diseases, and Fungicide Resistance Management.
+
+### 157. [not checked] `seen` — none, page-verified
+
+<https://ipm.ucanr.edu/agriculture/grape/powdery-mildew/#gsc.tab=0>
+
+- **Cited by:** Grape/Powdery_Mildew  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration of affected leaves."
+- **Should support:** Leaves; Powdery growth mainly on the upper leaf surface, with malformation and discolouration of affected leaves; Uncinula necator
+- **Additional info:** - Symptoms and Signs
+Initial symptoms of powdery mildew appear on leaves as chlorotic spots on the upper leaf surface. Signs of the pathogen appear a short time later as white, webby mycelium on the lower leaf surface. As spores are produced, the infected areas take on a white, powdery or dusty appearance. On fruit and rachises the pathogen appears as white, powdery masses that may colonize the entire berry surface. Black to brown web scarring can be seen on mature fruit, which represents former colonies. Symptoms of powdery mildew infection include red blotchy areas on dormant canes.
+
+Comments on the Disease
+The fungus survives the winter as mycelia infecting tissue inside dormant buds or as chasmothecia (spore producing fruiting bodies).
+
+Chasmothecia are the most important sources of overwintering inoculum in most production areas. Ascosporesmature in late summer and fall on infected green tissue and are washed onto the permanent vine parts such as cordons and arms with fall and winter rainfall where they overwinter. On warm winter and spring days when moisture is abundant, chasmothecia burst and release ascospores that stick and germinate on the underside of leaves. Conidial spore production occurs 7 to 10 days after primary infection by ascospores and conidia will continue to be produced throughout the season as long as moderate temperatures (70° to 85°F) exist.
+
+If the fungus overwintered as mycelia inside dormant buds, then emerging shoots may become diseased shortly after bud break. These are flag shoots that will produce conidia that spread to adjacent shoots. At long duration high temperatures in the spring (over 80°F), symptoms are rarely seen. However at temperatures between 70° and 85°F, symptoms and signs of the fungus occur immediately after budbreak. Between 60° and 68°F, symptoms are delayed.
+
+Management
+Season-long control is dependent upon reducing early-season inoculum and subsequent infection. Thus treatment must begin promptly and be repeated at appropriate intervals. Timing of the first treatment is dependent on the fungicide used, vine growth stage, and the potential for disease infection. Free moisture from fog, dew or rain events triggers ascosporerelease and after budbreak, infections caused by ascospores will occur on green tissue when temperature exceeds 50 °F. Apply a contact material as soon as possible to eradicate those colonies prior to the onset of conidial spore production. Under completely dry conditions, the potential for infection is significantly reduced. Research has shown that a micronized sprayable sulfur application or oil should be applied prior to other fungicides. If applied near budbreak, then apply an additional sulfur or oil treatment based on the Powdery Mildew Risk Index prior to using other fungicides. Frequency of treatment thereafter depends on fungicide choice and weather conditions. Monitor and use the UC Davis powdery mildew risk index model to determine necessary spray intervals and material choice. Treatment may be discontinued for wine and traditionally trellised raisin grapes when fruit reaches 12 Brix but should be continued up to harvest for table grapes or 3 to 4 weeks prior to cane severance for DOV trellised raisin grapes.
+
+All powdery mildew fungicides, with the exception of oil, are best used as protectants. Discontinue the use of soft chemistry products (sulfurs, biologicals, systemic acquired resistance products, and contact materials) when disease pressure is high because by themselves they will not provide adequate control. If eradication is necessary, a light summer oil may be used anytime in the season if there is no sulfur residue present (i.e. at least 2 weeks before or after a sulfur treatment). Basal leaf removal can improve coverage of powdery mildew fungicides on clusters and leaf removal by itself (as done for Botrytis control) results in 50% disease control.
+
+Organically Acceptable Methods
+Sulfur, Serenade Max, Sonata, M-Pede, Organic JMS Stylet Oil, and Purespray Green horticultural oil are acceptable on organically certified grapes; check with your certifier for details.
+
+Monitoring and Treatment Decisions
+In spring, the overwintering chasmothecia produce ascospores which are released when 2mm of rain, irrigation or dew occurs to wet the cordons or canes. Infection occurs when the wetness period is followed by 10 to 13 hours of leaf wetness when temperatures remain between 50° and 80°F. Seven to 10 days after this initial infection, monitor vineyards for the presence of powdery mildew by collecting 10 to 15 basal leaves from approximately 20 vines at random and examining the undersurface for powdery mildew spores. If lesions are found, then monitor disease development by using the powdery mildew risk assessment index.
+
+Risk Index (RI)
+Once initial infection occurs, ideal temperatures for growth of the fungus are between 70° and 85°F. Temperatures above 95°F for 12 continuous hours or longer cause the fungus to grow more slowly. The RI assesses the risk of disease development by relating it to air temperature and predicts the need to spray to protect the vines. When using the RI, always monitor the vineyard for signs of the disease. You may monitor temperatures in your own vineyard and calculate the RI using the rules below, or you may use weather equipment that has the UC Davis powdery mildew risk index included in its software.
+
+Initiating the Risk Index
+After you find powdery mildew infections caused by ascospores, an epidemic will begin (conidia will begin generating new infection sites) when there are 3 consecutive days with 6 or more continuous hours of temperatures between 70° and 85°F as measured in the vine canopy.
+
+Starting with the index at 0 on the first day, add 20 points for each day with 6 or more continuous hours of temperatures between 70°and 85°F.
+Until the index reaches 60, if a day has fewer than 6 continuous hours of temperatures between 70° and 85°F, reset the index to 0 and continue.
+If the index reaches 60, an epidemic is under way. Begin using the spray-timing phase of the index.
+Spray Timing
+Each day, starting on the day after the index reached 60 points during the start phase, evaluate the temperatures and adjust the previous day's index according to the rules below. Keep a running tabulation throughout the season. In assigning points, note the following:
+
+If the index is already at 100, you can't add points.
+If the index is already at 0, you can't subtract points.
+You can't add more than 20 points a day.
+You can't subtract more than 10 points a day.
+If fewer than 6 continuous hours of temperatures occurred between 70° and 85°F, subtract 10 points.
+If 6 or more continuous hours of temperatures occurred between 70° and 85°F, add 20 points.
+If temperatures reached 95°F for more than 15 minutes, subtract 10 points.
+If there are 6 or more continuous hours with temperatures between 70° and 85°F AND the temperature rises to or above 95°F for at least 15 minutes, add 10 points. (This is the equivalent of combining points 2 and 3 above.)
+Use the index to determine disease pressure and how often you need to spray to protect the vines. Spray intervals can be shortened or lengthened depending on disease pressure, as indicated in the table below. The schedule assumes adequate coverage; the use of calibrated sprayers and sufficient gallons per acre appropriate for type of sprayer and vineyard trellis.
+
+### 158. [not checked] `seen` — none
+
+<https://ipm.ucanr.edu/agriculture/potato/stem-and-stolon-canker/#gsc.tab=0>
+
+- **Cited by:** Potato/Scurf, Soybean/Rhizoctonia  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Rhizoctonia solani
+- **Additional info:** - Symptoms and Signs
+Aboveground symptoms of stem canker include uneven stands, weak shoot growth, and aerial tubers. Foliage may develop yellowing, purpling, and upward curling of leaves. Aboveground symptoms alone are not diagnostic, however, because other diseases can cause similar symptoms. On belowground stems and stolons, Rhizoctonia solani typically causes reddish-brown lesions that often develop into sunken cankers. Stolons can be girdled and killed, resulting in a pruning effect and malformation and abortion of tubers. If tubers in affected fields are left in the ground after vine death, they often develop black scurf, an accumulation of irregular black sclerotia of R. solani on the tuber surface. This is especially visible on fresh market red and white-skinned varieties and is an economically important problem for organic growers.
+
+Comments on the Disease
+The strain of R. solani that typically affects potatoes, called AG-3, is specific for potatoes and generally does not cause damage in or reproduce on other species. Close relatives of potato, such as black nightshade and tomato, may be exceptions. Rhizoctonia solani is a soilborne fungus, but inoculum of the fungus on seed tubers (visible as dark, irregularly shaped sclerotia) is sometimes more important for disease development than inoculum in soil. In Kern County, AG-3 types of R. solani apparently do not survive in soil between crops of potatoes; whereas in Tulelake districts, R. solani AG-3 may overwinter in soil. The fungus only infects juvenile tissue. Disease development is favored by relatively wet, cool (55° to 60°F) soils.
+
+Management
+Where R. solani AG-3 survives in soil between potato crops, rotate out of potatoes for two to three years to reduce soilborne inoculum. Sugarbeet, however, has been associated with increased severity of stem canker in subsequent potato crops.
+
+Reduce initial inoculum by using certified seed tubers that are free from sclerotia of the fungus.
+
+Fungicide treatment of seed tubers can reduce R. solani inoculum borne on the seed pieces. The significance of this benefit may be small in fields where heavy soil infestations of R. solani AG-3 persist between potato crops.
+
+Rhizoctonia stem canker can be further reduced by favoring rapid emergence, such as warming seed tubers before planting, planting tubers at a relatively shallow depth, avoiding early planting dates when soil temperatures are cool and avoid overwatering.
+
+Apply fungicides to seed pieces and/or in-furrow at planting to reduce the disease incidence on belowground stems and stolons. Research indicates that fungicide applications after planting can reduce tuber blemish on daughter tubers. Daughter tubers may also be protected by harvesting quickly after vine desiccation rather than holding tubers in soil for extended periods. However, this may lead to insufficient skin formation and increases the risk of bruising and skinning problems.
+
+### 159. [not checked] `seen` — none
+
+<https://ipm.ucanr.edu/agriculture/tomato/powdery-mildew-on-field-grown-tomatoes/#gsc.tab=0>
+
+- **Cited by:** Tomato/Powdery_Mildew  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Leveillula taurica (anamorph: Oidiopsis sicula) and Oidium neolycopersici
+- **Additional info:** - Symptoms and Signs
+Leaves on infected tomato plants develop irregular, bright yellow blotches; severely affected leaves die but seldom drop. Spots of dead tissue, sometimes surrounded by a yellow halo, eventually appear in the blotches. Abundant white sporulation may be observed on upper or lower leaf surfaces. There are no lesions on stems or fruit. As the disease progresses leaves die, resulting in sunburn damage on fruit, reduced soluble solids, and weakened plants.
+
+Comments on the Disease
+Powdery mildew occurs in most tomato-growing areas of California. The fungus infects weeds and crops in the solanaceous family; spores are carried by wind to tomato plants. The disease usually is most severe late in the season. High relative humidity favors disease development. Mild temperatures favor infection while higher temperatures hasten the death of infected leaves. Plants stressed by other problems appear to be more susceptible to powdery mildew.
+
+Management
+When conditions are conducive to disease development and sporulation is abundant, fungicide applications may be necessary to control powdery mildew.
+
+Organically Acceptable Methods
+Some sulfur sprays may be acceptable for use on organically certified produce. Check with your certifier before use.
+
+Monitoring and Treatment Decisions
+A weather-based, forecasting model is available online. The model attempts to predict the occurrence of powdery mildew based on temperature, relative humidity, and leaf wetness. However, since 2007 the disease has been more severe and faster developing such that disease severity and fungicide timings have not been well predicted by the model in recent years.
+
+Fungicides may not be needed on early-season crops harvested in July or August. In the Central Valley, disease outbreaks generally start in July or August and mainly affect plants that are at full-bloom or a later stage. Multiple, early applications of sulfur dust are the most effective option; once the disease becomes severe, control is difficult. Apply fungicides if needed preventatively or during the early infection period. When disease pressure is high, repeat fungicide applications at 7-day intervals to control the disease. Stop treatments within two weeks of harvest.
+
+### 160. [not checked] `seen` — none, page-verified
+
+<https://ipm.ucanr.edu/agriculture/tomato/southern-blight/#gsc.tab=0>
+
+- **Cited by:** Tomato/Southern_Blight  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Sclerotia (small spherical structures that are about the size of mustard seeds) develop on infected tissue and on the soil surface. Sclerotia range in color from light tan to dark reddish-brown to black"
+- **Should support:** Athelia rolfsii (formerly Sclerotium rolfsii); Lower stems and leaves, crown, roots and fruit; Water-soaked lesions on lower stems and leaves, wilting, thick white mycelial mats and mustard-seed-sized tan 
+- **Additional info:** - Symptoms and Signs
+Tomato plants with southern blight have lesions on the stem at or near the soil line. These lesions develop rapidly, girdling the stem and resulting in a sudden and permanent wilting of the plant. White mats of mycelia are produced on the stem and in the adjacent soil. In a few days, tan to brown spherical sclerotia about 0.06 inch (0.5 mm) in diameter appear on the mycelial mat. The abundant sclerotia are a good diagnostic feature.
+
+Comments on the Disease
+Southern blight is not a common disease of tomatoes. High temperatures (above 85°F, 29°C) favor the disease, which occasionally causes damage to tomato crops grown in the Central Valley.
+
+The fungus attacks a wide range of plants and survives for long periods in soil as sclerotia. Disease incidence and severity are dependent on the number of sclerotia in the soil.
+
+Management
+Rotate to nonhost crops, such as corn, sorghum, rice, or small grains, for at least 2 years to reduce inoculum.
+Deep plowing to bury plant refuse may help to destroy sclerotia.
+Keeping the tops of beds dry in tomato fields helps reduce the disease in furrow- and buried-drip-irrigated fields.
+
+### 161. [not checked] `seen` — none
+
+<https://ipm.ucanr.edu/home-and-landscape/pierces-disease-of-grape/#gsc.tab=0>
+
+- **Cited by:** Grape/Leaf_Blight  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Pseudocercospora vitis (syn. Isariopsis clavispora; teleomorph: Mycosphaerella personata)
+- **Additional info:** - Pierce's disease is caused by a bacterium that debilitates and kills grapevines. Different strains of the bacterium cause diseases in other hosts that include almond leaf scorch, mulberry leaf scorch, oleander leaf scorch, olive leaf scorch, and sweet gum dieback.
+
+Identification
+The initial symptom of Pierce's disease in spring commonly is yellowing between the veins on the first leaves produced on shoots. Later in the growing season these leaves appear normal. Once the disease is well established, during summer leaves on at least a portion of a vine become yellow, then reddish and brown beginning at leaf margins then spreading inward. During hot weather much of the foliage on an infected grapevine may turn brown without any red or yellow. Diseased vines flush leaves later than normal and the vines remain undersized in comparison with healthy grapevines. However as summarized below several other maladies cause similar symptoms on grape.
+
+When Pierce's disease is the cause of unhealthy grapevines, four symptoms in mid- to late summer indicate its presence:
+
+Leaves become slightly yellow or red along margins in white and red varieties, respectively. Eventually leaf margins dry or die in concentric zones.
+Dried leaves drop prematurely, leaving the petiole (leaf stem) attached to the cane. The petioles gradually die back from the tip, a symptom called "matchsticks."
+Fruit clusters shrivel and berries become raisinlike before the normal time of harvest and beginning anytime after fruit set.
+Wood on new canes matures irregularly, producing patches of green, surrounded by mature brown bark, a symptom called "green islands."
+All four symptoms are not necessarily present when Pierce's disease is present. When in doubt about the presence of Pierce's disease, samples of vines can be sent to a plant diagnostic laboratory to determine whether they are infected with X. fastidiosa.
+
+Lookalikes. Symptoms of several other maladies of grape can be confused with Pierce's disease. Anything that weakens vines or slows vine growth in late summer or fall such as drought stress, an early frost, or salt toxicity can lead to delayed or stunted growth the following spring. However, symptoms of drought stress, frost, and salt toxicity tend to occur uniformly across large areas when there are groups of vines grown together and these maladies can affect other species of plants nearby. Pierce's disease initially begins in localized, scattered locations. Other causes of similar symptoms include:
+
+Armillaria root rot, or oak root fungus, which can cause foliage discoloration and wilting, along with drying of foliage and fruit. Removing some bark around the root crown generally reveals the presence of whitish mycelia mats of Armillaria when it is the cause of disease.
+Eutypa dieback that causes spring symptoms including stunted shoots and small, chlorotic, distorted leaves. Pruning wound cankers are commonly the initial location of Eutypa disease and cankers are not associated with Pierce's disease.
+Grape phylloxera, an aphidlike insect that feeds on roots and causes a decline of vines. Use a hand lens to examine roots and look for these oval, insects that are about 1/25 inch (1 mm) long and vary in color from brown, light brown, olive green, orange, and yellow to yellowish green.
+Phytophthora crown and root rot, which is a relatively uncommon disease of grape that causes leaves to discolor and drop prematurely. When Phytophthora is the cause, removing some bark at and just below the root crown reveals darkly discolored cambium and wood. Small roots are sparse and at least some of the rootlets are dark and decayed.
+Life cycle
+Pierce's disease is caused by the xylem-inhabiting bacterium X. fastidiosa. There are numerous strains of the pathogen that can occur in numerous host plants, but only certain strains cause disease in certain hosts. The bacterium is spread by leafhoppers (family Cicadellidae) known as sharpshooters (subfamily Cicadellinae). Some closely related insects such certain spittlebugs (family Cercopidae) can also spread the pathogen.
+
+Important vectors of X. fastidiosa in California's Central Valley are the green sharpshooter, Draeculacephala minerva, and the red-headed sharpshooter, Carneocephala fulgida. In coastal regions such as the Napa Valley the blue-green sharpshooter, Graphocephala atropunctata, is the most common vector. In Southern California and southern parts of the San Joaquin Valley the glassy-winged sharpshooter, Homalodisca vitripennis, is the most important vector; it spreads Pierce's disease more effectively than the other sharpshooters.
+
+Sharpshooters pick up the bacterium by feeding on infected hosts and spread it when they move to feed on healthy grapevines. Once injected into plants with the salivary secretions of the sharpshooter, the bacterium moves quickly upward and slowly downward in the plant's xylem system. Bacterial aggregates develop and plug the xylem vessels, inhibiting and eventually stopping the flow of water and dissolved nutrients upward from the roots.
+
+Damage
+The extent of disease development and death of grapevines varies greatly according to many factors. These include the abundance, transmissions efficacy, and species of the vectoring insects, environmental conditions, and grape cultivars differing susceptibility to the pathogen. Sometimes the pathogen is naturally eliminated from a host for reasons that are unclear but apparently can include cold winters. Grapevines often die within 1 or several years of developing Pierce's disease.
+
+Solutions
+Prevention is the only effective management strategy. There are no known actions that can eliminate the pathogen from vines infected in the field. Obtain planting stock from a reliable commercial supplier that provides disease-free plants. Consider planting grape varieties less susceptible to Pierce's disease, such as Chenin Blanc, Ruby Cabernet, Sylvaner, and Thompson Seedless.
+
+When growing multiple grapevines with some having developed Pierce's disease, remove the diseased vines to reduce the likelihood of them becoming a source of the pathogen that can spread to nearby grapevines. Replant with less susceptible cultivars.
+
+Reducing the number of insect vectors that can move to grapevines is an important strategy. This can include applying an insecticide such as the systemic imidacloprid to overwintering, evergreen hosts of the sharpshooters such as citrus and oleander. Applying insecticides to grapevines is not an effective control. A sharpshooter that migrates in may be able to cause infection of the vine before it is killed by the insecticide.
+
+Because certain plants including bermudagrass, blackberry, and willow are alternative hosts of the grape-infecting strain of X. fastidiosa and its insect vectors, removing the alternative hosts near grapevines if feasible helps reduce the incidence of Pierce's disease. Note that where host plants occur in riparian areas there are regulations that limit vegetation removal. Before managing vegetation along waterways, contact the California Department of Fish and Wildlife to learn of any rules that may apply to your situation.
+
+For more information, see the Pest Notes: Glassy-Winged Sharpshooter and Oleander Leaf Scorch. Adapted from the publications above, Grape Pest Management Third Edition from UC Agriculture and Natural Resources also available as an eBook, and Pests of the Garden and Small Farm: A Grower's Guide to Using Less Pesticide, University of California Statewide Integrated Pest Management Program (UC IPM).
+
+### 162. [not checked] `seen` — none, page-verified
 
 <https://ohioline.osu.edu/factsheet/plpath-fru-24>
 
 - **Cited by:** Grape/Black_Rot  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "Symptoms of black rot first appear as small yellow spots on leaves. Enlarged spots (lesions) have a dark brownish-red border with tan to dark brown centers."
 - **Should support:** Guignardia bidwellii; Leaves, shoots and fruit; Small yellow leaf spots enlarging to lesions with dark brownish-red borders and tan to dark brown centres, rin
+- **Additional info:** - Black rot is one of the most damaging diseases of grapes in Ohio and other northeastern states. The disease is caused by the fungus Guignardia bidwellii. The fungus can infect the leaves, shoots, berries, tendrils, rachises and cluster stems (peduncles) of grapes. If the disease is not managed early in the season, the impact on grape clusters can be devastating, resulting in complete crop losses.
 
-### 152. [OK] `seen` — none
+Disease development is favored by warm and humid weather. Symptoms of black rot first appear as small yellow spots on leaves. Enlarged spots (lesions) have a dark brownish-red border with tan to dark brown centers (Figure 1). As the infection develops, tiny black dots appear in the lesion, usually in a ring pattern near the border of the lesion (Figure 1- inset). These dots are fungal structures (pycnidia), which contain thousands of spores (conidia) that can infect new tissue. New infections can occur in less than 10 hours at temperatures between 60 to 85 degrees Fahrenheit.
 
-<https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/PhysodermaMaydis.aspx>
+Lesions on shoots, cluster stems, rachises and tendrils are oval shaped and sunken with a purple to black color. Fruit symptoms don’t usually begin to appear until the grape berries are pea size or larger. Brown spots form on the fruit and then the fruit start to shrivel and turn black (Figure 2A). The berries will eventually shrivel into hard raisin-like structures called mummies (Figure 2B-C). The mummies usually remain attached to the cluster. Pycnidia also form in shoots, cluster stems, rachises, tendrils and mummies, and are a source of conidia (and infections) the following spring. A second type of spore, an ascospore, is also produced in fruit mummies.
 
-- **Cited by:** Corn/Physoderma_Brown_Spot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Physoderma maydis
+In the spring, ascospores are forcibly released into the air and spread to new tissues. In Ohio, ascospores are an important source of spring infections. Often various stages of black rot on berries can be observed on a single cluster (Figure 2).
 
-### 153. [OK] `seen` — none
+For new grape plantings, select a sunny location that allows for good air movement. Orient rows with the prevailing winds to allow plants to dry quickly during wet weather.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CornStalkRots.aspx>
+Sanitation
+Sanitation plays an important part in limiting the amount of black rot inoculum found in a vineyard. If only a few leaf lesions appear in the spring, these should be removed. The removal of diseased tendrils and canes through pruning during the dormant season will reduce the amount of spores available to cause infections in the spring. However, the removal of mummies either on the vineyard floor or remaining in the canopy, will have the largest impact in reducing black rot disease in the vineyard. Mummies in the canopy provide inoculum much later into the season than those that have fallen to the vineyard floor and thus should be given priority for removal. In small plantings, removal of diseased fruit when they are first observed is encouraged. Any mummies remaining in the canopy at the end of the season should be dropped to the ground and buried.
 
-- **Cited by:** Corn/Diplodia_Stalk_Rot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Stenocarpella maydis (formerly Diplodia maydis)
+Chemical control
+Fungicides, applied early in the growing season, are a critical component of a black rot management program. The most effective spray program targets the period prior to bloom when spore production peaks. Fungicides should be sprayed during the period from early bloom through three to four weeks after bloom.
 
-### 154. [OK] `seen` — none
+Commercial growers can consult the Midwest Fruit Pest Management Guide (Bulletin 506) and/or Developing An Effective Fungicide Spray Program for Wine Grapes in Ohio (Plant Pathology Series No. 147) for current fungicide recommendations.
 
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Esca.aspx>
+Backyard growers are referred to Bulletin 780, Controlling Diseases and Insects in Home Fruit Plantings for fungicide recommendations. This publication and the Midwest Fruit Pest Management Guide (Bulletin 506) can both be obtained from your county Extension office or the CFAES Publications online bookstore.
 
-- **Cited by:** Grape/Black_Measles  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Fungal complex including Phaeoacremonium minimum, Phaeomoniella chlamydospora, and Fomitiporia mediterranea
+### 163. [not checked] `seen` — none
 
-### 155. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Phomopsis.aspx>
-
-- **Cited by:** Soybean/Phomopsis  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Diaporthe longicolla (anamorph: Phomopsis longicolla) and related Diaporthe/Phomopsis species
-
-### 156. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Rhizoctonia.aspx>
-
-- **Cited by:** Potato/Scurf, Soybean/Rhizoctonia  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Rhizoctonia solani
-
-### 157. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/RiceBrownSpot.aspx>
-
-- **Cited by:** Rice/Severe_Brownspot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Bipolaris oryzae (Breda de Haan) Shoemaker (syn. Helminthosporium oryzae)
-
-### 158. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Septoria.aspx>
-
-- **Cited by:** Tomato/Septoria_Leaf_Blotch  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Septoria lycopersici
-
-### 159. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SeptoriaBrownSpot.aspx>
-
-- **Cited by:** Soybean/Septoria_Brown_Spot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Septoria glycines
-
-### 160. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanAnthracnose.aspx>
-
-- **Cited by:** Soybean/Anthracnose  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Colletotrichum truncatum
-
-### 161. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanCercospora.aspx>
-
-- **Cited by:** Soybean/Cercospora, Soybean/Cercospora_Blight  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Cercospora kikuchii
-
-### 162. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanPodStemBlight.aspx>
-
-- **Cited by:** Soybean/Diaporthe  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Diaporthe longicolla (anamorph: Phomopsis longicolla) and related Diaporthe/Phomopsis species
-
-### 163. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanPowderyMildew.aspx>
-
-- **Cited by:** Soybean/Powdery_Mildew  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Erysiphe diffusa (syn. Microsphaera diffusa)
-
-### 164. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SoybeanStemCanker.aspx>
-
-- **Cited by:** Soybean/Stem_Canker  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Diaporthe aspalathi (southern stem canker) and Diaporthe caulivora (northern stem canker)
-
-### 165. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SuddenDeathSyndrome.aspx>
-
-- **Cited by:** Soybean/Fusarium_Disease  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Fusarium virguliforme (sudden death syndrome); Fusarium solani, F. oxysporum, and other Fusarium spp. (root an
-
-### 166. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TargetSpot.aspx>
-
-- **Cited by:** Tomato/Target_Spot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Corynespora cassiicola
-
-### 167. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TomatoPowderyMildew.aspx>
-
-- **Cited by:** Tomato/Powdery_Mildew  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Leveillula taurica (anamorph: Oidiopsis sicula) and Oidium neolycopersici
-
-### 168. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialLeafBlight.aspx>
-
-- **Cited by:** Rice/Leaf_Blight  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Xanthomonas oryzae pv. oryzae
-
-### 169. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/HolcusSpot.aspx>
-
-- **Cited by:** Corn/Holcus_Spot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Pseudomonas syringae pv. syringae
-
-### 170. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/PotatoBacterialWilt.aspx>
-
-- **Cited by:** Potato/Bacteria_Wilt_And_Soft_Rot  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Ralstonia solanacearum (bacterial wilt); Pectobacterium carotovorum subsp. carotovorum and Dickeya spp. (soft 
-
-### 171. [OK] `seen` — none
-
-<https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SoybeanMosaic.aspx>
-
-- **Cited by:** Soybean/Soybean_Mosaic_Virus  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Soybean mosaic virus (SMV), genus Potyvirus, family Potyviridae
-
-### 172. [403 bot-blocked (page exists)] `seen` — none
-
-<https://www.cabi.org/isc/datasheet/121781>
-
-- **Cited by:** Corn/Maize_Lethal_Necrosis  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Maize chlorotic mottle virus (MCMV) in combination with a potyvirus, most commonly Sugarcane mosaic virus (SCM
-
-### 173. [403 bot-blocked (page exists)] `seen` — none
-
-<https://www.cabi.org/isc/datasheet/24179>
-
-- **Cited by:** Sugarcane/Pokkah_Boeng  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Fusarium moniliforme (teleomorph: Gibberella fujikuroi)
-
-### 174. [403 bot-blocked (page exists)] `seen` — none
-
-<https://www.cabi.org/isc/datasheet/32602>
+<https://pmc.ncbi.nlm.nih.gov/articles/PMC6640477/>
 
 - **Cited by:** Corn/Maize_Streak_Virus  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Maize streak virus (MSV), genus Mastrevirus, family Geminiviridae
+- **Additional info:** -
 
-### 175. [403 bot-blocked (page exists)] `seen` — none
+### 164. [not checked] `seen` — none
+
+<https://soybeanresearchinfo.com/soybean-disease/septoria-brown-spot/>
+
+- **Cited by:** Soybean/Septoria_Brown_Spot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Septoria glycines
+- **Additional info:** - Overview
+Septoria Brown Spot is one of the most common foliar diseases of soybeans. It is caused by the fungus Septoria glycines. Like bacterial blight, brown spot occurs in most soybean fields every year, especially in years with plenty of rain.
+
+Septoria brown spot infects the lowest leaves in the canopy first. However, during a rainy season, the disease may move up throughout the plant. As the disease develops, infected leaves usually turn yellow and then drop prematurely.
+
+The disease overwinters on infested plant debris. The pathogen spreads from old crop residue to lower soybean leaves when raindrops impact onto infested residue and splash spores into the air. Epidemics can occur in seasons with frequent rainfall. Development of the disease slows dramatically during hot, dry weather.
+
+Soybean plants weakened by other diseases or agronomic practices become more susceptible to brown spot. It has been observed that relatively high levels of brown spot occur in fields with severe soybean cyst nematode damage, Fusarium root rot, and other conditions. If you find abundant Septoria brown spot, check to see if plants are being weakened by other problems such as nematodes.
+
+Scouting
+Symptoms of Septoria brown spot include numerous small, irregular, dark brown spots on the leaves. These spots (lesions) frequently merge to form irregularly shaped brown blotches, especially along leaf edges or leaf veins. Infected leaves turn yellow and drop prematurely.
+
+Early stages of brown spot can be mistaken for bacterial blight. Both diseases often occur in the same fields and even the same plant, and symptoms can be difficult to separate. Typically, Septoria brown spot infection begins on oldest leaves, whereas bacterial blight occurs on the newest leaves. In the earliest stages of disease development, bacterial leaf blight lesions usually have a yellow halo around each lesion. With brown spot, entire leaves will turn yellow and drop from the plant, whereas bacterial leaf blight infected leaves remain attached. As bacterial blight continues to develop, the lesions will coalesce and the diseased tissue will fall out, giving the leaf a tattered appearance.
+
+Management
+Manage residue
+The disease is most severe when soybeans are grown continuously or in a no-till cropping system, especially if under irrigation. Rotate out of soybeans long enough to allow time for soybean crop residue to degrade. Where soil erosion is not a concern, plow or shred soybean straw to promote rapid decay.
+
+Variety selection
+Soybean varieties vary in their susceptibility to brown spot. Companies typically do not provide ratings for this disease, however. Growers should make note of particularly susceptible varieties and remove them from their lineup.
+
+Fungicide control
+In the northernmost production areas, where temperatures are more likely to be cooler and daily dews are common, response to fungicide application has been demonstrated to be economical. Foliar fungicides are best applied at the R3 to R5 growth stages. Consult Fungicide Efficacy for Control of Soybean Foliar Diseases for recommended products. In most soybean producing regions, however, there is generally no need for fungicide control, since the disease stops on its own with hotter, drier weather. Often the disease will redevelop late in the season, but by that time, it is too late to make an economical application.
+
+Resources
+Brown Spot of Soybean, Ohio State University, 2011
+
+Fungicide Efficacy for Control of Soybean Foliar Diseases, Crop Protection Network, CPN-1019, updated annually
+
+Identifying Septoria Leaf Spot (Brown Spot) – Video, University of Nebraska, 2014
+
+Managing Septoria Leaf Spot (Brown Spot) – Video, University of Nebraska, 2014
+
+Septoria Brown Spot, University of Minnesota, 2018
+
+Septoria Leaf Spot (Brown Spot), University of Wisconsin
+
+### 165. [not checked] `seen` — none
 
 <https://www.cabi.org/isc/datasheet/45834>
 
 - **Cited by:** Tomato/Powdery_Mildew  (fields: visual_symptoms)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** White powdery spots or patches on upper and lower leaf surfaces; yellowing and premature leaf drop
+- **Additional info:** - Maize streak virus (MSV; Genus Mastrevirus, Family Geminiviridae) occurs throughout Africa, where it causes what is probably the most serious viral crop disease on the continent. It is obligately transmitted by as many as six leafhopper species in the Genus Cicadulina, but mainly by C. mbila Naudé and C. storeyi. In addition to maize, it can infect over 80 other species in the Family Poaceae. Whereas 11 strains of MSV are currently known, only the MSV‐A strain is known to cause economically significant streak disease in maize. Severe maize streak disease (MSD) manifests as pronounced, continuous parallel chlorotic streaks on leaves, with severe stunting of the affected plant and, usuallly, a failure to produce complete cobs or seed. Natural resistance to MSV in maize, and/or maize infections caused by non‐maize‐adapted MSV strains, can result in narrow, interrupted streaks and no obvious yield losses. MSV epidemiology is primarily governed by environmental influences on its vector species, resulting in erratic epidemics every 3–10 years. Even in epidemic years, disease incidences can vary from a few infected plants per field, with little associated yield loss, to 100% infection rates and complete yield loss.
 
-### 176. [403 bot-blocked (page exists)] `seen` — none
+Taxonomy: The only virus species known to cause MSD is MSV, the type member of the Genus Mastrevirus in the Family Geminiviridae. In addition to the MSV‐A strain, which causes the most severe form of streak disease in maize, 10 other MSV strains (MSV‐B to MSV‐K) are known to infect barley, wheat, oats, rye, sugarcane, millet and many wild, mostly annual, grass species. Seven other mastrevirus species, many with host and geographical ranges partially overlapping those of MSV, appear to infect primarily perennial grasses.
 
-<https://www.cabi.org/isc/datasheet/45846>
+Physical properties: MSV and all related grass mastreviruses have single‐component, circular, single‐stranded DNA genomes of approximately 2700 bases, encapsidated in 22 × 38‐nm geminate particles comprising two incomplete T = 1 icosahedra, with 22 pentameric capsomers composed of a single 32‐kDa capsid protein. Particles are generally stable in buffers of pH 4–8.
 
-- **Cited by:** Grape/Leaf_Blight  (fields: pathogen)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Pseudocercospora vitis (syn. Isariopsis clavispora; teleomorph: Mycosphaerella personata)
+Disease symptoms: In infected maize plants, streak disease initially manifests as minute, pale, circular spots on the lowest exposed portion of the youngest leaves. The only leaves that develop symptoms are those formed after infection, with older leaves remaining healthy. As the disease progresses, newer leaves emerge containing streaks up to several millimetres in length along the leaf veins, with primary veins being less affected than secondary or tertiary veins. The streaks are often fused laterally, appearing as narrow, broken, chlorotic stripes, which may extend over the entire length of severely affected leaves. Lesion colour generally varies from white to yellow, with some virus strains causing red pigmentation on maize leaves and abnormal shoot and flower bunching in grasses. Reduced photosynthesis and increased respiration usually lead to a reduction in leaf length and plant height; thus, maize plants infected at an early stage become severely stunted, producing undersized, misshapen cobs or giving no yield at all. Yield loss in susceptible maize is directly related to the time of infection: infected seedlings produce no yield or are killed, whereas plants infected at later times are proportionately less affected.
 
-### 177. [403 bot-blocked (page exists)] `seen` — none
+Disease control: Disease avoidance can be practised by only planting maize during the early season when viral inoculum loads are lowest. Leafhopper vectors can also be controlled with insecticides such as carbofuran. However, the development and use of streak‐resistant cultivars is probably the most effective and economically viable means of preventing streak epidemics. Naturally occurring tolerance to MSV (meaning that, although plants become systemically infected, they do not suffer serious yield losses) has been found, which has primarily been attributed to a single gene, msv‐1. However, other MSV resistance genes also exist and improved resistance has been achieved by concentrating these within individual maize genotypes. Whereas true MSV immunity (meaning that plants cannot be symptomatically infected by the virus) has been achieved in lines that include multiple small‐effect resistance genes together with msv‐1, it has proven difficult to transfer this immunity into commercial maize genotypes. An alternative resistance strategy using genetic engineering is currently being investigated in South Africa.
 
-<https://www.cabi.org/isc/datasheet/56770>
-
-- **Cited by:** Tomato/Verticillium_Wilt  (fields: visual_symptoms)
-- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Yellowing and wilting of lower leaves, V-shaped yellow lesions on leaflets, brown vascular discoloration in st
-
-### 178. [OK] `seen` — none, page-verified
+### 166. [not checked] `seen` — none, page-verified
 
 <https://www.canr.msu.edu/news/rose_gardeners_should_learn_the_symptoms_of_rose_rosette_virus>
 
 - **Cited by:** Rose/Rose_Rosette_Virus  (fields: affected_organs, pathogen, visual_symptoms)
 - **Must contain:** "witches' brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and flowers on roses."
 - **Should support:** Rose rosette virus, vectored by the eriophyid mite Phyllocoptes fructiphilus; Shoots, stems, leaves, buds and flowers; Witches' brooms, red or yellow discoloured and distorted buds, excessive thorns, mosaic-patterned leaves, thic
+- **Additional info:** - Rose rosette disease was first identified in the early 1940s where it was found on wild roses growing east of the Rocky Mountains. Rose rosette disease is caused by the rose rosette virus, which is spread by the eriophyid mite Phyllocoptes fructiphilus. By the 1960s, rose rosette disease spread across the United States, including Michigan. According to the University of Georgia Extension, “It has been estimated that about 93% of rose plants that are susceptible to this disease have the potential to be killed in a matter of decades.”
 
-### 179. [SSL-unverifiable (page likely fine)] `seen` — none
+The spread of rose rosette disease
+The tiny, microscopic eriophyid mites that carry the rose rosette virus are moved by the wind. They are unable to crawl from plant to plant. When they are ready to move, they stand up on their tail end to be carried away by the wind. While developing and feeding, they nestle themselves in the flower buds (Photo 1).
+
+The mite spreads the virus through its mouthparts. According to a Pathogens article, “Field Resistance to Rose Rosette Disease,” after feeding on an infected rose for five days, the mite is capable of transmitting the rose rosette virus, but it takes less than an hour for the mite to transmit the virus to an uninfected rose. Susceptible roses can remain asymptomatic for up to six months. Symptoms of rose rosette disease include witches’ brooms (Photo 2), red or yellow discoloration or distorted buds (Photo 3), excessive thorns (Photo 4), mosaic-patterned leaves, thick stalks, deformed leaves and flowers on roses.
+Rose rosette disease affects not only multiflora roses, but also ornamental roses. Multiflora roses (Photo 5) were introduced to the U.S. in the late 1800s to be used for erosion control, fencing barriers, food for wildlife and ornamental rose rootstock. They are a climbing, rambling shrub that can grow more than 15 feet. They usually have white flowers and produce rose hips containing seeds that are dispersed by birds and wildlife. As a result of their aggressive growing habit, they are considered invasive in Michigan and other parts of the U.S. Ornamental roses are cultivated in nurseries and sold commercially in garden centers. They include hybrid tea (Photo 6), grandiflora and shrub roses.
+
+The good news is that the mite that carries the virus is specific to roses, which means the virus won’t spread to plants other than roses. Removing infected roses provides the opportunity to plant a variety of different plants in between roses to provide a barrier of protection.
+
+Monitor roses for signs of decline. The distorted growth, such as witches’ broom, yellowing or stunted leaves are also symptoms of herbicide damage, which can be confused with rose rosette disease. Inspect nearby plants for similar herbicide damage to help determine which is the culprit. In addition, some rose cultivars normally have new growth, which is red. Over time, this red growth will turn into normal green growth.
+
+Practicing good sanitation practices in the garden is essential. Clean tools between plants when pruning, remove fallen or dead plant debris from the ground around the roses, dead head frequently and dispose of pruned plant debris immediately. Before purchasing new roses, always buy healthy looking shrubs and inspect them carefully for any signs of disease.
+
+### 167. [not checked] `seen` — none
+
+<https://www.cropscience.bayer.us/articles/bayer/anthracnose-corn-disease>
+
+- **Cited by:** Corn/Anthracnose_Leaf_Spot_And_Top_Dieback  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Colletotrichum graminicola
+- **Additional info:** - 
+Anthracnose can cause leaf blight, top dieback, and stalk rot. However, corn infected with leaf blight does not necessarily progress to top dieback or stalk rot, because resistance to the stalk rot phase of anthracnose diseases is not highly related to resistance to the leaf blight stage.
+
+
+Disease Development
+Anthracnose is caused by the fungus Colletotirchum graminicola, which overwinters on corn residue. Spores spread to growing plants via windblown rain and rain splash. Infection is favored by increased periods of low light intensity (overcast conditions) and high humidity with moderate temperatures.
+Anthracnose can infect corn at any point in the growing season. The leaf blight phase is most common early in the season, when temperatures are moderate and conditions are wet. However, it can also occur late in the season on leaves in the upper canopy. The fungus can infect roots from the soil, or rain and wind can disperse fungal spores from plant residues to corn stalks. Anthracnose stalk rot is the most common stalk rot in the Eastern Corn Belt. Top dieback—a condition that causes stalk death above the ear—is a form of the stalk rot phase that usually occurs four to six weeks after pollination.
+
+
+Different Phases of Anthracnose
+Leaf Blight Phase — Lesions are nondescript, oval to spindle-shaped necrotic areas that may appear water soaked or chlorotic. Lesions are often found on the bottom leaves first and can progress to the upper leaves. Small, black, hair-like fungal structures called setae often occur in necrotic tissues and can be seen with the help of a hand lens. Lesions are often tan to brown with yellow to reddish-brown borders (Figure 1). Heavily infected leaves wither and die. This phase of the disease is rarely an economic concern. It is most common in fields in which corn was planted the previous year and can occur both early in the season and late in the season, though it rarely occurs mid-season.
+anthracnose leaf blight
+Figure 1. Anthracnose leaf blight.
+Top Dieback — In fields with heavy anthracnose stalk rot pressure, it is common for a portion of the plant above the ears to die prematurely while the lower plant remains green. This symptom, known as “top dieback,” may appear as early as one to three weeks after tasseling (Figure 2)1.
+
+Anthracnose - Top Dieback 2
+Figure 2. Top dieback phase of Anthracnose.
+As the stalk rot phase progresses the pith and the vascular system decay, reducing water translocation to the top leaves. In cases where water availability is reduced in the soil, the top leaves tend to dry down and die because of the reduced water supply. However, caution is needed when diagnosing anthracnose infections, as this symptom can also be the result of natural dry down or insect injury. Anthracnose infection can be confirmed by removing the top leaf sheaths. If removing the sheaths reveals that the stalk has black spots or streaks that can not be removed with a fingernail, the plant is likely infected.
+
+Stalk Rot Phase — Disease onset usually occurs just before plants mature (Figure 3). Typically, the entire plant dies in the stalk rot phase and several nodes have already rotted. Late in the season, after plants show signs of early death, a shiny, black discoloration develops in blotches or streaks on the stalk surface, particularly on lower internodes (Figure 4). Internal stalk tissue also may become discolored and soft, starting at the nodes.
+
+Anthracnose Stalk Rot Field Shot
+Figure 3. Field symptoms of anthracnose stalk rot, note that not all plants are infected.
+Anthracnose Stalk Rot
+Figure 4. Anthracnose stalk rot, note the shiny, black blotches and streaks.
+Stalks may also have discolored pith while the rind remains green. Lodging typically occurs higher on the stalk than with other stalk rots.2
+
+Management Options
+Prior to Harvest — Plants that are severely damaged by the stalk rot phase may become lodged prior to the normal harvest period. Therefore, preparations should be taken to harvest problem fields early. Although high grain drying costs may be a concern when harvesting wet grain, this expense may be a better option than the potential loss of yield due to increased lodging later in harvest. Scouting for stalk rots should be done 40 to 50 days after pollination and before the black layer develops. Healthy stalks should be firm, and soft stalks may be diseased. Two methods are used to scout for stalk rots:
+
+The push test— Randomly select 20 plants from five different areas of the field for a total of 100 plants. Push the top portion of the plant 6 to 8 inches (15 to 20 cm) from the vertical to 45° and note whether or not the plant lodged.
+The pinch test or squeeze test— Randomly select 20 plants from five different areas of the field for a total of 100 plants. Remove lower leaves and pinch or squeeze the stalks above the brace roots. Record the number of rolled stalks.
+Regardless of which test is used, if more than 10 to 15 percent of stalks are observed have the disease and weakened stalks at 40 to 60 days after pollination, harvesting should occur as quickly as possible.
+
+Next Season —
+
+Tillage — Burying infected residue can help decrease the amount of disease inoculum.
+
+Crop Rotation — Planting a non-host crop such as soybean can help reduce inoculum. In fields with a severe anthracnose problem, a two-year rotation away from corn may be considered.4
+
+Product Selection — Select corn products rated well for tolerance to anthracnose. Corn products may have ratings of tolerance to either the leaf blight phase or the stalk rot phase of anthracnose, or to both phases. Tolerance to one phase does not indicate that the product has tolerance to the other phases. Ask your seed supplier for locally adapted products that have good tolerance ratings.
+
+Minimize Stress and Cannibalization — Stalk rots can become more prevalent as a corn crop endures additional stress. Stresses such as foliar diseases, insect damage, and drought can increase the risk of stalk cannibalization, which can in turn increase the risk of lodging.
+
+Fertility — Stalk rots can be more common and severe in fields with key nutrient imbalances, low fertility levels, or low soil pH. Plants grown in fields with an imbalance between nitrogen and potassium are very susceptible to stalk rots.
+
+1Stack, J. and Jackson-Ziems, T. Anthracnose. University of Nebraska-Lincoln. https://cropwatch.unl.edu/plantdisease/corn/anthracnose
+
+22019. Anthracnose stalk rot of corn. Crop Protection Network. https://cropprotectionnetwork.org/encyclopedia/anthracnose-stalk-rot-of-corn.
+
+3 Brown, C., Follings, J., Moran, M., and Rosser, B. (Eds.) 2023. Agronomy guide for field crops. Ontario Ministry of Agriculture, Food, and Rural Affairs. Pub 811. https://www.ontario.ca/page/agronomy-guide-field-crops
+
+4Lipps, P.E. and Mills, D.R. Anthracnose leaf blight and stalk rot of corn. Ohio State University Extension. AC-0022-01. https://www.knowmoregrowmore.com/wp-content/uploads/2013/07/0022.html
+
+### 168. [not checked] `seen` — none
+
+<https://www.cropscience.bayer.us/articles/bayer/diaporthe-phomopsis-disease-complex-in-soybean>
+
+- **Cited by:** Soybean/Diaporthe  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Diaporthe longicolla (anamorph: Phomopsis longicolla) and related Diaporthe/Phomopsis species
+- **Additional info:** - Pod and Stem Blight - Diaporthe sojae
+Infection by the fungus Diaporthe sojae can occur early in the growing season; however, symptoms of Pod and Stem Blight occur later in the season (R6 to R8 growth stages; full pod through harvest, respectively). A characteristic symptom of D. sojae infection is parallel rows of black, flask-shaped specks or pycnidia on mature soybean stems or other dead/dying tissues (Figure 1). The pycnidia may also develop on dry, poorly developed pods, but may be dispersed randomly rather than arranged linearly.1
+
+Pod and Stem Blight – Diaporthe sojae on Soybean Stem
+Figure 1. Rows of pod and stem blight pycnidia on soybean stem and random pycnidia on soybean pod. Picture courtesy of Craig Grau, Crop Protection Network, Bugwood.org.
+Diaporthe Seed Decay - Diaporthe species
+Diaporthe seed decay is caused by several species of the fungus Diaporthe.2,3 Incidence and severity of this disease is associated with warm, humid, or wet weather prior to maturity, and when there is a delay in harvest. Infected seeds—depending on severity—may appear shriveled, cracked, chalky, or healthy (Figures 2 and 3).4 Healthy appearing but infected seeds may produce weak seedlings, and severely infected seeds may fail to germinate.5 Seed quality, oil content, and test weight of infected seeds may be reduced.
+Seed Decay – Diaporthe longicolla on soybean seed.
+Figure 2. Diaporthe-infected seed with characteristic white mold and shriveled appearance. Picture courtesy of Daren Mueller, Iowa State University, Bugwood.org.
+Seed Decay – Mix of Diaporthe longicolla soybean seed decay at various levels.
+Figure 3. Seed mixture with various levels of Diaporthe seed decay.
+Diaporthe Zone Lines - Diaporthe longicolla mycelium
+Zone lines are compact masses of mycelium (stroma) of the fungus Diaporthe longicolla, which are visible under epidermal tissues of stems and roots when plants mature or die prematurely.6 The dark thin lines are irregular in shape and may be circular (Figure 4). Stroma can persist in soybean residue and provide inoculum for future soybean planting. It is currently unknown what impact these structures may have on yield potential. Zone lines have been associated INCORRECTLY with charcoal rot, which is caused by the fungus Macrophomina phaseolina.6,7
+
+Diaporthe Zone Lines - Diaporthe longicolla mycelium on soybean stem.
+Figure 4. Diaporthe longicolla zone lines on lower soybean stem under epidermal layer. Lines are irregular and may be somewhat circular.
+Northern and Southern Stem Canker – Diaporthe caulivora & Diaporthe aspalathi
+Northern (Diaporthe caulivora) and southern stem canker (Diaporthe aspalathi) can be found throughout US soybean growing areas. Both diseases have similar symptomology. Early symptoms include reddish-brown lesions that appear at the base of branches or leaf petioles. These small lesions can develop into elongated, sunken, dark brown cankers that spread up and down the stem (Figures 5 and 6). Tiny black dots called perithecia (spore producing fungal structures) may appear on the stem singly or in clustered groups on plants killed by stem canker. Plant parts above the lesions may die. Reddish-brown discoloration may also occur inside the stem, and pods can abort. Cankers can also look similar to the lesions produced by Phytophthora root rot. However, Phytophthora root rot will also cause root rot with a continuous lesion that extends from root through the stem, while stem cankers do not impact the root. Leaves may also develop necrosis and chlorosis between the veins and may remain attached after death.7 One distinction between the two is that Southern stem canker lesions are likely to have distinct purplish borders and slightly visible concentric rings (Figure 6).9
+
+Northern stem canker with Diaporthe caulivora lesion on soybean stem.
+Figure 5. Northern stem canker Diaporthe caulivora lesion
+Southern stem canker with Diaporthe aspalathi lesion on soybean stem.
+Figure 6. Southern stem canker Diaporthe aspalathi lesion.
+Diaporthe Soybean Disease Management
+Cultural Management – Rotating with corn or other non-legume crops is a primary means for managing Diaporthe diseases. This allows for the fungi, which persists in soybean residue, to decay. Seed selection is a viable option, as soybean products vary in their tolerance or resistance to each disease. Major gene resistance is available for southern stem canker, although resistance to southern stem canker does not provide resistance to northern stem canker. If tolerance ratings are not provided for a favorite seed product, your seed supplier may have additional information.4 Timely harvest can also reduce the occurrence of seed decay.
+Fungicidal Management
+Pod and Stem Blight – Labeled fungicides applied at R6 growth stage can help maintain seed quality in the presence of pod and stem blight, especially when late-season growing conditions are warm and wet.5
+Diaporthe Seed Decay – A labeled fungicide applied from pod set (R3) through late pod stages (R6) is recommended for seed production fields to help decrease seed infection.4
+Northern and Southern Stem Canker – Labeled fungicides applied at V3 growth stage before infection occurs may be considered for management.9
+
+Sources
+1Mueller, D., Bradley, C., Chilvers, M., Giesler, L., Mathew, F., Smith, D., Tenuta, A., and Wise, K. 2015. An overview of pod and stem blight and Diaporthe seed decay. Crop Protection Network, A Product of Land Grant Universities. CPN-1007. https://cropprotectionnetwork.org/publications/an-overview-of-pod-and-stem-blight-and-phomopsis-seed-decay
+2Petrović, K., Skaltsas, D., Castlebury, L.A., et al. 2021. Diaporthe seed decay of soybean [Glycine max (L.) Merr.] is endemic in the United States, but new fungi are involved. Plant Disease. The American Phytopathological Society. Online APS Publications.
+3Joyce, A. and Thiessen, L. 2020. Seed decay and pod blight. NC State Extension, North Carolina State University. https://content.ces.ncsu.edu/seed-decay-and-pod-blight
+4Mangel, D. Pod and stem blight. CROPWATCH, Nebraska Institute of Agriculture and Natural Resources. University of Nebraska-Lincoln. https://cropwatch.unl.edu/plant-disease/soybean/pod-and-stem-blight/
+5Pod and stem blight. OSU Extension. Oklahoma State University. https://extension.okstate.edu/programs/digital-diagnostics/plant-diseases/pod-and-stem-blight.html
+6Bish, M., Faske, T., Langston, D., Lopez-Nicora, H., Malvick, D., Mueller, J., Sikora, E., Telenko, D. and Webster, W. 2025. Soybean stem zone lines: Fact and fiction. Crop Protection Network, A Product of Land Grant Universities. CPN-1015. https://cropprotectionnetwork.org/publications/soybean-stem-zone-lines-fact-and-fiction
+7Olson, T.R., Gebreil, A., Micijevic, A., Bradley, C.A., Wise, K.A., Mueller, D.S., Chilvers, M.I., and Mathew, F.M. 2015. Association of Diaporthe longicolla with black zone lines on mature soybean plants. Plant Health Progress. 16(3): 188-122. https://doi.org/10.1094/PHP-RS-15-0020
+8Malvick, D. 2018. Stem canker on soybean. University of Minnesota Extension. https://extension.umn.edu/soybean-pest-management/stem-canker-soybean
+9Hershman, D.E. 2013. Stem canker of soybean. Plant Pathology Fact Sheet. UK Cooperative Extension Service, University of Kentucky. PPFS-AG-S-07. https://plantpathology.mgcafe.uky.edu/files/ppfs-ag-s-07.pdf
+Web sources verified 12/22/25. 1311_143421
+
+### 169. [not checked] `seen` — none, page-verified
+
+<https://www.cropscience.bayer.us/articles/bayer/diplodia-stalk-ear-rot>
+
+- **Cited by:** Corn/Diplodia_Ear_Rot  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "white mold beginning at the base of the ear that eventually becomes grayish-brown and rots the entire ear"
+- **Should support:** Ears, husks and kernels; Stenocarpella maydis and S. macrospora; White mould starting at the ear base, turning grayish-brown; raised black pycnidia on husk or kernels
+- **Additional info:** -
+
+### 170. [not checked] `seen` — none
+
+<https://www.cropscience.bayer.us/articles/cp/powdery-mildew-in-soybeans>
+
+- **Cited by:** Soybean/Powdery_Mildew  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Erysiphe diffusa (syn. Microsphaera diffusa)
+- **Additional info:** - Powdery mildew in soybeans, caused by the fungus Microsphaera diffusa, is a leaf disease that also affects other legumes. The disease requires cool air temperatures and low relative humidity, making it uncommon during Midwest summers. Powdery mildew occurs occasionally in soybeans in the Midwest and upper Midwest. Although epidemics have been reported about every 10 to 15 years, outbreaks have become more common as seeding rates have increased and row spacing has decreased. Powdery mildew can cause significant yield loss when it occurs, so it’s important for farmers to watch their fields for signs of the disease.
+
+Late-planted soybeans are at greater risk of powdery mildew infection. The disease may be a concern in Midwestern states during certain years when temperatures are cooler than normal from soybean flowering to maturity.
+
+
+Identification and Lifecycle
+Powdery mildew first appears as small circular areas of white, powdery mold growth on the upper soybean leaf surface. Infected areas enlarge to cover more area of the leaf, including upper and lower leaf surfaces. Powdery mildew may also develop on stems and pods. During heavy infections, all above-ground portions of the soybean plant are covered with the white to light-gray powdery mold.
+
+Some soybean varieties may exhibit chlorosis, or yellowing, of leaves and rusty patches on the underside of leaves. Heavily infected plants may defoliate prematurely. Heavily infected pods typically contain shriveled, undeveloped, deformed and flattened green seeds.
+
+The powdery mildew fungus lifecycle begins when microscopic asexual spores (conidia) are dispersed by wind, land on soybean leaves, germinate and penetrate the leaves. These spores form germ tubes and attach themselves to the leaf cells via an anchorage structure. Eventually, this gives rise to feeding structures that develop chains over the soybean leaf. Windborne spores start new infections and repeat the disease cycle until soybean plants mature.
+
+Cooler-than-normal temperatures – 65 to 77 degrees F – favor development of powdery mildew. Disease development is constrained in temperatures above 86 degrees F. Rainfall doesn’t seem to impact the disease. Although soybean plants are susceptible at any growth stage, symptoms are rare before the mid- to late-season reproductive stages.
+
+
+Crop Damage
+Powdery mildew causes soybean crop damage when infected leaves inhibit photosynthesis, transpiration (water uptake through roots and evaporation on leaves) and use of nutrients. Measured yield losses of up to 10 bushels per acre were estimated in Iowa studies over a three-year period and up to 5 bushels per acre in Wisconsin. Yield loss will be greater in soybeans planted late for a region than in early-planted soybeans.
+
+
+Managing Powdery Mildew in Soybeans
+Farmers can manage powdery mildew outbreaks in soybeans through variety selection, scouting, cultivation and fungicides. These best management practices also help minimize the potential for fungicide resistance. Following seasonal reports on disease occurrences from county Extension agronomists is another helpful practice.
+
+Variety selection
+No soybean variety is completely resistant to powdery mildew, but some varieties are much more susceptible than others. It’s difficult for companies to evaluate and breed for resistance because, in most years, powdery mildew pressure is low or nonexistent in soybean fields. It’s always wise to plant disease-free seed. Good weed control from preplant, at planting and throughout the growing season also helps protect against diseases and other pests.
+
+Scouting
+When scouting soybean fields for weeds and insects, check for the presence of powdery mildew and other foliar diseases. During cooler-than-normal seasons when the crop is in the mid- to late reproductive stage, look for powdery mildew symptoms. Take particular care to check the upper surfaces of leaves midway through the canopy. If you suspect powdery mildew, take samples and send them to the diagnostic lab recommended by your county Extension, or refer to a pest identification guide.
+
+Cultural practices
+Crop rotation is not an effective practice to manage powdery mildew because the windborne fungus can spread over long distances. Tillage after harvest and before planting can help break down crop residue and destroy disease pathogens.
+
+Fungicides
+If powdery mildew presents a heavy infection in soybeans, a timely fungicide application after flowering (R1 growth stage) may be warranted. Check for fungicides that are labeled for powdery mildew control. Always use full recommended rates and follow label directions.
+
+
+Bayer solutions to control diseases in soybeans
+A fungicide seed treatment can provide a healthy start for seedlings. Multiple fungal pests can impact soybean seeds and seedlings immediately after planting, and EverGol® Energy SB can protect against pests causing the most damage such as Rhizoctonia solani, Fusarium spp and Pythium spp.
+
+Also, timely foliar fungicide applications help protect soybean plants from fungal diseases, including powdery mildew, through the season. For farmers, a fungicide decision is a matter of considering production needs, past history in the fields, commodity prices, proper timing and risk management.
+
+Delaro® fungicide offers unmatched broad-spectrum control. Its advanced formulation delivers best-in-class dual mode of action residual and improved plant health. In soybeans, the ideal time to first apply Delaro is prior to disease development, between R2 and R5, with applications repeated as necessary. Disease-susceptible cultivars and seed soybeans are most likely to benefit from a Delaro application. For cost efficiency, Delaro can be tankmixed with insecticides and applied in the same trip across the field.
+
+Before applying any fungicide, please read the entire label for the best possible results and to confirm that the product is effective on the disease you need to control. Not every product is suitable for every situation, and correct application technique will ensure the best results.
+
+### 171. [not checked] `seen` — none
 
 <https://www.extension.purdue.edu/extmedia/BP/BP-143-W.pdf>
 
 - **Cited by:** Tomato/Spider_Mites  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
 - **Should support:** Tetranychus urticae (two-spotted spider mite)
+- **Additional info:** - Symptoms of damage:
 
-### 180. [SSL-unverifiable (page likely fine)] `seen` — none
+Affected leaves become reddish brown and bronzy
+Severe infestation larvae silken webbing on the leaves, wither and dry
+Flower and fruit formation affected
+Identification of pest:
+Eggs: Hyaline, globular laid in mass
+Nymphs: Yellowish in colour
+Adult: Red coloured small sized
+Management:
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-43-W.pdf>
+Spray wettable sulphur 50 WP 2g/lit
 
-- **Cited by:** Corn/Anthracnose_Leaf_Spot_And_Top_Dieback  (fields: pathogen)
+### 172. [not checked] `seen` — none
+
+<https://www.gardeningknowhow.com/edible/vegetables/tomato/tomato-verticillium-wilt-control.htm>
+
+- **Cited by:** Tomato/Verticillium_Wilt  (fields: affected_organs)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Colletotrichum graminicola
+- **Should support:** Leaves, vascular tissue (xylem), stems, roots
+- **Additional info:** - Verticillium wilt can be a devastating infection for a tomato crop. This fungal infection comes from the soil and cannot be treated with fungicides. The best way to avoid it is to use resistant tomato varieties. It is also important to know the signs of the disease to avoid spreading it from one area of your garden to another.
 
-### 181. [SSL-unverifiable (page likely fine)] `seen` — none
+What is Tomato Verticillium Wilt?
+Verticillium wilt is a fungal infection that can affect numerous plants, including tomatoes. The fungus persists in the soil and on plant material. It forms threads that infect plants through the root hairs. The best conditions for verticillium to thrive are those of early spring: cool and wet. Moist soil at a temperature around 75 degrees Fahrenheit (24 Celsius) is ideal for the fungus to start infecting roots.
 
-<https://www.extension.purdue.edu/extmedia/BP/BP-77-W.pdf>
+Signs of Verticillium Wilt on Tomatoes
+Although the infection usually begins in spring, you may not see signs of it until summer. One of the first signs of tomatoes with verticillium wilt is the yellowing of older leaves. Yellow changes to brown and then the leaves die.
 
-- **Cited by:** Corn/Crazy_Top  (fields: pathogen)
+The disease also causes discoloration of vascular tissue, which you may see as brown streaks up the stems of tomato plants. This discoloration may also be patchy. New shoot tips may wilt and leaves start to curl upward and sometimes drop. The entire plant and individual fruits may be stunted.
+
+Preventing Verticillium Wilt of Tomato
+There is no fungicide that can be used to treat verticillium wilt on tomatoes or other plants, so prevention is necessary to avoid the damage this disease causes. First, start with resistant plants. Resistant cultivars are available and have the letter “V” after the name to indicate this.Verticillium fungi will easily spread from one plant to another if you aren’t careful. Practice good sanitation when you have infections. Keep your tools and equipment washed and disinfected between using on affected and clean plants.
+
+Also important is crop rotation. If you keep planting susceptible crops in the same soil year after year, the fungus will build up and cause repeated infections. Some of the more vulnerable plants in addition to tomatoes are potatoes, strawberries, eggplant, and melons. Plant cover crops, grains, or corn in off years to reduce the fungus in the soil.
+
+### 173. [not checked] `seen` — none
+
+<https://www.pioneer.com/us/agronomy/diplodia-stalk-rot-cropfocus.html>
+
+- **Cited by:** Corn/Diplodia_Stalk_Rot  (fields: pathogen)
 - **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
-- **Should support:** Sclerophthora macrospora
+- **Should support:** Stenocarpella maydis (formerly Diplodia maydis)
+- **Additional info:** - Diplodia stalk rot may first be evident when affected plants die suddenly during mid- to late-ear fill.
+Upon examination, dark brown lesions can be found extending in either direction from the node.
+Small black spots (pycnidia) may develop just beneath the stalk epidermis near the nodes. The black dots are not easily removed, which distinguishes Diplodia from Gibberella. (see images above)
+Diplodia results in rotted stalks that are disintegrated and discolored (brown), allowing the stalk to be crushed or easily broken. (see images below)
+Although the pith disintegrates, vascular bundles remain intact
+
+Impact on Crop
+
+Yield reduction
+Kernel weight (test weight) may be reduced due to premature plant death
+Potential harvest losses
+Plant Lodging
+Reduced grain quality if ears contact ground
+Reduced harvest speed
+
+Management
+
+Genetic resistance – choose hybrids with high scores for stalk strength
+Crop rotation – at least one year out of corn
+Tillage to help break down crop residue
+Maintain balanced fertility
+Use moderate plant population if field has a history of stalk rot or lodging
+Reduce plant stress if possible
+Control stalk-boring insects to prevent wounds stalk rot organisms can enter.
+
+### 174. [not checked] `seen` — none, page-verified
+
+<https://www.sciencedirect.com/topics/immunology-and-microbiology/rice-tungro-spherical-virus>
+
+- **Cited by:** Rice/Severe_Tungro, Rice/Tungro  (fields: affected_organs, pathogen, visual_symptoms)
+- **Must contain:** "Their leaves become yellow or orange-yellow, may also have rust-colored spots. Discoloration begins from leaf tip and extends down to the blade or the lower leaf portion"
+- **Should support:** Leaves; Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV); Yellow to orange-yellow leaves with rust-coloured spots, discolouring from the leaf tip downward
+- **Additional info:** -
+
+### 175. [not checked] `seen` — none
+
+<https://www.vegetables.bayer.com/ca/en-ca/resources/agronomic-spotlights/target-spot-of-tomato.html>
+
+- **Cited by:** Tomato/Target_Spot  (fields: pathogen)
+- **Must contain:** _(no quote on this citation — it asserts only the value below, so the page must at least support that)_
+- **Should support:** Corynespora cassiicola
+- **Additional info:** - Target spot of tomato is caused by the fungal pathogen Corynespora cassiicola.1 The disease occurs on field-grown tomatoes in tropical and subtropical regions of the world. Target spot was first observed on tomatoes in the U.S. in Immokalee, Florida in 1967. The disease distribution in the U.S. is limited to the southeastern region, most predominantly in the southern parts of Florida.2,3,4 However, the disease also occurs on tomatoes grown in greenhouse and high tunnel production systems in other areas of North America.5
+
+Target spot infections reduce yield indirectly by reducing the photosynthetic area and directly by reducing the fruit’s marketability through fruit spots. One study documented a 30% reduction in marketable yield and a 43% reduction in extra-large fruit when comparing production from treated and untreated plants. In some untreated plots, two-thirds of the fruit were discarded because of fruit blemishes.7 The pathogen C. cassiicola has a wide host range, infecting more than 500 species of plants, including cucumber, cotton, soybean, papaya, and several ornamental and weed hosts.1,4,8
+
+Tomato plants have been infected with strains of the pathogen isolated from other hosts in greenhouse tests. However, some isolates of the pathogen have shown some host specificity while others have a wider host range. The fungus functions as a necrotroph (killing tissue as it infects), a saprophyte (surviving on plant debris), and as an epiphyte (growing on but not infecting plant tissues). Epiphytic colonization of weeds can provide inoculum for tomatoes.8
+
+SYMPTOMS
+The target spot fungus can infect all above-ground parts of the tomato plant. Plants are most susceptible as seedlings and just before and during fruiting. The initial foliar symptoms are pinpoint-sized, water-soaked spots on the upper leaf surface (Figure 1a). The spots develop into small, necrotic lesions that have light brown centers and dark margins. These symptoms may be confused with symptoms of bacterial spot.1,2,8 The lesions increase in size, become circular with gray to pale brown centers. As the lesions enlarge, they can develop darker concentric circles, hence, the name target spot (Figure 1c). The concentric circles are similar to those seen on early blight lesions. Yellow halos can form around the lesions on some varieties. Lesions can coalesce, forming large blighted areas on the leaflets, and infected leaves may drop prematurely.4,5,6,8 Target spot infections typically start on the older, lower leaves in the inner canopy. Thus, the initial symptoms may not be noticed by the grower, making early detection difficult. The disease progresses upward, causing defoliation of the inner canopy, a condition known as “melting-out”.1,2,6,9
+
+ Figure 1. The progression of foliar symptoms of target spot of tomato from (A) initial to (B) intermediate to (C) advanced stages of the disease. Image (C) courtesy Gary Vallad, University of Florida.
+Initial symptoms on stems and petioles are pinpoint lesions that become brown and elongated to oblong. The lesions can expand to the point where they girdle the stem or petiole, resulting in the collapse of leaves or leaflets.2 The lesions on the fruit start as slightly sunken, brown flecks. The fruit lesions enlarge (Figure 2a), forming large, circular, sunken craters with pale-brown centers and concentric circles (Figure 2b). The tissue in the fruit lesions may crack with time.1,2,8 When severe, numerous leaf and stem lesions form on plants, causing collapse of tissues and, eventually, plant death.
+
+ Figure 2. Symptoms of target spot on tomato fruit. (A) Developing lesions on younger fruit. (B) Older lesions on mature fruit. Image (B) courtesy of Yuan-Min Shen, Taichung District Agricultural Research and Extension Station, Bugwood.org.
+CYCLE AND CONDITIONS
+The target spot pathogen survives between crops on plant debris and alternate host plants, including weed hosts. The fungus produces spores, which are spread by wind and wind-blown and splashing rain.2,6,9 Infection of tomato plants requires high humidity levels, periods of leaf wetness from 16 to 44 hours and temperatures between 60° and 90°F. Optimal disease development occurs at temperatures between 68° and 82°F.2,8 Target spot tends to be more severe on plants with lush canopies that dry more slowly. Fruit wounded by hail or blowing sand are predisposed to infection.1,4,8
+
+MANAGEMENT
+Cultural practices for target spot management include improving airflow through the canopy by wider plant spacing and avoiding over-fertilizing with nitrogen, which can cause overly lush canopy formation. Pruning suckers and older leaves in the lower canopy can also increase airflow and reduce leaf wetness.1,5,9 Avoid planting tomatoes near old plantings. Inspect seedlings for target spot symptoms before transplanting. Manage weeds, which may serve as alternate hosts, and avoid the use of overhead irrigation. Destroy crop residues shortly after the final harvest, and rotate away from tomato and other known hosts for at least three years. Resistance to target spot is not available in commercial tomato varieties, although partial resistance has been observed in wild species of tomato.2,8
+
+The primary strategy used to manage target spot on tomato is the regular application of fungicides. Applications should begin before symptoms appear when conditions are favorable for infection and disease development. Fungicides may need to be applied at regular intervals (every 10 to 14 days is common) depending on the label directions of the products used. Full coverage of all plant surfaces is needed for the best control of target spot.1,2,8,9
+
+Many fungicides are registered to control of target spot on tomatoes. Growers should consult regional disease management guides for recommended products.10 Products containing chlorothalonil, mancozeb, and copper oxychloride have been shown to provide good control of target spot in research trials.1,9 The strobilurin fungicides azoxystrobin and pyraclostrobin, the fungicide boscalid, and the systemic acquired resistance (SAR) elicitor acibenzolar-S-methyl have also been shown to provide good control of target spot.4,11
+
+The labels of many of the fungicides registered for target spot control indicate that the products should be tank-mixed or alternated with fungicides with different modes of action to prevent the development of fungicide-resistant strains of the target spot pathogen. This is especially important when using strobilurin fungicides because they are at high risk for resistance development. Strains of C. cassiicola that are resistant to strobilurin fungicides have been detected in tomato and other crops.2,4,8 Successful, long-term management of target spot on tomato will require the use of integrated programs that include cultural and chemical management strategies.
+
+SOURCES
+1 Pernezny, K. Disease management: Target spot of tomato. University of Florida IFAS Extension.
+2 Pernezny, K., Blazquez, C., Smith, L., and Schlub, R. 2014. Gray leaf spot. In “Compendium of tomato diseases and pests, second edition.” American Phytopathological Society, St. Paul.
+3 Blazquez, C. H. 1972. Target spot of tomato. Plant Dis. Rep. 56:243.
+4 Schlub, R., L, Smith, L., J, Datnoff, L., E, & Pernezny, K. (2007). An overview of target spot of tomato caused by Corynespora cassiicola. ll International Symposium on Tomato Disease SHS Acta Horticulturae, p. 808.
+5 Egel, D. 2018. New disease report – target spot of tomato. Vegetable Crops Hotline. Purdue University Cooperative Extension Service. Issue 652.
+6 Abdulridah, J., Ampayzidis, Y., Kakarla, S., and Roberts, P. 2019. Detection of target spot and bacterial spot diseases in tomato using UAV-based and benchtop-based hyperspectral imaging techniques. Precision Agriculture 21:955-978.
+7 Pernezny, K., Datnoff, L. E., Mueller, T., & Collins, J. (1996). Losses in fresh-market tomato production in Florida due to target spot and bacterial spot and the benefits of protectant fungicides. Plant Disease, 80(5), 559–563.
+8 MacKenzie, K. J., Sumabat, L. G., Xavier, K. V., & Vallad, G. E. (2018). A review of corynespora cassiicola and its increasing relevance to tomato in Florida. Plant Health Progress, 19, 303–309.
+9 Jackson, G. 2017. Tomato Target Spot (163). Pacific Pests and Pathogens – Fact Sheets. Australian Center for International Agricultural Research.
+10 Dittmar, P., Freeman, J., Paret, M., and Smith, H. 2020. Vegetable Production Handbook of Florida 2020-2021. UF-IFSA.
+11 Pernezny, K., Stoffella, P., Collins, J., Carroll, A., & Beaney, A. (2002). Control of target spot of tomato with fungicides, systemic acquired resistance activators, and a biocontrol agent. Plant Protection Science,
+38(3), 81–88.

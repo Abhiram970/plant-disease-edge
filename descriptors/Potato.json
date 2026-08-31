@@ -6,7 +6,7 @@
     "fields": {
       "pathogen": {
         "value": "Ralstonia solanacearum (bacterial wilt); Pectobacterium carotovorum subsp. carotovorum and Dickeya spp. (soft rot)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/PotatoBacterialWilt.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_7.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -84,19 +84,19 @@
     "fields": {
       "pathogen": {
         "value": "Alternaria solani",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/EarlyBlight.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato",
         "verbatim_quote": "Early blight is caused by the fungus Alternaria solani.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, stems, petioles, tubers",
-        "source_url": "https://extension.umn.edu/disease-management/early-blight-potato-and-tomato",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_2.html",
         "verbatim_quote": "Early blight can affect leaves, stems, and tubers of potato.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow chlorotic halo, primarily on older lower leaves",
-        "source_url": "https://extension.umn.edu/disease-management/early-blight-potato-and-tomato",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_2.html",
         "verbatim_quote": "Symptoms appear first on the older, lower leaves as small, irregular to circular, brown to black spots. The spots enlarge and concentric rings form in the spots giving them a target-board effect. A yellow area often surrounds each spot.",
         "provenance": "model-recalled"
       }
@@ -136,19 +136,19 @@
     "fields": {
       "pathogen": {
         "value": "Phytophthora infestans",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/LateBlight.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_1.html",
         "verbatim_quote": "Late blight is caused by the oomycete pathogen Phytophthora infestans.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, stems, tubers",
-        "source_url": "https://extension.umn.edu/disease-management/late-blight-potato-and-tomato",
+        "source_url": "https://en.wikipedia.org/wiki/Phytophthora_infestans",
         "verbatim_quote": "Late blight can affect all above ground parts of the plant including leaves, stems, and petioles, as well as the tubers.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked pale green to brown-black lesions on leaf tips and margins; white sporulating growth on leaf undersides; dark brown-black stem lesions; reddish-brown granular rot on tubers",
-        "source_url": "https://extension.umn.edu/disease-management/late-blight-potato-and-tomato",
+        "source_url": "https://en.wikipedia.org/wiki/Phytophthora_infestans",
         "verbatim_quote": "Leaf symptoms begin as pale green, water-soaked spots, usually at leaf tips or edges. These spots turn brown to black, and under moist conditions, a white cottony growth (sporangiophores and sporangia) can be seen on the underside of leaves at the edge of the lesion. On tubers, infected areas are reddish-brown, granular, and dry, and may extend an inch or more into the tuber tissue.",
         "provenance": "model-recalled"
       }
@@ -262,11 +262,11 @@
   {
     "crop": "Potato",
     "disease": "Scurf",
-    "symptom_text": "Potato scurf, caused by Rhizoctonia solani, manifests primarily on tuber surfaces as irregular, dark brown to black superficial patches or encrustations that resemble soil adhering to the skin. These lesions vary in size from small specks to large confluent areas covering much of the tuber surface, giving the skin a dirty, rough, or scurfy texture. The discoloration is confined to the outer skin layers and does not penetrate into the flesh. On stems and stolons, the fungus produces dark brown cankers near the soil line, and small, hard, black sclerotia\u2014the resting structures of the pathogen\u2014are embedded in or on the tuber skin, appearing as raised, irregular, wart-like bodies firmly attached to the periderm.",
+    "symptom_text": "Potato scurf, caused by Rhizoctonia solani, manifests primarily on tuber surfaces as irregular, dark brown to black superficial patches or encrustations that resemble soil adhering to the skin. These lesions vary in size from small specks to large confluent areas covering much of the tuber surface, giving the skin a dirty, rough, or scurfy texture. The discoloration is confined to the outer skin layers and does not penetrate into the flesh. On stems and stolons, the fungus produces dark brown cankers near the soil line, and small, hard, black sclerotia—the resting structures of the pathogen—are embedded in or on the tuber skin, appearing as raised, irregular, wart-like bodies firmly attached to the periderm.",
     "fields": {
       "pathogen": {
         "value": "Rhizoctonia solani",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Rhizoctonia.aspx",
+        "source_url": "https://ipm.ucanr.edu/agriculture/potato/stem-and-stolon-canker/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },

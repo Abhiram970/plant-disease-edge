@@ -2,7 +2,7 @@
   {
     "crop": "Orange",
     "disease": "Canker",
-    "symptom_text": "Citrus canker, caused by the bacterium Xanthomonas citri subsp. citri, produces raised, corky, water-soaked lesions that erupt through the epidermis of leaves, stems, and fruit. On leaves, lesions are circular, tan to brown, and surrounded by a yellow halo, typically ranging from 2\u201310 mm in diameter. The lesion centers become spongy and crater-like with age, often with a greasy or water-soaked margin. On fruit, similar raised, corky pustules develop on the rind surface, reducing marketability. Lesions are distributed across both leaf surfaces but are most prominent on the abaxial side, and severe infections cause premature leaf and fruit drop.",
+    "symptom_text": "Citrus canker, caused by the bacterium Xanthomonas citri subsp. citri, produces raised, corky, water-soaked lesions that erupt through the epidermis of leaves, stems, and fruit. On leaves, lesions are circular, tan to brown, and surrounded by a yellow halo, typically ranging from 2–10 mm in diameter. The lesion centers become spongy and crater-like with age, often with a greasy or water-soaked margin. On fruit, similar raised, corky pustules develop on the rind surface, reducing marketability. Lesions are distributed across both leaf surfaces but are most prominent on the abaxial side, and severe infections cause premature leaf and fruit drop.",
     "fields": {
       "pathogen": {
         "value": "Xanthomonas citri",
@@ -64,7 +64,7 @@
     "fields": {
       "pathogen": {
         "value": "Penicillium digitatum",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GreenMold.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Penicillium_digitatum",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -115,7 +115,7 @@
   {
     "crop": "Orange",
     "disease": "Huanglongbing",
-    "symptom_text": "Huanglongbing (HLB) on orange trees produces a distinctive asymmetric or blotchy yellowing of leaves known as 'yellow shoot' or 'blotchy mottle,' where irregular yellow and green patches appear on the same leaf in a non-uniform pattern that does not follow the midrib symmetrically, distinguishing it from nutrient deficiencies. Affected leaves are small, upright, and leathery with yellowing that may resemble zinc or iron deficiency but remains asymmetric. Fruit on infected trees are small, lopsided, and remain partially green at the stylar end even when ripe \u2014 a symptom called 'greening' \u2014 with bitter, salty, or off-flavored juice. Seeds within affected fruit are often aborted and darkened. Symptoms appear on individual branches initially, giving the canopy a patchy appearance, and affected shoots may show dieback over time.",
+    "symptom_text": "Huanglongbing (HLB) on orange trees produces a distinctive asymmetric or blotchy yellowing of leaves known as 'yellow shoot' or 'blotchy mottle,' where irregular yellow and green patches appear on the same leaf in a non-uniform pattern that does not follow the midrib symmetrically, distinguishing it from nutrient deficiencies. Affected leaves are small, upright, and leathery with yellowing that may resemble zinc or iron deficiency but remains asymmetric. Fruit on infected trees are small, lopsided, and remain partially green at the stylar end even when ripe — a symptom called 'greening' — with bitter, salty, or off-flavored juice. Seeds within affected fruit are often aborted and darkened. Symptoms appear on individual branches initially, giving the canopy a patchy appearance, and affected shoots may show dieback over time.",
     "fields": {
       "pathogen": {
         "value": "Candidatus Liberibacter spp.",
@@ -148,13 +148,13 @@
     "fields": {
       "pathogen": {
         "value": "Penicillium ulaiense",
-        "source_url": "https://www.cabi.org/isc/datasheet/39444",
+        "source_url": "https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-18-1098-PDN",
         "verbatim_quote": "Penicillium ulaiense causes whisker mold of citrus fruits",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruit",
-        "source_url": "https://www.cabi.org/isc/datasheet/39444",
+        "source_url": "https://apsjournals.apsnet.org/doi/10.1094/PDIS-06-18-1098-PDN",
         "verbatim_quote": "whisker mold of citrus fruits",
         "provenance": "model-recalled"
       },

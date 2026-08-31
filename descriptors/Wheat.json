@@ -6,7 +6,7 @@
     "fields": {
       "pathogen": {
         "value": "Xanthomonas translucens pv. undulosa",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialLeafStreak.aspx",
+        "source_url": "http://www.agritech.tnau.ac.in/expert_system/paddy/cpdisbls.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -28,7 +28,7 @@
   {
     "crop": "Wheat",
     "disease": "Fusarium_Graminearum_Schwabe",
-    "symptom_text": "Fusarium head blight (scab) caused by Fusarium graminearum manifests on wheat spikes as premature bleaching of individual spikelets or entire heads, with affected spikelets turning a tan to straw color in sharp contrast to the green or golden healthy tissue surrounding them. The bleached spikelets often display a water-soaked appearance at early infection stages, and salmon-pink to orange fungal sporodochia (masses of conidia) may be visible at the base of infected glumes under moist conditions. Infected kernels are shrunken, lightweight, and chalky-white to pink in color\u2014commonly called 'tombstone' kernels\u2014and may be covered with a pinkish mold. Symptoms typically begin at the middle of the spike and spread upward and downward, with the rachis node below the infected spikelet often showing a dark-brown discoloration that can girdle and kill the tissue above it.",
+    "symptom_text": "Fusarium head blight (scab) caused by Fusarium graminearum manifests on wheat spikes as premature bleaching of individual spikelets or entire heads, with affected spikelets turning a tan to straw color in sharp contrast to the green or golden healthy tissue surrounding them. The bleached spikelets often display a water-soaked appearance at early infection stages, and salmon-pink to orange fungal sporodochia (masses of conidia) may be visible at the base of infected glumes under moist conditions. Infected kernels are shrunken, lightweight, and chalky-white to pink in color—commonly called 'tombstone' kernels—and may be covered with a pinkish mold. Symptoms typically begin at the middle of the spike and spread upward and downward, with the rachis node below the infected spikelet often showing a dark-brown discoloration that can girdle and kill the tissue above it.",
     "fields": {
       "pathogen": {
         "value": "Fusarium graminearum",
@@ -116,19 +116,19 @@
     "fields": {
       "pathogen": {
         "value": "Tilletia indica",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx",
+        "source_url": "https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/plant/identify/karnal-bunt",
         "verbatim_quote": "Karnal bunt is caused by the fungus Tilletia indica (Mitra) Mundkur (syn. Neovossia indica).",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Kernels (grain/seed)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx",
+        "source_url": "https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/plant/identify/karnal-bunt",
         "verbatim_quote": "The fungus infects the kernels, partially converting them to a mass of dark brown to black teliospores.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Partial replacement of kernel tissue by dark brown to black powdery teliospore mass; fishy odor; only part of the kernel is affected while the embryo end often remains intact",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/KarnalBunt.aspx",
+        "source_url": "https://www.agriculture.gov.au/biosecurity-trade/pests-diseases-weeds/plant/identify/karnal-bunt",
         "verbatim_quote": "Infected kernels are partially or entirely converted to a black, powdery mass of teliospores. Infected kernels have a distinctive fishy odor caused by the production of trimethylamine. Usually only part of the kernel is infected, with the embryo end often remaining intact.",
         "provenance": "model-recalled"
       }
@@ -142,19 +142,19 @@
     "fields": {
       "pathogen": {
         "value": "Ustilago tritici",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/LooseSmut.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/loose-smut-of-wheat",
         "verbatim_quote": "Loose smut of wheat is caused by the fungus Ustilago tritici.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Heads (spikes), kernels, glumes, rachis",
-        "source_url": "https://extension.umn.edu/small-grains-pest-management/loose-smut-wheat-and-barley",
+        "source_url": "https://www.albertagrains.com/the-growing-point/articles-library/true-loose-smut-in-barley",
         "verbatim_quote": "The entire head, including the kernels, glumes, and rachis, is replaced by a mass of dark, olive-brown spores.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Dark olive-brown to black powdery spore mass replaces the entire head; thin gray membrane covers spores initially then ruptures; bare rachis remains after spore dispersal",
-        "source_url": "https://www.cabi.org/isc/datasheet/55952",
+        "source_url": "https://www.crop.bayer.com.au/crop-management/diseases/covered-smut",
         "verbatim_quote": "Infected ears emerge earlier than healthy ones and the entire ear is transformed into a mass of dark brown powdery spores (teliospores), initially covered by a greyish membrane which soon ruptures, exposing the spore mass which is dispersed by wind, leaving only the bare rachis.",
         "provenance": "model-recalled"
       }
@@ -168,19 +168,19 @@
     "fields": {
       "pathogen": {
         "value": "Blumeria graminis f. sp. tritici",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/wheat/crop_prot_crop%20diseases_cereals_wheat_5.html",
         "verbatim_quote": "Powdery mildew of wheat is caused by the fungus Blumeria graminis (DC.) Speer f. sp. tritici Em. Marchal.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, leaf sheaths, stems, and spikes",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/WheatPowderyMildew.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/wheat/crop_prot_crop%20diseases_cereals_wheat_5.html",
         "verbatim_quote": "The fungus can infect all above-ground parts of the plant including leaves, leaf sheaths, stems, and spikes.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "White to gray powdery colonies on upper leaf surfaces; colonies turn tan-brown with age; dark cleistothecia embedded in mycelium; yellowing and necrosis of underlying tissue",
-        "source_url": "https://extension.umn.edu/wheat-diseases/powdery-mildew-wheat",
+        "source_url": "https://www.sciencedirect.com/science/article/pii/S2589721725000844",
         "verbatim_quote": "Powdery mildew first appears as white, powdery spots or patches on leaves and other above-ground plant parts. The white, fluffy growth is composed of fungal mycelium and spores. As the disease progresses, the white patches turn gray to tan, and small, black fruiting bodies (cleistothecia) may be visible within the powdery growth.",
         "provenance": "model-recalled"
       }

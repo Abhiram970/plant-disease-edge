@@ -12,6 +12,8 @@ from __future__ import annotations
 import argparse
 import concurrent.futures as cf
 import json
+import re
+import socket
 import ssl
 import sys
 import time
@@ -56,12 +58,65 @@ def probe(url, _attempt=0):
         except Exception as e:
             if "CERTIFICATE_VERIFY_FAILED" in str(e):
                 return "SSL-unverifiable (page likely fine)"
-            last = f"DEAD ({type(e).__name__})"
+            # A timeout is not a missing page. Two large government sites (agriculture.gov.au,
+            # aphis.usda.gov) are simply slow and were being labelled DEAD, which is the same false
+            # alarm as calling a 403 dead -- and it sends you hunting for a replacement for a page
+            # that is fine. Only an HTTP status can establish that a page is gone.
+            if isinstance(e, (TimeoutError, socket.timeout)) or "timed out" in str(e).lower():
+                return "slow (timed out; page likely fine)"
+            last = f"unreachable ({type(e).__name__})"
     verdict = last or "DEAD"
     if verdict.startswith("DEAD") and _attempt == 0:
         time.sleep(2)
         return probe(url, _attempt=1)
     return verdict
+
+
+def _keep_notes(dst: Path, out: list[str]) -> list[str]:
+    """Carry hand-written `**Additional info:**` blocks across a regeneration, keyed by URL.
+
+    This file is generated, but the verification pass is done BY HAND inside it -- page text is
+    pasted under each URL as evidence. A plain overwrite destroyed 181 such blocks and took the file
+    from 524 KB to 92 KB, i.e. it deleted the entire audit trail the checklist exists to hold. The
+    notes are re-attached to whichever entry now cites the same URL, so a URL that moved keeps its
+    evidence and a URL that disappeared drops its note with it.
+    """
+    if not dst.exists():
+        return out
+    prev = dst.read_text(encoding="utf-8", errors="replace")
+    notes: dict[str, str] = {}
+    for entry in prev.split("\n### ")[1:]:
+        head = entry.split("- **Cited by:**")[0]
+        # An entry may carry several URLs -- during the verification pass a replacement was written
+        # beside the original as `<old> - <new>`. Key the note under EVERY url in the entry, because
+        # the descriptor may since have been repointed from one to the other and the evidence
+        # belongs to whichever is cited now.
+        urls_here = re.findall(r"<(https?://[^>]+)>", head)
+        if not urls_here:
+            continue
+        note = re.search(r"(?m)^-?\s*-?\s*\*\*Additional info:\*\*(.*?)(?=\n### |\Z)", entry, re.S)
+        if note and note.group(1).strip():
+            for u in urls_here:
+                notes.setdefault(u, note.group(1).rstrip())
+    if not notes:
+        return out
+
+    merged, cur, kept = [], None, 0
+    for line in out:
+        m = re.match(r"<(https?://[^>]+)>$", line.strip())
+        if m:
+            cur = m.group(1)
+        if line.startswith("### ") and cur and cur in notes:
+            cur = None
+        merged.append(line)
+        # append the note right after the last bullet of this entry (the blank line before the next)
+        if cur and line == "" and merged[-2:-1] and merged[-2].startswith("- **"):
+            if cur in notes:
+                merged.insert(len(merged) - 1, f"- **Additional info:**{notes[cur]}")
+                kept += 1
+            cur = None
+    print(f"[checklist] preserved {kept} hand-written note block(s) from the previous file")
+    return merged
 
 
 def main():
@@ -149,6 +204,7 @@ def main():
         out.append("")
 
     dst = C.REPO_ROOT / "docs" / "paper" / "SOURCE_CHECKLIST.md"
+    out = _keep_notes(dst, out)
     dst.write_text("\n".join(out), encoding="utf-8")
     print(f"[checklist] wrote {dst}  ({len(urls)} urls)")
     bad = [u for u in urls if status[u].startswith("DEAD")]

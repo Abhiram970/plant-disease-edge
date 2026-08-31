@@ -6,19 +6,19 @@
     "fields": {
       "pathogen": {
         "value": "Pseudomonas syringae pv. lachrymans",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "source_url": "https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/",
         "verbatim_quote": "Angular leaf spot is caused by the bacterium Pseudomonas syringae pv. lachrymans.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, fruit, stems",
-        "source_url": "https://extension.umn.edu/diseases/angular-leaf-spot-cucumbers",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/angular-leaf-spot",
         "verbatim_quote": "Angular leaf spot affects leaves, fruit, and stems of cucumbers.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf undersides; lesions dry and fall out leaving holes; water-soaked spots on fruit that become white and crusty",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "source_url": "https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/",
         "verbatim_quote": "Symptoms first appear as small, water-soaked lesions on leaves. These lesions are bounded by leaf veins and therefore appear angular. As lesions age, they turn tan to brown. Under humid conditions, bacterial exudate may be seen on the lower leaf surface as a white, crusty residue after drying.",
         "provenance": "model-recalled"
       }
@@ -32,19 +32,19 @@
     "fields": {
       "pathogen": {
         "value": "Pseudomonas syringae pv. lachrymans",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "source_url": "https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/",
         "verbatim_quote": "Angular leaf spot of cucurbits is caused by the bacterium Pseudomonas syringae pv. lachrymans.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, fruit, stems",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "source_url": "https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/",
         "verbatim_quote": "The disease affects leaves, stems, and fruit of cucurbits.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked, angular lesions bounded by leaf veins that turn tan to brown; white bacterial exudate on leaf undersides under humid conditions; lesions may coalesce and tear, leaving ragged holes; water-soaked spots on fruit and stems",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/AngularLeafSpot.aspx",
+        "source_url": "https://vegpath.plantpath.wisc.edu/diseases/cucurbit-angular-leaf-spot/",
         "verbatim_quote": "Leaf symptoms begin as small, water-soaked lesions that are angular in shape because they are delimited by leaf veins. Lesions turn tan to brown as they age. Under humid conditions, a white crust of dried bacterial exudate may be visible on the lower leaf surface.",
         "provenance": "model-recalled"
       }
@@ -58,7 +58,7 @@
     "fields": {
       "pathogen": {
         "value": "Colletotrichum orbiculare (syn. C. lagenarium)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Anthracnose.aspx",
+        "source_url": "https://www.gardeningknowhow.com/edible/vegetables/cucumber/anthracnose-control-in-cucumbers.htm",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -84,19 +84,19 @@
     "fields": {
       "pathogen": {
         "value": "Erwinia tracheiphila",
-        "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-wilt",
         "verbatim_quote": "Bacterial wilt is caused by the bacterium Erwinia tracheiphila.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "leaves, stems, vascular tissue, entire plant",
-        "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-wilt",
         "verbatim_quote": "The bacteria multiply in and block the vascular system of the plant, causing wilting of leaves and stems.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Rapid wilting of vines and leaves; sticky bacterial ooze forms thread-like strands when cut stem ends are pulled apart; dull green water-soaked appearance of wilting tissue; complete plant collapse",
-        "source_url": "https://extension.umn.edu/diseases/bacterial-wilt-cucurbits",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-wilt",
         "verbatim_quote": "Wilting of individual leaves or entire vines is the primary symptom. A simple diagnostic test involves cutting a wilted stem near the base, touching the cut ends together, and slowly pulling them apart. If bacterial wilt is present, a thin, thread-like strand of bacterial ooze will stretch between the two cut ends.",
         "provenance": "model-recalled"
       }
@@ -110,7 +110,7 @@
     "fields": {
       "pathogen": {
         "value": "Rhizoctonia solani",
-        "source_url": "https://extension.umn.edu/vegetable-diseases/belly-rot-cucumber",
+        "source_url": "https://www.gardeningknowhow.com/edible/vegetables/vgen/avoid-belly-rot-in-vegetables.htm",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -136,7 +136,7 @@
     "fields": {
       "pathogen": {
         "value": "Corynespora cassiicola",
-        "source_url": "https://www.cabi.org/isc/datasheet/15942",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/rubber_diseases_3.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -191,7 +191,7 @@
     "fields": {
       "pathogen": {
         "value": "Stagonosporopsis cucurbitacearum (syn. Didymella bryoniae)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GummyStemBlight.aspx",
+        "source_url": "https://www.bighaat.com/kisan-vedika/blogs/defeating-gummy-stem-blight-strategies-for-cucurbit-growers?srsltid=AfmBOorpEy4-EEedtjOKu6gJEMd0RoDl7kiOK6aYPU1hrR_wPDb_Cyp3",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -217,7 +217,7 @@
     "fields": {
       "pathogen": {
         "value": "Phytophthora capsici",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/PhytophthoraBlight.aspx",
+        "source_url": "https://www.vegetables.cornell.edu/pest-management/disease-factsheets/phytophthora-blight-of-cucurbits/",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -269,7 +269,7 @@
     "fields": {
       "pathogen": {
         "value": "Pythium aphanidermatum (and other Pythium spp.)",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-72-W.pdf",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/cucurbit_phdiseases_4.html",
         "verbatim_quote": "",
         "provenance": "none"
       },

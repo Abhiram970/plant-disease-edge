@@ -6,19 +6,19 @@
     "fields": {
       "pathogen": {
         "value": "Pseudocercospora griseola (formerly Phaeoisariopsis griseola)",
-        "source_url": "https://www.cabi.org/isc/datasheet/40339",
+        "source_url": "https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.13556",
         "verbatim_quote": "Pseudocercospora griseola (Sacc.) Crous & U. Braun (formerly known as Phaeoisariopsis griseola) is the causal agent of angular leaf spot of bean.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, pods, stems",
-        "source_url": "https://www.cabi.org/isc/datasheet/40339",
+        "source_url": "https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.13556",
         "verbatim_quote": "Symptoms occur on leaves, pods and stems of susceptible bean cultivars.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Angular, water-soaked lesions delimited by leaf veins turning brown to gray-brown; grayish sporulation on leaf undersides; reddish-brown spots on pods; dark streaks on stems",
-        "source_url": "https://www.cabi.org/isc/datasheet/40339",
+        "source_url": "https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/ppa.13556",
         "verbatim_quote": "On leaves, lesions are angular, delimited by veins, initially water-soaked, later turning brown to grey-brown, with a darker border; on the lower leaf surface a grey, powdery sporulation is visible; on pods, lesions are circular to irregular, reddish-brown spots.",
         "provenance": "model-recalled"
       }
@@ -57,7 +57,7 @@
   {
     "crop": "Bean",
     "disease": "Halo_Blight",
-    "symptom_text": "Halo blight of bean, caused by Pseudomonas savastanoi pv. phaseolicola, primarily affects leaves, pods, and seeds. On leaves, small water-soaked spots first appear, which enlarge and turn brown to reddish-brown necrotic lesions surrounded by a conspicuous wide, pale green to yellow chlorotic halo \u2014 the hallmark symptom giving the disease its name. Lesions are angular to irregular in shape, often delimited by leaf veins, and may coalesce under wet conditions to cause extensive blighting. On pods, water-soaked, greasy-looking spots develop and may become reddish-brown with age. Seeds from infected pods may show a wrinkled, discolored appearance. Symptoms are most severe under cool, wet weather conditions and can be distributed across the entire canopy when the pathogen is seed-borne.",
+    "symptom_text": "Halo blight of bean, caused by Pseudomonas savastanoi pv. phaseolicola, primarily affects leaves, pods, and seeds. On leaves, small water-soaked spots first appear, which enlarge and turn brown to reddish-brown necrotic lesions surrounded by a conspicuous wide, pale green to yellow chlorotic halo — the hallmark symptom giving the disease its name. Lesions are angular to irregular in shape, often delimited by leaf veins, and may coalesce under wet conditions to cause extensive blighting. On pods, water-soaked, greasy-looking spots develop and may become reddish-brown with age. Seeds from infected pods may show a wrinkled, discolored appearance. Symptoms are most severe under cool, wet weather conditions and can be distributed across the entire canopy when the pathogen is seed-borne.",
     "fields": {
       "pathogen": {
         "value": "Pseudomonas syringae pv. phaseolicola",
@@ -115,23 +115,23 @@
   {
     "crop": "Bean",
     "disease": "Rust",
-    "symptom_text": "Bean rust, caused by Uromyces appendiculatus, primarily affects leaves but can also infect stems and pods. On the upper leaf surface, small pale yellow or white spots first appear, while the corresponding lower leaf surface develops raised, brick-red to reddish-brown powdery pustules (uredinia) that are circular and approximately 1\u20132 mm in diameter. These pustules rupture the epidermis and release masses of reddish-brown urediniospores, giving infected tissue a rusty, powdery appearance. As the disease progresses, pustules may coalesce, and surrounding tissue often turns yellow and necrotic. Later in the season, darker brown to black teliospore pustules (telia) may form on the same or adjacent lesions. Severely infected leaves may drop prematurely, and heavily infected pods show similar reddish-brown pustules on their surface.",
+    "symptom_text": "Bean rust, caused by Uromyces appendiculatus, primarily affects leaves but can also infect stems and pods. On the upper leaf surface, small pale yellow or white spots first appear, while the corresponding lower leaf surface develops raised, brick-red to reddish-brown powdery pustules (uredinia) that are circular and approximately 1–2 mm in diameter. These pustules rupture the epidermis and release masses of reddish-brown urediniospores, giving infected tissue a rusty, powdery appearance. As the disease progresses, pustules may coalesce, and surrounding tissue often turns yellow and necrotic. Later in the season, darker brown to black teliospore pustules (telia) may form on the same or adjacent lesions. Severely infected leaves may drop prematurely, and heavily infected pods show similar reddish-brown pustules on their surface.",
     "fields": {
       "pathogen": {
         "value": "Uromyces phaseoli (syn. U. appendiculatus)",
-        "source_url": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/beans_diseases_3.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves, primarily the lower surface; pods may also be affected",
-        "source_url": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/beans_diseases_3.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Dry reddish, yellowish or orange powdery spore pustules, mainly on the underside of leaves",
-        "source_url": "https://ipm.ucanr.edu/PMG/GARDEN/VEGES/DISEASES/beanrust.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/beans_diseases_3.html",
         "verbatim_quote": "Plants infected with rust have dry reddish, yellowish, or orange spore masses or pustules primarily on the lower surface of leaves.",
         "provenance": "page-verified"
       }

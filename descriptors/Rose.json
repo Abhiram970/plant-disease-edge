@@ -6,19 +6,19 @@
     "fields": {
       "pathogen": {
         "value": "Diplocarpon rosae",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BlackSpotRose.aspx",
+        "source_url": "https://www.missouribotanicalgarden.org/gardens-gardening/your-garden/help-for-the-home-gardener/advice-tips-resources/insects-pests-and-problems/diseases/fungal-spots/black-spot",
         "verbatim_quote": "Black spot is caused by the fungus Diplocarpon rosae Wolf (sexual stage); the asexual stage is Marssonina rosae (Lib.) Died.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, young canes, flower petals",
-        "source_url": "https://extension.umn.edu/plant-diseases/black-spot-rose",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/rose_diseases_1.html",
         "verbatim_quote": "Black spot infects leaves, petioles, young canes, and flower petals.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Circular black spots with fringed margins on upper leaf surface, surrounded by yellow halos, leading to yellowing and premature leaf drop",
-        "source_url": "https://extension.umn.edu/plant-diseases/black-spot-rose",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/rose_diseases_1.html",
         "verbatim_quote": "Symptoms appear as circular, black spots with fringed margins on the upper surface of leaves. Yellow halos often surround the spots. Infected leaves turn yellow and drop prematurely.",
         "provenance": "model-recalled"
       }
@@ -32,7 +32,7 @@
     "fields": {
       "pathogen": {
         "value": "Peronospora sparsa",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/RoseDownyMildew.aspx",
+        "source_url": "https://solvepestproblems.oregonstate.edu/plant-problems/roses/downy-mildew",
         "verbatim_quote": "Downy mildew of rose is caused by the oomycete pathogen Peronospora sparsa.",
         "provenance": "model-recalled"
       },

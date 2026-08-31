@@ -6,19 +6,19 @@
     "fields": {
       "pathogen": {
         "value": "Colletotrichum acutatum",
-        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+        "source_url": "https://en.wikipedia.org/wiki/Colletotrichum_fragariae",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Petioles, runners, crown and fruit",
-        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+        "source_url": "https://en.wikipedia.org/wiki/Colletotrichum_fragariae",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Dark brown to black sunken lens-shaped spots on petioles and runners; salmon or orange spore masses form on lesions",
-        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/anthracnose/",
+        "source_url": "https://en.wikipedia.org/wiki/Colletotrichum_fragariae",
         "verbatim_quote": "salmon or orange-colored spores can form on the lesions of the fruit, petioles, and runners",
         "provenance": "page-verified"
       }
@@ -61,19 +61,19 @@
     "fields": {
       "pathogen": {
         "value": "Botrytis cinerea",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BotrytisGrayMold.aspx",
+        "source_url": "https://extension.psu.edu/strawberry-disease-gray-mold",
         "verbatim_quote": "Gray mold, caused by Botrytis cinerea, is one of the most economically important diseases of strawberry worldwide.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruit, flowers, leaves, stems",
-        "source_url": "https://extension.ucdavis.edu/sites/default/files/2022-03/gray_mold_strawberry.pdf",
+        "source_url": "https://content.ces.ncsu.edu/gray-mold-or-botrytis-rot-of-strawberry",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Water-soaked lesions on fruit turning brown and covered with gray sporulating mycelium; blighted blossoms; tan lesions on leaves",
-        "source_url": "https://www.canr.msu.edu/resources/gray-mold-botrytis-fruit-rot-of-strawberry",
+        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/botrytis-fruit-rot/#gsc.tab=0",
         "verbatim_quote": "Infected fruit first appear water-soaked and light brown, then become covered with a gray, dusty mass of spores.",
         "provenance": "model-recalled"
       }
@@ -87,19 +87,19 @@
     "fields": {
       "pathogen": {
         "value": "Diplocarpon earlianum (anamorph: Marssonina fragariae)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx",
+        "source_url": "https://ipm.ucanr.edu/home-and-landscape/leaf-scorch-of-strawberries/#gsc.tab=0",
         "verbatim_quote": "Leaf scorch of strawberry is caused by the fungus Diplocarpon earlianum (Ellis & Everh.) F.A. Wolf (anamorph: Marssonina fragariae (Lib.) Kleb.).",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (leaflets), petioles, runners, fruit caps (calyxes)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx",
+        "source_url": "https://ipm.ucanr.edu/home-and-landscape/leaf-scorch-of-strawberries/#gsc.tab=0",
         "verbatim_quote": "Symptoms can be observed on leaves, petioles, runners, and fruit caps.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Numerous small, irregular, dark purple to reddish-purple spots on upper leaf surface; centers remain dark (no pale center); severely affected leaves appear scorched or burned",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafScorch.aspx",
+        "source_url": "https://ipm.ucanr.edu/home-and-landscape/leaf-scorch-of-strawberries/#gsc.tab=0",
         "verbatim_quote": "Leaf scorch symptoms first appear as numerous small, irregular, purplish spots or 'blotches' on the upper leaf surface. Unlike leaf spot, the centers of these lesions do not turn white or gray, but remain dark purple, giving the leaf a 'scorched' appearance.",
         "provenance": "model-recalled"
       }
@@ -109,23 +109,23 @@
   {
     "crop": "Strawberry",
     "disease": "Leaf_Spot",
-    "symptom_text": "Strawberry leaf spot, caused by Mycosphaerella fragariae, produces small, circular to slightly irregular lesions on the upper surface of leaves that begin as dark purple to reddish-purple spots approximately 1\u20135 mm in diameter. As lesions mature, the centers turn tan to white or gray while the margins remain dark purple, creating a distinctive 'bird's-eye' appearance. Lesions may also appear on petioles, runners, fruit caps (calyxes), and berry surfaces. On heavily infected leaves, numerous spots may coalesce, leading to large necrotic areas and premature defoliation. The contrast between the pale necrotic center and the dark purple border is the hallmark diagnostic feature of this disease.",
+    "symptom_text": "Strawberry leaf spot, caused by Mycosphaerella fragariae, produces small, circular to slightly irregular lesions on the upper surface of leaves that begin as dark purple to reddish-purple spots approximately 1–5 mm in diameter. As lesions mature, the centers turn tan to white or gray while the margins remain dark purple, creating a distinctive 'bird's-eye' appearance. Lesions may also appear on petioles, runners, fruit caps (calyxes), and berry surfaces. On heavily infected leaves, numerous spots may coalesce, leading to large necrotic areas and premature defoliation. The contrast between the pale necrotic center and the dark purple border is the hallmark diagnostic feature of this disease.",
     "fields": {
       "pathogen": {
         "value": "Mycosphaerella fragariae (anamorph: Ramularia tulasnei)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Common_spot_of_strawberry",
         "verbatim_quote": "Leaf spot of strawberry is caused by the fungus Mycosphaerella fragariae (Tul.) Lindau (anamorph: Ramularia tulasnei Sacc.).",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, runners, fruit caps (calyxes), and berry surfaces",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Common_spot_of_strawberry",
         "verbatim_quote": "Symptoms occur on leaves, petioles, runners, fruit caps (calyxes), and berry surfaces.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
-        "value": "Small circular spots with dark purple to reddish-purple margins and tan to white or gray centers ('bird's-eye' lesions), 1\u20135 mm in diameter, on leaf surfaces",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryLeafSpot.aspx",
+        "value": "Small circular spots with dark purple to reddish-purple margins and tan to white or gray centers ('bird's-eye' lesions), 1–5 mm in diameter, on leaf surfaces",
+        "source_url": "https://en.wikipedia.org/wiki/Common_spot_of_strawberry",
         "verbatim_quote": "Spots are circular, 1 to 5 mm in diameter, with centers that are tan to white or gray and margins that are dark purple to reddish purple.",
         "provenance": "model-recalled"
       }
@@ -139,7 +139,7 @@
     "fields": {
       "pathogen": {
         "value": "Podosphaera aphanis (syn. Sphaerotheca macularis f. sp. fragariae)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/StrawberryPowderyMildew.aspx",
+        "source_url": "https://ipm.ucanr.edu/agriculture/strawberry/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "Powdery mildew of strawberry is caused by Podosphaera aphanis (Wallr.) U. Braun & S. Takam. (syn. Sphaerotheca macularis (Fr.) Lind f. sp. fragariae Peries).",
         "provenance": "model-recalled"
       },
