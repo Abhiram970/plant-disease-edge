@@ -91,7 +91,9 @@ from pathlib import Path
 # ============================== SETTINGS ==============================
 BUDGET_H         = 8.5      # do not START a new stage past this. Must stay under the 12 h cell wall.
 FETCH_BUDGET_H   = 7.0      # sub-budget for the fetch, so a slow pull cannot eat the whole session
-SHARD_TIMEOUT    = 900      # kill + retry a shard download stalled this many seconds
+SHARD_TIMEOUT    = 240      # kill + retry a stalled shard. Short by design: a shard that
+                            # transfers lands in 7-48 s and one that stalls sends no bytes,
+                            # so 900 s only burned 45 min per bad shard learning nothing.
 STAGE_TIMEOUT_H  = 3.0      # no single stage may exceed this
 ARCH_MAX_H       = 1.5      # no single CNN architecture may exceed this
 
