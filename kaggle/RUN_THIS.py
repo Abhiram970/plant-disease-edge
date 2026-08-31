@@ -208,8 +208,22 @@ Path("/kaggle/temp/hf/hub").mkdir(parents=True, exist_ok=True)
 os.environ["PDE_DATA_ROOT"] = str(WORK)
 
 sys.path.insert(0, str(S))
-import config as CFG           # noqa: E402  -- needs the clone above
-print(f"[ok] SAGE pinned to {CFG.SHARD_REVISION[:12]} ({CFG.N_SHARDS} shards)")
+# Load OUR config by file path rather than `import config`. Kaggle's image preloads packages that
+# already occupy the bare name `config` in sys.modules (google-adk among them), and a plain import
+# returns that cached module -- which produced
+#     AttributeError: module 'config' has no attribute 'N_SHARDS'
+# on a file that defines N_SHARDS perfectly well. sys.path.insert cannot help: it only affects
+# modules not already imported. Evicting the name first, then loading from an explicit spec, makes
+# the import unambiguous. The child scripts are unaffected -- they run in their own processes with
+# scripts/ first on sys.path.
+import importlib.util                                            # noqa: E402
+sys.modules.pop("config", None)
+_spec = importlib.util.spec_from_file_location("pde_config", S / "config.py")
+CFG = importlib.util.module_from_spec(_spec)
+sys.modules["pde_config"] = sys.modules["config"] = CFG          # so child imports resolve to ours
+_spec.loader.exec_module(CFG)
+print(f"[ok] SAGE pinned to {CFG.SHARD_REVISION[:12]} ({CFG.N_SHARDS} shards) "
+      f"| {len(CFG.WANT_CROPS)} crops")
 
 try:
     import torch
