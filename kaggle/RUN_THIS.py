@@ -109,7 +109,10 @@ ARCH_MAX_H       = 1.5      # no single CNN architecture may exceed this
 
 MAX_SIDE         = 288      # store at 288 px; everything trains at 224, so more is bytes for nothing
 UNGROUNDED_SEEDS = [0, 1, 2]
-LLM_MODEL        = "claude-sonnet-5"   # both descriptor arms; see MATCHED_GROUNDED below
+LLM_MODEL        = "claude-sonnet-5"   # native Anthropic API
+LAVA_MODEL       = "claude-sonnet-4-6" # what the Lava service key is whitelisted for (probed)
+# Whichever is used, BOTH arms use the SAME model in the SAME run -- that is what makes
+# grounded_matched vs ungrounded a test of sourcing rather than of model version.
 MATCHED_GROUNDED = True
 # The shipped grounded registry records no generating model (217 records: crop, disease,
 # symptom_text, fields, status -- no provenance). Comparing a freshly generated ungrounded set
@@ -192,13 +195,15 @@ for k in ("GH_TOKEN", "HF_TOKEN", "LAVA_API_KEY", "ANTHROPIC_API_KEY",
         print(f"[ok] secret {k}")
 if os.environ.get("HF_TOKEN"):
     os.environ["HUGGING_FACE_HUB_TOKEN"] = os.environ["HF_TOKEN"]
-# Model naming differs by provider: Lava namespaces its models ("anthropic/claude-sonnet-5"), the
-# native Anthropic API does not ("claude-sonnet-5"). Sending the wrong form fails the preflight, so
-# pick the form that matches whichever provider will actually be used. Setting PDE_LLM_MODEL as a
-# secret overrides this entirely.
+# The two providers do not accept the same model names, and a Lava SERVICE KEY is additionally
+# restricted to a whitelist. Probed against the real endpoint: 'claude-sonnet-5',
+# 'anthropic/claude-sonnet-5' and even 'anthropic/claude-sonnet-4-6' are all rejected with
+#     model_not_allowed -- Allowed: claude-sonnet-4-6
+# so the bare 4-6 name is the only one that works there. Do not "upgrade" this to Sonnet 5 without
+# re-probing the key; the run would fail its preflight.
 if not os.environ.get("PDE_LLM_MODEL"):
     _lava = bool(os.environ.get("LAVA_API_KEY"))
-    os.environ["PDE_LLM_MODEL"] = f"anthropic/{LLM_MODEL}" if _lava else LLM_MODEL
+    os.environ["PDE_LLM_MODEL"] = LAVA_MODEL if _lava else LLM_MODEL
     print(f"[llm] provider {'Lava' if _lava else 'Anthropic'} -> model "
           f"{os.environ['PDE_LLM_MODEL']}")
 HAVE_LLM_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
