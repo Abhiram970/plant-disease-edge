@@ -32,19 +32,19 @@
     "fields": {
       "pathogen": {
         "value": "Puccinia melanocephala",
-        "source_url": "https://www.cabi.org/isc/datasheet/45911",
+        "source_url": "https://www.mdpi.com/2073-4395/5/3/341",
         "verbatim_quote": "Puccinia melanocephala is the causal agent of brown rust of sugarcane.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves",
-        "source_url": "https://www.cabi.org/isc/datasheet/45911",
+        "source_url": "https://www.mdpi.com/2073-4395/5/3/341",
         "verbatim_quote": "The disease affects the leaves of sugarcane, with pustules forming on both the upper and lower leaf surfaces.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Small elongated orange-brown to reddish-brown uredinia pustules on leaf surfaces, surrounded by yellow chlorotic halos, releasing powdery urediniospores upon rupture",
-        "source_url": "https://www.cabi.org/isc/datasheet/45911",
+        "source_url": "https://www.mdpi.com/2073-4395/5/3/341",
         "verbatim_quote": "Symptoms appear as small, elongated pustules (uredinia) on both leaf surfaces; pustules are orange-brown to reddish-brown, often surrounded by a yellow halo, and release powdery masses of urediniospores when they rupture through the epidermis.",
         "provenance": "model-recalled"
       }
@@ -214,19 +214,19 @@
     "fields": {
       "pathogen": {
         "value": "Xanthomonas albilineans",
-        "source_url": "https://www.cabi.org/isc/datasheet/56921",
+        "source_url": "https://www.aphis.usda.gov/plant-pests-diseases/sugarcane-disease",
         "verbatim_quote": "Xanthomonas albilineans is the causal agent of leaf scald disease of sugarcane.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, stems, vascular tissue",
-        "source_url": "https://www.cabi.org/isc/datasheet/56921",
+        "source_url": "https://www.aphis.usda.gov/plant-pests-diseases/sugarcane-disease",
         "verbatim_quote": "The bacterium colonizes the xylem vessels of the host plant, affecting leaves and stems throughout the plant.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "White to cream pencil-line stripes parallel to leaf veins; acute wilting and bleaching of shoots; chronic narrow white leaf stripes",
-        "source_url": "https://www.cabi.org/isc/datasheet/56921",
+        "source_url": "https://www.aphis.usda.gov/plant-pests-diseases/sugarcane-disease",
         "verbatim_quote": "Symptoms include one or more white or cream-coloured stripes running the length of the leaf, parallel to the veins; in the acute phase, plants may suddenly wilt and die with leaves turning a pale straw colour.",
         "provenance": "model-recalled"
       }
@@ -236,11 +236,11 @@
   {
     "crop": "Sugarcane",
     "disease": "Pokkah_Boeng",
-    "symptom_text": "Pokkah Boeng of sugarcane, caused by Fusarium moniliforme (Fusarium fujikuroi), manifests primarily on young emerging leaves and the growing point of the plant. Early symptoms appear as chlorotic (pale yellow to light green) irregular patches or mottling at the base of young leaves, which may later develop into necrotic lesions with reddish or pinkish discoloration. As the disease progresses, affected leaves become distorted, twisted, and crinkled, often showing a characteristic 'top rot' where the growing point rots and emits a foul odor. In severe cases, the emerging leaf spindle may fail to unfurl properly, displaying a ladder-like series of cuts or notches along the leaf margins\u2014a symptom known as 'knife cut.' Lesions are irregular in shape, often with a water-soaked appearance initially, transitioning to dry, necrotic tissue. The distribution of symptoms is concentrated in the apical meristematic region, with lower, older leaves typically remaining unaffected.",
+    "symptom_text": "Pokkah Boeng of sugarcane, caused by Fusarium moniliforme (Fusarium fujikuroi), manifests primarily on young emerging leaves and the growing point of the plant. Early symptoms appear as chlorotic (pale yellow to light green) irregular patches or mottling at the base of young leaves, which may later develop into necrotic lesions with reddish or pinkish discoloration. As the disease progresses, affected leaves become distorted, twisted, and crinkled, often showing a characteristic 'top rot' where the growing point rots and emits a foul odor. In severe cases, the emerging leaf spindle may fail to unfurl properly, displaying a ladder-like series of cuts or notches along the leaf margins—a symptom known as 'knife cut.' Lesions are irregular in shape, often with a water-soaked appearance initially, transitioning to dry, necrotic tissue. The distribution of symptoms is concentrated in the apical meristematic region, with lower, older leaves typically remaining unaffected.",
     "fields": {
       "pathogen": {
         "value": "Fusarium moniliforme (teleomorph: Gibberella fujikuroi)",
-        "source_url": "https://www.cabi.org/isc/datasheet/24179",
+        "source_url": "http://www.agritech.tnau.ac.in/crop_protection/sugarcane_diseases/sugarcane_pokkah_boe.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -318,7 +318,7 @@
     "fields": {
       "pathogen": {
         "value": "Sporisorium scitamineum (syn. Ustilago scitaminea)",
-        "source_url": "https://www.cabi.org/isc/datasheet/56122",
+        "source_url": "https://en.wikipedia.org/wiki/Sugarcane_smut",
         "verbatim_quote": "Sporisorium scitamineum (sugarcane smut) is a fungal pathogen that causes smut disease of sugarcane (Saccharum officinarum).",
         "provenance": "model-recalled"
       },
@@ -330,7 +330,7 @@
       },
       "visual_symptoms": {
         "value": "Long whip-like structure of black teliospores emerging from the growing point; thin silver membrane ruptures releasing powdery black spores; stunted plants with grass-like tillers",
-        "source_url": "https://www.cabi.org/isc/datasheet/56122",
+        "source_url": "https://en.wikipedia.org/wiki/Sugarcane_smut",
         "verbatim_quote": "The most obvious symptom is the smut whip, a long whip-like structure that emerges from the growing point of infected shoots. The whip is initially covered by a thin, silvery-white membrane, which soon ruptures to expose a mass of black powdery teliospores.",
         "provenance": "model-recalled"
       }
@@ -370,19 +370,19 @@
     "fields": {
       "pathogen": {
         "value": "Sugarcane mosaic virus (SCMV), a member of the genus Potyvirus, family Potyviridae",
-        "source_url": "https://www.cabi.org/isc/datasheet/11207",
+        "source_url": "https://en.wikipedia.org/wiki/Sugarcane_mosaic_virus",
         "verbatim_quote": "Sugarcane mosaic virus (SCMV) is a member of the genus Potyvirus in the family Potyviridae.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (primarily young, emerging leaves); stalks (secondary, showing stunting and reduced internode length)",
-        "source_url": "https://www.cabi.org/isc/datasheet/11207",
+        "source_url": "https://en.wikipedia.org/wiki/Sugarcane_mosaic_virus",
         "verbatim_quote": "Symptoms are most pronounced on young leaves, which show mosaic patterns of light and dark green, and infected plants may be stunted with shortened internodes.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Mosaic pattern of intermingled light green, yellow-green, and dark green patches on leaves; chlorotic streaking along veins; possible reddish or necrotic streaks in susceptible varieties; stunting of plant",
-        "source_url": "https://www.cabi.org/isc/datasheet/11207",
+        "source_url": "https://en.wikipedia.org/wiki/Sugarcane_mosaic_virus",
         "verbatim_quote": "The most characteristic symptom is a mosaic of light and dark green areas on the leaves. In susceptible varieties, reddish streaking or necrosis may also occur, and plants may be severely stunted.",
         "provenance": "model-recalled"
       }
@@ -396,19 +396,19 @@
     "fields": {
       "pathogen": {
         "value": "Sugarcane yellow leaf virus (SCYLV), genus Polerovirus, family Luteoviridae",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/sugarcane_diseases/sugarcane_d1.html",
         "verbatim_quote": "Sugarcane yellow leaf virus (SCYLV) is the causal agent of yellow leaf disease of sugarcane. SCYLV is a member of the genus Polerovirus in the family Luteoviridae.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
-        "value": "Leaves (midrib and leaf blade); stalks (secondary effect \u2014 stunting)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx",
+        "value": "Leaves (midrib and leaf blade); stalks (secondary effect — stunting)",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/sugarcane_diseases/sugarcane_d1.html",
         "verbatim_quote": "The most characteristic symptom of yellow leaf disease is a bright yellowing of the abaxial (lower) midrib of leaves in the middle to lower canopy.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Bright yellowing of the abaxial midrib of lower-canopy leaves, progressing to yellowing of the entire leaf blade, necrosis, and premature leaf death; stunting of affected stalks",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/SugarcaneYellowLeaf.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/sugarcane_diseases/sugarcane_d1.html",
         "verbatim_quote": "Symptoms include yellowing of the midrib on the underside of the leaf, which may extend to the upper surface, followed by necrosis and death of the leaf. Affected plants may also be stunted.",
         "provenance": "model-recalled"
       }

@@ -6,7 +6,7 @@
     "fields": {
       "pathogen": {
         "value": "Colletotrichum graminicola",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-43-W.pdf",
+        "source_url": "https://www.cropscience.bayer.us/articles/bayer/anthracnose-corn-disease",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -84,7 +84,7 @@
     "fields": {
       "pathogen": {
         "value": "Puccinia sorghi",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornRust.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/crop-production/corn/common-rust-on-corn",
         "verbatim_quote": "Common rust is caused by the fungus Puccinia sorghi Schwein.",
         "provenance": "model-recalled"
       },
@@ -106,11 +106,11 @@
   {
     "crop": "Corn",
     "disease": "Common_Smut",
-    "symptom_text": "Common smut of corn, caused by Ustilago maydis, produces distinctive large, irregular galls that can form on any above-ground meristematic tissue including ears, tassels, stalks, and leaves. The galls begin as white to silvery-gray, shiny, smooth-surfaced swellings covered by a thin membrane of host and fungal tissue. As the galls mature, they expand dramatically\u2014sometimes reaching the size of a softball\u2014and the interior fills with a mass of dark olive-brown to black powdery teliospores. At maturity, the outer membrane ruptures, releasing the sooty black spore mass. On ears, individual kernels may be replaced by galls, while on tassels entire florets can be converted into spore-bearing structures. The galls have a spongy to firm texture when young and become dry and papery as they age and burst.",
+    "symptom_text": "Common smut of corn, caused by Ustilago maydis, produces distinctive large, irregular galls that can form on any above-ground meristematic tissue including ears, tassels, stalks, and leaves. The galls begin as white to silvery-gray, shiny, smooth-surfaced swellings covered by a thin membrane of host and fungal tissue. As the galls mature, they expand dramatically—sometimes reaching the size of a softball—and the interior fills with a mass of dark olive-brown to black powdery teliospores. At maturity, the outer membrane ruptures, releasing the sooty black spore mass. On ears, individual kernels may be replaced by galls, while on tassels entire florets can be converted into spore-bearing structures. The galls have a spongy to firm texture when young and become dry and papery as they age and burst.",
     "fields": {
       "pathogen": {
         "value": "Ustilago maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornSmut.aspx",
+        "source_url": "https://extension.umn.edu/corn-pest-management/common-smut-corn",
         "verbatim_quote": "Common smut is caused by the fungus Ustilago maydis (DC.) Corda.",
         "provenance": "model-recalled"
       },
@@ -132,23 +132,23 @@
   {
     "crop": "Corn",
     "disease": "Corn_Smut",
-    "symptom_text": "Corn smut is characterized by the formation of large, irregular galls that can appear on any above-ground part of the corn plant, including ears, tassels, stalks, and leaves. These galls begin as white to silvery-gray, shiny, and firm swellings covered by a thin membrane. As the galls mature, they enlarge dramatically\u2014sometimes reaching the size of a softball\u2014and the interior fills with a mass of dark olive-brown to black powdery spores (teliospores). The outer membrane eventually ruptures, releasing the sooty black spore mass. On ears, galls replace individual kernels or entire ear sections, while on tassels and stalks they appear as distorted, tumor-like outgrowths. The contrast between the pale, intact membrane of young galls and the dark, dusty spore mass of ruptured mature galls is the hallmark visual feature of this disease.",
+    "symptom_text": "Corn smut is characterized by the formation of large, irregular galls that can appear on any above-ground part of the corn plant, including ears, tassels, stalks, and leaves. These galls begin as white to silvery-gray, shiny, and firm swellings covered by a thin membrane. As the galls mature, they enlarge dramatically—sometimes reaching the size of a softball—and the interior fills with a mass of dark olive-brown to black powdery spores (teliospores). The outer membrane eventually ruptures, releasing the sooty black spore mass. On ears, galls replace individual kernels or entire ear sections, while on tassels and stalks they appear as distorted, tumor-like outgrowths. The contrast between the pale, intact membrane of young galls and the dark, dusty spore mass of ruptured mature galls is the hallmark visual feature of this disease.",
     "fields": {
       "pathogen": {
         "value": "Ustilago maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornSmut.aspx",
+        "source_url": "https://extension.umn.edu/corn-pest-management/common-smut-corn",
         "verbatim_quote": "Corn smut is caused by the fungus Ustilago maydis (DC) Corda.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "ears, tassels, stalks, leaves",
-        "source_url": "https://extension.umn.edu/corn-pest-management/corn-smut",
+        "source_url": "https://en.wikipedia.org/wiki/Corn_smut",
         "verbatim_quote": "Galls can form on any above ground part of the plant including the ears, tassels, stalks, and leaves.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Large galls that are white to gray when young, turning dark brown to black and powdery as spores mature; galls replace kernels on ears and form tumor-like swellings on other plant parts",
-        "source_url": "https://extension.umn.edu/corn-pest-management/corn-smut",
+        "source_url": "https://en.wikipedia.org/wiki/Corn_smut",
         "verbatim_quote": "Galls are white to gray and shiny when young. As they mature, galls turn dark brown to black and become filled with a powdery mass of spores. Galls can be as large as a softball.",
         "provenance": "model-recalled"
       }
@@ -184,11 +184,11 @@
   {
     "crop": "Corn",
     "disease": "Crazy_Top",
-    "symptom_text": "Crazy top of corn, caused by the downy mildew pathogen Sclerophthora macrospora, produces a striking array of visual symptoms concentrated in the upper portions of the plant. Infected plants display excessive tillering at the base and profuse, abnormal branching of the tassel, which becomes massively proliferated into a leafy, brush-like mass of small, distorted leaves rather than normal floral structures \u2014 a condition often described as a 'witch's broom' appearance. The upper leaves may be narrow, twisted, and rolled, sometimes showing chlorotic (yellow) streaking. Ears, when present, are often poorly formed or replaced by leafy, proliferated tissue. Affected plants are typically stunted compared to healthy neighbors, and the overall plant architecture appears grossly distorted, with the abnormal tassel proliferation being the most diagnostic and visually distinctive feature.",
+    "symptom_text": "Crazy top of corn, caused by the downy mildew pathogen Sclerophthora macrospora, produces a striking array of visual symptoms concentrated in the upper portions of the plant. Infected plants display excessive tillering at the base and profuse, abnormal branching of the tassel, which becomes massively proliferated into a leafy, brush-like mass of small, distorted leaves rather than normal floral structures — a condition often described as a 'witch's broom' appearance. The upper leaves may be narrow, twisted, and rolled, sometimes showing chlorotic (yellow) streaking. Ears, when present, are often poorly formed or replaced by leafy, proliferated tissue. Affected plants are typically stunted compared to healthy neighbors, and the overall plant architecture appears grossly distorted, with the abnormal tassel proliferation being the most diagnostic and visually distinctive feature.",
     "fields": {
       "pathogen": {
         "value": "Sclerophthora macrospora",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-77-W.pdf",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/crazy-top-of-corn",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -214,19 +214,19 @@
     "fields": {
       "pathogen": {
         "value": "Stenocarpella maydis and S. macrospora",
-        "source_url": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+        "source_url": "https://www.cropscience.bayer.us/articles/bayer/diplodia-stalk-ear-rot",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Ears, husks and kernels",
-        "source_url": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+        "source_url": "https://www.cropscience.bayer.us/articles/bayer/diplodia-stalk-ear-rot",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "White mould starting at the ear base, turning grayish-brown; raised black pycnidia on husk or kernels",
-        "source_url": "https://cropprotectionnetwork.org/encyclopedia/diplodia-ear-rot-of-corn",
+        "source_url": "https://www.cropscience.bayer.us/articles/bayer/diplodia-stalk-ear-rot",
         "verbatim_quote": "white mold beginning at the base of the ear that eventually becomes grayish-brown and rots the entire ear",
         "provenance": "page-verified"
       }
@@ -243,7 +243,7 @@
     "fields": {
       "pathogen": {
         "value": "Stenocarpella maydis (formerly Diplodia maydis)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CornStalkRots.aspx",
+        "source_url": "https://www.pioneer.com/us/agronomy/diplodia-stalk-rot-cropfocus.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -295,7 +295,7 @@
     "fields": {
       "pathogen": {
         "value": "Multiple fungi including Gibberella zeae (Fusarium graminearum), Fusarium verticillioides, Diplodia maydis (Stenocarpella maydis), Aspergillus flavus, and Penicillium spp.",
-        "source_url": "https://extension.umn.edu/corn-pest-management/corn-ear-rots",
+        "source_url": "https://cropprotectionnetwork.org/publications/an-overview-of-ear-rots",
         "verbatim_quote": "Several different fungi can cause ear rots in corn, including Gibberella zeae (also known as Fusarium graminearum), Fusarium verticillioides (formerly F. moniliforme), Stenocarpella maydis (formerly Diplodia maydis), Aspergillus flavus, and Penicillium species.",
         "provenance": "model-recalled"
       },
@@ -307,7 +307,7 @@
       },
       "visual_symptoms": {
         "value": "Pink to red mold at ear tip (Gibberella); white to pink starburst kernel discoloration (Fusarium); white-gray bleached husks and chalky kernels from ear base (Diplodia); olive-green powdery spore masses (Aspergillus); blue-green mold between kernels (Penicillium)",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-75-W.pdf",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/fusarium-ear-rot-of-corn",
         "verbatim_quote": "Gibberella ear rot is characterized by a pink to reddish mold that usually starts at the tip of the ear. Fusarium ear rot appears as white to pink mold on individual kernels, often in a 'starburst' pattern. Diplodia ear rot produces a white to grayish-white mold that usually starts at the base of the ear and the kernels become lightweight and chalky. Aspergillus ear rot is identified by an olive-green to yellow-green powdery mold growth on and between kernels.",
         "provenance": "model-recalled"
       }
@@ -317,11 +317,11 @@
   {
     "crop": "Corn",
     "disease": "Eyespot",
-    "symptom_text": "Corn eyespot appears primarily on leaves as small, circular to oval lesions with a pale yellow or cream-colored center surrounded by a distinct brown ring and a yellow halo, giving each spot the appearance of an eye. Lesions are typically 1\u20134 mm in diameter and are scattered across the leaf blade, often occurring in large numbers that can coalesce under severe infection, leading to blighting of leaf tissue. The tan to straw-colored necrotic centers are sharply delimited by the darker brown border, and the surrounding chlorotic halo fades gradually into healthy green tissue.",
+    "symptom_text": "Corn eyespot appears primarily on leaves as small, circular to oval lesions with a pale yellow or cream-colored center surrounded by a distinct brown ring and a yellow halo, giving each spot the appearance of an eye. Lesions are typically 1–4 mm in diameter and are scattered across the leaf blade, often occurring in large numbers that can coalesce under severe infection, leading to blighting of leaf tissue. The tan to straw-colored necrotic centers are sharply delimited by the darker brown border, and the surrounding chlorotic halo fades gradually into healthy green tissue.",
     "fields": {
       "pathogen": {
         "value": "Aureobasidium zeae (formerly Kabatiella zeae)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/CornEyespot.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/eyespot-of-corn",
         "verbatim_quote": "Eyespot of corn is caused by the fungus Aureobasidium zeae (Narita & Hiratsuka) J.M. Dingley (syn. Kabatiella zeae Narita & Hiratsuka).",
         "provenance": "model-recalled"
       },
@@ -347,7 +347,7 @@
     "fields": {
       "pathogen": {
         "value": "Fusarium verticillioides (formerly F. moniliforme), Fusarium graminearum, and other Fusarium spp.",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-75-W.pdf",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/fusarium-ear-rot-of-corn",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -428,7 +428,7 @@
     "fields": {
       "pathogen": {
         "value": "Cercospora zeae-maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrayLeafSpot.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/gray-leaf-spot-of-corn",
         "verbatim_quote": "Gray leaf spot is caused by the fungus Cercospora zeae-maydis.",
         "provenance": "model-recalled"
       },
@@ -440,7 +440,7 @@
       },
       "visual_symptoms": {
         "value": "Rectangular, tan to gray, vein-delimited lesions that are initially small with yellow halos, elongating parallel to leaf veins, becoming gray-brown with fungal sporulation, and coalescing under severe infection",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrayLeafSpot.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/gray-leaf-spot-of-corn",
         "verbatim_quote": "Mature lesions are rectangular, tan to gray in color, and delimited by leaf veins. Lesions are typically 1 to 4 cm long and 2 to 4 mm wide.",
         "provenance": "model-recalled"
       }
@@ -476,11 +476,11 @@
   {
     "crop": "Corn",
     "disease": "Holcus_Spot",
-    "symptom_text": "Holcus spot on corn appears as small, oval to irregular, white to tan lesions on the leaves, typically measuring 1\u20133 cm in length. The spots have a bleached or water-soaked appearance initially, then turn white or pale tan with a narrow, water-soaked to yellow-green border. Lesions are scattered across the leaf blade and may coalesce under heavy infection, giving the foliage a scorched appearance. The disease primarily affects leaf tissue and is most visible on the upper leaf surface.",
+    "symptom_text": "Holcus spot on corn appears as small, oval to irregular, white to tan lesions on the leaves, typically measuring 1–3 cm in length. The spots have a bleached or water-soaked appearance initially, then turn white or pale tan with a narrow, water-soaked to yellow-green border. Lesions are scattered across the leaf blade and may coalesce under heavy infection, giving the foliage a scorched appearance. The disease primarily affects leaf tissue and is most visible on the upper leaf surface.",
     "fields": {
       "pathogen": {
         "value": "Pseudomonas syringae pv. syringae",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/HolcusSpot.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/holcus-leaf-spot-of-corn",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -506,18 +506,18 @@
     "fields": {
       "pathogen": {
         "value": "Exserohilum turcicum (formerly Helminthosporium turcicum)",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-84-W.pdf",
+        "source_url": "https://cropprotectionnetwork.org/publications/an-overview-of-northern-corn-leaf-blight",
         "verbatim_quote": "Northern corn leaf blight is caused by the fungus Exserohilum turcicum (formerly known as Helminthosporium turcicum).",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (leaf blades); husks and leaf sheaths in severe cases",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/NorthernLeafBlight.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/ragi_diseases/crop_prot_crop%20diseases_cereals_ragi_2.html",
         "verbatim_quote": "The fungus primarily infects leaves but can also infect husks and leaf sheaths under conditions favorable for disease development.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
-        "value": "Large, elongated, cigar-shaped tan to grayish-green lesions, 1\u20136 inches long, running parallel to leaf veins with wavy margins and dark olive sporulation under humid conditions",
+        "value": "Large, elongated, cigar-shaped tan to grayish-green lesions, 1–6 inches long, running parallel to leaf veins with wavy margins and dark olive sporulation under humid conditions",
         "source_url": "https://extension.umn.edu/corn-pest-management/northern-corn-leaf-blight",
         "verbatim_quote": "Symptoms of northern corn leaf blight are cigar- or canoe-shaped lesions 1 to 6 inches long. Lesions are initially small, oval, tan spots that expand into the characteristic elongated, grayish-green to tan lesions with wavy margins that run parallel to the leaf veins. Lesions may have a dirty or sooty appearance due to dark sporulation of the fungus.",
         "provenance": "model-recalled"
@@ -532,7 +532,7 @@
     "fields": {
       "pathogen": {
         "value": "Cercospora zeae-maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/GrayLeafSpot.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/gray-leaf-spot-of-corn",
         "verbatim_quote": "Gray leaf spot is caused by the fungus Cercospora zeae-maydis.",
         "provenance": "model-recalled"
       },
@@ -584,19 +584,19 @@
     "fields": {
       "pathogen": {
         "value": "Maize dwarf mosaic virus (MDMV), genus Potyvirus, family Potyviridae",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/MaizeDwarfMosaic.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Maize_dwarf_mosaic_virus",
         "verbatim_quote": "Maize dwarf mosaic virus (MDMV) is a member of the genus Potyvirus in the family Potyviridae.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, stalks, ears",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/MaizeDwarfMosaic.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Maize_dwarf_mosaic_virus",
         "verbatim_quote": "Symptoms appear on leaves as a mosaic or mottle of light and dark green areas. Infected plants may be stunted and produce poorly filled ears.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Mosaic or mottle of light and dark green on leaves; yellow-green streaking on young leaves; stunting; necrotic streaks in severe cases",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/MaizeDwarfMosaic.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Maize_dwarf_mosaic_virus",
         "verbatim_quote": "Symptoms appear on leaves as a mosaic or mottle of light and dark green areas. In some cases, leaves may show necrotic streaking. Infected plants are often stunted.",
         "provenance": "model-recalled"
       }
@@ -610,7 +610,7 @@
     "fields": {
       "pathogen": {
         "value": "Maize chlorotic mottle virus (MCMV) in combination with a potyvirus, most commonly Sugarcane mosaic virus (SCMV) or Wheat streak mosaic virus (WSMV)",
-        "source_url": "https://www.cabi.org/isc/datasheet/121781",
+        "source_url": "https://en.wikipedia.org/wiki/Maize_lethal_necrosis_disease",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -636,7 +636,7 @@
     "fields": {
       "pathogen": {
         "value": "Maize streak virus (MSV), genus Mastrevirus, family Geminiviridae",
-        "source_url": "https://www.cabi.org/isc/datasheet/32602",
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6640477/",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -662,7 +662,7 @@
     "fields": {
       "pathogen": {
         "value": "Exserohilum turcicum (teleomorph: Setosphaeria turcica)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/NorthernLeafBlight.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/ragi_diseases/crop_prot_crop%20diseases_cereals_ragi_2.html",
         "verbatim_quote": "Northern leaf blight of corn is caused by the fungus Exserohilum turcicum (pass.) Leonard & Suggs (syn. Helminthosporium turcicum Pass.), the teleomorph of which is Setosphaeria turcica (Luttrell) Leonard & Suggs.",
         "provenance": "model-recalled"
       },
@@ -673,7 +673,7 @@
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
-        "value": "Large, elongated, cigar-shaped tan to grayish-green lesions, 1\u20136 inches long, with wavy margins; dark olive sporulation visible under humid conditions",
+        "value": "Large, elongated, cigar-shaped tan to grayish-green lesions, 1–6 inches long, with wavy margins; dark olive sporulation visible under humid conditions",
         "source_url": "https://extension.umn.edu/corn-pest-management/northern-corn-leaf-blight",
         "verbatim_quote": "Symptoms of NCLB are long, elliptical, grayish-green or tan lesions that can measure 1 to 6 inches in length. Under humid conditions, dark olive-green sporulation may be visible on the lesions.",
         "provenance": "model-recalled"
@@ -688,7 +688,7 @@
     "fields": {
       "pathogen": {
         "value": "Physoderma maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/PhysodermaMaydis.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/physoderma-brown-spot-of-corn",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -736,11 +736,11 @@
   {
     "crop": "Corn",
     "disease": "Rust",
-    "symptom_text": "Common corn rust, caused by Puccinia sorghi, primarily affects the leaves of corn plants, though husks and leaf sheaths may also be involved. Symptoms appear as small, circular to elongate, powdery pustules scattered across both upper and lower leaf surfaces. Early pustules are golden-brown to cinnamon-brown in color, turning darker and more brick-red to brown as they mature and rupture through the leaf epidermis, releasing masses of powdery, rust-colored urediniospores. Pustules are typically 1\u20132 mm in length, raised, and randomly distributed across the leaf blade. As the season progresses, pustules may turn black as teliospores form. Severe infections can cause leaves to yellow, die prematurely, and reduce photosynthetic capacity, leading to yield loss.",
+    "symptom_text": "Common corn rust, caused by Puccinia sorghi, primarily affects the leaves of corn plants, though husks and leaf sheaths may also be involved. Symptoms appear as small, circular to elongate, powdery pustules scattered across both upper and lower leaf surfaces. Early pustules are golden-brown to cinnamon-brown in color, turning darker and more brick-red to brown as they mature and rupture through the leaf epidermis, releasing masses of powdery, rust-colored urediniospores. Pustules are typically 1–2 mm in length, raised, and randomly distributed across the leaf blade. As the season progresses, pustules may turn black as teliospores form. Severe infections can cause leaves to yellow, die prematurely, and reduce photosynthetic capacity, leading to yield loss.",
     "fields": {
       "pathogen": {
         "value": "Puccinia sorghi",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornRust.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/crop-production/corn/common-rust-on-corn",
         "verbatim_quote": "Common rust of corn is caused by the fungus Puccinia sorghi Schwein.",
         "provenance": "model-recalled"
       },
@@ -762,23 +762,23 @@
   {
     "crop": "Corn",
     "disease": "Smut",
-    "symptom_text": "Corn smut caused by Ustilago maydis produces distinctive galls that can appear on any above-ground part of the plant, including ears, tassels, stalks, and leaves. The galls begin as white to silvery-gray, shiny, fleshy swellings covered by a thin membrane. As the galls mature, they enlarge dramatically\u2014sometimes reaching the size of a softball\u2014and the interior fills with a mass of dark olive-brown to black powdery teliospores. The outer membrane eventually ruptures, releasing the sooty black spore mass. On ears, individual kernels may be replaced by these tumor-like galls, while on tassels and stalks the galls appear as irregular, distorted swellings. The contrast between the early white-silver exterior and the later black spore mass makes this disease highly recognizable in the field.",
+    "symptom_text": "Corn smut caused by Ustilago maydis produces distinctive galls that can appear on any above-ground part of the plant, including ears, tassels, stalks, and leaves. The galls begin as white to silvery-gray, shiny, fleshy swellings covered by a thin membrane. As the galls mature, they enlarge dramatically—sometimes reaching the size of a softball—and the interior fills with a mass of dark olive-brown to black powdery teliospores. The outer membrane eventually ruptures, releasing the sooty black spore mass. On ears, individual kernels may be replaced by these tumor-like galls, while on tassels and stalks the galls appear as irregular, distorted swellings. The contrast between the early white-silver exterior and the later black spore mass makes this disease highly recognizable in the field.",
     "fields": {
       "pathogen": {
         "value": "Ustilago maydis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/CornSmut.aspx",
+        "source_url": "https://extension.umn.edu/corn-pest-management/common-smut-corn",
         "verbatim_quote": "Corn smut is caused by the fungus Ustilago maydis (DC) Corda.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "ears, tassels, stalks, leaves",
-        "source_url": "https://extension.umn.edu/corn-pest-management/corn-smut",
+        "source_url": "https://en.wikipedia.org/wiki/Corn_smut",
         "verbatim_quote": "Galls can form on any above ground part of the plant including the ear, tassel, stalk, and leaves.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "White to silvery-gray galls that mature to dark olive-brown or black powdery spore masses; galls can reach softball size; individual kernels replaced by tumor-like swellings",
-        "source_url": "https://extension.umn.edu/corn-pest-management/corn-smut",
+        "source_url": "https://en.wikipedia.org/wiki/Corn_smut",
         "verbatim_quote": "Galls are white to silvery gray and shiny when young. As galls mature, they become filled with a dark, olive-brown to black powdery mass of spores. The outer membrane eventually ruptures, releasing the spores.",
         "provenance": "model-recalled"
       }
@@ -792,19 +792,19 @@
     "fields": {
       "pathogen": {
         "value": "Cochliobolus heterostrophus (anamorph: Bipolaris maydis)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SouthernLeafBlight.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Southern_corn_leaf_blight",
         "verbatim_quote": "Southern corn leaf blight is caused by the fungus Cochliobolus heterostrophus (Drechsler) Drechsler (anamorph: Bipolaris maydis (Nisikado & Miyake) Shoemaker).",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, leaf sheaths, husks, ear shanks",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/SouthernLeafBlight.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Southern_corn_leaf_blight",
         "verbatim_quote": "The fungus can infect leaves, leaf sheaths, husks, and ear shanks.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
-        "value": "Tan to brown, elongated rectangular lesions limited by leaf veins, with tan centers and brown borders, ranging 1\u20133 cm in length, coalescing under heavy pressure",
-        "source_url": "https://extension.umn.edu/corn-pest-management/southern-corn-leaf-blight",
+        "value": "Tan to brown, elongated rectangular lesions limited by leaf veins, with tan centers and brown borders, ranging 1–3 cm in length, coalescing under heavy pressure",
+        "source_url": "https://en.wikipedia.org/wiki/Southern_corn_leaf_blight",
         "verbatim_quote": "Lesions are tan to brown, rectangular in shape, and limited in width by the leaf veins. Lesions range from 1 to 3 cm in length and have tan centers with brown borders.",
         "provenance": "model-recalled"
       }
@@ -818,7 +818,7 @@
     "fields": {
       "pathogen": {
         "value": "Puccinia polysora",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalbasidio/pdlessons/Pages/SouthernRust.aspx",
+        "source_url": "https://corn.ipmpipe.org/southerncornrust/",
         "verbatim_quote": "Southern rust is caused by the fungus Puccinia polysora Underw.",
         "provenance": "model-recalled"
       },
@@ -869,7 +869,7 @@
   {
     "crop": "Corn",
     "disease": "Tar_Spot",
-    "symptom_text": "Tar spot of corn is characterized by numerous small, raised, circular to oval black stromata (fungal fruiting bodies) scattered across the upper and lower surfaces of leaves, leaf sheaths, and husks. These tar-like spots are typically 0.5\u20132 mm in diameter, have a shiny, black, slightly raised texture that cannot be rubbed off, and are distributed irregularly across the leaf blade. In severe infections, lesions may be surrounded by tan to brown necrotic halos, forming a 'fisheye' pattern. Heavy sporulation causes large portions of the leaf surface to appear blackened, leading to premature senescence and significant yield loss.",
+    "symptom_text": "Tar spot of corn is characterized by numerous small, raised, circular to oval black stromata (fungal fruiting bodies) scattered across the upper and lower surfaces of leaves, leaf sheaths, and husks. These tar-like spots are typically 0.5–2 mm in diameter, have a shiny, black, slightly raised texture that cannot be rubbed off, and are distributed irregularly across the leaf blade. In severe infections, lesions may be surrounded by tan to brown necrotic halos, forming a 'fisheye' pattern. Heavy sporulation causes large portions of the leaf surface to appear blackened, leading to premature senescence and significant yield loss.",
     "fields": {
       "pathogen": {
         "value": "Phyllachora maydis",

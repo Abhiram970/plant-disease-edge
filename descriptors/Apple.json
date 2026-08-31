@@ -32,7 +32,7 @@
     "fields": {
       "pathogen": {
         "value": "Venturia inaequalis",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/AppleScab.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_diseases_postharvest_apple_4.html",
         "verbatim_quote": "Apple scab is caused by the fungus Venturia inaequalis.",
         "provenance": "model-recalled"
       },
@@ -54,23 +54,23 @@
   {
     "crop": "Apple",
     "disease": "Black_Rot",
-    "symptom_text": "Apple black rot, caused by the fungus Botryosphaeria obtusa, manifests across fruit, leaves, and bark. On fruit, infections begin as small reddish-brown flecks that expand into large, firm, brown-to-black rotted areas often showing concentric rings of black pycnidia (fungal fruiting bodies) on the surface, eventually mummifying the entire apple. On leaves, the disease produces 'frog-eye' lesions \u2014 circular spots with a purple-red border surrounding a tan to brown center \u2014 typically scattered across the upper leaf surface. On bark and woody tissue, the pathogen causes elongated, sunken, reddish-brown cankers that may girdle limbs, with the bark eventually cracking and peeling to reveal dead wood beneath.",
+    "symptom_text": "Apple black rot, caused by the fungus Botryosphaeria obtusa, manifests across fruit, leaves, and bark. On fruit, infections begin as small reddish-brown flecks that expand into large, firm, brown-to-black rotted areas often showing concentric rings of black pycnidia (fungal fruiting bodies) on the surface, eventually mummifying the entire apple. On leaves, the disease produces 'frog-eye' lesions — circular spots with a purple-red border surrounding a tan to brown center — typically scattered across the upper leaf surface. On bark and woody tissue, the pathogen causes elongated, sunken, reddish-brown cankers that may girdle limbs, with the bark eventually cracking and peeling to reveal dead wood beneath.",
     "fields": {
       "pathogen": {
         "value": "Botryosphaeria obtusa (anamorph: Sphaeropsis malorum)",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-139-W.pdf",
+        "source_url": "https://en.wikipedia.org/wiki/Black_rot_(grape_disease)",
         "verbatim_quote": "Black rot is caused by the fungus Botryosphaeria obtusa.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Fruit, leaves, bark/woody limbs",
-        "source_url": "https://extension.umn.edu/plant-diseases/black-rot-apple",
+        "source_url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/black-rot-of-apple",
         "verbatim_quote": "Black rot can infect all aboveground parts of apple trees including the fruit, leaves, and bark.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Frog-eye leaf spots (purple-bordered tan lesions), concentric-ringed black fruit rot with pycnidia, sunken bark cankers",
-        "source_url": "https://extension.umn.edu/plant-diseases/black-rot-apple",
+        "source_url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/black-rot-of-apple",
         "verbatim_quote": "On fruit, black rot first appears as a small reddish brown spot. As the spot enlarges, it remains firm and turns brown to black. Concentric rings of black pycnidia often form on the surface of the rotted area. On leaves, infections appear as circular spots with purple or reddish borders and tan to brown centers, giving them a 'frog-eye' appearance.",
         "provenance": "model-recalled"
       }
@@ -110,19 +110,19 @@
     "fields": {
       "pathogen": {
         "value": "Gymnosporangium juniperi-virginianae",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-1-W.pdf",
+        "source_url": "https://en.wikipedia.org/wiki/Gymnosporangium_juniperi-virginianae",
         "verbatim_quote": "Cedar-apple rust is caused by the fungus Gymnosporangium juniperi-virginianae.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, fruit, and young twigs",
-        "source_url": "https://extension.umn.edu/plant-diseases/cedar-apple-rust",
+        "source_url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/cedar-apple-rust",
         "verbatim_quote": "Cedar-apple rust can infect leaves, fruit, and young twigs of apple and crabapple.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Bright orange-yellow spots on upper leaf surface; tube-like aecia on lower leaf surface producing orange spores; orange lesions on fruit",
-        "source_url": "https://extension.umn.edu/plant-diseases/cedar-apple-rust",
+        "source_url": "https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/cedar-apple-rust",
         "verbatim_quote": "On apple, symptoms first appear as bright orange-yellow spots on the upper surface of leaves. Later, tube-like structures called aecia form on the lower surface of the leaf directly below the upper surface spots and produce orange spores.",
         "provenance": "model-recalled"
       }
@@ -132,11 +132,11 @@
   {
     "crop": "Apple",
     "disease": "Frogeye_Leaf_Spot",
-    "symptom_text": "Frogeye leaf spot on apple, caused by Botryosphaeria obtusa, produces small, circular to slightly irregular lesions on leaves that begin as purple to reddish-purple spots and enlarge to roughly 6\u201312 mm in diameter. As lesions mature, the centers turn tan to light brown or grayish-brown, creating a distinct two-toned appearance with a darker purple-brown border surrounding the lighter necrotic center \u2014 a pattern reminiscent of a frog's eye. Lesions are distributed across the upper leaf surface and may coalesce under heavy infection pressure, leading to premature defoliation. Tiny black pycnidia (fungal fruiting bodies) may be visible within the tan centers under magnification. Fruit can also be affected, showing similar circular, sunken, dark lesions.",
+    "symptom_text": "Frogeye leaf spot on apple, caused by Botryosphaeria obtusa, produces small, circular to slightly irregular lesions on leaves that begin as purple to reddish-purple spots and enlarge to roughly 6–12 mm in diameter. As lesions mature, the centers turn tan to light brown or grayish-brown, creating a distinct two-toned appearance with a darker purple-brown border surrounding the lighter necrotic center — a pattern reminiscent of a frog's eye. Lesions are distributed across the upper leaf surface and may coalesce under heavy infection pressure, leading to premature defoliation. Tiny black pycnidia (fungal fruiting bodies) may be visible within the tan centers under magnification. Fruit can also be affected, showing similar circular, sunken, dark lesions.",
     "fields": {
       "pathogen": {
         "value": "Botryosphaeria obtusa (anamorph: Diplodia seriata / Sphaeropsis malorum)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/FrogeyeLeafSpot.aspx",
+        "source_url": "https://cropprotectionnetwork.org/encyclopedia/frogeye-leaf-spot-of-soybean",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -214,19 +214,19 @@
     "fields": {
       "pathogen": {
         "value": "Podosphaera leucotricha",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+        "source_url": "https://ipm.ucanr.edu/agriculture/apple/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves, twigs and fruit buds",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+        "source_url": "https://ipm.ucanr.edu/agriculture/apple/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "Twigs are also infected.",
         "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Small patches of white powdery growth on the upper leaf surface, on both surfaces when severe; affected leaves fall",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/apple_2.html",
+        "source_url": "https://ipm.ucanr.edu/agriculture/apple/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "Small patches of white powdery growth appear on upper side of leaves.",
         "provenance": "page-verified"
       }
@@ -243,7 +243,7 @@
     "fields": {
       "pathogen": {
         "value": "Gymnosporangium juniperi-virginianae",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-1-W.pdf",
+        "source_url": "https://en.wikipedia.org/wiki/Gymnosporangium_juniperi-virginianae",
         "verbatim_quote": "",
         "provenance": "none"
       },

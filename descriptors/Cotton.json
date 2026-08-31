@@ -35,19 +35,19 @@
     "fields": {
       "pathogen": {
         "value": "Leveillula taurica (anamorph: Oidiopsis taurica)",
-        "source_url": "https://www.cabi.org/isc/datasheet/10968",
+        "source_url": "https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/mpp.70128",
         "verbatim_quote": "Leveillula taurica is an obligate parasite causing powdery mildew on a wide range of hosts including cotton",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, petioles, stems, bolls",
-        "source_url": "https://www.cabi.org/isc/datasheet/10968",
+        "source_url": "https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/mpp.70128",
         "verbatim_quote": "The fungus infects leaves, petioles and other aerial parts of the plant",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "White powdery growth on leaf surfaces, chlorosis, leaf curling and distortion",
-        "source_url": "https://www.cabi.org/isc/datasheet/10968",
+        "source_url": "https://bsppjournals.onlinelibrary.wiley.com/doi/10.1111/mpp.70128",
         "verbatim_quote": "Symptoms include white powdery patches on leaves, yellowing and distortion of affected tissues",
         "provenance": "model-recalled"
       }

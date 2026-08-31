@@ -2,23 +2,23 @@
   {
     "crop": "Tomato",
     "disease": "Bacterial_Leaf_Spot",
-    "symptom_text": "Bacterial leaf spot of tomato causes small, water-soaked, greasy-appearing circular to irregular lesions on leaves that rapidly enlarge and turn brown to black with a yellow halo surrounding the necrotic tissue. Lesions are typically 3\u20135 mm in diameter, angular and constrained by leaf veins, with a dark brown to black center that may dry out and fall away giving a shot-hole appearance. Spots are distributed across the leaf blade and are most numerous on older, lower leaves first, though the disease progresses upward. Severely infected leaves turn yellow and drop prematurely. Similar dark, raised, scab-like lesions with water-soaked margins can also appear on fruit, stems, and petioles.",
+    "symptom_text": "Bacterial leaf spot of tomato causes small, water-soaked, greasy-appearing circular to irregular lesions on leaves that rapidly enlarge and turn brown to black with a yellow halo surrounding the necrotic tissue. Lesions are typically 3–5 mm in diameter, angular and constrained by leaf veins, with a dark brown to black center that may dry out and fall away giving a shot-hole appearance. Spots are distributed across the leaf blade and are most numerous on older, lower leaves first, though the disease progresses upward. Severely infected leaves turn yellow and drop prematurely. Similar dark, raised, scab-like lesions with water-soaked margins can also appear on fruit, stems, and petioles.",
     "fields": {
       "pathogen": {
         "value": "Xanthomonas vesicatoria, X. euvesicatoria, X. gardneri, X. perforans",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialSpotTomato.aspx",
+        "source_url": "https://ipm.ucanr.edu/agriculture/tomato/bacterial-spot/#gsc.tab=0",
         "verbatim_quote": "Bacterial spot of tomato and pepper is caused by four species of Xanthomonas: X. euvesicatoria, X. vesicatoria, X. perforans, and X. gardneri.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, stems, petioles, and fruit",
-        "source_url": "https://extension.umn.edu/diseases/bacterial-spot-tomato",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/tomato_diseases_11.html",
         "verbatim_quote": "Bacterial spot can affect all above-ground parts of a tomato plant, including the leaves, stems, and fruit.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Small water-soaked lesions that turn dark brown to black, often with yellow halos; lesions may coalesce; fruit develops raised, scab-like spots with water-soaked margins",
-        "source_url": "https://extension.umn.edu/diseases/bacterial-spot-tomato",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/tomato_diseases_11.html",
         "verbatim_quote": "On leaves, bacterial spot first appears as small, water-soaked, circular to irregular spots. The spots turn brown to black, and are often surrounded by a yellow halo. Severely infected leaves turn yellow and drop from the plant. On fruit, the disease first appears as small, raised, water-soaked spots that later become brown and scab-like.",
         "provenance": "model-recalled"
       }
@@ -32,19 +32,19 @@
     "fields": {
       "pathogen": {
         "value": "Alternaria solani",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/EarlyBlight.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato",
         "verbatim_quote": "Early blight is caused by the fungus Alternaria solani.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, stems, petioles, fruit",
-        "source_url": "https://extension.umn.edu/diseases/early-blight-tomato",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato",
         "verbatim_quote": "Early blight can affect leaves, stems, and fruit of tomatoes.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Dark brown to black circular lesions with concentric rings (target-board pattern) surrounded by yellow halos on lower leaves; sunken dark lesions with concentric rings on fruit near stem end",
-        "source_url": "https://extension.umn.edu/diseases/early-blight-tomato",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato",
         "verbatim_quote": "Symptoms first appear on the older, lower leaves as small, brown spots with concentric rings that form a target-board effect. Spots are surrounded by a yellow halo. As the disease progresses, the entire leaf may turn yellow and drop.",
         "provenance": "model-recalled"
       }
@@ -58,7 +58,7 @@
     "fields": {
       "pathogen": {
         "value": "Botrytis cinerea",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/BotrytisGrayMold.aspx",
+        "source_url": "https://extension.psu.edu/strawberry-disease-gray-mold",
         "verbatim_quote": "Gray mold, caused by Botrytis cinerea, is one of the most common and economically important diseases of tomato worldwide.",
         "provenance": "model-recalled"
       },
@@ -84,7 +84,7 @@
     "fields": {
       "pathogen": {
         "value": "Phytophthora infestans",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/chromist/pdlessons/Pages/LateBlight.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases_veg_potato_1.html",
         "verbatim_quote": "Late blight is caused by the oomycete pathogen Phytophthora infestans.",
         "provenance": "model-recalled"
       },
@@ -110,19 +110,19 @@
     "fields": {
       "pathogen": {
         "value": "Passalora fulva (formerly Fulvia fulva / Cladosporium fulvum)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TomatoLeafMold.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-leaf-mold",
         "verbatim_quote": "Leaf mold of tomato is caused by the fungus Passalora fulva (previously known as Fulvia fulva or Cladosporium fulvum).",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves (primarily); occasionally petioles, blossoms, and fruit",
-        "source_url": "https://extension.umn.edu/diseases/leaf-mold-tomato",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-leaf-mold",
         "verbatim_quote": "Leaf mold primarily affects the foliage of tomato, but under severe conditions, blossoms and fruit can also be infected.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Pale green to yellow spots on upper leaf surface with olive-green to grayish-purple velvety sporulation on the lower leaf surface",
-        "source_url": "https://extension.umn.edu/diseases/leaf-mold-tomato",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-leaf-mold",
         "verbatim_quote": "Pale green to yellow spots form on the upper surface of leaves. On the lower leaf surface, olive-green to grayish-purple velvety sporulation (spores and fruiting structures of the fungus) develops beneath these spots.",
         "provenance": "model-recalled"
       }
@@ -136,7 +136,7 @@
     "fields": {
       "pathogen": {
         "value": "Tomato mosaic virus (ToMV)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/viral/pdlessons/Pages/TomatoMosaic.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-viruses",
         "verbatim_quote": "Tomato mosaic virus (ToMV) is a member of the genus Tobamovirus in the family Virgaviridae.",
         "provenance": "model-recalled"
       },
@@ -188,19 +188,19 @@
     "fields": {
       "pathogen": {
         "value": "Phytophthora infestans",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/oomycete/pdlessons/Pages/LateBlight.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/tomato_diseases_8.html",
         "verbatim_quote": "Late blight is caused by the oomycete pathogen Phytophthora infestans.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "leaves, stems, fruit",
-        "source_url": "https://extension.umn.edu/diseases/late-blight-tomato",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/tomato_phdiseases_1.html",
         "verbatim_quote": "Late blight can affect all above ground parts of tomato plants including leaves, stems, and fruit.",
         "provenance": "model-recalled"
       },
       "visual_symptoms": {
         "value": "Water-soaked, irregularly shaped lesions that turn brown to black on leaves and stems; white sporulation on leaf undersides under humid conditions; firm, brown, greasy lesions on fruit",
-        "source_url": "https://extension.umn.edu/diseases/late-blight-tomato",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/tomato_phdiseases_1.html",
         "verbatim_quote": "Leaf lesions are large, irregularly shaped, and appear water-soaked or greasy. Lesions turn brown to black. White sporulation may be visible on the underside of leaves. Stem lesions are dark brown to black. Fruit lesions are firm, brown, and greasy-looking.",
         "provenance": "model-recalled"
       }
@@ -214,13 +214,13 @@
     "fields": {
       "pathogen": {
         "value": "Leveillula taurica (anamorph: Oidiopsis sicula) and Oidium neolycopersici",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TomatoPowderyMildew.aspx",
+        "source_url": "https://ipm.ucanr.edu/agriculture/tomato/powdery-mildew-on-field-grown-tomatoes/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves, stems",
-        "source_url": "https://extension.umn.edu/diseases/powdery-mildew-tomato",
+        "source_url": "https://apps.lucidcentral.org/pppw_v10/text/web_full/entities/tomato_powdery_mildew_314.htm",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -236,11 +236,11 @@
   {
     "crop": "Tomato",
     "disease": "Septoria_Leaf_Blotch",
-    "symptom_text": "Septoria leaf spot on tomato, caused by Septoria lycopersici, primarily affects the leaves, beginning on the oldest, lowest leaves and progressing upward. Lesions are small, circular to angular, roughly 3\u20135 mm in diameter, with dark brown to black margins and tan to gray or white centers. Within the pale centers, tiny dark brown to black fruiting bodies (pycnidia) are visible, often appearing as raised dots. Severely infected leaves turn yellow, then brown, and eventually wither and drop, leading to progressive defoliation from the base of the plant upward. Stems and calyx may also be affected in severe cases.",
+    "symptom_text": "Septoria leaf spot on tomato, caused by Septoria lycopersici, primarily affects the leaves, beginning on the oldest, lowest leaves and progressing upward. Lesions are small, circular to angular, roughly 3–5 mm in diameter, with dark brown to black margins and tan to gray or white centers. Within the pale centers, tiny dark brown to black fruiting bodies (pycnidia) are visible, often appearing as raised dots. Severely infected leaves turn yellow, then brown, and eventually wither and drop, leading to progressive defoliation from the base of the plant upward. Stems and calyx may also be affected in severe cases.",
     "fields": {
       "pathogen": {
         "value": "Septoria lycopersici",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Septoria.aspx",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/tomato_diseases_4.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -266,19 +266,19 @@
     "fields": {
       "pathogen": {
         "value": "Athelia rolfsii (formerly Sclerotium rolfsii)",
-        "source_url": "https://hort.extension.wisc.edu/articles/southern-blight/",
+        "source_url": "https://ipm.ucanr.edu/agriculture/tomato/southern-blight/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Lower stems and leaves, crown, roots and fruit",
-        "source_url": "https://hort.extension.wisc.edu/articles/southern-blight/",
+        "source_url": "https://ipm.ucanr.edu/agriculture/tomato/southern-blight/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Water-soaked lesions on lower stems and leaves, wilting, thick white mycelial mats and mustard-seed-sized tan to dark sclerotia",
-        "source_url": "https://hort.extension.wisc.edu/articles/southern-blight/",
+        "source_url": "https://ipm.ucanr.edu/agriculture/tomato/southern-blight/#gsc.tab=0",
         "verbatim_quote": "Sclerotia (small spherical structures that are about the size of mustard seeds) develop on infected tissue and on the soil surface. Sclerotia range in color from light tan to dark reddish-brown to black",
         "provenance": "page-verified"
       }
@@ -291,7 +291,7 @@
   {
     "crop": "Tomato",
     "disease": "Spider_Mites",
-    "symptom_text": "Spider mite infestations on tomato plants produce distinctive stippling damage primarily on leaves, where tiny, pale yellow or white flecks appear across the upper leaf surface as the mites pierce individual plant cells and extract their contents. As feeding intensifies, affected leaves take on a bronzed, silvery, or bleached appearance and may curl, dry out, and drop prematurely. Fine silken webbing \u2014 a hallmark sign of heavy infestation \u2014 is visible on the undersides of leaves and between stems and foliage. Damage typically begins on older, lower leaves and progresses upward through the canopy, with the undersides of leaves harboring dense colonies of tiny, eight-legged mites visible under magnification.",
+    "symptom_text": "Spider mite infestations on tomato plants produce distinctive stippling damage primarily on leaves, where tiny, pale yellow or white flecks appear across the upper leaf surface as the mites pierce individual plant cells and extract their contents. As feeding intensifies, affected leaves take on a bronzed, silvery, or bleached appearance and may curl, dry out, and drop prematurely. Fine silken webbing — a hallmark sign of heavy infestation — is visible on the undersides of leaves and between stems and foliage. Damage typically begins on older, lower leaves and progresses upward through the canopy, with the undersides of leaves harboring dense colonies of tiny, eight-legged mites visible under magnification.",
     "fields": {
       "pathogen": {
         "value": "Tetranychus urticae (two-spotted spider mite)",
@@ -321,7 +321,7 @@
     "fields": {
       "pathogen": {
         "value": "Corynespora cassiicola",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TargetSpot.aspx",
+        "source_url": "https://www.vegetables.bayer.com/ca/en-ca/resources/agronomic-spotlights/target-spot-of-tomato.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -347,7 +347,7 @@
     "fields": {
       "pathogen": {
         "value": "Passalora fulva (syn. Fulvia fulva, Cladosporium fulvum)",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/TomatoLeafMold.aspx",
+        "source_url": "https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-leaf-mold",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -399,19 +399,19 @@
     "fields": {
       "pathogen": {
         "value": "Verticillium dahliae",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Verticillium.aspx",
+        "source_url": "https://ipm.ucanr.edu/agriculture/tomato/verticillium-wilt/#gsc.tab=0",
         "verbatim_quote": "Verticillium wilt is caused by the soilborne fungi Verticillium dahliae and V. albo-atrum.",
         "provenance": "model-recalled"
       },
       "affected_organs": {
         "value": "Leaves, vascular tissue (xylem), stems, roots",
-        "source_url": "https://extension.umn.edu/diseases/verticillium-wilt-tomatoes",
+        "source_url": "https://www.gardeningknowhow.com/edible/vegetables/tomato/tomato-verticillium-wilt-control.htm",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Yellowing and wilting of lower leaves, V-shaped yellow lesions on leaflets, brown vascular discoloration in stem cross-section, asymmetrical symptom development",
-        "source_url": "https://www.cabi.org/isc/datasheet/56770",
+        "source_url": "https://content.ces.ncsu.edu/verticillium-wilt-of-tomato-and-eggplant",
         "verbatim_quote": "",
         "provenance": "none"
       }

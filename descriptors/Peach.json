@@ -6,7 +6,7 @@
     "fields": {
       "pathogen": {
         "value": "Xanthomonas arboricola pv. pruni",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/prokaryote/pdlessons/Pages/BacterialSpotStoneFruits.aspx",
+        "source_url": "https://extension.wvu.edu/lawn-gardening-pests/plant-disease/tree-fruit-disease/bacterial-spot",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -61,19 +61,19 @@
     "fields": {
       "pathogen": {
         "value": "Taphrina deformans",
-        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html",
         "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans.",
         "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Blossoms, fruit, leaves, and shoots",
-        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html",
         "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines.",
         "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores",
-        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html",
         "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus.",
         "provenance": "page-verified"
       }
@@ -86,11 +86,11 @@
   {
     "crop": "Peach",
     "disease": "Leaf_Scab",
-    "symptom_text": "Peach leaf scab, caused by the fungus Cladosporium carpophilum, produces small, circular to angular, olive-green to dark brown or black velvety spots on the undersides of leaves, typically measuring 2\u20133 mm in diameter. Lesions are often concentrated along the midrib and secondary veins, and may coalesce under heavy infection. Affected tissue may eventually turn yellow and drop out, giving leaves a shot-hole appearance. Symptoms are most visible on young, expanding leaves in spring and early summer.",
+    "symptom_text": "Peach leaf scab, caused by the fungus Cladosporium carpophilum, produces small, circular to angular, olive-green to dark brown or black velvety spots on the undersides of leaves, typically measuring 2–3 mm in diameter. Lesions are often concentrated along the midrib and secondary veins, and may coalesce under heavy infection. Affected tissue may eventually turn yellow and drop out, giving leaves a shot-hole appearance. Symptoms are most visible on young, expanding leaves in spring and early summer.",
     "fields": {
       "pathogen": {
         "value": "Cladosporium carpophilum",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/PeachScab.aspx",
+        "source_url": "https://en.wikipedia.org/wiki/Peach_scab",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -116,19 +116,19 @@
     "fields": {
       "pathogen": {
         "value": "Taphrina deformans",
-        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html",
         "verbatim_quote": "Peach leaf curl, also known as leaf curl, is a disease caused by the fungus Taphrina deformans.",
         "provenance": "page-verified"
       },
       "affected_organs": {
         "value": "Blossoms, fruit, leaves, and shoots",
-        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html",
         "verbatim_quote": "Peach leaf curl affects the blossoms, fruit, leaves, and shoots of peaches, ornamental flowering peaches, and nectarines.",
         "provenance": "page-verified"
       },
       "visual_symptoms": {
         "value": "Leaves thickened, puckered, curled and distorted; turn yellowish then grayish-white with velvety spores",
-        "source_url": "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7426.html",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/peach_diseases1.html",
         "verbatim_quote": "These areas become thickened and puckered, causing leaves to curl and severely distort. The thickened areas turn yellowish and then grayish white, as velvety spores are produced on the surface by the leaf curl fungus.",
         "provenance": "page-verified"
       }

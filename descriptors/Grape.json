@@ -6,7 +6,7 @@
     "fields": {
       "pathogen": {
         "value": "Fungal complex including Phaeoacremonium minimum, Phaeomoniella chlamydospora, and Fomitiporia mediterranea",
-        "source_url": "https://www.apsnet.org/edcenter/disandpath/fungalasco/pdlessons/Pages/Esca.aspx",
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/esca-black-measles/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -87,19 +87,19 @@
     "fields": {
       "pathogen": {
         "value": "Plasmopara viticola",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+        "source_url": "https://en.wikipedia.org/wiki/Plasmopara_viticola",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+        "source_url": "https://en.wikipedia.org/wiki/Plasmopara_viticola",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Irregular yellowish translucent spots on the upper leaf surface with white powdery growth beneath; leaves yellow, brown and dry",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_1.html",
+        "source_url": "https://en.wikipedia.org/wiki/Plasmopara_viticola",
         "verbatim_quote": "Irregular, yellowish, translucent sports on the upper surface of the leaves. Correspondingly on the lower surface, white, powdery growth on leaves.",
         "provenance": "page-verified"
       }
@@ -142,19 +142,19 @@
     "fields": {
       "pathogen": {
         "value": "Botrytis cinerea",
-        "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_postharvest_grapes_2.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Berries and clusters",
-        "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_postharvest_grapes_2.html",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Infected berries brown (white cultivars) or redden (red/black cultivars), developing a gray velvety mould",
-        "source_url": "https://ipm.ucanr.edu/agriculture/grape/botrytis-bunch-rot/",
+        "source_url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_postharvest_grapes_2.html",
         "verbatim_quote": "At veraison, individually infected berries in a cluster turn brown on white cultivars or reddish in red and black cultivars...resulting in the characteristic gray, velvety appearance of infected berries.",
         "provenance": "page-verified"
       }
@@ -171,7 +171,7 @@
     "fields": {
       "pathogen": {
         "value": "Pseudocercospora vitis (syn. Isariopsis clavispora; teleomorph: Mycosphaerella personata)",
-        "source_url": "https://www.cabi.org/isc/datasheet/45846",
+        "source_url": "https://ipm.ucanr.edu/home-and-landscape/pierces-disease-of-grape/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -223,7 +223,7 @@
     "fields": {
       "pathogen": {
         "value": "Grapevine leafroll-associated viruses (GLRaVs), primarily GLRaV-1 and GLRaV-3",
-        "source_url": "https://www.extension.purdue.edu/extmedia/BP/BP-139-W.pdf",
+        "source_url": "https://en.wikipedia.org/wiki/Black_rot_(grape_disease)",
         "verbatim_quote": "",
         "provenance": "none"
       },
@@ -249,19 +249,19 @@
     "fields": {
       "pathogen": {
         "value": "Uncinula necator",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "affected_organs": {
         "value": "Leaves",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "",
         "provenance": "none"
       },
       "visual_symptoms": {
         "value": "Powdery growth mainly on the upper leaf surface, with malformation and discolouration of affected leaves",
-        "source_url": "https://agritech.tnau.ac.in/crop_protection/grapes_diseases_2.html",
+        "source_url": "https://ipm.ucanr.edu/agriculture/grape/powdery-mildew/#gsc.tab=0",
         "verbatim_quote": "Powdery growth mostly on the upper surface of the leaves. Malformation and discolouration of affected leaves.",
         "provenance": "page-verified"
       }
