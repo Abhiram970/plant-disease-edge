@@ -225,31 +225,66 @@ RESULTS.mkdir(parents=True, exist_ok=True)
 DATA = WORK / "exp_data"
 inp = Path("/kaggle/input")
 
-attached_imgs = None
-if inp.exists():
-    for cand in sorted(inp.iterdir()):
-        if not cand.is_dir():
+def find_dirs(root, name, max_depth=5):
+    """Every directory called `name` at or below `root`, searched breadth-first.
+
+    Kaggle does NOT mount a dataset at a fixed depth. Attaching one can produce
+    /kaggle/input/<dataset>/ or, as seen in practice, /kaggle/input/datasets/<owner>/<dataset>/.
+    The old code only looked one level down, so a perfectly good dataset was invisible and the run
+    fell through to a 114 GB fetch. Search instead of assuming."""
+    found, frontier = [], [(root, 0)]
+    while frontier:
+        d, depth = frontier.pop(0)
+        if depth > max_depth:
             continue
-        src = cand / "exp_data" if (cand / "exp_data").is_dir() else cand
-        if attached_imgs is None and src.is_dir() and any(src.glob("*___*")):
-            attached_imgs = src
-        r = cand / "results"
-        if r.is_dir():
-            n = 0
-            for f in r.glob("*.json"):
-                if not (RESULTS / f.name).exists():
-                    shutil.copy(f, RESULTS / f.name)
-                    n += 1
-            print(f"[carry] {n} result file(s) from {r.name} in {cand.name}")
-        for _n in ("descriptors_ungrounded", "descriptors_grounded_matched"):
-            u = cand / _n
-            if u.is_dir():
-                shutil.copytree(u, REPO / _n, dirs_exist_ok=True)
-                print(f"[carry] {_n} from {cand.name}")
-        ck = cand / "checkpoints"
-        if ck.is_dir():
-            shutil.copytree(ck, WORK / "checkpoints", dirs_exist_ok=True)
-            print(f"[carry] CNN checkpoints from {cand.name} -- interrupted archs resume")
+        try:
+            kids = sorted(p for p in d.iterdir() if p.is_dir())
+        except Exception:
+            continue
+        for k in kids:
+            if k.name == name:
+                found.append(k)
+            else:
+                frontier.append((k, depth + 1))
+    return found
+
+
+def find_images(root, max_depth=5):
+    """First directory at or below `root` holding <Crop>___<Disease> class folders."""
+    frontier = [(root, 0)]
+    while frontier:
+        d, depth = frontier.pop(0)
+        if depth > max_depth:
+            continue
+        try:
+            if any(d.glob("*___*")):
+                return d
+            frontier.extend((p, depth + 1) for p in sorted(d.iterdir()) if p.is_dir())
+        except Exception:
+            continue
+    return None
+
+
+attached_imgs = find_images(inp) if inp.exists() else None
+if attached_imgs is not None:
+    print(f"[found] image dataset at {attached_imgs}")
+
+if inp.exists():
+    # Carried-forward artefacts are searched at any depth too, for the same reason.
+    for _n, _dst in (("descriptors_ungrounded", REPO), ("descriptors_grounded_matched", REPO)):
+        for u in find_dirs(inp, _n):
+            shutil.copytree(u, _dst / _n, dirs_exist_ok=True)
+            print(f"[carry] {_n} from {u}")
+    for ck in find_dirs(inp, "checkpoints"):
+        shutil.copytree(ck, WORK / "checkpoints", dirs_exist_ok=True)
+        print(f"[carry] CNN checkpoints from {ck} -- interrupted archs resume")
+    for r in find_dirs(inp, "results"):
+        n = 0
+        for f in r.glob("*.json"):
+            if not (RESULTS / f.name).exists():
+                shutil.copy(f, RESULTS / f.name)
+                n += 1
+        print(f"[carry] {n} result file(s) from {r}")
 
 # ================================ STAGE 1 — DATA ================================
 if attached_imgs is not None:
