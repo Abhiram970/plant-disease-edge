@@ -111,6 +111,9 @@ MATCHED_GROUNDED = True
 EPOCHS, BATCH, WORKERS = 8, 128, 4
 MIN_BATCH        = 16       # CNN batch is halved on CUDA OOM down to this
 
+ALLOW_FETCH      = False    # fetching is OPT-IN. With no images attached the run stops and tells
+                            # you what /kaggle/input actually contains, instead of falling through
+                            # to a 114 GB pull that cannot finish in a session.
 MIN_IMAGES       = 60_000   # sanity floor; a complete build is 84,123 images
 MIN_CROPS        = 18       # all 18; Cotton exists only in the pinned May release
 REPO_URL         = "github.com/Abhiram970/plant-disease-edge.git"
@@ -253,14 +256,35 @@ if attached_imgs is not None:
     os.environ["PDE_DATASET_DIR"] = str(attached_imgs)
     print(f"[data] using attached images at {attached_imgs} -- no fetch")
 else:
+    # Refuse, rather than warn-and-continue. Warning was not enough: a GPU session with the
+    # dataset simply not attached silently fell through to a 114 GB fetch that cannot finish
+    # inside a Kaggle cell, and spent an hour of GPU quota proving it. Fetching is now opt-in.
+    print(f"\n{'=' * 74}\nNO IMAGES ATTACHED -- stopping before anything expensive.\n{'=' * 74}")
+    seen_inputs = sorted(p.name for p in inp.iterdir()) if inp.exists() else []
+    print(f"  /kaggle/input contains: {seen_inputs or '(nothing)'}")
+    for cand in (p for p in (inp.iterdir() if inp.exists() else []) if p.is_dir()):
+        inner = sorted(q.name for q in cand.iterdir())[:6]
+        print(f"    {cand.name}/ -> {inner}{' ...' if len(inner) == 6 else ''}")
+    print("""
+  This run needs the image dataset ATTACHED, not fetched:
+    right panel -> Add Data -> Your Datasets -> pde-sage-data -> Add
+
+  The runner looks for <dataset>/exp_data/<Crop>___<Disease>/ or <dataset>/<Crop>___<Disease>/.
+  If your dataset nests deeper than that (for example because a .zip was uploaded alongside
+  the folder and Kaggle expanded it), the listing above shows the real layout -- send it over
+  rather than reshuffling the dataset.
+
+  To fetch from HuggingFace anyway, set ALLOW_FETCH = True at the top of this file. Be aware
+  the pinned May release is 114 GB in ~10.7 GB shards and has never completed inside one
+  session; the supported path is prepare_upload.py + upload.""")
+    if not ALLOW_FETCH:
+        sys.exit(0)
     os.environ["PDE_DATASET_DIR"] = str(DATA)
     DATA.mkdir(parents=True, exist_ok=True)
-    if not HAS_GPU:
-        print("[data] CPU session: fetching only. This is the cheap way to build the dataset -- it "
-              "does not spend GPU quota.")
-    else:
-        print("[data] WARNING: fetching on a GPU session spends GPU quota on a network-bound job. "
-              "Consider a CPU session for this run, or upload a local build (prepare_upload.py).")
+    print("\n[data] ALLOW_FETCH is set -- fetching anyway.")
+    if HAS_GPU:
+        print("[data] WARNING: this spends GPU quota on a network-bound job. A CPU session is "
+              "cheaper for a fetch.")
     if not os.environ.get("HF_TOKEN"):
         print("[data] WARNING: no HF_TOKEN. Anonymous pulls are throttled, and a throttled HF "
               "connection stalls rather than failing. This is what hung the previous run.")
