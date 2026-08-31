@@ -77,8 +77,7 @@ def fill_one(crop: str, disease: str, seed: int, arm: str = "ungrounded") -> dic
         )
         rec = BD._parse_descriptor(resp.choices[0].message.content, crop, disease)
     else:
-        import anthropic
-        client = anthropic.Anthropic()
+        client = BD.anthropic_client()   # handles workspace-scoped keys; see build_descriptors
         msg = client.messages.create(
             model=model, max_tokens=1200, temperature=1.0, system=system,
             messages=[{"role": "user", "content": prompt}],

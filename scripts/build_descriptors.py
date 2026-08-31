@@ -142,13 +142,30 @@ def fill_with_lava(crop: str, disease: str) -> dict:
         return stub(crop, disease)
 
 
+def anthropic_client():
+    """An Anthropic client that also works with a WORKSPACE-SCOPED key.
+
+    An identity-linked key is rejected with
+
+        BadRequestError 400 -- anthropic-workspace-id is required when authenticating with an
+        identity-linked API key
+
+    unless the workspace id travels as a header. The key itself is fine; only the header is
+    missing. Set ANTHROPIC_WORKSPACE_ID (a Kaggle secret works) and it is sent automatically;
+    without it the client is constructed exactly as before, so ordinary keys are unaffected."""
+    import anthropic
+    ws = (os.environ.get("ANTHROPIC_WORKSPACE_ID") or "").strip()
+    if ws:
+        return anthropic.Anthropic(default_headers={"anthropic-workspace-id": ws})
+    return anthropic.Anthropic()
+
+
 def fill_with_claude(crop: str, disease: str) -> dict:
     """Fill one descriptor via the native Anthropic SDK (needs ANTHROPIC_API_KEY)."""
     try:
-        import anthropic
+        client = anthropic_client()   # ANTHROPIC_API_KEY (+ workspace id if the key needs one)
     except ImportError:
         sys.exit("pip install anthropic  (needed for --provider anthropic)")
-    client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY
     model = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5")
     try:
         msg = client.messages.create(
