@@ -186,12 +186,24 @@ os.environ.setdefault("PDE_LLM_MODEL", LLM_MODEL)
 HAVE_LLM_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
 
 REPO = WORK / "pde"
-if not REPO.exists():
-    gh = os.environ.get("GH_TOKEN")
-    url = f"https://{gh}@{REPO_URL}" if gh else f"https://{REPO_URL}"
-    if subprocess.run(["git", "clone", "--depth", "1", url, str(REPO)]).returncode != 0:
-        sys.exit("[fatal] clone failed -> check Internet=ON and the GH_TOKEN secret.")
-print(f"[ok] repo at {REPO}")
+# Always re-clone. `if not REPO.exists()` silently REUSED a leftover clone from a crashed run, so a
+# session could execute whatever commit happened to be lying in /kaggle/working -- exactly the wrong
+# behaviour when the reason you are re-running is that the code was just fixed.
+if REPO.exists():
+    print(f"[repo] removing a stale clone at {REPO} so this run uses current code")
+    shutil.rmtree(REPO, ignore_errors=True)
+gh = os.environ.get("GH_TOKEN")
+url = f"https://{gh}@{REPO_URL}" if gh else f"https://{REPO_URL}"
+_cl = subprocess.run(["git", "clone", "--depth", "1", url, str(REPO)],
+                     capture_output=True, text=True)
+if _cl.returncode != 0 or not (REPO / "kaggle" / "RUN_THIS.py").exists():
+    _err = (getattr(_cl, "stderr", "") or "").strip()[-300:]     # stderr can be None
+    sys.exit(f"[fatal] clone failed -> check Internet=ON and the GH_TOKEN secret.\n"
+             f"        {_err or '(no stderr captured)'}")
+_log = subprocess.run(["git", "-C", str(REPO), "log", "--oneline", "-1"],
+                      capture_output=True, text=True)
+_head = (getattr(_log, "stdout", "") or "").strip() or "(unknown commit)"
+print(f"[ok] repo at {REPO}  @ {_head}")
 S = REPO / "scripts"
 
 # --no-deps keeps pip from pulling a 2 GB torch wheel over Kaggle's working CUDA build.
