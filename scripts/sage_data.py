@@ -114,8 +114,14 @@ print(hf_hub_download(repo_id=sys.argv[1], repo_type="dataset",
 """
 
 
-def download_shard(si: int, timeout: int = 900, retries: int = 3) -> Path | None:
-    """Fetch one parquet shard with a hard wall-clock deadline. None if it never arrives."""
+def download_shard(si: int, timeout: int = 240, retries: int = 3) -> Path | None:
+    """Fetch one parquet shard with a hard wall-clock deadline. None if it never arrives.
+
+    The deadline is short ON PURPOSE. Measured on the pinned May release: a shard that transfers at
+    all lands in 7-48 s, and a shard that stalls produces no bytes at all. There is no middle case,
+    so a long timeout buys nothing and costs everything -- at 900 s x 3 attempts two bad shards burned
+    90 minutes of a session to learn what 60 seconds would have shown. Retries stay, because shard
+    0001 failed its first attempt and succeeded on the second in 48 s."""
     fn = C.SHARD_FILENAME.format(si=si)     # layout differs between the May and August releases
     for attempt in range(1, retries + 1):
         t0 = time.time()
@@ -152,7 +158,7 @@ def free_shard(path: Path) -> None:
 
 
 def fetch(crops, caps, min_held_crops=None, min_class_images=None, max_side=None,
-          budget_h=None, shard_timeout=900):
+          budget_h=None, shard_timeout=240):
     """Download shards until `crops` are covered. `caps` = {crop: per-class cap}. Stops when
     >= min_held_crops of `crops` have >= min_class_images (None -> require ALL crops).
 
@@ -278,7 +284,7 @@ def main():
     ap.add_argument("--budget-h", type=float, default=None,
                     help="stop starting new shards after N hours and exit cleanly. On Kaggle always "
                          "set this below the session limit: an overrun is killed and commits nothing.")
-    ap.add_argument("--shard-timeout", type=int, default=900,
+    ap.add_argument("--shard-timeout", type=int, default=240,
                     help="seconds before a stalled shard download is killed and retried")
     args = ap.parse_args()
     kw = dict(max_side=args.max_side, budget_h=args.budget_h, shard_timeout=args.shard_timeout)
