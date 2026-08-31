@@ -50,6 +50,8 @@ try:                                   # load .env (LAVA_API_KEY, etc.) if pytho
 except Exception:
     pass
 
+MAX_TOKENS = int(os.environ.get("PDE_MAX_TOKENS", "2000"))
+
 EMPTY_FIELD = {"value": "", "source_url": "", "verbatim_quote": ""}
 
 # Source-grounded extraction rules — the LLM may ONLY state what a cited source says.
@@ -132,7 +134,7 @@ def fill_with_lava(crop: str, disease: str) -> dict:
     model = os.environ.get("LAVA_MODEL", "anthropic/claude-sonnet-4-6")
     try:
         resp = client.chat.completions.create(
-            model=model, max_tokens=1200, temperature=0.0,
+            model=model, max_tokens=MAX_TOKENS, temperature=0.0,
             messages=[{"role": "system", "content": GROUNDING_SYSTEM},
                       {"role": "user", "content": _user_prompt(crop, disease)}],
         )
@@ -143,21 +145,45 @@ def fill_with_lava(crop: str, disease: str) -> dict:
 
 
 def anthropic_client():
-    """An Anthropic client that also works with a WORKSPACE-SCOPED key.
+    """An Anthropic-shape client, pointed at Lava when a Lava key is present.
 
-    An identity-linked key is rejected with
+    Lava issues two kinds of key and they are NOT interchangeable:
+      * OpenAI-shape  -- use the openai SDK against <base>/chat/completions
+      * Anthropic-shape -- refuses an OpenAI-shaped call outright with
+            403 request_shape_not_allowed: "This key only allows anthropic request shape,
+            but received openai"
+        and instead wants the native Messages API at <base>/messages with x-api-key auth.
+    The anthropic SDK speaks exactly that shape, so an Anthropic-shape Lava key is just this
+    client with base_url set. Probed against the live endpoint; do not swap the transports.
 
-        BadRequestError 400 -- anthropic-workspace-id is required when authenticating with an
-        identity-linked API key
-
-    unless the workspace id travels as a header. The key itself is fine; only the header is
-    missing. Set ANTHROPIC_WORKSPACE_ID (a Kaggle secret works) and it is sent automatically;
-    without it the client is constructed exactly as before, so ordinary keys are unaffected."""
+    A direct Anthropic key that is WORKSPACE-SCOPED additionally needs the workspace id as a
+    header (400: "anthropic-workspace-id is required..."). The key is fine, the header is
+    missing; set ANTHROPIC_WORKSPACE_ID and it is sent automatically."""
     import anthropic
+    kw = {}
+    lava = (os.environ.get("LAVA_API_KEY") or "").strip()
+    if lava:
+        kw["api_key"] = lava
+        # The anthropic SDK appends /v1 itself, so the base must NOT already end in /v1 or every
+        # call 404s on /v1/v1/messages. LAVA_BASE_URL is written for the OpenAI SDK (which does
+        # want the /v1), so strip it here rather than making the operator keep two variables.
+        base = os.environ.get("LAVA_BASE_URL", "https://api.lava.so").rstrip("/")
+        kw["base_url"] = base[:-3].rstrip("/") if base.endswith("/v1") else base
     ws = (os.environ.get("ANTHROPIC_WORKSPACE_ID") or "").strip()
-    if ws:
-        return anthropic.Anthropic(default_headers={"anthropic-workspace-id": ws})
-    return anthropic.Anthropic()
+    if ws and not lava:                       # Lava does not want the workspace header
+        kw["default_headers"] = {"anthropic-workspace-id": ws}
+    return anthropic.Anthropic(**kw)
+
+
+def lava_is_openai_shape() -> bool:
+    """True when the Lava key speaks the OpenAI protocol (the default).
+
+    A Lava service key is locked to ONE request shape and rejects the other outright:
+        403 request_shape_not_allowed -- "This key only allows anthropic request shape,
+                                          but received openai"
+    Set LAVA_SHAPE=anthropic for such a key; it then goes through anthropic_client(), which is
+    the same SDK pointed at Lava's base URL."""
+    return (os.environ.get("LAVA_SHAPE") or "openai").strip().lower() == "openai"
 
 
 def fill_with_claude(crop: str, disease: str) -> dict:
@@ -169,7 +195,7 @@ def fill_with_claude(crop: str, disease: str) -> dict:
     model = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5")
     try:
         msg = client.messages.create(
-            model=model, max_tokens=1200, system=GROUNDING_SYSTEM,
+            model=model, max_tokens=MAX_TOKENS, system=GROUNDING_SYSTEM,
             messages=[{"role": "user", "content": _user_prompt(crop, disease)}],
         )
         text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
