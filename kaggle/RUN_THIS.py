@@ -16,6 +16,10 @@ file again. Two runs if you attach images; three if you let it fetch. Nothing is
       LAVA_API_KEY       your Lava spend key            \\ either one; needed ONLY by the descriptor
       ANTHROPIC_API_KEY  sk-ant-...                     /  arms. Everything else runs without a key.
 
+      Prefer LAVA_API_KEY if you have one: it is checked FIRST, needs no workspace header, and
+      bills your ordinary account. An Anthropic workspace key requires its own workspace credit,
+      separate from personal credit, which is usually not what you want for one generation pass.
+
       ANTHROPIC_WORKSPACE_ID   ONLY if your Anthropic key is workspace-scoped. Such a key is
                                refused with "anthropic-workspace-id is required when authenticating
                                with an identity-linked API key" -- the key is valid, the header is
@@ -188,7 +192,15 @@ for k in ("GH_TOKEN", "HF_TOKEN", "LAVA_API_KEY", "ANTHROPIC_API_KEY",
         print(f"[ok] secret {k}")
 if os.environ.get("HF_TOKEN"):
     os.environ["HUGGING_FACE_HUB_TOKEN"] = os.environ["HF_TOKEN"]
-os.environ.setdefault("PDE_LLM_MODEL", LLM_MODEL)
+# Model naming differs by provider: Lava namespaces its models ("anthropic/claude-sonnet-5"), the
+# native Anthropic API does not ("claude-sonnet-5"). Sending the wrong form fails the preflight, so
+# pick the form that matches whichever provider will actually be used. Setting PDE_LLM_MODEL as a
+# secret overrides this entirely.
+if not os.environ.get("PDE_LLM_MODEL"):
+    _lava = bool(os.environ.get("LAVA_API_KEY"))
+    os.environ["PDE_LLM_MODEL"] = f"anthropic/{LLM_MODEL}" if _lava else LLM_MODEL
+    print(f"[llm] provider {'Lava' if _lava else 'Anthropic'} -> model "
+          f"{os.environ['PDE_LLM_MODEL']}")
 HAVE_LLM_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
 
 REPO = WORK / "pde"
