@@ -175,7 +175,7 @@ print(f"[start] free disk {free_gb():.1f} GB")
 
 # ---------------------------------------------------------------- secrets + repo
 for k in ("GH_TOKEN", "HF_TOKEN", "LAVA_API_KEY", "ANTHROPIC_API_KEY",
-          "LAVA_BASE_URL", "PDE_LLM_MODEL"):
+          "ANTHROPIC_WORKSPACE_ID", "LAVA_BASE_URL", "PDE_LLM_MODEL"):
     v = secret(k)
     if v:
         os.environ[k] = v
@@ -445,12 +445,22 @@ def llm_reachable():
                                       messages=[{"role": "user", "content": "ping"}])
         else:
             import anthropic
-            anthropic.Anthropic().messages.create(
-                model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
-                messages=[{"role": "user", "content": "ping"}])
+            ws = (os.environ.get("ANTHROPIC_WORKSPACE_ID") or "").strip()
+            # A workspace-scoped ("identity-linked") key is refused with a 400 unless the workspace
+            # id is sent as a header. The key is valid; only the header is missing.
+            cl = (anthropic.Anthropic(default_headers={"anthropic-workspace-id": ws}) if ws
+                  else anthropic.Anthropic())
+            cl.messages.create(model=os.environ["PDE_LLM_MODEL"], max_tokens=4,
+                               messages=[{"role": "user", "content": "ping"}])
         return True, ""
     except Exception as e:
-        return False, f"{type(e).__name__}: {str(e)[:200]}"
+        msg = f"{type(e).__name__}: {str(e)[:200]}"
+        if "workspace-id" in str(e):
+            msg += ("\n      -> your key is WORKSPACE-SCOPED. Add a Kaggle secret "
+                    "ANTHROPIC_WORKSPACE_ID with the workspace id from console.anthropic.com "
+                    "(Settings -> Workspaces), or issue a non-workspace key. The key is fine; "
+                    "only the header is missing.")
+        return False, msg
 
 
 if not HAVE_LLM_KEY:
