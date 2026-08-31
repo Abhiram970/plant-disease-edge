@@ -147,7 +147,20 @@ def main():
             try:
                 rec = fill_one(crop, disease, args.seed, args.arm)
             except Exception as e:
-                print(f"  [fail] {crop}/{disease}: {type(e).__name__}: {str(e)[:70]}")
+                s = str(e)
+                # Running out of credit is NOT a per-class failure: every remaining call will fail
+                # the same way, and writing a stub for each would fill the arm with placeholder text
+                # that reads as generated. The arm would then fall through to `rich` for those
+                # classes and quietly compare rich against itself. Stop instead, keeping the classes
+                # already filled -- a later run resumes at exactly this point.
+                if any(k in s.lower() for k in
+                       ("credit", "insufficient", "quota", "balance", "payment", "429")):
+                    print(f"\n  [STOP] {type(e).__name__}: {s[:160]}")
+                    print(f"  [STOP] {n} class(es) filled and saved for seed {args.seed} "
+                          f"({args.arm}). Top up and re-run the same command to continue; "
+                          f"filled classes are skipped.")
+                    sys.exit(3)
+                print(f"  [fail] {crop}/{disease}: {type(e).__name__}: {s[:70]}")
                 rec = BD.stub(crop, disease)
             recs = [r for r in recs if r.get("disease") != disease] + [rec]
             path.write_text(json.dumps(recs, indent=2), encoding="utf-8")
