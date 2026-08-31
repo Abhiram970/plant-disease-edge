@@ -719,4 +719,71 @@ EVERYTHING COMPLETE
       claim, so this is critical path; only 16 of 217 records are page-verified.
 """)
 
+# ---------------------------------------------------------------- downloadable bundle
+# /kaggle/working also holds exp_data/ (1.7 GB), the cloned repo and CNN checkpoints, so grabbing
+# the whole Output to get the results means pulling gigabytes for well under a megabyte of JSON.
+# Everything the paper needs is bundled into one small zip instead, with a direct download link.
+def build_bundle():
+    import zipfile
+    out = WORK / "pde_results.zip"
+    picked, skipped = [], []
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for f in sorted(RESULTS.glob("*.json")):
+            z.write(f, f"results/{f.name}")
+            picked.append(f"results/{f.name}")
+        # set-aside pre-fix evaluations: carried so a reviewer can diff old against new
+        for f in sorted(RESULTS.glob("*.pre_matcher_fix")):
+            z.write(f, f"results/superseded/{f.name}")
+            picked.append(f"results/superseded/{f.name}")
+        for arm in ("descriptors_ungrounded", "descriptors_grounded_matched"):
+            root = WORK / arm
+            if root.is_dir():
+                for f in sorted(root.rglob("*.json")):
+                    z.write(f, f"{arm}/{f.relative_to(root)}")
+                    picked.append(f"{arm}/{f.relative_to(root)}")
+        cov = REPO / "docs" / "paper" / "descriptor_coverage.json"
+        if cov.exists():
+            z.write(cov, "descriptor_coverage.json")
+            picked.append("descriptor_coverage.json")
+        for log in sorted((WORK / "logs").glob("*.log")) if (WORK / "logs").is_dir() else []:
+            z.write(log, f"logs/{log.name}")
+            picked.append(f"logs/{log.name}")
+        # a receipt, so the bundle can be checked against the run that produced it
+        z.writestr("BUNDLE.json", json.dumps({
+            "files": picked,
+            "images": n_images, "classes": n_classes, "crops": len(per_crop),
+            "sage_revision": CFG.SHARD_REVISION,
+            "llm_model": os.environ.get("PDE_LLM_MODEL"),
+            "wall_hours": round(elapsed_h(), 2),
+            "stages_outstanding": LEFT,
+        }, indent=2))
+    for big in ("exp_data", "checkpoints", "pde"):     # named so it is clear they are EXCLUDED
+        if (WORK / big).exists():
+            skipped.append(big)
+    return out, picked, skipped
+
+
+try:
+    BUNDLE, picked, skipped = build_bundle()
+    mb = BUNDLE.stat().st_size / 1e6
+    print(f"\n{'=' * 74}\nDOWNLOAD THE RESULTS\n{'=' * 74}")
+    print(f"  {BUNDLE.name}  --  {mb:.2f} MB, {len(picked)} file(s)")
+    print(f"  excluded (would make this gigabytes): {', '.join(skipped) or 'nothing'}")
+    print("\n  Get it WITHOUT downloading the whole Output:")
+    print("    * Notebook -> Output tab -> click pde_results.zip -> Download")
+    print("    * or run this in a cell after the run finishes:")
+    print("        from IPython.display import FileLink; FileLink('pde_results.zip')")
+    try:                                    # renders a real clickable link inside the notebook
+        from IPython.display import FileLink, display
+        display(FileLink(str(BUNDLE.relative_to(WORK))))
+    except Exception:
+        pass
+    print("\n  Then locally:")
+    print("    unzip -o pde_results.zip -d /tmp/pde && cp /tmp/pde/results/*.json docs/paper/")
+    print("    cp -r /tmp/pde/descriptors_* .        # only if the control arm ran")
+except Exception as e:
+    print(f"\n[warn] could not build the results bundle: {type(e).__name__}: {e}")
+    print("       The individual files are still in the Output tab under results/.")
+
+
 print(f"  wall {elapsed_h():.2f} h | free disk {free_gb():.1f} GB")
