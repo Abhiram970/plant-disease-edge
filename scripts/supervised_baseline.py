@@ -21,8 +21,17 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import random
 import sys
+
+# MUST precede the torch import: the CUDA allocator reads this once, at initialisation.
+# convnextv2_tiny trained three clean epochs at batch 64 and then OOMed at epoch 4 trying to
+# allocate 148 MiB with 148 MiB free -- textbook fragmentation, not an oversized batch. Torch's
+# own error message recommends exactly this setting, which lets the allocator grow segments
+# instead of stranding memory in unusably-sized blocks.
+os.environ.setdefault("PYTORCH_ALLOC_CONF", "expandable_segments:True")
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")  # older torch name
 from collections import defaultdict
 from pathlib import Path
 
@@ -146,6 +155,15 @@ def main():
                 correct += (pred == y).sum().item(); tot += len(y)
         acc = correct/tot
         print(f"  epoch {ep+1}/{args.epochs}  loss={run/max(nb,1):.3f}  test_top1={acc:.1%}")
+        # Release the eval graph and return cached blocks before checkpointing. convnextv2_tiny
+        # OOMed at epoch 4 having trained three epochs cleanly at the same batch size, which is
+        # fragmentation accumulating across epochs, not a batch that never fit. torch.save also
+        # briefly holds a CPU copy of every optimizer tensor, so the peak lands right here.
+        # Bound to None rather than `del`: a bare `del x, y, pred` raises NameError when the eval
+        # loader yielded nothing, and locals().pop() only mutates a throwaway dict inside a
+        # function. Rebinding drops the last reference just as effectively.
+        x = y = pred = loss = None
+        torch.cuda.empty_cache()
 
         # Save checkpoint
         epoch_log.append({"epoch": ep, "loss": round(run/max(nb,1), 4), "test_top1": round(acc, 4)})
