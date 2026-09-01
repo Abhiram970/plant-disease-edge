@@ -145,7 +145,17 @@ def main():
             if disease in have:
                 continue
             try:
-                rec = fill_one(crop, disease, args.seed, args.arm)
+                # One retry. The grounded arm loses ~8 of 51 classes per seed to an empty response
+                # body or a verbatim_quote containing an unescaped quote/newline; both are
+                # per-request flukes, and a second sample almost always parses. Retrying is far
+                # cheaper than a stub, which silently falls through to `rich` and contaminates the
+                # arm with the very baseline it is supposed to be compared against.
+                try:
+                    rec = fill_one(crop, disease, args.seed, args.arm)
+                except Exception as first:
+                    print(f"  [retry] {crop}/{disease}: {type(first).__name__}: {str(first)[:60]}")
+                    time.sleep(1.5)
+                    rec = fill_one(crop, disease, args.seed, args.arm)
             except Exception as e:
                 s = str(e)
                 # Running out of credit is NOT a per-class failure: every remaining call will fail

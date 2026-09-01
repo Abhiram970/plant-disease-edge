@@ -104,15 +104,62 @@ def _user_prompt(crop: str, disease: str) -> str:
     )
 
 
+def _repair_json(s: str) -> str:
+    """Escape raw control characters and stray quotes inside JSON string values.
+
+    The GROUNDED schema asks for a verbatim_quote copied EXACTLY from a source page, and exact
+    page text routinely contains a double quote or a line break. Emitted unescaped, those
+    terminate the JSON string early and the object fails to parse -- which is why the grounded
+    arm stubbed 8 of 51 classes per seed while the ungrounded arm, whose quotes may be empty,
+    filled 51/51. Walk the text tracking whether we are inside a string, and escape what would
+    otherwise break it."""
+    out, in_str, esc = [], False, False
+    for i, ch in enumerate(s):
+        if esc:
+            out.append(ch)
+            esc = False
+            continue
+        if ch == "\\":
+            out.append(ch)
+            esc = True
+            continue
+        if ch == '"':
+            if not in_str:
+                in_str = True
+                out.append(ch)
+            else:
+                # closing quote only if the next non-space char can legally follow one
+                nxt = next((c for c in s[i + 1:] if not c.isspace()), "")
+                if nxt in ",:}]" or nxt == "":
+                    in_str = False
+                    out.append(ch)
+                else:
+                    out.append('\\"')          # a quote INSIDE the value
+            continue
+        if in_str and ch in "\n\r\t":
+            out.append({"\n": "\\n", "\r": "\\r", "\t": "\\t"}[ch])
+            continue
+        out.append(ch)
+    return "".join(out)
+
+
 def _parse_descriptor(text: str, crop: str, disease: str) -> dict:
     """Extract the JSON object from an LLM reply (tolerating ```json fences)."""
-    text = text.strip()
+    text = (text or "").strip()
+    if not text:
+        raise ValueError("empty response body from the API")
     if text.startswith("```"):
         text = text.split("```")[1]
         if text.startswith("json"):
             text = text[4:]
     start, end = text.find("{"), text.rfind("}") + 1
-    d = json.loads(text[start:end])
+    if start < 0 or end <= start:
+        raise ValueError(f"no JSON object in a {len(text)}-char response")
+    raw = text[start:end]
+    try:
+        d = json.loads(raw)
+    except json.JSONDecodeError:
+        d = json.loads(_repair_json(raw))      # unescaped quote/newline inside a verbatim_quote
     d["crop"] = crop            # force to the manifest's names (the model sometimes renames the disease),
     d["disease"] = disease      # so the grounded lookup keys by folder name always match
     d["status"] = "filled"

@@ -550,7 +550,11 @@ for exp in ["A", "B", "C"]:
         "--strategies", "bare", "crude", "rich", "grounded", "--heavy", "--teachers"])
 
 # ================================ STAGE 4 — THE CONTROL ARM ================================
-MIN_FILLED = 40      # of the 51 held-out classes at configuration C
+# Of the 51 held-out classes at configuration C. Set to 50 deliberately: a class with no record
+# falls through to `rich`, so an arm at 43/51 is 43 classes of its own text plus 8 classes of the
+# baseline it is meant to be compared against. At 40 that contamination passed the gate silently.
+# Anything below this is reported and NOT evaluated, which is the honest outcome.
+MIN_FILLED = 50
 
 
 def filled_count(root, seed):
