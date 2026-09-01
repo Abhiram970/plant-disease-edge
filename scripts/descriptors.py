@@ -129,7 +129,16 @@ def _grounded_visual(crop, disease):
 # constraint removed. Generated at several seeds because a single sample of LLM text cannot
 # distinguish "grounding helps" from "this particular generation was lucky".
 _arm_cache: dict = {}
-UNGROUNDED_SEED = int(os.environ.get("PDE_UNGROUNDED_SEED", "0"))
+def _seed() -> int:
+    """The active descriptor seed, read AT CALL TIME.
+
+    This was a module-level constant, which silently broke the whole seed study: evaluate.py
+    imports zeroshot (and so descriptors) at line 27 but does not set PDE_UNGROUNDED_SEED until
+    line 63, so the constant was already frozen at 0 before --ungrounded-seed was applied. All
+    three "seeds" therefore evaluated seed 0's text and produced byte-identical accuracies, which
+    reads as a spread of exactly zero rather than as a bug. Reading the environment per call costs
+    nothing next to a forward pass and cannot go stale."""
+    return int(os.environ.get("PDE_UNGROUNDED_SEED", "0"))
 
 # Directory per seeded arm. `grounded_matched` exists because the shipped grounded registry records
 # no generating model, so comparing it against a freshly generated ungrounded set would confound
@@ -143,11 +152,12 @@ ARM_DIRS = {
 
 def _seeded_arm(arm, crop, disease):
     """symptom_text from <ARM_DIRS[arm]>/<seed>/<crop>.json, or None."""
-    key = (arm, crop, UNGROUNDED_SEED)
+    seed = _seed()
+    key = (arm, crop, seed)
     if key not in _arm_cache:
         idx = {}
         try:
-            p = C.REPO_ROOT / ARM_DIRS[arm] / str(UNGROUNDED_SEED) / f"{C.safe_name(crop)}.json"
+            p = C.REPO_ROOT / ARM_DIRS[arm] / str(seed) / f"{C.safe_name(crop)}.json"
             if p.exists():
                 for rec in json.loads(p.read_text(encoding="utf-8")):
                     if isinstance(rec, dict) and rec.get("status") == "filled":
