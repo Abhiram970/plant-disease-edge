@@ -136,19 +136,23 @@ def tab_seen():
 
 
 def tab_supervised():
+    # Params are printed because Section 5.5 argues "capacity is not the lever" from this table.
+    # Without the column a reader cannot check that claim against the numbers shown.
     rows = []
     for f in sorted(HERE.glob("supervised_*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
-        rows.append((d.get("arch"), d.get("seen_classes"), d.get("seen_top1")))
+        rows.append((d.get("arch"), d.get("params_M"), d.get("seen_classes"), d.get("seen_top1")))
     if not rows:
         return
-    body = [f"{a.replace('_', '-')} & {n} & {pct(t)} & \\textbf{{0 (structural)}} \\\\"
-            for a, n, t in sorted(rows, key=lambda r: -(r[2] or 0))]
+    body = [f"{a.replace('_', '-')} & {p:.1f} & {n} & {pct(t)} & \\textbf{{0 (structural)}} \\\\"
+            for a, p, n, t in sorted(rows, key=lambda r: -(r[3] or 0))]
     write("tab_supervised.tex", wrap(
         "Supervised CNN baselines on the identical seen set.",
-        "tab:cnn", "lrrr",
-        "Architecture & Classes & Seen top-1 & Unseen \\\\", body,
-        "For a fixed, known label set a CNN is the stronger classifier. None of them, however, has "
+        "tab:cnn", "lrrrr",
+        "Architecture & Params (M) & Classes & Seen top-1 & Unseen \\\\", body,
+        "For a fixed, known label set a CNN is the stronger classifier. Accuracy does not track "
+        "parameter count: a 4.4\,M network finishes within 0.1 points of the best of the "
+        "fourteen, and the largest model is not the best. None of them, however, has "
         "an output unit for an unseen class, so cross-crop accuracy is not low but undefined --- "
         "the capability the descriptor head supplies."))
 
