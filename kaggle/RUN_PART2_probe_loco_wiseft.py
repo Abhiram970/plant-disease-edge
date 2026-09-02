@@ -36,7 +36,7 @@ BUDGET_H    = 11.0
 WISE_EPOCHS = 3
 WISE_LR     = "1e-4"     # 1e-5 did not train the encoder at all in a smoke test
 WISE_ALPHAS = ["0.0", "0.5", "1.0"]
-REPO_URL = "https://github.com/PVAbhiram2005/plant-disease-edge.git"
+REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 
 

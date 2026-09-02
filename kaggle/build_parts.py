@@ -14,7 +14,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from _pde_common import BOOTSTRAP
 
-COMMON_SETTINGS = '''REPO_URL = "https://github.com/PVAbhiram2005/plant-disease-edge.git"
+COMMON_SETTINGS = '''REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 '''
 

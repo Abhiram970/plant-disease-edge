@@ -36,7 +36,7 @@ SHORT_WORDS      = 50
 LLM_MODEL        = "claude-sonnet-5"
 MAX_TOKENS       = 4000    # 2000 still truncated the grounded schema -> unparseable JSON
 MIN_FILLED       = 48      # of 51; 3 held-out labels are not real diseases
-REPO_URL = "https://github.com/PVAbhiram2005/plant-disease-edge.git"
+REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 
 
