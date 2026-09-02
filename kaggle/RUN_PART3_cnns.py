@@ -48,7 +48,7 @@ ARCHS = ["mobilenetv3_small_100", "mobilenetv4_conv_small", "fastvit_t8", "effic
          "mobilenetv3_large_100", "densenet121", "mobilenetv4_conv_medium", "fastvit_sa12",
          "convnextv2_nano", "regnety_040", "resnet50", "tf_efficientnetv2_s",
          "convnextv2_tiny", "resnet101"]
-REPO_URL = "https://github.com/PVAbhiram2005/plant-disease-edge.git"
+REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 
 
