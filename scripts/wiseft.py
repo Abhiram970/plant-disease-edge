@@ -139,6 +139,19 @@ def main():
     with torch.no_grad():
         dim = model.visual(next(iter(dl_te))[0][:1].to(device)).shape[-1]
     head = nn.Linear(dim, len(seen_classes)).to(device)
+    # zeroshot.load_model() sets requires_grad=False on EVERY parameter -- correct for its own
+    # job (frozen zero-shot eval) but fatal here: the optimizer held visual parameters that
+    # could not receive gradients, so the "fine-tuned" encoder was byte-identical to the frozen
+    # one and only the head moved. That is why raising the lr from 1e-5 to 1e-4 barely shifted
+    # the loss (5.078 -> 4.803 against a random-guess 5.111) and why alpha=0.5 dipped below both
+    # endpoints: there was no second weight set to interpolate toward. Re-enable grads on the
+    # visual tower, which is the thing WiSE-FT interpolates.
+    for _p in model.visual.parameters():
+        _p.requires_grad = True
+    _trainable = sum(_p.numel() for _p in model.visual.parameters() if _p.requires_grad)
+    print(f"[wiseft] visual tower trainable params: {_trainable/1e6:.2f} M", flush=True)
+    if _trainable == 0:
+        sys.exit("[wiseft] visual tower has no trainable parameters; refusing to run.")
     opt = torch.optim.AdamW(list(model.visual.parameters()) + list(head.parameters()),
                             lr=args.lr, weight_decay=1e-4)
     _bf16 = device == "cuda" and torch.cuda.is_bf16_supported()
@@ -163,6 +176,22 @@ def main():
         print(f"  ft epoch {ep + 1}/{args.epochs}  loss={ft_loss[-1]:.3f}", flush=True)
     model.eval()
     finetuned_visual = copy.deepcopy(model.visual.state_dict())
+
+    # Did the encoder actually move? A frozen requires_grad flag made the "fine-tuned" weights
+    # byte-identical to the frozen ones once already, and every downstream number still looked
+    # plausible -- alpha=1 differed only because the head differed. Measure the distance and
+    # refuse to continue if it is zero.
+    _delta = 0.0
+    _norm = 0.0
+    for _k, _fv in frozen_visual.items():
+        if _fv.is_floating_point():
+            _delta += (finetuned_visual[_k].float() - _fv.float()).pow(2).sum().item()
+            _norm += _fv.float().pow(2).sum().item()
+    _rel = (_delta ** 0.5) / max(_norm ** 0.5, 1e-12)
+    print(f"[wiseft] encoder moved: relative L2 distance = {_rel:.5f}", flush=True)
+    if _rel < 1e-8:
+        sys.exit("[wiseft] the fine-tuned encoder is identical to the frozen one -- nothing was "
+                 "trained. Refusing to emit a sweep that would interpolate a model with itself.")
 
     # ---- sweep alpha ----------------------------------------------------------------------
     # The alpha=0 row must reproduce the frozen probe -- that is the sweep's built-in
@@ -246,6 +275,7 @@ def main():
         "unseen_chance": round(1.0 / max(len(unseen_classes), 1), 6),
         "strategy": args.strategy, "ft_epochs": args.epochs, "ft_loss": ft_loss,
         "frozen_probe": round(frozen_probe, 4),
+        "encoder_rel_l2_shift": round(_rel, 6),
         "random_guess_loss": round(random_loss, 4),
         "warnings": warnings,
         "sweep": sweep, "best": best,
