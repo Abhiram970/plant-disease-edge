@@ -435,8 +435,13 @@ if WISE.exists():
         # 3 alphas, not 5: each alpha now re-fits its own linear head (a full feature pass
         # over the seen split), so the sweep cost scales with the number of points. 0/0.5/1
         # is what the manuscript's table reports.
+        # lr 1e-4, not the 1e-5 default: at 1e-5 a smoke-test epoch left the loss at 5.08
+        # against a random-guess loss of ln(166)=5.11, i.e. the encoder had learned nothing,
+        # and interpolating between two unconnected weight sets made seen accuracy DIP below
+        # both endpoints. wiseft.py now emits a [WARNING] and records it in the JSON if that
+        # recurs -- check the warnings field before using the table.
         sh([sys.executable, "-u", str(WISE), "--model", "s0", "--exp", "C",
-            "--epochs", "3", "--workers", "0",
+            "--epochs", "3", "--lr", "1e-4", "--workers", "0",
             "--alphas", "0.0", "0.5", "1.0"], 2.5, "wiseft")
 else:
     print("\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)

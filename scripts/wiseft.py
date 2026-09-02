@@ -208,6 +208,35 @@ def main():
         sweep.append({"alpha": a, "seen": round(s, 4), "unseen": round(u, 4)})
         print(f"  alpha={a:.2f}  seen={s:.1%}  unseen={u:.1%}", flush=True)
 
+    # ---- sanity gates -------------------------------------------------------------------
+    # WiSE-FT only behaves when the fine-tuned model is genuinely fine-tuned from the same
+    # init (Wortsman et al.). If fine-tuning barely moved, the frozen and "fine-tuned" weights
+    # are not on a connected low-loss path and the midpoint lands in a degenerate region --
+    # in a 1-epoch smoke test that produced seen = 72.3 / 63.9 / 73.6, a dip BELOW both
+    # endpoints. That is a training-budget failure, not a result, so say so loudly rather than
+    # emitting a table someone might read as the seen/unseen trade-off.
+    import math as _math
+    random_loss = _math.log(max(len(seen_classes), 2))
+    warnings = []
+    if ft_loss and ft_loss[-1] > 0.9 * random_loss:
+        warnings.append(
+            f"fine-tuning did not converge: final loss {ft_loss[-1]:.2f} vs "
+            f"random-guess {random_loss:.2f}. Raise --epochs or --lr; the sweep is not "
+            f"interpretable until alpha=1 is a genuinely fine-tuned model.")
+    seen_curve = [r["seen"] for r in sweep]
+    if len(seen_curve) >= 3 and min(seen_curve) < min(seen_curve[0], seen_curve[-1]) - 0.01:
+        warnings.append(
+            "seen accuracy dips below BOTH endpoints at an intermediate alpha, which means "
+            "the two weight sets are not linearly connected -- usually the same "
+            "under-training cause as above.")
+    a0 = next((r for r in sweep if r["alpha"] == 0.0), None)
+    if a0 and abs(a0["seen"] - frozen_probe) > 0.01:
+        warnings.append(
+            f"alpha=0 ({a0['seen']:.1%}) does not reproduce the frozen probe "
+            f"({frozen_probe:.1%}); the interpolation itself is suspect.")
+    for w in warnings:
+        print(f"[wiseft][WARNING] {w}", flush=True)
+
     best = max(sweep, key=lambda r: r["seen"] + r["unseen"])
     out = {
         "tier": args.model, "model": name, "pretrained": pretrained,
@@ -217,6 +246,8 @@ def main():
         "unseen_chance": round(1.0 / max(len(unseen_classes), 1), 6),
         "strategy": args.strategy, "ft_epochs": args.epochs, "ft_loss": ft_loss,
         "frozen_probe": round(frozen_probe, 4),
+        "random_guess_loss": round(random_loss, 4),
+        "warnings": warnings,
         "sweep": sweep, "best": best,
         "note": ("Both sides measured under ONE protocol. The previous file recorded "
                  "unseen_classes=17 (pilot) against seen_classes=166 (nested C)."),
