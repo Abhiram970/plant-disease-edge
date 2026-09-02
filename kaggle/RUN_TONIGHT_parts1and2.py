@@ -1,46 +1,46 @@
 """
 =====================================================================================
- PDE PART 2 of 3  --  PROBE, LEAVE-ONE-CROP-OUT, WiSE-FT
+ PDE TONIGHT  --  PART 1 + PART 2 in one session
 =====================================================================================
-Run this SECOND. Needs no API key.
+Run this tonight. Run RUN_PART3_cnns.py in the morning.
+
+  descriptors (8 seeds x 2 arms) + short arms + integrity gate      ~2.2 h
+  zero-shot A/B/C + label-corrected C                               ~1.2 h
+  control arms at C  (the numbers Section 5.3 needs)                ~1.8 h
+  seen-crop linear probe A/B/C                                      ~0.5 h
+  leave-one-crop-out + bootstrap CIs                                ~0.3 h
+  WiSE-FT alpha sweep                                               ~0.8 h
+                                                            TOTAL   ~6.9 h
+  (12 h Kaggle limit, 11 h internal budget -> ~4 h headroom)
 
 SETUP
-  1. Add Data -> `pde-sage-data`.
-  2. Add Data -> the OUTPUT of PART 1 (so its results carry forward). Optional but
-     recommended: the bundle is imported automatically if present.
-  3. GPU on, Internet on. Paste into ONE cell and run.
+  1. Add Data -> your `pde-sage-data` dataset (the 288 px exp_data build).
+  2. Settings -> Accelerator: GPU T4 x2 (or P100).  Internet: ON.
+  3. Add-ons -> Secrets: LAVA_API_KEY (or ANTHROPIC_API_KEY). REQUIRED for the control arms.
+  4. Paste this whole file into ONE cell, then use "Save Version -> Save & Run All" so the
+     run survives you closing the browser.
+  5. In the morning: download pde_tonight.zip, then run RUN_PART3_cnns.py.
 
-WHAT IT DOES                                                        est. time
-  1  seen-crop linear probe A/B/C                                    ~0.5 h
-  2  leave-one-crop-out + bootstrap CIs                              ~0.3 h
-  3  WiSE-FT alpha sweep (0 / 0.5 / 1), re-measured                  ~0.8 h
-                                                              TOTAL  ~1.6 h
+ORDER MATTERS. Descriptors run first because everything downstream needs them, and they are
+the only stage whose duration depends on an external API. The budget guard sits between the
+halves: if generation runs long, the probe/LOCO/WiSE-FT block is skipped with a receipt
+naming what is left, rather than started and abandoned half-done.
 
-WHY WiSE-FT IS RE-MEASURED. The stranded file it replaced recorded unseen_classes=17
-(the pilot protocol) against seen_classes=166 (nested C) -- one table reporting two
-different experiments. scripts/wiseft.py measures both sides under configuration C and
-records the protocol in its output.
-
-READ THE WARNINGS. WiSE-FT only behaves when the fine-tuned model is genuinely
-fine-tuned from the same initialisation. Two smoke tests looked like a learning-rate
-problem -- loss 5.08 at lr 1e-5, then 4.80 at 1e-4, against a random-guess loss of 5.11 --
-but the real cause was that zeroshot.load_model() sets requires_grad=False on every
-parameter, so the visual tower was never training and the sweep was interpolating a model
-with itself. That is fixed; the learning rate here is the standard CLIP value.
-
-The script now verifies, and records in wiseft.json: that the visual tower has trainable
-parameters, that the fine-tuned weights actually moved (relative L2 distance, exits if
-zero), that fine-tuning converged below 0.9x random-guess loss, that seen accuracy does
-not dip below both endpoints, and that alpha=0 reproduces the frozen probe. Each failure
-prints a [WARNING]. If you see any, raise --epochs or --lr before using the table.
+IF IT STOPS EARLY: re-run the same cell. Every stage is resumable and finished work is
+skipped, so a second run continues exactly where this one stopped.
 =====================================================================================
 """
 
 # ---------------------------------------------------------------- settings
-BUDGET_H    = 11.0
-WISE_EPOCHS = 3
-WISE_LR     = "1e-5"     # standard CLIP fine-tuning range; see the note below
-WISE_ALPHAS = ["0.0", "0.5", "1.0"]
+BUDGET_H         = 11.0
+UNGROUNDED_SEEDS = [0, 1, 2, 3, 4, 5, 6, 7]
+SHORT_WORDS      = 50
+LLM_MODEL        = "claude-sonnet-5"
+MAX_TOKENS       = 4000    # 2000 still truncated the grounded schema -> unparseable JSON
+MIN_FILLED       = 48      # of 51; 3 held-out labels are not real diseases
+WISE_EPOCHS      = 3
+WISE_LR          = "1e-5"  # standard CLIP fine-tuning range
+WISE_ALPHAS      = ["0.0", "0.5", "1.0"]
 REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 
@@ -248,6 +248,152 @@ def bundle(part, extra_receipt=None):
         print(f"\nDownload from the Output tab: {zp}", flush=True)
     return zp
 
+os.environ["PDE_LLM_MODEL"]  = LLM_MODEL
+os.environ["PDE_MAX_TOKENS"] = str(MAX_TOKENS)
+
+try:
+    from kaggle_secrets import UserSecretsClient
+    _sec = UserSecretsClient()
+    for _k in ("LAVA_API_KEY", "ANTHROPIC_API_KEY", "LAVA_BASE_URL", "LAVA_SHAPE"):
+        try:
+            _v = _sec.get_secret(_k)
+            if _v:
+                os.environ[_k] = _v
+        except Exception:
+            pass
+except Exception:
+    pass
+HAVE_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
+print(f"[llm] api key present: {HAVE_KEY}", flush=True)
+if not HAVE_KEY:
+    print("[llm] WITHOUT A KEY THIS PART CANNOT PRODUCE THE CONTROL ARMS.", flush=True)
+    print("[llm] Add LAVA_API_KEY under Add-ons -> Secrets and re-run.", flush=True)
+
+# ================================================================ 1  descriptors
+# build_ungrounded.py takes --which (not --exp); --arm "grounded" writes the
+# descriptors_grounded_matched directory, which the evaluator loads as grounded_matched.
+if HAVE_KEY:
+    banner("descriptors")
+    for arm, root in (("ungrounded", REPO / "descriptors_ungrounded"),
+                      ("grounded",   REPO / "descriptors_grounded_matched")):
+        for s in UNGROUNDED_SEEDS:
+            have = filled_count(root, s)
+            if have >= MIN_FILLED:
+                print(f"[skip] {arm} seed {s} ({have} filled)", flush=True)
+                continue
+            if not ok_to_start(f"{arm} seed {s}", [], 0.3):
+                break
+            print(f"\n--- {arm} seed {s} (have {have}, need {MIN_FILLED}) ---", flush=True)
+            rc, _ = sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
+                        "--arm", arm, "--seed", str(s), "--which", "heldout"],
+                       0.6, f"{arm} seed {s}")
+            print(f"    -> {filled_count(root, s)} filled", flush=True)
+            if rc == 3:
+                print("[llm] endpoint reported no credit -> stopping descriptor generation.",
+                      flush=True)
+                break
+
+# ================================================================ 2  short arms
+# Every generated prototype exceeded CLIP's 77-token text window (51/51 ungrounded,
+# 35/40 matched), so the full arms are compared on their leading sentences only. These
+# arms hold the same text compressed to fit, which removes truncation as a confound.
+# It is a deterministic text transform, so it costs nothing and needs no API calls.
+banner(f"short arms (<= {SHORT_WORDS} words)")
+def shorten(text, n=SHORT_WORDS):
+    t = " ".join((text or "").split())
+    if not t:
+        return t
+    w = t.split()
+    if len(w) <= n:
+        return t
+    cut = " ".join(w[:n])
+    for sep in (". ", "; ", ", "):
+        i = cut.rfind(sep)
+        if i > len(cut) * 0.6:
+            return cut[:i + 1].rstrip(" ;,")
+    return cut
+
+_made = 0
+for _src_name, _dst_name in (("descriptors_ungrounded", "descriptors_ungrounded_short"),
+                             ("descriptors_grounded_matched", "descriptors_grounded_matched_short")):
+    _src = REPO / _src_name
+    if not _src.exists():
+        continue
+    for _sd in sorted(_src.glob("*")):
+        if not _sd.is_dir():
+            continue
+        _dst = REPO / _dst_name / _sd.name
+        _dst.mkdir(parents=True, exist_ok=True)
+        for _f in _sd.glob("*.json"):
+            try:
+                _recs = json.load(open(_f, encoding="utf-8"))
+            except Exception:
+                continue
+            for _r in _recs:
+                _r["symptom_text"] = shorten(_r.get("symptom_text"))
+            json.dump(_recs, open(_dst / _f.name, "w", encoding="utf-8"), indent=1)
+            _made += 1
+print(f"[short] wrote {_made} files", flush=True)
+
+# ================================================================ 3  integrity gate
+banner("descriptor integrity")
+USABLE = {}
+for _arm, _root in (("ungrounded", REPO / "descriptors_ungrounded"),
+                    ("grounded_matched", REPO / "descriptors_grounded_matched"),
+                    ("ungrounded_short", REPO / "descriptors_ungrounded_short"),
+                    ("grounded_matched_short", REPO / "descriptors_grounded_matched_short")):
+    _seeds = []
+    for _s in UNGROUNDED_SEEDS:
+        _n = filled_count(_root, _s)
+        if _n >= MIN_FILLED:
+            _seeds.append(_s)
+        elif (Path(_root) / str(_s)).exists():
+            print(f"  [reject] {_arm} seed {_s}: {_n}/{MIN_FILLED} usable -> excluded", flush=True)
+    USABLE[_arm] = _seeds
+    print(f"  {_arm:24} usable seeds: {_seeds}", flush=True)
+json.dump(USABLE, open(RESULTS / "descriptor_arm_integrity.json", "w"), indent=1)
+
+# ================================================================ 4  zero-shot A/B/C
+STRATS = ["bare", "crude", "rich", "grounded"]
+for _e in ("A", "B", "C"):
+    if (RESULTS / f"zeroshot_eval_{_e}.json").exists():
+        print(f"[skip] zeroshot {_e}", flush=True); continue
+    if not ok_to_start(f"zeroshot {_e}", [], 0.4):
+        break
+    banner(f"zero-shot {_e}")
+    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", _e, "--strategies", *STRATS,
+        "--tiers", "lw11", "lw21", "lw35", "--heavy", "--teachers"], 1.5, f"zeroshot {_e}")
+
+if not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean", [], 0.4):
+    banner("zero-shot C, label-corrected")
+    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C", "--clean",
+        "--strategies", *STRATS, "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "clean")
+
+# ================================================================ 5  control arms
+# evaluate.py names the output per ARM as well as per seed. It previously wrote
+# "_ung{seed}" for every arm, so ungrounded and grounded_matched at the same seed
+# silently overwrote each other -- and the matched arm is the one that removes the
+# model-version confound, so losing it defeated the whole experiment.
+_SUF = {"ungrounded": "ung", "grounded_matched": "gm",
+        "ungrounded_short": "ungs", "grounded_matched_short": "gms"}
+for _arm in ("ungrounded", "grounded_matched", "ungrounded_short", "grounded_matched_short"):
+    for _s in USABLE.get(_arm, []):
+        _tag = f"C_{_SUF[_arm]}{_s}"
+        if (RESULTS / f"zeroshot_eval_{_tag}.json").exists():
+            print(f"[skip] {_tag}", flush=True); continue
+        if not ok_to_start(_tag, [], 0.25):
+            break
+        banner(f"control arm {_arm} seed {_s}")
+        sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
+            "--strategies", _arm, "--ungrounded-seed", str(_s),
+            "--tiers", "lw11", "lw21", "lw35", "--heavy"], 0.8, _tag)
+
+# ================================================================ bundle
+banner("descriptor coverage")
+sh([sys.executable, "-u", str(S / "descriptor_coverage.py"), "--write"], 0.2, "coverage")
+
+banner("HALFWAY: descriptors + zero-shot + control arms COMPLETE")
+
 # ================================================================ 1  linear probe
 if (RESULTS / "probe_seen_C.json").exists():
     print("[skip] probe (already have probe_seen_C.json)", flush=True)
@@ -306,7 +452,12 @@ elif ok_to_start("wiseft", [], 1.0):
             pass
 
 # ================================================================ bundle
-#__P2_TAIL__
-bundle(2, {"wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR})
-banner("PART 2 DONE")
-print("NEXT: PART 3 runs the 14 supervised CNNs. Attach this output to it as well.", flush=True)
+
+bundle("tonight", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
+                   "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
+                   "short_arm_words": SHORT_WORDS,
+                   "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR})
+banner("TONIGHT DONE")
+print("", flush=True)
+print("MORNING: run kaggle/RUN_PART3_cnns.py in a NEW notebook, and attach THIS", flush=True)
+print("         notebook's output as a dataset so these results carry forward.", flush=True)
