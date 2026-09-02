@@ -432,8 +432,12 @@ WISE = S / "wiseft.py"
 if WISE.exists():
     if not (RESULTS / "wiseft.json").exists() and ok_to_start("wiseft", [], 1.2):
         banner("WiSE-FT alpha sweep (re-measured under one protocol)")
+        # 3 alphas, not 5: each alpha now re-fits its own linear head (a full feature pass
+        # over the seen split), so the sweep cost scales with the number of points. 0/0.5/1
+        # is what the manuscript's table reports.
         sh([sys.executable, "-u", str(WISE), "--model", "s0", "--exp", "C",
-            "--epochs", "3", "--workers", "0"], 2.0, "wiseft")
+            "--epochs", "3", "--workers", "0",
+            "--alphas", "0.0", "0.5", "1.0"], 2.5, "wiseft")
 else:
     print("\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)
 

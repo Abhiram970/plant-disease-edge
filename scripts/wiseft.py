@@ -165,49 +165,18 @@ def main():
     finetuned_visual = copy.deepcopy(model.visual.state_dict())
 
     # ---- sweep alpha ----------------------------------------------------------------------
-    def seen_top1():
-        """Seen accuracy of the CURRENT (interpolated) encoder with the frozen-fitted head."""
-        correct = tot = 0
-        with torch.no_grad():
-            for x, y in dl_te:
-                x = x.to(device, non_blocking=True)
-                with torch.autocast("cuda", dtype=_adt, enabled=(device == "cuda")):
-                    pred = head(model.visual(x).float()).argmax(1).cpu()
-                correct += (pred == y).sum().item(); tot += len(y)
-        return correct / max(tot, 1)
-
-    # The seen-side head must be trained against the FROZEN encoder before the sweep, or the
-    # alpha=0 row cannot reproduce the frozen probe -- which is the sweep's built-in correctness
-    # check. In a 1-epoch smoke test the jointly-trained head gave seen=3.3% at alpha=0 against
-    # a frozen probe of ~82%: the head, not the encoder, was untrained. Re-fit a fresh linear
-    # head on frozen features (cheap: features are computed once) and use it for every alpha, so
-    # the only thing varying across the sweep is the encoder interpolation.
-    print("[wiseft] re-fitting the seen head on FROZEN features for the alpha=0 check ...",
-          flush=True)
+    # The alpha=0 row must reproduce the frozen probe -- that is the sweep's built-in
+    # correctness check -- so the frozen probe is measured here as the reference. Two smoke
+    # tests shaped this: training the head jointly with the encoder gave seen=3.3% at alpha=0
+    # (the head, not the encoder, was untrained), and then holding one frozen-fitted head
+    # across the whole sweep gave seen=26.3% at alpha=1, because a fine-tuned encoder moves the
+    # feature space out from under a stale head. Each alpha therefore gets its own head, fitted
+    # to that encoder, so the seen column reflects the ENCODER interpolation and nothing else.
+    print("[wiseft] fitting the frozen-encoder head (the alpha=0 reference) ...", flush=True)
     model.visual.load_state_dict(frozen_visual)
-    model.eval()
-    with torch.no_grad():
-        Xtr, Ytr, Xte, Yte = [], [], [], []
-        for dl, X, Y in ((dl_tr, Xtr, Ytr), (dl_te, Xte, Yte)):
-            for x, y in dl:
-                x = x.to(device, non_blocking=True)
-                with torch.autocast("cuda", dtype=_adt, enabled=(device == "cuda")):
-                    X.append(model.visual(x).float().cpu())
-                Y.append(y)
-        Xtr = torch.cat(Xtr); Ytr = torch.cat(Ytr)
-        Xte = torch.cat(Xte); Yte = torch.cat(Yte)
-    head = nn.Linear(Xtr.shape[1], len(seen_classes)).to(device)
-    hopt = torch.optim.AdamW(head.parameters(), lr=1e-3, weight_decay=1e-4)
-    for _ep in range(20):
-        perm = torch.randperm(len(Xtr))
-        for i in range(0, len(perm), 512):
-            b = perm[i:i + 512]
-            xb = Xtr[b].to(device); yb = Ytr[b].to(device)
-            hopt.zero_grad(set_to_none=True)
-            F.cross_entropy(head(xb), yb).backward(); hopt.step()
-    with torch.no_grad():
-        frozen_probe = (head(Xte.to(device)).argmax(1).cpu() == Yte).float().mean().item()
-    print(f"[wiseft] frozen probe = {frozen_probe:.1%} (alpha=0 must match this)", flush=True)
+    frozen_probe = _fit_and_score(model, dl_tr, dl_te, len(seen_classes), device, _adt,
+                                  torch, nn, F)
+    print(f"[wiseft] frozen probe = {frozen_probe:.1%} (alpha=0 must reproduce this)", flush=True)
 
     sweep = []
     for a in args.alphas:
@@ -223,7 +192,14 @@ def main():
                 merged[k] = tv
         model.visual.load_state_dict(merged)
         model.eval()
-        s = seen_top1()
+        # Re-fit the linear head on THIS encoder's features before scoring the seen side.
+        # Holding the frozen-fitted head fixed made alpha=1 report 26.3% seen in a smoke test:
+        # the fine-tuned encoder moves the feature space out from under a stale head, so the
+        # number measured head staleness rather than the encoder. WiSE-FT's actual claim is
+        # that interpolation BUYS seen accuracy, which requires each alpha to be scored with a
+        # head fitted to it. Re-fitting is cheap -- features are extracted once per alpha and
+        # the head is a single linear layer.
+        s = _fit_and_score(model, dl_tr, dl_te, len(seen_classes), device, _adt, torch, nn, F)
         # zeroshot.evaluate() reloads the checkpoint from disk, so it would silently score the
         # ORIGINAL weights and every alpha would return the same unseen number. Score the
         # in-memory interpolated model instead.
@@ -249,6 +225,36 @@ def main():
     p = C.RESULTS_DIR / "wiseft.json"
     p.write_text(json.dumps(out, indent=2))
     print(f"\n[wiseft] saved {p}")
+
+
+def _fit_and_score(model, dl_tr, dl_te, n_classes, device, adt, torch, nn, F, epochs=20):
+    """Fit a linear head on the CURRENT encoder's frozen features and return test top-1.
+
+    Used for every alpha so the seen column reflects the interpolated ENCODER, not how stale
+    a fixed head has become. Returns accuracy in [0, 1].
+    """
+    model.eval()
+    with torch.no_grad():
+        Xtr, Ytr, Xte, Yte = [], [], [], []
+        for dl, X, Y in ((dl_tr, Xtr, Ytr), (dl_te, Xte, Yte)):
+            for x, y in dl:
+                x = x.to(device, non_blocking=True)
+                with torch.autocast("cuda", dtype=adt, enabled=(device == "cuda")):
+                    X.append(model.visual(x).float().cpu())
+                Y.append(y)
+        Xtr = torch.cat(Xtr); Ytr = torch.cat(Ytr)
+        Xte = torch.cat(Xte); Yte = torch.cat(Yte)
+    head = nn.Linear(Xtr.shape[1], n_classes).to(device)
+    opt = torch.optim.AdamW(head.parameters(), lr=1e-3, weight_decay=1e-4)
+    for _ in range(epochs):
+        perm = torch.randperm(len(Xtr))
+        for i in range(0, len(perm), 512):
+            b = perm[i:i + 512]
+            opt.zero_grad(set_to_none=True)
+            F.cross_entropy(head(Xtr[b].to(device)), Ytr[b].to(device)).backward()
+            opt.step()
+    with torch.no_grad():
+        return (head(Xte.to(device)).argmax(1).cpu() == Yte).float().mean().item()
 
 
 def _manual_zeroshot(model, tok, preprocess, rows, classes, strategy, device, torch, F):
