@@ -22,19 +22,24 @@ different experiments. scripts/wiseft.py measures both sides under configuration
 records the protocol in its output.
 
 READ THE WARNINGS. WiSE-FT only behaves when the fine-tuned model is genuinely
-fine-tuned from the same initialisation. A smoke test at lr 1e-5 left the encoder
-untrained (loss 5.08 against a random-guess loss of 5.11) and the midpoint interpolation
-then landed in a degenerate region, dipping BELOW both endpoints. The script now checks
-convergence, monotonicity and the alpha=0 identity, prints [WARNING] for each failure and
-records them in wiseft.json. If you see warnings, raise --epochs or --lr before using the
-table.
+fine-tuned from the same initialisation. Two smoke tests looked like a learning-rate
+problem -- loss 5.08 at lr 1e-5, then 4.80 at 1e-4, against a random-guess loss of 5.11 --
+but the real cause was that zeroshot.load_model() sets requires_grad=False on every
+parameter, so the visual tower was never training and the sweep was interpolating a model
+with itself. That is fixed; the learning rate here is the standard CLIP value.
+
+The script now verifies, and records in wiseft.json: that the visual tower has trainable
+parameters, that the fine-tuned weights actually moved (relative L2 distance, exits if
+zero), that fine-tuning converged below 0.9x random-guess loss, that seen accuracy does
+not dip below both endpoints, and that alpha=0 reproduces the frozen probe. Each failure
+prints a [WARNING]. If you see any, raise --epochs or --lr before using the table.
 =====================================================================================
 """
 
 # ---------------------------------------------------------------- settings
 BUDGET_H    = 11.0
 WISE_EPOCHS = 3
-WISE_LR     = "1e-4"     # 1e-5 did not train the encoder at all in a smoke test
+WISE_LR     = "1e-5"     # standard CLIP fine-tuning range; see the note below
 WISE_ALPHAS = ["0.0", "0.5", "1.0"]
 REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
