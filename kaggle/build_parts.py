@@ -289,7 +289,9 @@ elif ok_to_start("wiseft", [], 1.0):
     for _bs in (64, 32, 16):
         _rc, _out = sh([sys.executable, "-u", str(S / "wiseft.py"), "--model", "s0", "--exp", "C",
                         "--epochs", str(WISE_EPOCHS), "--lr", WISE_LR, "--batch", str(_bs),
-                        "--workers", "0", "--alphas", *WISE_ALPHAS], 2.5, f"wiseft@{_bs}")
+                        "--workers", "0", "--extract-workers", "2",
+                        "--max-per-class", "200",
+                        "--alphas", *WISE_ALPHAS], 2.5, f"wiseft@{_bs}")
         if (RESULTS / "wiseft.json").exists():
             _wise_ok = True
             break

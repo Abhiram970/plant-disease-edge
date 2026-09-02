@@ -71,6 +71,12 @@ def main():
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--batch", type=int, default=96)
     ap.add_argument("--lr", type=float, default=1e-5)
+    ap.add_argument("--extract-workers", type=int, default=2,
+                    help="Workers for the feature-extraction passes. Separate from --workers: "
+                         "the crash that forced --workers 0 was in the TRAINING loader, which "
+                         "is built while a CUDA context and a live model already exist. The "
+                         "extraction loaders can safely use workers, and they dominate the "
+                         "runtime (every alpha re-extracts).")
     ap.add_argument("--workers", type=int, default=0,
                     help="DataLoader workers. Defaults to 0: unlike the CNN baseline, this "
                          "script has a CUDA context and a loaded model live BEFORE the loader "
@@ -80,6 +86,13 @@ def main():
     ap.add_argument("--strategy", default="grounded")
     ap.add_argument("--alphas", nargs="+", type=float, default=[0.0, 0.25, 0.5, 0.75, 1.0])
     ap.add_argument("--min-images", type=int, default=15)
+    ap.add_argument("--max-per-class", type=int, default=200,
+                    help="Cap seen images per class for the sweep. The alpha sweep measures a "
+                         "TREND across alpha, not an absolute leaderboard number, and every "
+                         "alpha re-extracts features over the whole split: at 70k images and "
+                         "3 alphas that is ~1 h of JPEG decoding before any training. A "
+                         "stratified cap keeps the trend and makes the stage affordable. "
+                         "Pass 0 to use every image.")
     args = ap.parse_args()
 
     import torch
@@ -113,6 +126,20 @@ def main():
     seen_classes = sorted(l for l, rs in by.items() if len(rs) >= args.min_images)
     cidx = {c: i for i, c in enumerate(seen_classes)}
     seen_rows = [r for r in seen_rows if r["label"] in cidx]
+    if args.max_per_class:
+        _before = len(seen_rows)
+        _rng = random.Random(C.RANDOM_SEED)
+        _capped = []
+        for _l in seen_classes:
+            _rs = by[_l][:]
+            _rng.shuffle(_rs)
+            _capped += _rs[:args.max_per_class]
+        seen_rows = _capped
+        by = defaultdict(list)
+        for r in seen_rows:
+            by[r["label"]].append(r)
+        print(f"[wiseft] seen split capped at {args.max_per_class}/class: "
+              f"{_before:,} -> {len(seen_rows):,} images", flush=True)
     print(f"[wiseft] seen: {len(seen_rows):,} imgs / {len(seen_classes)} classes")
     print(f"[wiseft] unseen: {len(unseen_rows):,} imgs / {len(unseen_classes)} classes "
           f"(chance {100.0 / max(len(unseen_classes), 1):.2f}%)")
@@ -128,12 +155,23 @@ def main():
     model, preprocess, tok, params_m = zeroshot.load_model(name, pretrained, device)
     frozen_visual = copy.deepcopy(model.visual.state_dict())
 
+    # Training loaders: --workers (default 0). Spawning workers around a live CUDA context
+    # and a loaded model killed them outright, which is why this defaults to single-process.
     _kw = dict(num_workers=args.workers, pin_memory=True)
     if args.workers > 0:
         _kw.update(persistent_workers=True, prefetch_factor=4)
     dl_tr = DataLoader(_WiseDS(tr, preprocess, cidx), batch_size=args.batch, shuffle=True,
                        drop_last=True, **_kw)
     dl_te = DataLoader(_WiseDS(te, preprocess, cidx), batch_size=args.batch, **_kw)
+
+    # Extraction loaders: separate, and allowed workers. Every alpha re-extracts features over
+    # the whole seen split, so this is where the runtime actually goes -- at workers=0 the
+    # sweep is roughly an hour of single-threaded JPEG decoding before any training happens.
+    _ekw = dict(num_workers=args.extract_workers, pin_memory=True)
+    if args.extract_workers > 0:
+        _ekw.update(persistent_workers=True, prefetch_factor=4)
+    ex_tr = DataLoader(_WiseDS(tr, preprocess, cidx), batch_size=args.batch, **_ekw)
+    ex_te = DataLoader(_WiseDS(te, preprocess, cidx), batch_size=args.batch, **_ekw)
 
     # ---- fine-tune the VISUAL tower on seen crops (linear head on top, both trained) ------
     with torch.no_grad():
@@ -203,7 +241,7 @@ def main():
     # to that encoder, so the seen column reflects the ENCODER interpolation and nothing else.
     print("[wiseft] fitting the frozen-encoder head (the alpha=0 reference) ...", flush=True)
     model.visual.load_state_dict(frozen_visual)
-    frozen_probe = _fit_and_score(model, dl_tr, dl_te, len(seen_classes), device, _adt,
+    frozen_probe = _fit_and_score(model, ex_tr, ex_te, len(seen_classes), device, _adt,
                                   torch, nn, F)
     print(f"[wiseft] frozen probe = {frozen_probe:.1%} (alpha=0 must reproduce this)", flush=True)
 
@@ -228,7 +266,7 @@ def main():
         # that interpolation BUYS seen accuracy, which requires each alpha to be scored with a
         # head fitted to it. Re-fitting is cheap -- features are extracted once per alpha and
         # the head is a single linear layer.
-        s = _fit_and_score(model, dl_tr, dl_te, len(seen_classes), device, _adt, torch, nn, F)
+        s = _fit_and_score(model, ex_tr, ex_te, len(seen_classes), device, _adt, torch, nn, F)
         # zeroshot.evaluate() reloads the checkpoint from disk, so it would silently score the
         # ORIGINAL weights and every alpha would return the same unseen number. Score the
         # in-memory interpolated model instead.
@@ -288,7 +326,7 @@ def main():
     print(f"\n[wiseft] saved {p}")
 
 
-def _fit_and_score(model, dl_tr, dl_te, n_classes, device, adt, torch, nn, F, epochs=20):
+def _fit_and_score(model, ex_tr, ex_te, n_classes, device, adt, torch, nn, F, epochs=20):
     """Fit a linear head on the CURRENT encoder's frozen features and return test top-1.
 
     Used for every alpha so the seen column reflects the interpolated ENCODER, not how stale
@@ -297,7 +335,7 @@ def _fit_and_score(model, dl_tr, dl_te, n_classes, device, adt, torch, nn, F, ep
     model.eval()
     with torch.no_grad():
         Xtr, Ytr, Xte, Yte = [], [], [], []
-        for dl, X, Y in ((dl_tr, Xtr, Ytr), (dl_te, Xte, Yte)):
+        for dl, X, Y in ((ex_tr, Xtr, Ytr), (ex_te, Xte, Yte)):
             for x, y in dl:
                 x = x.to(device, non_blocking=True)
                 with torch.autocast("cuda", dtype=adt, enabled=(device == "cuda")):
