@@ -1,0 +1,249 @@
+{
+  "matcher_normalised": true,
+  "chance": 0.0196078431372549,
+  "n_classes": 51,
+  "crops": [
+    "Banana",
+    "Bean",
+    "Coffee",
+    "Cotton",
+    "Cucumber",
+    "Orange",
+    "Peach",
+    "Wheat"
+  ],
+  "n_images": 14204,
+  "clean": false,
+  "clean_stats": null,
+  "coverage": {
+    "Banana|Anthracnose": "anthracnose",
+    "Banana|Bunchy_Top": "(NO MATCH)",
+    "Banana|Cigar_End_Rot": "rot",
+    "Banana|Cordana_Leaf_Spot": "spot",
+    "Banana|Panama_Disease": "(NO MATCH)",
+    "Banana|Yellow_And_Black_Sigatoka": "(NO MATCH)",
+    "Bean|Angular_Leaf_Spot": "spot",
+    "Bean|Common_Bacterial_Blight_Of_Beans": "blight",
+    "Bean|Halo_Blight": "blight",
+    "Bean|Leaf_Mosaic_Virus": "mosaic",
+    "Bean|Rust": "rust",
+    "Coffee|Berry_Blotch": "(NO MATCH)",
+    "Coffee|Cerscospora": "(NO MATCH)",
+    "Coffee|Miner": "(NO MATCH)",
+    "Coffee|Phoma": "phoma",
+    "Coffee|Rust": "rust",
+    "Cotton|Bacterial_Blight": "blight",
+    "Cotton|Powdery_Mildew": "powdery mildew",
+    "Cotton|Target_Spot": "spot",
+    "Cucumber|Angular_Leaf_Spot": "spot",
+    "Cucumber|Angular_Leaf_Spot_Of_Cucumber": "spot",
+    "Cucumber|Anthracnose": "anthracnose",
+    "Cucumber|Bacterial_Wilt": "(NO MATCH)",
+    "Cucumber|Belly_Rot": "rot",
+    "Cucumber|Corynespora_Leaf_Spot": "spot",
+    "Cucumber|Downy_Mildew": "downy mildew",
+    "Cucumber|Gummy_Stem_Blight": "blight",
+    "Cucumber|Phytophthora_Blight": "blight",
+    "Cucumber|Powdery_Mildew": "powdery mildew",
+    "Cucumber|Pythium_Fruit_Rot": "rot",
+    "Orange|Canker": "canker",
+    "Orange|Citrus_Canker": "citrus canker",
+    "Orange|Green_Mold": "(NO MATCH)",
+    "Orange|Greening_Disease": "greening",
+    "Orange|Huanglongbing": "huanglongbing",
+    "Orange|Whisker_Mold": "(NO MATCH)",
+    "Peach|Bacterial_Leaf_Spot": "spot",
+    "Peach|Brown_Rot": "brown rot",
+    "Peach|Leaf_Curl": "leaf curl",
+    "Peach|Leaf_Scab": "scab",
+    "Peach|Peach_Leaf_Curl": "leaf curl",
+    "Wheat|Bacterial_Leaf_Streak_Black_Chaff": "(NO MATCH)",
+    "Wheat|Fusarium_Graminearum_Schwabe": "(NO MATCH)",
+    "Wheat|Fusarium_Wilts": "(NO MATCH)",
+    "Wheat|Head_Scab": "scab",
+    "Wheat|Karnal_Bunt": "(NO MATCH)",
+    "Wheat|Loose_Smut": "(NO MATCH)",
+    "Wheat|Powdery_Mildew": "powdery mildew",
+    "Wheat|Resistance_Phenotype": "(NO MATCH)",
+    "Wheat|Resistance_Phenotype__Moderately_Resistant": "(NO MATCH)",
+    "Wheat|Resistance_Phenotype__Moderately_Susceptible": "(NO MATCH)"
+  },
+  "models": {
+    "MobileCLIP2-S0/dfndr2b": {
+      "rich": {
+        "img_params_M": 11.41,
+        "acc": 0.19339622641509435,
+        "by_crop": {
+          "Peach": 0.13550135501355012,
+          "Wheat": 0.14608190906159305,
+          "Orange": 0.3085966201322557,
+          "Cotton": 0.2600842865743528,
+          "Coffee": 0.19532237673830594,
+          "Bean": 0.06461538461538462,
+          "Banana": 0.2379110251450677,
+          "Cucumber": 0.18220519369944657
+        }
+      },
+      "grounded": {
+        "img_params_M": 11.41,
+        "acc": 0.2098704590256266,
+        "by_crop": {
+          "Peach": 0.24932249322493225,
+          "Wheat": 0.12447597549177684,
+          "Orange": 0.07788390889052167,
+          "Cotton": 0.4202287778446719,
+          "Coffee": 0.08343868520859671,
+          "Bean": 0.05333333333333334,
+          "Banana": 0.3776595744680851,
+          "Cucumber": 0.23414218816517668
+        }
+      },
+      "ungrounded": {
+        "img_params_M": 11.41,
+        "acc": 0.23113207547169812,
+        "by_crop": {
+          "Peach": 0.26919602529358627,
+          "Wheat": 0.15833602063850372,
+          "Orange": 0.08302718589272594,
+          "Cotton": 0.3913305237808549,
+          "Coffee": 0.17572692793931732,
+          "Bean": 0.07384615384615385,
+          "Banana": 0.3670212765957447,
+          "Cucumber": 0.26479352916134524
+        }
+      }
+    },
+    "MobileCLIP-S1/datacompdr": {
+      "rich": {
+        "img_params_M": 21.54,
+        "acc": 0.20656153196282737,
+        "by_crop": {
+          "Peach": 0.19060523938572718,
+          "Wheat": 0.06385037084811351,
+          "Orange": 0.45554739162380603,
+          "Cotton": 0.4340758579169175,
+          "Coffee": 0.07711757269279393,
+          "Bean": 0.17333333333333334,
+          "Banana": 0.1465183752417795,
+          "Cucumber": 0.2511707109408259
+        }
+      },
+      "grounded": {
+        "img_params_M": 21.54,
+        "acc": 0.2352858349760631,
+        "by_crop": {
+          "Peach": 0.17886178861788618,
+          "Wheat": 0.06772009029345373,
+          "Orange": 0.4761204996326231,
+          "Cotton": 0.4461167971101746,
+          "Coffee": 0.09987357774968394,
+          "Bean": 0.21025641025641026,
+          "Banana": 0.2330754352030948,
+          "Cucumber": 0.29799914857386123
+        }
+      },
+      "ungrounded": {
+        "img_params_M": 21.54,
+        "acc": 0.21282737257110673,
+        "by_crop": {
+          "Peach": 0.15718157181571815,
+          "Wheat": 0.09803289261528539,
+          "Orange": 0.19324026451138868,
+          "Cotton": 0.4286574352799518,
+          "Coffee": 0.07838179519595449,
+          "Bean": 0.18974358974358974,
+          "Banana": 0.30319148936170215,
+          "Cucumber": 0.26990208599404003
+        }
+      }
+    },
+    "MobileCLIP2-S2/dfndr2b": {
+      "rich": {
+        "img_params_M": 35.82,
+        "acc": 0.215361869895804,
+        "by_crop": {
+          "Peach": 0.15989159891598917,
+          "Wheat": 0.12028377942599161,
+          "Orange": 0.4937545922116091,
+          "Cotton": 0.2679108970499699,
+          "Coffee": 0.15360303413400758,
+          "Bean": 0.1158974358974359,
+          "Banana": 0.25,
+          "Cucumber": 0.22094508301404853
+        }
+      },
+      "grounded": {
+        "img_params_M": 35.82,
+        "acc": 0.22704871867079696,
+        "by_crop": {
+          "Peach": 0.1969286359530262,
+          "Wheat": 0.10835214446952596,
+          "Orange": 0.0852314474650992,
+          "Cotton": 0.4099939795304034,
+          "Coffee": 0.10240202275600506,
+          "Bean": 0.12512820512820513,
+          "Banana": 0.3694390715667311,
+          "Cucumber": 0.35163899531715626
+        }
+      },
+      "ungrounded": {
+        "img_params_M": 35.82,
+        "acc": 0.22472542945649113,
+        "by_crop": {
+          "Peach": 0.1933152664859982,
+          "Wheat": 0.11383424701709126,
+          "Orange": 0.10213078618662748,
+          "Cotton": 0.399157134256472,
+          "Coffee": 0.12010113780025285,
+          "Bean": 0.20717948717948717,
+          "Banana": 0.30125725338491294,
+          "Cucumber": 0.3439761600681141
+        }
+      }
+    },
+    "MobileCLIP-B/datacompdr": {
+      "rich": {
+        "img_params_M": 86.35,
+        "acc": 0.2456350323852436,
+        "by_crop": {
+          "Peach": 0.2565492321589883,
+          "Wheat": 0.1986455981941309,
+          "Orange": 0.4908155767817781,
+          "Cotton": 0.28356411800120407,
+          "Coffee": 0.179519595448799,
+          "Bean": 0.12307692307692308,
+          "Banana": 0.2074468085106383,
+          "Cucumber": 0.2626649638143891
+        }
+      },
+      "grounded": {
+        "img_params_M": 86.35,
+        "acc": 0.26872711912137426,
+        "by_crop": {
+          "Peach": 0.2140921409214092,
+          "Wheat": 0.13576265720735248,
+          "Orange": 0.346069066862601,
+          "Cotton": 0.42323901264298613,
+          "Coffee": 0.12452591656131479,
+          "Bean": 0.09025641025641026,
+          "Banana": 0.42649903288201163,
+          "Cucumber": 0.3482332907620264
+        }
+      },
+      "ungrounded": {
+        "img_params_M": 86.35,
+        "acc": 0.31772740073218814,
+        "by_crop": {
+          "Peach": 0.1942186088527552,
+          "Wheat": 0.2808771364076105,
+          "Orange": 0.28655400440852313,
+          "Cotton": 0.45334136062612884,
+          "Coffee": 0.3274336283185841,
+          "Bean": 0.10974358974358975,
+          "Banana": 0.39361702127659576,
+          "Cucumber": 0.3597275436355896
+        }
+      }
+    }
+  }
+}

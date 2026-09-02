@@ -53,6 +53,11 @@ def wrap(caption, label, colspec, header, body, note=None):
     return out
 
 
+def _is_reference(model_key):
+    """True for the reference-ceiling encoder, which is reported but never averaged."""
+    return "SigLIP" in model_key
+
+
 def tab_scale_study():
     rows, means = [], []
     for e in "ABC":
@@ -65,7 +70,12 @@ def tab_scale_study():
         b_all, r_all, g_all = [], [], []
         for m, d in j["models"].items():
             b, r, g = d["bare"]["acc"], d["rich"]["acc"], d["grounded"]["acc"]
-            b_all.append(b); r_all.append(r); g_all.append(g)
+            # The mean is over the four DEPLOYABLE encoders only. ViT-B-16-SigLIP2 is the
+            # reference ceiling and the manuscript states throughout that it is excluded --
+            # but this loop was averaging it in, so every printed mean was pulled toward the
+            # ceiling and disagreed with the prose that quotes it.
+            if not _is_reference(m):
+                b_all.append(b); r_all.append(r); g_all.append(g)
             rows.append(f"\\quad {short(m)} & {d['bare']['img_params_M']:.1f} & {pct(b)} & "
                         f"{pct(d['crude']['acc'])} & {pct(r)} & {pct(g)} \\\\")
         mb, mr, mg = (sum(x) / len(x) for x in (b_all, r_all, g_all))

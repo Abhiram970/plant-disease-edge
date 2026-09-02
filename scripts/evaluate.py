@@ -113,7 +113,17 @@ def main():
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = "_clean" if args.clean else ""
     if args.ungrounded_seed is not None:
-        suffix += f"_ung{args.ungrounded_seed}"
+        # Key the filename on the ARM as well as the seed. With "_ung{seed}" alone, the
+        # ungrounded and grounded_matched arms at the same seed wrote to the SAME file, so
+        # whichever ran second silently overwrote the first -- and the matched arm is the
+        # one that removes the model-version confound, so losing it defeats the experiment.
+        _seeded = [a for a in args.strategies
+                   if a in ("ungrounded", "grounded_matched",
+                            "ungrounded_short", "grounded_matched_short")]
+        _arm = _seeded[0] if _seeded else "ung"
+        _short = {"ungrounded": "ung", "grounded_matched": "gm",
+                  "ungrounded_short": "ungs", "grounded_matched_short": "gms"}.get(_arm, _arm)
+        suffix += f"_{_short}{args.ungrounded_seed}"
     out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}{suffix}.json"
     out.write_text(json.dumps({"matcher_normalised": True, "chance": chance, "n_classes": len(classes), "crops": crops,
                                "n_images": len(rows), "clean": bool(args.clean),
