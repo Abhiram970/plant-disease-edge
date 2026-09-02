@@ -386,6 +386,7 @@ for _arm in ("ungrounded", "grounded_matched", "ungrounded_short", "grounded_mat
 # ================================================================ bundle
 banner("coverage + bundle")
 sh([sys.executable, "-u", str(S / "descriptor_coverage.py"), "--write"], 0.2, "coverage")
+#__P1_TAIL__
 bundle(1, {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
            "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
            "short_arm_words": SHORT_WORDS})

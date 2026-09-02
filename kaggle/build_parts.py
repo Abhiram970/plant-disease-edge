@@ -202,6 +202,7 @@ for _arm in ("ungrounded", "grounded_matched", "ungrounded_short", "grounded_mat
 # ================================================================ bundle
 banner("coverage + bundle")
 sh([sys.executable, "-u", str(S / "descriptor_coverage.py"), "--write"], 0.2, "coverage")
+#__P1_TAIL__
 bundle(1, {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
            "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
            "short_arm_words": SHORT_WORDS})
@@ -280,9 +281,25 @@ elif not (S / "wiseft.py").exists():
     print("\\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)
 elif ok_to_start("wiseft", [], 1.0):
     banner("WiSE-FT alpha sweep (both sides under one protocol)")
-    sh([sys.executable, "-u", str(S / "wiseft.py"), "--model", "s0", "--exp", "C",
-        "--epochs", str(WISE_EPOCHS), "--lr", WISE_LR, "--workers", "0",
-        "--alphas", *WISE_ALPHAS], 2.5, "wiseft")
+    # Fine-tuning the whole visual tower needs far more memory than the frozen passes that
+    # precede it, so WiSE-FT is the one stage here that can OOM. Try progressively smaller
+    # batches rather than losing the stage; if none fit, carry on -- probe and LOCO are
+    # already saved and are unaffected.
+    _wise_ok = False
+    for _bs in (64, 32, 16):
+        _rc, _out = sh([sys.executable, "-u", str(S / "wiseft.py"), "--model", "s0", "--exp", "C",
+                        "--epochs", str(WISE_EPOCHS), "--lr", WISE_LR, "--batch", str(_bs),
+                        "--workers", "0", "--alphas", *WISE_ALPHAS], 2.5, f"wiseft@{_bs}")
+        if (RESULTS / "wiseft.json").exists():
+            _wise_ok = True
+            break
+        if "OutOfMemoryError" in _out or _rc not in (0, 124):
+            print(f"[wiseft] batch {_bs} failed -> retrying smaller", flush=True)
+            continue
+        break
+    if not _wise_ok:
+        print("[wiseft] no result. The WiSE-FT table stays OLD-BUILD and must be labelled", flush=True)
+        print("[wiseft] as such. Everything else in this part is unaffected.", flush=True)
     _w = RESULTS / "wiseft.json"
     if _w.exists():
         try:
@@ -298,6 +315,7 @@ elif ok_to_start("wiseft", [], 1.0):
             pass
 
 # ================================================================ bundle
+#__P2_TAIL__
 bundle(2, {"wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR})
 banner("PART 2 DONE")
 print("NEXT: PART 3 runs the 14 supervised CNNs. Attach this output to it as well.", flush=True)
