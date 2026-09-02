@@ -80,6 +80,22 @@ RICH = [
 _grounded_cache: dict = {}
 
 
+def _is_placeholder(text) -> bool:
+    """True if this symptom_text is an unfilled stub rather than a real description.
+
+    status=='filled' alone is NOT sufficient. Four records in the shipped registry
+    (Coffee: Berry_Blotch, Cerscospora, Miner, Phoma) carry status='filled' while their
+    symptom_text is still the literal generator stub "TODO: source-grounded symptom
+    description for ...". Trusting the flag put those placeholder strings into CLIP as
+    prototypes for 4 of the 51 scale-C held-out classes, which is exactly what the Methods
+    section promises cannot happen. Coffee was consequently the grounded arm's worst crop
+    (10.3% vs 17.5% ungrounded); excluding it, the arms converge to within 0.35pp.
+    The text is authoritative, so gate on the text.
+    """
+    t = (text or "").strip()
+    return (not t) or t.upper().startswith("TODO")
+
+
 def _grounded_rec(crop, disease):
     """The filled descriptor record for (crop, disease) from descriptors/<crop>.json, or None.
 
@@ -97,7 +113,7 @@ def _grounded_rec(crop, disease):
             if p.exists():
                 data = json.loads(p.read_text(encoding="utf-8"))
                 for rec in (data if isinstance(data, list) else data.values()):
-                    if isinstance(rec, dict) and rec.get("status") == "filled":
+                    if isinstance(rec, dict) and rec.get("status") == "filled"                             and not _is_placeholder(rec.get("symptom_text")):
                         idx[rec.get("disease")] = rec
         except Exception:
             idx = {}
