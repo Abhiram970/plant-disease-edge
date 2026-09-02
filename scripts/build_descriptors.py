@@ -36,6 +36,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import os
 import sys
 from collections import defaultdict
@@ -143,6 +144,37 @@ def _repair_json(s: str) -> str:
     return "".join(out)
 
 
+def _salvage_truncated(raw: str) -> dict:
+    """Recover a usable record from JSON cut off mid-object.
+
+    Closes any open string and any unbalanced brackets, then parses. Raises if the result
+    still has no symptom_text, since a record without prototype text is worthless to us.
+    """
+    fixed = _repair_json(raw)
+    # close an unterminated string
+    in_str, esc = False, False
+    for ch in fixed:
+        if esc:
+            esc = False; continue
+        if ch == "\\":
+            esc = True; continue
+        if ch == '"':
+            in_str = not in_str
+    if in_str:
+        fixed += '"'
+    # drop a dangling "key": with no value, and any trailing comma
+    fixed = re.sub(r',\s*"[^"]*"\s*:\s*$', "", fixed.rstrip())
+    fixed = re.sub(r',\s*$', "", fixed)
+    # balance brackets
+    depth_c = fixed.count("{") - fixed.count("}")
+    depth_b = fixed.count("[") - fixed.count("]")
+    fixed += "]" * max(0, depth_b) + "}" * max(0, depth_c)
+    d = json.loads(fixed)
+    if not (d.get("symptom_text") or "").strip():
+        raise ValueError("truncated before symptom_text; unusable")
+    return d
+
+
 def _parse_descriptor(text: str, crop: str, disease: str) -> dict:
     """Extract the JSON object from an LLM reply (tolerating ```json fences)."""
     text = (text or "").strip()
@@ -152,16 +184,35 @@ def _parse_descriptor(text: str, crop: str, disease: str) -> dict:
         text = text.split("```")[1]
         if text.startswith("json"):
             text = text[4:]
-    start, end = text.find("{"), text.rfind("}") + 1
-    if start < 0 or end <= start:
+    start = text.find("{")
+    if start < 0:
         raise ValueError(f"no JSON object in a {len(text)}-char response")
-    raw = text[start:end]
+    end = text.rfind("}") + 1
+    raw = text[start:end] if end > start else text[start:]
     try:
         d = json.loads(raw)
     except json.JSONDecodeError:
-        d = json.loads(_repair_json(raw))      # unescaped quote/newline inside a verbatim_quote
+        try:
+            d = json.loads(_repair_json(raw))  # unescaped quote/newline inside a verbatim_quote
+        except json.JSONDecodeError:
+            # TRUNCATION SALVAGE. The dominant failure in the 2026-09-01 run was not bad
+            # escaping but an answer cut off at max_tokens: the grounded schema carries a
+            # source_url AND a verbatim_quote per field, so it is far longer than the
+            # ungrounded one and hit the ceiling far more often. That asymmetry is why the
+            # matched arm came back 35-37/51 while ungrounded came back 51/51 -- an artefact
+            # of budget, not of the model declining to answer. A truncated object is still
+            # usable if symptom_text (the only field that becomes a CLIP prototype) already
+            # arrived, so close the JSON and keep what we have.
+            d = _salvage_truncated(raw)
     d["crop"] = crop            # force to the manifest's names (the model sometimes renames the disease),
     d["disease"] = disease      # so the grounded lookup keys by folder name always match
+    # status="filled" was stamped on ANY object that parsed, including ones whose symptom_text
+    # was empty. That produced 33 records in the 2026-09-01 matched arm flagged filled with no
+    # text -- counted as covered, skipped on resume, and (before the loader fix) embedded as
+    # prototypes. symptom_text is the only field that becomes a prototype, so it decides status.
+    _txt = (d.get("symptom_text") or "").strip()
+    if not _txt or _txt.upper().startswith("TODO"):
+        raise ValueError("parsed object has no usable symptom_text")
     d["status"] = "filled"
     return d
 

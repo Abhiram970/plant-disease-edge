@@ -79,6 +79,9 @@ def main():
     ap.add_argument("--min-images", type=int, default=15)
     ap.add_argument("--workers", type=int, default=2, help="DataLoader workers (0 if spawn is flaky)")
     ap.add_argument("--resume", action="store_true", help="Resume from last checkpoint")
+    ap.add_argument("--amp", action="store_true",
+                    help="Mixed precision + channels_last. ~3-4x faster on T4/P100 and cuts "
+                         "activation memory, which is what made batch 128 OOM before.")
     args = ap.parse_args()
 
     import timm
@@ -112,12 +115,30 @@ def main():
     tf_te = T.Compose([T.Resize((C.IMG_SIZE, C.IMG_SIZE)), T.ToTensor()])
 
     # _SeenDS is module-level/picklable so workers spawn under Windows; keep it modest for stability.
+    # Kaggle gives 4 vCPUs. The previous settings (plain workers, no prefetch, no pinning, no
+    # persistence) starved the GPU: ~1400 s/epoch, i.e. 23 minutes, which made 14 architectures
+    # impossible inside a 12 h session. Persistent workers avoid re-forking every epoch, prefetch
+    # keeps the queue full, and pinned memory makes the H2D copy async.
     nw = args.workers
-    dl_tr = DataLoader(_SeenDS(tr, tf_tr, cidx), batch_size=args.batch, shuffle=True, num_workers=nw)
-    dl_te = DataLoader(_SeenDS(te, tf_te, cidx), batch_size=args.batch, num_workers=nw)
+    _kw = dict(num_workers=nw, pin_memory=True)
+    if nw > 0:
+        _kw.update(persistent_workers=True, prefetch_factor=4)
+    dl_tr = DataLoader(_SeenDS(tr, tf_tr, cidx), batch_size=args.batch, shuffle=True,
+                       drop_last=True, **_kw)
+    dl_te = DataLoader(_SeenDS(te, tf_te, cidx), batch_size=args.batch, **_kw)
 
     model = timm.create_model(args.arch, pretrained=True, num_classes=len(classes)).to(device)
+    if args.amp and device == "cuda":
+        model = model.to(memory_format=torch.channels_last)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
+    # bf16 needs no loss scaling and is numerically safer; fall back to fp16 + GradScaler on
+    # cards without bf16 (T4). enabled=False makes every autocast/scaler call a no-op.
+    _use_amp = bool(args.amp and device == "cuda")
+    _bf16 = _use_amp and torch.cuda.is_bf16_supported()
+    _adt = torch.bfloat16 if _bf16 else torch.float16
+    scaler = torch.amp.GradScaler("cuda", enabled=(_use_amp and not _bf16))
+    if _use_amp:
+        print(f"[baseline] AMP on ({'bf16' if _bf16 else 'fp16'}) + channels_last")
 
     # --- Checkpointing ---
     ckpt_dir = C.DATA_ROOT / "checkpoints"
@@ -144,14 +165,26 @@ def main():
     for ep in range(start_epoch, args.epochs):
         model.train(); run = 0.0; nb = 0
         for x, y in dl_tr:
-            x, y = x.to(device), y.to(device)
-            loss = F.cross_entropy(model(x), y)
-            opt.zero_grad(); loss.backward(); opt.step()
+            x = x.to(device, non_blocking=True)
+            y = y.to(device, non_blocking=True)
+            if _use_amp:
+                x = x.to(memory_format=torch.channels_last)
+            opt.zero_grad(set_to_none=True)
+            with torch.autocast("cuda", dtype=_adt, enabled=_use_amp):
+                loss = F.cross_entropy(model(x), y)
+            if scaler.is_enabled():
+                scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
+            else:
+                loss.backward(); opt.step()
             run += loss.item(); nb += 1
         model.eval(); correct = tot = 0
         with torch.no_grad():
             for x, y in dl_te:
-                pred = model(x.to(device)).argmax(1).cpu()
+                x = x.to(device, non_blocking=True)
+                if _use_amp:
+                    x = x.to(memory_format=torch.channels_last)
+                with torch.autocast("cuda", dtype=_adt, enabled=_use_amp):
+                    pred = model(x).argmax(1).cpu()
                 correct += (pred == y).sum().item(); tot += len(y)
         acc = correct/tot
         print(f"  epoch {ep+1}/{args.epochs}  loss={run/max(nb,1):.3f}  test_top1={acc:.1%}")

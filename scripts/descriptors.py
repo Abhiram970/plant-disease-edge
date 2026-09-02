@@ -163,6 +163,12 @@ def _seed() -> int:
 ARM_DIRS = {
     "ungrounded": "descriptors_ungrounded",
     "grounded_matched": "descriptors_grounded_matched",
+    # Truncation-safe variants. Every generated prototype exceeded CLIP's 77-token text
+    # window (51/51 ungrounded, 35/40 matched), so the arms above are compared on their
+    # leading sentences only. These arms hold the same text compressed to fit, which lets
+    # the descriptor question be asked without truncation as a confound.
+    "ungrounded_short": "descriptors_ungrounded_short",
+    "grounded_matched_short": "descriptors_grounded_matched_short",
 }
 
 

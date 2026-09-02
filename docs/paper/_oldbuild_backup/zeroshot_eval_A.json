@@ -1,0 +1,181 @@
+{
+  "chance": 0.0625,
+  "n_classes": 16,
+  "crops": [
+    "Coffee",
+    "Orange",
+    "Peach"
+  ],
+  "coverage": {
+    "Coffee|Berry_Blotch": "(NO MATCH)",
+    "Coffee|Cerscospora": "(NO MATCH)",
+    "Coffee|Miner": "(NO MATCH)",
+    "Coffee|Phoma": "phoma",
+    "Coffee|Rust": "rust",
+    "Orange|Canker": "canker",
+    "Orange|Citrus_Canker": "canker",
+    "Orange|Green_Mold": "(NO MATCH)",
+    "Orange|Greening_Disease": "greening",
+    "Orange|Huanglongbing": "huanglongbing",
+    "Orange|Whisker_Mold": "(NO MATCH)",
+    "Peach|Bacterial_Leaf_Spot": "spot",
+    "Peach|Brown_Rot": "rot",
+    "Peach|Leaf_Curl": "curl",
+    "Peach|Leaf_Scab": "scab",
+    "Peach|Peach_Leaf_Curl": "curl"
+  },
+  "models": {
+    "MobileCLIP2-S0/dfndr2b": {
+      "bare": {
+        "img_params_M": 11.41,
+        "acc": 0.1380246913580247,
+        "by_crop": {
+          "Coffee": 0.14601769911504425,
+          "Orange": 0.0653930933137399,
+          "Peach": 0.21589882565492322
+        }
+      },
+      "crude": {
+        "img_params_M": 11.41,
+        "acc": 0.1288888888888889,
+        "by_crop": {
+          "Coffee": 0.12199747155499367,
+          "Orange": 0.08743570903747244,
+          "Peach": 0.1897018970189702
+        }
+      },
+      "rich": {
+        "img_params_M": 11.41,
+        "acc": 0.2590123456790123,
+        "by_crop": {
+          "Coffee": 0.3002528445006321,
+          "Orange": 0.33504775900073475,
+          "Peach": 0.10659439927732611
+        }
+      },
+      "grounded": {
+        "img_params_M": 11.41,
+        "acc": 0.18,
+        "by_crop": {
+          "Coffee": 0.16371681415929204,
+          "Orange": 0.10213078618662748,
+          "Peach": 0.2990063233965673
+        }
+      }
+    },
+    "MobileCLIP-S1/datacompdr": {
+      "bare": {
+        "img_params_M": 21.54,
+        "acc": 0.12790123456790123,
+        "by_crop": {
+          "Coffee": 0.0632111251580278,
+          "Orange": 0.1080088170462895,
+          "Peach": 0.24480578139114725
+        }
+      },
+      "crude": {
+        "img_params_M": 21.54,
+        "acc": 0.18074074074074073,
+        "by_crop": {
+          "Coffee": 0.0632111251580278,
+          "Orange": 0.31227038941954444,
+          "Peach": 0.18699186991869918
+        }
+      },
+      "rich": {
+        "img_params_M": 21.54,
+        "acc": 0.2288888888888889,
+        "by_crop": {
+          "Coffee": 0.08596713021491782,
+          "Orange": 0.42689199118295373,
+          "Peach": 0.1897018970189702
+        }
+      },
+      "grounded": {
+        "img_params_M": 21.54,
+        "acc": 0.2849382716049383,
+        "by_crop": {
+          "Coffee": 0.14096080910240202,
+          "Orange": 0.5356355620867009,
+          "Peach": 0.18247515808491419
+        }
+      }
+    },
+    "MobileCLIP2-S2/dfndr2b": {
+      "bare": {
+        "img_params_M": 35.82,
+        "acc": 0.10271604938271604,
+        "by_crop": {
+          "Coffee": 0.07142857142857142,
+          "Orange": 0.09184423218221896,
+          "Peach": 0.16079494128274616
+        }
+      },
+      "crude": {
+        "img_params_M": 35.82,
+        "acc": 0.1111111111111111,
+        "by_crop": {
+          "Coffee": 0.06510745891276865,
+          "Orange": 0.09551800146950772,
+          "Peach": 0.1960252935862692
+        }
+      },
+      "rich": {
+        "img_params_M": 35.82,
+        "acc": 0.3271604938271605,
+        "by_crop": {
+          "Coffee": 0.30783817951959547,
+          "Orange": 0.49742836149889785,
+          "Peach": 0.14543812104787715
+        }
+      },
+      "grounded": {
+        "img_params_M": 35.82,
+        "acc": 0.13703703703703704,
+        "by_crop": {
+          "Coffee": 0.1359039190897598,
+          "Orange": 0.09331373989713446,
+          "Peach": 0.19241192411924118
+        }
+      }
+    },
+    "MobileCLIP-B/datacompdr": {
+      "bare": {
+        "img_params_M": 86.35,
+        "acc": 0.14493827160493827,
+        "by_crop": {
+          "Coffee": 0.09924146649810367,
+          "Orange": 0.1293166789125643,
+          "Peach": 0.22944896115627822
+        }
+      },
+      "crude": {
+        "img_params_M": 86.35,
+        "acc": 0.16790123456790124,
+        "by_crop": {
+          "Coffee": 0.10556257901390645,
+          "Orange": 0.213078618662748,
+          "Peach": 0.2014453477868112
+        }
+      },
+      "rich": {
+        "img_params_M": 86.35,
+        "acc": 0.30691358024691356,
+        "by_crop": {
+          "Coffee": 0.19469026548672566,
+          "Orange": 0.4908155767817781,
+          "Peach": 0.24119241192411925
+        }
+      },
+      "grounded": {
+        "img_params_M": 86.35,
+        "acc": 0.2641975308641975,
+        "by_crop": {
+          "Coffee": 0.20164348925410872,
+          "Orange": 0.3776634827332844,
+          "Peach": 0.2140921409214092
+        }
+      }
+    }
+  }
+}

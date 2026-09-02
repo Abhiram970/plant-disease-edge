@@ -138,7 +138,13 @@ def main():
     for crop in sorted(by_crop):
         path = out_dir / f"{C.safe_name(crop)}.json"
         recs = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
-        have = {r.get("disease") for r in recs if r.get("status") == "filled"}
+        # Require real TEXT, not just the flag. 33 records in the 2026-09-01 matched arm carried
+        # status="filled" with an EMPTY symptom_text; keying on the flag alone made every later
+        # run skip them as "already done", so the arm could never reach its coverage gate.
+        have = {r.get("disease") for r in recs
+                if r.get("status") == "filled"
+                and (r.get("symptom_text") or "").strip()
+                and not (r.get("symptom_text") or "").strip().upper().startswith("TODO")}
         for disease in sorted(by_crop[crop]):
             if args.limit and n >= args.limit:
                 break
@@ -150,12 +156,28 @@ def main():
                 # per-request flukes, and a second sample almost always parses. Retrying is far
                 # cheaper than a stub, which silently falls through to `rich` and contaminates the
                 # arm with the very baseline it is supposed to be compared against.
-                try:
-                    rec = fill_one(crop, disease, args.seed, args.arm)
-                except Exception as first:
-                    print(f"  [retry] {crop}/{disease}: {type(first).__name__}: {str(first)[:60]}")
-                    time.sleep(1.5)
-                    rec = fill_one(crop, disease, args.seed, args.arm)
+                # Three attempts with backoff. One retry was not enough: the run log shows both
+                # attempts failing at the SAME character offset, which is the signature of a
+                # deterministic max_tokens truncation rather than a transient fluke. With the
+                # larger token budget and the truncation salvage in build_descriptors, a third
+                # sample almost always lands.
+                rec, _last = None, None
+                for _attempt in range(3):
+                    try:
+                        rec = fill_one(crop, disease, args.seed, args.arm)
+                        if (rec.get("symptom_text") or "").strip():
+                            break
+                        _last = ValueError("empty symptom_text")
+                    except Exception as _e:
+                        _last = _e
+                        if any(k in str(_e).lower() for k in
+                               ("credit", "insufficient", "quota", "balance", "payment", "429")):
+                            raise
+                        print(f"  [retry {_attempt + 1}/3] {crop}/{disease}: "
+                              f"{type(_e).__name__}: {str(_e)[:60]}")
+                        time.sleep(1.5 * (_attempt + 1))
+                if rec is None or not (rec.get("symptom_text") or "").strip():
+                    raise (_last or ValueError("no usable record after 3 attempts"))
             except Exception as e:
                 s = str(e)
                 # Running out of credit is NOT a per-class failure: every remaining call will fail
