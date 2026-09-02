@@ -166,14 +166,48 @@ def main():
 
     # ---- sweep alpha ----------------------------------------------------------------------
     def seen_top1():
+        """Seen accuracy of the CURRENT (interpolated) encoder with the frozen-fitted head."""
         correct = tot = 0
         with torch.no_grad():
             for x, y in dl_te:
                 x = x.to(device, non_blocking=True)
                 with torch.autocast("cuda", dtype=_adt, enabled=(device == "cuda")):
-                    pred = head(model.visual(x)).argmax(1).cpu()
+                    pred = head(model.visual(x).float()).argmax(1).cpu()
                 correct += (pred == y).sum().item(); tot += len(y)
         return correct / max(tot, 1)
+
+    # The seen-side head must be trained against the FROZEN encoder before the sweep, or the
+    # alpha=0 row cannot reproduce the frozen probe -- which is the sweep's built-in correctness
+    # check. In a 1-epoch smoke test the jointly-trained head gave seen=3.3% at alpha=0 against
+    # a frozen probe of ~82%: the head, not the encoder, was untrained. Re-fit a fresh linear
+    # head on frozen features (cheap: features are computed once) and use it for every alpha, so
+    # the only thing varying across the sweep is the encoder interpolation.
+    print("[wiseft] re-fitting the seen head on FROZEN features for the alpha=0 check ...",
+          flush=True)
+    model.visual.load_state_dict(frozen_visual)
+    model.eval()
+    with torch.no_grad():
+        Xtr, Ytr, Xte, Yte = [], [], [], []
+        for dl, X, Y in ((dl_tr, Xtr, Ytr), (dl_te, Xte, Yte)):
+            for x, y in dl:
+                x = x.to(device, non_blocking=True)
+                with torch.autocast("cuda", dtype=_adt, enabled=(device == "cuda")):
+                    X.append(model.visual(x).float().cpu())
+                Y.append(y)
+        Xtr = torch.cat(Xtr); Ytr = torch.cat(Ytr)
+        Xte = torch.cat(Xte); Yte = torch.cat(Yte)
+    head = nn.Linear(Xtr.shape[1], len(seen_classes)).to(device)
+    hopt = torch.optim.AdamW(head.parameters(), lr=1e-3, weight_decay=1e-4)
+    for _ep in range(20):
+        perm = torch.randperm(len(Xtr))
+        for i in range(0, len(perm), 512):
+            b = perm[i:i + 512]
+            xb = Xtr[b].to(device); yb = Ytr[b].to(device)
+            hopt.zero_grad(set_to_none=True)
+            F.cross_entropy(head(xb), yb).backward(); hopt.step()
+    with torch.no_grad():
+        frozen_probe = (head(Xte.to(device)).argmax(1).cpu() == Yte).float().mean().item()
+    print(f"[wiseft] frozen probe = {frozen_probe:.1%} (alpha=0 must match this)", flush=True)
 
     sweep = []
     for a in args.alphas:
@@ -206,6 +240,7 @@ def main():
         "unseen_classes": len(unseen_classes), "unseen_images": len(unseen_rows),
         "unseen_chance": round(1.0 / max(len(unseen_classes), 1), 6),
         "strategy": args.strategy, "ft_epochs": args.epochs, "ft_loss": ft_loss,
+        "frozen_probe": round(frozen_probe, 4),
         "sweep": sweep, "best": best,
         "note": ("Both sides measured under ONE protocol. The previous file recorded "
                  "unseen_classes=17 (pilot) against seen_classes=166 (nested C)."),
