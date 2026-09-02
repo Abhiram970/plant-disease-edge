@@ -168,15 +168,24 @@ def tab_supervised():
 
 
 def tab_wiseft():
-    j = load("run_all_exp3_lw11_full.json")
+    # Prefer the re-measured file. scripts/wiseft.py writes wiseft.json and measures BOTH
+    # sides under one protocol; the legacy run_all file recorded unseen_classes=17 (the pilot)
+    # against seen_classes=166 (nested C), i.e. one table reporting two different experiments.
+    # Falling back to the legacy file keeps the table renderable before the re-run lands, but
+    # the caption then carries its protocol so the mixture is visible rather than hidden.
+    j = load("wiseft.json") or load("run_all_exp3_lw11_full.json")
     if not j:
         return
+    _legacy = "protocol" not in j
+    _proto = j.get("protocol", "pilot unseen set with nested-C seen set -- MIXED PROTOCOLS")
     lab = {0.0: "0.0 (frozen)", 0.5: "0.5 (WiSE-FT)", 1.0: "1.0 (naive fine-tune)"}
     body = [f"{lab.get(s['alpha'], s['alpha'])} & {pct(s['seen'])} & {pct(s['unseen'])} \\\\"
             for s in j["sweep"]]
     write("tab_wiseft.tex", wrap(
         f"WiSE-FT weight ensembling on {j['model']}: the seen/unseen trade-off as a single dial "
-        f"({j['seen_classes']} seen classes, {j['seen_images']:,} images).",
+        f"({j['seen_classes']} seen classes, {j['seen_images']:,} images; "
+        f"{j.get('unseen_classes', '?')} unseen classes; protocol: {_proto})."
+        + (" NOTE: legacy file, protocols differ between the two columns." if _legacy else ""),
         "tab:wiseft", "lrr",
         "$\\alpha$ & Seen & Unseen (zero-shot) \\\\", body,
         "$\\alpha=0$ reproduces the frozen baseline exactly, validating the interpolation. "

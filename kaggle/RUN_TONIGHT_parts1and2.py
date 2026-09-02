@@ -409,6 +409,19 @@ elif ok_to_start("loco", [], 0.5):
     sh([sys.executable, "-u", str(S / "loco.py"), "--model", "s0", "--strategy", "rich"],
        1.0, "loco")
 
+# ================================================================ 2b  abstention + top-5
+# metrics.py writes metrics_abstain_{A,B,C}.json, which feed tab_abstain and the
+# risk-coverage figure. Without this stage those stay on the previous build while every
+# neighbouring table regenerates -- the exact mixture the audit flagged.
+for _e in ("A", "B", "C"):
+    if (RESULTS / f"metrics_abstain_{_e}.json").exists():
+        print(f"[skip] metrics {_e}", flush=True); continue
+    if not ok_to_start(f"metrics {_e}", [], 0.3):
+        break
+    banner(f"abstention + top-5, config {_e}")
+    sh([sys.executable, "-u", str(S / "metrics.py"), "--exp", _e,
+        "--strategies", "rich", "grounded", "--reference"], 1.0, f"metrics {_e}")
+
 # ================================================================ 3  WiSE-FT
 # workers=0 on purpose: a CUDA context and a loaded model exist before the loader is
 # built, and spawning workers around that killed them outright.
