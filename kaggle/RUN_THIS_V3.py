@@ -290,8 +290,10 @@ else:
             if not ok_to_start(f"{arm} seed {s}", [], 0.35):
                 break
             print(f"\n--- {arm} seed {s} (have {have}, need {MIN_FILLED}) ---", flush=True)
+            # build_ungrounded.py takes --which (not --exp), and its --arm choices are
+            # "ungrounded"/"grounded" -- the latter writes descriptors_grounded_matched.
             sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
-                "--arm", arm, "--seed", str(s), "--exp", "C"], 0.6, f"{arm} seed {s}")
+                "--arm", arm, "--seed", str(s), "--which", "heldout"], 0.6, f"{arm} seed {s}")
             print(f"    -> {filled_count(root, s)} filled", flush=True)
 
 # ---- truncation-safe SHORT arms (fix: 51/51 prototypes exceeded CLIP's 77-token window) ----
