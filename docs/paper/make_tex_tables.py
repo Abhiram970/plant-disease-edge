@@ -53,6 +53,11 @@ def wrap(caption, label, colspec, header, body, note=None):
     return out
 
 
+def _is_reference(model_key):
+    """True for the reference-ceiling encoder, which is reported but never averaged."""
+    return "SigLIP" in model_key
+
+
 def tab_scale_study():
     rows, means = [], []
     for e in "ABC":
@@ -65,7 +70,12 @@ def tab_scale_study():
         b_all, r_all, g_all = [], [], []
         for m, d in j["models"].items():
             b, r, g = d["bare"]["acc"], d["rich"]["acc"], d["grounded"]["acc"]
-            b_all.append(b); r_all.append(r); g_all.append(g)
+            # The mean is over the four DEPLOYABLE encoders only. ViT-B-16-SigLIP2 is the
+            # reference ceiling and the manuscript states throughout that it is excluded --
+            # but this loop was averaging it in, so every printed mean was pulled toward the
+            # ceiling and disagreed with the prose that quotes it.
+            if not _is_reference(m):
+                b_all.append(b); r_all.append(r); g_all.append(g)
             rows.append(f"\\quad {short(m)} & {d['bare']['img_params_M']:.1f} & {pct(b)} & "
                         f"{pct(d['crude']['acc'])} & {pct(r)} & {pct(g)} \\\\")
         mb, mr, mg = (sum(x) / len(x) for x in (b_all, r_all, g_all))
@@ -136,33 +146,46 @@ def tab_seen():
 
 
 def tab_supervised():
+    # Params are printed because Section 5.5 argues "capacity is not the lever" from this table.
+    # Without the column a reader cannot check that claim against the numbers shown.
     rows = []
     for f in sorted(HERE.glob("supervised_*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
-        rows.append((d.get("arch"), d.get("seen_classes"), d.get("seen_top1")))
+        rows.append((d.get("arch"), d.get("params_M"), d.get("seen_classes"), d.get("seen_top1")))
     if not rows:
         return
-    body = [f"{a.replace('_', '-')} & {n} & {pct(t)} & \\textbf{{0 (structural)}} \\\\"
-            for a, n, t in sorted(rows, key=lambda r: -(r[2] or 0))]
+    body = [f"{a.replace('_', '-')} & {p:.1f} & {n} & {pct(t)} & \\textbf{{0 (structural)}} \\\\"
+            for a, p, n, t in sorted(rows, key=lambda r: -(r[3] or 0))]
     write("tab_supervised.tex", wrap(
         "Supervised CNN baselines on the identical seen set.",
-        "tab:cnn", "lrrr",
-        "Architecture & Classes & Seen top-1 & Unseen \\\\", body,
-        "For a fixed, known label set a CNN is the stronger classifier. None of them, however, has "
+        "tab:cnn", "lrrrr",
+        "Architecture & Params (M) & Classes & Seen top-1 & Unseen \\\\", body,
+        "For a fixed, known label set a CNN is the stronger classifier. Accuracy does not track "
+        "parameter count: a 4.4\,M network finishes within 0.1 points of the best of the "
+        "fourteen, and the largest model is not the best. None of them, however, has "
         "an output unit for an unseen class, so cross-crop accuracy is not low but undefined --- "
         "the capability the descriptor head supplies."))
 
 
 def tab_wiseft():
-    j = load("run_all_exp3_lw11_full.json")
+    # Prefer the re-measured file. scripts/wiseft.py writes wiseft.json and measures BOTH
+    # sides under one protocol; the legacy run_all file recorded unseen_classes=17 (the pilot)
+    # against seen_classes=166 (nested C), i.e. one table reporting two different experiments.
+    # Falling back to the legacy file keeps the table renderable before the re-run lands, but
+    # the caption then carries its protocol so the mixture is visible rather than hidden.
+    j = load("wiseft.json") or load("run_all_exp3_lw11_full.json")
     if not j:
         return
+    _legacy = "protocol" not in j
+    _proto = j.get("protocol", "pilot unseen set with nested-C seen set -- MIXED PROTOCOLS")
     lab = {0.0: "0.0 (frozen)", 0.5: "0.5 (WiSE-FT)", 1.0: "1.0 (naive fine-tune)"}
     body = [f"{lab.get(s['alpha'], s['alpha'])} & {pct(s['seen'])} & {pct(s['unseen'])} \\\\"
             for s in j["sweep"]]
     write("tab_wiseft.tex", wrap(
         f"WiSE-FT weight ensembling on {j['model']}: the seen/unseen trade-off as a single dial "
-        f"({j['seen_classes']} seen classes, {j['seen_images']:,} images).",
+        f"({j['seen_classes']} seen classes, {j['seen_images']:,} images; "
+        f"{j.get('unseen_classes', '?')} unseen classes; protocol: {_proto})."
+        + (" NOTE: legacy file, protocols differ between the two columns." if _legacy else ""),
         "tab:wiseft", "lrr",
         "$\\alpha$ & Seen & Unseen (zero-shot) \\\\", body,
         "$\\alpha=0$ reproduces the frozen baseline exactly, validating the interpolation. "

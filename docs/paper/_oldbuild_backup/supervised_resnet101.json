@@ -1,0 +1,21 @@
+{
+  "arch": "resnet101",
+  "seen_classes": 166,
+  "seen_top1": 0.8676,
+  "params_M": 42.84,
+  "epochs": 8,
+  "batch": 64,
+  "img_size": 224,
+  "epoch_log": [
+    {"epoch": 0, "loss": 1.3731, "test_top1": 0.803},
+    {"epoch": 1, "loss": 0.4745, "test_top1": 0.8518},
+    {"epoch": 2, "loss": 0.3181, "test_top1": 0.8577},
+    {"epoch": 3, "loss": 0.2319, "test_top1": 0.8679},
+    {"epoch": 4, "loss": 0.1835, "test_top1": 0.8699},
+    {"epoch": 5, "loss": 0.1589, "test_top1": 0.8754},
+    {"epoch": 6, "loss": 0.1337, "test_top1": 0.8701},
+    {"epoch": 7, "loss": 0.1232, "test_top1": 0.8676}
+  ],
+  "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",
+  "note": "Compare seen_top1 to the frozen-VLM linear probe (0.824 on the same 166 classes). The CNN CANNOT do cross-crop zero-shot — that is the descriptor head's unique capability."
+}

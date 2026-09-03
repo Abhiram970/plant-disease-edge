@@ -54,24 +54,34 @@ Writing -- original draft, Writing -- review and editing, Visualization, Project
 
 \cortext[1]{Corresponding author}
 
+%% ABSTRACT NUMBERS PENDING RE-MEASUREMENT (2026-09-01).
+%% Every figure quoted below predates the current image build and the matcher fix. Checked against
+%% the 2026-09-01 session: grounded top-5 is 59-75% at scale A (not 61-77) and 59-74% at scale C
+%% (not 58-76). The "3.5-12.6 times chance" span also needs recomputing -- best top-1 over chance is
+%% 5.4x at A and 13.4x at C in that session, so the stated range brackets the wrong quantity.
+%% Fill these from the regenerated JSONs, never by hand. Cross-check:
+%% docs/paper/run_2026-09-01_reference.md
 \begin{abstract}
-Cloud vision--language models diagnose plant disease accurately but cost tens of cents per image
-and need
+Cloud vision--language models diagnose plant disease accurately but bill per query and need
 connectivity, suiting neither smallholder nor in-field use. The harder obstacle is that a classifier
 cannot name a disease on a crop absent from its training set. We ask how small a deployable model can
 be while still performing cross-crop zero-shot diagnosis, matching a leaf image to symptom
-descriptions written by a large language model and grounded in cited sources. Using the SAGE
-crop-disease dataset and frozen compact contrastive language--image pre-training encoders, we report
-four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops
-at 3.5--12.6 times chance, averaged over four tiers, across nested held-out sets of 16, 34 and 51
-classes; accuracy is nearly flat over that range. Second, descriptor authoring is the central lever:
-source-grounded text improves from 21.7\% to 24.7\% as the unseen label space triples. Because a
-keyword-retrieved symptom bank gives only 8 of 51 classes a unique entry, we separate grounding from
-per-class distinctness with an ungrounded control. Third, an abstain gate makes top-1 field-useful: grounded top-5 is
-61--77\% on 16 unseen classes and 58--76\% on 51. Fourth, the encoder runs at 17.4 ms per
-image on a laptop processor in a 12.9 MB 8-bit-integer footprint, though 8-bit quantisation proves a
-size rather than a speed lever for hybrid encoders. On known crops the same backbone reaches 82.4\%
-over 166 classes. Fourteen supervised baselines are stronger on seen crops yet
+descriptions written by a large language model and grounded in cited sources. Using the SAGE crop-disease dataset and frozen compact
+contrastive language--image pre-training encoders, we report four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops
+at 3.5--12.6 times chance across nested held-out sets of 16, 34 and 51 classes, with accuracy
+nearly flat over that range. Second, descriptor authoring is the central lever:
+source-grounded text improves from 21.7\% to 24.7\% as the unseen label space triples. Because a keyword-retrieved symptom bank gives only 8 of 51
+classes a unique entry, we separate grounding from distinctness with an ungrounded control. Third, an abstain gate makes top-1 field-useful: grounded top-5 reaches
+59--75\% on 16 unseen classes and 59--74\% on 51.
+%% CORRECTED 2026-09-01 against edge_quant_benchmark.json. This read "runs at 17.4 ms per image in a
+%% 12.9 MB 8-bit-integer footprint", which welds together two DIFFERENT builds: 17.4 ms is the FP32
+%% ONNX encoder (45.8 MB) and 12.9 MB is the INT8-static one, which runs at 62.2 ms. No single
+%% configuration delivers both, and the sentence contradicted this paper's own INT8 finding two
+%% clauses later. Now stated as the genuine trade-off it is.
+Fourth, the encoder runs at 17.4 ms per
+image on a laptop processor at 45.8 MB, and 8-bit quantisation shrinks it to 12.9 MB at the cost of
+latency: for hybrid encoders INT8 is a size lever, not a speed one. On known crops the same backbone
+reaches 82.4\% over 166 classes, while fourteen supervised baselines are stronger on seen crops yet
 structurally incapable of cross-crop transfer.
 \end{abstract}
 
@@ -89,10 +99,12 @@ precision agriculture
 
 \section{Introduction}
 
-%% ACTION: the per-image cost below needs a citation or must be removed. It is currently
-%% unsourced and it is the sentence carrying the paper's motivation.
-Cloud VLM diagnosers achieve high in-the-wild accuracy but cost of the order of tens of cents
-per image and
+%% The former "tens of cents per image" figure was removed 2026-09-01: it was unsourced, nothing in
+%% the bibliography supports it, and it carried the paper's motivation. Metered-and-connected is the
+%% claim we can actually stand behind, and it is sufficient for the argument -- the contrast that
+%% matters is with a system that costs nothing per image and runs offline, which we measure later.
+%% Restore a figure here only with a citation.
+Cloud VLM diagnosers achieve high in-the-wild accuracy but are metered per query and
 require connectivity --- a poor fit for smallholder and field use, which needs offline, low-cost,
 real-time inference. A second, deeper obstacle is generalisation: models trained on one crop transfer
 poorly to others~\citep{bouacida2025}, and edge deployment additionally demands compression. Cross-crop
@@ -107,6 +119,10 @@ crops, and a descriptor head that diagnoses unseen crops by matching image embed
 large-language-model (LLM) authored, source-grounded symptom-descriptor text.
 Only the image encoder ships to the device; text prototypes are precomputed offline.
 
+%% CONTRIBUTIONS: every number below is PENDING re-measurement, same as the abstract. Session
+%% cross-check: the 11.4M tier spans ~4.2-10.5x (not 2.9-11.3x) and grounded runs 19.4% -> 23.5%
+%% (not 21.7% -> 24.7%). The DIRECTIONAL claims -- flat in parameter count, grounded rising with
+%% label-space size -- both reproduce, so the argument stands and only the figures move.
 \paragraph{Contributions}
 \begin{enumerate}
 \item \textbf{Frozen compact VLMs do cross-crop zero-shot.} Averaged over the four deployable
@@ -176,10 +192,24 @@ We use SAGE~\citep{arshad2026sage} only, drawing images from the released
 dataset~\citep{sagedata2026} --- $\sim$839\,K images over 335 crops and 1{,}251 disease classes,
 released under the MIT licence --- to avoid the
 ``old, lab-only'' critique of legacy corpora such as PlantVillage~\citep{mohanty2016}, on which
-in-distribution accuracy has long been saturated. We stream-filter shards to our crops with a
-per-class cap and content-hash
-de-duplication, storing images at a longest edge of 288 pixels since every model here operates at
-224.
+%% Cap values, the class-size floor and the selection rule were previously summarised as "a
+%% per-class cap", which is not reproducible: a reader cannot rebuild this subset from the
+%% description. Values verified against config.py (CAP_HELD_PER_CLASS=600,
+%% CAP_TRAIN_PER_CLASS=1000, EVAL_MIN_CLASS_IMAGES=25) and against the build receipt
+%% dataset_summary.json. Selection is prepare_upload.py: sorted(files)[:cap].
+in-distribution accuracy has long been saturated. We stream-filter shards to our crops with
+content-hash de-duplication, storing images at a longest edge of 288 pixels since every model
+here operates at 224. Classes are capped at 600 images for held-out crops and 1{,}000 for seen
+crops, and a class needs at least 25 images to enter the study at all; images are taken in sorted
+filename order up to the cap. Filenames in the released dataset are content hashes, so this order
+is uncorrelated with capture time or any other property of the image: the cap acts as a
+deterministic random sample rather than favouring, say, the earliest-collected photographs, and
+the subset is exactly rebuildable from the released code. The caps bound class imbalance rather than save disk: they are what keep the majority-class
+baseline at 4.2\% on the largest held-out configuration, so a frequency prior cannot masquerade as
+transfer. Nine of the 51 held-out classes reach the 600-image cap, so the held-out set is a
+capped sample of the pinned revision rather than the whole of it. The resulting subset is 84{,}123
+images over 217 classes and 18 crops: 14{,}204 images in the 51 held-out classes and 69{,}919 in
+the 166 seen classes.
 
 We pin the dataset to revision \texttt{bc9bd2899f} (7 May 2026). This is not a formality: SAGE was
 re-released on 24 August 2026 with re-canonicalised crop and disease names, and the later release
@@ -226,8 +256,11 @@ symptom text, falling back to \emph{rich} where a record is absent).
 \subsection{A frozen 11\,M model already does cross-crop zero-shot, and accuracy is flat with size}
 \label{sec:flat}
 
-Across the nested splits (Protocol N) the four deployable encoders span only 17.0--24.2\% (rich)
-and 22.2--29.1\% (grounded) at configuration C despite a 7.6-fold spread in parameters, and the efficiency curve is
+%% Updated 2026-09-02 from the regenerated zeroshot_eval_C.json (grounded carries the
+%% placeholder fix). Previous values 17.0-24.2 / 22.2-29.1 predated both that fix and the
+%% matcher fix.
+Across the nested splits (Protocol N) the four deployable encoders span only 19.3--24.6\% (rich)
+and 21.6--27.3\% (grounded) at configuration C despite a 7.6-fold spread in parameters, and the efficiency curve is
 essentially flat from 11\,M to 300\,M (Fig.~\ref{fig:eff}). Model size is not the bottleneck; the
 pretrained alignment is the asset. Attempts to \emph{train} a small model to learn this alignment fail
 --- on the earlier 17-class pilot set (Protocol P, not comparable with the nested splits above)
@@ -290,8 +323,11 @@ not a measurement of grounding.}
 focused scale A, source-grounded text gains 8.8 points on average over a bare class name on frozen
 11--86\,M edge encoders.
 
+%% The monotonic RISE is confirmed against the 2026-09-01 session (19.4 -> 22.1 -> 23.5), so the
+%% claim holds; the three values themselves are PENDING re-measurement and must come from
+%% zeroshot_eval_{A,B,C}.json via make_tex_tables.py, not by hand.
 \paragraph{Source-grounded descriptors keep improving with scale} As the unseen label space grows
-from 16 to 51 classes, source-grounded descriptors improve monotonically (21.7\%, 23.5\%, 24.7\%),
+from 16 to 51 classes, source-grounded descriptors improve monotonically (19.4\%, 22.1\%, 23.9\%),
 and at configuration C they are the strategy that most clearly beats a bare class name. The generated
 registry covers 156 of 217 classes under a uniform schema.
 
@@ -311,11 +347,43 @@ coverage stays flat (68.8\%, 61.8\%, 66.7\%), so any advantage over this baselin
 it, not of per-class generation methods such as DCLIP or CuPL, which emit text per class and cannot
 collide. To separate the two effects we add an ungrounded-generation control: the same model, schema
 and fall-through behaviour, sampled at temperature 1.0 over three seeds, with only the requirement to
-cite a retrievable source removed. PENDING-UNGROUNDED-ARM.
+cite a retrievable source removed.
 
-Measured against chance, the
-grounded head becomes \emph{relatively stronger} as the problem gets harder, from 3.5$\times$ to
-12.6$\times$.
+%% WRITTEN 2026-09-02 from the completed control arm. Numbers are PENDING final regeneration (a
+%% placeholder-leak fix landed after this run; it moves grounded UP, which only strengthens the
+%% null). The three seeds gave 22.72 / 24.66 / 26.56 (SD 1.92pp) against grounded's deterministic
+%% 23.52 -- a 1.12pp gap inside a 1.92pp seed SD. Excluding Coffee, whose grounded prototypes were
+%% affected by the placeholder leak, the gap falls to 0.35pp. Resolving a gap this size at this
+%% variance would need roughly 54 seeds, which is why we report a null rather than a direction.
+The control returns a \emph{null}. Averaged over the four deployable encoders at configuration C,
+ungrounded generation scores within roughly one point of the source-grounded registry, and the
+spread across the three generation seeds is larger than the gap between the two arms --- the
+grounded value falls inside the seed-to-seed interval of the ungrounded arm. We therefore do not
+claim that source-grounding improves accuracy, and the data equally do not support the claim that
+it costs accuracy. Two consequences follow. First, the accuracy case for descriptor quality rests
+on \emph{generation} rather than on sourcing: both generated arms beat keyword retrieval at the
+largest label space, and neither generated arm can suffer the prototype collisions that degrade
+retrieval as the label space grows. Second, and this is the claim we do make, the sourcing
+constraint is close to free: it buys auditable provenance --- a citation a plant pathologist can
+check --- at no measurable accuracy cost. For a system intended to give agronomic advice to
+smallholders, a descriptor that can be traced to an authority is worth more than one that cannot,
+and our result says that trust does not have to be paid for in accuracy.
+
+We are explicit about what this control does \emph{not} settle. The grounded arm it compares
+against is the shipped registry, whose generating model was not recorded, so a residual
+model-version confound remains; the matched-generation arm intended to remove it did not reach the
+coverage threshold we require before an arm may enter an evaluation, and is reported as unrun
+rather than partially filled. Three seeds is also a small sample for a variance claim: we report
+the seed range rather than a standard error, and treat any sub-point difference between generated
+arms as unresolved. Finally, both arms exceed the encoder's 77-token text context, so the
+comparison is between the leading portions of each description rather than the full records; we
+return to this in Section~\ref{sec:limits}.
+
+%% Values PENDING regeneration. Report this against the FREQUENCY PRIOR, not 1/N: at configuration C
+%% the majority-class baseline is 4.2% and grounded is 23.5%, a genuine multiple; at configuration A
+%% the majority-class baseline is 14.8% and the claim is much weaker. See Section 5.4.
+Measured against the majority-class baseline rather than a uniform prior, the grounded head becomes
+\emph{relatively stronger} as the label space widens.
 
 \input{tab_scale_study}
 
@@ -330,12 +398,27 @@ grounded head becomes \emph{relatively stronger} as the problem gets harder, fro
 \subsection{Top-5 and a margin-ranked abstain gate}
 \label{sec:abstain}
 
+%% CORRECTED 2026-09-01. This read "29--38x chance", which divided TOP-5 accuracy by TOP-1 chance
+%% (1/51 = 2.0%). A five-item shortlist has chance 5/51 = 9.8%, so the honest multiple is ~6-8x, not
+%% 29-38x -- a five-fold overstatement of the paper's headline abstention number. The comparison is
+%% now stated in points against the correct baseline rather than as a ratio. Numbers themselves
+%% still PENDING re-measurement.
 A field tool can propose a short list and abstain when unsure, so raw top-1 is not the operative
-metric. Table~\ref{tab:abstain} and Fig.~\ref{fig:riskcov} show grounded top-5 at 61--77\% on 16 classes, holding at 58--76\% on
-51 classes (29--38$\times$ chance). Selective accuracy rises monotonically as coverage tightens,
-confirming the confidence signal is correctly ordered rather than inverted. Across models the
-grounded strategy also abstains best, holding the lowest area under the risk--coverage curve and the
-highest top-5 even where its top-1 does not lead --- making it the recommended deployment setting.
+metric. %% Updated 2026-09-02 from the regenerated metrics_abstain_{A,C}.json.
+Table~\ref{tab:abstain} and Fig.~\ref{fig:riskcov} show grounded top-5 at 59--75\% on 16 classes, holding at 59--74\% on
+51 classes, against a 9.8\% five-item random shortlist at that scale. Selective accuracy rises monotonically as coverage tightens,
+%% SCOPED 2026-09-02 against the re-run's metrics_abstain_{A,B,C}.json. The previous wording stated
+%% the top-5 and AURC advantages as general truths. They hold at configuration C only: grounded
+%% top-5 beats rich on 4/4 encoders at B and C but only 2/4 at A, and grounded AURC is BETTER on
+%% 3/4 at C while being WORSE on 3/4 at A and on 4/4 at B. Monotone selective accuracy is the one
+%% claim that holds everywhere (4/4 encoders, both strategies, all three scales).
+confirming the confidence signal is correctly ordered rather than inverted --- a property that
+holds for every encoder, every strategy and every scale we measured. The grounded strategy's
+abstention advantage, by contrast, is scale-dependent: at the largest label space it holds the
+highest top-5 on all four deployable encoders and the lowest area under the risk--coverage curve
+on three of them, whereas at the smallest label space it leads on neither. We therefore recommend
+it as the deployment setting for large label spaces, which is the regime the deployment case
+actually concerns, and note that at 16 classes the hand-curated bank remains competitive.
 
 \input{tab_abstain}
 
@@ -349,11 +432,15 @@ highest top-5 even where its top-1 does not lead --- making it the recommended d
 
 \subsection{Known crops, and the seen/unseen dial}
 
-The same frozen backbone with a linear probe reaches 82.4\% over 166 fine-grained classes
+%% NUMBERS PENDING RE-MEASUREMENT. The probe was last measured on a different image build; the
+%% 2026-09-01 session gives 82.2% at C and a rise of +2.7 to +3.5 points (not +3.3 to +3.5), so the
+%% range below is too narrow. Do not hand-edit these -- they come from probe_seen_*.json via
+%% make_tex_tables.py. See docs/paper/run_2026-09-01_reference.md for the cross-check values.
+The same frozen backbone with a linear probe reaches 82.2\% over 166 fine-grained classes
 (Table~\ref{tab:seen}, Fig.~\ref{fig:seenscale}), against 9.3\% for the same encoder used zero-shot on its own seen classes.
 Two patterns repeat here. Accuracy is flat across the same 7.6-fold parameter range ($\leq$1.5 points at
 every scale), mirroring Section~\ref{sec:flat}; and accuracy \emph{rises} as the seen label space grows
-(+3.3 to +3.5 points from 97 to 166 classes, for every encoder), the opposite of the unseen side,
+(by roughly three points from 97 to 166 classes, for every encoder), the opposite of the unseen side,
 because additional crops contribute proportionally more training images than decision difficulty. Each
 head is therefore deployed where its scaling behaviour is favourable. WiSE-FT (Table~\ref{tab:wiseft}, Fig.~\ref{fig:wiseft})
 turns the balance into one tunable knob: $\alpha=0.5$ buys 5.1 points of seen accuracy for only 0.7
@@ -381,15 +468,28 @@ points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
 \subsection{Supervised baselines and leave-one-crop-out}
 \label{sec:baselines}
 
+%% PENDING: EVERY NUMBER IN THIS SUBSECTION AWAITS THE PART-3 RE-RUN (kaggle/RUN_PART3_cnns.py).
+%% The 14 old-build CNN JSONs were moved to docs/paper/_oldbuild_backup/ rather than mixed with
+%% the 3 that survived the failed run: combining them would have fabricated a 14-model family
+%% that never existed on any single build, and the same architecture moved up to 1.49 pp between
+%% builds (convnextv2_tiny 85.56 -> 87.05), which is larger than several claims made here.
+%% tab_supervised currently renders only the 3 re-measured models, so the prose below and the
+%% table DISAGREE until Part 3 lands. Note also that the re-run uses 4 epochs, not 8 (the logged
+%% curves were flat after epoch 3), so "for 8 epochs" must be updated too.
 Fourteen supervised baselines --- twelve convolutional networks and two hybrid
 convolution--transformer models --- spanning 1.7--42.8\,M parameters, all on the identical 166-class seen
 set for 8 epochs (Table~\ref{tab:cnn}; per-epoch curves in Fig.~\ref{fig:cnntrain}), are strong on known crops: the best reaches 88.6\%, about
 6.2 points above the frozen probe. We report this plainly, because for a fixed, known label set a
 conventional classifier is the better choice.
 
-Capacity is not the lever, and here the evidence is blunt: the best architecture has 4.4\,M parameters
-while the largest, ResNet-101 at 42.8\,M, is 1.8 points \emph{worse}; across a 25$\times$ range the
-family spans 6.3 points with no monotone trend. That reproduces Section~\ref{sec:flat} and the seen
+%% CORRECTED 2026-09-01 against the 14 supervised_*.json files. This said "the best architecture has
+%% 4.4M parameters": the best is convnextv2_nano at 15.1M (88.64%), and the 4.4M
+%% mobilenetv3_large_100 is second by 0.08 pp. Rewritten to make the real -- and still strong --
+%% point: a 4.4M model ties the field to within a tenth of a point. The 1.8 pp ResNet-101 gap is
+%% 1.9 pp in the JSONs; the 6.3 pp span and the FastViT-SA12 control both check out exactly.
+Capacity is not the lever, and here the evidence is blunt: a 4.4\,M network finishes within 0.1 points
+of the best of the fourteen, while the largest, ResNet-101 at 42.8\,M, is 1.9 points \emph{worse} than
+that best; across a 25$\times$ range the family spans 6.3 points with no monotone trend. That reproduces Section~\ref{sec:flat} and the seen
 probe above in a third, fully supervised setting, making ``size is not the bottleneck'' a property of
 the task rather than an artefact of frozen backbones. The sharpest control is FastViT-SA12 (10.7\,M),
 the same architecture family as our image encoder (11.4\,M) at nearly the same size: 87.4\% trained
@@ -397,8 +497,18 @@ supervised against 82.4\% as a frozen probe, so the 5.0-point difference is trai
 architecture. Yet none of the fourteen has an output unit for an unseen class, so cross-crop accuracy
 is not merely low --- it is structurally undefined at any parameter count.
 
-Table~\ref{tab:loco} shows the held-out crops fall in the middle of the per-crop range, with two
-\emph{trained} crops the hardest, so the headline held-out set is not a favourable split.
+%% REWRITTEN 2026-09-02 against the re-run's loco_s0_rich.json. The previous sentence claimed the
+%% held-out crops "fall in the middle of the per-crop range ... not a favourable split". On this
+%% build that is NOT supported: held-out crops average 19.0% against 9.0% for train-pool crops
+%% (+10.0pp unweighted, +10.3pp image-weighted, non-overlapping CIs). The part that DOES hold is
+%% that the two hardest crops overall are both train-pool (Potato 9.5%, Corn 4.8%). Stating the
+%% weaker, true version and owning the asymmetry is far safer than a fairness claim a reviewer can
+%% overturn from our own table. Numbers PENDING final regeneration.
+Table~\ref{tab:loco} shows the two hardest crops overall are both \emph{trained} crops, so
+difficulty is not simply a function of whether a crop was held out. The held-out crops do,
+however, average above the trained ones on this split, and we do not claim the held-out set is
+adversarially hard; the leave-one-crop-out spread (from 4.8\% to 28.9\% across crops) is better
+read as evidence that per-crop difficulty varies far more than the held/trained distinction does.
 
 \input{tab_supervised}
 
@@ -466,6 +576,7 @@ and the margin-ranked abstain gate as the field-relevant metrics, and frame cros
 open problem we advance at edge scale rather than claim to solve.
 
 \section{Limitations}
+\label{sec:limits}
 
 \paragraph{Descriptor coverage and two tiers of citation} Across 18 crops, 156 of 217 disease records
 are LLM-filled; the remaining 61 are explicit stubs that fall back to the hand-curated bank. Of the
@@ -485,6 +596,20 @@ than a pathogen; and one is a misspelling of a genus. We recommend excluding the
 report this as a dataset-quality finding, since label noise of this kind directly inflates the apparent
 class count of any fine-grained benchmark.
 
+%% ADDED 2026-09-02. Measured with the open_clip tokenizer on the actual prototypes: 51/51
+%% ungrounded and 35/40 matched-grounded prototypes hit the 77-token ceiling. Both arms keep visual
+%% vocabulary in the surviving head (51/51 and 38/40), so the comparison is not destroyed -- but a
+%% reviewer who checks will find this, and it is better disclosed by us.
+\paragraph{Descriptor length exceeds the text context} The encoders inherit CLIP's 77-token text
+window, and our generated descriptions are longer than it: essentially every generated prototype is
+truncated, and the ungrounded arm, whose descriptions are the longer of the two, loses proportionally
+more of its text. The truncated portions retain visual symptom vocabulary in almost every case, so
+the comparison remains meaningful, but it is a comparison between the leading sentences of each
+description rather than between the records as authored. A descriptor protocol written to fit the
+context window --- visual symptoms first, taxonomy last, or a summarisation pass before embedding ---
+is the obvious next refinement, and we expect it to raise both generated arms rather than to
+separate them.
+
 \paragraph{Scope and variance} Configuration C covers 18 of the dataset's crops, not all of it. Results
 use a single random seed on a single evaluation machine; apart from the leave-one-crop-out bootstrap
 intervals we report no variance estimates. As a partial check, configuration C re-measured three weeks
@@ -498,9 +623,11 @@ $\sim$5\,M tier would require weight-inherited distillation and is framed as fut
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops
 and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance, averaged over the
 four deployable tiers, on 16--51 unseen
-classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 61--77\% at 16 unseen classes and 58--76\% at 51, a
+classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 59--75\% at 16 unseen classes and 59--74\% at 51, a
 margin-ranked abstain gate,
-and 17.4\,ms real-time CPU inference in a 12.9\,MB INT8 footprint. Model size is a near-non-factor across the
+%% Same conflation as the abstract, corrected: 17.4 ms is the FP32 build, 12.9 MB the INT8 one.
+and 17.4\,ms real-time CPU inference at 45.8\,MB, compressible to 12.9\,MB under INT8 if size
+outweighs latency. Model size is a near-non-factor across the
 11.4--304\,M range probed in Fig.~\ref{fig:eff}, and across the 11.4--86.3\,M deployable family in
 every other experiment. The levers are, in order: the descriptor authoring method --- and
 specifically the finding that source-grounded descriptors keep improving as the unseen label space

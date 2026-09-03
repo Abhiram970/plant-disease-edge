@@ -45,6 +45,12 @@ def main():
     ap.add_argument("--strategies", nargs="+", default=["bare", "crude", "rich"],
                     help="bare | crude | rich | grounded | grounded_visual | ungrounded | "
                          "grounded_matched (same model as ungrounded -- the clean sourcing test)")
+    ap.add_argument("--ungrounded-seeds", nargs="+", type=int, default=None,
+                    help="Evaluate SEVERAL seeds of a seeded arm in ONE process. Image "
+                         "embeddings are cached per model and reused across strategies, but "
+                         "that cache dies with the process -- running 16 seed-evaluations as 16 "
+                         "subprocesses re-embedded 14,204 images 16 times (~5.5 h). Sharing one "
+                         "process amortises the embedding pass over every seed (~25 min).")
     ap.add_argument("--ungrounded-seed", type=int, default=None,
                     help="which descriptors_ungrounded/<seed>/ set to use; also tags the "
                          "output filename so seeds do not overwrite each other")
@@ -90,18 +96,36 @@ def main():
     if args.teachers:
         models += [m for m in C.TEACHERS if m not in models]
 
+    import descriptors as _D
+    _SEEDED_ARMS = set(_D.ARM_DIRS)
+
     results, coverage = {}, {}
     for name, pretrained in models:
         try:
             cache = None
             row = {}
             for strat in args.strategies:
-                res, cache = zeroshot.evaluate(name, pretrained, rows, classes, strat, device,
-                                               reuse_img_emb=cache)
-                row[strat] = res
+                if args.ungrounded_seeds and strat in _SEEDED_ARMS:
+                    # One entry per seed, all sharing this model's image embeddings.
+                    for _sd in args.ungrounded_seeds:
+                        # descriptors._seed() reads this env var at CALL time and its arm cache
+                        # is keyed on (arm, crop, seed), so setting it here is sufficient -- no
+                        # cache invalidation needed. (The import-time read of this variable is
+                        # exactly the bug that made all three seeds identical in an earlier run.)
+                        os.environ["PDE_UNGROUNDED_SEED"] = str(_sd)
+                        res, cache = zeroshot.evaluate(name, pretrained, rows, classes, strat,
+                                                       device, reuse_img_emb=cache)
+                        row[f"{strat}__seed{_sd}"] = res
+                else:
+                    res, cache = zeroshot.evaluate(name, pretrained, rows, classes, strat, device,
+                                                   reuse_img_emb=cache)
+                    row[strat] = res
             results[f"{name}/{pretrained}"] = row
-            cols = "  ".join(f"{s}={row[s]['acc']:.1%}" for s in args.strategies)
-            print(f"  {name:20s} img={row[args.strategies[0]]['img_params_M']:6.1f}M  {cols}")
+            # Iterate the keys actually written: a multi-seed run stores "<arm>__seed<N>",
+            # not the bare strategy name, so indexing by args.strategies raised KeyError.
+            cols = "  ".join(f"{k}={v['acc']:.1%}" for k, v in row.items())
+            _first = next(iter(row.values()))
+            print(f"  {name:20s} img={_first['img_params_M']:6.1f}M  {cols}")
         except Exception as e:
             print(f"  {name:20s} skipped ({type(e).__name__}: {str(e)[:60]})")
 
@@ -113,9 +137,28 @@ def main():
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = "_clean" if args.clean else ""
     if args.ungrounded_seed is not None:
-        suffix += f"_ung{args.ungrounded_seed}"
+        # Key the filename on the ARM as well as the seed. With "_ung{seed}" alone, the
+        # ungrounded and grounded_matched arms at the same seed wrote to the SAME file, so
+        # whichever ran second silently overwrote the first -- and the matched arm is the
+        # one that removes the model-version confound, so losing it defeats the experiment.
+        _seeded = [a for a in args.strategies
+                   if a in ("ungrounded", "grounded_matched",
+                            "ungrounded_short", "grounded_matched_short")]
+        _arm = _seeded[0] if _seeded else "ung"
+        _short = {"ungrounded": "ung", "grounded_matched": "gm",
+                  "ungrounded_short": "ungs", "grounded_matched_short": "gms"}.get(_arm, _arm)
+        suffix += f"_{_short}{args.ungrounded_seed}"
+    elif args.ungrounded_seeds:
+        # Multi-seed run: one file per ARM holding every seed, keyed inside as
+        # "<arm>__seed<N>". Analysis reads the seeds out of the one file.
+        _seeded = [a for a in args.strategies if a in _SEEDED_ARMS]
+        _arm = _seeded[0] if _seeded else "ung"
+        _short = {"ungrounded": "ung", "grounded_matched": "gm",
+                  "ungrounded_short": "ungs", "grounded_matched_short": "gms"}.get(_arm, _arm)
+        suffix += f"_{_short}seeds"
     out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}{suffix}.json"
-    out.write_text(json.dumps({"matcher_normalised": True, "chance": chance, "n_classes": len(classes), "crops": crops,
+    out.write_text(json.dumps({"matcher_normalised": True,
+                               "seeds": args.ungrounded_seeds, "chance": chance, "n_classes": len(classes), "crops": crops,
                                "n_images": len(rows), "clean": bool(args.clean),
                                "clean_stats": clean_stats,
                                "coverage": coverage, "models": results}, indent=2))

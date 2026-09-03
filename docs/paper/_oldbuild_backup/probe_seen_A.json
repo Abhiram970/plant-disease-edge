@@ -3,19 +3,19 @@
   "models": {
     "MobileCLIP2-S0": {
       "img_params_M": 11.41,
-      "seen_probe_top1": 0.7869
+      "seen_probe_top1": 0.789
     },
     "MobileCLIP-S1": {
       "img_params_M": 21.54,
-      "seen_probe_top1": 0.7835
+      "seen_probe_top1": 0.7771
     },
     "MobileCLIP2-S2": {
       "img_params_M": 35.82,
-      "seen_probe_top1": 0.7932
+      "seen_probe_top1": 0.7881
     },
     "MobileCLIP-B": {
       "img_params_M": 86.35,
-      "seen_probe_top1": 0.7919
+      "seen_probe_top1": 0.7933
     }
   },
   "seen_classes": 97,
