@@ -4,14 +4,18 @@
 =====================================================================================
 Run this tonight. Run RUN_PART3_cnns.py in the morning.
 
-  descriptors (8 seeds x 2 arms) + short arms + integrity gate      ~2.2 h
+  descriptors (4 seeds x 2 arms) + short arms + integrity gate      ~1.1 h
   zero-shot A/B/C + label-corrected C                               ~1.2 h
-  control arms at C  (the numbers Section 5.3 needs)                ~1.8 h
+  control arms at C  (the numbers Section 5.3 needs)                ~0.9 h
   seen-crop linear probe A/B/C                                      ~0.5 h
   leave-one-crop-out + bootstrap CIs                                ~0.3 h
-  WiSE-FT alpha sweep                                               ~0.8 h
-                                                            TOTAL   ~6.9 h
-  (12 h Kaggle limit, 11 h internal budget -> ~4 h headroom)
+  abstention + top-5 metrics A/B/C                                  ~0.6 h
+  WiSE-FT alpha sweep                                               ~0.3 h
+                                                            TOTAL   ~5.0 h
+
+  Sized for a ~5.5 h remaining quota. BUDGET_H below is the guard -- set it to what
+  Kaggle says you have left. This produces every table the manuscript needs EXCEPT
+  tab_supervised, which is PART 3 (the 14 CNNs, ~4.8 h) after the quota resets.
 
 SETUP
   1. Add Data -> your `pde-sage-data` dataset (the 288 px exp_data build).
@@ -32,8 +36,19 @@ skipped, so a second run continues exactly where this one stopped.
 """
 
 # ---------------------------------------------------------------- settings
-BUDGET_H         = 11.0
-UNGROUNDED_SEEDS = [0, 1, 2, 3, 4, 5, 6, 7]
+# BUDGET_H is a WALL-CLOCK guard, not a target: the run stops cleanly when it would
+# otherwise overrun, and re-running resumes. Set it to the compute you actually have left
+# (Kaggle shows this on the session page), NOT to 12.
+BUDGET_H         = 5.2
+
+# 4 seeds, not 8. The previous run had 3 (95% CI +/-4.8 pp); 4 nearly halves that to
+# +/-3.1 pp, and 8 would reach +/-1.6 pp -- but 8 seeds costs ~4.0 h of generation plus
+# control-arm evaluation, which on a 5.5 h quota would consume everything and stop right
+# BEFORE the control arms, i.e. spend the whole budget and produce nothing for Section 5.3.
+# The gap under test (~0.7 pp) is not resolvable at ANY seed count (that needs ~54); the
+# goal is a tight, honest null. Add seeds later by re-running with more -- finished seeds
+# are skipped, so seeds accumulate across sessions.
+UNGROUNDED_SEEDS = [0, 1, 2, 3]
 SHORT_WORDS      = 50
 LLM_MODEL        = "claude-sonnet-5"
 MAX_TOKENS       = 4000    # 2000 still truncated the grounded schema -> unparseable JSON
@@ -281,7 +296,15 @@ if HAVE_KEY:
             if have >= MIN_FILLED:
                 print(f"[skip] {arm} seed {s} ({have} filled)", flush=True)
                 continue
-            if not ok_to_start(f"{arm} seed {s}", [], 0.3):
+            # Reserve what the DEPENDENT stages still need (zero-shot + control arms).
+            # Guarding only on this seed's own cost let generation consume the whole quota
+            # and stop immediately before the control arms -- spending the budget and
+            # producing nothing for Section 5.3, which is the entire point of the run.
+            _reserve = 1.2 + 0.06 * len(UNGROUNDED_SEEDS) * 4
+            if not ok_to_start(f"{arm} seed {s}", [], 0.3 + _reserve):
+                print(f"[budget] stopping descriptor generation to protect the {_reserve:.1f} h "
+                      f"the zero-shot and control-arm stages still need.", flush=True)
+                print(f"[budget] seeds completed so far are kept and will be used.", flush=True)
                 break
             print(f"\n--- {arm} seed {s} (have {have}, need {MIN_FILLED}) ---", flush=True)
             rc, _ = sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
