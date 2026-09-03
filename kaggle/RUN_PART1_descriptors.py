@@ -163,6 +163,36 @@ for _arm in ("descriptors_ungrounded", "descriptors_grounded_matched",
             shutil.copytree(_src, _dst)
             print(f"[prior] imported {_arm}", flush=True)
 
+def _ensure_manifest():
+    """Build manifest.csv if it is missing.
+
+    build_ungrounded.py, wiseft.py and supervised_baseline.py all read it -- it is the
+    class list and the seen/held split. The old single-file runner built it; splitting that
+    runner into parts dropped the step, so descriptor generation exited immediately with
+    "manifest not found" for every seed and every arm, the integrity gate then rejected all
+    of them, and the control arms silently had nothing to evaluate. Zero-shot still ran
+    because it reads the dataset directly, which is why the failure looked survivable in the
+    log when it was not.
+    """
+    mf = WORK / "manifest.csv"
+    if mf.exists() and mf.stat().st_size > 0:
+        print(f"[manifest] present ({mf})", flush=True)
+        return True
+    print("[manifest] building (needed by descriptors, WiSE-FT and the CNNs) ...", flush=True)
+    r = subprocess.run([sys.executable, "-u", str(S / "build_manifest.py"),
+                        "--min-images", "25"], text=True,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if r.stdout:
+        print(r.stdout, flush=True)
+    if not (mf.exists() and mf.stat().st_size > 0):
+        print("[manifest] FAILED -- descriptor generation and WiSE-FT cannot run.", flush=True)
+        return False
+    return True
+
+
+_HAVE_MANIFEST = _ensure_manifest()
+
+
 def sh(cmd, need_h, tag=""):
     """Run a child process under a wall-clock cap. Returns (returncode, combined output)."""
     to = int(min(need_h, max(left_h(), 0.05)) * 3600)
@@ -290,7 +320,13 @@ if HAVE_KEY:
             rc, _ = sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
                         "--arm", arm, "--seed", str(s), "--which", "heldout"],
                        0.6, f"{arm} seed {s}")
-            print(f"    -> {filled_count(root, s)} filled", flush=True)
+            _got = filled_count(root, s)
+            print(f"    -> {_got} filled", flush=True)
+            if _got == 0:
+                print(f"    [ERROR] {arm} seed {s} produced NOTHING. The control arms cannot", flush=True)
+                print(f"    [ERROR] run without descriptors -- Section 5.3 will be empty.", flush=True)
+                print(f"    [ERROR] Check the message above (missing manifest, bad API key,", flush=True)
+                print(f"    [ERROR] exhausted credit) before letting this session continue.", flush=True)
             if rc == 3:
                 print("[llm] endpoint reported no credit -> stopping descriptor generation.",
                       flush=True)
@@ -354,6 +390,15 @@ for _arm, _root in (("ungrounded", REPO / "descriptors_ungrounded"),
             print(f"  [reject] {_arm} seed {_s}: {_n}/{MIN_FILLED} usable -> excluded", flush=True)
     USABLE[_arm] = _seeds
     print(f"  {_arm:24} usable seeds: {_seeds}", flush=True)
+if not any(USABLE.values()):
+    print("", flush=True)
+    print("  ####################################################################", flush=True)
+    print("  #  NO DESCRIPTOR ARM IS USABLE. The control arms will not run and   #", flush=True)
+    print("  #  Section 5.3 gets no result -- the main reason for this session.  #", flush=True)
+    print("  #  Zero-shot/probe/LOCO below still work, so the run continues, but #", flush=True)
+    print("  #  fix the cause above and re-run before spending more quota.       #", flush=True)
+    print("  ####################################################################", flush=True)
+    print("", flush=True)
 json.dump(USABLE, open(RESULTS / "descriptor_arm_integrity.json", "w"), indent=1)
 
 # ================================================================ 4  zero-shot A/B/C

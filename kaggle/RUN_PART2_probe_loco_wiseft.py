@@ -168,6 +168,36 @@ for _arm in ("descriptors_ungrounded", "descriptors_grounded_matched",
             shutil.copytree(_src, _dst)
             print(f"[prior] imported {_arm}", flush=True)
 
+def _ensure_manifest():
+    """Build manifest.csv if it is missing.
+
+    build_ungrounded.py, wiseft.py and supervised_baseline.py all read it -- it is the
+    class list and the seen/held split. The old single-file runner built it; splitting that
+    runner into parts dropped the step, so descriptor generation exited immediately with
+    "manifest not found" for every seed and every arm, the integrity gate then rejected all
+    of them, and the control arms silently had nothing to evaluate. Zero-shot still ran
+    because it reads the dataset directly, which is why the failure looked survivable in the
+    log when it was not.
+    """
+    mf = WORK / "manifest.csv"
+    if mf.exists() and mf.stat().st_size > 0:
+        print(f"[manifest] present ({mf})", flush=True)
+        return True
+    print("[manifest] building (needed by descriptors, WiSE-FT and the CNNs) ...", flush=True)
+    r = subprocess.run([sys.executable, "-u", str(S / "build_manifest.py"),
+                        "--min-images", "25"], text=True,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if r.stdout:
+        print(r.stdout, flush=True)
+    if not (mf.exists() and mf.stat().st_size > 0):
+        print("[manifest] FAILED -- descriptor generation and WiSE-FT cannot run.", flush=True)
+        return False
+    return True
+
+
+_HAVE_MANIFEST = _ensure_manifest()
+
+
 def sh(cmd, need_h, tag=""):
     """Run a child process under a wall-clock cap. Returns (returncode, combined output)."""
     to = int(min(need_h, max(left_h(), 0.05)) * 3600)
