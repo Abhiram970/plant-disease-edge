@@ -4,12 +4,12 @@
 =====================================================================================
 Nothing else to copy. Change PART below and run the cell.
 
-    PART = "tonight"   -> descriptors + zero-shot + control arms + probe + LOCO
-                          + abstention metrics + WiSE-FT          (~7 h, NEEDS API KEY)
-    PART = "3"         -> the 14 supervised CNN baselines          (~4.8 h, no key)
+    PART = "tonight"   -> descriptors (4 seeds) + zero-shot A/B/C + control arms
+                          + probe + abstention metrics             (~3.9 h, NEEDS API KEY)
+    PART = "morning"   -> seeds 4-7, control arms at 8 seeds, short arms, clean eval,
+                          LOCO, WiSE-FT, and the 14 CNNs           (~7.8 h, NEEDS API KEY)
 
-    PART = "1"         -> descriptors + zero-shot + control arms only
-    PART = "2"         -> probe + LOCO + metrics + WiSE-FT only
+    PART = "1" / "2" / "3"  -> the original single-purpose parts, if you want one stage
 
 SETUP (all parts)
   Add Data      -> your `pde-sage-data` dataset (the 288 px exp_data build)
@@ -40,6 +40,7 @@ from pathlib import Path
 
 SRC = {
     "tonight": "RUN_TONIGHT_parts1and2.py",
+    "morning": "RUN_MORNING_everything_else.py",
     "1":       "RUN_PART1_descriptors.py",
     "2":       "RUN_PART2_probe_loco_wiseft.py",
     "3":       "RUN_PART3_cnns.py",

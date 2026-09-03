@@ -27,18 +27,19 @@ HEADER = '''"""
 =====================================================================================
 Run this tonight. Run RUN_PART3_cnns.py in the morning.
 
-  descriptors (4 seeds x 2 arms) + short arms + integrity gate      ~1.1 h
-  zero-shot A/B/C + label-corrected C                               ~1.2 h
-  control arms at C  (the numbers Section 5.3 needs)                ~0.9 h
+  descriptors (4 seeds x 2 arms) + short arms + integrity gate      ~1.2 h
+  zero-shot A/B/C                                                   ~0.7 h
+  control arms at C  (the numbers Section 5.3 needs)                ~0.7 h
   seen-crop linear probe A/B/C                                      ~0.5 h
-  leave-one-crop-out + bootstrap CIs                                ~0.3 h
   abstention + top-5 metrics A/B/C                                  ~0.6 h
-  WiSE-FT alpha sweep                                               ~0.3 h
-                                                            TOTAL   ~5.0 h
+                                                            TOTAL   ~3.9 h
 
-  Sized for a ~5.5 h remaining quota. BUDGET_H below is the guard -- set it to what
-  Kaggle says you have left. This produces every table the manuscript needs EXCEPT
-  tab_supervised, which is PART 3 (the 14 CNNs, ~4.8 h) after the quota resets.
+  Sized for a 4 h quota. Timings are measured from the 2026-09-03 session
+  (9.2 min per descriptor seed, 87 ms per image embedded), not estimated.
+
+  DEFERRED to the morning run, which has a fresh quota and needs only ~4.8 h for the
+  CNNs: the label-corrected C eval, leave-one-crop-out, and WiSE-FT. Each is a
+  self-contained table. Section 5.3 stays here because the paper is blocked on it.
 
 SETUP
   1. Add Data -> your `pde-sage-data` dataset (the 288 px exp_data build).
@@ -62,7 +63,7 @@ skipped, so a second run continues exactly where this one stopped.
 # BUDGET_H is a WALL-CLOCK guard, not a target: the run stops cleanly when it would
 # otherwise overrun, and re-running resumes. Set it to the compute you actually have left
 # (Kaggle shows this on the session page), NOT to 12.
-BUDGET_H         = 5.2
+BUDGET_H         = 4.0
 
 # 4 seeds, not 8. The previous run had 3 (95% CI +/-4.8 pp); 4 nearly halves that to
 # +/-3.1 pp, and 8 would reach +/-1.6 pp -- but 8 seeds costs ~4.0 h of generation plus
@@ -84,6 +85,17 @@ WISE_ALPHAS      = ["0.0", "0.5", "1.0"]
 # a secondary check. Their descriptor text is still generated, so set this True in a later
 # session to evaluate them without regenerating anything.
 EVAL_SHORT_ARMS  = False
+
+# Deferred to the morning session, which has a fresh ~12 h quota and only needs ~4.8 h for
+# the CNNs. Each is a self-contained table, so moving them costs nothing but a second run:
+#   C_clean  label-noise robustness  (secondary to the raw config-C result)
+#   loco     tab_loco
+#   wiseft   tab_wiseft
+# Section 5.3 -- descriptors, zero-shot A/B/C and the control arms -- stays in THIS run,
+# because it is the result the paper is blocked on.
+RUN_CLEAN_EVAL   = False
+RUN_LOCO         = False
+RUN_WISEFT       = False
 '''
 
 TAIL = '''

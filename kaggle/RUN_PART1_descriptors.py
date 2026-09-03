@@ -432,7 +432,9 @@ for _e in ("A", "B", "C"):
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", _e, "--strategies", *STRATS,
         "--tiers", "lw11", "lw21", "lw35", "--heavy", "--teachers"], 1.5, f"zeroshot {_e}")
 
-if not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean", [], 0.4):
+if not globals().get("RUN_CLEAN_EVAL", True):
+    print("[skip] label-corrected C eval (RUN_CLEAN_EVAL=False)", flush=True)
+elif not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean", [], 0.4):
     banner("zero-shot C, label-corrected")
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C", "--clean",
         "--strategies", *STRATS, "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "clean")
@@ -466,8 +468,20 @@ for _arm in _CONTROL_ARMS:
     if not _seeds:
         continue
     _tag = f"C_{_SUF[_arm]}seeds"
-    if (RESULTS / f"zeroshot_eval_{_tag}.json").exists():
-        print(f"[skip] {_tag}", flush=True); continue
+    _out = RESULTS / f"zeroshot_eval_{_tag}.json"
+    # Skip only if the existing file already covers EVERY usable seed. A previous session may
+    # have written this arm with fewer seeds (tonight runs 4, the morning run extends to 8);
+    # a plain exists() check would keep the smaller file and silently discard the new seeds,
+    # leaving the interval wider than the run was meant to make it.
+    if _out.exists():
+        try:
+            _have = set(json.load(open(_out, encoding="utf-8")).get("seeds") or [])
+        except Exception:
+            _have = set()
+        if _have >= set(_seeds):
+            print(f"[skip] {_tag} (already has seeds {sorted(_have)})", flush=True); continue
+        print(f"[redo] {_tag}: file has {sorted(_have)}, need {_seeds} -> re-evaluating",
+              flush=True)
     if not ok_to_start(_tag, [], 0.35):
         break
     banner(f"control arm {_arm}: seeds {_seeds}")

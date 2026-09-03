@@ -408,6 +408,7 @@ if skipped:
     print(f"[cnn] NOT RUN (budget): {skipped}", flush=True)
     print("[cnn] Re-run this cell to continue.", flush=True)
 
+#__P3_TAIL__
 bundle(3, {"cnn_epochs": CNN_EPOCHS, "cnn_batch_requested": CNN_BATCH,
            "cnn_completed": done, "cnn_not_run": skipped})
 banner("PART 3 DONE" if not skipped else "PART 3 INCOMPLETE -- re-run to finish")

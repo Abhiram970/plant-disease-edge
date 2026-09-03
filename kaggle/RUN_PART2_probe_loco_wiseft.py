@@ -306,7 +306,9 @@ elif ok_to_start("probe", [], 0.8):
     sh([sys.executable, "-u", str(S / "probe_seen_all.py"), "--workers", "2"], 2.0, "probe")
 
 # ================================================================ 2  leave-one-crop-out
-if (RESULTS / "loco_s0_rich.json").exists():
+if not globals().get("RUN_LOCO", True):
+    print("[skip] loco (RUN_LOCO=False)", flush=True)
+elif (RESULTS / "loco_s0_rich.json").exists():
     print("[skip] loco", flush=True)
 elif ok_to_start("loco", [], 0.5):
     banner("leave-one-crop-out + bootstrap CIs")
@@ -329,7 +331,9 @@ for _e in ("A", "B", "C"):
 # ================================================================ 3  WiSE-FT
 # workers=0 on purpose: a CUDA context and a loaded model exist before the loader is
 # built, and spawning workers around that killed them outright.
-if (RESULTS / "wiseft.json").exists():
+if not globals().get("RUN_WISEFT", True):
+    print("[skip] wiseft (RUN_WISEFT=False)", flush=True)
+elif (RESULTS / "wiseft.json").exists():
     print("[skip] wiseft", flush=True)
 elif not (S / "wiseft.py").exists():
     print("\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)
