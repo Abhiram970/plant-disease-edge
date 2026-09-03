@@ -198,7 +198,9 @@ for _e in ("A", "B", "C"):
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", _e, "--strategies", *STRATS,
         "--tiers", "lw11", "lw21", "lw35", "--heavy", "--teachers"], 1.5, f"zeroshot {_e}")
 
-if not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean", [], 0.4):
+if not globals().get("RUN_CLEAN_EVAL", True):
+    print("[skip] label-corrected C eval (RUN_CLEAN_EVAL=False)", flush=True)
+elif not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean", [], 0.4):
     banner("zero-shot C, label-corrected")
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C", "--clean",
         "--strategies", *STRATS, "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "clean")
@@ -232,8 +234,20 @@ for _arm in _CONTROL_ARMS:
     if not _seeds:
         continue
     _tag = f"C_{_SUF[_arm]}seeds"
-    if (RESULTS / f"zeroshot_eval_{_tag}.json").exists():
-        print(f"[skip] {_tag}", flush=True); continue
+    _out = RESULTS / f"zeroshot_eval_{_tag}.json"
+    # Skip only if the existing file already covers EVERY usable seed. A previous session may
+    # have written this arm with fewer seeds (tonight runs 4, the morning run extends to 8);
+    # a plain exists() check would keep the smaller file and silently discard the new seeds,
+    # leaving the interval wider than the run was meant to make it.
+    if _out.exists():
+        try:
+            _have = set(json.load(open(_out, encoding="utf-8")).get("seeds") or [])
+        except Exception:
+            _have = set()
+        if _have >= set(_seeds):
+            print(f"[skip] {_tag} (already has seeds {sorted(_have)})", flush=True); continue
+        print(f"[redo] {_tag}: file has {sorted(_have)}, need {_seeds} -> re-evaluating",
+              flush=True)
     if not ok_to_start(_tag, [], 0.35):
         break
     banner(f"control arm {_arm}: seeds {_seeds}")
@@ -307,7 +321,9 @@ elif ok_to_start("probe", [], 0.8):
     sh([sys.executable, "-u", str(S / "probe_seen_all.py"), "--workers", "2"], 2.0, "probe")
 
 # ================================================================ 2  leave-one-crop-out
-if (RESULTS / "loco_s0_rich.json").exists():
+if not globals().get("RUN_LOCO", True):
+    print("[skip] loco (RUN_LOCO=False)", flush=True)
+elif (RESULTS / "loco_s0_rich.json").exists():
     print("[skip] loco", flush=True)
 elif ok_to_start("loco", [], 0.5):
     banner("leave-one-crop-out + bootstrap CIs")
@@ -330,7 +346,9 @@ for _e in ("A", "B", "C"):
 # ================================================================ 3  WiSE-FT
 # workers=0 on purpose: a CUDA context and a loaded model exist before the loader is
 # built, and spawning workers around that killed them outright.
-if (RESULTS / "wiseft.json").exists():
+if not globals().get("RUN_WISEFT", True):
+    print("[skip] wiseft (RUN_WISEFT=False)", flush=True)
+elif (RESULTS / "wiseft.json").exists():
     print("[skip] wiseft", flush=True)
 elif not (S / "wiseft.py").exists():
     print("\\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)
@@ -534,6 +552,7 @@ if skipped:
     print(f"[cnn] NOT RUN (budget): {skipped}", flush=True)
     print("[cnn] Re-run this cell to continue.", flush=True)
 
+#__P3_TAIL__
 bundle(3, {"cnn_epochs": CNN_EPOCHS, "cnn_batch_requested": CNN_BATCH,
            "cnn_completed": done, "cnn_not_run": skipped})
 banner("PART 3 DONE" if not skipped else "PART 3 INCOMPLETE -- re-run to finish")

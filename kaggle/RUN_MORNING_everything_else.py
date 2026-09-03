@@ -1,78 +1,67 @@
 """
 =====================================================================================
- PDE TONIGHT  --  PART 1 + PART 2 in one session
+ PDE MORNING  --  everything tonight's 4 h run did not cover
 =====================================================================================
-Run this tonight. Run RUN_PART3_cnns.py in the morning.
+Run this after the Kaggle quota resets. Needs the API key only for the extra seeds.
 
-  descriptors (4 seeds x 2 arms) + short arms + integrity gate      ~1.2 h
-  zero-shot A/B/C                                                   ~0.7 h
-  control arms at C  (the numbers Section 5.3 needs)                ~0.7 h
-  seen-crop linear probe A/B/C                                      ~0.5 h
-  abstention + top-5 metrics A/B/C                                  ~0.6 h
-                                                            TOTAL   ~3.9 h
-
-  Sized for a 4 h quota. Timings are measured from the 2026-09-03 session
-  (9.2 min per descriptor seed, 87 ms per image embedded), not estimated.
-
-  DEFERRED to the morning run, which has a fresh quota and needs only ~4.8 h for the
-  CNNs: the label-corrected C eval, leave-one-crop-out, and WiSE-FT. Each is a
-  self-contained table. Section 5.3 stays here because the paper is blocked on it.
+  descriptor seeds 4-7 (2 arms)                                    ~0.7 h
+  control arms re-evaluated with all 8 seeds                       ~0.7 h
+  short arms (77-token truncation control)                         ~0.7 h
+  label-corrected C eval                                           ~0.3 h
+  leave-one-crop-out + bootstrap CIs                               ~0.3 h
+  WiSE-FT alpha sweep                                              ~0.3 h
+  14 supervised CNN baselines                                      ~4.8 h
+                                                           TOTAL   ~7.8 h
 
 SETUP
-  1. Add Data -> your `pde-sage-data` dataset (the 288 px exp_data build).
-  2. Settings -> Accelerator: GPU T4 x2 (or P100).  Internet: ON.
-  3. Add-ons -> Secrets: LAVA_API_KEY (or ANTHROPIC_API_KEY). REQUIRED for the control arms.
-  4. Paste this whole file into ONE cell, then use "Save Version -> Save & Run All" so the
-     run survives you closing the browser.
-  5. In the morning: download pde_tonight.zip, then run RUN_PART3_cnns.py.
+  1. Add Data -> your `pde-sage-data` dataset.
+  2. Add Data -> the OUTPUT of tonight's notebook. This carries forward the descriptor
+     text and results, so seeds 0-3 are NOT regenerated and the run resumes cleanly.
+  3. GPU T4 x2, Internet ON, LAVA_API_KEY in Secrets.
+  4. Save Version -> "Save & Run All".
 
-ORDER MATTERS. Descriptors run first because everything downstream needs them, and they are
-the only stage whose duration depends on an external API. The budget guard sits between the
-halves: if generation runs long, the probe/LOCO/WiSE-FT block is skipped with a receipt
-naming what is left, rather than started and abandoned half-done.
+ORDER. The CNNs run LAST despite being the largest block, because everything above them
+is short and completes the manuscript's remaining tables. If the session is cut short it
+should be cut inside the CNN sweep, where each finished architecture is already saved and
+a later run skips it -- not inside a table that would then be half-measured.
+
+WHY THE CONTROL ARMS ARE RE-RUN. Seed evaluations share one image-embedding pass, so
+adding seeds 4-7 means re-evaluating the arm rather than appending to it. That costs one
+embedding pass (~21 min per arm) and overwrites zeroshot_eval_C_*seeds.json with the full
+8-seed result. Going from 4 to 8 seeds tightens the 95% interval from about +/-3.1 pp to
++/-1.6 pp; no seed count resolves the ~0.7 pp gap under test, so the goal is a tight null.
 
 IF IT STOPS EARLY: re-run the same cell. Every stage is resumable and finished work is
-skipped, so a second run continues exactly where this one stopped.
+skipped.
 =====================================================================================
 """
 
 # ---------------------------------------------------------------- settings
-# BUDGET_H is a WALL-CLOCK guard, not a target: the run stops cleanly when it would
-# otherwise overrun, and re-running resumes. Set it to the compute you actually have left
-# (Kaggle shows this on the session page), NOT to 12.
-BUDGET_H         = 4.0
-
-# 4 seeds, not 8. The previous run had 3 (95% CI +/-4.8 pp); 4 nearly halves that to
-# +/-3.1 pp, and 8 would reach +/-1.6 pp -- but 8 seeds costs ~4.0 h of generation plus
-# control-arm evaluation, which on a 5.5 h quota would consume everything and stop right
-# BEFORE the control arms, i.e. spend the whole budget and produce nothing for Section 5.3.
-# The gap under test (~0.7 pp) is not resolvable at ANY seed count (that needs ~54); the
-# goal is a tight, honest null. Add seeds later by re-running with more -- finished seeds
-# are skipped, so seeds accumulate across sessions.
-UNGROUNDED_SEEDS = [0, 1, 2, 3]
+BUDGET_H         = 11.0
+UNGROUNDED_SEEDS = [0, 1, 2, 3, 4, 5, 6, 7]   # 0-3 already exist and are skipped
 SHORT_WORDS      = 50
 LLM_MODEL        = "claude-sonnet-5"
-MAX_TOKENS       = 4000    # 2000 still truncated the grounded schema -> unparseable JSON
-MIN_FILLED       = 48      # of 51; 3 held-out labels are not real diseases
+MAX_TOKENS       = 4000
+MIN_FILLED       = 48
+
+EVAL_SHORT_ARMS  = True    # the truncation control, deferred from tonight
+RUN_CLEAN_EVAL   = True
+RUN_LOCO         = True
+RUN_WISEFT       = True
+
 WISE_EPOCHS      = 3
-WISE_LR          = "1e-5"  # standard CLIP fine-tuning range
+WISE_LR          = "1e-5"
 WISE_ALPHAS      = ["0.0", "0.5", "1.0"]
 
-# False tonight: the two truncation-control arms cost a ~21 min embedding pass each and are
-# a secondary check. Their descriptor text is still generated, so set this True in a later
-# session to evaluate them without regenerating anything.
-EVAL_SHORT_ARMS  = False
-
-# Deferred to the morning session, which has a fresh ~12 h quota and only needs ~4.8 h for
-# the CNNs. Each is a self-contained table, so moving them costs nothing but a second run:
-#   C_clean  label-noise robustness  (secondary to the raw config-C result)
-#   loco     tab_loco
-#   wiseft   tab_wiseft
-# Section 5.3 -- descriptors, zero-shot A/B/C and the control arms -- stays in THIS run,
-# because it is the result the paper is blocked on.
-RUN_CLEAN_EVAL   = False
-RUN_LOCO         = False
-RUN_WISEFT       = False
+CNN_EPOCHS  = 4
+CNN_BATCH   = 96
+CNN_WORKERS = 2
+CNN_AMP     = True
+CNN_MAX_H   = 0.75
+ARCHS = ["mobilenetv3_small_100", "mobilenetv4_conv_small", "fastvit_t8", "efficientnet_b0",
+         "mobilenetv3_large_100", "densenet121", "mobilenetv4_conv_medium", "fastvit_sa12",
+         "convnextv2_nano", "regnety_040", "resnet50", "tf_efficientnetv2_s",
+         "convnextv2_tiny", "resnet101"]
 REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 
@@ -530,7 +519,7 @@ for _arm in _CONTROL_ARMS:
 banner("descriptor coverage")
 sh([sys.executable, "-u", str(S / "descriptor_coverage.py"), "--write"], 0.2, "coverage")
 
-banner("HALFWAY: descriptors + zero-shot + control arms COMPLETE")
+banner("descriptors + control arms COMPLETE")
 
 # ================================================================ 1  linear probe
 if (RESULTS / "probe_seen_C.json").exists():
@@ -610,11 +599,118 @@ elif ok_to_start("wiseft", [], 1.0):
 
 # ================================================================ bundle
 
-bundle("tonight", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
+banner("remaining tables COMPLETE -- starting the CNN sweep")
+
+# A single forward+backward on random data tells us in seconds whether a batch fits,
+# instead of discovering it minutes into a real epoch and losing that epoch.
+_PROBE_SRC = """
+import sys, torch, timm
+arch, bs, amp = sys.argv[1], int(sys.argv[2]), sys.argv[3] == "1"
+try:
+    m = timm.create_model(arch, pretrained=False, num_classes=166).cuda()
+    m = m.to(memory_format=torch.channels_last)
+    o = torch.optim.AdamW(m.parameters(), lr=1e-4)
+    dt = torch.bfloat16 if (amp and torch.cuda.is_bf16_supported()) else torch.float16
+    x = torch.randn(bs, 3, 224, 224, device="cuda").to(memory_format=torch.channels_last)
+    y = torch.randint(0, 166, (bs,), device="cuda")
+    with torch.autocast("cuda", dtype=dt, enabled=amp):
+        loss = torch.nn.functional.cross_entropy(m(x), y)
+    loss.backward(); o.step(); torch.cuda.synchronize()
+    print("FIT")
+except torch.OutOfMemoryError:
+    print("OOM")
+except Exception as e:
+    print("ERR", type(e).__name__, e)
+"""
+_probe = WORK / "_probe_batch.py"
+_probe.write_text(_PROBE_SRC)
+
+def largest_fitting_batch(arch, start):
+    bs = start
+    while bs >= 16:
+        rc, out = sh([sys.executable, str(_probe), arch, str(bs), "1" if CNN_AMP else "0"],
+                     0.08, f"probe {arch}@{bs}")
+        if "FIT" in out:
+            return bs
+        if "OOM" not in out:
+            return bs   # unrelated failure: let the real run surface it properly
+        print(f"    [probe] {arch} @ batch {bs}: OOM -> trying {bs // 2}", flush=True)
+        bs //= 2
+    return 16
+
+banner(f"supervised CNNs ({len(ARCHS)} architectures x {CNN_EPOCHS} epochs)")
+done, skipped = [], []
+for i, arch in enumerate(ARCHS, 1):
+    out_json = RESULTS / f"supervised_{arch}.json"
+    if out_json.exists():
+        print(f"[skip] {arch}", flush=True); done.append(arch); continue
+
+    remaining = [a for a in ARCHS[i - 1:] if not (RESULTS / f"supervised_{a}.json").exists()]
+    if not ok_to_start(f"cnn {arch}", remaining, CNN_MAX_H * 0.55):
+        skipped = remaining
+        break
+
+    fg, tg = gpu_free_gb()
+    print(f"\n--- cnn {i}/{len(ARCHS)}: {arch} --- t+{elapsed_h():.1f} h | "
+          f"VRAM {fg:.1f}/{tg:.1f} GB free", flush=True)
+
+    bs = largest_fitting_batch(arch, CNN_BATCH)
+    if bs != CNN_BATCH:
+        print(f"    [probe] using batch {bs}", flush=True)
+
+    cmd = [sys.executable, "-u", str(S / "supervised_baseline.py"),
+           "--arch", arch, "--epochs", str(CNN_EPOCHS), "--batch", str(bs),
+           "--workers", str(CNN_WORKERS), "--resume"]
+    if CNN_AMP:
+        cmd.append("--amp")
+    rc, out = sh(cmd, CNN_MAX_H, f"cnn {arch}")
+
+    # Only a REAL OOM justifies halving the batch. A timeout does not -- last run that
+    # confusion made convnextv2_tiny restart at a smaller, slower batch.
+    if rc not in (0, 124) and "OutOfMemoryError" in out and bs > 16:
+        print(f"    [retry] genuine OOM -> batch {bs // 2}", flush=True)
+        cmd[cmd.index("--batch") + 1] = str(bs // 2)
+        rc, out = sh(cmd, min(CNN_MAX_H, left_h()), f"cnn {arch} retry")
+
+    # Verify the JSON before clearing anything.
+    if out_json.exists():
+        try:
+            d = json.load(open(out_json, encoding="utf-8"))
+            print(f"    [ok] {arch}: seen_top1={d.get('seen_top1', 0) * 100:.2f}% "
+                  f"({d.get('params_M')}M)", flush=True)
+            done.append(arch)
+        except Exception as e:
+            print(f"    [warn] {arch}: JSON unreadable ({e})", flush=True)
+    else:
+        print(f"    [miss] {arch}: no JSON (rc={rc}) -- recorded as NOT RUN", flush=True)
+
+    for ck in CKPT.glob(f"{arch}*"):
+        try:
+            ck.unlink()
+        except Exception:
+            pass
+    try:
+        import torch, gc
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache(); torch.cuda.ipc_collect()
+    except Exception:
+        pass
+    fg, tg = gpu_free_gb()
+    print(f"    [clear] checkpoints removed; VRAM now {fg:.1f}/{tg:.1f} GB free", flush=True)
+
+print(f"\n[cnn] completed {len(done)}/{len(ARCHS)}: {done}", flush=True)
+if skipped:
+    print(f"[cnn] NOT RUN (budget): {skipped}", flush=True)
+    print("[cnn] Re-run this cell to continue.", flush=True)
+
+
+bundle("morning", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
                    "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
                    "short_arm_words": SHORT_WORDS,
-                   "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR})
-banner("TONIGHT DONE")
+                   "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR,
+                   "cnn_epochs": CNN_EPOCHS, "cnn_completed": done, "cnn_not_run": skipped})
+banner("MORNING DONE" if not skipped else "MORNING INCOMPLETE -- re-run to finish the CNNs")
 print("", flush=True)
-print("MORNING: run kaggle/RUN_PART3_cnns.py in a NEW notebook, and attach THIS", flush=True)
-print("         notebook's output as a dataset so these results carry forward.", flush=True)
+print("Download pde_partmorning.zip, then regenerate the paper tables:", flush=True)
+print("  python docs/paper/make_tex_tables.py && python docs/paper/make_figures.py", flush=True)
