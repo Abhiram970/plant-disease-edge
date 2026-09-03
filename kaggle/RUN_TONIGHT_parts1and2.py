@@ -114,8 +114,28 @@ RESULTS = WORK / "results"; RESULTS.mkdir(exist_ok=True, parents=True)
 CKPT    = WORK / "checkpoints"; CKPT.mkdir(exist_ok=True, parents=True)
 
 banner("bootstrap")
+# A stale clone must actually be gone before cloning. rmtree(ignore_errors=True) can fail
+# silently -- a read-only .git object, a file still held open -- and the clone then aborts
+# with "destination path already exists", killing the whole run at t+0. Retry, then fall
+# back to cloning into a fresh directory rather than dying.
 if REPO.exists():
     shutil.rmtree(REPO, ignore_errors=True)
+if REPO.exists():
+    def _force_rm(func, path, exc):
+        import stat
+        try:
+            os.chmod(path, stat.S_IWRITE); func(path)
+        except Exception:
+            pass
+    shutil.rmtree(REPO, onerror=_force_rm)
+if REPO.exists():
+    _alt = WORK / "pde_fresh"
+    _n = 1
+    while _alt.exists():
+        _n += 1; _alt = WORK / f"pde_fresh{_n}"
+    print(f"[bootstrap] could not remove the stale clone at {REPO}; using {_alt}", flush=True)
+    REPO = _alt
+    S = REPO / "scripts"
 _rc = subprocess.run(["git", "clone", "--depth", "1", "--branch", REPO_REF, REPO_URL, str(REPO)],
                      capture_output=True, text=True)
 if _rc.returncode != 0:
