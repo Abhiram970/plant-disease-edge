@@ -276,7 +276,15 @@ if HAVE_KEY:
             if have >= MIN_FILLED:
                 print(f"[skip] {arm} seed {s} ({have} filled)", flush=True)
                 continue
-            if not ok_to_start(f"{arm} seed {s}", [], 0.3):
+            # Reserve what the DEPENDENT stages still need (zero-shot + control arms).
+            # Guarding only on this seed's own cost let generation consume the whole quota
+            # and stop immediately before the control arms -- spending the budget and
+            # producing nothing for Section 5.3, which is the entire point of the run.
+            _reserve = 1.2 + 0.06 * len(UNGROUNDED_SEEDS) * 4
+            if not ok_to_start(f"{arm} seed {s}", [], 0.3 + _reserve):
+                print(f"[budget] stopping descriptor generation to protect the {_reserve:.1f} h "
+                      f"the zero-shot and control-arm stages still need.", flush=True)
+                print(f"[budget] seeds completed so far are kept and will be used.", flush=True)
                 break
             print(f"\n--- {arm} seed {s} (have {have}, need {MIN_FILLED}) ---", flush=True)
             rc, _ = sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
