@@ -106,7 +106,13 @@ if HAVE_KEY:
             rc, _ = sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
                         "--arm", arm, "--seed", str(s), "--which", "heldout"],
                        0.6, f"{arm} seed {s}")
-            print(f"    -> {filled_count(root, s)} filled", flush=True)
+            _got = filled_count(root, s)
+            print(f"    -> {_got} filled", flush=True)
+            if _got == 0:
+                print(f"    [ERROR] {arm} seed {s} produced NOTHING. The control arms cannot", flush=True)
+                print(f"    [ERROR] run without descriptors -- Section 5.3 will be empty.", flush=True)
+                print(f"    [ERROR] Check the message above (missing manifest, bad API key,", flush=True)
+                print(f"    [ERROR] exhausted credit) before letting this session continue.", flush=True)
             if rc == 3:
                 print("[llm] endpoint reported no credit -> stopping descriptor generation.",
                       flush=True)
@@ -170,6 +176,15 @@ for _arm, _root in (("ungrounded", REPO / "descriptors_ungrounded"),
             print(f"  [reject] {_arm} seed {_s}: {_n}/{MIN_FILLED} usable -> excluded", flush=True)
     USABLE[_arm] = _seeds
     print(f"  {_arm:24} usable seeds: {_seeds}", flush=True)
+if not any(USABLE.values()):
+    print("", flush=True)
+    print("  ####################################################################", flush=True)
+    print("  #  NO DESCRIPTOR ARM IS USABLE. The control arms will not run and   #", flush=True)
+    print("  #  Section 5.3 gets no result -- the main reason for this session.  #", flush=True)
+    print("  #  Zero-shot/probe/LOCO below still work, so the run continues, but #", flush=True)
+    print("  #  fix the cause above and re-run before spending more quota.       #", flush=True)
+    print("  ####################################################################", flush=True)
+    print("", flush=True)
 json.dump(USABLE, open(RESULTS / "descriptor_arm_integrity.json", "w"), indent=1)
 
 # ================================================================ 4  zero-shot A/B/C
