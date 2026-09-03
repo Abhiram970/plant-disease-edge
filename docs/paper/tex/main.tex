@@ -192,10 +192,24 @@ We use SAGE~\citep{arshad2026sage} only, drawing images from the released
 dataset~\citep{sagedata2026} --- $\sim$839\,K images over 335 crops and 1{,}251 disease classes,
 released under the MIT licence --- to avoid the
 ``old, lab-only'' critique of legacy corpora such as PlantVillage~\citep{mohanty2016}, on which
-in-distribution accuracy has long been saturated. We stream-filter shards to our crops with a
-per-class cap and content-hash
-de-duplication, storing images at a longest edge of 288 pixels since every model here operates at
-224.
+%% Cap values, the class-size floor and the selection rule were previously summarised as "a
+%% per-class cap", which is not reproducible: a reader cannot rebuild this subset from the
+%% description. Values verified against config.py (CAP_HELD_PER_CLASS=600,
+%% CAP_TRAIN_PER_CLASS=1000, EVAL_MIN_CLASS_IMAGES=25) and against the build receipt
+%% dataset_summary.json. Selection is prepare_upload.py: sorted(files)[:cap].
+in-distribution accuracy has long been saturated. We stream-filter shards to our crops with
+content-hash de-duplication, storing images at a longest edge of 288 pixels since every model
+here operates at 224. Classes are capped at 600 images for held-out crops and 1{,}000 for seen
+crops, and a class needs at least 25 images to enter the study at all; images are taken in sorted
+filename order up to the cap. Filenames in the released dataset are content hashes, so this order
+is uncorrelated with capture time or any other property of the image: the cap acts as a
+deterministic random sample rather than favouring, say, the earliest-collected photographs, and
+the subset is exactly rebuildable from the released code. The caps bound class imbalance rather than save disk: they are what keep the majority-class
+baseline at 4.2\% on the largest held-out configuration, so a frequency prior cannot masquerade as
+transfer. Nine of the 51 held-out classes reach the 600-image cap, so the held-out set is a
+capped sample of the pinned revision rather than the whole of it. The resulting subset is 84{,}123
+images over 217 classes and 18 crops: 14{,}204 images in the 51 held-out classes and 69{,}919 in
+the 166 seen classes.
 
 We pin the dataset to revision \texttt{bc9bd2899f} (7 May 2026). This is not a formality: SAGE was
 re-released on 24 August 2026 with re-canonicalised crop and disease names, and the later release
