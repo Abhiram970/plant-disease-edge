@@ -705,6 +705,36 @@ if skipped:
     print("[cnn] Re-run this cell to continue.", flush=True)
 
 
+# ---- regenerate the paper's tables and figures inside the run -------------------------
+# make_figures.py reads zeroshot_eval_{A,B,C}.json and probe_seen_{A,B,C}.json directly, so
+# it must run AFTER those land or the ten figures stay on the previous build while every
+# table regenerates -- the build mixture the audit flagged. Both generators are pure
+# matplotlib/json (Agg backend), so they run headless here in seconds, and the rendered
+# .tex and .png are carried out in the bundle.
+banner("regenerate paper tables + figures")
+_docs = REPO / "docs" / "paper"
+for _g in ("make_tex_tables.py", "make_figures.py"):
+    if (_docs / _g).exists():
+        # The generators read the JSONs sitting next to them, so stage this run's results
+        # into docs/paper first.
+        for _f in RESULTS.glob("*.json"):
+            shutil.copy2(_f, _docs / _f.name)
+        _r = subprocess.run([sys.executable, "-u", str(_docs / _g)], text=True, cwd=str(_docs),
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        print(_r.stdout or f"[{_g}] no output", flush=True)
+    else:
+        print(f"[warn] {_g} not found -- regenerate locally after downloading", flush=True)
+
+# Carry the regenerated tex/figures out with the results.
+for _sub in ("tex", "figures"):
+    _src = _docs / _sub
+    if _src.exists():
+        _dst = RESULTS / _sub
+        if _dst.exists():
+            shutil.rmtree(_dst, ignore_errors=True)
+        shutil.copytree(_src, _dst)
+        print(f"[bundle] staged docs/paper/{_sub}", flush=True)
+
 bundle("morning", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
                    "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
                    "short_arm_words": SHORT_WORDS,
