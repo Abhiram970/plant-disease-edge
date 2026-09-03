@@ -79,6 +79,11 @@ MIN_FILLED       = 48      # of 51; 3 held-out labels are not real diseases
 WISE_EPOCHS      = 3
 WISE_LR          = "1e-5"  # standard CLIP fine-tuning range
 WISE_ALPHAS      = ["0.0", "0.5", "1.0"]
+
+# False tonight: the two truncation-control arms cost a ~21 min embedding pass each and are
+# a secondary check. Their descriptor text is still generated, so set this True in a later
+# session to evaluate them without regenerating anything.
+EVAL_SHORT_ARMS  = False
 '''
 
 TAIL = '''
