@@ -424,17 +424,36 @@ if not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean"
 # model-version confound, so losing it defeated the whole experiment.
 _SUF = {"ungrounded": "ung", "grounded_matched": "gm",
         "ungrounded_short": "ungs", "grounded_matched_short": "gms"}
-for _arm in ("ungrounded", "grounded_matched", "ungrounded_short", "grounded_matched_short"):
-    for _s in USABLE.get(_arm, []):
-        _tag = f"C_{_SUF[_arm]}{_s}"
-        if (RESULTS / f"zeroshot_eval_{_tag}.json").exists():
-            print(f"[skip] {_tag}", flush=True); continue
-        if not ok_to_start(_tag, [], 0.25):
-            break
-        banner(f"control arm {_arm} seed {_s}")
-        sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
-            "--strategies", _arm, "--ungrounded-seed", str(_s),
-            "--tiers", "lw11", "lw21", "lw35", "--heavy"], 0.8, _tag)
+# ALL seeds of an arm in ONE process. evaluate.py caches image embeddings per model and
+# reuses them across strategies, but that cache dies with the process: running 16
+# seed-evaluations as 16 subprocesses would re-embed 14,204 images 16 times (~5.5 h,
+# far past the budget). Sharing one process per arm amortises the embedding pass over
+# every seed and brings the whole block to roughly 25 minutes.
+# EVAL_SHORT_ARMS defers the truncation-control arms. They ask whether CLIP's 77-token
+# window confounds the comparison -- a real question, but a SECONDARY one that only matters
+# once the primary null is established, and each costs a full ~21 min embedding pass. The
+# descriptor text is written either way, so they can be evaluated in a later session at no
+# extra generation cost by re-running with EVAL_SHORT_ARMS = True.
+_CONTROL_ARMS = ["ungrounded", "grounded_matched"]
+if globals().get("EVAL_SHORT_ARMS", True):
+    _CONTROL_ARMS += ["ungrounded_short", "grounded_matched_short"]
+else:
+    print("[control] short arms deferred (EVAL_SHORT_ARMS=False); descriptor text is still",
+          flush=True)
+    print("[control] written, so a later run can evaluate them without regenerating.", flush=True)
+for _arm in _CONTROL_ARMS:
+    _seeds = USABLE.get(_arm, [])
+    if not _seeds:
+        continue
+    _tag = f"C_{_SUF[_arm]}seeds"
+    if (RESULTS / f"zeroshot_eval_{_tag}.json").exists():
+        print(f"[skip] {_tag}", flush=True); continue
+    if not ok_to_start(_tag, [], 0.35):
+        break
+    banner(f"control arm {_arm}: seeds {_seeds}")
+    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
+        "--strategies", _arm, "--ungrounded-seeds", *[str(x) for x in _seeds],
+        "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.0, _tag)
 
 # ================================================================ bundle
 banner("coverage + bundle")
