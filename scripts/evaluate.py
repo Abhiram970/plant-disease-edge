@@ -59,6 +59,13 @@ def main():
     ap.add_argument("--teachers", action="store_true", help="also evaluate the reference/teacher VLMs")
     ap.add_argument("--exp", choices=list(C.EXPERIMENTS), default="C",
                     help="scale-study subset: A (3 held) / B (6) / C (8, all)")
+    ap.add_argument("--paired-arms", nargs="+", default=None,
+                    help="Restrict evaluation to classes that EVERY named arm filled "
+                         "genuinely, so no arm falls through to `rich`. Without this the "
+                         "arms are not comparable: an arm that fills 44 of 51 classes is "
+                         "86%% its own text and 14%% rich, so a comparison against a 51/51 "
+                         "arm measures grounding mixed with a coverage gap. Pass the same "
+                         "arm names given to --strategies.")
     ap.add_argument("--clean", action="store_true",
                     help="merge SAGE's duplicate disease labels and drop non-disease labels "
                          "(see config.LABEL_ALIASES / EXCLUDE_LABELS). Writes a separate "
@@ -85,6 +92,45 @@ def main():
               f"({clean_stats['merged_images']:,} imgs relabelled, "
               f"{clean_stats['dropped_images']:,} dropped)")
     classes = sorted({r["label"] for r in rows})
+
+    # Paired subset: keep only classes every named arm filled with its OWN text.
+    # descriptors.text_for falls through to `rich` when an arm lacks a record, so an arm
+    # with gaps is silently part-rich. Intersecting the arms removes that confound at the
+    # cost of a smaller label space, which is the right trade when the comparison IS the
+    # experiment. The dropped classes are reported so the reduction is never invisible.
+    paired_stats = None
+    if args.paired_arms:
+        import descriptors as _D
+        seeds_for_pairing = args.ungrounded_seeds or (
+            [args.ungrounded_seed] if args.ungrounded_seed is not None else [0])
+        keep, dropped = [], {}
+        for lab in classes:
+            crop, dis = lab.split("|", 1)
+            missing = []
+            for arm in args.paired_arms:
+                if arm not in _D.ARM_DIRS:
+                    continue
+                # a class counts as covered only if EVERY seed of that arm has real text
+                for sd in seeds_for_pairing:
+                    os.environ["PDE_UNGROUNDED_SEED"] = str(sd)
+                    if not _D._seeded_arm(arm, crop, dis):
+                        missing.append(f"{arm}@{sd}")
+                        break
+            if missing:
+                dropped[lab] = missing
+            else:
+                keep.append(lab)
+        paired_stats = {"requested_classes": len(classes), "paired_classes": len(keep),
+                        "dropped": {k: v for k, v in sorted(dropped.items())}}
+        print(f"[paired] arms {args.paired_arms}: {len(classes)} -> {len(keep)} classes "
+              f"({len(dropped)} dropped because at least one arm lacked its own text)")
+        for lab, miss in sorted(dropped.items()):
+            print(f"[paired]   drop {lab}  (missing in {', '.join(miss)})")
+        if len(keep) < 10:
+            sys.exit(f"[paired] only {len(keep)} classes survive -- too few to compare.")
+        classes = sorted(keep)
+        rows = [r for r in rows if r["label"] in set(classes)]
+
     print(f"[eval] experiment {args.exp}: held crops = {held_crops}")
     chance = 1.0 / len(classes)
     crops = sorted({c.split("|")[0] for c in classes})
@@ -136,6 +182,8 @@ def main():
 
     C.RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = "_clean" if args.clean else ""
+    if args.paired_arms:
+        suffix += "_paired"
     if args.ungrounded_seed is not None:
         # Key the filename on the ARM as well as the seed. With "_ung{seed}" alone, the
         # ungrounded and grounded_matched arms at the same seed wrote to the SAME file, so
@@ -161,6 +209,8 @@ def main():
                                "seeds": args.ungrounded_seeds, "chance": chance, "n_classes": len(classes), "crops": crops,
                                "n_images": len(rows), "clean": bool(args.clean),
                                "clean_stats": clean_stats,
+                               "paired_arms": args.paired_arms,
+                               "paired_stats": paired_stats,
                                "coverage": coverage, "models": results}, indent=2))
     print(f"\n[eval] saved {out}")
 
