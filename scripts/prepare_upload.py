@@ -168,7 +168,7 @@ NEXT -- upload {out.parent} to Kaggle as a PRIVATE dataset titled  pde-sage-data
   CLI (needs ~/.kaggle/kaggle.json, and edit the id in dataset-metadata.json first):
       kaggle datasets create -p "{out.parent}"
 
-Then paste kaggle/RUN_THIS.py into a Kaggle notebook with that dataset attached.
+Then paste kaggle/LAUNCH.py into a Kaggle notebook with that dataset attached.
 """)
 
 

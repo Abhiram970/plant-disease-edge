@@ -345,9 +345,19 @@ text with another class, the largest groups being seven classes keyed on \emph{s
 coverage stays flat (68.8\%, 61.8\%, 66.7\%), so any advantage over this baseline measures per-class
 \emph{distinctness}, not sourcing. This is a limitation of symptom-bank retrieval as we implemented
 it, not of per-class generation methods such as DCLIP or CuPL, which emit text per class and cannot
-collide. To separate the two effects we add an ungrounded-generation control: the same model, schema
-and fall-through behaviour, sampled at temperature 1.0 over three seeds, with only the requirement to
-cite a retrievable source removed.
+%% METHOD CORRECTED 2026-09-06. The control previously shared the arms' fall-through behaviour,
+%% which does NOT isolate grounding: descriptors.text_for falls back to `rich` wherever an arm has
+%% no record, so an arm covering 41 of 51 classes is 80% its own text and 20% rich, and comparing
+%% it against a fully covered arm measures grounding mixed with a coverage gap -- the same error
+%% that forced the original headline to be retracted. Both arms are now restricted to the classes
+%% every seed of both filled genuinely (evaluate.py --paired-arms).
+collide. To separate the two effects we add an ungrounded-generation control: the same model and
+schema, sampled at temperature 1.0 over multiple seeds, with only the requirement to cite a
+retrievable source removed. Because a descriptor arm falls back to the keyword bank wherever it
+has no record, an arm with gaps would be part bank rather than wholly its own text; we therefore
+evaluate both arms on the intersection of classes every seed of both arms filled, so that the
+sourcing requirement is the only difference between them. The intersection is smaller than the
+full held-out set and chance rises accordingly, which we report alongside the result.
 
 %% WRITTEN 2026-09-02 from the completed control arm. Numbers are PENDING final regeneration (a
 %% placeholder-leak fix landed after this run; it moves grounded UP, which only strengthens the

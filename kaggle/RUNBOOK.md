@@ -1,11 +1,29 @@
-# Kaggle runbook — one file, run it 2–3 times
+# Kaggle runbook
 
-Everything is in **`kaggle/RUN_THIS.py`**. Paste the whole file as one cell, run it, let it commit,
-publish its Output as a Dataset, attach that to a fresh copy, run the *same file* again. It picks up
-exactly where it stopped. Nothing is ever redone.
+Paste **`kaggle/LAUNCH.py`** as one cell, set `PART`, run. It clones the pinned branch and
+executes the chosen stage — there is nothing else to copy, and no risk of pasting a file that
+only prints itself.
 
-The previous single-cell attempt burned 12 hours and committed **nothing**. This file cannot do that:
-it stops itself at `BUDGET_H = 8.5` and prints exactly what is left.
+```python
+!git clone -q --depth 1 --branch paper/draft-audit-2026-09-01 \
+  https://github.com/Abhiram970/plant-disease-edge.git /tmp/pde
+%run /tmp/pde/kaggle/LAUNCH.py
+```
+
+| `PART` | what it runs | approx. | API key |
+|---|---|---|---|
+| `"tonight"` | descriptors, zero-shot A/B/C, control arms, probe, abstention | 3.9 h | required |
+| `"morning"` | extra seeds, paired comparison, remaining tables, 14 CNNs | 7.8 h | required |
+| `"1"` / `"2"` / `"3"` | the same work split into single-purpose stages | — | part 1 only |
+
+Every stage is resumable. A run that reaches its budget stops cleanly, prints what is left, and
+a re-run of the same cell continues from there — finished work is skipped, never redone. When a
+stage completes, publish the notebook Output as a Dataset and attach it to the next run so
+results and descriptor text carry forward.
+
+The stages are generated from one shared bootstrap (`_pde_common.py`) by `build_parts.py`,
+`build_tonight.py` and `build_morning.py`, so a fix lands in every runner at once. Edit the
+generators, not the generated `RUN_*.py` files.
 
 ---
 
@@ -49,7 +67,7 @@ Datasets → New Dataset → drag the folder. (The `kaggle` CLI also works, but 
 
 Everything trains and evaluates at 224 px, so storing more is ~4× the bytes for nothing.
 
-**B. Let Kaggle fetch it.** `RUN_THIS.py` does this automatically when no images are attached. It
+**B. Let Kaggle fetch it.** The runner does this automatically when no images are attached. It
 pulls the pinned May release — **114 GB in ~10.7 GB shards**, so expect it to take most of a session
 and possibly two. Run it on a **CPU session** first: the fetch never touches the GPU, and a CPU
 session does not spend the 30 h/week GPU quota. The file detects this, fetches, and exits telling you
