@@ -87,9 +87,16 @@ if HAVE_KEY:
     banner("descriptors")
     for arm, root in (("ungrounded", REPO / "descriptors_ungrounded"),
                       ("grounded",   REPO / "descriptors_grounded_matched")):
+        # A seed already at this arm's ceiling must not be regenerated: seven held-out
+        # classes are systematically unfillable (three Wheat Resistance_Phenotype labels that
+        # config.EXCLUDE_LABELS already flags as non-diseases, plus four the grounding prompt
+        # correctly refuses), so grounded_matched tops out near 44 of 51. Re-running such a
+        # seed spends API calls to reproduce the same result.
+        _ceiling = arm_ceiling(root, UNGROUNDED_SEEDS)
+        _enough = MIN_FILLED if _ceiling >= MIN_FILLED else max(_ceiling - 2, 1)
         for s in UNGROUNDED_SEEDS:
             have = filled_count(root, s)
-            if have >= MIN_FILLED:
+            if have >= _enough:
                 print(f"[skip] {arm} seed {s} ({have} filled)", flush=True)
                 continue
             # Reserve what the DEPENDENT stages still need (zero-shot + control arms).
@@ -167,13 +174,7 @@ for _arm, _root in (("ungrounded", REPO / "descriptors_ungrounded"),
                     ("grounded_matched", REPO / "descriptors_grounded_matched"),
                     ("ungrounded_short", REPO / "descriptors_ungrounded_short"),
                     ("grounded_matched_short", REPO / "descriptors_grounded_matched_short")):
-    _seeds = []
-    for _s in UNGROUNDED_SEEDS:
-        _n = filled_count(_root, _s)
-        if _n >= MIN_FILLED:
-            _seeds.append(_s)
-        elif (Path(_root) / str(_s)).exists():
-            print(f"  [reject] {_arm} seed {_s}: {_n}/{MIN_FILLED} usable -> excluded", flush=True)
+    _seeds = usable_seeds(_root, UNGROUNDED_SEEDS, MIN_FILLED)
     USABLE[_arm] = _seeds
     print(f"  {_arm:24} usable seeds: {_seeds}", flush=True)
 if not any(USABLE.values()):

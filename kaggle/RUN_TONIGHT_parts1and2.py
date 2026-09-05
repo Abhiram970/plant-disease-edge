@@ -287,6 +287,45 @@ def filled_count(root, seed):
             pass
     return n
 
+def arm_ceiling(root, seeds):
+    """The most records any seed of this arm actually achieved.
+
+    A fixed MIN_FILLED cannot work here. Some held-out labels are not diseases at all --
+    config.EXCLUDE_LABELS already names the three Wheat Resistance_Phenotype entries -- and a
+    grounding prompt that forbids uncited claims correctly refuses them. In the 2026-09-04 run
+    seven classes failed in EVERY grounded_matched seed (the three phenotypes plus
+    Coffee/Berry_Blotch, Coffee/Phoma, Orange/Whisker_Mold, Wheat/Fusarium_Wilts), putting the
+    real ceiling at 44 of 51. MIN_FILLED=48 therefore demanded more than the arm could ever
+    produce, and every seed was rejected -- discarding 2.9 h of generation and leaving the
+    matched arm, the one that removes the model-version confound, unevaluated.
+
+    Judging each seed against the best its own arm managed keeps the gate meaningful (a seed
+    that fell short of its peers is still excluded) without demanding the impossible.
+    """
+    return max((filled_count(root, s) for s in seeds), default=0)
+
+
+def usable_seeds(root, seeds, min_filled, tolerance=2):
+    """Seeds good enough to evaluate: at least min_filled, or within `tolerance` of the
+    arm's own ceiling when that ceiling is itself below min_filled."""
+    ceiling = arm_ceiling(root, seeds)
+    floor = min_filled if ceiling >= min_filled else max(ceiling - tolerance, 1)
+    out = []
+    for s in seeds:
+        n = filled_count(root, s)
+        if n == 0:
+            continue
+        if n >= floor:
+            out.append(s)
+        elif (Path(root) / str(s)).exists():
+            print(f"  [reject] {Path(root).name} seed {s}: {n} filled, below {floor}", flush=True)
+    if 0 < ceiling < min_filled and out:
+        print(f"  [note] {Path(root).name}: ceiling is {ceiling}/{min_filled} because some "
+              f"held-out labels are not diseases and the grounding prompt correctly refuses "
+              f"them; judging seeds against that ceiling instead.", flush=True)
+    return out
+
+
 def bundle(part, extra_receipt=None):
     """Zip the JSON + descriptor text (no images, no checkpoints) and show a download link."""
     stage = WORK / "_bundle"
@@ -358,9 +397,16 @@ if HAVE_KEY:
     banner("descriptors")
     for arm, root in (("ungrounded", REPO / "descriptors_ungrounded"),
                       ("grounded",   REPO / "descriptors_grounded_matched")):
+        # A seed already at this arm's ceiling must not be regenerated: seven held-out
+        # classes are systematically unfillable (three Wheat Resistance_Phenotype labels that
+        # config.EXCLUDE_LABELS already flags as non-diseases, plus four the grounding prompt
+        # correctly refuses), so grounded_matched tops out near 44 of 51. Re-running such a
+        # seed spends API calls to reproduce the same result.
+        _ceiling = arm_ceiling(root, UNGROUNDED_SEEDS)
+        _enough = MIN_FILLED if _ceiling >= MIN_FILLED else max(_ceiling - 2, 1)
         for s in UNGROUNDED_SEEDS:
             have = filled_count(root, s)
-            if have >= MIN_FILLED:
+            if have >= _enough:
                 print(f"[skip] {arm} seed {s} ({have} filled)", flush=True)
                 continue
             # Reserve what the DEPENDENT stages still need (zero-shot + control arms).
@@ -438,13 +484,7 @@ for _arm, _root in (("ungrounded", REPO / "descriptors_ungrounded"),
                     ("grounded_matched", REPO / "descriptors_grounded_matched"),
                     ("ungrounded_short", REPO / "descriptors_ungrounded_short"),
                     ("grounded_matched_short", REPO / "descriptors_grounded_matched_short")):
-    _seeds = []
-    for _s in UNGROUNDED_SEEDS:
-        _n = filled_count(_root, _s)
-        if _n >= MIN_FILLED:
-            _seeds.append(_s)
-        elif (Path(_root) / str(_s)).exists():
-            print(f"  [reject] {_arm} seed {_s}: {_n}/{MIN_FILLED} usable -> excluded", flush=True)
+    _seeds = usable_seeds(_root, UNGROUNDED_SEEDS, MIN_FILLED)
     USABLE[_arm] = _seeds
     print(f"  {_arm:24} usable seeds: {_seeds}", flush=True)
 if not any(USABLE.values()):
