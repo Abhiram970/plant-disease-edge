@@ -496,6 +496,41 @@ _SUF = {"ungrounded": "ung", "grounded_matched": "gm",
 # once the primary null is established, and each costs a full ~21 min embedding pass. The
 # descriptor text is written either way, so they can be evaluated in a later session at no
 # extra generation cost by re-running with EVAL_SHORT_ARMS = True.
+# ============================================== 5a  PAIRED control comparison (Section 5.3)
+# THE result the paper's Section 5.3 rests on. The per-arm runs above evaluate each arm over
+# all 51 held-out classes, but descriptors.text_for falls through to `rich` wherever an arm
+# lacks a record -- so an arm that fills 41 of 51 is 80% its own text and 20% rich. Comparing
+# that against a 51/51 arm measures grounding CONFOUNDED with a coverage gap, which is the
+# same class of error that forced the original headline to be retracted.
+#
+# This run restricts both arms to the classes every seed of every arm filled genuinely, so
+# neither side falls through and the sourcing constraint is the only difference between them.
+# The label space shrinks (41 of 51 on the 2026-09-04 descriptors) and chance rises
+# accordingly, which is stated in the output rather than hidden.
+_PAIR = [a for a in ("ungrounded", "grounded_matched") if USABLE.get(a)]
+if len(_PAIR) == 2:
+    _pair_seeds = sorted(set(USABLE[_PAIR[0]]) & set(USABLE[_PAIR[1]]))
+    _pair_out = RESULTS / "zeroshot_eval_C_paired.json"
+    if not _pair_seeds:
+        print("[paired] the two arms share no usable seed -> skipped", flush=True)
+    elif _pair_out.exists():
+        print("[skip] paired control comparison", flush=True)
+    elif ok_to_start("paired control comparison", [], 0.6):
+        banner(f"PAIRED control comparison (Section 5.3): seeds {_pair_seeds}")
+        sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
+            "--strategies", *_PAIR,
+            "--paired-arms", *_PAIR,
+            "--ungrounded-seeds", *[str(x) for x in _pair_seeds],
+            "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "paired")
+        # Turn the paired run into the claim Section 5.3 actually makes: a quantified
+        # equivalence bound plus per-encoder replication, rather than "no difference found".
+        if (S / "analyse_control_arms.py").exists():
+            sh([sys.executable, "-u", str(S / "analyse_control_arms.py")], 0.1, "5.3 stats")
+else:
+    print(f"[paired] need both arms usable, have {_PAIR} -> skipped", flush=True)
+    print("[paired] Section 5.3's clean comparison will NOT be produced.", flush=True)
+
+
 _CONTROL_ARMS = ["ungrounded", "grounded_matched"]
 if globals().get("EVAL_SHORT_ARMS", True):
     _CONTROL_ARMS += ["ungrounded_short", "grounded_matched_short"]
@@ -528,36 +563,6 @@ for _arm in _CONTROL_ARMS:
     sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
         "--strategies", _arm, "--ungrounded-seeds", *[str(x) for x in _seeds],
         "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.0, _tag)
-
-# ============================================== 5b  PAIRED control comparison (Section 5.3)
-# THE result the paper's Section 5.3 rests on. The per-arm runs above evaluate each arm over
-# all 51 held-out classes, but descriptors.text_for falls through to `rich` wherever an arm
-# lacks a record -- so an arm that fills 41 of 51 is 80% its own text and 20% rich. Comparing
-# that against a 51/51 arm measures grounding CONFOUNDED with a coverage gap, which is the
-# same class of error that forced the original headline to be retracted.
-#
-# This run restricts both arms to the classes every seed of every arm filled genuinely, so
-# neither side falls through and the sourcing constraint is the only difference between them.
-# The label space shrinks (41 of 51 on the 2026-09-04 descriptors) and chance rises
-# accordingly, which is stated in the output rather than hidden.
-_PAIR = [a for a in ("ungrounded", "grounded_matched") if USABLE.get(a)]
-if len(_PAIR) == 2:
-    _pair_seeds = sorted(set(USABLE[_PAIR[0]]) & set(USABLE[_PAIR[1]]))
-    _pair_out = RESULTS / "zeroshot_eval_C_paired.json"
-    if not _pair_seeds:
-        print("[paired] the two arms share no usable seed -> skipped", flush=True)
-    elif _pair_out.exists():
-        print("[skip] paired control comparison", flush=True)
-    elif ok_to_start("paired control comparison", [], 0.6):
-        banner(f"PAIRED control comparison (Section 5.3): seeds {_pair_seeds}")
-        sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
-            "--strategies", *_PAIR,
-            "--paired-arms", *_PAIR,
-            "--ungrounded-seeds", *[str(x) for x in _pair_seeds],
-            "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "paired")
-else:
-    print(f"[paired] need both arms usable, have {_PAIR} -> skipped", flush=True)
-    print("[paired] Section 5.3's clean comparison will NOT be produced.", flush=True)
 
 # ================================================================ bundle
 banner("coverage + bundle")
