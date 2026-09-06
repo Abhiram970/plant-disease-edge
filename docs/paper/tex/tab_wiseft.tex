@@ -8,9 +8,9 @@
 $\alpha$ & Seen & Unseen (zero-shot) \\
 \midrule
 0.0 (frozen) & 82.6\% & 17.0\% \\
-0.5 (WiSE-FT) & 87.7\% & 16.3\% \\
+0.50 & 87.7\% & 16.3\% \\
 1.0 (naive fine-tune) & 90.3\% & 8.8\% \\
 \bottomrule
 \end{tabular}
-\begin{flushleft}\footnotesize $\alpha=0$ reproduces the frozen baseline exactly, validating the interpolation. $\alpha=1$ is catastrophic forgetting. $\alpha=0.5$ is the deployable setting.\end{flushleft}
+\begin{flushleft}\footnotesize $\alpha=0$ reproduces the frozen baseline, validating the interpolation. $\alpha=1$ is naive fine-tuning and shows catastrophic forgetting. Seen accuracy rises monotonically with $\alpha$ while unseen accuracy falls, so the dial trades one for the other as intended; $\alpha=0.50$ maximises their sum.\end{flushleft}
 \end{table}

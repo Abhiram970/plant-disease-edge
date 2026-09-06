@@ -332,6 +332,14 @@ def main():
     out = {
         "tier": args.model, "model": name, "pretrained": pretrained,
         "protocol": f"nested-{args.exp}",
+        # Bumped whenever the fine-tuning protocol changes in a way that invalidates earlier
+        # sweeps, so a runner can tell a repaired result from a carried-forward stale one
+        # instead of re-running a good sweep on every resume.
+        #   1  original: head randomly initialised and trained jointly with the encoder
+        #   2  head warm-started from the frozen-feature fit; encoder excluded from weight
+        #      decay; bf16 only where native
+        "protocol_version": 2,
+        "head_init": "warm_start_frozen_probe",
         "seen_classes": len(seen_classes), "seen_images": len(seen_rows),
         "unseen_classes": len(unseen_classes), "unseen_images": len(unseen_rows),
         "unseen_chance": round(1.0 / max(len(unseen_classes), 1), 6),

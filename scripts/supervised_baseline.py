@@ -194,34 +194,31 @@ def main():
             if _chlast:
                 x = x.to(memory_format=torch.channels_last)
             opt.zero_grad(set_to_none=True)
-            try:
-                with torch.autocast("cuda", dtype=_adt,
-                                    enabled=(_adt is not torch.float32)):
-                    loss = F.cross_entropy(model(x), y)
-                if scaler.is_enabled():
-                    scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
-                else:
-                    loss.backward(); opt.step()
-            except RuntimeError as e:
-                # cuDNN has no kernel for this (dtype, memory-format, conv) combination.
-                # Step down the ladder and retry the same batch rather than losing the arch.
-                if _ENGINE_ERR not in str(e) or _plan_i + 1 >= len(_plan):
-                    raise
-                _plan_i += 1
-                print(f"[baseline] cuDNN found no engine for {_plan[_plan_i - 1][0]}; "
-                      f"falling back to {_plan[_plan_i][0]}", flush=True)
-                opt.zero_grad(set_to_none=True)
-                torch.cuda.empty_cache()
-                _adt, _chlast, scaler = _apply(_plan[_plan_i])
-                x = x.to(memory_format=torch.channels_last if _chlast
-                         else torch.contiguous_format)
-                with torch.autocast("cuda", dtype=_adt,
-                                    enabled=(_adt is not torch.float32)):
-                    loss = F.cross_entropy(model(x), y)
-                if scaler.is_enabled():
-                    scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
-                else:
-                    loss.backward(); opt.step()
+            # Try the current precision; on a missing-kernel error step down the ladder and
+            # retry the SAME batch. Looping rather than retrying once matters because the
+            # step below may itself lack a kernel: on the T4 a depthwise conv can reject both
+            # channels_last variants and only succeed at contiguous fp32.
+            while True:
+                try:
+                    with torch.autocast("cuda", dtype=_adt,
+                                        enabled=(_adt is not torch.float32)):
+                        loss = F.cross_entropy(model(x), y)
+                    if scaler.is_enabled():
+                        scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
+                    else:
+                        loss.backward(); opt.step()
+                    break
+                except RuntimeError as e:
+                    if _ENGINE_ERR not in str(e) or _plan_i + 1 >= len(_plan):
+                        raise
+                    _plan_i += 1
+                    print(f"[baseline] cuDNN found no engine for {_plan[_plan_i - 1][0]}; "
+                          f"falling back to {_plan[_plan_i][0]}", flush=True)
+                    opt.zero_grad(set_to_none=True)
+                    torch.cuda.empty_cache()
+                    _adt, _chlast, scaler = _apply(_plan[_plan_i])
+                    x = x.to(memory_format=torch.channels_last if _chlast
+                             else torch.contiguous_format)
             run += loss.item(); nb += 1
         model.eval(); correct = tot = 0
         with torch.no_grad():

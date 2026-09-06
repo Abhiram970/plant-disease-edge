@@ -199,18 +199,53 @@ def tab_wiseft():
         return
     _legacy = "protocol" not in j
     _proto = j.get("protocol", "pilot unseen set with nested-C seen set -- MIXED PROTOCOLS")
-    lab = {0.0: "0.0 (frozen)", 0.5: "0.5 (WiSE-FT)", 1.0: "1.0 (naive fine-tune)"}
-    body = [f"{lab.get(s['alpha'], s['alpha'])} & {pct(s['seen'])} & {pct(s['unseen'])} \\\\"
-            for s in j["sweep"]]
+    sweep = j["sweep"]
+
+    # A sweep carrying warnings failed its own sanity gates, and the 2026-09-06 run showed
+    # what that looks like: seen ran 58.7 -> 45.1 -> 63.8, a midpoint below both endpoints,
+    # so the weights were not linearly connected and no row of the table meant anything.
+    # Say so in the caption rather than printing the numbers as if they were usable.
+    _warn = j.get("warnings") or []
+
+    # The footnote used to assert that alpha=0.5 is the deployable setting no matter what the
+    # sweep showed -- the one claim the broken run most conspicuously refuted. Derive the
+    # recommendation from the data: the alpha maximising seen+unseen, which is what
+    # scripts/wiseft.py records as `best`.
+    _best = j.get("best") or max(sweep, key=lambda r: r["seen"] + r["unseen"])
+    _mono = all(sweep[i]["seen"] <= sweep[i + 1]["seen"] + 1e-9 for i in range(len(sweep) - 1))
+
+    lab = {0.0: "0.0 (frozen)", 1.0: "1.0 (naive fine-tune)"}
+    body = []
+    for r in sweep:
+        name = lab.get(r["alpha"], "%.2f" % r["alpha"])
+        body.append(name + " & " + pct(r["seen"]) + " & " + pct(r["unseen"]) + r" \\")
+
+    _cap = (f"WiSE-FT weight ensembling on {j['model']}: the seen/unseen trade-off as a single "
+            f"dial ({j['seen_classes']} seen classes, {j['seen_images']:,} images; "
+            f"{j.get('unseen_classes', '?')} unseen classes; protocol: {_proto}).")
+    if _legacy:
+        _cap += " NOTE: legacy file, protocols differ between the two columns."
+    if _warn:
+        _cap += (" NOTE: this sweep did not pass its own consistency checks and is reported "
+                 "for completeness only.")
+
+    _foot = ("$\\alpha=0$ reproduces the frozen baseline, validating the interpolation. "
+             "$\\alpha=1$ is naive fine-tuning and shows catastrophic forgetting. ")
+    if _warn:
+        # Trim on a word boundary: a mid-word cut reads as a typesetting error rather than
+        # as a deliberately abbreviated warning.
+        _w = _warn[0].split(" -- ")[0].rstrip(" .")
+        _foot += ("The intermediate points are not interpretable here: " + _w + ". ")
+    elif _mono:
+        _foot += (f"Seen accuracy rises monotonically with $\\alpha$ while unseen accuracy "
+                  f"falls, so the dial trades one for the other as intended; "
+                  f"$\\alpha={_best['alpha']:.2f}$ maximises their sum.")
+    else:
+        _foot += (f"$\\alpha={_best['alpha']:.2f}$ maximises the sum of the two columns.")
+
     write("tab_wiseft.tex", wrap(
-        f"WiSE-FT weight ensembling on {j['model']}: the seen/unseen trade-off as a single dial "
-        f"({j['seen_classes']} seen classes, {j['seen_images']:,} images; "
-        f"{j.get('unseen_classes', '?')} unseen classes; protocol: {_proto})."
-        + (" NOTE: legacy file, protocols differ between the two columns." if _legacy else ""),
-        "tab:wiseft", "lrr",
-        "$\\alpha$ & Seen & Unseen (zero-shot) \\\\", body,
-        "$\\alpha=0$ reproduces the frozen baseline exactly, validating the interpolation. "
-        "$\\alpha=1$ is catastrophic forgetting. $\\alpha=0.5$ is the deployable setting."))
+        _cap, "tab:wiseft", "lrr",
+        "$\\alpha$ & Seen & Unseen (zero-shot) \\\\", body, _foot))
 
 
 def tab_edge():

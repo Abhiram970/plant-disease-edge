@@ -352,12 +352,15 @@ def bundle(part, extra_receipt=None):
         print(f"\nDownload from the Output tab: {zp}", flush=True)
     return zp
 
-_stale = RESULTS / "wiseft.json"
-if _stale.exists():
-    _keep = RESULTS / "wiseft_SUPERSEDED_2026-09-06.json"
-    _stale.replace(_keep)
-    print(f"[wiseft] quarantined the superseded sweep -> {_keep.name}", flush=True)
-    print("[wiseft] (alpha=0.5 fell below both endpoints; head warmup is the fix)", flush=True)
+def _wiseft_is_current():
+    """True when results/wiseft.json came from the repaired protocol (see scripts/wiseft.py)."""
+    _p = RESULTS / "wiseft.json"
+    if not _p.exists():
+        return False
+    try:
+        return int(json.loads(_p.read_text(encoding="utf-8")).get("protocol_version", 0)) >= 2
+    except Exception:
+        return False
 
 # ================================================================ 3  WiSE-FT
 # workers=0 on purpose: a CUDA context and a loaded model exist before the loader is
@@ -366,8 +369,22 @@ if not globals().get("RUN_WISEFT", True):
     print("[skip] wiseft (RUN_WISEFT=False)", flush=True)
 elif not (S / "wiseft.py").exists():
     print("\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)
+elif _wiseft_is_current():
+    print("[skip] wiseft (results/wiseft.json already uses protocol_version 2)", flush=True)
 elif ok_to_start("wiseft", [], 1.0):
     banner("WiSE-FT alpha sweep (both sides under one protocol)")
+    _stale = RESULTS / "wiseft.json"
+    if _stale.exists():
+        _keep = RESULTS / "wiseft_SUPERSEDED_2026-09-06.json"
+        if not _keep.exists():
+            _stale.replace(_keep)
+            print(f"[wiseft] quarantined the superseded sweep -> {_keep.name}", flush=True)
+            print("[wiseft] (alpha=0.5 fell below both endpoints; head warmup is the fix)",
+                  flush=True)
+        else:
+            _stale.unlink()
+            print("[wiseft] discarded a carried-forward pre-fix sweep "
+                  f"({_keep.name} already holds the record)", flush=True)
     # Fine-tuning the whole visual tower needs far more memory than the frozen passes that
     # precede it, so WiSE-FT is the one stage here that can OOM. Try progressively smaller
     # batches rather than losing the stage; if none fit, carry on -- probe and LOCO are

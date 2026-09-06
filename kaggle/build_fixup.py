@@ -78,12 +78,51 @@ WISE = WISE.replace(
 # If the re-run then failed for any reason, make_tex_tables.py would read that file and quietly
 # reprint the broken sweep as though it were fresh. Move it aside first: the table generator
 # cannot find it, and the old numbers are still on disk under a name that says what they are.
-WISE = '''_stale = RESULTS / "wiseft.json"
-if _stale.exists():
-    _keep = RESULTS / "wiseft_SUPERSEDED_2026-09-06.json"
-    _stale.replace(_keep)
-    print(f"[wiseft] quarantined the superseded sweep -> {_keep.name}", flush=True)
-    print("[wiseft] (alpha=0.5 fell below both endpoints; head warmup is the fix)", flush=True)
+# Dropping the guard is not enough on its own. The bootstrap copies every *.json forward from
+# the attached dataset, so the superseded wiseft.json lands in results/ before this stage runs.
+# If the re-run then failed, make_tex_tables.py would read that file and quietly reprint the
+# broken sweep as though it were fresh.
+#
+# The move has to happen INSIDE the branch that is actually about to re-run WiSE-FT, not at
+# module level: quarantining first and skipping afterwards (RUN_WISEFT off, wiseft.py absent,
+# or the budget gate declining) would leave no wiseft.json at all, and tab_wiseft would fall
+# back to the legacy mixed-protocol file without the log ever saying so.
+WISE = WISE.replace(
+    '''    banner("WiSE-FT alpha sweep (both sides under one protocol)")''',
+    '''    banner("WiSE-FT alpha sweep (both sides under one protocol)")
+    _stale = RESULTS / "wiseft.json"
+    if _stale.exists():
+        _keep = RESULTS / "wiseft_SUPERSEDED_2026-09-06.json"
+        if not _keep.exists():
+            _stale.replace(_keep)
+            print(f"[wiseft] quarantined the superseded sweep -> {_keep.name}", flush=True)
+            print("[wiseft] (alpha=0.5 fell below both endpoints; head warmup is the fix)",
+                  flush=True)
+        else:
+            _stale.unlink()
+            print("[wiseft] discarded a carried-forward pre-fix sweep "
+                  f"({_keep.name} already holds the record)", flush=True)''')
+
+# A resume must not re-run a sweep that is already correct. The guard cannot simply test for
+# wiseft.json -- that is the file this runner exists to replace -- so it tests the protocol
+# version the script stamps into its own output: 2 means the head is warm-started from the
+# frozen-feature fit, which is the fix. Anything older, or unstamped, is re-run.
+WISE = WISE.replace(
+    '''elif ok_to_start("wiseft", [], 1.0):''',
+    '''elif _wiseft_is_current():
+    print("[skip] wiseft (results/wiseft.json already uses protocol_version 2)", flush=True)
+elif ok_to_start("wiseft", [], 1.0):''')
+
+# Defined before the stage so the guard above can call it.
+WISE = '''def _wiseft_is_current():
+    """True when results/wiseft.json came from the repaired protocol (see scripts/wiseft.py)."""
+    _p = RESULTS / "wiseft.json"
+    if not _p.exists():
+        return False
+    try:
+        return int(json.loads(_p.read_text(encoding="utf-8")).get("protocol_version", 0)) >= 2
+    except Exception:
+        return False
 
 ''' + WISE
 
