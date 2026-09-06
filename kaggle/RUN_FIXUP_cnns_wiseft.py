@@ -558,11 +558,19 @@ if unsupported:
 
 
 # ================================================================ regenerate + bundle
+# The generators read the JSONs sitting NEXT TO THEM in docs/paper, not results/, so this
+# run's outputs have to be staged across first -- otherwise the tables regenerate from the
+# previous build's numbers, which is exactly the build mixture the audit flagged. `CODE` does
+# not exist in this bootstrap; the clone is `REPO`.
 banner("regenerating tables and figures from the repaired results")
-for _g in ("make_tex_tables.py", "make_tables.py", "make_figures.py"):
-    _p = CODE / "docs" / "paper" / _g
-    if _p.exists():
-        sh([sys.executable, "-u", str(_p)], 0.3, _g)
+_docs = REPO / "docs" / "paper"
+for _g in ("make_tex_tables.py", "make_figures.py"):
+    if (_docs / _g).exists():
+        for _f in RESULTS.glob("*.json"):
+            shutil.copy2(_f, _docs / _f.name)
+        _r = subprocess.run([sys.executable, "-u", str(_docs / _g)], text=True, cwd=str(_docs),
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        print(_r.stdout or f"[{_g}] no output", flush=True)
 
 bundle("fixup", {"cnn_epochs": CNN_EPOCHS, "cnn_max_h": CNN_MAX_H,
                  "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR,
