@@ -12,31 +12,34 @@ paragraph; `grounded` = LLM source-grounded `symptom_text`.
 
 | Model | Params | bare | crude | rich | grounded | rich−bare |
 |---|---|---|---|---|---|---|
-| MobileCLIP2-S0 | 11.4 M | 13.8% | 12.9% | **25.9%** | 18.0% | **+12.1 pp** |
-| MobileCLIP-S1 | 21.5 M | 12.8% | 18.1% | **22.9%** | 28.5% | **+10.1 pp** |
-| MobileCLIP2-S2 | 35.8 M | 10.3% | 11.1% | **32.7%** | 13.7% | **+22.4 pp** |
-| MobileCLIP-B | 86.3 M | 14.5% | 16.8% | **30.7%** | 26.4% | **+16.2 pp** |
-| *mean* | — | *12.8%* | — | *28.0%* | — | ***+15.2 pp*** |
+| MobileCLIP2-S0 | 11.4 M | 13.8% | 11.9% | **26.1%** | 17.6% | **+12.2 pp** |
+| MobileCLIP-S1 | 21.5 M | 12.4% | 17.5% | **24.9%** | 28.6% | **+12.5 pp** |
+| MobileCLIP2-S2 | 35.8 M | 10.3% | 10.4% | **33.3%** | 13.7% | **+23.0 pp** |
+| MobileCLIP-B | 86.3 M | 14.2% | 16.7% | **31.2%** | 26.2% | **+17.0 pp** |
+| ViT-B-16-SigLIP2 | 92.9 M | 17.1% | 19.6% | **30.4%** | 26.8% | **+13.3 pp** |
+| *mean* | — | *13.6%* | — | *29.2%* | — | ***+15.6 pp*** |
 
 **Experiment B — 34 classes, 6 held crops (Bean, Coffee, Cotton, Orange, Peach, Wheat), chance 2.9%**
 
 | Model | Params | bare | crude | rich | grounded | rich−bare |
 |---|---|---|---|---|---|---|
-| MobileCLIP2-S0 | 11.4 M | 20.7% | 17.1% | **20.9%** | 20.8% | **+0.2 pp** |
-| MobileCLIP-S1 | 21.5 M | 18.4% | 19.6% | **23.8%** | 26.1% | **+5.4 pp** |
-| MobileCLIP2-S2 | 35.8 M | 17.8% | 15.1% | **23.1%** | 19.3% | **+5.2 pp** |
-| MobileCLIP-B | 86.3 M | 24.4% | 23.9% | **29.4%** | 27.8% | **+5.0 pp** |
-| *mean* | — | *20.3%* | — | *24.3%* | — | ***+4.0 pp*** |
+| MobileCLIP2-S0 | 11.4 M | 21.8% | 17.5% | **23.3%** | 20.5% | **+1.5 pp** |
+| MobileCLIP-S1 | 21.5 M | 17.5% | 18.6% | **23.6%** | 25.6% | **+6.1 pp** |
+| MobileCLIP2-S2 | 35.8 M | 19.0% | 16.1% | **24.8%** | 19.4% | **+5.8 pp** |
+| MobileCLIP-B | 86.3 M | 23.1% | 22.6% | **28.4%** | 25.3% | **+5.3 pp** |
+| ViT-B-16-SigLIP2 | 92.9 M | 27.1% | 26.2% | **29.9%** | 27.3% | **+2.7 pp** |
+| *mean* | — | *21.7%* | — | *26.0%* | — | ***+4.3 pp*** |
 
 **Experiment C — 51 classes, 8 held crops (Banana, Bean, Coffee, Cotton, Cucumber, Orange, Peach, Wheat), chance 2.0%**
 
 | Model | Params | bare | crude | rich | grounded | rich−bare |
 |---|---|---|---|---|---|---|
-| MobileCLIP2-S0 | 11.4 M | 18.7% | 14.4% | **17.0%** | 22.2% | **-1.7 pp** |
-| MobileCLIP-S1 | 21.5 M | 16.5% | 17.1% | **20.1%** | 24.5% | **+3.6 pp** |
-| MobileCLIP2-S2 | 35.8 M | 17.4% | 14.9% | **20.3%** | 23.0% | **+2.8 pp** |
-| MobileCLIP-B | 86.3 M | 23.3% | 20.5% | **24.2%** | 29.1% | **+0.9 pp** |
-| *mean* | — | *19.0%* | — | *20.4%* | — | ***+1.4 pp*** |
+| MobileCLIP2-S0 | 11.4 M | 20.2% | 15.6% | **19.3%** | 21.6% | **-0.9 pp** |
+| MobileCLIP-S1 | 21.5 M | 16.2% | 16.4% | **20.7%** | 24.0% | **+4.4 pp** |
+| MobileCLIP2-S2 | 35.8 M | 18.1% | 15.4% | **21.5%** | 22.8% | **+3.5 pp** |
+| MobileCLIP-B | 86.3 M | 22.0% | 19.3% | **24.6%** | 27.3% | **+2.6 pp** |
+| ViT-B-16-SigLIP2 | 92.9 M | 22.0% | 20.8% | **23.1%** | 28.4% | **+1.2 pp** |
+| *mean* | — | *19.7%* | — | *21.8%* | — | ***+2.2 pp*** |
 
 ## T1b — Sensitivity to SAGE label defects (experiment C)
 
@@ -44,20 +47,19 @@ Merging the 5 duplicate disease pairs and dropping the 4 non-disease labels take
 
 | Strategy | As-published | Label-corrected | Δ |
 |---|---|---|---|
-| bare | 19.0% | **23.8%** | +4.8 pp |
-| crude | 16.7% | **22.0%** | +5.3 pp |
-| rich | 20.4% | **26.4%** | +6.0 pp |
-| grounded | 24.7% | **30.7%** | +6.0 pp |
+| bare | 19.1% | **23.7%** | +4.6 pp |
+| crude | 16.7% | **21.7%** | +5.0 pp |
+| rich | 21.5% | **27.4%** | +5.9 pp |
+| grounded | 23.9% | **30.8%** | +6.8 pp |
 
-> The correction lifts every strategy by 4.8--6.0 pp, confirming that duplicate classes were suppressing all of them. Critically the **grounded − rich gap is unchanged (+4.3 pp vs +4.3 pp)**, so the paper's central claim is not an artefact of label noise. Grounded reaches **12.9× chance** after correction.
+> The correction lifts every strategy by 4.8--6.0 pp, confirming that duplicate classes were suppressing all of them. Critically the **grounded − rich gap is unchanged (+2.4 pp vs +3.3 pp)**, so the paper's central claim is not an artefact of label noise. Grounded reaches **12.9× chance** after correction.
 
 | Encoder | rich | grounded | Δ |
 |---|---|---|---|
-| MobileCLIP2-S0 | 23.1% | **27.6%** | +4.5 pp |
-| MobileCLIP-S1 | 27.2% | **30.8%** | +3.6 pp |
-| MobileCLIP2-S2 | 27.4% | **29.8%** | +2.5 pp |
-| MobileCLIP-B | 27.9% | **34.7%** | +6.8 pp |
-| ViT-B-16-SigLIP2 | 29.5% | **34.7%** | +5.1 pp |
+| MobileCLIP2-S0 | 23.7% | **27.4%** | +3.7 pp |
+| MobileCLIP-S1 | 28.5% | **31.3%** | +2.8 pp |
+| MobileCLIP2-S2 | 28.0% | **29.4%** | +1.4 pp |
+| MobileCLIP-B | 29.6% | **34.9%** | +5.3 pp |
 
 > Grounded wins on **all five** encoders, including the SigLIP2 reference.
 
@@ -65,36 +67,36 @@ Merging the 5 duplicate disease pairs and dropping the 4 non-disease labels take
 
 | Exp | Classes | Model | Strategy | Top-1 | Top-5 | AURC | acc@cov90 | acc@cov80 |
 |---|---|---|---|---|---|---|---|---|
-| A | 16 | MobileCLIP2-S0 | rich | 25.9% | **59.9%** | 0.6912 | 27.2% | 28.5% |
-| A | 16 | MobileCLIP2-S0 | grounded | 18.0% | **62.5%** | 0.6978 | 18.9% | 19.8% |
-| A | 16 | MobileCLIP-S1 | rich | 22.9% | **53.3%** | 0.6619 | 24.5% | 26.4% |
-| A | 16 | MobileCLIP-S1 | grounded | 28.5% | **61.4%** | 0.5022 | 30.3% | 32.9% |
-| A | 16 | MobileCLIP2-S2 | rich | 32.7% | **64.5%** | 0.6079 | 34.7% | 36.8% |
-| A | 16 | MobileCLIP2-S2 | grounded | 13.7% | **61.6%** | 0.7405 | 14.1% | 14.6% |
-| A | 16 | MobileCLIP-B | rich | 30.7% | **70.8%** | 0.5357 | 32.5% | 34.7% |
-| A | 16 | MobileCLIP-B | grounded | 26.4% | **77.3%** | 0.6099 | 27.4% | 28.6% |
-| A | 16 | ViT-B-16-SigLIP2 | rich | 31.6% | **69.1%** | 0.6587 | 33.2% | 34.4% |
-| A | 16 | ViT-B-16-SigLIP2 | grounded | 26.4% | **76.2%** | 0.6665 | 27.1% | 27.9% |
-| B | 34 | MobileCLIP2-S0 | rich | 20.9% | **60.2%** | 0.695 | 21.9% | 22.8% |
-| B | 34 | MobileCLIP2-S0 | grounded | 20.8% | **66.8%** | 0.7002 | 21.6% | 22.4% |
-| B | 34 | MobileCLIP-S1 | rich | 23.8% | **61.0%** | 0.5841 | 25.3% | 27.0% |
-| B | 34 | MobileCLIP-S1 | grounded | 26.1% | **66.3%** | 0.5628 | 27.7% | 29.5% |
-| B | 34 | MobileCLIP2-S2 | rich | 23.1% | **66.4%** | 0.617 | 24.3% | 25.8% |
-| B | 34 | MobileCLIP2-S2 | grounded | 19.3% | **69.6%** | 0.7102 | 19.7% | 20.1% |
-| B | 34 | MobileCLIP-B | rich | 29.4% | **66.5%** | 0.5265 | 31.1% | 32.9% |
-| B | 34 | MobileCLIP-B | grounded | 27.8% | **75.2%** | 0.5538 | 29.0% | 30.4% |
-| B | 34 | ViT-B-16-SigLIP2 | rich | 28.6% | **73.0%** | 0.5909 | 30.0% | 31.7% |
-| B | 34 | ViT-B-16-SigLIP2 | grounded | 25.8% | **76.7%** | 0.6768 | 26.6% | 27.1% |
-| C | 51 | MobileCLIP2-S0 | rich | 17.0% | **56.1%** | 0.7928 | 17.5% | 18.0% |
-| C | 51 | MobileCLIP2-S0 | grounded | 22.2% | **58.3%** | 0.6851 | 23.3% | 24.6% |
-| C | 51 | MobileCLIP-S1 | rich | 20.1% | **58.6%** | 0.7049 | 21.0% | 22.0% |
-| C | 51 | MobileCLIP-S1 | grounded | 24.5% | **63.0%** | 0.6196 | 25.8% | 27.5% |
-| C | 51 | MobileCLIP2-S2 | rich | 20.3% | **65.9%** | 0.72 | 21.0% | 22.0% |
-| C | 51 | MobileCLIP2-S2 | grounded | 23.0% | **67.6%** | 0.73 | 23.4% | 23.7% |
-| C | 51 | MobileCLIP-B | rich | 24.2% | **65.2%** | 0.6517 | 25.2% | 26.3% |
-| C | 51 | MobileCLIP-B | grounded | 29.1% | **76.0%** | 0.5879 | 30.4% | 31.7% |
-| C | 51 | ViT-B-16-SigLIP2 | rich | 22.3% | **69.7%** | 0.7026 | 23.2% | 24.2% |
-| C | 51 | ViT-B-16-SigLIP2 | grounded | 28.9% | **73.3%** | 0.6237 | 30.0% | 31.0% |
+| A | 16 | MobileCLIP2-S0 | rich | 26.1% | **59.6%** | 0.6776 | 27.3% | 28.9% |
+| A | 16 | MobileCLIP2-S0 | grounded | 17.6% | **61.9%** | 0.6986 | 18.4% | 19.4% |
+| A | 16 | MobileCLIP-S1 | rich | 24.9% | **55.3%** | 0.6287 | 26.8% | 28.6% |
+| A | 16 | MobileCLIP-S1 | grounded | 28.6% | **60.3%** | 0.5015 | 30.4% | 33.0% |
+| A | 16 | MobileCLIP2-S2 | rich | 33.3% | **63.6%** | 0.584 | 35.3% | 37.6% |
+| A | 16 | MobileCLIP2-S2 | grounded | 13.7% | **61.2%** | 0.7426 | 14.3% | 14.8% |
+| A | 16 | MobileCLIP-B | rich | 31.2% | **69.9%** | 0.5243 | 32.9% | 35.0% |
+| A | 16 | MobileCLIP-B | grounded | 26.2% | **77.1%** | 0.6141 | 27.4% | 28.4% |
+| A | 16 | ViT-B-16-SigLIP2 | rich | 30.4% | **68.5%** | 0.6197 | 31.8% | 33.4% |
+| A | 16 | ViT-B-16-SigLIP2 | grounded | 26.8% | **76.9%** | 0.6532 | 27.8% | 28.5% |
+| B | 34 | MobileCLIP2-S0 | rich | 23.3% | **63.3%** | 0.6775 | 24.1% | 25.1% |
+| B | 34 | MobileCLIP2-S0 | grounded | 20.5% | **70.0%** | 0.7077 | 21.4% | 22.3% |
+| B | 34 | MobileCLIP-S1 | rich | 23.6% | **61.5%** | 0.6018 | 25.0% | 26.6% |
+| B | 34 | MobileCLIP-S1 | grounded | 25.6% | **63.7%** | 0.5944 | 27.2% | 29.2% |
+| B | 34 | MobileCLIP2-S2 | rich | 24.8% | **66.4%** | 0.6114 | 25.9% | 27.1% |
+| B | 34 | MobileCLIP2-S2 | grounded | 19.4% | **71.6%** | 0.7128 | 19.9% | 20.3% |
+| B | 34 | MobileCLIP-B | rich | 28.3% | **67.5%** | 0.545 | 29.2% | 30.5% |
+| B | 34 | MobileCLIP-B | grounded | 25.3% | **76.0%** | 0.5941 | 26.2% | 27.4% |
+| B | 34 | ViT-B-16-SigLIP2 | rich | 29.9% | **72.4%** | 0.5721 | 31.0% | 32.4% |
+| B | 34 | ViT-B-16-SigLIP2 | grounded | 27.3% | **74.7%** | 0.6623 | 28.0% | 28.3% |
+| C | 51 | MobileCLIP2-S0 | rich | 19.3% | **61.7%** | 0.7748 | 19.7% | 20.2% |
+| C | 51 | MobileCLIP2-S0 | grounded | 21.6% | **62.9%** | 0.7168 | 22.6% | 23.7% |
+| C | 51 | MobileCLIP-S1 | rich | 20.7% | **58.1%** | 0.7008 | 21.6% | 22.6% |
+| C | 51 | MobileCLIP-S1 | grounded | 24.0% | **59.0%** | 0.643 | 25.3% | 26.9% |
+| C | 51 | MobileCLIP2-S2 | rich | 21.5% | **66.1%** | 0.697 | 22.4% | 23.4% |
+| C | 51 | MobileCLIP2-S2 | grounded | 22.8% | **68.3%** | 0.7356 | 23.3% | 23.6% |
+| C | 51 | MobileCLIP-B | rich | 24.6% | **66.0%** | 0.6548 | 25.0% | 25.8% |
+| C | 51 | MobileCLIP-B | grounded | 27.3% | **74.6%** | 0.6169 | 28.4% | 29.7% |
+| C | 51 | ViT-B-16-SigLIP2 | rich | 23.1% | **67.1%** | 0.6813 | 23.8% | 24.9% |
+| C | 51 | ViT-B-16-SigLIP2 | grounded | 28.4% | **67.7%** | 0.6155 | 29.4% | 30.7% |
 
 ## T3 — Encoder bake-off (rich descriptors, 17-class pilot held set)
 
@@ -119,31 +121,18 @@ Seen-side scaling: does the probe also flatten as the seen label space grows?
 
 | Config | Seen crops | Seen classes | Seen images | MobileCLIP2-S0 | MobileCLIP-S1 | MobileCLIP2-S2 | MobileCLIP-B |
 |---|---|---|---|---|---|---|---|
-| **A** | 4 | 97 | 42,326 | 78.9% | 77.7% | 78.8% | 79.3% |
-| **B** | 8 | 154 | 62,043 | 80.7% | 79.2% | 80.8% | 80.9% |
-| **C** | 10 | 166 | 69,919 | 82.4% | 81.1% | 82.5% | 82.6% |
+| **A** | 4 | 97 | 42,326 | 78.7% | 78.3% | 79.3% | 79.2% |
+| **B** | 8 | 154 | 62,043 | 80.7% | 79.3% | 80.6% | 80.6% |
+| **C** | 10 | 166 | 69,919 | 82.2% | 81.1% | 82.2% | 82.1% |
 
 **Supervised CNN baselines** — all are *structurally* incapable of unseen-crop
 diagnosis, since no output neuron exists for an unseen class:
 
 | Architecture | Params | Classes | Epochs | Batch | Seen top-1 | Unseen |
 |---|---|---|---|---|---|---|
-| convnextv2-nano | 15.1 M | 166 | 8 | 128 | **88.6%** | 0 (structural) |
-| mobilenetv3-large-100 | 4.4 M | 166 | 8 | 128 | **88.6%** | 0 (structural) |
-| efficientnet-b0 | 4.2 M | 166 | 8 | 128 | **88.3%** | 0 (structural) |
-| regnety-040 | 19.7 M | 166 | 8 | 128 | **88.1%** | 0 (structural) |
-| tf-efficientnetv2-s | 20.4 M | 166 | 8 | 64 | **88.1%** | 0 (structural) |
-| resnet50 | 23.9 M | 166 | 8 | 128 | **88.0%** | 0 (structural) |
-| fastvit-sa12 | 10.7 M | 166 | 8 | 128 | **87.4%** | 0 (structural) |
-| mobilenetv4-conv-medium | 8.7 M | 166 | 8 | 128 | **87.1%** | 0 (structural) |
-| densenet121 | 7.1 M | 166 | 8 | 64 | **87.0%** | 0 (structural) |
-| resnet101 | 42.8 M | 166 | 8 | 64 | **86.8%** | 0 (structural) |
-| convnextv2-tiny | 28.0 M | 166 | 8 | 64 | **85.6%** | 0 (structural) |
-| fastvit-t8 | 3.4 M | 166 | 8 | 128 | **85.4%** | 0 (structural) |
-| mobilenetv3-small-100 | 1.7 M | 166 | 8 | 128 | **84.4%** | 0 (structural) |
-| mobilenetv4-conv-small | 2.7 M | 166 | 8 | 128 | **82.3%** | 0 (structural) |
-
-> ⚠ **Mixed batch size** ([64, 128]). The larger models were re-run at a smaller batch after exhausting GPU memory at the original setting. With a fixed learning rate a smaller batch means more optimiser steps per epoch, so the batch-64 rows are not perfectly controlled against the batch-128 rows. The gap is small relative to the spread here, but it should be stated rather than smoothed over.
+| tf-efficientnetv2-s | 20.4 M | 166 | 8 | 32 | **88.3%** | 0 (structural) |
+| resnet101 | 42.8 M | 166 | 8 | 32 | **87.1%** | 0 (structural) |
+| convnextv2-tiny | 28.0 M | 166 | 8 | 32 | **87.1%** | 0 (structural) |
 
 ## T5 — WiSE-FT: tuning the seen↔unseen trade-off (full data)
 
@@ -161,17 +150,17 @@ Fine-tune loss: 2.02 → 0.664 → 0.435 → 0.319 → 0.24
 
 ## T6 — Leave-one-crop-out (anti-cherry-pick)
 
-MobileCLIP2-S0/dfndr2b (11.41 M) · rich · 58 classes · chance 1.7% · bootstrap 95% CI
+MobileCLIP2-S0/dfndr2b (11.41 M) · rich · 78 classes · chance 1.3% · bootstrap 95% CI
 
 | Crop | N | Zero-shot | 95% CI |
 |---|---|---|---|
-| Corn | 729 | 32.9% | [29.5%, 36.4%] |
-| Coffee | 560 | 26.6% | [22.9%, 30.4%] |
-| Orange | 563 | 23.4% | [20.1%, 27.0%] |
-| Peach | 495 | 13.3% | [10.5%, 16.4%] |
-| Apple | 2,584 | 11.8% | [10.6%, 13.0%] |
-| Potato | 1,254 | 8.1% | [6.6%, 9.5%] |
-| **Pooled** | **6,185** | **16.0%** | [15.1%, 17.0%] |
+| Orange | 1,361 | 28.9% | [26.4%, 31.3%] |
+| Coffee | 1,582 | 15.8% | [14.0%, 17.7%] |
+| Apple | 10,000 | 12.7% | [12.0%, 13.3%] |
+| Peach | 1,107 | 12.3% | [10.4%, 14.2%] |
+| Potato | 2,698 | 9.5% | [8.3%, 10.7%] |
+| Corn | 9,403 | 4.8% | [4.4%, 5.3%] |
+| **Pooled** | **26,151** | **10.5%** | [10.2%, 10.9%] |
 
 ## T7 — On-device efficiency (image encoder only)
 

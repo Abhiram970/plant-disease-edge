@@ -1,0 +1,53 @@
+{
+  "source": "zeroshot_eval_C_paired_ungseeds.json",
+  "arms": [
+    "grounded_matched",
+    "ungrounded"
+  ],
+  "paired_classes": 41,
+  "per_encoder": [
+    {
+      "model": "MobileCLIP2-S0",
+      "grounded_matched": 26.6762,
+      "ungrounded": 24.9184,
+      "diff": 1.7578,
+      "seeds": 7,
+      "sd_grounded_matched": 2.0949,
+      "sd_ungrounded": 2.202
+    },
+    {
+      "model": "MobileCLIP-S1",
+      "grounded_matched": 29.6992,
+      "ungrounded": 27.6982,
+      "diff": 2.001,
+      "seeds": 7,
+      "sd_grounded_matched": 1.9097,
+      "sd_ungrounded": 1.0612
+    },
+    {
+      "model": "MobileCLIP2-S2",
+      "grounded_matched": 27.5029,
+      "ungrounded": 25.3557,
+      "diff": 2.1472,
+      "seeds": 7,
+      "sd_grounded_matched": 1.0946,
+      "sd_ungrounded": 1.9359
+    },
+    {
+      "model": "MobileCLIP-B",
+      "grounded_matched": 34.1839,
+      "ungrounded": 32.2547,
+      "diff": 1.9292,
+      "seeds": 7,
+      "sd_grounded_matched": 3.1314,
+      "sd_ungrounded": 2.377
+    }
+  ],
+  "mean_diff": 1.9588,
+  "ci95": [
+    1.7014,
+    2.2163
+  ],
+  "equivalence_bound": 2.2163,
+  "encoders_agree_in_sign": true
+}

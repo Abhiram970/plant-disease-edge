@@ -177,23 +177,48 @@ def main():
     with torch.no_grad():
         dim = model.visual(next(iter(dl_te))[0][:1].to(device)).shape[-1]
     head = nn.Linear(dim, len(seen_classes)).to(device)
+    # HEAD WARMUP -- do not remove. A randomly initialised head emits large, essentially
+    # arbitrary gradients on the first steps, and with the encoder unfrozen those gradients
+    # flow straight into the visual tower and push it out of the pretrained loss basin before
+    # the head has learned anything. WiSE-FT's linear interpolation is only meaningful while
+    # both weight sets sit in the SAME basin, so that early kick is what produced the
+    # 2026-09-06 sweep in which alpha=0.5 (seen 45.1%) fell below BOTH alpha=0 (58.7%) and
+    # alpha=1 (63.8%) -- the midpoint of two disconnected minima is in neither.
+    # Fitting the head on frozen features first costs one extraction pass that the alpha=0
+    # reference needs anyway, so it is reused below rather than recomputed.
     # zeroshot.load_model() sets requires_grad=False on EVERY parameter -- correct for its own
     # job (frozen zero-shot eval) but fatal here: the optimizer held visual parameters that
     # could not receive gradients, so the "fine-tuned" encoder was byte-identical to the frozen
     # one and only the head moved. That is why raising the lr from 1e-5 to 1e-4 barely shifted
-    # the loss (5.078 -> 4.803 against a random-guess 5.111) and why alpha=0.5 dipped below both
-    # endpoints: there was no second weight set to interpolate toward. Re-enable grads on the
-    # visual tower, which is the thing WiSE-FT interpolates.
+    # the loss (5.078 -> 4.803 against a random-guess 5.111): there was no second weight set to
+    # interpolate toward. Re-enable grads on the visual tower, which is what WiSE-FT
+    # interpolates. (That bug also produced an alpha=0.5 dip; the dip that survived its fix has
+    # the separate cause documented under HEAD WARMUP above.)
     for _p in model.visual.parameters():
         _p.requires_grad = True
     _trainable = sum(_p.numel() for _p in model.visual.parameters() if _p.requires_grad)
     print(f"[wiseft] visual tower trainable params: {_trainable/1e6:.2f} M", flush=True)
     if _trainable == 0:
         sys.exit("[wiseft] visual tower has no trainable parameters; refusing to run.")
-    opt = torch.optim.AdamW(list(model.visual.parameters()) + list(head.parameters()),
-                            lr=args.lr, weight_decay=1e-4)
-    _bf16 = device == "cuda" and torch.cuda.is_bf16_supported()
+    print("[wiseft] warming up the head on frozen features "
+          "(also the alpha=0 reference) ...", flush=True)
+    # bf16 only where it is native (Ampere, sm_80+). is_bf16_supported() also returns True on
+    # the T4, where bf16 is emulated and cuDNN has no engine for several conv shapes.
+    _bf16 = device == "cuda" and torch.cuda.get_device_capability()[0] >= 8
     _adt = torch.bfloat16 if _bf16 else torch.float16
+    frozen_probe, _warm = _fit_and_score(model, ex_tr, ex_te, len(seen_classes), device,
+                                         _adt, torch, nn, F, return_head=True)
+    head.load_state_dict(_warm.state_dict())
+    print(f"[wiseft] frozen probe = {frozen_probe:.1%} "
+          f"(alpha=0 must reproduce this; head warm-started from it)", flush=True)
+
+    # The encoder is what should move now, so give the warm head a gentler rate than the tower
+    # would otherwise force. Weight decay is kept off the encoder: decaying toward zero pulls
+    # it away from the pretrained weights, which is the opposite of what WiSE-FT needs.
+    opt = torch.optim.AdamW(
+        [{"params": list(model.visual.parameters()), "weight_decay": 0.0},
+         {"params": list(head.parameters()), "weight_decay": 1e-4}],
+        lr=args.lr)
     scaler = torch.amp.GradScaler("cuda", enabled=(device == "cuda" and not _bf16))
 
     ft_loss = []
@@ -239,11 +264,10 @@ def main():
     # across the whole sweep gave seen=26.3% at alpha=1, because a fine-tuned encoder moves the
     # feature space out from under a stale head. Each alpha therefore gets its own head, fitted
     # to that encoder, so the seen column reflects the ENCODER interpolation and nothing else.
-    print("[wiseft] fitting the frozen-encoder head (the alpha=0 reference) ...", flush=True)
+    # `frozen_probe` was measured before fine-tuning (and used to warm-start the head), so
+    # there is nothing to re-fit here -- a second extraction pass would cost minutes and
+    # return the same number. Restore the frozen weights for the sweep's starting point.
     model.visual.load_state_dict(frozen_visual)
-    frozen_probe = _fit_and_score(model, ex_tr, ex_te, len(seen_classes), device, _adt,
-                                  torch, nn, F)
-    print(f"[wiseft] frozen probe = {frozen_probe:.1%} (alpha=0 must reproduce this)", flush=True)
 
     sweep = []
     for a in args.alphas:
@@ -326,11 +350,13 @@ def main():
     print(f"\n[wiseft] saved {p}")
 
 
-def _fit_and_score(model, ex_tr, ex_te, n_classes, device, adt, torch, nn, F, epochs=20):
+def _fit_and_score(model, ex_tr, ex_te, n_classes, device, adt, torch, nn, F, epochs=20,
+                   return_head=False):
     """Fit a linear head on the CURRENT encoder's frozen features and return test top-1.
 
     Used for every alpha so the seen column reflects the interpolated ENCODER, not how stale
-    a fixed head has become. Returns accuracy in [0, 1].
+    a fixed head has become. Returns accuracy in [0, 1], or (accuracy, head) when
+    `return_head` is set -- the caller uses that head to warm-start fine-tuning.
     """
     model.eval()
     with torch.no_grad():
@@ -353,7 +379,8 @@ def _fit_and_score(model, ex_tr, ex_te, n_classes, device, adt, torch, nn, F, ep
             F.cross_entropy(head(Xtr[b].to(device)), Ytr[b].to(device)).backward()
             opt.step()
     with torch.no_grad():
-        return (head(Xte.to(device)).argmax(1).cpu() == Yte).float().mean().item()
+        acc = (head(Xte.to(device)).argmax(1).cpu() == Yte).float().mean().item()
+    return (acc, head) if return_head else acc
 
 
 def _manual_zeroshot(model, tok, preprocess, rows, classes, strategy, device, torch, F):

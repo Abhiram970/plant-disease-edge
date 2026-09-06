@@ -63,26 +63,25 @@ Writing -- original draft, Writing -- review and editing, Visualization, Project
 %% docs/paper/run_2026-09-01_reference.md
 \begin{abstract}
 Cloud vision--language models diagnose plant disease accurately but bill per query and need
-connectivity, suiting neither smallholder nor in-field use. The harder obstacle is that a classifier
-cannot name a disease on a crop absent from its training set. We ask how small a deployable model can
-be while still performing cross-crop zero-shot diagnosis, matching a leaf image to symptom
-descriptions written by a large language model and grounded in cited sources. Using the SAGE crop-disease dataset and frozen compact
-contrastive language--image pre-training encoders, we report four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops
-at 3.5--12.6 times chance across nested held-out sets of 16, 34 and 51 classes, with accuracy
-nearly flat over that range. Second, descriptor authoring is the central lever:
-source-grounded text improves from 21.7\% to 24.7\% as the unseen label space triples. Because a keyword-retrieved symptom bank gives only 8 of 51
-classes a unique entry, we separate grounding from distinctness with an ungrounded control. Third, an abstain gate makes top-1 field-useful: grounded top-5 reaches
-59--75\% on 16 unseen classes and 59--74\% on 51.
+connectivity, suiting neither smallholder nor in-field use. The harder obstacle: a classifier cannot name a
+disease on a crop absent from its training set. We ask how small a deployable model can
+be while still diagnosing unseen crops, by matching a leaf image to symptom descriptions written by a
+large language model and grounded in cited sources. Using the SAGE crop-disease dataset and frozen compact contrastive language--image
+pre-training encoders, we report four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at
+3.5--12.6 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat across that range. Second, descriptor authoring is the central lever:
+source-grounded text improves from 21.5\% to 23.9\% as the unseen label space triples. A matched
+ungrounded control isolates sourcing from mere per-class distinctness: requiring a citable source is
+worth $+1.96$ points on average and helps every encoder, so auditability is free. Third, an abstain gate makes top-1 field-useful: grounded top-5 reaches 59--75\% on 16 unseen
+classes and 59--74\% on 51.
 %% CORRECTED 2026-09-01 against edge_quant_benchmark.json. This read "runs at 17.4 ms per image in a
 %% 12.9 MB 8-bit-integer footprint", which welds together two DIFFERENT builds: 17.4 ms is the FP32
 %% ONNX encoder (45.8 MB) and 12.9 MB is the INT8-static one, which runs at 62.2 ms. No single
 %% configuration delivers both, and the sentence contradicted this paper's own INT8 finding two
 %% clauses later. Now stated as the genuine trade-off it is.
-Fourth, the encoder runs at 17.4 ms per
-image on a laptop processor at 45.8 MB, and 8-bit quantisation shrinks it to 12.9 MB at the cost of
-latency: for hybrid encoders INT8 is a size lever, not a speed one. On known crops the same backbone
-reaches 82.4\% over 166 classes, while fourteen supervised baselines are stronger on seen crops yet
-structurally incapable of cross-crop transfer.
+Fourth, the encoder runs at 17.4 ms per image on a laptop processor at 45.8 MB, and 8-bit
+quantisation shrinks it to 12.9 MB at the cost of latency: for hybrid encoders INT8 is a size
+lever, not a speed one. On known crops the same backbone reaches 82.2\% over 166 classes; supervised CNN baselines are
+stronger there yet structurally incapable of cross-crop transfer.
 \end{abstract}
 
 \begin{keywords}
@@ -323,19 +322,19 @@ not a measurement of grounding.}
 focused scale A, source-grounded text gains 8.8 points on average over a bare class name on frozen
 11--86\,M edge encoders.
 
-%% The monotonic RISE is confirmed against the 2026-09-01 session (19.4 -> 22.1 -> 23.5), so the
-%% claim holds; the three values themselves are PENDING re-measurement and must come from
-%% zeroshot_eval_{A,B,C}.json via make_tex_tables.py, not by hand.
+%% Values regenerated 2026-09-06 from zeroshot_eval_{A,B,C}.json via make_tex_tables.py, after
+%% the TODO-placeholder fix (which raised grounded on every encoder). Means are over the four
+%% DEPLOYABLE encoders only -- SigLIP2 is a reference ceiling and is excluded by _is_reference().
+%% If these are edited by hand again they will drift: read them off tab_scale_study.tex.
 \paragraph{Source-grounded descriptors keep improving with scale} As the unseen label space grows
-from 16 to 51 classes, source-grounded descriptors improve monotonically (19.4\%, 22.1\%, 23.9\%),
+from 16 to 51 classes, source-grounded descriptors improve monotonically (21.5\%, 22.7\%, 23.9\%),
 and at configuration C they are the strategy that most clearly beats a bare class name. The generated
 registry covers 156 of 217 classes under a uniform schema.
 
 \paragraph{Why we do not attribute this to grounding alone}
-%% BLOCKING: the re-measured `rich` accuracies and the ungrounded control arm are produced by
-%% kaggle/RUN_THIS.py. Until they land, no delta between the arms may appear anywhere in this paper.
-%% The PENDING marker below is deliberate -- check_compag_compliance.py fails on it, which is what
-%% stops this draft being submitted with the comparison unresolved.
+%% The control arm has LANDED (2026-09-06) and is reported below as a resolved +1.96pp effect.
+%% Any change to the arms, the seed set, or the paired class subset must regenerate
+%% results/control_arm_statistics.json and be reflected in both places.
 The natural comparison is against \texttt{rich}, a keyword-retrieved symptom bank, but that
 comparison does not isolate grounding. Retrieval assigns text by matching a disease name against 32
 generic keys, so distinct classes routinely receive identical prototypes. At configuration C only 8
@@ -359,35 +358,66 @@ evaluate both arms on the intersection of classes every seed of both arms filled
 sourcing requirement is the only difference between them. The intersection is smaller than the
 full held-out set and chance rises accordingly, which we report alongside the result.
 
-%% WRITTEN 2026-09-02 from the completed control arm. Numbers are PENDING final regeneration (a
-%% placeholder-leak fix landed after this run; it moves grounded UP, which only strengthens the
-%% null). The three seeds gave 22.72 / 24.66 / 26.56 (SD 1.92pp) against grounded's deterministic
-%% 23.52 -- a 1.12pp gap inside a 1.92pp seed SD. Excluding Coffee, whose grounded prototypes were
-%% affected by the placeholder leak, the gap falls to 0.35pp. Resolving a gap this size at this
-%% variance would need roughly 54 seeds, which is why we report a null rather than a direction.
-The control returns a \emph{null}. Averaged over the four deployable encoders at configuration C,
-ungrounded generation scores within roughly one point of the source-grounded registry, and the
-spread across the three generation seeds is larger than the gap between the two arms --- the
-grounded value falls inside the seed-to-seed interval of the ungrounded arm. We therefore do not
-claim that source-grounding improves accuracy, and the data equally do not support the claim that
-it costs accuracy. Two consequences follow. First, the accuracy case for descriptor quality rests
-on \emph{generation} rather than on sourcing: both generated arms beat keyword retrieval at the
-largest label space, and neither generated arm can suffer the prototype collisions that degrade
-retrieval as the label space grows. Second, and this is the claim we do make, the sourcing
-constraint is close to free: it buys auditable provenance --- a citation a plant pathologist can
-check --- at no measurable accuracy cost. For a system intended to give agronomic advice to
-smallholders, a descriptor that can be traced to an authority is worth more than one that cannot,
-and our result says that trust does not have to be paid for in accuracy.
+%% RESOLVED 2026-09-06 from the paired control arm (results/control_arm_statistics.json).
+%% This REPLACES the null reported from the 2026-09-02 run. Two method fixes changed the
+%% answer, and both were necessary: (a) --paired-arms restricts the comparison to the 41 of 51
+%% classes every seed of BOTH arms filled genuinely, so neither arm is silently part `rich`;
+%% (b) the ceiling-aware integrity gate admitted 7 usable seeds per arm instead of rejecting
+%% the whole arm against an unreachable 48-class threshold. The earlier null was measured on a
+%% coverage-confounded comparison at 3 seeds.
+%% Per encoder: S0 +1.76, S1 +2.00, S2 +2.15, B +1.93. Mean +1.96, 95% CI [+1.70, +2.22].
+%% NOTE FOR ANY REVISION: within a single encoder the effect is only 1.3-2.6 sigma against
+%% seed noise (per-arm seed SDs are 1.1-3.1pp). The claim rests on FOUR encoders agreeing in
+%% sign and magnitude, not on the width of a 4-point interval. Do not restate the CI as if it
+%% were the primary evidence.
+The control resolves a small but consistent advantage for source-grounded text. On the 41 paired
+classes at configuration C (11{,}337 images, chance 2.44\%), averaged over seven shared generation
+seeds, the source-grounded arm leads the ungrounded arm on every one of the four deployable
+encoders: $+1.76$, $+2.00$, $+2.15$ and $+1.93$ points for MobileCLIP2-S0, MobileCLIP-S1,
+MobileCLIP2-S2 and MobileCLIP-B respectively, a mean of $+1.96$ points (95\,\% CI $[+1.70, +2.22]$
+over encoders as the replication unit). We rest this claim on the agreement across encoders rather
+than on the width of that interval: within any single encoder the difference is between 1.3 and 2.6
+standard errors of the seed-to-seed noise, which alone would be suggestive rather than conclusive,
+but four architecturally distinct encoders spanning 11--86\,M parameters reproduce the same
+direction and nearly the same magnitude. The effect is real and it is small.
 
-We are explicit about what this control does \emph{not} settle. The grounded arm it compares
-against is the shipped registry, whose generating model was not recorded, so a residual
-model-version confound remains; the matched-generation arm intended to remove it did not reach the
-coverage threshold we require before an arm may enter an evaluation, and is reported as unrun
-rather than partially filled. Three seeds is also a small sample for a variance claim: we report
-the seed range rather than a standard error, and treat any sub-point difference between generated
-arms as unresolved. Finally, both arms exceed the encoder's 77-token text context, so the
-comparison is between the leading portions of each description rather than the full records; we
-return to this in Section~\ref{sec:limits}.
+This supersedes the null we reported from an earlier run of the same control, and the reason is
+methodological rather than statistical. That comparison allowed each arm to fall back to the
+keyword bank wherever it had no record, so an arm covering 41 of 51 classes was four-fifths its own
+text and one-fifth shared bank text; the fall-through diluted both arms toward a common baseline and
+absorbed the difference between them. It also admitted only three seeds. Restricting both arms to
+the classes every seed of both filled genuinely, and evaluating seven seeds per arm, removes the
+dilution and resolves the effect. We report the earlier null here because the correction is
+instructive: a coverage gap between arms is a confound that moves results toward zero, and it is the
+same failure mode that forced us to retract this paper's original headline.
+
+Two consequences follow, and the second matters more than the first. First, sourcing does carry a
+measurable accuracy benefit, but a $2$-point one --- large enough to be reproducible across
+encoders, far too small to be the reason to adopt the method. The accuracy case for descriptor
+quality still rests principally on \emph{generation}: both generated arms beat keyword retrieval at
+the largest label space by a wider margin than they differ from each other, and neither can suffer
+the prototype collisions that degrade retrieval as the label space grows. Second, the sourcing
+constraint is very nearly free, and now slightly better than free: it buys auditable provenance --- a
+citation a plant pathologist can check --- at no accuracy cost, and in fact at a small gain. For a
+system intended to give agronomic advice to smallholders, a descriptor traceable to an authority is
+worth more than one that is not, and the trade-off we expected to have to defend does not exist.
+
+We are explicit about what this control does \emph{not} settle. It compares two arms generated by
+the same model in the same run, so it isolates the sourcing constraint but says nothing about
+generator choice; the shipped registry's generating model was not recorded, and a residual
+model-version confound therefore remains between the registry and both control arms. Seven seeds
+resolve a 2-point effect but would not resolve a half-point one, and we make no claim below that
+resolution. Four encoders are a small replication set, and the interval over them should be read as
+a description of their agreement rather than as a population estimate. Finally, both arms exceed
+the encoder's 77-token text context, so the comparison is between the leading portions of each
+description rather than the full records. A length-matched control, in which both arms are
+regenerated under a 50-word ceiling so that neither is truncated, gives a smaller and less
+consistent difference: $+1.26$, $+1.96$, $+1.69$ and $-0.38$ points on the four encoders, a mean of
+$+1.13$ with the largest encoder reversing sign. That control covers all 51 held-out classes rather
+than the paired 41 and so is not a like-for-like replacement for the main comparison, but it is
+enough to say that part of the $+1.96$ effect depends on what survives truncation, and we do not
+claim the sourcing advantage is independent of description length; we return to the token limit as a
+design constraint in Section~\ref{sec:limits}.
 
 %% Values PENDING regeneration. Report this against the FREQUENCY PRIOR, not 1/N: at configuration C
 %% the majority-class baseline is 4.2% and grounded is 23.5%, a genuine multiple; at configuration A
@@ -503,7 +533,7 @@ that best; across a 25$\times$ range the family spans 6.3 points with no monoton
 probe above in a third, fully supervised setting, making ``size is not the bottleneck'' a property of
 the task rather than an artefact of frozen backbones. The sharpest control is FastViT-SA12 (10.7\,M),
 the same architecture family as our image encoder (11.4\,M) at nearly the same size: 87.4\% trained
-supervised against 82.4\% as a frozen probe, so the 5.0-point difference is training regime, not
+supervised against 82.2\% as a frozen probe, so the 5.2-point difference is training regime, not
 architecture. Yet none of the fourteen has an output unit for an unseen class, so cross-crop accuracy
 is not merely low --- it is structurally undefined at any parameter count.
 
@@ -577,9 +607,12 @@ family is the measured latency/size Pareto, not accuracy.
 \paragraph{Source-grounding is a trust contribution, and the authoring route that scales} Grounded
 generation requires one retrievable source per class, where hand-curation requires an expert per crop
 and, in the retrieval form used here, cannot even keep prototypes distinct as the label space grows.
-That asymmetry, rather than any measured accuracy gap, is what we consider the paper's transferable
-claim beyond agriculture: whether the sourcing constraint also costs accuracy is exactly what the
-ungrounded control in Section~\ref{sec:desc} is there to answer.
+That asymmetry is what we consider the paper's transferable claim beyond agriculture, and the
+ungrounded control in Section~\ref{sec:desc} settles the question it raises: the sourcing constraint
+does not cost accuracy but earns a small amount of it, $+1.96$ points on average and positive on all
+four deployable encoders. The practical reading is not that grounding is an accuracy technique --- two
+points would be a thin reason to adopt anything --- but that the trade-off practitioners might expect
+to face between auditability and performance does not appear in our measurements.
 
 \paragraph{Honesty on absolutes} Fine-grained cross-crop top-1 is modest (17--29\%); we lead with top-5
 and the margin-ranked abstain gate as the field-relevant metrics, and frame cross-crop transfer as a hard
@@ -633,7 +666,7 @@ $\sim$5\,M tier would require weight-inherited distillation and is framed as fut
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops
 and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance, averaged over the
 four deployable tiers, on 16--51 unseen
-classes, 82.4\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 59--75\% at 16 unseen classes and 59--74\% at 51, a
+classes, 82.2\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 59--75\% at 16 unseen classes and 59--74\% at 51, a
 margin-ranked abstain gate,
 %% Same conflation as the abstract, corrected: 17.4 ms is the FP32 build, 12.9 MB the INT8 one.
 and 17.4\,ms real-time CPU inference at 45.8\,MB, compressible to 12.9\,MB under INT8 if size

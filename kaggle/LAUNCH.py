@@ -9,6 +9,11 @@ Nothing else to copy. Change PART below and run the cell.
     PART = "morning"   -> seeds 4-7, control arms at 8 seeds, short arms, clean eval,
                           LOCO, WiSE-FT, and the 14 CNNs           (~7.8 h, NEEDS API KEY)
 
+    PART = "fixup"     -> ONLY the two stages the 2026-09-06 morning run lost: the 14 CNN
+                          baselines and the WiSE-FT sweep. Everything else is carried
+                          forward from the attached output, not recomputed.
+                                                                   (~6.5 h, NO API KEY)
+
     PART = "1" / "2" / "3"  -> the original single-purpose parts, if you want one stage
 
 SETUP (all parts)
@@ -20,8 +25,9 @@ SETUP (all parts)
 SETUP (tonight / part 1 only)
   Add-ons -> Secrets -> LAVA_API_KEY   (or ANTHROPIC_API_KEY)
 
-FOR PART 3 IN THE MORNING
-  Also Add Data -> the output of tonight's notebook, so its results carry forward.
+FOR "fixup" AND PART 3
+  Also Add Data -> the output of the previous notebook, so its results carry forward.
+  "fixup" needs no API key: it generates no descriptors.
 
 WHY A LAUNCHER. The previous attempt pasted a helper cell that PRINTS the runner
 (`print(open(...).read())`) instead of executing it, so the whole file was echoed to the log
@@ -30,7 +36,7 @@ it executes the file rather than displaying it.
 =====================================================================================
 """
 
-PART = "tonight"     # "tonight" | "1" | "2" | "3"
+PART = "fixup"       # "fixup" | "tonight" | "morning" | "1" | "2" | "3"
 
 REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
@@ -44,6 +50,7 @@ SRC = {
     "1":       "RUN_PART1_descriptors.py",
     "2":       "RUN_PART2_probe_loco_wiseft.py",
     "3":       "RUN_PART3_cnns.py",
+    "fixup":   "RUN_FIXUP_cnns_wiseft.py",
 }
 if PART not in SRC:
     sys.exit(f"[launcher] PART must be one of {list(SRC)}, got {PART!r}")

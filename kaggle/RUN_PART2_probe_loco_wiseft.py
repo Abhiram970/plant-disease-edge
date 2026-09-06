@@ -40,7 +40,11 @@ prints a [WARNING]. If you see any, raise --epochs or --lr before using the tabl
 BUDGET_H    = 11.0
 WISE_EPOCHS = 3
 WISE_LR     = "1e-5"     # standard CLIP fine-tuning range; see the note below
-WISE_ALPHAS = ["0.0", "0.5", "1.0"]
+# Five points, not three. With only {0, 0.5, 1} the curve has a single interior sample, so a
+# non-monotonicity cannot be distinguished from one noisy point -- which is exactly the
+# ambiguity the 2026-09-06 dip left behind. The extra alphas re-fit a linear head on cached
+# features and cost about a minute each.
+WISE_ALPHAS = ["0.0", "0.25", "0.5", "0.75", "1.0"]
 REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
 

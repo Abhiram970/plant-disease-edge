@@ -12,9 +12,14 @@ only prints itself.
 
 | `PART` | what it runs | approx. | API key |
 |---|---|---|---|
+| **`"fixup"`** | **the two stages the morning run lost: WiSE-FT, then the 14 CNNs** | **6.5 h** | **no** |
 | `"tonight"` | descriptors, zero-shot A/B/C, control arms, probe, abstention | 3.9 h | required |
 | `"morning"` | extra seeds, paired comparison, remaining tables, 14 CNNs | 7.8 h | required |
 | `"1"` / `"2"` / `"3"` | the same work split into single-purpose stages | — | part 1 only |
+
+**Run `"fixup"` next.** The 2026-09-06 morning session (10.12 h, exit 0) completed everything
+except those two stages, and its results carry forward from the attached output rather than being
+recomputed. Attach `pde-sage-data` **and** that session's output, then run with `PART = "fixup"`.
 
 Every stage is resumable. A run that reaches its budget stops cleanly, prints what is left, and
 a re-run of the same cell continues from there — finished work is skipped, never redone. When a
@@ -93,28 +98,57 @@ With images attached that is roughly 15 h of compute, so **two runs**. Three if 
 
 ---
 
-## Why the last run died
+## Why the morning run finished 12 of 14 stages
 
-It spent **11.8 of its 12 hours inside a single call** — a shard requested at t+548 s that never
-returned a byte. Two proven causes, one likely contributor, and one thing that was *not* the cause:
+The 2026-09-06 session exited 0 after 10.12 h and produced the paired Section 5.3 comparison, both
+control arms at 7-8 usable seeds, zero-shot A/B/C, the clean-label sensitivity run, coverage, the
+seen-crop probe, LOCO and abstention. Two stages did not survive, for unrelated reasons.
 
-1. **No deadline (proven).** `hf_hub_download` has no usable wall-clock bound and its backoff will
-   retry a dead endpoint indefinitely. Shard downloads now run in a child process killed at 15 min
-   and retried — a bad shard costs minutes, not a session.
-2. **No budget (proven).** A cell that overruns is killed and commits nothing, including the stages
-   that had already finished. Every run now stops itself at `BUDGET_H = 8.5`.
-3. **No token (likely contributor, not established).** The log carried *"You are sending
-   unauthenticated requests to the HF Hub"*. But the three shards that did arrive came down at 28,
-   141 and 150 MB/s, so throttling was not limiting throughput. A token plausibly avoids a
-   rate-limit block on a fourth large request; the evidence does not prove it.
-4. **Not the cause: the floating revision.** I first attributed the hang to `refs/convert/parquet`
-   being regenerated for the August release, i.e. a May-built `.shards_done.json` resuming against
-   August data. The log disproves that. Its tqdm totals (shard 0000 = **1** batch of 512, so under
-   512 rows) match May shard 0, which holds 90 rows; August shard 0 holds 14,248 and would have
-   shown 28 batches. That run read May throughout, and `MAX_SHARDS = 13` was correct for it.
+**The 14 CNNs finished 0 of 14.** Ten architectures died within 25 s each:
 
-   Pinning is still right — the branch resolves to August **now**, so an unpinned run would silently
-   lose Cotton — but it is a forward hazard, not the post-mortem.
+```
+RuntimeError: GET was unable to find an engine to execute this computation
+```
+
+raised from `F.conv2d` inside a depthwise convolution. Every one of the ten is a depthwise design
+(MobileNetV3/V4, EfficientNet, FastViT, ConvNeXt-V2, EfficientNetV2); the four that ran are
+plain-conv nets. The cause is `torch.cuda.is_bf16_supported()`, which returns `True` on the T4:
+Turing has no native bf16, and cuDNN ships no depthwise convolution engine for the emulated path.
+Precision is now selected from `torch.cuda.get_device_capability()` — fp16 on the T4, bf16 only on
+sm_80 and later — with an automatic step-down ladder (bf16 → fp16 → fp16 contiguous → fp32) if a
+kernel is still missing.
+
+The batch probe made this worse rather than catching it. It printed the same engine error and then
+returned the requested batch anyway, because it only reduced on `"OOM" in out`. The probe now walks
+the same ladder as the trainer and reports which precision worked; a probe that finds no workable
+configuration returns `None` and the architecture is skipped and named in the receipt, instead of
+spending its whole budget failing.
+
+The other four (densenet121, regnety_040, resnet50, resnet101) trained correctly and were killed by
+the 0.75 h per-architecture cap partway through **epoch 2** — densenet121 reached 81.6 % and
+resnet50 79.8 % on epoch 1, inside the cap. Worse, the cleanup deleted each checkpoint
+unconditionally, so a completed epoch was thrown away every time. The cap is now 1.6 h, and a
+checkpoint is deleted only once the architecture has produced a readable JSON, so an overrun
+resumes.
+
+**WiSE-FT completed but its sweep was unusable.** Fine-tuning converged (loss 4.463 → 3.179 →
+2.400), the encoder moved (relative L2 = 0.314) and α=0 reproduced the frozen probe (58.7 % vs
+58.8 %) — so the three gates that had caught earlier bugs all passed. But seen accuracy went
+58.7 → **45.1** → 63.8 while unseen fell 21.6 → 7.8 → 1.8. A midpoint below *both* endpoints means
+the frozen and fine-tuned weights are not linearly mode-connected, and interpolating between them
+is meaningless.
+
+The cause was the head: `nn.Linear` was randomly initialised and trained jointly with the unfrozen
+encoder, so its large early gradients pushed the encoder out of the pretrained basin before it had
+learned anything. The head is now fitted on frozen features first and used to warm-start
+fine-tuning — that fit is the α=0 reference the sweep needs anyway, so it costs no extra pass — the
+encoder is excluded from weight decay (decaying toward zero pulls it away from the pretrained
+weights, the opposite of what WiSE-FT wants), and the sweep runs five alphas instead of three so a
+non-monotonicity can be distinguished from one noisy point.
+
+The superseded sweep is kept as `wiseft_SUPERSEDED_2026-09-06.json`, and the fix-up runner moves any
+carried-forward `wiseft.json` aside before re-running, so a failed re-run cannot leave the broken
+numbers in place for the table generator to pick up.
 
 ### The part that matters for the paper, not just the run
 

@@ -1,0 +1,2466 @@
+8.3s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+8.3s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+8.3s 3 0.00s - to python to disable frozen modules.
+8.3s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+9.0s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+9.0s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+9.0s 7 0.00s - to python to disable frozen modules.
+9.0s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+11.7s 9 [launcher] cloning paper/draft-audit-2026-09-01 ...
+12.4s 10 [launcher] HEAD = 282ac57 eval: Quantify the Section 5.3 null and run the paired test first
+12.4s 11 [launcher] running RUN_MORNING_everything_else.py
+12.4s 12 
+12.5s 13 
+12.5s 14 ==============================================================================
+12.5s 15 [bootstrap]  t+0.0 h  (11.0 h left)
+12.5s 16 ==============================================================================
+13.2s 17 [repo] HEAD = 282ac57 eval: Quantify the Section 5.3 null and run the paired test first
+178.2s 18 [data] 84,123 images  217 classes  18 crops
+184.5s 19 [gpu] 15.5 GB free of 15.6 GB VRAM
+184.5s 20 [manifest] building (needed by descriptors, WiSE-FT and the CNNs) ...
+185.6s 21 [manifest] wrote /kaggle/working/manifest.csv
+185.6s 22 [manifest] images by role: train_crop=69,919, heldout_crop=14,204
+185.6s 23 [manifest] kept crops: Apple=10000, Banana=2068, Bean=975, Coffee=1582, Corn=9403, Cotton=1661, Cucumber=2349, Grape=5342, Orange=1361, Peach=1107, Potato=2698, Rice=5031, Rose=4229, Soybean=11840, Strawberry=3647, Sugarcane=6646, Tomato=11083, Wheat=3101
+185.6s 24 [manifest] train_crop=['Apple', 'Corn', 'Grape', 'Potato', 'Rice', 'Rose', 'Soybean', 'Strawberry', 'Sugarcane', 'Tomato']
+185.6s 25 [manifest] heldout_crop=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']
+185.6s 26 
+185.8s 27 [llm] api key present: True
+185.8s 28 
+185.8s 29 ==============================================================================
+185.8s 30 [descriptors]  t+0.0 h  (11.0 h left)
+185.8s 31 ==============================================================================
+185.8s 32 
+185.8s 33 --- ungrounded seed 0 (have 0, need 48) ---
+694.4s 34 [ungrounded] seed 0, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/0
+694.4s 35 [  1/51] Banana/Anthracnose: ok
+694.4s 36 [  2/51] Banana/Bunchy_Top: ok
+694.4s 37 [  3/51] Banana/Cigar_End_Rot: ok
+694.4s 38 [  4/51] Banana/Cordana_Leaf_Spot: ok
+694.4s 39 [  5/51] Banana/Panama_Disease: ok
+694.4s 40 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+694.4s 41 [  7/51] Bean/Angular_Leaf_Spot: ok
+694.4s 42 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+694.4s 43 [  9/51] Bean/Halo_Blight: ok
+694.4s 44 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+694.4s 45 [ 11/51] Bean/Rust: ok
+694.4s 46 [ 12/51] Coffee/Berry_Blotch: ok
+694.4s 47 [ 13/51] Coffee/Cerscospora: ok
+694.4s 48 [ 14/51] Coffee/Miner: ok
+694.4s 49 [ 15/51] Coffee/Phoma: ok
+694.4s 50 [ 16/51] Coffee/Rust: ok
+694.4s 51 [ 17/51] Cotton/Bacterial_Blight: ok
+694.4s 52 [ 18/51] Cotton/Powdery_Mildew: ok
+694.4s 53 [ 19/51] Cotton/Target_Spot: ok
+694.4s 54 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+694.4s 55 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+694.4s 56 [ 22/51] Cucumber/Anthracnose: ok
+694.4s 57 [ 23/51] Cucumber/Bacterial_Wilt: ok
+694.4s 58 [ 24/51] Cucumber/Belly_Rot: ok
+694.4s 59 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+694.5s 60 [ 26/51] Cucumber/Downy_Mildew: ok
+694.5s 61 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+694.5s 62 [ 28/51] Cucumber/Phytophthora_Blight: ok
+694.5s 63 [ 29/51] Cucumber/Powdery_Mildew: ok
+694.5s 64 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+694.5s 65 [ 31/51] Orange/Canker: ok
+694.5s 66 [ 32/51] Orange/Citrus_Canker: ok
+694.5s 67 [ 33/51] Orange/Green_Mold: ok
+694.5s 68 [ 34/51] Orange/Greening_Disease: ok
+694.5s 69 [ 35/51] Orange/Huanglongbing: ok
+694.5s 70 [ 36/51] Orange/Whisker_Mold: ok
+694.5s 71 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+694.5s 72 [ 38/51] Peach/Brown_Rot: ok
+694.5s 73 [ 39/51] Peach/Leaf_Curl: ok
+694.5s 74 [ 40/51] Peach/Leaf_Scab: ok
+694.5s 75 [ 41/51] Peach/Peach_Leaf_Curl: ok
+694.5s 76 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+694.5s 77 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+694.5s 78 [ 44/51] Wheat/Fusarium_Wilts: ok
+694.5s 79 [ 45/51] Wheat/Head_Scab: ok
+694.5s 80 [ 46/51] Wheat/Karnal_Bunt: ok
+694.5s 81 [ 47/51] Wheat/Loose_Smut: ok
+694.5s 82 [ 48/51] Wheat/Powdery_Mildew: ok
+694.5s 83 [ 49/51] Wheat/Resistance_Phenotype: ok
+694.5s 84 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+694.5s 85 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+694.5s 86 
+694.5s 87 [ungrounded] seed 0: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/0
+694.5s 88 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 0 --heavy
+694.5s 89 
+694.5s 90 -> 51 filled
+694.5s 91 
+694.5s 92 --- ungrounded seed 1 (have 0, need 48) ---
+1215.3s 93 [ungrounded] seed 1, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/1
+1215.3s 94 [  1/51] Banana/Anthracnose: ok
+1215.3s 95 [  2/51] Banana/Bunchy_Top: ok
+1215.3s 96 [  3/51] Banana/Cigar_End_Rot: ok
+1215.3s 97 [  4/51] Banana/Cordana_Leaf_Spot: ok
+1215.3s 98 [  5/51] Banana/Panama_Disease: ok
+1215.3s 99 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+1215.3s 100 [  7/51] Bean/Angular_Leaf_Spot: ok
+1215.3s 101 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+1215.3s 102 [  9/51] Bean/Halo_Blight: ok
+1215.3s 103 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+1215.3s 104 [ 11/51] Bean/Rust: ok
+1215.3s 105 [ 12/51] Coffee/Berry_Blotch: ok
+1215.3s 106 [ 13/51] Coffee/Cerscospora: ok
+1215.3s 107 [ 14/51] Coffee/Miner: ok
+1215.3s 108 [ 15/51] Coffee/Phoma: ok
+1215.3s 109 [ 16/51] Coffee/Rust: ok
+1215.3s 110 [ 17/51] Cotton/Bacterial_Blight: ok
+1215.3s 111 [ 18/51] Cotton/Powdery_Mildew: ok
+1215.3s 112 [ 19/51] Cotton/Target_Spot: ok
+1215.3s 113 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+1215.3s 114 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+1215.3s 115 [ 22/51] Cucumber/Anthracnose: ok
+1215.3s 116 [ 23/51] Cucumber/Bacterial_Wilt: ok
+1215.3s 117 [ 24/51] Cucumber/Belly_Rot: ok
+1215.3s 118 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+1215.3s 119 [ 26/51] Cucumber/Downy_Mildew: ok
+1215.3s 120 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+1215.3s 121 [ 28/51] Cucumber/Phytophthora_Blight: ok
+1215.3s 122 [ 29/51] Cucumber/Powdery_Mildew: ok
+1215.3s 123 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+1215.3s 124 [ 31/51] Orange/Canker: ok
+1215.3s 125 [ 32/51] Orange/Citrus_Canker: ok
+1215.3s 126 [ 33/51] Orange/Green_Mold: ok
+1215.3s 127 [ 34/51] Orange/Greening_Disease: ok
+1215.3s 128 [ 35/51] Orange/Huanglongbing: ok
+1215.3s 129 [ 36/51] Orange/Whisker_Mold: ok
+1215.3s 130 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+1215.4s 131 [ 38/51] Peach/Brown_Rot: ok
+1215.4s 132 [ 39/51] Peach/Leaf_Curl: ok
+1215.4s 133 [ 40/51] Peach/Leaf_Scab: ok
+1215.4s 134 [ 41/51] Peach/Peach_Leaf_Curl: ok
+1215.4s 135 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+1215.4s 136 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+1215.4s 137 [ 44/51] Wheat/Fusarium_Wilts: ok
+1215.4s 138 [ 45/51] Wheat/Head_Scab: ok
+1215.4s 139 [ 46/51] Wheat/Karnal_Bunt: ok
+1215.4s 140 [ 47/51] Wheat/Loose_Smut: ok
+1215.4s 141 [ 48/51] Wheat/Powdery_Mildew: ok
+1215.4s 142 [ 49/51] Wheat/Resistance_Phenotype: ok
+1215.4s 143 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+1215.4s 144 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+1215.4s 145 
+1215.4s 146 [ungrounded] seed 1: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/1
+1215.4s 147 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 1 --heavy
+1215.4s 148 
+1215.4s 149 -> 51 filled
+1215.4s 150 
+1215.4s 151 --- ungrounded seed 2 (have 0, need 48) ---
+1742.8s 152 [ungrounded] seed 2, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/2
+1742.8s 153 [  1/51] Banana/Anthracnose: ok
+1742.8s 154 [  2/51] Banana/Bunchy_Top: ok
+1742.8s 155 [  3/51] Banana/Cigar_End_Rot: ok
+1742.8s 156 [  4/51] Banana/Cordana_Leaf_Spot: ok
+1742.8s 157 [  5/51] Banana/Panama_Disease: ok
+1742.8s 158 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+1742.8s 159 [  7/51] Bean/Angular_Leaf_Spot: ok
+1742.8s 160 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+1742.8s 161 [  9/51] Bean/Halo_Blight: ok
+1742.8s 162 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+1742.8s 163 [ 11/51] Bean/Rust: ok
+1742.8s 164 [ 12/51] Coffee/Berry_Blotch: ok
+1742.8s 165 [ 13/51] Coffee/Cerscospora: ok
+1742.8s 166 [ 14/51] Coffee/Miner: ok
+1742.8s 167 [ 15/51] Coffee/Phoma: ok
+1742.8s 168 [ 16/51] Coffee/Rust: ok
+1742.8s 169 [ 17/51] Cotton/Bacterial_Blight: ok
+1742.8s 170 [ 18/51] Cotton/Powdery_Mildew: ok
+1742.8s 171 [ 19/51] Cotton/Target_Spot: ok
+1742.8s 172 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+1742.8s 173 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+1742.8s 174 [ 22/51] Cucumber/Anthracnose: ok
+1742.8s 175 [ 23/51] Cucumber/Bacterial_Wilt: ok
+1742.8s 176 [ 24/51] Cucumber/Belly_Rot: ok
+1742.8s 177 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+1742.8s 178 [ 26/51] Cucumber/Downy_Mildew: ok
+1742.8s 179 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+1742.8s 180 [ 28/51] Cucumber/Phytophthora_Blight: ok
+1742.8s 181 [ 29/51] Cucumber/Powdery_Mildew: ok
+1742.8s 182 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+1742.8s 183 [ 31/51] Orange/Canker: ok
+1742.8s 184 [ 32/51] Orange/Citrus_Canker: ok
+1742.8s 185 [ 33/51] Orange/Green_Mold: ok
+1742.8s 186 [ 34/51] Orange/Greening_Disease: ok
+1742.8s 187 [ 35/51] Orange/Huanglongbing: ok
+1742.8s 188 [ 36/51] Orange/Whisker_Mold: ok
+1742.8s 189 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+1742.8s 190 [ 38/51] Peach/Brown_Rot: ok
+1742.8s 191 [ 39/51] Peach/Leaf_Curl: ok
+1742.8s 192 [ 40/51] Peach/Leaf_Scab: ok
+1742.8s 193 [ 41/51] Peach/Peach_Leaf_Curl: ok
+1742.8s 194 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+1742.8s 195 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+1742.8s 196 [ 44/51] Wheat/Fusarium_Wilts: ok
+1742.8s 197 [ 45/51] Wheat/Head_Scab: ok
+1742.8s 198 [ 46/51] Wheat/Karnal_Bunt: ok
+1742.8s 199 [ 47/51] Wheat/Loose_Smut: ok
+1742.8s 200 [ 48/51] Wheat/Powdery_Mildew: ok
+1742.8s 201 [ 49/51] Wheat/Resistance_Phenotype: ok
+1742.8s 202 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+1742.8s 203 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+1742.8s 204 
+1742.8s 205 [ungrounded] seed 2: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/2
+1742.8s 206 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 2 --heavy
+1742.8s 207 
+1742.8s 208 -> 51 filled
+1742.8s 209 
+1742.8s 210 --- ungrounded seed 3 (have 0, need 48) ---
+2269.4s 211 [ungrounded] seed 3, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/3
+2269.4s 212 [  1/51] Banana/Anthracnose: ok
+2269.4s 213 [  2/51] Banana/Bunchy_Top: ok
+2269.4s 214 [  3/51] Banana/Cigar_End_Rot: ok
+2269.4s 215 [  4/51] Banana/Cordana_Leaf_Spot: ok
+2269.4s 216 [  5/51] Banana/Panama_Disease: ok
+2269.4s 217 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+2269.4s 218 [  7/51] Bean/Angular_Leaf_Spot: ok
+2269.4s 219 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+2269.4s 220 [  9/51] Bean/Halo_Blight: ok
+2269.4s 221 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+2269.4s 222 [ 11/51] Bean/Rust: ok
+2269.4s 223 [ 12/51] Coffee/Berry_Blotch: ok
+2269.4s 224 [ 13/51] Coffee/Cerscospora: ok
+2269.4s 225 [ 14/51] Coffee/Miner: ok
+2269.4s 226 [ 15/51] Coffee/Phoma: ok
+2269.4s 227 [ 16/51] Coffee/Rust: ok
+2269.4s 228 [ 17/51] Cotton/Bacterial_Blight: ok
+2269.4s 229 [ 18/51] Cotton/Powdery_Mildew: ok
+2269.4s 230 [ 19/51] Cotton/Target_Spot: ok
+2269.4s 231 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+2269.4s 232 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+2269.4s 233 [ 22/51] Cucumber/Anthracnose: ok
+2269.4s 234 [ 23/51] Cucumber/Bacterial_Wilt: ok
+2269.4s 235 [ 24/51] Cucumber/Belly_Rot: ok
+2269.4s 236 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+2269.4s 237 [ 26/51] Cucumber/Downy_Mildew: ok
+2269.4s 238 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+2269.4s 239 [ 28/51] Cucumber/Phytophthora_Blight: ok
+2269.4s 240 [ 29/51] Cucumber/Powdery_Mildew: ok
+2269.4s 241 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+2269.4s 242 [ 31/51] Orange/Canker: ok
+2269.4s 243 [ 32/51] Orange/Citrus_Canker: ok
+2269.4s 244 [ 33/51] Orange/Green_Mold: ok
+2269.4s 245 [ 34/51] Orange/Greening_Disease: ok
+2269.4s 246 [ 35/51] Orange/Huanglongbing: ok
+2269.4s 247 [ 36/51] Orange/Whisker_Mold: ok
+2269.4s 248 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+2269.4s 249 [ 38/51] Peach/Brown_Rot: ok
+2269.4s 250 [ 39/51] Peach/Leaf_Curl: ok
+2269.4s 251 [ 40/51] Peach/Leaf_Scab: ok
+2269.4s 252 [ 41/51] Peach/Peach_Leaf_Curl: ok
+2269.4s 253 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+2269.4s 254 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+2269.4s 255 [ 44/51] Wheat/Fusarium_Wilts: ok
+2269.4s 256 [ 45/51] Wheat/Head_Scab: ok
+2269.4s 257 [ 46/51] Wheat/Karnal_Bunt: ok
+2269.4s 258 [ 47/51] Wheat/Loose_Smut: ok
+2269.4s 259 [ 48/51] Wheat/Powdery_Mildew: ok
+2269.4s 260 [ 49/51] Wheat/Resistance_Phenotype: ok
+2269.4s 261 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+2269.4s 262 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+2269.4s 263 
+2269.4s 264 [ungrounded] seed 3: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/3
+2269.4s 265 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 3 --heavy
+2269.4s 266 
+2269.4s 267 -> 51 filled
+2269.4s 268 
+2269.4s 269 --- ungrounded seed 4 (have 0, need 48) ---
+2791.7s 270 [ungrounded] seed 4, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/4
+2791.7s 271 [  1/51] Banana/Anthracnose: ok
+2791.7s 272 [  2/51] Banana/Bunchy_Top: ok
+2791.7s 273 [  3/51] Banana/Cigar_End_Rot: ok
+2791.7s 274 [  4/51] Banana/Cordana_Leaf_Spot: ok
+2791.7s 275 [  5/51] Banana/Panama_Disease: ok
+2791.7s 276 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+2791.7s 277 [  7/51] Bean/Angular_Leaf_Spot: ok
+2791.7s 278 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+2791.7s 279 [  9/51] Bean/Halo_Blight: ok
+2791.7s 280 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+2791.7s 281 [ 11/51] Bean/Rust: ok
+2791.7s 282 [ 12/51] Coffee/Berry_Blotch: ok
+2791.7s 283 [ 13/51] Coffee/Cerscospora: ok
+2791.7s 284 [ 14/51] Coffee/Miner: ok
+2791.7s 285 [ 15/51] Coffee/Phoma: ok
+2791.7s 286 [ 16/51] Coffee/Rust: ok
+2791.7s 287 [ 17/51] Cotton/Bacterial_Blight: ok
+2791.7s 288 [ 18/51] Cotton/Powdery_Mildew: ok
+2791.7s 289 [ 19/51] Cotton/Target_Spot: ok
+2791.7s 290 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+2791.7s 291 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+2791.7s 292 [ 22/51] Cucumber/Anthracnose: ok
+2791.7s 293 [ 23/51] Cucumber/Bacterial_Wilt: ok
+2791.7s 294 [ 24/51] Cucumber/Belly_Rot: ok
+2791.7s 295 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+2791.7s 296 [ 26/51] Cucumber/Downy_Mildew: ok
+2791.7s 297 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+2791.7s 298 [ 28/51] Cucumber/Phytophthora_Blight: ok
+2791.7s 299 [ 29/51] Cucumber/Powdery_Mildew: ok
+2791.7s 300 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+2791.7s 301 [ 31/51] Orange/Canker: ok
+2791.7s 302 [ 32/51] Orange/Citrus_Canker: ok
+2791.7s 303 [ 33/51] Orange/Green_Mold: ok
+2791.7s 304 [ 34/51] Orange/Greening_Disease: ok
+2791.7s 305 [ 35/51] Orange/Huanglongbing: ok
+2791.7s 306 [ 36/51] Orange/Whisker_Mold: ok
+2791.7s 307 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+2791.7s 308 [ 38/51] Peach/Brown_Rot: ok
+2791.7s 309 [ 39/51] Peach/Leaf_Curl: ok
+2791.7s 310 [ 40/51] Peach/Leaf_Scab: ok
+2791.7s 311 [ 41/51] Peach/Peach_Leaf_Curl: ok
+2791.7s 312 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+2791.7s 313 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+2791.7s 314 [ 44/51] Wheat/Fusarium_Wilts: ok
+2791.7s 315 [ 45/51] Wheat/Head_Scab: ok
+2791.7s 316 [ 46/51] Wheat/Karnal_Bunt: ok
+2791.7s 317 [ 47/51] Wheat/Loose_Smut: ok
+2791.7s 318 [ 48/51] Wheat/Powdery_Mildew: ok
+2791.7s 319 [ 49/51] Wheat/Resistance_Phenotype: ok
+2791.7s 320 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+2791.7s 321 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+2791.7s 322 
+2791.7s 323 [ungrounded] seed 4: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/4
+2791.7s 324 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 4 --heavy
+2791.7s 325 
+2791.7s 326 -> 51 filled
+2791.7s 327 
+2791.7s 328 --- ungrounded seed 5 (have 0, need 48) ---
+3318.1s 329 [ungrounded] seed 5, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/5
+3318.1s 330 [  1/51] Banana/Anthracnose: ok
+3318.1s 331 [  2/51] Banana/Bunchy_Top: ok
+3318.1s 332 [  3/51] Banana/Cigar_End_Rot: ok
+3318.1s 333 [  4/51] Banana/Cordana_Leaf_Spot: ok
+3318.1s 334 [  5/51] Banana/Panama_Disease: ok
+3318.1s 335 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+3318.1s 336 [  7/51] Bean/Angular_Leaf_Spot: ok
+3318.1s 337 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+3318.1s 338 [  9/51] Bean/Halo_Blight: ok
+3318.1s 339 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+3318.1s 340 [ 11/51] Bean/Rust: ok
+3318.1s 341 [ 12/51] Coffee/Berry_Blotch: ok
+3318.1s 342 [ 13/51] Coffee/Cerscospora: ok
+3318.1s 343 [ 14/51] Coffee/Miner: ok
+3318.1s 344 [ 15/51] Coffee/Phoma: ok
+3318.1s 345 [ 16/51] Coffee/Rust: ok
+3318.1s 346 [ 17/51] Cotton/Bacterial_Blight: ok
+3318.1s 347 [ 18/51] Cotton/Powdery_Mildew: ok
+3318.1s 348 [ 19/51] Cotton/Target_Spot: ok
+3318.1s 349 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+3318.1s 350 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+3318.1s 351 [ 22/51] Cucumber/Anthracnose: ok
+3318.1s 352 [ 23/51] Cucumber/Bacterial_Wilt: ok
+3318.1s 353 [ 24/51] Cucumber/Belly_Rot: ok
+3318.1s 354 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+3318.1s 355 [ 26/51] Cucumber/Downy_Mildew: ok
+3318.1s 356 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+3318.1s 357 [ 28/51] Cucumber/Phytophthora_Blight: ok
+3318.1s 358 [ 29/51] Cucumber/Powdery_Mildew: ok
+3318.1s 359 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+3318.1s 360 [ 31/51] Orange/Canker: ok
+3318.1s 361 [ 32/51] Orange/Citrus_Canker: ok
+3318.1s 362 [ 33/51] Orange/Green_Mold: ok
+3318.1s 363 [ 34/51] Orange/Greening_Disease: ok
+3318.1s 364 [ 35/51] Orange/Huanglongbing: ok
+3318.1s 365 [ 36/51] Orange/Whisker_Mold: ok
+3318.1s 366 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+3318.1s 367 [ 38/51] Peach/Brown_Rot: ok
+3318.1s 368 [ 39/51] Peach/Leaf_Curl: ok
+3318.1s 369 [ 40/51] Peach/Leaf_Scab: ok
+3318.1s 370 [ 41/51] Peach/Peach_Leaf_Curl: ok
+3318.1s 371 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+3318.1s 372 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+3318.1s 373 [ 44/51] Wheat/Fusarium_Wilts: ok
+3318.1s 374 [ 45/51] Wheat/Head_Scab: ok
+3318.1s 375 [ 46/51] Wheat/Karnal_Bunt: ok
+3318.1s 376 [ 47/51] Wheat/Loose_Smut: ok
+3318.1s 377 [ 48/51] Wheat/Powdery_Mildew: ok
+3318.1s 378 [ 49/51] Wheat/Resistance_Phenotype: ok
+3318.1s 379 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+3318.1s 380 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+3318.1s 381 
+3318.1s 382 [ungrounded] seed 5: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/5
+3318.1s 383 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 5 --heavy
+3318.1s 384 
+3318.1s 385 -> 51 filled
+3318.1s 386 
+3318.1s 387 --- ungrounded seed 6 (have 0, need 48) ---
+3859.5s 388 [ungrounded] seed 6, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/6
+3859.5s 389 [  1/51] Banana/Anthracnose: ok
+3859.5s 390 [  2/51] Banana/Bunchy_Top: ok
+3859.5s 391 [  3/51] Banana/Cigar_End_Rot: ok
+3859.5s 392 [  4/51] Banana/Cordana_Leaf_Spot: ok
+3859.5s 393 [  5/51] Banana/Panama_Disease: ok
+3859.5s 394 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+3859.5s 395 [  7/51] Bean/Angular_Leaf_Spot: ok
+3859.5s 396 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+3859.5s 397 [  9/51] Bean/Halo_Blight: ok
+3859.5s 398 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+3859.5s 399 [ 11/51] Bean/Rust: ok
+3859.5s 400 [ 12/51] Coffee/Berry_Blotch: ok
+3859.5s 401 [ 13/51] Coffee/Cerscospora: ok
+3859.5s 402 [ 14/51] Coffee/Miner: ok
+3859.5s 403 [ 15/51] Coffee/Phoma: ok
+3859.5s 404 [ 16/51] Coffee/Rust: ok
+3859.5s 405 [ 17/51] Cotton/Bacterial_Blight: ok
+3859.5s 406 [ 18/51] Cotton/Powdery_Mildew: ok
+3859.5s 407 [ 19/51] Cotton/Target_Spot: ok
+3859.5s 408 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+3859.5s 409 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+3859.5s 410 [ 22/51] Cucumber/Anthracnose: ok
+3859.5s 411 [ 23/51] Cucumber/Bacterial_Wilt: ok
+3859.5s 412 [ 24/51] Cucumber/Belly_Rot: ok
+3859.5s 413 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+3859.5s 414 [ 26/51] Cucumber/Downy_Mildew: ok
+3859.5s 415 [retry 1/3] Cucumber/Gummy_Stem_Blight: JSONDecodeError: Expecting ',' delimiter: line 1 column 1229 (char 1228)
+3859.5s 416 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+3859.5s 417 [ 28/51] Cucumber/Phytophthora_Blight: ok
+3859.5s 418 [ 29/51] Cucumber/Powdery_Mildew: ok
+3859.5s 419 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+3859.5s 420 [ 31/51] Orange/Canker: ok
+3859.5s 421 [ 32/51] Orange/Citrus_Canker: ok
+3859.5s 422 [ 33/51] Orange/Green_Mold: ok
+3859.5s 423 [ 34/51] Orange/Greening_Disease: ok
+3859.5s 424 [ 35/51] Orange/Huanglongbing: ok
+3859.5s 425 [ 36/51] Orange/Whisker_Mold: ok
+3859.5s 426 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+3859.5s 427 [ 38/51] Peach/Brown_Rot: ok
+3859.5s 428 [ 39/51] Peach/Leaf_Curl: ok
+3859.5s 429 [ 40/51] Peach/Leaf_Scab: ok
+3859.5s 430 [ 41/51] Peach/Peach_Leaf_Curl: ok
+3859.5s 431 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+3859.5s 432 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+3859.5s 433 [ 44/51] Wheat/Fusarium_Wilts: ok
+3859.5s 434 [ 45/51] Wheat/Head_Scab: ok
+3859.5s 435 [ 46/51] Wheat/Karnal_Bunt: ok
+3859.5s 436 [ 47/51] Wheat/Loose_Smut: ok
+3859.5s 437 [ 48/51] Wheat/Powdery_Mildew: ok
+3859.5s 438 [ 49/51] Wheat/Resistance_Phenotype: ok
+3859.5s 439 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+3859.5s 440 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+3859.5s 441 
+3859.5s 442 [ungrounded] seed 6: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/6
+3859.5s 443 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 6 --heavy
+3859.5s 444 
+3859.5s 445 -> 51 filled
+3859.5s 446 
+3859.5s 447 --- ungrounded seed 7 (have 0, need 48) ---
+4392.9s 448 [ungrounded] seed 7, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_ungrounded/7
+4392.9s 449 [  1/51] Banana/Anthracnose: ok
+4392.9s 450 [  2/51] Banana/Bunchy_Top: ok
+4392.9s 451 [  3/51] Banana/Cigar_End_Rot: ok
+4392.9s 452 [  4/51] Banana/Cordana_Leaf_Spot: ok
+4392.9s 453 [  5/51] Banana/Panama_Disease: ok
+4392.9s 454 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+4392.9s 455 [  7/51] Bean/Angular_Leaf_Spot: ok
+4392.9s 456 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+4392.9s 457 [  9/51] Bean/Halo_Blight: ok
+4392.9s 458 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+4392.9s 459 [ 11/51] Bean/Rust: ok
+4392.9s 460 [ 12/51] Coffee/Berry_Blotch: ok
+4392.9s 461 [ 13/51] Coffee/Cerscospora: ok
+4392.9s 462 [ 14/51] Coffee/Miner: ok
+4392.9s 463 [ 15/51] Coffee/Phoma: ok
+4392.9s 464 [ 16/51] Coffee/Rust: ok
+4392.9s 465 [ 17/51] Cotton/Bacterial_Blight: ok
+4392.9s 466 [ 18/51] Cotton/Powdery_Mildew: ok
+4392.9s 467 [ 19/51] Cotton/Target_Spot: ok
+4392.9s 468 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+4392.9s 469 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+4392.9s 470 [ 22/51] Cucumber/Anthracnose: ok
+4392.9s 471 [ 23/51] Cucumber/Bacterial_Wilt: ok
+4392.9s 472 [ 24/51] Cucumber/Belly_Rot: ok
+4392.9s 473 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+4392.9s 474 [ 26/51] Cucumber/Downy_Mildew: ok
+4392.9s 475 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+4392.9s 476 [ 28/51] Cucumber/Phytophthora_Blight: ok
+4392.9s 477 [ 29/51] Cucumber/Powdery_Mildew: ok
+4392.9s 478 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+4392.9s 479 [ 31/51] Orange/Canker: ok
+4392.9s 480 [ 32/51] Orange/Citrus_Canker: ok
+4392.9s 481 [ 33/51] Orange/Green_Mold: ok
+4392.9s 482 [ 34/51] Orange/Greening_Disease: ok
+4392.9s 483 [ 35/51] Orange/Huanglongbing: ok
+4392.9s 484 [ 36/51] Orange/Whisker_Mold: ok
+4392.9s 485 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+4392.9s 486 [ 38/51] Peach/Brown_Rot: ok
+4392.9s 487 [ 39/51] Peach/Leaf_Curl: ok
+4392.9s 488 [ 40/51] Peach/Leaf_Scab: ok
+4392.9s 489 [ 41/51] Peach/Peach_Leaf_Curl: ok
+4392.9s 490 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+4392.9s 491 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+4392.9s 492 [ 44/51] Wheat/Fusarium_Wilts: ok
+4392.9s 493 [ 45/51] Wheat/Head_Scab: ok
+4392.9s 494 [ 46/51] Wheat/Karnal_Bunt: ok
+4392.9s 495 [ 47/51] Wheat/Loose_Smut: ok
+4392.9s 496 [ 48/51] Wheat/Powdery_Mildew: ok
+4392.9s 497 [ 49/51] Wheat/Resistance_Phenotype: ok
+4392.9s 498 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: ok
+4392.9s 499 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: ok
+4392.9s 500 
+4392.9s 501 [ungrounded] seed 7: 51 filled records in /kaggle/working/pde/descriptors_ungrounded/7
+4392.9s 502 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 7 --heavy
+4392.9s 503 
+4392.9s 504 -> 51 filled
+4392.9s 505 
+4392.9s 506 --- grounded seed 0 (have 0, need 48) ---
+5441.9s 507 [grounded] seed 0, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/0
+5441.9s 508 [  1/51] Banana/Anthracnose: ok
+5441.9s 509 [  2/51] Banana/Bunchy_Top: ok
+5441.9s 510 [  3/51] Banana/Cigar_End_Rot: ok
+5441.9s 511 [retry 1/3] Banana/Cordana_Leaf_Spot: ValueError: parsed object has no usable symptom_text
+5441.9s 512 [retry 2/3] Banana/Cordana_Leaf_Spot: ValueError: parsed object has no usable symptom_text
+5441.9s 513 [  4/51] Banana/Cordana_Leaf_Spot: ok
+5441.9s 514 [  5/51] Banana/Panama_Disease: ok
+5441.9s 515 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+5441.9s 516 [  7/51] Bean/Angular_Leaf_Spot: ok
+5441.9s 517 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+5441.9s 518 [  9/51] Bean/Halo_Blight: ok
+5441.9s 519 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+5441.9s 520 [ 11/51] Bean/Rust: ok
+5441.9s 521 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+5441.9s 522 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+5441.9s 523 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+5441.9s 524 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+5441.9s 525 [ 12/51] Coffee/Berry_Blotch: STUB
+5441.9s 526 [ 13/51] Coffee/Cerscospora: ok
+5441.9s 527 [ 14/51] Coffee/Miner: ok
+5441.9s 528 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+5441.9s 529 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+5441.9s 530 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+5441.9s 531 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+5441.9s 532 [ 15/51] Coffee/Phoma: STUB
+5441.9s 533 [ 16/51] Coffee/Rust: ok
+5441.9s 534 [ 17/51] Cotton/Bacterial_Blight: ok
+5441.9s 535 [retry 1/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+5441.9s 536 [retry 2/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+5441.9s 537 [ 18/51] Cotton/Powdery_Mildew: ok
+5441.9s 538 [ 19/51] Cotton/Target_Spot: ok
+5441.9s 539 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+5441.9s 540 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+5441.9s 541 [ 22/51] Cucumber/Anthracnose: ok
+5441.9s 542 [ 23/51] Cucumber/Bacterial_Wilt: ok
+5441.9s 543 [ 24/51] Cucumber/Belly_Rot: ok
+5441.9s 544 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+5441.9s 545 [ 26/51] Cucumber/Downy_Mildew: ok
+5441.9s 546 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+5441.9s 547 [ 28/51] Cucumber/Phytophthora_Blight: ok
+5441.9s 548 [ 29/51] Cucumber/Powdery_Mildew: ok
+5441.9s 549 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+5441.9s 550 [ 31/51] Orange/Canker: ok
+5441.9s 551 [ 32/51] Orange/Citrus_Canker: ok
+5441.9s 552 [ 33/51] Orange/Green_Mold: ok
+5441.9s 553 [ 34/51] Orange/Greening_Disease: ok
+5441.9s 554 [ 35/51] Orange/Huanglongbing: ok
+5441.9s 555 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+5441.9s 556 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+5441.9s 557 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+5441.9s 558 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+5441.9s 559 [ 36/51] Orange/Whisker_Mold: STUB
+5441.9s 560 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+5441.9s 561 [ 38/51] Peach/Brown_Rot: ok
+5441.9s 562 [ 39/51] Peach/Leaf_Curl: ok
+5441.9s 563 [ 40/51] Peach/Leaf_Scab: ok
+5441.9s 564 [ 41/51] Peach/Peach_Leaf_Curl: ok
+5441.9s 565 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+5441.9s 566 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+5441.9s 567 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+5442.0s 568 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+5442.0s 569 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+5442.0s 570 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+5442.0s 571 [ 44/51] Wheat/Fusarium_Wilts: STUB
+5442.0s 572 [ 45/51] Wheat/Head_Scab: ok
+5442.0s 573 [ 46/51] Wheat/Karnal_Bunt: ok
+5442.0s 574 [ 47/51] Wheat/Loose_Smut: ok
+5442.0s 575 [ 48/51] Wheat/Powdery_Mildew: ok
+5442.0s 576 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+5442.0s 577 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+5442.0s 578 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+5442.0s 579 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+5442.0s 580 [ 49/51] Wheat/Resistance_Phenotype: STUB
+5442.0s 581 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+5442.0s 582 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+5442.0s 583 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+5442.0s 584 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+5442.0s 585 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+5442.0s 586 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+5442.0s 587 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+5442.0s 588 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+5442.0s 589 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+5442.0s 590 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+5442.0s 591 
+5442.0s 592 [ungrounded] seed 0: 44 filled records in /kaggle/working/pde/descriptors_grounded_matched/0
+5442.0s 593 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 0 --heavy
+5442.0s 594 
+5442.0s 595 -> 44 filled
+5442.0s 596 
+5442.0s 597 --- grounded seed 1 (have 0, need 48) ---
+6477.6s 598 [grounded] seed 1, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/1
+6477.7s 599 [  1/51] Banana/Anthracnose: ok
+6477.7s 600 [  2/51] Banana/Bunchy_Top: ok
+6477.7s 601 [  3/51] Banana/Cigar_End_Rot: ok
+6477.7s 602 [retry 1/3] Banana/Cordana_Leaf_Spot: ValueError: parsed object has no usable symptom_text
+6477.7s 603 [retry 2/3] Banana/Cordana_Leaf_Spot: ValueError: parsed object has no usable symptom_text
+6477.7s 604 [  4/51] Banana/Cordana_Leaf_Spot: ok
+6477.7s 605 [  5/51] Banana/Panama_Disease: ok
+6477.7s 606 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+6477.7s 607 [  7/51] Bean/Angular_Leaf_Spot: ok
+6477.7s 608 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+6477.7s 609 [  9/51] Bean/Halo_Blight: ok
+6477.7s 610 [retry 1/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+6477.7s 611 [retry 2/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+6477.7s 612 [retry 3/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+6477.7s 613 [fail] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+6477.7s 614 [ 10/51] Bean/Leaf_Mosaic_Virus: STUB
+6477.7s 615 [ 11/51] Bean/Rust: ok
+6477.7s 616 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+6477.7s 617 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+6477.7s 618 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+6477.7s 619 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+6477.7s 620 [ 12/51] Coffee/Berry_Blotch: STUB
+6477.7s 621 [ 13/51] Coffee/Cerscospora: ok
+6477.7s 622 [retry 1/3] Coffee/Miner: ValueError: parsed object has no usable symptom_text
+6477.7s 623 [ 14/51] Coffee/Miner: ok
+6477.7s 624 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+6477.7s 625 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+6477.7s 626 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+6477.7s 627 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+6477.7s 628 [ 15/51] Coffee/Phoma: STUB
+6477.7s 629 [ 16/51] Coffee/Rust: ok
+6477.7s 630 [ 17/51] Cotton/Bacterial_Blight: ok
+6477.7s 631 [retry 1/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+6477.7s 632 [ 18/51] Cotton/Powdery_Mildew: ok
+6477.7s 633 [ 19/51] Cotton/Target_Spot: ok
+6477.7s 634 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+6477.7s 635 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+6477.7s 636 [ 22/51] Cucumber/Anthracnose: ok
+6477.7s 637 [ 23/51] Cucumber/Bacterial_Wilt: ok
+6477.7s 638 [ 24/51] Cucumber/Belly_Rot: ok
+6477.7s 639 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+6477.7s 640 [ 26/51] Cucumber/Downy_Mildew: ok
+6477.7s 641 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+6477.7s 642 [ 28/51] Cucumber/Phytophthora_Blight: ok
+6477.7s 643 [ 29/51] Cucumber/Powdery_Mildew: ok
+6477.7s 644 [retry 1/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+6477.7s 645 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+6477.7s 646 [ 31/51] Orange/Canker: ok
+6477.7s 647 [ 32/51] Orange/Citrus_Canker: ok
+6477.7s 648 [ 33/51] Orange/Green_Mold: ok
+6477.7s 649 [ 34/51] Orange/Greening_Disease: ok
+6477.7s 650 [ 35/51] Orange/Huanglongbing: ok
+6477.7s 651 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+6477.7s 652 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+6477.7s 653 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+6477.7s 654 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+6477.7s 655 [ 36/51] Orange/Whisker_Mold: STUB
+6477.7s 656 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+6477.7s 657 [ 38/51] Peach/Brown_Rot: ok
+6477.7s 658 [ 39/51] Peach/Leaf_Curl: ok
+6477.7s 659 [ 40/51] Peach/Leaf_Scab: ok
+6477.7s 660 [ 41/51] Peach/Peach_Leaf_Curl: ok
+6477.7s 661 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+6477.7s 662 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+6477.7s 663 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+6477.7s 664 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+6477.7s 665 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+6477.7s 666 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+6477.7s 667 [ 44/51] Wheat/Fusarium_Wilts: STUB
+6477.7s 668 [ 45/51] Wheat/Head_Scab: ok
+6477.7s 669 [ 46/51] Wheat/Karnal_Bunt: ok
+6477.7s 670 [ 47/51] Wheat/Loose_Smut: ok
+6477.7s 671 [ 48/51] Wheat/Powdery_Mildew: ok
+6477.7s 672 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+6477.7s 673 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+6477.7s 674 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+6477.7s 675 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+6477.7s 676 [ 49/51] Wheat/Resistance_Phenotype: STUB
+6477.7s 677 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+6477.7s 678 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+6477.7s 679 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+6477.7s 680 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+6477.7s 681 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+6477.7s 682 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+6477.7s 683 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+6477.7s 684 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+6477.7s 685 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+6477.7s 686 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+6477.7s 687 
+6477.7s 688 [ungrounded] seed 1: 43 filled records in /kaggle/working/pde/descriptors_grounded_matched/1
+6477.7s 689 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 1 --heavy
+6477.7s 690 
+6477.7s 691 -> 43 filled
+6477.7s 692 
+6477.7s 693 --- grounded seed 2 (have 0, need 48) ---
+7499.1s 694 [grounded] seed 2, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/2
+7499.1s 695 [  1/51] Banana/Anthracnose: ok
+7499.1s 696 [  2/51] Banana/Bunchy_Top: ok
+7499.1s 697 [  3/51] Banana/Cigar_End_Rot: ok
+7499.1s 698 [  4/51] Banana/Cordana_Leaf_Spot: ok
+7499.1s 699 [  5/51] Banana/Panama_Disease: ok
+7499.1s 700 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+7499.1s 701 [  7/51] Bean/Angular_Leaf_Spot: ok
+7499.1s 702 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+7499.1s 703 [  9/51] Bean/Halo_Blight: ok
+7499.1s 704 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+7499.1s 705 [ 11/51] Bean/Rust: ok
+7499.1s 706 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+7499.1s 707 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+7499.1s 708 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+7499.1s 709 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+7499.1s 710 [ 12/51] Coffee/Berry_Blotch: STUB
+7499.1s 711 [ 13/51] Coffee/Cerscospora: ok
+7499.1s 712 [ 14/51] Coffee/Miner: ok
+7499.1s 713 [ 15/51] Coffee/Phoma: ok
+7499.1s 714 [ 16/51] Coffee/Rust: ok
+7499.1s 715 [ 17/51] Cotton/Bacterial_Blight: ok
+7499.1s 716 [retry 1/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+7499.1s 717 [retry 2/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+7499.1s 718 [ 18/51] Cotton/Powdery_Mildew: ok
+7499.1s 719 [ 19/51] Cotton/Target_Spot: ok
+7499.1s 720 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+7499.1s 721 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+7499.1s 722 [ 22/51] Cucumber/Anthracnose: ok
+7499.1s 723 [ 23/51] Cucumber/Bacterial_Wilt: ok
+7499.1s 724 [ 24/51] Cucumber/Belly_Rot: ok
+7499.1s 725 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+7499.1s 726 [ 26/51] Cucumber/Downy_Mildew: ok
+7499.1s 727 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+7499.1s 728 [ 28/51] Cucumber/Phytophthora_Blight: ok
+7499.1s 729 [ 29/51] Cucumber/Powdery_Mildew: ok
+7499.1s 730 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+7499.1s 731 [ 31/51] Orange/Canker: ok
+7499.1s 732 [ 32/51] Orange/Citrus_Canker: ok
+7499.1s 733 [ 33/51] Orange/Green_Mold: ok
+7499.1s 734 [ 34/51] Orange/Greening_Disease: ok
+7499.1s 735 [ 35/51] Orange/Huanglongbing: ok
+7499.1s 736 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+7499.1s 737 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+7499.1s 738 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+7499.1s 739 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+7499.1s 740 [ 36/51] Orange/Whisker_Mold: STUB
+7499.1s 741 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+7499.1s 742 [ 38/51] Peach/Brown_Rot: ok
+7499.1s 743 [ 39/51] Peach/Leaf_Curl: ok
+7499.1s 744 [ 40/51] Peach/Leaf_Scab: ok
+7499.1s 745 [ 41/51] Peach/Peach_Leaf_Curl: ok
+7499.1s 746 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+7499.1s 747 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+7499.1s 748 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+7499.1s 749 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+7499.1s 750 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+7499.1s 751 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+7499.1s 752 [ 44/51] Wheat/Fusarium_Wilts: STUB
+7499.1s 753 [ 45/51] Wheat/Head_Scab: ok
+7499.1s 754 [ 46/51] Wheat/Karnal_Bunt: ok
+7499.1s 755 [ 47/51] Wheat/Loose_Smut: ok
+7499.1s 756 [ 48/51] Wheat/Powdery_Mildew: ok
+7499.1s 757 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+7499.1s 758 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+7499.1s 759 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+7499.1s 760 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+7499.1s 761 [ 49/51] Wheat/Resistance_Phenotype: STUB
+7499.1s 762 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+7499.1s 763 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+7499.1s 764 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+7499.1s 765 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+7499.1s 766 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+7499.1s 767 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+7499.1s 768 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+7499.1s 769 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+7499.1s 770 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+7499.1s 771 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+7499.1s 772 
+7499.1s 773 [ungrounded] seed 2: 45 filled records in /kaggle/working/pde/descriptors_grounded_matched/2
+7499.1s 774 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 2 --heavy
+7499.1s 775 
+7499.1s 776 -> 45 filled
+7499.1s 777 
+7499.1s 778 --- grounded seed 3 (have 0, need 48) ---
+8555.3s 779 [grounded] seed 3, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/3
+8555.3s 780 [  1/51] Banana/Anthracnose: ok
+8555.3s 781 [  2/51] Banana/Bunchy_Top: ok
+8555.3s 782 [retry 1/3] Banana/Cigar_End_Rot: ValueError: parsed object has no usable symptom_text
+8555.3s 783 [  3/51] Banana/Cigar_End_Rot: ok
+8555.3s 784 [retry 1/3] Banana/Cordana_Leaf_Spot: ValueError: parsed object has no usable symptom_text
+8555.3s 785 [  4/51] Banana/Cordana_Leaf_Spot: ok
+8555.3s 786 [  5/51] Banana/Panama_Disease: ok
+8555.3s 787 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+8555.3s 788 [  7/51] Bean/Angular_Leaf_Spot: ok
+8555.3s 789 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+8555.3s 790 [  9/51] Bean/Halo_Blight: ok
+8555.3s 791 [retry 1/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+8555.3s 792 [retry 2/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+8555.3s 793 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+8555.3s 794 [ 11/51] Bean/Rust: ok
+8555.3s 795 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+8555.3s 796 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+8555.3s 797 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+8555.3s 798 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+8555.3s 799 [ 12/51] Coffee/Berry_Blotch: STUB
+8555.3s 800 [ 13/51] Coffee/Cerscospora: ok
+8555.3s 801 [ 14/51] Coffee/Miner: ok
+8555.3s 802 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+8555.3s 803 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+8555.3s 804 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+8555.3s 805 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+8555.3s 806 [ 15/51] Coffee/Phoma: STUB
+8555.3s 807 [ 16/51] Coffee/Rust: ok
+8555.3s 808 [ 17/51] Cotton/Bacterial_Blight: ok
+8555.3s 809 [retry 1/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+8555.3s 810 [retry 2/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+8555.3s 811 [retry 3/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+8555.3s 812 [fail] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+8555.3s 813 [ 18/51] Cotton/Powdery_Mildew: STUB
+8555.3s 814 [ 19/51] Cotton/Target_Spot: ok
+8555.4s 815 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+8555.4s 816 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+8555.4s 817 [ 22/51] Cucumber/Anthracnose: ok
+8555.4s 818 [ 23/51] Cucumber/Bacterial_Wilt: ok
+8555.4s 819 [ 24/51] Cucumber/Belly_Rot: ok
+8555.4s 820 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+8555.4s 821 [ 26/51] Cucumber/Downy_Mildew: ok
+8555.4s 822 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+8555.4s 823 [ 28/51] Cucumber/Phytophthora_Blight: ok
+8555.4s 824 [ 29/51] Cucumber/Powdery_Mildew: ok
+8555.4s 825 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+8555.4s 826 [ 31/51] Orange/Canker: ok
+8555.4s 827 [ 32/51] Orange/Citrus_Canker: ok
+8555.4s 828 [ 33/51] Orange/Green_Mold: ok
+8555.4s 829 [ 34/51] Orange/Greening_Disease: ok
+8555.4s 830 [ 35/51] Orange/Huanglongbing: ok
+8555.4s 831 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+8555.4s 832 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+8555.4s 833 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+8555.4s 834 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+8555.4s 835 [ 36/51] Orange/Whisker_Mold: STUB
+8555.4s 836 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+8555.4s 837 [ 38/51] Peach/Brown_Rot: ok
+8555.4s 838 [ 39/51] Peach/Leaf_Curl: ok
+8555.4s 839 [ 40/51] Peach/Leaf_Scab: ok
+8555.4s 840 [ 41/51] Peach/Peach_Leaf_Curl: ok
+8555.4s 841 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+8555.4s 842 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+8555.4s 843 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+8555.4s 844 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+8555.4s 845 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+8555.4s 846 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+8555.4s 847 [ 44/51] Wheat/Fusarium_Wilts: STUB
+8555.4s 848 [ 45/51] Wheat/Head_Scab: ok
+8555.4s 849 [ 46/51] Wheat/Karnal_Bunt: ok
+8555.4s 850 [ 47/51] Wheat/Loose_Smut: ok
+8555.4s 851 [ 48/51] Wheat/Powdery_Mildew: ok
+8555.4s 852 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+8555.4s 853 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+8555.4s 854 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+8555.4s 855 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+8555.4s 856 [ 49/51] Wheat/Resistance_Phenotype: STUB
+8555.4s 857 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+8555.4s 858 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+8555.4s 859 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+8555.4s 860 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+8555.4s 861 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+8555.4s 862 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+8555.4s 863 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+8555.4s 864 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+8555.4s 865 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+8555.4s 866 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+8555.4s 867 
+8555.4s 868 [ungrounded] seed 3: 43 filled records in /kaggle/working/pde/descriptors_grounded_matched/3
+8555.4s 869 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 3 --heavy
+8555.4s 870 
+8555.4s 871 -> 43 filled
+8555.4s 872 
+8555.4s 873 --- grounded seed 4 (have 0, need 48) ---
+9572.0s 874 [grounded] seed 4, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/4
+9572.0s 875 [  1/51] Banana/Anthracnose: ok
+9572.0s 876 [  2/51] Banana/Bunchy_Top: ok
+9572.0s 877 [retry 1/3] Banana/Cigar_End_Rot: ValueError: parsed object has no usable symptom_text
+9572.0s 878 [  3/51] Banana/Cigar_End_Rot: ok
+9572.0s 879 [  4/51] Banana/Cordana_Leaf_Spot: ok
+9572.0s 880 [  5/51] Banana/Panama_Disease: ok
+9572.0s 881 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+9572.0s 882 [  7/51] Bean/Angular_Leaf_Spot: ok
+9572.0s 883 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+9572.0s 884 [  9/51] Bean/Halo_Blight: ok
+9572.0s 885 [retry 1/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+9572.0s 886 [retry 2/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+9572.0s 887 [retry 3/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+9572.0s 888 [fail] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+9572.0s 889 [ 10/51] Bean/Leaf_Mosaic_Virus: STUB
+9572.0s 890 [ 11/51] Bean/Rust: ok
+9572.0s 891 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+9572.0s 892 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+9572.0s 893 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+9572.0s 894 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+9572.0s 895 [ 12/51] Coffee/Berry_Blotch: STUB
+9572.0s 896 [ 13/51] Coffee/Cerscospora: ok
+9572.0s 897 [ 14/51] Coffee/Miner: ok
+9572.0s 898 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+9572.0s 899 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+9572.0s 900 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+9572.0s 901 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+9572.0s 902 [ 15/51] Coffee/Phoma: STUB
+9572.0s 903 [ 16/51] Coffee/Rust: ok
+9572.0s 904 [ 17/51] Cotton/Bacterial_Blight: ok
+9572.0s 905 [retry 1/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+9572.0s 906 [retry 2/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+9572.0s 907 [retry 3/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+9572.0s 908 [fail] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+9572.0s 909 [ 18/51] Cotton/Powdery_Mildew: STUB
+9572.0s 910 [ 19/51] Cotton/Target_Spot: ok
+9572.0s 911 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+9572.0s 912 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+9572.0s 913 [ 22/51] Cucumber/Anthracnose: ok
+9572.0s 914 [ 23/51] Cucumber/Bacterial_Wilt: ok
+9572.0s 915 [ 24/51] Cucumber/Belly_Rot: ok
+9572.0s 916 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+9572.0s 917 [ 26/51] Cucumber/Downy_Mildew: ok
+9572.0s 918 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+9572.0s 919 [ 28/51] Cucumber/Phytophthora_Blight: ok
+9572.0s 920 [ 29/51] Cucumber/Powdery_Mildew: ok
+9572.0s 921 [retry 1/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+9572.0s 922 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+9572.0s 923 [ 31/51] Orange/Canker: ok
+9572.0s 924 [ 32/51] Orange/Citrus_Canker: ok
+9572.0s 925 [ 33/51] Orange/Green_Mold: ok
+9572.0s 926 [ 34/51] Orange/Greening_Disease: ok
+9572.0s 927 [ 35/51] Orange/Huanglongbing: ok
+9572.0s 928 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+9572.0s 929 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+9572.0s 930 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+9572.0s 931 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+9572.0s 932 [ 36/51] Orange/Whisker_Mold: STUB
+9572.0s 933 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+9572.0s 934 [ 38/51] Peach/Brown_Rot: ok
+9572.0s 935 [ 39/51] Peach/Leaf_Curl: ok
+9572.0s 936 [ 40/51] Peach/Leaf_Scab: ok
+9572.1s 937 [ 41/51] Peach/Peach_Leaf_Curl: ok
+9572.1s 938 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+9572.1s 939 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+9572.1s 940 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+9572.1s 941 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+9572.1s 942 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+9572.1s 943 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+9572.1s 944 [ 44/51] Wheat/Fusarium_Wilts: STUB
+9572.1s 945 [ 45/51] Wheat/Head_Scab: ok
+9572.1s 946 [ 46/51] Wheat/Karnal_Bunt: ok
+9572.1s 947 [ 47/51] Wheat/Loose_Smut: ok
+9572.1s 948 [ 48/51] Wheat/Powdery_Mildew: ok
+9572.1s 949 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+9572.1s 950 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+9572.1s 951 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+9572.1s 952 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+9572.1s 953 [ 49/51] Wheat/Resistance_Phenotype: STUB
+9572.1s 954 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+9572.1s 955 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+9572.1s 956 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+9572.1s 957 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+9572.1s 958 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+9572.1s 959 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+9572.1s 960 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+9572.1s 961 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+9572.1s 962 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+9572.1s 963 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+9572.1s 964 
+9572.1s 965 [ungrounded] seed 4: 42 filled records in /kaggle/working/pde/descriptors_grounded_matched/4
+9572.1s 966 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 4 --heavy
+9572.1s 967 
+9572.1s 968 -> 42 filled
+9572.1s 969 
+9572.1s 970 --- grounded seed 5 (have 0, need 48) ---
+10562.8s 971 [grounded] seed 5, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/5
+10562.8s 972 [  1/51] Banana/Anthracnose: ok
+10562.8s 973 [  2/51] Banana/Bunchy_Top: ok
+10562.8s 974 [  3/51] Banana/Cigar_End_Rot: ok
+10562.8s 975 [  4/51] Banana/Cordana_Leaf_Spot: ok
+10562.8s 976 [  5/51] Banana/Panama_Disease: ok
+10562.8s 977 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+10562.8s 978 [  7/51] Bean/Angular_Leaf_Spot: ok
+10562.8s 979 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+10562.8s 980 [  9/51] Bean/Halo_Blight: ok
+10562.8s 981 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+10562.8s 982 [ 11/51] Bean/Rust: ok
+10562.8s 983 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+10562.8s 984 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+10562.8s 985 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+10562.8s 986 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+10562.8s 987 [ 12/51] Coffee/Berry_Blotch: STUB
+10562.8s 988 [ 13/51] Coffee/Cerscospora: ok
+10562.8s 989 [ 14/51] Coffee/Miner: ok
+10562.8s 990 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+10562.8s 991 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+10562.8s 992 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+10562.8s 993 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+10562.8s 994 [ 15/51] Coffee/Phoma: STUB
+10562.8s 995 [ 16/51] Coffee/Rust: ok
+10562.8s 996 [ 17/51] Cotton/Bacterial_Blight: ok
+10562.8s 997 [ 18/51] Cotton/Powdery_Mildew: ok
+10562.8s 998 [ 19/51] Cotton/Target_Spot: ok
+10562.8s 999 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+10562.8s 1000 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+10562.8s 1001 [ 22/51] Cucumber/Anthracnose: ok
+10562.8s 1002 [ 23/51] Cucumber/Bacterial_Wilt: ok
+10562.8s 1003 [ 24/51] Cucumber/Belly_Rot: ok
+10562.8s 1004 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+10562.8s 1005 [ 26/51] Cucumber/Downy_Mildew: ok
+10562.8s 1006 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+10562.8s 1007 [ 28/51] Cucumber/Phytophthora_Blight: ok
+10562.8s 1008 [ 29/51] Cucumber/Powdery_Mildew: ok
+10562.8s 1009 [retry 1/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+10562.8s 1010 [retry 2/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+10562.8s 1011 [retry 3/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+10562.8s 1012 [fail] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+10562.8s 1013 [ 30/51] Cucumber/Pythium_Fruit_Rot: STUB
+10562.8s 1014 [ 31/51] Orange/Canker: ok
+10562.8s 1015 [ 32/51] Orange/Citrus_Canker: ok
+10562.8s 1016 [ 33/51] Orange/Green_Mold: ok
+10562.8s 1017 [ 34/51] Orange/Greening_Disease: ok
+10562.8s 1018 [ 35/51] Orange/Huanglongbing: ok
+10562.8s 1019 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+10562.8s 1020 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+10562.8s 1021 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+10562.8s 1022 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+10562.8s 1023 [ 36/51] Orange/Whisker_Mold: STUB
+10562.8s 1024 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+10562.8s 1025 [ 38/51] Peach/Brown_Rot: ok
+10562.8s 1026 [ 39/51] Peach/Leaf_Curl: ok
+10562.8s 1027 [ 40/51] Peach/Leaf_Scab: ok
+10562.8s 1028 [ 41/51] Peach/Peach_Leaf_Curl: ok
+10562.8s 1029 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+10562.8s 1030 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+10562.8s 1031 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+10562.8s 1032 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+10562.8s 1033 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+10562.8s 1034 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+10562.9s 1035 [ 44/51] Wheat/Fusarium_Wilts: STUB
+10562.9s 1036 [ 45/51] Wheat/Head_Scab: ok
+10562.9s 1037 [ 46/51] Wheat/Karnal_Bunt: ok
+10562.9s 1038 [ 47/51] Wheat/Loose_Smut: ok
+10562.9s 1039 [ 48/51] Wheat/Powdery_Mildew: ok
+10562.9s 1040 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+10562.9s 1041 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+10562.9s 1042 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+10562.9s 1043 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+10562.9s 1044 [ 49/51] Wheat/Resistance_Phenotype: STUB
+10562.9s 1045 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+10562.9s 1046 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+10562.9s 1047 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+10562.9s 1048 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+10562.9s 1049 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+10562.9s 1050 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+10562.9s 1051 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+10562.9s 1052 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+10562.9s 1053 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+10562.9s 1054 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+10562.9s 1055 
+10562.9s 1056 [ungrounded] seed 5: 43 filled records in /kaggle/working/pde/descriptors_grounded_matched/5
+10562.9s 1057 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 5 --heavy
+10562.9s 1058 
+10562.9s 1059 -> 43 filled
+10562.9s 1060 
+10562.9s 1061 --- grounded seed 6 (have 0, need 48) ---
+11552.3s 1062 [grounded] seed 6, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/6
+11552.3s 1063 [  1/51] Banana/Anthracnose: ok
+11552.3s 1064 [  2/51] Banana/Bunchy_Top: ok
+11552.3s 1065 [  3/51] Banana/Cigar_End_Rot: ok
+11552.3s 1066 [retry 1/3] Banana/Cordana_Leaf_Spot: ValueError: parsed object has no usable symptom_text
+11552.3s 1067 [  4/51] Banana/Cordana_Leaf_Spot: ok
+11552.3s 1068 [  5/51] Banana/Panama_Disease: ok
+11552.3s 1069 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+11552.3s 1070 [  7/51] Bean/Angular_Leaf_Spot: ok
+11552.3s 1071 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+11552.3s 1072 [  9/51] Bean/Halo_Blight: ok
+11552.3s 1073 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+11552.3s 1074 [ 11/51] Bean/Rust: ok
+11552.3s 1075 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+11552.3s 1076 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+11552.3s 1077 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+11552.3s 1078 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+11552.3s 1079 [ 12/51] Coffee/Berry_Blotch: STUB
+11552.3s 1080 [ 13/51] Coffee/Cerscospora: ok
+11552.3s 1081 [ 14/51] Coffee/Miner: ok
+11552.3s 1082 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+11552.3s 1083 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+11552.3s 1084 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+11552.3s 1085 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+11552.3s 1086 [ 15/51] Coffee/Phoma: STUB
+11552.3s 1087 [ 16/51] Coffee/Rust: ok
+11552.3s 1088 [ 17/51] Cotton/Bacterial_Blight: ok
+11552.3s 1089 [ 18/51] Cotton/Powdery_Mildew: ok
+11552.3s 1090 [ 19/51] Cotton/Target_Spot: ok
+11552.3s 1091 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+11552.3s 1092 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+11552.3s 1093 [ 22/51] Cucumber/Anthracnose: ok
+11552.3s 1094 [ 23/51] Cucumber/Bacterial_Wilt: ok
+11552.3s 1095 [ 24/51] Cucumber/Belly_Rot: ok
+11552.3s 1096 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+11552.3s 1097 [ 26/51] Cucumber/Downy_Mildew: ok
+11552.3s 1098 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+11552.3s 1099 [ 28/51] Cucumber/Phytophthora_Blight: ok
+11552.3s 1100 [ 29/51] Cucumber/Powdery_Mildew: ok
+11552.3s 1101 [retry 1/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+11552.3s 1102 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+11552.3s 1103 [ 31/51] Orange/Canker: ok
+11552.3s 1104 [ 32/51] Orange/Citrus_Canker: ok
+11552.3s 1105 [ 33/51] Orange/Green_Mold: ok
+11552.3s 1106 [ 34/51] Orange/Greening_Disease: ok
+11552.3s 1107 [ 35/51] Orange/Huanglongbing: ok
+11552.3s 1108 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+11552.3s 1109 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+11552.3s 1110 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+11552.3s 1111 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+11552.3s 1112 [ 36/51] Orange/Whisker_Mold: STUB
+11552.3s 1113 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+11552.3s 1114 [ 38/51] Peach/Brown_Rot: ok
+11552.3s 1115 [ 39/51] Peach/Leaf_Curl: ok
+11552.3s 1116 [ 40/51] Peach/Leaf_Scab: ok
+11552.3s 1117 [ 41/51] Peach/Peach_Leaf_Curl: ok
+11552.3s 1118 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+11552.3s 1119 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+11552.3s 1120 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+11552.3s 1121 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+11552.3s 1122 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+11552.3s 1123 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+11552.3s 1124 [ 44/51] Wheat/Fusarium_Wilts: STUB
+11552.3s 1125 [ 45/51] Wheat/Head_Scab: ok
+11552.3s 1126 [ 46/51] Wheat/Karnal_Bunt: ok
+11552.3s 1127 [ 47/51] Wheat/Loose_Smut: ok
+11552.3s 1128 [ 48/51] Wheat/Powdery_Mildew: ok
+11552.3s 1129 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+11552.3s 1130 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+11552.3s 1131 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+11552.3s 1132 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+11552.3s 1133 [ 49/51] Wheat/Resistance_Phenotype: STUB
+11552.3s 1134 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+11552.3s 1135 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+11552.3s 1136 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+11552.3s 1137 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+11552.3s 1138 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+11552.3s 1139 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+11552.3s 1140 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+11552.3s 1141 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+11552.3s 1142 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+11552.3s 1143 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+11552.3s 1144 
+11552.3s 1145 [ungrounded] seed 6: 44 filled records in /kaggle/working/pde/descriptors_grounded_matched/6
+11552.3s 1146 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 6 --heavy
+11552.3s 1147 
+11552.3s 1148 -> 44 filled
+11552.3s 1149 
+11552.3s 1150 --- grounded seed 7 (have 0, need 48) ---
+12614.5s 1151 [grounded] seed 7, model claude-sonnet-5: 51 classes over 8 crops -> /kaggle/working/pde/descriptors_grounded_matched/7
+12614.5s 1152 [  1/51] Banana/Anthracnose: ok
+12614.5s 1153 [  2/51] Banana/Bunchy_Top: ok
+12614.5s 1154 [  3/51] Banana/Cigar_End_Rot: ok
+12614.5s 1155 [  4/51] Banana/Cordana_Leaf_Spot: ok
+12614.5s 1156 [  5/51] Banana/Panama_Disease: ok
+12614.5s 1157 [  6/51] Banana/Yellow_And_Black_Sigatoka: ok
+12614.5s 1158 [  7/51] Bean/Angular_Leaf_Spot: ok
+12614.5s 1159 [  8/51] Bean/Common_Bacterial_Blight_Of_Beans: ok
+12614.5s 1160 [  9/51] Bean/Halo_Blight: ok
+12614.5s 1161 [retry 1/3] Bean/Leaf_Mosaic_Virus: ValueError: parsed object has no usable symptom_text
+12614.5s 1162 [ 10/51] Bean/Leaf_Mosaic_Virus: ok
+12614.5s 1163 [ 11/51] Bean/Rust: ok
+12614.5s 1164 [retry 1/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+12614.5s 1165 [retry 2/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+12614.5s 1166 [retry 3/3] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+12614.5s 1167 [fail] Coffee/Berry_Blotch: ValueError: parsed object has no usable symptom_text
+12614.5s 1168 [ 12/51] Coffee/Berry_Blotch: STUB
+12614.5s 1169 [ 13/51] Coffee/Cerscospora: ok
+12614.5s 1170 [ 14/51] Coffee/Miner: ok
+12614.5s 1171 [retry 1/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+12614.5s 1172 [retry 2/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+12614.5s 1173 [retry 3/3] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+12614.5s 1174 [fail] Coffee/Phoma: ValueError: parsed object has no usable symptom_text
+12614.5s 1175 [ 15/51] Coffee/Phoma: STUB
+12614.5s 1176 [ 16/51] Coffee/Rust: ok
+12614.5s 1177 [ 17/51] Cotton/Bacterial_Blight: ok
+12614.5s 1178 [retry 1/3] Cotton/Powdery_Mildew: ValueError: parsed object has no usable symptom_text
+12614.5s 1179 [ 18/51] Cotton/Powdery_Mildew: ok
+12614.6s 1180 [ 19/51] Cotton/Target_Spot: ok
+12614.6s 1181 [ 20/51] Cucumber/Angular_Leaf_Spot: ok
+12614.6s 1182 [ 21/51] Cucumber/Angular_Leaf_Spot_Of_Cucumber: ok
+12614.6s 1183 [ 22/51] Cucumber/Anthracnose: ok
+12614.6s 1184 [ 23/51] Cucumber/Bacterial_Wilt: ok
+12614.6s 1185 [ 24/51] Cucumber/Belly_Rot: ok
+12614.6s 1186 [ 25/51] Cucumber/Corynespora_Leaf_Spot: ok
+12614.6s 1187 [ 26/51] Cucumber/Downy_Mildew: ok
+12614.6s 1188 [ 27/51] Cucumber/Gummy_Stem_Blight: ok
+12614.6s 1189 [ 28/51] Cucumber/Phytophthora_Blight: ok
+12614.6s 1190 [ 29/51] Cucumber/Powdery_Mildew: ok
+12614.6s 1191 [retry 1/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+12614.6s 1192 [retry 2/3] Cucumber/Pythium_Fruit_Rot: ValueError: parsed object has no usable symptom_text
+12614.6s 1193 [ 30/51] Cucumber/Pythium_Fruit_Rot: ok
+12614.6s 1194 [ 31/51] Orange/Canker: ok
+12614.6s 1195 [ 32/51] Orange/Citrus_Canker: ok
+12614.6s 1196 [ 33/51] Orange/Green_Mold: ok
+12614.6s 1197 [ 34/51] Orange/Greening_Disease: ok
+12614.6s 1198 [ 35/51] Orange/Huanglongbing: ok
+12614.6s 1199 [retry 1/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+12614.6s 1200 [retry 2/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+12614.6s 1201 [retry 3/3] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+12614.6s 1202 [fail] Orange/Whisker_Mold: ValueError: parsed object has no usable symptom_text
+12614.6s 1203 [ 36/51] Orange/Whisker_Mold: STUB
+12614.6s 1204 [ 37/51] Peach/Bacterial_Leaf_Spot: ok
+12614.6s 1205 [ 38/51] Peach/Brown_Rot: ok
+12614.6s 1206 [ 39/51] Peach/Leaf_Curl: ok
+12614.6s 1207 [ 40/51] Peach/Leaf_Scab: ok
+12614.6s 1208 [ 41/51] Peach/Peach_Leaf_Curl: ok
+12614.6s 1209 [ 42/51] Wheat/Bacterial_Leaf_Streak_Black_Chaff: ok
+12614.6s 1210 [ 43/51] Wheat/Fusarium_Graminearum_Schwabe: ok
+12614.6s 1211 [retry 1/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+12614.6s 1212 [retry 2/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+12614.6s 1213 [retry 3/3] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+12614.6s 1214 [fail] Wheat/Fusarium_Wilts: ValueError: parsed object has no usable symptom_text
+12614.6s 1215 [ 44/51] Wheat/Fusarium_Wilts: STUB
+12614.6s 1216 [ 45/51] Wheat/Head_Scab: ok
+12614.6s 1217 [ 46/51] Wheat/Karnal_Bunt: ok
+12614.6s 1218 [ 47/51] Wheat/Loose_Smut: ok
+12614.6s 1219 [ 48/51] Wheat/Powdery_Mildew: ok
+12614.6s 1220 [retry 1/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+12614.6s 1221 [retry 2/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+12614.6s 1222 [retry 3/3] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+12614.6s 1223 [fail] Wheat/Resistance_Phenotype: ValueError: parsed object has no usable symptom_text
+12614.6s 1224 [ 49/51] Wheat/Resistance_Phenotype: STUB
+12614.6s 1225 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+12614.6s 1226 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+12614.6s 1227 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+12614.6s 1228 [fail] Wheat/Resistance_Phenotype__Moderately_Resistant: ValueError: parsed object has no usable symptom_text
+12614.6s 1229 [ 50/51] Wheat/Resistance_Phenotype__Moderately_Resistant: STUB
+12614.6s 1230 [retry 1/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+12614.6s 1231 [retry 2/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+12614.6s 1232 [retry 3/3] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+12614.6s 1233 [fail] Wheat/Resistance_Phenotype__Moderately_Susceptible: ValueError: parsed object has no usable symptom_text
+12614.6s 1234 [ 51/51] Wheat/Resistance_Phenotype__Moderately_Susceptible: STUB
+12614.6s 1235 
+12614.6s 1236 [ungrounded] seed 7: 44 filled records in /kaggle/working/pde/descriptors_grounded_matched/7
+12614.6s 1237 Evaluate with:  python scripts/evaluate.py --exp C --strategies rich grounded ungrounded --ungrounded-seed 7 --heavy
+12614.6s 1238 
+12614.6s 1239 -> 44 filled
+12614.6s 1240 
+12614.6s 1241 ==============================================================================
+12614.6s 1242 [short arms (<= 50 words)]  t+3.5 h  (7.5 h left)
+12614.6s 1243 ==============================================================================
+12614.6s 1244 [short] wrote 128 files
+12614.6s 1245 
+12614.6s 1246 ==============================================================================
+12614.6s 1247 [descriptor integrity]  t+3.5 h  (7.5 h left)
+12614.6s 1248 ==============================================================================
+12614.6s 1249 ungrounded               usable seeds: [0, 1, 2, 3, 4, 5, 6, 7]
+12614.6s 1250 [reject] descriptors_grounded_matched seed 4: 42 filled, below 43
+12614.6s 1251 [note] descriptors_grounded_matched: ceiling is 45/48 because some held-out labels are not diseases and the grounding prompt correctly refuses them; judging seeds against that ceiling instead.
+12614.6s 1252 grounded_matched         usable seeds: [0, 1, 2, 3, 5, 6, 7]
+12614.6s 1253 ungrounded_short         usable seeds: [0, 1, 2, 3, 4, 5, 6, 7]
+12614.6s 1254 [reject] descriptors_grounded_matched_short seed 4: 42 filled, below 43
+12614.6s 1255 [note] descriptors_grounded_matched_short: ceiling is 45/48 because some held-out labels are not diseases and the grounding prompt correctly refuses them; judging seeds against that ceiling instead.
+12614.6s 1256 grounded_matched_short   usable seeds: [0, 1, 2, 3, 5, 6, 7]
+12614.6s 1257 
+12614.6s 1258 ==============================================================================
+12614.6s 1259 [zero-shot A]  t+3.5 h  (7.5 h left)
+12614.6s 1260 ==============================================================================
+12971.4s 1261 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+12971.4s 1262 [eval] experiment A: held crops = ['Coffee', 'Orange', 'Peach']
+12971.4s 1263 [eval] held=4,050 imgs  16 classes  crops=['Coffee', 'Orange', 'Peach']  chance=6.2%
+12971.4s 1264 
+12971.4s 1265 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+12971.4s 1266 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+12971.4s 1267 MobileCLIP2-S0       img=  11.4M  bare=13.8%  crude=11.9%  rich=26.1%  grounded=17.6%
+12971.4s 1268 MobileCLIP-S1        img=  21.5M  bare=12.4%  crude=17.5%  rich=24.9%  grounded=28.6%
+12971.4s 1269 MobileCLIP2-S2       img=  35.8M  bare=10.3%  crude=10.4%  rich=33.3%  grounded=13.7%
+12971.4s 1270 MobileCLIP-B         img=  86.3M  bare=14.2%  crude=16.7%  rich=31.2%  grounded=26.2%
+12971.4s 1271 ViT-B-16-SigLIP2     img=  92.9M  bare=17.1%  crude=19.6%  rich=30.4%  grounded=26.8%
+12971.4s 1272 
+12971.4s 1273 [eval] saved /kaggle/working/results/zeroshot_eval_A.json
+12971.4s 1274 
+12971.4s 1275 
+12971.4s 1276 ==============================================================================
+12971.4s 1277 [zero-shot B]  t+3.6 h  (7.4 h left)
+12971.4s 1278 ==============================================================================
+13580.2s 1279 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+13580.2s 1280 [eval] experiment B: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean']
+13580.2s 1281 [eval] held=9,787 imgs  34 classes  crops=['Bean', 'Coffee', 'Cotton', 'Orange', 'Peach', 'Wheat']  chance=2.9%
+13580.2s 1282 
+13580.2s 1283 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+13580.2s 1284 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+13580.2s 1285 MobileCLIP2-S0       img=  11.4M  bare=21.8%  crude=17.5%  rich=23.3%  grounded=20.5%
+13580.2s 1286 MobileCLIP-S1        img=  21.5M  bare=17.5%  crude=18.6%  rich=23.6%  grounded=25.6%
+13580.2s 1287 MobileCLIP2-S2       img=  35.8M  bare=19.0%  crude=16.1%  rich=24.8%  grounded=19.4%
+13580.2s 1288 MobileCLIP-B         img=  86.3M  bare=23.1%  crude=22.6%  rich=28.4%  grounded=25.3%
+13580.2s 1289 ViT-B-16-SigLIP2     img=  92.9M  bare=27.1%  crude=26.2%  rich=29.9%  grounded=27.3%
+13580.2s 1290 
+13580.2s 1291 [eval] saved /kaggle/working/results/zeroshot_eval_B.json
+13580.2s 1292 
+13580.2s 1293 
+13580.2s 1294 ==============================================================================
+13580.2s 1295 [zero-shot C]  t+3.8 h  (7.2 h left)
+13580.2s 1296 ==============================================================================
+14420.4s 1297 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+14420.4s 1298 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+14420.4s 1299 [eval] held=14,204 imgs  51 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.0%
+14420.4s 1300 
+14420.4s 1301 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+14420.4s 1302 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+14420.4s 1303 MobileCLIP2-S0       img=  11.4M  bare=20.2%  crude=15.6%  rich=19.3%  grounded=21.6%
+14420.4s 1304 MobileCLIP-S1        img=  21.5M  bare=16.2%  crude=16.4%  rich=20.7%  grounded=24.0%
+14420.4s 1305 MobileCLIP2-S2       img=  35.8M  bare=18.1%  crude=15.4%  rich=21.5%  grounded=22.8%
+14420.4s 1306 MobileCLIP-B         img=  86.3M  bare=22.0%  crude=19.3%  rich=24.6%  grounded=27.3%
+14420.4s 1307 ViT-B-16-SigLIP2     img=  92.9M  bare=22.0%  crude=20.8%  rich=23.1%  grounded=28.4%
+14420.4s 1308 
+14420.4s 1309 [eval] saved /kaggle/working/results/zeroshot_eval_C.json
+14420.4s 1310 
+14420.4s 1311 
+14420.4s 1312 ==============================================================================
+14420.4s 1313 [zero-shot C, label-corrected]  t+4.0 h  (7.0 h left)
+14420.4s 1314 ==============================================================================
+14948.5s 1315 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+14948.5s 1316 [clean] 51 -> 42 classes  (784 imgs relabelled, 1,792 dropped)
+14948.5s 1317 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+14948.5s 1318 [eval] held=12,412 imgs  42 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.4%
+14948.5s 1319 
+14948.5s 1320 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+14948.5s 1321 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+14948.5s 1322 MobileCLIP2-S0       img=  11.4M  bare=24.0%  crude=19.5%  rich=23.7%  grounded=27.4%
+14948.5s 1323 MobileCLIP-S1        img=  21.5M  bare=21.8%  crude=23.2%  rich=28.5%  grounded=31.3%
+14948.5s 1324 MobileCLIP2-S2       img=  35.8M  bare=23.5%  crude=21.0%  rich=28.0%  grounded=29.4%
+14948.5s 1325 MobileCLIP-B         img=  86.3M  bare=25.6%  crude=23.2%  rich=29.6%  grounded=34.9%
+14948.5s 1326 
+14948.5s 1327 [eval] saved /kaggle/working/results/zeroshot_eval_C_clean.json
+14948.5s 1328 
+14948.5s 1329 
+14948.5s 1330 ==============================================================================
+14948.5s 1331 [PAIRED control comparison (Section 5.3): seeds [0, 1, 2, 3, 5, 6, 7]]  t+4.1 h  (6.9 h left)
+14948.5s 1332 ==============================================================================
+15523.3s 1333 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+15523.3s 1334 [paired] arms ['ungrounded', 'grounded_matched']: 51 -> 41 classes (10 dropped because at least one arm lacked its own text)
+15523.3s 1335 [paired]   drop Bean|Leaf_Mosaic_Virus  (missing in grounded_matched@1)
+15523.3s 1336 [paired]   drop Coffee|Berry_Blotch  (missing in grounded_matched@0)
+15523.3s 1337 [paired]   drop Coffee|Phoma  (missing in grounded_matched@0)
+15523.3s 1338 [paired]   drop Cotton|Powdery_Mildew  (missing in grounded_matched@3)
+15523.3s 1339 [paired]   drop Cucumber|Pythium_Fruit_Rot  (missing in grounded_matched@5)
+15523.3s 1340 [paired]   drop Orange|Whisker_Mold  (missing in grounded_matched@0)
+15523.3s 1341 [paired]   drop Wheat|Fusarium_Wilts  (missing in grounded_matched@0)
+15523.3s 1342 [paired]   drop Wheat|Resistance_Phenotype  (missing in grounded_matched@0)
+15523.3s 1343 [paired]   drop Wheat|Resistance_Phenotype__Moderately_Resistant  (missing in grounded_matched@0)
+15523.3s 1344 [paired]   drop Wheat|Resistance_Phenotype__Moderately_Susceptible  (missing in grounded_matched@0)
+15523.3s 1345 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+15523.3s 1346 [eval] held=11,337 imgs  41 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.4%
+15523.3s 1347 
+15523.3s 1348 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+15523.3s 1349 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+15523.3s 1350 MobileCLIP2-S0       img=  11.4M  ungrounded__seed0=26.6%  ungrounded__seed1=24.6%  ungrounded__seed2=26.6%  ungrounded__seed3=20.9%  ungrounded__seed5=25.8%  ungrounded__seed6=26.7%  ungrounded__seed7=23.2%  grounded_matched__seed0=26.9%  grounded_matched__seed1=27.3%  grounded_matched__seed2=24.3%  grounded_matched__seed3=28.8%  grounded_matched__seed5=24.4%  grounded_matched__seed6=29.6%  grounded_matched__seed7=25.3%
+15523.3s 1351 MobileCLIP-S1        img=  21.5M  ungrounded__seed0=27.0%  ungrounded__seed1=29.4%  ungrounded__seed2=29.1%  ungrounded__seed3=27.4%  ungrounded__seed5=26.7%  ungrounded__seed6=27.1%  ungrounded__seed7=27.3%  grounded_matched__seed0=26.4%  grounded_matched__seed1=30.8%  grounded_matched__seed2=31.5%  grounded_matched__seed3=30.8%  grounded_matched__seed5=28.1%  grounded_matched__seed6=31.2%  grounded_matched__seed7=29.1%
+15523.3s 1352 MobileCLIP2-S2       img=  35.8M  ungrounded__seed0=23.5%  ungrounded__seed1=25.6%  ungrounded__seed2=28.0%  ungrounded__seed3=23.8%  ungrounded__seed5=23.1%  ungrounded__seed6=26.5%  ungrounded__seed7=27.1%  grounded_matched__seed0=26.9%  grounded_matched__seed1=27.4%  grounded_matched__seed2=26.4%  grounded_matched__seed3=26.9%  grounded_matched__seed5=26.8%  grounded_matched__seed6=28.8%  grounded_matched__seed7=29.3%
+15523.4s 1353 MobileCLIP-B         img=  86.3M  ungrounded__seed0=32.1%  ungrounded__seed1=33.2%  ungrounded__seed2=36.9%  ungrounded__seed3=32.0%  ungrounded__seed5=31.7%  ungrounded__seed6=29.8%  ungrounded__seed7=30.0%  grounded_matched__seed0=31.8%  grounded_matched__seed1=31.9%  grounded_matched__seed2=32.1%  grounded_matched__seed3=40.2%  grounded_matched__seed5=32.5%  grounded_matched__seed6=36.4%  grounded_matched__seed7=34.4%
+15523.4s 1354 
+15523.4s 1355 [eval] saved /kaggle/working/results/zeroshot_eval_C_paired_ungseeds.json
+15523.4s 1356 
+15523.4s 1357 [analyse] zeroshot_eval_C_paired_ungseeds.json
+15523.4s 1358 [analyse] paired on 41 of 51 classes (10 dropped so neither arm falls through to rich)
+15523.4s 1359 [analyse] 11,337 images, chance 2.44%
+15523.4s 1360 [analyse] difference reported as (grounded_matched) - (ungrounded)
+15523.4s 1361 
+15523.4s 1362 encoder                 grounded_match      ungrounded      diff
+15523.4s 1363 ----------------------------------------------------------------
+15523.4s 1364 MobileCLIP2-S0                  26.68%          24.92%    +1.76
+15523.4s 1365 MobileCLIP-S1                   29.70%          27.70%    +2.00
+15523.4s 1366 MobileCLIP2-S2                  27.50%          25.36%    +2.15
+15523.4s 1367 MobileCLIP-B                    34.18%          32.25%    +1.93
+15523.4s 1368 
+15523.4s 1369 mean over encoders                                        +1.96
+15523.4s 1370 
+15523.4s 1371 95% CI over 4 encoders: [+1.70, +2.22] pp
+15523.4s 1372 equivalence bound        : the data rule out a difference larger than 2.22 pp
+15523.4s 1373 direction agreement      : all encoders agree  ['+1.76', '+2.00', '+2.15', '+1.93']
+15523.4s 1374 
+15523.4s 1375 VERDICT: a difference IS resolved: +1.96 pp, 95% CI [+1.70, +2.22].
+15523.4s 1376 
+15523.4s 1377 [analyse] saved /kaggle/working/results/control_arm_statistics.json
+15523.4s 1378 
+15523.4s 1379 
+15523.4s 1380 ==============================================================================
+15523.4s 1381 [control arm ungrounded: seeds [0, 1, 2, 3, 4, 5, 6, 7]]  t+4.3 h  (6.7 h left)
+15523.4s 1382 ==============================================================================
+16156.1s 1383 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+16156.1s 1384 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+16156.1s 1385 [eval] held=14,204 imgs  51 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.0%
+16156.1s 1386 
+16156.1s 1387 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+16156.1s 1388 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+16156.1s 1389 MobileCLIP2-S0       img=  11.4M  ungrounded__seed0=22.4%  ungrounded__seed1=21.5%  ungrounded__seed2=23.4%  ungrounded__seed3=19.0%  ungrounded__seed4=21.0%  ungrounded__seed5=21.9%  ungrounded__seed6=23.4%  ungrounded__seed7=20.4%
+16156.1s 1390 MobileCLIP-S1        img=  21.5M  ungrounded__seed0=21.8%  ungrounded__seed1=22.8%  ungrounded__seed2=23.1%  ungrounded__seed3=21.6%  ungrounded__seed4=20.8%  ungrounded__seed5=21.0%  ungrounded__seed6=22.7%  ungrounded__seed7=21.3%
+16156.1s 1391 MobileCLIP2-S2       img=  35.8M  ungrounded__seed0=20.4%  ungrounded__seed1=22.4%  ungrounded__seed2=24.4%  ungrounded__seed3=21.1%  ungrounded__seed4=22.6%  ungrounded__seed5=20.4%  ungrounded__seed6=23.2%  ungrounded__seed7=23.6%
+16156.1s 1392 MobileCLIP-B         img=  86.3M  ungrounded__seed0=27.9%  ungrounded__seed1=29.1%  ungrounded__seed2=31.3%  ungrounded__seed3=28.4%  ungrounded__seed4=29.8%  ungrounded__seed5=27.1%  ungrounded__seed6=25.9%  ungrounded__seed7=25.9%
+16156.1s 1393 
+16156.1s 1394 [eval] saved /kaggle/working/results/zeroshot_eval_C_ungseeds.json
+16156.1s 1395 
+16156.1s 1396 
+16156.1s 1397 ==============================================================================
+16156.1s 1398 [control arm grounded_matched: seeds [0, 1, 2, 3, 5, 6, 7]]  t+4.5 h  (6.5 h left)
+16156.1s 1399 ==============================================================================
+16779.5s 1400 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+16779.5s 1401 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+16779.5s 1402 [eval] held=14,204 imgs  51 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.0%
+16779.5s 1403 
+16779.5s 1404 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+16779.5s 1405 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+16779.5s 1406 MobileCLIP2-S0       img=  11.4M  grounded_matched__seed0=23.9%  grounded_matched__seed1=24.0%  grounded_matched__seed2=21.8%  grounded_matched__seed3=24.6%  grounded_matched__seed5=22.0%  grounded_matched__seed6=26.0%  grounded_matched__seed7=22.9%
+16779.5s 1407 MobileCLIP-S1        img=  21.5M  grounded_matched__seed0=21.4%  grounded_matched__seed1=22.3%  grounded_matched__seed2=23.9%  grounded_matched__seed3=23.8%  grounded_matched__seed5=20.3%  grounded_matched__seed6=24.1%  grounded_matched__seed7=21.0%
+16779.5s 1408 MobileCLIP2-S2       img=  35.8M  grounded_matched__seed0=23.8%  grounded_matched__seed1=24.0%  grounded_matched__seed2=23.2%  grounded_matched__seed3=22.9%  grounded_matched__seed5=23.2%  grounded_matched__seed6=25.1%  grounded_matched__seed7=25.2%
+16779.5s 1409 MobileCLIP-B         img=  86.3M  grounded_matched__seed0=26.5%  grounded_matched__seed1=26.8%  grounded_matched__seed2=27.1%  grounded_matched__seed3=32.2%  grounded_matched__seed5=25.7%  grounded_matched__seed6=28.6%  grounded_matched__seed7=27.3%
+16779.5s 1410 
+16779.5s 1411 [eval] saved /kaggle/working/results/zeroshot_eval_C_gmseeds.json
+16779.5s 1412 
+16779.5s 1413 
+16779.5s 1414 ==============================================================================
+16779.5s 1415 [control arm ungrounded_short: seeds [0, 1, 2, 3, 4, 5, 6, 7]]  t+4.7 h  (6.3 h left)
+16779.5s 1416 ==============================================================================
+17412.9s 1417 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+17412.9s 1418 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+17412.9s 1419 [eval] held=14,204 imgs  51 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.0%
+17412.9s 1420 
+17412.9s 1421 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+17412.9s 1422 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+17412.9s 1423 MobileCLIP2-S0       img=  11.4M  ungrounded_short__seed0=21.6%  ungrounded_short__seed1=21.4%  ungrounded_short__seed2=23.0%  ungrounded_short__seed3=19.7%  ungrounded_short__seed4=22.5%  ungrounded_short__seed5=21.0%  ungrounded_short__seed6=22.9%  ungrounded_short__seed7=20.8%
+17412.9s 1424 MobileCLIP-S1        img=  21.5M  ungrounded_short__seed0=20.1%  ungrounded_short__seed1=23.0%  ungrounded_short__seed2=23.3%  ungrounded_short__seed3=23.2%  ungrounded_short__seed4=23.5%  ungrounded_short__seed5=22.6%  ungrounded_short__seed6=22.0%  ungrounded_short__seed7=21.2%
+17412.9s 1425 MobileCLIP2-S2       img=  35.8M  ungrounded_short__seed0=21.5%  ungrounded_short__seed1=21.6%  ungrounded_short__seed2=24.2%  ungrounded_short__seed3=20.2%  ungrounded_short__seed4=21.7%  ungrounded_short__seed5=20.6%  ungrounded_short__seed6=22.1%  ungrounded_short__seed7=22.8%
+17412.9s 1426 MobileCLIP-B         img=  86.3M  ungrounded_short__seed0=28.8%  ungrounded_short__seed1=28.6%  ungrounded_short__seed2=32.2%  ungrounded_short__seed3=28.5%  ungrounded_short__seed4=32.0%  ungrounded_short__seed5=27.9%  ungrounded_short__seed6=28.6%  ungrounded_short__seed7=25.4%
+17412.9s 1427 
+17412.9s 1428 [eval] saved /kaggle/working/results/zeroshot_eval_C_ungsseeds.json
+17412.9s 1429 
+17412.9s 1430 
+17412.9s 1431 ==============================================================================
+17412.9s 1432 [control arm grounded_matched_short: seeds [0, 1, 2, 3, 5, 6, 7]]  t+4.8 h  (6.2 h left)
+17412.9s 1433 ==============================================================================
+18038.2s 1434 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+18038.2s 1435 [eval] experiment C: held crops = ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber']
+18038.2s 1436 [eval] held=14,204 imgs  51 classes  crops=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']  chance=2.0%
+18038.2s 1437 
+18038.2s 1438 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+18038.2s 1439 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+18038.2s 1440 MobileCLIP2-S0       img=  11.4M  grounded_matched_short__seed0=23.3%  grounded_matched_short__seed1=22.7%  grounded_matched_short__seed2=20.0%  grounded_matched_short__seed3=23.4%  grounded_matched_short__seed5=23.0%  grounded_matched_short__seed6=24.5%  grounded_matched_short__seed7=22.1%
+18038.2s 1441 MobileCLIP-S1        img=  21.5M  grounded_matched_short__seed0=23.7%  grounded_matched_short__seed1=24.8%  grounded_matched_short__seed2=23.7%  grounded_matched_short__seed3=26.7%  grounded_matched_short__seed5=23.9%  grounded_matched_short__seed6=23.1%  grounded_matched_short__seed7=23.0%
+18038.2s 1442 MobileCLIP2-S2       img=  35.8M  grounded_matched_short__seed0=22.3%  grounded_matched_short__seed1=23.6%  grounded_matched_short__seed2=22.5%  grounded_matched_short__seed3=22.5%  grounded_matched_short__seed5=24.6%  grounded_matched_short__seed6=22.9%  grounded_matched_short__seed7=26.5%
+18038.3s 1443 MobileCLIP-B         img=  86.3M  grounded_matched_short__seed0=27.1%  grounded_matched_short__seed1=27.8%  grounded_matched_short__seed2=27.4%  grounded_matched_short__seed3=32.8%  grounded_matched_short__seed5=26.5%  grounded_matched_short__seed6=27.3%  grounded_matched_short__seed7=28.6%
+18038.3s 1444 
+18038.3s 1445 [eval] saved /kaggle/working/results/zeroshot_eval_C_gmsseeds.json
+18038.3s 1446 
+18038.3s 1447 
+18038.3s 1448 ==============================================================================
+18038.3s 1449 [descriptor coverage]  t+5.0 h  (6.0 h left)
+18038.3s 1450 ==============================================================================
+18038.3s 1451 rich bank: 32 keys (13 multi-word)
+18038.3s 1452 
+18038.3s 1453 scale   classes  no-match  unique  collided  distinct protos
+18038.3s 1454 ------------------------------------------------------------
+18038.3s 1455 A            16         5       9         2               15
+18038.3s 1456 B            34        13       7        14               26
+18038.3s 1457 C            51        17       8        26               33
+18038.3s 1458 
+18038.3s 1459 scale C collision groups (8 keywords, 26 classes):
+18038.3s 1460 'spot' x7
+18038.3s 1461 'blight' x5
+18038.3s 1462 'rot' x3
+18038.3s 1463 'powdery mildew' x3
+18038.3s 1464 'anthracnose' x2
+18038.3s 1465 'rust' x2
+18038.3s 1466 'leaf curl' x2
+18038.3s 1467 'scab' x2
+18038.3s 1468 
+18038.3s 1469 scale C unmatched (17): Bunchy_Top, Panama_Disease, Yellow_And_Black_Sigatoka, Berry_Blotch, Cerscospora, Miner, Bacterial_Wilt, Green_Mold ...
+18038.3s 1470 
+18038.3s 1471 [coverage] wrote /kaggle/working/pde/docs/paper/descriptor_coverage.json
+18038.3s 1472 
+18038.3s 1473 
+18038.3s 1474 ==============================================================================
+18038.3s 1475 [descriptors + control arms COMPLETE]  t+5.0 h  (6.0 h left)
+18038.3s 1476 ==============================================================================
+18038.3s 1477 
+18038.3s 1478 ==============================================================================
+18038.3s 1479 [seen-crop linear probe A/B/C]  t+5.0 h  (6.0 h left)
+18038.3s 1480 ==============================================================================
+20799.5s 1481 [sage] 84,123 imgs already on disk for ['Corn', 'Soybean', 'Tomato', 'Apple', 'Grape', 'Potato', 'Rice', 'Sugarcane', 'Rose', 'Strawberry'] -> skip download.
+20799.5s 1482 [pool] 69,919 seen images over 10 crops, 166 classes  (device=cuda)
+20799.5s 1483 [MobileCLIP2-S0] 8,192/69,919  187 img/s  eta 5.5 min
+20799.5s 1484 [MobileCLIP2-S0] 16,384/69,919  190 img/s  eta 4.7 min
+20799.5s 1485 [MobileCLIP2-S0] 24,576/69,919  192 img/s  eta 3.9 min
+20799.5s 1486 [MobileCLIP2-S0] 32,768/69,919  193 img/s  eta 3.2 min
+20799.5s 1487 [MobileCLIP2-S0] 40,960/69,919  194 img/s  eta 2.5 min
+20799.5s 1488 [MobileCLIP2-S0] 49,152/69,919  195 img/s  eta 1.8 min
+20799.5s 1489 [MobileCLIP2-S0] 57,344/69,919  196 img/s  eta 1.1 min
+20799.5s 1490 [MobileCLIP2-S0] 65,536/69,919  195 img/s  eta 0.4 min
+20799.5s 1491 [MobileCLIP2-S0] embedded 69,919
+20799.5s 1492 exp A:  97 cls / 42,326 imgs  MobileCLIP2-S0     11.4M  top1 = 78.7%
+20799.5s 1493 exp B: 154 cls / 62,043 imgs  MobileCLIP2-S0     11.4M  top1 = 80.7%
+20799.5s 1494 exp C: 166 cls / 69,919 imgs  MobileCLIP2-S0     11.4M  top1 = 82.2%
+20799.5s 1495 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+20799.5s 1496 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+20799.5s 1497 [MobileCLIP-S1] 8,192/69,919  116 img/s  eta 8.9 min
+20799.5s 1498 [MobileCLIP-S1] 16,384/69,919  118 img/s  eta 7.6 min
+20799.5s 1499 [MobileCLIP-S1] 24,576/69,919  119 img/s  eta 6.4 min
+20799.5s 1500 [MobileCLIP-S1] 32,768/69,919  119 img/s  eta 5.2 min
+20799.5s 1501 [MobileCLIP-S1] 40,960/69,919  119 img/s  eta 4.1 min
+20799.5s 1502 [MobileCLIP-S1] 49,152/69,919  119 img/s  eta 2.9 min
+20799.5s 1503 [MobileCLIP-S1] 57,344/69,919  119 img/s  eta 1.8 min
+20799.5s 1504 [MobileCLIP-S1] 65,536/69,919  119 img/s  eta 0.6 min
+20799.5s 1505 [MobileCLIP-S1] embedded 69,919
+20799.5s 1506 exp A:  97 cls / 42,326 imgs  MobileCLIP-S1      21.5M  top1 = 78.4%
+20799.5s 1507 exp B: 154 cls / 62,043 imgs  MobileCLIP-S1      21.5M  top1 = 79.3%
+20799.5s 1508 exp C: 166 cls / 69,919 imgs  MobileCLIP-S1      21.5M  top1 = 81.1%
+20799.5s 1509 [MobileCLIP2-S2] 8,192/69,919  80 img/s  eta 12.8 min
+20799.5s 1510 [MobileCLIP2-S2] 16,384/69,919  80 img/s  eta 11.1 min
+20799.5s 1511 [MobileCLIP2-S2] 24,576/69,919  80 img/s  eta 9.4 min
+20799.5s 1512 [MobileCLIP2-S2] 32,768/69,919  81 img/s  eta 7.7 min
+20799.5s 1513 [MobileCLIP2-S2] 40,960/69,919  81 img/s  eta 6.0 min
+20799.5s 1514 [MobileCLIP2-S2] 49,152/69,919  81 img/s  eta 4.3 min
+20799.5s 1515 [MobileCLIP2-S2] 57,344/69,919  81 img/s  eta 2.6 min
+20799.5s 1516 [MobileCLIP2-S2] 65,536/69,919  81 img/s  eta 0.9 min
+20799.5s 1517 [MobileCLIP2-S2] embedded 69,919
+20799.5s 1518 exp A:  97 cls / 42,326 imgs  MobileCLIP2-S2     35.8M  top1 = 79.3%
+20799.5s 1519 exp B: 154 cls / 62,043 imgs  MobileCLIP2-S2     35.8M  top1 = 80.6%
+20799.5s 1520 exp C: 166 cls / 69,919 imgs  MobileCLIP2-S2     35.8M  top1 = 82.2%
+20799.5s 1521 [MobileCLIP-B] 8,192/69,919  82 img/s  eta 12.6 min
+20799.5s 1522 [MobileCLIP-B] 16,384/69,919  82 img/s  eta 10.8 min
+20799.5s 1523 [MobileCLIP-B] 24,576/69,919  83 img/s  eta 9.2 min
+20799.5s 1524 [MobileCLIP-B] 32,768/69,919  83 img/s  eta 7.5 min
+20799.5s 1525 [MobileCLIP-B] 40,960/69,919  83 img/s  eta 5.8 min
+20799.5s 1526 [MobileCLIP-B] 49,152/69,919  83 img/s  eta 4.2 min
+20799.5s 1527 [MobileCLIP-B] 57,344/69,919  83 img/s  eta 2.5 min
+20799.5s 1528 [MobileCLIP-B] 65,536/69,919  83 img/s  eta 0.9 min
+20799.5s 1529 [MobileCLIP-B] embedded 69,919
+20799.5s 1530 exp A:  97 cls / 42,326 imgs  MobileCLIP-B       86.3M  top1 = 79.2%
+20799.5s 1531 exp B: 154 cls / 62,043 imgs  MobileCLIP-B       86.3M  top1 = 80.6%
+20799.5s 1532 exp C: 166 cls / 69,919 imgs  MobileCLIP-B       86.3M  top1 = 82.1%
+20799.5s 1533 [probe] saved /kaggle/working/results/probe_seen_A.json  (4 models)
+20799.5s 1534 [probe] saved /kaggle/working/results/probe_seen_B.json  (4 models)
+20799.5s 1535 [probe] saved /kaggle/working/results/probe_seen_C.json  (4 models)
+20799.5s 1536 [probe] the VLM tiers do seen (probe) AND unseen (zero-shot); the CNNs do seen only.
+20799.5s 1537 
+20799.5s 1538 
+20799.5s 1539 ==============================================================================
+20799.5s 1540 [leave-one-crop-out + bootstrap CIs]  t+5.8 h  (5.2 h left)
+20799.5s 1541 ==============================================================================
+20941.6s 1542 [sage] 26,151 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Apple', 'Corn', 'Potato'] -> skip download.
+20941.6s 1543 [loco] model=MobileCLIP2-S0  pool=['Coffee', 'Orange', 'Peach', 'Apple', 'Corn', 'Potato']  26,151 imgs  78 classes  chance=1.3%  strategy=rich
+20941.6s 1544 
+20941.6s 1545 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+20941.6s 1546 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+20941.6s 1547 crop           n  acc   [95% CI]      role
+20941.6s 1548 Apple      10000  12.7%  [12.0%, 13.3%]  train-pool
+20941.6s 1549 Coffee      1582  15.8%  [14.0%, 17.7%]  held
+20941.6s 1550 Corn        9403  4.8%  [4.4%, 5.3%]  train-pool
+20941.6s 1551 Orange      1361  28.9%  [26.4%, 31.3%]  held
+20941.6s 1552 Peach       1107  12.3%  [10.4%, 14.2%]  held
+20941.6s 1553 Potato      2698  9.5%  [8.3%, 10.7%]  train-pool
+20941.6s 1554 POOLED     26151  10.5%  [10.2%, 10.9%]
+20941.6s 1555 
+20941.6s 1556 [loco] saved /kaggle/working/results/loco_s0_rich.json
+20941.6s 1557 [loco] stable per-crop accuracy across held + train-pool crops = not a cherry-picked split.
+20941.6s 1558 
+20941.6s 1559 
+20941.6s 1560 ==============================================================================
+20941.6s 1561 [abstention + top-5, config A]  t+5.8 h  (5.2 h left)
+20941.6s 1562 ==============================================================================
+21189.0s 1563 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+21189.0s 1564 [metrics] held=4,050 imgs  16 classes  chance=6.2%  device=cuda
+21189.0s 1565 
+21189.0s 1566 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+21189.0s 1567 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+21189.0s 1568 MobileCLIP2-S0       11.4M  rich:top1=26.1%/top5=59.6%/aurc=0.678  grounded:top1=17.6%/top5=61.9%/aurc=0.699
+21189.0s 1569 MobileCLIP-S1        21.5M  rich:top1=24.9%/top5=55.3%/aurc=0.629  grounded:top1=28.6%/top5=60.3%/aurc=0.501
+21189.0s 1570 MobileCLIP2-S2       35.8M  rich:top1=33.3%/top5=63.6%/aurc=0.584  grounded:top1=13.7%/top5=61.2%/aurc=0.743
+21189.0s 1571 MobileCLIP-B         86.3M  rich:top1=31.2%/top5=69.9%/aurc=0.524  grounded:top1=26.2%/top5=77.1%/aurc=0.614
+21189.0s 1572 ViT-B-16-SigLIP2     92.9M  rich:top1=30.4%/top5=68.5%/aurc=0.620  grounded:top1=26.8%/top5=76.9%/aurc=0.653
+21189.0s 1573 
+21189.0s 1574 [metrics] saved /kaggle/working/results/metrics_abstain_A.json
+21189.0s 1575 [metrics] top-5 and acc@cov are the field-relevant, reviewer-defensible numbers.
+21189.0s 1576 
+21189.0s 1577 
+21189.0s 1578 ==============================================================================
+21189.0s 1579 [abstention + top-5, config B]  t+5.9 h  (5.1 h left)
+21189.0s 1580 ==============================================================================
+21731.1s 1581 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+21731.1s 1582 [metrics] held=9,787 imgs  34 classes  chance=2.9%  device=cuda
+21731.1s 1583 
+21731.1s 1584 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+21731.1s 1585 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+21731.1s 1586 MobileCLIP2-S0       11.4M  rich:top1=23.3%/top5=63.3%/aurc=0.677  grounded:top1=20.5%/top5=70.0%/aurc=0.708
+21731.1s 1587 MobileCLIP-S1        21.5M  rich:top1=23.6%/top5=61.5%/aurc=0.602  grounded:top1=25.6%/top5=63.7%/aurc=0.594
+21731.1s 1588 MobileCLIP2-S2       35.8M  rich:top1=24.8%/top5=66.4%/aurc=0.611  grounded:top1=19.4%/top5=71.6%/aurc=0.713
+21731.1s 1589 MobileCLIP-B         86.3M  rich:top1=28.3%/top5=67.5%/aurc=0.545  grounded:top1=25.3%/top5=76.0%/aurc=0.594
+21731.1s 1590 ViT-B-16-SigLIP2     92.9M  rich:top1=29.9%/top5=72.4%/aurc=0.572  grounded:top1=27.3%/top5=74.7%/aurc=0.662
+21731.1s 1591 
+21731.1s 1592 [metrics] saved /kaggle/working/results/metrics_abstain_B.json
+21731.1s 1593 [metrics] top-5 and acc@cov are the field-relevant, reviewer-defensible numbers.
+21731.1s 1594 
+21731.1s 1595 
+21731.1s 1596 ==============================================================================
+21731.1s 1597 [abstention + top-5, config C]  t+6.0 h  (5.0 h left)
+21731.1s 1598 ==============================================================================
+22503.7s 1599 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+22503.7s 1600 [metrics] held=14,204 imgs  51 classes  chance=2.0%  device=cuda
+22503.7s 1601 
+22503.7s 1602 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+22503.7s 1603 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+22503.7s 1604 MobileCLIP2-S0       11.4M  rich:top1=19.3%/top5=61.7%/aurc=0.775  grounded:top1=21.6%/top5=62.9%/aurc=0.717
+22503.7s 1605 MobileCLIP-S1        21.5M  rich:top1=20.7%/top5=58.1%/aurc=0.701  grounded:top1=24.0%/top5=59.0%/aurc=0.643
+22503.7s 1606 MobileCLIP2-S2       35.8M  rich:top1=21.5%/top5=66.1%/aurc=0.697  grounded:top1=22.8%/top5=68.3%/aurc=0.736
+22503.7s 1607 MobileCLIP-B         86.3M  rich:top1=24.6%/top5=66.0%/aurc=0.655  grounded:top1=27.3%/top5=74.6%/aurc=0.617
+22503.7s 1608 ViT-B-16-SigLIP2     92.9M  rich:top1=23.1%/top5=67.1%/aurc=0.681  grounded:top1=28.4%/top5=67.7%/aurc=0.616
+22503.7s 1609 
+22503.7s 1610 [metrics] saved /kaggle/working/results/metrics_abstain_C.json
+22503.7s 1611 [metrics] top-5 and acc@cov are the field-relevant, reviewer-defensible numbers.
+22503.7s 1612 
+22503.7s 1613 
+22503.7s 1614 ==============================================================================
+22503.7s 1615 [WiSE-FT alpha sweep (both sides under one protocol)]  t+6.2 h  (4.8 h left)
+22503.7s 1616 ==============================================================================
+25323.8s 1617 [wiseft] MobileCLIP2-S0/dfndr2b  exp=C  device=cuda
+25323.8s 1618 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+25323.8s 1619 [wiseft] seen split capped at 200/class: 69,919 -> 23,445 images
+25323.8s 1620 [wiseft] seen: 23,445 imgs / 166 classes
+25323.8s 1621 [wiseft] unseen: 14,204 imgs / 51 classes (chance 1.96%)
+25323.8s 1622 [wiseft] visual tower trainable params: 11.41 M
+25323.8s 1623 ft epoch 1/3  loss=4.463
+25323.8s 1624 ft epoch 2/3  loss=3.179
+25323.8s 1625 ft epoch 3/3  loss=2.400
+25323.8s 1626 [wiseft] encoder moved: relative L2 distance = 0.31405
+25323.8s 1627 [wiseft] fitting the frozen-encoder head (the alpha=0 reference) ...
+25323.8s 1628 [wiseft] frozen probe = 58.8% (alpha=0 must reproduce this)
+25323.8s 1629 alpha=0.00  seen=58.7%  unseen=21.6%
+25323.8s 1630 alpha=0.50  seen=45.1%  unseen=7.8%
+25323.8s 1631 alpha=1.00  seen=63.8%  unseen=1.8%
+25323.8s 1632 [wiseft][WARNING] seen accuracy dips below BOTH endpoints at an intermediate alpha, which means the two weight sets are not linearly connected -- usually the same under-training cause as above.
+25323.8s 1633 
+25323.8s 1634 [wiseft] saved /kaggle/working/results/wiseft.json
+25323.8s 1635 
+25323.8s 1636 
+25323.8s 1637 [wiseft] THIS RESULT HAS WARNINGS -- do not use the table until fixed:
+25323.8s 1638 - seen accuracy dips below BOTH endpoints at an intermediate alpha, which means the two weight sets are not linearly connected -- usually the same under-training cause as above.
+25323.8s 1639 
+25323.8s 1640 ==============================================================================
+25323.8s 1641 [remaining tables COMPLETE -- starting the CNN sweep]  t+7.0 h  (4.0 h left)
+25323.8s 1642 ==============================================================================
+25323.8s 1643 
+25323.8s 1644 ==============================================================================
+25323.8s 1645 [supervised CNNs (14 architectures x 4 epochs)]  t+7.0 h  (4.0 h left)
+25323.8s 1646 ==============================================================================
+25323.8s 1647 
+25323.8s 1648 --- cnn 1/14: mobilenetv3_small_100 --- t+7.0 h | VRAM 15.5/15.6 GB free
+25329.9s 1649 ERR RuntimeError GET was unable to find an engine to execute this computation
+25329.9s 1650 
+25348.5s 1651 [baseline] arch=mobilenetv3_small_100  69,919 seen imgs  166 classes  device=cuda
+25348.5s 1652 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+25348.5s 1653 [baseline] AMP on (bf16) + channels_last
+25348.5s 1654 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+25348.5s 1655 Traceback (most recent call last):
+25348.5s 1656 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+25348.5s 1657 main()
+25348.5s 1658 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+25348.5s 1659 loss = F.cross_entropy(model(x), y)
+25348.5s 1660 ^^^^^^^^
+25348.5s 1661 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25348.5s 1662 return self._call_impl(*args, **kwargs)
+25348.5s 1663 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1664 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25348.5s 1665 return forward_call(*args, **kwargs)
+25348.5s 1666 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1667 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 342, in forward
+25348.5s 1668 x = self.forward_features(x)
+25348.5s 1669 ^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1670 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 309, in forward_features
+25348.5s 1671 x = self.blocks(x)
+25348.5s 1672 ^^^^^^^^^^^^^^
+25348.5s 1673 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25348.5s 1674 return self._call_impl(*args, **kwargs)
+25348.5s 1675 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1676 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25348.5s 1677 return forward_call(*args, **kwargs)
+25348.5s 1678 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1679 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25348.5s 1680 input = module(input)
+25348.5s 1681 ^^^^^^^^^^^^^
+25348.5s 1682 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25348.5s 1683 return self._call_impl(*args, **kwargs)
+25348.5s 1684 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1685 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25348.5s 1686 return forward_call(*args, **kwargs)
+25348.5s 1687 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1688 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25348.5s 1689 input = module(input)
+25348.5s 1690 ^^^^^^^^^^^^^
+25348.5s 1691 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25348.5s 1692 return self._call_impl(*args, **kwargs)
+25348.5s 1693 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1694 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25348.5s 1695 return forward_call(*args, **kwargs)
+25348.5s 1696 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1697 File "/usr/local/lib/python3.12/dist-packages/timm/models/_efficientnet_blocks.py", line 223, in forward
+25348.5s 1698 x = self.conv_dw(x)
+25348.5s 1699 ^^^^^^^^^^^^^^^
+25348.5s 1700 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25348.5s 1701 return self._call_impl(*args, **kwargs)
+25348.5s 1702 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1703 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25348.5s 1704 return forward_call(*args, **kwargs)
+25348.5s 1705 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1706 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+25348.5s 1707 return self._conv_forward(input, self.weight, self.bias)
+25348.5s 1708 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25348.5s 1709 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+25348.5s 1710 return F.conv2d(
+25348.5s 1711 ^^^^^^^^^
+25348.5s 1712 RuntimeError: GET was unable to find an engine to execute this computation
+25348.5s 1713 
+25348.5s 1714 [miss] mobilenetv3_small_100: no JSON (rc=1) -- recorded as NOT RUN
+25348.5s 1715 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+25348.5s 1716 
+25348.5s 1717 --- cnn 2/14: mobilenetv4_conv_small --- t+7.0 h | VRAM 15.5/15.6 GB free
+25354.8s 1718 ERR RuntimeError GET was unable to find an engine to execute this computation
+25354.8s 1719 
+25373.0s 1720 [baseline] arch=mobilenetv4_conv_small  69,919 seen imgs  166 classes  device=cuda
+25373.0s 1721 [baseline] AMP on (bf16) + channels_last
+25373.0s 1722 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+25373.0s 1723 Traceback (most recent call last):
+25373.0s 1724 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+25373.0s 1725 main()
+25373.0s 1726 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+25373.0s 1727 loss = F.cross_entropy(model(x), y)
+25373.0s 1728 ^^^^^^^^
+25373.0s 1729 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25373.0s 1730 return self._call_impl(*args, **kwargs)
+25373.0s 1731 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1732 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25373.0s 1733 return forward_call(*args, **kwargs)
+25373.0s 1734 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1735 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 342, in forward
+25373.0s 1736 x = self.forward_features(x)
+25373.0s 1737 ^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1738 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 309, in forward_features
+25373.0s 1739 x = self.blocks(x)
+25373.0s 1740 ^^^^^^^^^^^^^^
+25373.0s 1741 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25373.0s 1742 return self._call_impl(*args, **kwargs)
+25373.0s 1743 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1744 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25373.0s 1745 return forward_call(*args, **kwargs)
+25373.0s 1746 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1747 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25373.0s 1748 input = module(input)
+25373.0s 1749 ^^^^^^^^^^^^^
+25373.0s 1750 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25373.0s 1751 return self._call_impl(*args, **kwargs)
+25373.0s 1752 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1753 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25373.0s 1754 return forward_call(*args, **kwargs)
+25373.0s 1755 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1756 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25373.0s 1757 input = module(input)
+25373.0s 1758 ^^^^^^^^^^^^^
+25373.0s 1759 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25373.0s 1760 return self._call_impl(*args, **kwargs)
+25373.0s 1761 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1762 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25373.0s 1763 return forward_call(*args, **kwargs)
+25373.0s 1764 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1765 File "/usr/local/lib/python3.12/dist-packages/timm/models/_efficientnet_blocks.py", line 477, in forward
+25373.0s 1766 x = self.dw_start(x)
+25373.0s 1767 ^^^^^^^^^^^^^^^^
+25373.0s 1768 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25373.0s 1769 return self._call_impl(*args, **kwargs)
+25373.0s 1770 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1771 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25373.0s 1772 return forward_call(*args, **kwargs)
+25373.0s 1773 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1774 File "/usr/local/lib/python3.12/dist-packages/timm/layers/conv_bn_act.py", line 93, in forward
+25373.0s 1775 x = self.conv(x)
+25373.0s 1776 ^^^^^^^^^^^^
+25373.0s 1777 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25373.0s 1778 return self._call_impl(*args, **kwargs)
+25373.0s 1779 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1780 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25373.0s 1781 return forward_call(*args, **kwargs)
+25373.0s 1782 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1783 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+25373.0s 1784 return self._conv_forward(input, self.weight, self.bias)
+25373.0s 1785 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25373.0s 1786 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+25373.0s 1787 return F.conv2d(
+25373.0s 1788 ^^^^^^^^^
+25373.0s 1789 RuntimeError: GET was unable to find an engine to execute this computation
+25373.0s 1790 
+25373.0s 1791 [miss] mobilenetv4_conv_small: no JSON (rc=1) -- recorded as NOT RUN
+25373.0s 1792 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+25373.0s 1793 
+25373.0s 1794 --- cnn 3/14: fastvit_t8 --- t+7.0 h | VRAM 15.5/15.6 GB free
+25379.3s 1795 ERR RuntimeError GET was unable to find an engine to execute this computation
+25379.3s 1796 
+25398.0s 1797 [baseline] arch=fastvit_t8  69,919 seen imgs  166 classes  device=cuda
+25398.0s 1798 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+25398.0s 1799 [baseline] AMP on (bf16) + channels_last
+25398.0s 1800 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+25398.0s 1801 Traceback (most recent call last):
+25398.0s 1802 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+25398.0s 1803 main()
+25398.0s 1804 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+25398.0s 1805 loss = F.cross_entropy(model(x), y)
+25398.0s 1806 ^^^^^^^^
+25398.0s 1807 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25398.0s 1808 return self._call_impl(*args, **kwargs)
+25398.0s 1809 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1810 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25398.0s 1811 return forward_call(*args, **kwargs)
+25398.0s 1812 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1813 File "/usr/local/lib/python3.12/dist-packages/timm/models/fastvit.py", line 1418, in forward
+25398.0s 1814 x = self.forward_features(x)
+25398.0s 1815 ^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1816 File "/usr/local/lib/python3.12/dist-packages/timm/models/fastvit.py", line 1399, in forward_features
+25398.0s 1817 x = self.stem(x)
+25398.0s 1818 ^^^^^^^^^^^^
+25398.0s 1819 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25398.0s 1820 return self._call_impl(*args, **kwargs)
+25398.0s 1821 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1822 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25398.0s 1823 return forward_call(*args, **kwargs)
+25398.0s 1824 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1825 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25398.0s 1826 input = module(input)
+25398.0s 1827 ^^^^^^^^^^^^^
+25398.0s 1828 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25398.0s 1829 return self._call_impl(*args, **kwargs)
+25398.0s 1830 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1831 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25398.0s 1832 return forward_call(*args, **kwargs)
+25398.0s 1833 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.0s 1834 File "/usr/local/lib/python3.12/dist-packages/timm/models/fastvit.py", line 172, in forward
+25398.0s 1835 out += rc(x)
+25398.0s 1836 ^^^^^
+25398.0s 1837 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25398.0s 1838 return self._call_impl(*args, **kwargs)
+25398.0s 1839 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.1s 1840 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25398.1s 1841 return forward_call(*args, **kwargs)
+25398.1s 1842 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.1s 1843 File "/usr/local/lib/python3.12/dist-packages/timm/layers/conv_bn_act.py", line 93, in forward
+25398.1s 1844 x = self.conv(x)
+25398.1s 1845 ^^^^^^^^^^^^
+25398.1s 1846 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25398.1s 1847 return self._call_impl(*args, **kwargs)
+25398.1s 1848 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.1s 1849 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25398.1s 1850 return forward_call(*args, **kwargs)
+25398.1s 1851 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.1s 1852 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+25398.1s 1853 return self._conv_forward(input, self.weight, self.bias)
+25398.1s 1854 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25398.1s 1855 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+25398.1s 1856 return F.conv2d(
+25398.1s 1857 ^^^^^^^^^
+25398.1s 1858 RuntimeError: GET was unable to find an engine to execute this computation
+25398.1s 1859 
+25398.1s 1860 [miss] fastvit_t8: no JSON (rc=1) -- recorded as NOT RUN
+25398.1s 1861 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+25398.1s 1862 
+25398.1s 1863 --- cnn 4/14: efficientnet_b0 --- t+7.1 h | VRAM 15.5/15.6 GB free
+25404.2s 1864 ERR RuntimeError GET was unable to find an engine to execute this computation
+25404.2s 1865 
+25423.5s 1866 [baseline] arch=efficientnet_b0  69,919 seen imgs  166 classes  device=cuda
+25423.5s 1867 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+25423.5s 1868 [baseline] AMP on (bf16) + channels_last
+25423.5s 1869 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+25423.5s 1870 Traceback (most recent call last):
+25423.5s 1871 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+25423.5s 1872 main()
+25423.5s 1873 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+25423.5s 1874 loss = F.cross_entropy(model(x), y)
+25423.5s 1875 ^^^^^^^^
+25423.5s 1876 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25423.5s 1877 return self._call_impl(*args, **kwargs)
+25423.5s 1878 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1879 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25423.5s 1880 return forward_call(*args, **kwargs)
+25423.5s 1881 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1882 File "/usr/local/lib/python3.12/dist-packages/timm/models/efficientnet.py", line 348, in forward
+25423.5s 1883 x = self.forward_features(x)
+25423.5s 1884 ^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1885 File "/usr/local/lib/python3.12/dist-packages/timm/models/efficientnet.py", line 326, in forward_features
+25423.5s 1886 x = self.blocks(x)
+25423.5s 1887 ^^^^^^^^^^^^^^
+25423.5s 1888 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25423.5s 1889 return self._call_impl(*args, **kwargs)
+25423.5s 1890 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1891 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25423.5s 1892 return forward_call(*args, **kwargs)
+25423.5s 1893 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1894 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25423.5s 1895 input = module(input)
+25423.5s 1896 ^^^^^^^^^^^^^
+25423.5s 1897 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25423.5s 1898 return self._call_impl(*args, **kwargs)
+25423.5s 1899 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1900 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25423.5s 1901 return forward_call(*args, **kwargs)
+25423.5s 1902 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1903 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25423.5s 1904 input = module(input)
+25423.5s 1905 ^^^^^^^^^^^^^
+25423.5s 1906 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25423.5s 1907 return self._call_impl(*args, **kwargs)
+25423.5s 1908 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1909 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25423.5s 1910 return forward_call(*args, **kwargs)
+25423.5s 1911 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1912 File "/usr/local/lib/python3.12/dist-packages/timm/models/_efficientnet_blocks.py", line 223, in forward
+25423.5s 1913 x = self.conv_dw(x)
+25423.5s 1914 ^^^^^^^^^^^^^^^
+25423.5s 1915 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25423.5s 1916 return self._call_impl(*args, **kwargs)
+25423.5s 1917 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1918 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25423.5s 1919 return forward_call(*args, **kwargs)
+25423.5s 1920 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1921 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+25423.5s 1922 return self._conv_forward(input, self.weight, self.bias)
+25423.5s 1923 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25423.5s 1924 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+25423.5s 1925 return F.conv2d(
+25423.5s 1926 ^^^^^^^^^
+25423.5s 1927 RuntimeError: GET was unable to find an engine to execute this computation
+25423.5s 1928 
+25423.5s 1929 [miss] efficientnet_b0: no JSON (rc=1) -- recorded as NOT RUN
+25423.5s 1930 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+25423.5s 1931 
+25423.5s 1932 --- cnn 5/14: mobilenetv3_large_100 --- t+7.1 h | VRAM 15.5/15.6 GB free
+25429.7s 1933 ERR RuntimeError GET was unable to find an engine to execute this computation
+25429.7s 1934 
+25447.8s 1935 [baseline] arch=mobilenetv3_large_100  69,919 seen imgs  166 classes  device=cuda
+25447.8s 1936 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+25447.8s 1937 [baseline] AMP on (bf16) + channels_last
+25447.8s 1938 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+25447.8s 1939 Traceback (most recent call last):
+25447.8s 1940 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+25447.8s 1941 main()
+25447.8s 1942 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+25447.8s 1943 loss = F.cross_entropy(model(x), y)
+25447.8s 1944 ^^^^^^^^
+25447.8s 1945 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25447.8s 1946 return self._call_impl(*args, **kwargs)
+25447.8s 1947 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.8s 1948 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25447.8s 1949 return forward_call(*args, **kwargs)
+25447.8s 1950 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.8s 1951 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 342, in forward
+25447.8s 1952 x = self.forward_features(x)
+25447.8s 1953 ^^^^^^^^^^^^^^^^^^^^^^^^
+25447.8s 1954 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 309, in forward_features
+25447.8s 1955 x = self.blocks(x)
+25447.8s 1956 ^^^^^^^^^^^^^^
+25447.8s 1957 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25447.9s 1958 return self._call_impl(*args, **kwargs)
+25447.9s 1959 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1960 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25447.9s 1961 return forward_call(*args, **kwargs)
+25447.9s 1962 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1963 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25447.9s 1964 input = module(input)
+25447.9s 1965 ^^^^^^^^^^^^^
+25447.9s 1966 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25447.9s 1967 return self._call_impl(*args, **kwargs)
+25447.9s 1968 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1969 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25447.9s 1970 return forward_call(*args, **kwargs)
+25447.9s 1971 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1972 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+25447.9s 1973 input = module(input)
+25447.9s 1974 ^^^^^^^^^^^^^
+25447.9s 1975 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25447.9s 1976 return self._call_impl(*args, **kwargs)
+25447.9s 1977 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1978 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25447.9s 1979 return forward_call(*args, **kwargs)
+25447.9s 1980 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1981 File "/usr/local/lib/python3.12/dist-packages/timm/models/_efficientnet_blocks.py", line 223, in forward
+25447.9s 1982 x = self.conv_dw(x)
+25447.9s 1983 ^^^^^^^^^^^^^^^
+25447.9s 1984 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+25447.9s 1985 return self._call_impl(*args, **kwargs)
+25447.9s 1986 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1987 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+25447.9s 1988 return forward_call(*args, **kwargs)
+25447.9s 1989 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1990 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+25447.9s 1991 return self._conv_forward(input, self.weight, self.bias)
+25447.9s 1992 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25447.9s 1993 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+25447.9s 1994 return F.conv2d(
+25447.9s 1995 ^^^^^^^^^
+25447.9s 1996 RuntimeError: GET was unable to find an engine to execute this computation
+25447.9s 1997 
+25447.9s 1998 [miss] mobilenetv3_large_100: no JSON (rc=1) -- recorded as NOT RUN
+25447.9s 1999 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+25447.9s 2000 
+25447.9s 2001 --- cnn 6/14: densenet121 --- t+7.1 h | VRAM 15.5/15.6 GB free
+25457.9s 2002 FIT
+25457.9s 2003 
+28158.1s 2004 [baseline] arch=densenet121  69,919 seen imgs  166 classes  device=cuda
+28158.1s 2005 [baseline] AMP on (bf16) + channels_last
+28158.1s 2006 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+28158.1s 2007 epoch 1/4  loss=1.049  test_top1=81.6%
+28158.1s 2008 [ckpt] saved epoch 1 (best=81.6%)
+28158.1s 2009 
+28158.1s 2010 
+28158.1s 2011 [TIMEOUT] cnn densenet121 exceeded 0.75 h and was killed
+28158.1s 2012 [miss] densenet121: no JSON (rc=124) -- recorded as NOT RUN
+28158.1s 2013 [clear] checkpoints removed; VRAM now 8.8/15.6 GB free
+28158.1s 2014 
+28158.1s 2015 --- cnn 7/14: mobilenetv4_conv_medium --- t+7.8 h | VRAM 8.8/15.6 GB free
+28164.4s 2016 ERR RuntimeError GET was unable to find an engine to execute this computation
+28164.4s 2017 
+28183.1s 2018 [baseline] arch=mobilenetv4_conv_medium  69,919 seen imgs  166 classes  device=cuda
+28183.1s 2019 [baseline] AMP on (bf16) + channels_last
+28183.1s 2020 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+28183.1s 2021 Traceback (most recent call last):
+28183.1s 2022 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+28183.1s 2023 main()
+28183.1s 2024 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+28183.1s 2025 loss = F.cross_entropy(model(x), y)
+28183.1s 2026 ^^^^^^^^
+28183.1s 2027 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28183.1s 2028 return self._call_impl(*args, **kwargs)
+28183.1s 2029 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2030 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28183.1s 2031 return forward_call(*args, **kwargs)
+28183.1s 2032 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2033 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 342, in forward
+28183.1s 2034 x = self.forward_features(x)
+28183.1s 2035 ^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2036 File "/usr/local/lib/python3.12/dist-packages/timm/models/mobilenetv3.py", line 309, in forward_features
+28183.1s 2037 x = self.blocks(x)
+28183.1s 2038 ^^^^^^^^^^^^^^
+28183.1s 2039 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28183.1s 2040 return self._call_impl(*args, **kwargs)
+28183.1s 2041 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2042 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28183.1s 2043 return forward_call(*args, **kwargs)
+28183.1s 2044 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2045 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+28183.1s 2046 input = module(input)
+28183.1s 2047 ^^^^^^^^^^^^^
+28183.1s 2048 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28183.1s 2049 return self._call_impl(*args, **kwargs)
+28183.1s 2050 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2051 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28183.1s 2052 return forward_call(*args, **kwargs)
+28183.1s 2053 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2054 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+28183.1s 2055 input = module(input)
+28183.1s 2056 ^^^^^^^^^^^^^
+28183.1s 2057 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28183.1s 2058 return self._call_impl(*args, **kwargs)
+28183.1s 2059 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2060 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28183.1s 2061 return forward_call(*args, **kwargs)
+28183.1s 2062 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.1s 2063 File "/usr/local/lib/python3.12/dist-packages/timm/models/_efficientnet_blocks.py", line 477, in forward
+28183.1s 2064 x = self.dw_start(x)
+28183.1s 2065 ^^^^^^^^^^^^^^^^
+28183.1s 2066 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28183.1s 2067 return self._call_impl(*args, **kwargs)
+28183.2s 2068 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.2s 2069 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28183.2s 2070 return forward_call(*args, **kwargs)
+28183.2s 2071 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.2s 2072 File "/usr/local/lib/python3.12/dist-packages/timm/layers/conv_bn_act.py", line 93, in forward
+28183.2s 2073 x = self.conv(x)
+28183.2s 2074 ^^^^^^^^^^^^
+28183.2s 2075 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28183.2s 2076 return self._call_impl(*args, **kwargs)
+28183.2s 2077 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.2s 2078 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28183.2s 2079 return forward_call(*args, **kwargs)
+28183.2s 2080 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.2s 2081 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+28183.2s 2082 return self._conv_forward(input, self.weight, self.bias)
+28183.2s 2083 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28183.2s 2084 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+28183.2s 2085 return F.conv2d(
+28183.2s 2086 ^^^^^^^^^
+28183.2s 2087 RuntimeError: GET was unable to find an engine to execute this computation
+28183.2s 2088 
+28183.2s 2089 [miss] mobilenetv4_conv_medium: no JSON (rc=1) -- recorded as NOT RUN
+28183.2s 2090 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+28183.2s 2091 
+28183.2s 2092 --- cnn 8/14: fastvit_sa12 --- t+7.8 h | VRAM 15.5/15.6 GB free
+28189.5s 2093 ERR RuntimeError GET was unable to find an engine to execute this computation
+28189.5s 2094 
+28208.3s 2095 [baseline] arch=fastvit_sa12  69,919 seen imgs  166 classes  device=cuda
+28208.3s 2096 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+28208.3s 2097 [baseline] AMP on (bf16) + channels_last
+28208.3s 2098 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+28208.3s 2099 Traceback (most recent call last):
+28208.3s 2100 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+28208.3s 2101 main()
+28208.3s 2102 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+28208.3s 2103 loss = F.cross_entropy(model(x), y)
+28208.3s 2104 ^^^^^^^^
+28208.3s 2105 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28208.3s 2106 return self._call_impl(*args, **kwargs)
+28208.3s 2107 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2108 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28208.3s 2109 return forward_call(*args, **kwargs)
+28208.3s 2110 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2111 File "/usr/local/lib/python3.12/dist-packages/timm/models/fastvit.py", line 1418, in forward
+28208.3s 2112 x = self.forward_features(x)
+28208.3s 2113 ^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2114 File "/usr/local/lib/python3.12/dist-packages/timm/models/fastvit.py", line 1399, in forward_features
+28208.3s 2115 x = self.stem(x)
+28208.3s 2116 ^^^^^^^^^^^^
+28208.3s 2117 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28208.3s 2118 return self._call_impl(*args, **kwargs)
+28208.3s 2119 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2120 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28208.3s 2121 return forward_call(*args, **kwargs)
+28208.3s 2122 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2123 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+28208.3s 2124 input = module(input)
+28208.3s 2125 ^^^^^^^^^^^^^
+28208.3s 2126 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28208.3s 2127 return self._call_impl(*args, **kwargs)
+28208.3s 2128 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2129 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28208.3s 2130 return forward_call(*args, **kwargs)
+28208.3s 2131 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2132 File "/usr/local/lib/python3.12/dist-packages/timm/models/fastvit.py", line 172, in forward
+28208.3s 2133 out += rc(x)
+28208.3s 2134 ^^^^^
+28208.3s 2135 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28208.3s 2136 return self._call_impl(*args, **kwargs)
+28208.3s 2137 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2138 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28208.3s 2139 return forward_call(*args, **kwargs)
+28208.3s 2140 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2141 File "/usr/local/lib/python3.12/dist-packages/timm/layers/conv_bn_act.py", line 93, in forward
+28208.3s 2142 x = self.conv(x)
+28208.3s 2143 ^^^^^^^^^^^^
+28208.3s 2144 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28208.3s 2145 return self._call_impl(*args, **kwargs)
+28208.3s 2146 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2147 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28208.3s 2148 return forward_call(*args, **kwargs)
+28208.3s 2149 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2150 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+28208.3s 2151 return self._conv_forward(input, self.weight, self.bias)
+28208.3s 2152 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28208.3s 2153 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+28208.3s 2154 return F.conv2d(
+28208.3s 2155 ^^^^^^^^^
+28208.3s 2156 RuntimeError: GET was unable to find an engine to execute this computation
+28208.3s 2157 
+28208.3s 2158 [miss] fastvit_sa12: no JSON (rc=1) -- recorded as NOT RUN
+28208.3s 2159 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+28208.3s 2160 
+28208.3s 2161 --- cnn 9/14: convnextv2_nano --- t+7.8 h | VRAM 15.5/15.6 GB free
+28214.5s 2162 ERR RuntimeError GET was unable to find an engine to execute this computation
+28214.5s 2163 
+28233.4s 2164 [baseline] arch=convnextv2_nano  69,919 seen imgs  166 classes  device=cuda
+28233.4s 2165 [baseline] AMP on (bf16) + channels_last
+28233.4s 2166 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+28233.4s 2167 Traceback (most recent call last):
+28233.4s 2168 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+28233.4s 2169 main()
+28233.4s 2170 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+28233.4s 2171 loss = F.cross_entropy(model(x), y)
+28233.4s 2172 ^^^^^^^^
+28233.4s 2173 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28233.4s 2174 return self._call_impl(*args, **kwargs)
+28233.4s 2175 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2176 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28233.4s 2177 return forward_call(*args, **kwargs)
+28233.4s 2178 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2179 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 627, in forward
+28233.4s 2180 x = self.forward_features(x)
+28233.4s 2181 ^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2182 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 609, in forward_features
+28233.4s 2183 x = self.stages(x)
+28233.4s 2184 ^^^^^^^^^^^^^^
+28233.4s 2185 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28233.4s 2186 return self._call_impl(*args, **kwargs)
+28233.4s 2187 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2188 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28233.4s 2189 return forward_call(*args, **kwargs)
+28233.4s 2190 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2191 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+28233.4s 2192 input = module(input)
+28233.4s 2193 ^^^^^^^^^^^^^
+28233.4s 2194 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28233.4s 2195 return self._call_impl(*args, **kwargs)
+28233.4s 2196 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2197 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28233.4s 2198 return forward_call(*args, **kwargs)
+28233.4s 2199 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2200 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 306, in forward
+28233.4s 2201 x = self.blocks(x)
+28233.4s 2202 ^^^^^^^^^^^^^^
+28233.4s 2203 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28233.4s 2204 return self._call_impl(*args, **kwargs)
+28233.4s 2205 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2206 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28233.4s 2207 return forward_call(*args, **kwargs)
+28233.4s 2208 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2209 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+28233.4s 2210 input = module(input)
+28233.4s 2211 ^^^^^^^^^^^^^
+28233.4s 2212 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28233.4s 2213 return self._call_impl(*args, **kwargs)
+28233.4s 2214 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2215 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28233.4s 2216 return forward_call(*args, **kwargs)
+28233.4s 2217 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.4s 2218 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 200, in forward
+28233.4s 2219 x = self.conv_dw(x)
+28233.4s 2220 ^^^^^^^^^^^^^^^
+28233.4s 2221 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+28233.5s 2222 return self._call_impl(*args, **kwargs)
+28233.5s 2223 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.5s 2224 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+28233.5s 2225 return forward_call(*args, **kwargs)
+28233.5s 2226 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.5s 2227 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+28233.5s 2228 return self._conv_forward(input, self.weight, self.bias)
+28233.5s 2229 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28233.5s 2230 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+28233.5s 2231 return F.conv2d(
+28233.5s 2232 ^^^^^^^^^
+28233.5s 2233 RuntimeError: GET was unable to find an engine to execute this computation
+28233.5s 2234 
+28233.5s 2235 [miss] convnextv2_nano: no JSON (rc=1) -- recorded as NOT RUN
+28233.5s 2236 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+28233.5s 2237 
+28233.5s 2238 --- cnn 10/14: regnety_040 --- t+7.8 h | VRAM 15.5/15.6 GB free
+28244.1s 2239 FIT
+28244.1s 2240 
+30944.3s 2241 [baseline] arch=regnety_040  69,919 seen imgs  166 classes  device=cuda
+30944.3s 2242 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+30944.3s 2243 [baseline] AMP on (bf16) + channels_last
+30944.3s 2244 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+30944.3s 2245 
+30944.3s 2246 
+30944.3s 2247 [TIMEOUT] cnn regnety_040 exceeded 0.75 h and was killed
+30944.3s 2248 [miss] regnety_040: no JSON (rc=124) -- recorded as NOT RUN
+30944.3s 2249 [clear] checkpoints removed; VRAM now 9.7/15.6 GB free
+30944.3s 2250 
+30944.3s 2251 --- cnn 11/14: resnet50 --- t+8.6 h | VRAM 9.7/15.6 GB free
+30953.2s 2252 FIT
+30953.2s 2253 
+33653.4s 2254 [baseline] arch=resnet50  69,919 seen imgs  166 classes  device=cuda
+33653.4s 2255 [baseline] AMP on (bf16) + channels_last
+33653.4s 2256 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+33653.4s 2257 epoch 1/4  loss=1.501  test_top1=79.8%
+33653.4s 2258 [ckpt] saved epoch 1 (best=79.8%)
+33653.4s 2259 
+33653.4s 2260 
+33653.4s 2261 [TIMEOUT] cnn resnet50 exceeded 0.75 h and was killed
+33653.4s 2262 [miss] resnet50: no JSON (rc=124) -- recorded as NOT RUN
+33653.4s 2263 [clear] checkpoints removed; VRAM now 10.7/15.6 GB free
+33653.4s 2264 
+33653.4s 2265 --- cnn 12/14: tf_efficientnetv2_s --- t+9.3 h | VRAM 10.7/15.6 GB free
+33660.6s 2266 ERR RuntimeError GET was unable to find an engine to execute this computation
+33660.6s 2267 
+33682.3s 2268 [baseline] arch=tf_efficientnetv2_s  69,919 seen imgs  166 classes  device=cuda
+33682.3s 2269 [baseline] AMP on (bf16) + channels_last
+33682.3s 2270 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+33682.3s 2271 Traceback (most recent call last):
+33682.3s 2272 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+33682.3s 2273 main()
+33682.3s 2274 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+33682.3s 2275 loss = F.cross_entropy(model(x), y)
+33682.3s 2276 ^^^^^^^^
+33682.3s 2277 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33682.3s 2278 return self._call_impl(*args, **kwargs)
+33682.3s 2279 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2280 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33682.3s 2281 return forward_call(*args, **kwargs)
+33682.3s 2282 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2283 File "/usr/local/lib/python3.12/dist-packages/timm/models/efficientnet.py", line 348, in forward
+33682.3s 2284 x = self.forward_features(x)
+33682.3s 2285 ^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2286 File "/usr/local/lib/python3.12/dist-packages/timm/models/efficientnet.py", line 326, in forward_features
+33682.3s 2287 x = self.blocks(x)
+33682.3s 2288 ^^^^^^^^^^^^^^
+33682.3s 2289 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33682.3s 2290 return self._call_impl(*args, **kwargs)
+33682.3s 2291 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2292 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33682.3s 2293 return forward_call(*args, **kwargs)
+33682.3s 2294 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2295 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+33682.3s 2296 input = module(input)
+33682.3s 2297 ^^^^^^^^^^^^^
+33682.3s 2298 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33682.3s 2299 return self._call_impl(*args, **kwargs)
+33682.3s 2300 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2301 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33682.3s 2302 return forward_call(*args, **kwargs)
+33682.3s 2303 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2304 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+33682.3s 2305 input = module(input)
+33682.3s 2306 ^^^^^^^^^^^^^
+33682.3s 2307 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33682.3s 2308 return self._call_impl(*args, **kwargs)
+33682.3s 2309 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2310 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33682.3s 2311 return forward_call(*args, **kwargs)
+33682.3s 2312 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2313 File "/usr/local/lib/python3.12/dist-packages/timm/models/_efficientnet_blocks.py", line 331, in forward
+33682.3s 2314 x = self.conv_dw(x)
+33682.3s 2315 ^^^^^^^^^^^^^^^
+33682.3s 2316 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33682.3s 2317 return self._call_impl(*args, **kwargs)
+33682.3s 2318 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2319 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33682.3s 2320 return forward_call(*args, **kwargs)
+33682.3s 2321 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2322 File "/usr/local/lib/python3.12/dist-packages/timm/layers/conv2d_same.py", line 63, in forward
+33682.3s 2323 return conv2d_same(
+33682.3s 2324 ^^^^^^^^^^^^
+33682.3s 2325 File "/usr/local/lib/python3.12/dist-packages/timm/layers/conv2d_same.py", line 28, in conv2d_same
+33682.3s 2326 return F.conv2d(x, weight, bias, stride, (0, 0), dilation, groups)
+33682.3s 2327 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33682.3s 2328 RuntimeError: GET was unable to find an engine to execute this computation
+33682.3s 2329 
+33682.3s 2330 [miss] tf_efficientnetv2_s: no JSON (rc=1) -- recorded as NOT RUN
+33682.3s 2331 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+33682.3s 2332 
+33682.3s 2333 --- cnn 13/14: convnextv2_tiny --- t+9.4 h | VRAM 15.5/15.6 GB free
+33689.2s 2334 ERR RuntimeError GET was unable to find an engine to execute this computation
+33689.2s 2335 
+33709.9s 2336 [baseline] arch=convnextv2_tiny  69,919 seen imgs  166 classes  device=cuda
+33709.9s 2337 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+33709.9s 2338 [baseline] AMP on (bf16) + channels_last
+33709.9s 2339 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+33709.9s 2340 Traceback (most recent call last):
+33709.9s 2341 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 227, in <module>
+33709.9s 2342 main()
+33709.9s 2343 File "/kaggle/working/pde/scripts/supervised_baseline.py", line 174, in main
+33709.9s 2344 loss = F.cross_entropy(model(x), y)
+33709.9s 2345 ^^^^^^^^
+33709.9s 2346 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33709.9s 2347 return self._call_impl(*args, **kwargs)
+33709.9s 2348 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2349 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33709.9s 2350 return forward_call(*args, **kwargs)
+33709.9s 2351 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2352 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 627, in forward
+33709.9s 2353 x = self.forward_features(x)
+33709.9s 2354 ^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2355 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 609, in forward_features
+33709.9s 2356 x = self.stages(x)
+33709.9s 2357 ^^^^^^^^^^^^^^
+33709.9s 2358 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33709.9s 2359 return self._call_impl(*args, **kwargs)
+33709.9s 2360 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2361 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33709.9s 2362 return forward_call(*args, **kwargs)
+33709.9s 2363 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2364 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+33709.9s 2365 input = module(input)
+33709.9s 2366 ^^^^^^^^^^^^^
+33709.9s 2367 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33709.9s 2368 return self._call_impl(*args, **kwargs)
+33709.9s 2369 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2370 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33709.9s 2371 return forward_call(*args, **kwargs)
+33709.9s 2372 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2373 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 306, in forward
+33709.9s 2374 x = self.blocks(x)
+33709.9s 2375 ^^^^^^^^^^^^^^
+33709.9s 2376 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33709.9s 2377 return self._call_impl(*args, **kwargs)
+33709.9s 2378 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2379 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33709.9s 2380 return forward_call(*args, **kwargs)
+33709.9s 2381 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2382 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/container.py", line 253, in forward
+33709.9s 2383 input = module(input)
+33709.9s 2384 ^^^^^^^^^^^^^
+33709.9s 2385 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33709.9s 2386 return self._call_impl(*args, **kwargs)
+33709.9s 2387 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2388 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33709.9s 2389 return forward_call(*args, **kwargs)
+33709.9s 2390 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33709.9s 2391 File "/usr/local/lib/python3.12/dist-packages/timm/models/convnext.py", line 200, in forward
+33709.9s 2392 x = self.conv_dw(x)
+33709.9s 2393 ^^^^^^^^^^^^^^^
+33709.9s 2394 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+33709.9s 2395 return self._call_impl(*args, **kwargs)
+33709.9s 2396 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33710.0s 2397 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+33710.0s 2398 return forward_call(*args, **kwargs)
+33710.0s 2399 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33710.0s 2400 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 553, in forward
+33710.0s 2401 return self._conv_forward(input, self.weight, self.bias)
+33710.0s 2402 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33710.0s 2403 File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/conv.py", line 548, in _conv_forward
+33710.0s 2404 return F.conv2d(
+33710.0s 2405 ^^^^^^^^^
+33710.0s 2406 RuntimeError: GET was unable to find an engine to execute this computation
+33710.0s 2407 
+33710.0s 2408 [miss] convnextv2_tiny: no JSON (rc=1) -- recorded as NOT RUN
+33710.0s 2409 [clear] checkpoints removed; VRAM now 15.5/15.6 GB free
+33710.0s 2410 
+33710.0s 2411 --- cnn 14/14: resnet101 --- t+9.4 h | VRAM 15.5/15.6 GB free
+33721.2s 2412 FIT
+33721.2s 2413 
+36421.4s 2414 [baseline] arch=resnet101  69,919 seen imgs  166 classes  device=cuda
+36421.4s 2415 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+36421.4s 2416 [baseline] AMP on (bf16) + channels_last
+36421.4s 2417 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+36421.4s 2418 
+36421.4s 2419 
+36421.4s 2420 [TIMEOUT] cnn resnet101 exceeded 0.75 h and was killed
+36421.4s 2421 [miss] resnet101: no JSON (rc=124) -- recorded as NOT RUN
+36421.4s 2422 [clear] checkpoints removed; VRAM now 8.4/15.6 GB free
+36421.4s 2423 
+36421.4s 2424 [cnn] completed 0/14: []
+36421.4s 2425 
+36421.4s 2426 ==============================================================================
+36421.4s 2427 [regenerate paper tables + figures]  t+10.1 h  (0.9 h left)
+36421.4s 2428 ==============================================================================
+36421.4s 2429 /kaggle/working/pde/docs/paper/make_tex_tables.py:164: SyntaxWarning: invalid escape sequence '\,'
+36421.4s 2430 "parameter count: a 4.4\,M network finishes within 0.1 points of the best of the "
+36421.4s 2431 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_scale_study.tex
+36421.4s 2432 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_abstain.tex
+36421.4s 2433 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_seen.tex
+36421.4s 2434 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_supervised.tex
+36421.4s 2435 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_wiseft.tex
+36421.4s 2436 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_edge.tex
+36421.4s 2437 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_loco.tex
+36421.4s 2438 
+36426.9s 2439 figures written to /kaggle/working/pde/docs/paper/figures
+36426.9s 2440 
+36426.9s 2441 [bundle] staged docs/paper/tex
+36426.9s 2442 [bundle] staged docs/paper/figures
+36427.1s 2443 
+36427.1s 2444 [bundle] /kaggle/working/pde_partmorning.zip  (0.87 MB, 276 files)
+36427.1s 2445 [bundle] wall time 10.12 h
+36427.3s 2446 
+36427.3s 2447 Download:
+36427.3s 2448 /kaggle/working/_pde_code/pde_partmorning.zip
+36427.3s 2449 
+36427.3s 2450 ==============================================================================
+36427.3s 2451 [MORNING DONE]  t+10.1 h  (0.9 h left)
+36427.3s 2452 ==============================================================================
+36427.3s 2453 
+36427.3s 2454 Download pde_partmorning.zip, then regenerate the paper tables:
+36427.3s 2455 python docs/paper/make_tex_tables.py && python docs/paper/make_figures.py
+36427.8s 2456 
+36427.8s 2457 [launcher] RUN_MORNING_everything_else.py exited with code 0
+36427.8s 2458 [launcher] bundle: /kaggle/working/pde_partmorning.zip  (0.87 MB)
+36430.4s 2459 /usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+36430.4s 2460 cells[i][c] = re.sub('\\\\\|', '|', cell)
+36430.6s 2461 /usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+36430.6s 2462 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+36431.3s 2463 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+36431.9s 2464 [NbConvertApp] Writing 350880 bytes to __notebook__.ipynb
+36434.3s 2465 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+36435.1s 2466 [NbConvertApp] Writing 646714 bytes to __results__.html

@@ -128,17 +128,41 @@ def main():
     dl_te = DataLoader(_SeenDS(te, tf_te, cidx), batch_size=args.batch, **_kw)
 
     model = timm.create_model(args.arch, pretrained=True, num_classes=len(classes)).to(device)
-    if args.amp and device == "cuda":
-        model = model.to(memory_format=torch.channels_last)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
-    # bf16 needs no loss scaling and is numerically safer; fall back to fp16 + GradScaler on
-    # cards without bf16 (T4). enabled=False makes every autocast/scaler call a no-op.
+
+    # --- Precision selection -------------------------------------------------------------
+    # `torch.cuda.is_bf16_supported()` returns True on Turing (T4, sm_75), where bf16 is
+    # emulated rather than native. cuDNN then has no convolution engine for bf16 depthwise
+    # convs and raises "GET was unable to find an engine to execute this computation" -- which
+    # is what killed all ten depthwise architectures (MobileNet, EfficientNet, FastViT,
+    # ConvNeXt-V2) in the 2026-09-06 run while the four plain-conv nets trained fine.
+    # bf16 is only requested where it is native: Ampere (sm_80) and later.
     _use_amp = bool(args.amp and device == "cuda")
-    _bf16 = _use_amp and torch.cuda.is_bf16_supported()
-    _adt = torch.bfloat16 if _bf16 else torch.float16
-    scaler = torch.amp.GradScaler("cuda", enabled=(_use_amp and not _bf16))
+    _cc = torch.cuda.get_device_capability() if device == "cuda" else (0, 0)
+    _bf16_native = _cc[0] >= 8
+    _plan = []
     if _use_amp:
-        print(f"[baseline] AMP on ({'bf16' if _bf16 else 'fp16'}) + channels_last")
+        if _bf16_native:
+            _plan.append(("bf16", torch.bfloat16, True))
+        _plan.append(("fp16", torch.float16, True))       # T4 tensor cores are fp16
+        _plan.append(("fp16-contig", torch.float16, False))
+        _plan.append(("fp32", torch.float32, False))
+    else:
+        _plan.append(("fp32", torch.float32, False))
+
+    _ENGINE_ERR = "unable to find an engine"
+
+    def _apply(mode):
+        """Install one precision plan; returns (dtype, channels_last, scaler)."""
+        _name, _dt, _cl = mode
+        model.to(memory_format=torch.channels_last if _cl else torch.contiguous_format)
+        _sc = torch.amp.GradScaler("cuda", enabled=(_dt is torch.float16))
+        print(f"[baseline] precision={_name}"
+              f"{' + channels_last' if _cl else ''} (sm_{_cc[0]}{_cc[1]})", flush=True)
+        return _dt, _cl, _sc
+
+    _plan_i = 0
+    _adt, _chlast, scaler = _apply(_plan[0])
 
     # --- Checkpointing ---
     ckpt_dir = C.DATA_ROOT / "checkpoints"
@@ -167,23 +191,46 @@ def main():
         for x, y in dl_tr:
             x = x.to(device, non_blocking=True)
             y = y.to(device, non_blocking=True)
-            if _use_amp:
+            if _chlast:
                 x = x.to(memory_format=torch.channels_last)
             opt.zero_grad(set_to_none=True)
-            with torch.autocast("cuda", dtype=_adt, enabled=_use_amp):
-                loss = F.cross_entropy(model(x), y)
-            if scaler.is_enabled():
-                scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
-            else:
-                loss.backward(); opt.step()
+            try:
+                with torch.autocast("cuda", dtype=_adt,
+                                    enabled=(_adt is not torch.float32)):
+                    loss = F.cross_entropy(model(x), y)
+                if scaler.is_enabled():
+                    scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
+                else:
+                    loss.backward(); opt.step()
+            except RuntimeError as e:
+                # cuDNN has no kernel for this (dtype, memory-format, conv) combination.
+                # Step down the ladder and retry the same batch rather than losing the arch.
+                if _ENGINE_ERR not in str(e) or _plan_i + 1 >= len(_plan):
+                    raise
+                _plan_i += 1
+                print(f"[baseline] cuDNN found no engine for {_plan[_plan_i - 1][0]}; "
+                      f"falling back to {_plan[_plan_i][0]}", flush=True)
+                opt.zero_grad(set_to_none=True)
+                torch.cuda.empty_cache()
+                _adt, _chlast, scaler = _apply(_plan[_plan_i])
+                x = x.to(memory_format=torch.channels_last if _chlast
+                         else torch.contiguous_format)
+                with torch.autocast("cuda", dtype=_adt,
+                                    enabled=(_adt is not torch.float32)):
+                    loss = F.cross_entropy(model(x), y)
+                if scaler.is_enabled():
+                    scaler.scale(loss).backward(); scaler.step(opt); scaler.update()
+                else:
+                    loss.backward(); opt.step()
             run += loss.item(); nb += 1
         model.eval(); correct = tot = 0
         with torch.no_grad():
             for x, y in dl_te:
                 x = x.to(device, non_blocking=True)
-                if _use_amp:
+                if _chlast:
                     x = x.to(memory_format=torch.channels_last)
-                with torch.autocast("cuda", dtype=_adt, enabled=_use_amp):
+                with torch.autocast("cuda", dtype=_adt,
+                                    enabled=(_adt is not torch.float32)):
                     pred = model(x).argmax(1).cpu()
                 correct += (pred == y).sum().item(); tot += len(y)
         acc = correct/tot

@@ -1,63 +1,57 @@
 """
 =====================================================================================
- PDE MORNING  --  everything tonight's 4 h run did not cover
+ PDE FIX-UP RUN  --  THE 14 CNN BASELINES AND THE WiSE-FT SWEEP
 =====================================================================================
-Run this after the Kaggle quota resets. Needs the API key only for the extra seeds.
-
-  descriptor seeds 4-7 (2 arms)                                    ~0.7 h
-  control arms re-evaluated with all 8 seeds                       ~0.7 h
-  short arms (77-token truncation control)                         ~0.7 h
-  label-corrected C eval                                           ~0.3 h
-  leave-one-crop-out + bootstrap CIs                               ~0.3 h
-  WiSE-FT alpha sweep                                              ~0.3 h
-  14 supervised CNN baselines                                      ~4.8 h
-                                                           TOTAL   ~7.8 h
+Everything else is already done and is carried forward from the attached dataset, not
+recomputed. This run exists to repair the two stages the 2026-09-06 morning run lost.
 
 SETUP
-  1. Add Data -> your `pde-sage-data` dataset.
-  2. Add Data -> the OUTPUT of tonight's notebook. This carries forward the descriptor
-     text and results, so seeds 0-3 are NOT regenerated and the run resumes cleanly.
-  3. GPU T4 x2, Internet ON, LAVA_API_KEY in Secrets.
-  4. Save Version -> "Save & Run All".
+  1. Add Data -> `pde-sage-data`
+  2. Add Data -> the output of the morning run (results and descriptors carry forward)
+  3. GPU T4 x2, Internet ON. No API key needed: no descriptors are generated here.
 
-ORDER. The CNNs run LAST despite being the largest block, because everything above them
-is short and completes the manuscript's remaining tables. If the session is cut short it
-should be cut inside the CNN sweep, where each finished architecture is already saved and
-a later run skips it -- not inside a table that would then be half-measured.
+WHAT FAILED, AND WHAT CHANGED
 
-WHY THE CONTROL ARMS ARE RE-RUN. Seed evaluations share one image-embedding pass, so
-adding seeds 4-7 means re-evaluating the arm rather than appending to it. That costs one
-embedding pass (~21 min per arm) and overwrites zeroshot_eval_C_*seeds.json with the full
-8-seed result. Going from 4 to 8 seeds tightens the 95% interval from about +/-3.1 pp to
-+/-1.6 pp; no seed count resolves the ~0.7 pp gap under test, so the goal is a tight null.
+  CNNs -- 0 of 14 completed.
+    Ten architectures (MobileNetV3/V4, EfficientNet, FastViT, ConvNeXt-V2, EfficientNetV2)
+    died in seconds with "GET was unable to find an engine to execute this computation"
+    inside their depthwise convolutions. torch.cuda.is_bf16_supported() returns True on the
+    T4, but Turing has no native bf16, and cuDNN has no depthwise engine for the emulated
+    path. Precision is now chosen from the compute capability -- fp16 on the T4, bf16 only
+    on Ampere and later -- with an automatic step-down ladder if a kernel is still missing.
+    The batch probe walks the same ladder, so it can no longer report a failure and then
+    hand back the batch anyway, which is what let all ten walk into an identical error.
 
-IF IT STOPS EARLY: re-run the same cell. Every stage is resumable and finished work is
-skipped.
+    The other four (densenet121, regnety_040, resnet50, resnet101) trained correctly and
+    were killed by the 0.75 h per-architecture cap partway through epoch 2 -- densenet121
+    had already reached 81.6% and resnet50 79.8% on epoch 1. The cap is now 1.6 h, and a
+    checkpoint is no longer deleted unless the architecture actually produced its JSON, so
+    an overrun resumes instead of starting over.
+
+  WiSE-FT -- completed, but the sweep was not usable.
+    seen went 58.7 -> 45.1 -> 63.8 while unseen fell 21.6 -> 7.8 -> 1.8. A midpoint below
+    both endpoints means the frozen and fine-tuned weights are not linearly connected, so
+    interpolating between them is meaningless. The head was randomly initialised and trained
+    jointly with the unfrozen encoder, so its early gradients pushed the encoder out of the
+    pretrained basin. The head is now fitted on frozen features first and used to warm-start
+    fine-tuning (that fit doubles as the alpha=0 reference, so it costs no extra pass), the
+    encoder is excluded from weight decay, and the sweep runs 5 alphas instead of 3.
+
+IF IT STOPS EARLY: re-run the same cell. Finished architectures are skipped and partially
+trained ones resume from their checkpoint.
 =====================================================================================
 """
 
 # ---------------------------------------------------------------- settings
-BUDGET_H         = 11.0
-UNGROUNDED_SEEDS = [0, 1, 2, 3, 4, 5, 6, 7]   # 0-3 already exist and are skipped
-SHORT_WORDS      = 50
-LLM_MODEL        = "claude-sonnet-5"
-MAX_TOKENS       = 4000
-MIN_FILLED       = 48
-
-EVAL_SHORT_ARMS  = True    # the truncation control, deferred from tonight
-RUN_CLEAN_EVAL   = True
-RUN_LOCO         = True
-RUN_WISEFT       = True
-
-WISE_EPOCHS      = 3
-WISE_LR          = "1e-5"
-WISE_ALPHAS      = ["0.0", "0.5", "1.0"]
-
+BUDGET_H    = 11.0
+WISE_EPOCHS = 3
+WISE_LR     = "1e-5"     # standard CLIP fine-tuning range; see the note below
+WISE_ALPHAS = ["0.0", "0.25", "0.5", "0.75", "1.0"]
 CNN_EPOCHS  = 4
 CNN_BATCH   = 96
-CNN_WORKERS = 2
+CNN_WORKERS = 2      # 4 vCPUs: 2 workers + prefetch beats 4
 CNN_AMP     = True
-CNN_MAX_H   = 0.75
+CNN_MAX_H   = 1.6
 ARCHS = ["mobilenetv3_small_100", "mobilenetv4_conv_small", "fastvit_t8", "efficientnet_b0",
          "mobilenetv3_large_100", "densenet121", "mobilenetv4_conv_medium", "fastvit_sa12",
          "convnextv2_nano", "regnety_040", "resnet50", "tf_efficientnetv2_s",
@@ -358,281 +352,18 @@ def bundle(part, extra_receipt=None):
         print(f"\nDownload from the Output tab: {zp}", flush=True)
     return zp
 
-os.environ["PDE_LLM_MODEL"]  = LLM_MODEL
-os.environ["PDE_MAX_TOKENS"] = str(MAX_TOKENS)
-
-try:
-    from kaggle_secrets import UserSecretsClient
-    _sec = UserSecretsClient()
-    for _k in ("LAVA_API_KEY", "ANTHROPIC_API_KEY", "LAVA_BASE_URL", "LAVA_SHAPE"):
-        try:
-            _v = _sec.get_secret(_k)
-            if _v:
-                os.environ[_k] = _v
-        except Exception:
-            pass
-except Exception:
-    pass
-HAVE_KEY = bool(os.environ.get("LAVA_API_KEY") or os.environ.get("ANTHROPIC_API_KEY"))
-print(f"[llm] api key present: {HAVE_KEY}", flush=True)
-if not HAVE_KEY:
-    print("[llm] WITHOUT A KEY THIS PART CANNOT PRODUCE THE CONTROL ARMS.", flush=True)
-    print("[llm] Add LAVA_API_KEY under Add-ons -> Secrets and re-run.", flush=True)
-
-# ================================================================ 1  descriptors
-# build_ungrounded.py takes --which (not --exp); --arm "grounded" writes the
-# descriptors_grounded_matched directory, which the evaluator loads as grounded_matched.
-if HAVE_KEY:
-    banner("descriptors")
-    for arm, root in (("ungrounded", REPO / "descriptors_ungrounded"),
-                      ("grounded",   REPO / "descriptors_grounded_matched")):
-        # A seed already at this arm's ceiling must not be regenerated: seven held-out
-        # classes are systematically unfillable (three Wheat Resistance_Phenotype labels that
-        # config.EXCLUDE_LABELS already flags as non-diseases, plus four the grounding prompt
-        # correctly refuses), so grounded_matched tops out near 44 of 51. Re-running such a
-        # seed spends API calls to reproduce the same result.
-        _ceiling = arm_ceiling(root, UNGROUNDED_SEEDS)
-        _enough = MIN_FILLED if _ceiling >= MIN_FILLED else max(_ceiling - 2, 1)
-        for s in UNGROUNDED_SEEDS:
-            have = filled_count(root, s)
-            if have >= _enough:
-                print(f"[skip] {arm} seed {s} ({have} filled)", flush=True)
-                continue
-            # Reserve what the DEPENDENT stages still need (zero-shot + control arms).
-            # Guarding only on this seed's own cost let generation consume the whole quota
-            # and stop immediately before the control arms -- spending the budget and
-            # producing nothing for Section 5.3, which is the entire point of the run.
-            _reserve = 1.2 + 0.06 * len(UNGROUNDED_SEEDS) * 4
-            if not ok_to_start(f"{arm} seed {s}", [], 0.3 + _reserve):
-                print(f"[budget] stopping descriptor generation to protect the {_reserve:.1f} h "
-                      f"the zero-shot and control-arm stages still need.", flush=True)
-                print(f"[budget] seeds completed so far are kept and will be used.", flush=True)
-                break
-            print(f"\n--- {arm} seed {s} (have {have}, need {MIN_FILLED}) ---", flush=True)
-            rc, _ = sh([sys.executable, "-u", str(S / "build_ungrounded.py"),
-                        "--arm", arm, "--seed", str(s), "--which", "heldout"],
-                       0.6, f"{arm} seed {s}")
-            _got = filled_count(root, s)
-            print(f"    -> {_got} filled", flush=True)
-            if _got == 0:
-                print(f"    [ERROR] {arm} seed {s} produced NOTHING. The control arms cannot", flush=True)
-                print(f"    [ERROR] run without descriptors -- Section 5.3 will be empty.", flush=True)
-                print(f"    [ERROR] Check the message above (missing manifest, bad API key,", flush=True)
-                print(f"    [ERROR] exhausted credit) before letting this session continue.", flush=True)
-            if rc == 3:
-                print("[llm] endpoint reported no credit -> stopping descriptor generation.",
-                      flush=True)
-                break
-
-# ================================================================ 2  short arms
-# Every generated prototype exceeded CLIP's 77-token text window (51/51 ungrounded,
-# 35/40 matched), so the full arms are compared on their leading sentences only. These
-# arms hold the same text compressed to fit, which removes truncation as a confound.
-# It is a deterministic text transform, so it costs nothing and needs no API calls.
-banner(f"short arms (<= {SHORT_WORDS} words)")
-def shorten(text, n=SHORT_WORDS):
-    t = " ".join((text or "").split())
-    if not t:
-        return t
-    w = t.split()
-    if len(w) <= n:
-        return t
-    cut = " ".join(w[:n])
-    for sep in (". ", "; ", ", "):
-        i = cut.rfind(sep)
-        if i > len(cut) * 0.6:
-            return cut[:i + 1].rstrip(" ;,")
-    return cut
-
-_made = 0
-for _src_name, _dst_name in (("descriptors_ungrounded", "descriptors_ungrounded_short"),
-                             ("descriptors_grounded_matched", "descriptors_grounded_matched_short")):
-    _src = REPO / _src_name
-    if not _src.exists():
-        continue
-    for _sd in sorted(_src.glob("*")):
-        if not _sd.is_dir():
-            continue
-        _dst = REPO / _dst_name / _sd.name
-        _dst.mkdir(parents=True, exist_ok=True)
-        for _f in _sd.glob("*.json"):
-            try:
-                _recs = json.load(open(_f, encoding="utf-8"))
-            except Exception:
-                continue
-            for _r in _recs:
-                _r["symptom_text"] = shorten(_r.get("symptom_text"))
-            json.dump(_recs, open(_dst / _f.name, "w", encoding="utf-8"), indent=1)
-            _made += 1
-print(f"[short] wrote {_made} files", flush=True)
-
-# ================================================================ 3  integrity gate
-banner("descriptor integrity")
-USABLE = {}
-for _arm, _root in (("ungrounded", REPO / "descriptors_ungrounded"),
-                    ("grounded_matched", REPO / "descriptors_grounded_matched"),
-                    ("ungrounded_short", REPO / "descriptors_ungrounded_short"),
-                    ("grounded_matched_short", REPO / "descriptors_grounded_matched_short")):
-    _seeds = usable_seeds(_root, UNGROUNDED_SEEDS, MIN_FILLED)
-    USABLE[_arm] = _seeds
-    print(f"  {_arm:24} usable seeds: {_seeds}", flush=True)
-if not any(USABLE.values()):
-    print("", flush=True)
-    print("  ####################################################################", flush=True)
-    print("  #  NO DESCRIPTOR ARM IS USABLE. The control arms will not run and   #", flush=True)
-    print("  #  Section 5.3 gets no result -- the main reason for this session.  #", flush=True)
-    print("  #  Zero-shot/probe/LOCO below still work, so the run continues, but #", flush=True)
-    print("  #  fix the cause above and re-run before spending more quota.       #", flush=True)
-    print("  ####################################################################", flush=True)
-    print("", flush=True)
-json.dump(USABLE, open(RESULTS / "descriptor_arm_integrity.json", "w"), indent=1)
-
-# ================================================================ 4  zero-shot A/B/C
-STRATS = ["bare", "crude", "rich", "grounded"]
-for _e in ("A", "B", "C"):
-    if (RESULTS / f"zeroshot_eval_{_e}.json").exists():
-        print(f"[skip] zeroshot {_e}", flush=True); continue
-    if not ok_to_start(f"zeroshot {_e}", [], 0.4):
-        break
-    banner(f"zero-shot {_e}")
-    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", _e, "--strategies", *STRATS,
-        "--tiers", "lw11", "lw21", "lw35", "--heavy", "--teachers"], 1.5, f"zeroshot {_e}")
-
-if not globals().get("RUN_CLEAN_EVAL", True):
-    print("[skip] label-corrected C eval (RUN_CLEAN_EVAL=False)", flush=True)
-elif not (RESULTS / "zeroshot_eval_C_clean.json").exists() and ok_to_start("clean", [], 0.4):
-    banner("zero-shot C, label-corrected")
-    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C", "--clean",
-        "--strategies", *STRATS, "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "clean")
-
-# ================================================================ 5  control arms
-# evaluate.py names the output per ARM as well as per seed. It previously wrote
-# "_ung{seed}" for every arm, so ungrounded and grounded_matched at the same seed
-# silently overwrote each other -- and the matched arm is the one that removes the
-# model-version confound, so losing it defeated the whole experiment.
-_SUF = {"ungrounded": "ung", "grounded_matched": "gm",
-        "ungrounded_short": "ungs", "grounded_matched_short": "gms"}
-# ALL seeds of an arm in ONE process. evaluate.py caches image embeddings per model and
-# reuses them across strategies, but that cache dies with the process: running 16
-# seed-evaluations as 16 subprocesses would re-embed 14,204 images 16 times (~5.5 h,
-# far past the budget). Sharing one process per arm amortises the embedding pass over
-# every seed and brings the whole block to roughly 25 minutes.
-# EVAL_SHORT_ARMS defers the truncation-control arms. They ask whether CLIP's 77-token
-# window confounds the comparison -- a real question, but a SECONDARY one that only matters
-# once the primary null is established, and each costs a full ~21 min embedding pass. The
-# descriptor text is written either way, so they can be evaluated in a later session at no
-# extra generation cost by re-running with EVAL_SHORT_ARMS = True.
-# ============================================== 5a  PAIRED control comparison (Section 5.3)
-# THE result the paper's Section 5.3 rests on. The per-arm runs above evaluate each arm over
-# all 51 held-out classes, but descriptors.text_for falls through to `rich` wherever an arm
-# lacks a record -- so an arm that fills 41 of 51 is 80% its own text and 20% rich. Comparing
-# that against a 51/51 arm measures grounding CONFOUNDED with a coverage gap, which is the
-# same class of error that forced the original headline to be retracted.
-#
-# This run restricts both arms to the classes every seed of every arm filled genuinely, so
-# neither side falls through and the sourcing constraint is the only difference between them.
-# The label space shrinks (41 of 51 on the 2026-09-04 descriptors) and chance rises
-# accordingly, which is stated in the output rather than hidden.
-_PAIR = [a for a in ("ungrounded", "grounded_matched") if USABLE.get(a)]
-if len(_PAIR) == 2:
-    _pair_seeds = sorted(set(USABLE[_PAIR[0]]) & set(USABLE[_PAIR[1]]))
-    _pair_out = RESULTS / "zeroshot_eval_C_paired.json"
-    if not _pair_seeds:
-        print("[paired] the two arms share no usable seed -> skipped", flush=True)
-    elif _pair_out.exists():
-        print("[skip] paired control comparison", flush=True)
-    elif ok_to_start("paired control comparison", [], 0.6):
-        banner(f"PAIRED control comparison (Section 5.3): seeds {_pair_seeds}")
-        sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
-            "--strategies", *_PAIR,
-            "--paired-arms", *_PAIR,
-            "--ungrounded-seeds", *[str(x) for x in _pair_seeds],
-            "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.5, "paired")
-        # Turn the paired run into the claim Section 5.3 actually makes: a quantified
-        # equivalence bound plus per-encoder replication, rather than "no difference found".
-        if (S / "analyse_control_arms.py").exists():
-            sh([sys.executable, "-u", str(S / "analyse_control_arms.py")], 0.1, "5.3 stats")
-else:
-    print(f"[paired] need both arms usable, have {_PAIR} -> skipped", flush=True)
-    print("[paired] Section 5.3's clean comparison will NOT be produced.", flush=True)
-
-
-_CONTROL_ARMS = ["ungrounded", "grounded_matched"]
-if globals().get("EVAL_SHORT_ARMS", True):
-    _CONTROL_ARMS += ["ungrounded_short", "grounded_matched_short"]
-else:
-    print("[control] short arms deferred (EVAL_SHORT_ARMS=False); descriptor text is still",
-          flush=True)
-    print("[control] written, so a later run can evaluate them without regenerating.", flush=True)
-for _arm in _CONTROL_ARMS:
-    _seeds = USABLE.get(_arm, [])
-    if not _seeds:
-        continue
-    _tag = f"C_{_SUF[_arm]}seeds"
-    _out = RESULTS / f"zeroshot_eval_{_tag}.json"
-    # Skip only if the existing file already covers EVERY usable seed. A previous session may
-    # have written this arm with fewer seeds (tonight runs 4, the morning run extends to 8);
-    # a plain exists() check would keep the smaller file and silently discard the new seeds,
-    # leaving the interval wider than the run was meant to make it.
-    if _out.exists():
-        try:
-            _have = set(json.load(open(_out, encoding="utf-8")).get("seeds") or [])
-        except Exception:
-            _have = set()
-        if _have >= set(_seeds):
-            print(f"[skip] {_tag} (already has seeds {sorted(_have)})", flush=True); continue
-        print(f"[redo] {_tag}: file has {sorted(_have)}, need {_seeds} -> re-evaluating",
-              flush=True)
-    if not ok_to_start(_tag, [], 0.35):
-        break
-    banner(f"control arm {_arm}: seeds {_seeds}")
-    sh([sys.executable, "-u", str(S / "evaluate.py"), "--exp", "C",
-        "--strategies", _arm, "--ungrounded-seeds", *[str(x) for x in _seeds],
-        "--tiers", "lw11", "lw21", "lw35", "--heavy"], 1.0, _tag)
-
-# ================================================================ bundle
-banner("descriptor coverage")
-sh([sys.executable, "-u", str(S / "descriptor_coverage.py"), "--write"], 0.2, "coverage")
-
-banner("descriptors + control arms COMPLETE")
-
-# ================================================================ 1  linear probe
-if (RESULTS / "probe_seen_C.json").exists():
-    print("[skip] probe (already have probe_seen_C.json)", flush=True)
-elif ok_to_start("probe", [], 0.8):
-    banner("seen-crop linear probe A/B/C")
-    sh([sys.executable, "-u", str(S / "probe_seen_all.py"), "--workers", "2"], 2.0, "probe")
-
-# ================================================================ 2  leave-one-crop-out
-if not globals().get("RUN_LOCO", True):
-    print("[skip] loco (RUN_LOCO=False)", flush=True)
-elif (RESULTS / "loco_s0_rich.json").exists():
-    print("[skip] loco", flush=True)
-elif ok_to_start("loco", [], 0.5):
-    banner("leave-one-crop-out + bootstrap CIs")
-    sh([sys.executable, "-u", str(S / "loco.py"), "--model", "s0", "--strategy", "rich"],
-       1.0, "loco")
-
-# ================================================================ 2b  abstention + top-5
-# metrics.py writes metrics_abstain_{A,B,C}.json, which feed tab_abstain and the
-# risk-coverage figure. Without this stage those stay on the previous build while every
-# neighbouring table regenerates -- the exact mixture the audit flagged.
-for _e in ("A", "B", "C"):
-    if (RESULTS / f"metrics_abstain_{_e}.json").exists():
-        print(f"[skip] metrics {_e}", flush=True); continue
-    if not ok_to_start(f"metrics {_e}", [], 0.3):
-        break
-    banner(f"abstention + top-5, config {_e}")
-    sh([sys.executable, "-u", str(S / "metrics.py"), "--exp", _e,
-        "--strategies", "rich", "grounded", "--reference"], 1.0, f"metrics {_e}")
+_stale = RESULTS / "wiseft.json"
+if _stale.exists():
+    _keep = RESULTS / "wiseft_SUPERSEDED_2026-09-06.json"
+    _stale.replace(_keep)
+    print(f"[wiseft] quarantined the superseded sweep -> {_keep.name}", flush=True)
+    print("[wiseft] (alpha=0.5 fell below both endpoints; head warmup is the fix)", flush=True)
 
 # ================================================================ 3  WiSE-FT
 # workers=0 on purpose: a CUDA context and a loaded model exist before the loader is
 # built, and spawning workers around that killed them outright.
 if not globals().get("RUN_WISEFT", True):
     print("[skip] wiseft (RUN_WISEFT=False)", flush=True)
-elif (RESULTS / "wiseft.json").exists():
-    print("[skip] wiseft", flush=True)
 elif not (S / "wiseft.py").exists():
     print("\n[wiseft] scripts/wiseft.py missing -> SKIPPED; numbers stay OLD-BUILD.", flush=True)
 elif ok_to_start("wiseft", [], 1.0):
@@ -672,9 +403,6 @@ elif ok_to_start("wiseft", [], 1.0):
         except Exception:
             pass
 
-# ================================================================ bundle
-
-banner("remaining tables COMPLETE -- starting the CNN sweep")
 
 # A single forward+backward on random data tells us in seconds whether a batch fits,
 # instead of discovering it minutes into a real epoch and losing that epoch.
@@ -829,42 +557,16 @@ if unsupported:
     print("[cnn] Re-run this cell to continue.", flush=True)
 
 
-# ---- regenerate the paper's tables and figures inside the run -------------------------
-# make_figures.py reads zeroshot_eval_{A,B,C}.json and probe_seen_{A,B,C}.json directly, so
-# it must run AFTER those land or the ten figures stay on the previous build while every
-# table regenerates -- the build mixture the audit flagged. Both generators are pure
-# matplotlib/json (Agg backend), so they run headless here in seconds, and the rendered
-# .tex and .png are carried out in the bundle.
-banner("regenerate paper tables + figures")
-_docs = REPO / "docs" / "paper"
-for _g in ("make_tex_tables.py", "make_figures.py"):
-    if (_docs / _g).exists():
-        # The generators read the JSONs sitting next to them, so stage this run's results
-        # into docs/paper first.
-        for _f in RESULTS.glob("*.json"):
-            shutil.copy2(_f, _docs / _f.name)
-        _r = subprocess.run([sys.executable, "-u", str(_docs / _g)], text=True, cwd=str(_docs),
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        print(_r.stdout or f"[{_g}] no output", flush=True)
-    else:
-        print(f"[warn] {_g} not found -- regenerate locally after downloading", flush=True)
+# ================================================================ regenerate + bundle
+banner("regenerating tables and figures from the repaired results")
+for _g in ("make_tex_tables.py", "make_tables.py", "make_figures.py"):
+    _p = CODE / "docs" / "paper" / _g
+    if _p.exists():
+        sh([sys.executable, "-u", str(_p)], 0.3, _g)
 
-# Carry the regenerated tex/figures out with the results.
-for _sub in ("tex", "figures"):
-    _src = _docs / _sub
-    if _src.exists():
-        _dst = RESULTS / _sub
-        if _dst.exists():
-            shutil.rmtree(_dst, ignore_errors=True)
-        shutil.copytree(_src, _dst)
-        print(f"[bundle] staged docs/paper/{_sub}", flush=True)
-
-bundle("morning", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
-                   "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
-                   "short_arm_words": SHORT_WORDS,
-                   "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR,
-                   "cnn_epochs": CNN_EPOCHS, "cnn_completed": done, "cnn_not_run": skipped})
-banner("MORNING DONE" if not skipped else "MORNING INCOMPLETE -- re-run to finish the CNNs")
-print("", flush=True)
-print("Download pde_partmorning.zip, then regenerate the paper tables:", flush=True)
-print("  python docs/paper/make_tex_tables.py && python docs/paper/make_figures.py", flush=True)
+bundle("fixup", {"cnn_epochs": CNN_EPOCHS, "cnn_max_h": CNN_MAX_H,
+                 "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR,
+                 "wise_alphas": WISE_ALPHAS, "cnn_completed": done,
+                 "cnn_not_run": skipped, "cnn_unsupported": unsupported})
+banner("FIX-UP RUN DONE" if (len(done) == len(ARCHS) and not unsupported)
+       else "FIX-UP RUN INCOMPLETE -- re-run to finish")

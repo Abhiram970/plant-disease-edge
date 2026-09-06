@@ -1,0 +1,47 @@
+{
+  "tier": "s0",
+  "model": "MobileCLIP2-S0",
+  "pretrained": "dfndr2b",
+  "protocol": "nested-C",
+  "seen_classes": 166,
+  "seen_images": 23445,
+  "unseen_classes": 51,
+  "unseen_images": 14204,
+  "unseen_chance": 0.019608,
+  "strategy": "grounded",
+  "ft_epochs": 3,
+  "ft_loss": [
+    4.4626,
+    3.179,
+    2.4002
+  ],
+  "frozen_probe": 0.5881,
+  "encoder_rel_l2_shift": 0.314048,
+  "random_guess_loss": 5.112,
+  "warnings": [
+    "seen accuracy dips below BOTH endpoints at an intermediate alpha, which means the two weight sets are not linearly connected -- usually the same under-training cause as above."
+  ],
+  "sweep": [
+    {
+      "alpha": 0.0,
+      "seen": 0.5874,
+      "unseen": 0.2164
+    },
+    {
+      "alpha": 0.5,
+      "seen": 0.451,
+      "unseen": 0.0781
+    },
+    {
+      "alpha": 1.0,
+      "seen": 0.6378,
+      "unseen": 0.0184
+    }
+  ],
+  "best": {
+    "alpha": 0.0,
+    "seen": 0.5874,
+    "unseen": 0.2164
+  },
+  "note": "Both sides measured under ONE protocol. The previous file recorded unseen_classes=17 (pilot) against seen_classes=166 (nested C)."
+}

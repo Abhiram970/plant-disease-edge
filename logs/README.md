@@ -1,7 +1,7 @@
 # Run logs — the reproducibility evidence trail
 
 Raw stdout from every experiment, committed so that any number in `docs/paper/` can be traced
-back to the run that produced it. 23 files, 99 KB total.
+back to the run that produced it. 24 files, 264 KB total.
 
 `*.log` is gitignored everywhere **except this folder** (`!logs/*.log` in `.gitignore`).
 
@@ -29,6 +29,7 @@ editing the table by hand.
 | `metrics_expA.log` | abstention and top-5, scale A | `metrics_abstain_A.json`, `fig_riskcoverage.png` | 1 KB |
 | `metrics_expB.log` | abstention and top-5, scale B | `metrics_abstain_B.json`, `fig_riskcoverage.png` | 1 KB |
 | `metrics_expC.log` | abstention and top-5, scale C | `metrics_abstain_C.json`, `fig_riskcoverage.png` | 1 KB |
+| `morning_run_2026-09-06.log` | full session 2026-09-06: paired Section 5.3 comparison, both control arms, probe, LOCO, abstention; CNN and WiSE-FT failures diagnosed here | `control_arm_statistics.json`, `zeroshot_eval_C_paired_ungseeds.json` | 165 KB |
 | `probe_all.log` | seen-crop probe, all tiers | `probe_seen_A/B/C.json`, `fig_seen_scaling.png` | 2 KB |
 | `probe_all_b.log` | seen-crop probe, heavyweight tier | `probe_seen_*.json` | 2 KB |
 | `probe_s1.log` | seen-crop probe, MobileCLIP-S1 | `probe_seen_*.json` | 1 KB |

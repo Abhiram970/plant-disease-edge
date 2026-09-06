@@ -43,7 +43,12 @@ CNN_EPOCHS  = 4
 CNN_BATCH   = 96
 CNN_WORKERS = 2      # 4 vCPUs: 2 workers + prefetch beats 4
 CNN_AMP     = True
-CNN_MAX_H   = 0.75   # per architecture
+# Per architecture. The 2026-09-06 run used 0.75 h and killed densenet121, regnety_040,
+# resnet50 and resnet101 partway through epoch 2 -- each had finished epoch 1 (~22 min under
+# emulated bf16) inside the cap, so the cap was the binding constraint, not the hardware.
+# 1.6 h covers 4 epochs at that pessimistic per-epoch cost; native fp16 should beat it, and
+# checkpoints now survive a timeout so an overrun resumes instead of restarting.
+CNN_MAX_H   = 1.6
 ARCHS = ["mobilenetv3_small_100", "mobilenetv4_conv_small", "fastvit_t8", "efficientnet_b0",
          "mobilenetv3_large_100", "densenet121", "mobilenetv4_conv_medium", "fastvit_sa12",
          "convnextv2_nano", "regnety_040", "resnet50", "tf_efficientnetv2_s",
@@ -347,42 +352,77 @@ def bundle(part, extra_receipt=None):
 # A single forward+backward on random data tells us in seconds whether a batch fits,
 # instead of discovering it minutes into a real epoch and losing that epoch.
 _PROBE_SRC = """
+# Walks the same precision ladder as supervised_baseline.py and prints the first rung that
+# actually executes, so the probe can never bless a configuration the real run will reject.
 import sys, torch, timm
 arch, bs, amp = sys.argv[1], int(sys.argv[2]), sys.argv[3] == "1"
-try:
-    m = timm.create_model(arch, pretrained=False, num_classes=166).cuda()
-    m = m.to(memory_format=torch.channels_last)
-    o = torch.optim.AdamW(m.parameters(), lr=1e-4)
-    dt = torch.bfloat16 if (amp and torch.cuda.is_bf16_supported()) else torch.float16
-    x = torch.randn(bs, 3, 224, 224, device="cuda").to(memory_format=torch.channels_last)
-    y = torch.randint(0, 166, (bs,), device="cuda")
-    with torch.autocast("cuda", dtype=dt, enabled=amp):
-        loss = torch.nn.functional.cross_entropy(m(x), y)
-    loss.backward(); o.step(); torch.cuda.synchronize()
-    print("FIT")
-except torch.OutOfMemoryError:
-    print("OOM")
-except Exception as e:
-    print("ERR", type(e).__name__, e)
+cc = torch.cuda.get_device_capability()
+plan = []
+if amp:
+    if cc[0] >= 8:                       # bf16 is native only on Ampere and later
+        plan.append(("bf16", torch.bfloat16, True))
+    plan += [("fp16", torch.float16, True), ("fp16-contig", torch.float16, False)]
+plan.append(("fp32", torch.float32, False))
+ENGINE = "unable to find an engine"
+last = ""
+for name, dt, cl in plan:
+    try:
+        m = timm.create_model(arch, pretrained=False, num_classes=166).cuda()
+        m = m.to(memory_format=torch.channels_last if cl else torch.contiguous_format)
+        o = torch.optim.AdamW(m.parameters(), lr=1e-4)
+        x = torch.randn(bs, 3, 224, 224, device="cuda")
+        x = x.to(memory_format=torch.channels_last if cl else torch.contiguous_format)
+        y = torch.randint(0, 166, (bs,), device="cuda")
+        with torch.autocast("cuda", dtype=dt, enabled=(dt is not torch.float32)):
+            loss = torch.nn.functional.cross_entropy(m(x), y)
+        loss.backward(); o.step(); torch.cuda.synchronize()
+        print("FIT", name); break
+    except torch.OutOfMemoryError:
+        print("OOM"); break            # a smaller batch is the answer, not a lower precision
+    except RuntimeError as e:
+        last = f"{type(e).__name__} {e}"
+        del m, o
+        torch.cuda.empty_cache()
+        if ENGINE in str(e):
+            continue                   # try the next rung
+        print("ERR", last); break
+    except Exception as e:
+        print("ERR", type(e).__name__, e); break
+else:
+    print("ERR no precision worked:", last)
 """
 _probe = WORK / "_probe_batch.py"
 _probe.write_text(_PROBE_SRC)
 
 def largest_fitting_batch(arch, start):
+    """Largest batch that completes a real step, or None if no configuration works.
+
+    Returning the requested batch on a non-OOM error -- as this did before -- meant the probe
+    printed the cuDNN engine failure and then handed back the batch anyway, so all ten
+    depthwise architectures walked into an identical failure and the sweep finished 0/14.
+    A probe that cannot find any working precision now says so, and the caller skips the
+    architecture instead of spending its whole time budget failing.
+    """
     bs = start
     while bs >= 16:
         rc, out = sh([sys.executable, str(_probe), arch, str(bs), "1" if CNN_AMP else "0"],
-                     0.08, f"probe {arch}@{bs}")
+                     0.12, f"probe {arch}@{bs}")
         if "FIT" in out:
+            prec = out.split("FIT", 1)[1].strip().split()[0:1]
+            print(f"    [probe] {arch} @ batch {bs}: fits"
+                  f"{' (' + prec[0] + ')' if prec else ''}", flush=True)
             return bs
-        if "OOM" not in out:
-            return bs   # unrelated failure: let the real run surface it properly
-        print(f"    [probe] {arch} @ batch {bs}: OOM -> trying {bs // 2}", flush=True)
-        bs //= 2
+        if "OOM" in out:
+            print(f"    [probe] {arch} @ batch {bs}: OOM -> trying {bs // 2}", flush=True)
+            bs //= 2
+            continue
+        print(f"    [probe] {arch}: no working configuration -- {out.strip()[-200:]}",
+              flush=True)
+        return None
     return 16
 
 banner(f"supervised CNNs ({len(ARCHS)} architectures x {CNN_EPOCHS} epochs)")
-done, skipped = [], []
+done, skipped, unsupported = [], [], []
 for i, arch in enumerate(ARCHS, 1):
     out_json = RESULTS / f"supervised_{arch}.json"
     if out_json.exists():
@@ -398,8 +438,10 @@ for i, arch in enumerate(ARCHS, 1):
           f"VRAM {fg:.1f}/{tg:.1f} GB free", flush=True)
 
     bs = largest_fitting_batch(arch, CNN_BATCH)
-    if bs != CNN_BATCH:
-        print(f"    [probe] using batch {bs}", flush=True)
+    if bs is None:
+        print(f"    [skip] {arch}: probe found no workable precision on this GPU", flush=True)
+        unsupported.append(arch)
+        continue
 
     cmd = [sys.executable, "-u", str(S / "supervised_baseline.py"),
            "--arch", arch, "--epochs", str(CNN_EPOCHS), "--batch", str(bs),
@@ -427,11 +469,21 @@ for i, arch in enumerate(ARCHS, 1):
     else:
         print(f"    [miss] {arch}: no JSON (rc={rc}) -- recorded as NOT RUN", flush=True)
 
-    for ck in CKPT.glob(f"{arch}*"):
-        try:
-            ck.unlink()
-        except Exception:
-            pass
+    # Delete the checkpoint ONLY once the JSON proves the architecture finished. Clearing it
+    # unconditionally is what made the 2026-09-06 timeouts total losses: densenet121 and
+    # resnet50 had each completed a full epoch and checkpointed it, and the cleanup threw that
+    # away, so the re-run restarted them from scratch. A kept checkpoint makes --resume real.
+    if arch in done:
+        for ck in CKPT.glob(f"{arch}*"):
+            try:
+                ck.unlink()
+            except Exception:
+                pass
+    else:
+        _keep = [c.name for c in CKPT.glob(f"{arch}*")]
+        if _keep:
+            print(f"    [keep] {arch}: checkpoint retained for --resume ({_keep[0]})",
+                  flush=True)
     try:
         import torch, gc
         gc.collect()
@@ -440,14 +492,18 @@ for i, arch in enumerate(ARCHS, 1):
     except Exception:
         pass
     fg, tg = gpu_free_gb()
-    print(f"    [clear] checkpoints removed; VRAM now {fg:.1f}/{tg:.1f} GB free", flush=True)
+    print(f"    [clear] VRAM now {fg:.1f}/{tg:.1f} GB free", flush=True)
 
 print(f"\n[cnn] completed {len(done)}/{len(ARCHS)}: {done}", flush=True)
 if skipped:
     print(f"[cnn] NOT RUN (budget): {skipped}", flush=True)
+if unsupported:
+    print(f"[cnn] NOT RUN (no workable precision on this GPU): {unsupported}", flush=True)
     print("[cnn] Re-run this cell to continue.", flush=True)
 
 #__P3_TAIL__
 bundle(3, {"cnn_epochs": CNN_EPOCHS, "cnn_batch_requested": CNN_BATCH,
-           "cnn_completed": done, "cnn_not_run": skipped})
-banner("PART 3 DONE" if not skipped else "PART 3 INCOMPLETE -- re-run to finish")
+           "cnn_completed": done, "cnn_not_run": skipped,
+           "cnn_unsupported": unsupported})
+banner("PART 3 DONE" if not (skipped or unsupported)
+       else "PART 3 INCOMPLETE -- re-run to finish")

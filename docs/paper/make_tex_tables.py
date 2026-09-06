@@ -156,13 +156,34 @@ def tab_supervised():
         return
     body = [f"{a.replace('_', '-')} & {p:.1f} & {n} & {pct(t)} & \\textbf{{0 (structural)}} \\\\"
             for a, p, n, t in sorted(rows, key=lambda r: -(r[3] or 0))]
+    # The caption used to assert "a 4.4 M network finishes within 0.1 points of the best of the
+    # fourteen" no matter how many architectures were actually present, so a partial sweep
+    # printed a claim about results the table did not contain. Derive it from the rows instead,
+    # and say plainly when the sweep is incomplete.
+    _n = len(rows)
+    _best = max(rows, key=lambda r: r[3] or 0)
+    _small = min(rows, key=lambda r: r[1] or 9e9)
+    _gap = (_best[3] or 0) - (_small[3] or 0)
+    _cap = ("Supervised CNN baselines on the identical seen set."
+            if _n >= 14 else
+            f"Supervised CNN baselines on the identical seen set "
+            f"({_n} of 14 architectures; the remainder had not completed at build time).")
+    # The parameter-count observation needs a spread of model sizes to mean anything, and it
+    # has to be checked rather than asserted: with three similarly sized nets the "largest is
+    # not the best" clause was simply false. Only emit it when the sweep is complete and the
+    # data actually support both halves.
+    _largest = max(rows, key=lambda r: r[1] or 0)
+    _obs = ""
+    if _n >= 14 and _largest is not _best:
+        _obs = (f"Accuracy does not track parameter count: the smallest network here "
+                f"({_small[1]:.1f}\,M) finishes within {_gap * 100:.1f} points of the best of "
+                f"the {_n}, and the largest model is not the best. ")
     write("tab_supervised.tex", wrap(
-        "Supervised CNN baselines on the identical seen set.",
+        _cap,
         "tab:cnn", "lrrrr",
         "Architecture & Params (M) & Classes & Seen top-1 & Unseen \\\\", body,
-        "For a fixed, known label set a CNN is the stronger classifier. Accuracy does not track "
-        "parameter count: a 4.4\,M network finishes within 0.1 points of the best of the "
-        "fourteen, and the largest model is not the best. None of them, however, has "
+        "For a fixed, known label set a CNN is the stronger classifier. " + _obs +
+        "None of them, however, has "
         "an output unit for an unseen class, so cross-crop accuracy is not low but undefined --- "
         "the capability the descriptor head supplies."))
 
