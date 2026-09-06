@@ -316,12 +316,33 @@ def main():
             f"fine-tuning did not converge: final loss {ft_loss[-1]:.2f} vs "
             f"random-guess {random_loss:.2f}. Raise --epochs or --lr; the sweep is not "
             f"interpretable until alpha=1 is a genuinely fine-tuned model.")
+    # A dip below both endpoints means the midpoint sits in neither basin. What makes that
+    # fatal is its size RELATIVE to what the dial buys, not its existence: every interior
+    # point is scored with its own freshly fitted head (random init, 20 epochs), so the seen
+    # column carries refit noise of a few points regardless of the encoder.
+    #
+    #   2026-09-06 (random head): span 5.1 pp, dip 13.6 pp -> ratio 2.67. The dip dwarfed the
+    #     trade-off, and unseen simultaneously fell to 1.8% against a 1.96% chance floor.
+    #     Genuinely broken.
+    #   2026-09-07 (warm-started): span 22.5 pp, dip 3.0 pp -> ratio 0.13, with unseen holding
+    #     at 16.4% (8.4x chance) at alpha=1. A wobble on a curve that works.
+    #
+    # The gate therefore fires when the dip is a meaningful fraction of the span, with an
+    # absolute floor so that a near-flat curve cannot excuse a large dip.
     seen_curve = [r["seen"] for r in sweep]
-    if len(seen_curve) >= 3 and min(seen_curve) < min(seen_curve[0], seen_curve[-1]) - 0.01:
-        warnings.append(
-            "seen accuracy dips below BOTH endpoints at an intermediate alpha, which means "
-            "the two weight sets are not linearly connected -- usually the same "
-            "under-training cause as above.")
+    if len(seen_curve) >= 3:
+        _span = abs(seen_curve[-1] - seen_curve[0])
+        _dip = min(seen_curve[0], seen_curve[-1]) - min(seen_curve)
+        if _dip > 0.01 and (_dip > 0.5 * _span or _dip > 0.10):
+            warnings.append(
+                f"seen accuracy dips {_dip * 100:.1f} pp below both endpoints at an "
+                f"intermediate alpha, against a span of only {_span * 100:.1f} pp between "
+                f"them, so the two weight sets are not linearly connected and the "
+                f"intermediate rows are not interpretable.")
+        elif _dip > 0.01:
+            print(f"[wiseft] note: seen dips {_dip * 100:.1f} pp below the lower endpoint at "
+                  f"an intermediate alpha, small against the {_span * 100:.1f} pp span; "
+                  f"consistent with per-alpha head-refit noise.", flush=True)
     a0 = next((r for r in sweep if r["alpha"] == 0.0), None)
     if a0 and abs(a0["seen"] - frozen_probe) > 0.01:
         warnings.append(

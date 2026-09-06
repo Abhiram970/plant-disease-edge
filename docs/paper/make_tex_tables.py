@@ -229,8 +229,22 @@ def tab_wiseft():
         _cap += (" NOTE: this sweep did not pass its own consistency checks and is reported "
                  "for completeness only.")
 
-    _foot = ("$\\alpha=0$ reproduces the frozen baseline, validating the interpolation. "
-             "$\\alpha=1$ is naive fine-tuning and shows catastrophic forgetting. ")
+    # Whether alpha=1 forgets is a question for the data, not a fixed sentence. The
+    # 2026-09-06 sweep collapsed to 1.8% unseen against a 1.96% chance floor -- forgetting.
+    # The 2026-09-07 sweep holds 16.4%, over eight times chance, while gaining 22.5 points on
+    # seen: that is not catastrophic forgetting and the caption must not say it is.
+    _a1 = next((r for r in sweep if r["alpha"] == 1.0), None)
+    _chance = j.get("unseen_chance") or (1.0 / max(j.get("unseen_classes") or 1, 1))
+    _foot = "$\\alpha=0$ reproduces the frozen baseline, validating the interpolation. "
+    if _a1:
+        _mult = _a1["unseen"] / _chance if _chance else 0.0
+        if _mult < 2.0:
+            _foot += ("$\\alpha=1$ is naive fine-tuning and shows catastrophic forgetting, "
+                      f"retaining only {_mult:.1f}$\\times$ chance on unseen crops. ")
+        else:
+            _foot += (f"$\\alpha=1$ is naive fine-tuning; here it still retains "
+                      f"{_mult:.1f}$\\times$ chance on unseen crops, so the dial trades "
+                      "cross-crop transfer for seen accuracy rather than destroying it. ")
     if _warn:
         # Trim on a word boundary: a mid-word cut reads as a typesetting error rather than
         # as a deliberately abbreviated warning.
