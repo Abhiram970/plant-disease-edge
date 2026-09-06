@@ -183,6 +183,26 @@ if PRIOR and PRIOR.exists():
             shutil.copy2(_f, RESULTS / _f.name); _n += 1
     if _n:
         print(f"[prior] imported {_n} result file(s) from a previous part", flush=True)
+# Checkpoints of architectures that ran out of time last session. Without this the
+# retain-on-timeout rule is inert ACROSS sessions: the .pt sits in /kaggle/input, nothing
+# copies it to CKPT, --resume finds no file and the architecture restarts from epoch 0 --
+# which is the outcome the retention fix exists to prevent. Only checkpoints without a
+# matching result JSON are worth importing; a finished architecture needs none, and each
+# file is 30-350 MB, so importing indiscriminately would waste minutes and disk.
+_PCK = find_dir("checkpoints", ["/kaggle/input"])
+if _PCK and _PCK.exists():
+    _n = _skipped = 0
+    for _f in sorted(_PCK.glob("*_ckpt.pt")):
+        _arch = _f.name[:-len("_ckpt.pt")]
+        if (RESULTS / f"supervised_{_arch}.json").exists():
+            _skipped += 1
+            continue
+        if not (CKPT / _f.name).exists():
+            shutil.copy2(_f, CKPT / _f.name); _n += 1
+    if _n or _skipped:
+        print(f"[prior] imported {_n} checkpoint(s) for --resume"
+              + (f"; skipped {_skipped} already finished" if _skipped else ""), flush=True)
+
 for _arm in ("descriptors_ungrounded", "descriptors_grounded_matched",
              "descriptors_ungrounded_short", "descriptors_grounded_matched_short"):
     _src = find_dir(_arm, ["/kaggle/input"])

@@ -212,9 +212,11 @@ def main():
     print(f"[wiseft] frozen probe = {frozen_probe:.1%} "
           f"(alpha=0 must reproduce this; head warm-started from it)", flush=True)
 
-    # The encoder is what should move now, so give the warm head a gentler rate than the tower
-    # would otherwise force. Weight decay is kept off the encoder: decaying toward zero pulls
-    # it away from the pretrained weights, which is the opposite of what WiSE-FT needs.
+    # Both groups share args.lr. The head needs no separate rate: it was just fitted to these
+    # exact frozen features, so it starts converged and contributes small gradients -- the
+    # warm start is what keeps the encoder in its pretrained basin, not a differential rate.
+    # Weight decay IS split: decaying the encoder toward zero pulls it away from the
+    # pretrained weights, which is the opposite of what WiSE-FT's interpolation assumes.
     opt = torch.optim.AdamW(
         [{"params": list(model.visual.parameters()), "weight_decay": 0.0},
          {"params": list(head.parameters()), "weight_decay": 1e-4}],

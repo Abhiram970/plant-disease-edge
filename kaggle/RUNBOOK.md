@@ -45,9 +45,14 @@ generators, not the generated `RUN_*.py` files.
 
 | secret | needed for |
 |---|---|
-| `GH_TOKEN` | cloning this private repo — fine-grained PAT, read-only Contents |
 | `HF_TOKEN` | the SAGE fetch — HuggingFace **read** token. Skip if you attach images. |
-| `LAVA_API_KEY` **or** `ANTHROPIC_API_KEY` | the ungrounded arm **only**. Everything else runs without it. |
+| `LAVA_API_KEY` **or** `ANTHROPIC_API_KEY` | descriptor generation **only** (`tonight`, `morning`, part 1). `fixup`, parts 2 and 3 need no key. |
+
+No `GH_TOKEN` is listed because neither `LAUNCH.py` nor the runners pass credentials to
+`git clone`: the clone is anonymous, which works only while
+`github.com/Abhiram970/plant-disease-edge` is public. **If you make the repository private
+again, the clone fails at t+0** and both files need a tokenised URL
+(`https://x-access-token:$GH_TOKEN@github.com/...`) plus a `GH_TOKEN` secret.
 
 Then **Save Version → Save & Run All (Commit)** and close the tab.
 When it finishes: **Output → Create Dataset**. Attach that next time.
