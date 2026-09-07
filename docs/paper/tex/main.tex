@@ -642,11 +642,24 @@ open problem we advance at edge scale rather than claim to solve.
 \section{Limitations}
 \label{sec:limits}
 
+%% COUNTS VERIFIED 2026-09-08 directly from descriptors/*.json. Definitions matter here and the
+%% earlier wording collapsed two of them into one number:
+%%   217 records; 156 filled, 61 stubs; 112 filled records carry at least one verbatim quote
+%%   16 records have EVERY cited field page-verified
+%%   24 more have at least one field page-verified (so 40 carry a verification flag)
+%%   held-out crops: 47 filled records, 23 verified -- this is the number that matters, since
+%%   the held-out set carries the cross-crop claim
+%% Re-run scripts/make_source_checklist.py after any descriptor edit and re-check this block.
 \paragraph{Descriptor coverage and two tiers of citation} Across 18 crops, 156 of 217 disease records
 are LLM-filled; the remaining 61 are explicit stubs that fall back to the hand-curated bank. Of the
-156, 111 carry a verbatim quote but only 16 have been page-verified, meaning the quote was copied from
-a page we retrieved and read. The other 95 quotes are model-recalled and must be treated as unverified
-provenance, not evidence.
+156, 112 carry a verbatim quote. We distinguish two tiers of provenance. A quote is
+\emph{page-verified} when we retrieved the cited page and read the sentence there; it is
+\emph{model-recalled} when the generating model supplied both quote and URL without browsing. Forty
+records carry at least one page-verified field, and in 16 of those every cited field is
+page-verified. Verification was prioritised by where it matters: of the 47 filled records on
+held-out crops --- the set carrying this paper's cross-crop claim --- 23 are verified. Model-recalled
+quotes are reported as unverified provenance rather than as evidence, and the per-URL audit trail is
+released with the data so any citation can be checked independently.
 
 \paragraph{The grounding prompt over-refuses} Because the generation endpoint cannot browse, a strict
 ``never cite what you cannot quote'' instruction makes the model return empty records rather than risk

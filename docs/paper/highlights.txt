@@ -1,5 +1,5 @@
-A frozen 11.4M CLIP diagnoses diseases on crops it never saw, at 3.5-12.6x chance.
-Only source-grounded descriptors keep improving as the unseen label space grows.
-Hand-curated symptom text degrades from 28.0% to 20.4% as unseen classes triple.
-One frozen backbone serves both known crops (82.4%) and unknown ones.
+A frozen 11.4M CLIP diagnoses crops it never saw, at 2.2-13.9x chance.
+Source-grounded descriptors beat an ungrounded control by 1.96 pp on every encoder.
+Grounding adds auditable provenance at no accuracy cost, on 41 paired unseen classes.
+One frozen backbone serves known crops (82.2%) and unseen ones; CNNs cannot do both.
 INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.
