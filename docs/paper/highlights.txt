@@ -1,5 +1,5 @@
 A frozen 11.4M CLIP diagnoses crops it never saw, at 2.2-13.9x chance.
-Source-grounded descriptors beat an ungrounded control by 1.96 pp on every encoder.
-Grounding adds auditable provenance at no accuracy cost, on 41 paired unseen classes.
+Sourcing gains +1.96 pp on paired classes, +0.94 pp across the full held-out set.
+Grounding buys auditable provenance at negligible accuracy cost on 51 unseen classes.
 One frozen backbone serves known crops (82.2%) and unseen ones; CNNs cannot do both.
 INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.

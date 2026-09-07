@@ -17,5 +17,5 @@ Corn & 9,403 & 4.8\% & [4.4\%, 5.3\%] \\
 \textbf{Pooled} & \textbf{26,151} & \textbf{10.5\%} & [10.2\%, 10.9\%] \\
 \bottomrule
 \end{tabular}
-\begin{flushleft}\footnotesize Held-out crops fall in the middle of the range and two \emph{trained} crops are the hardest, so the headline held-out set is not a favourable split.\end{flushleft}
+\begin{flushleft}\footnotesize The two hardest crops are both \emph{trained} crops, so difficulty does not follow the held-out boundary. The held-out crops nevertheless average above the trained pool here (19.0\% against 9.0\%), so this split is not adversarially hard. Measured with the \texttt{rich} strategy on the 78-class leave-one-crop-out pool, not the headline label space.\end{flushleft}
 \end{table}

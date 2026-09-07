@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Cross-section numeric consistency should be reconciled",
+    "quote": "First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at 2.2–13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat across that range.",
+    "explanation": "Multiple sections contain numeric claims. Confirm that the same quantities reconcile across main text, tables, and appendix material.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "medium",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "discussion",
+      "method"
+    ],
+    "root_cause_key": "cross-section-numeric-consistency-should-be-reconciled",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "script",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "script",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false
+  },
+  {
+    "title": "Novelty claim should be grounded against the closest prior work",
+    "quote": "",
+    "explanation": "The paper positions itself against prior work, but the current wording should make the closest comparator and the real novelty delta explicit instead of relying on broad superiority language.",
+    "comment_type": "claim_accuracy",
+    "severity": "moderate",
+    "confidence": "low",
+    "source_kind": "llm",
+    "source_section": "related_work",
+    "related_sections": [
+      "related_work",
+      "results"
+    ],
+    "root_cause_key": "novelty-claim-should-be-grounded-against-the-closest-prior-work",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "script",
+    "source_section": "unknown",
+    "related_sections": [
+      "unknown"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false
+  }
+]

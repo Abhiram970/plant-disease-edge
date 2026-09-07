@@ -79,20 +79,25 @@ def tab_scale_study():
         n = j["n_classes"]
         rows.append(f"\\multicolumn{{6}}{{l}}{{\\emph{{Config {e} --- {n} unseen classes, "
                     f"chance {pct(j['chance'])}}}}} \\\\")
-        b_all, r_all, g_all = [], [], []
+        b_all, c_all, r_all, g_all = [], [], [], []
         for m, d in j["models"].items():
-            b, r, g = d["bare"]["acc"], d["rich"]["acc"], d["grounded"]["acc"]
+            b, c, r, g = (d["bare"]["acc"], d["crude"]["acc"],
+                          d["rich"]["acc"], d["grounded"]["acc"])
             # The mean is over the four DEPLOYABLE encoders only. ViT-B-16-SigLIP2 is the
             # reference ceiling and the manuscript states throughout that it is excluded --
             # but this loop was averaging it in, so every printed mean was pulled toward the
             # ceiling and disagreed with the prose that quotes it.
             if not _is_reference(m):
-                b_all.append(b); r_all.append(r); g_all.append(g)
+                b_all.append(b); c_all.append(c)
+                r_all.append(r); g_all.append(g)
             rows.append(f"\\quad {short(m)} & {d['bare']['img_params_M']:.1f} & {pct(b)} & "
                         f"{pct(d['crude']['acc'])} & {pct(r)} & {pct(g)} \\\\")
-        mb, mr, mg = (sum(x) / len(x) for x in (b_all, r_all, g_all))
-        rows.append(f"\\quad \\textbf{{mean}} & --- & \\textbf{{{pct(mb)}}} & --- & "
-                    f"\\textbf{{{pct(mr)}}} & \\textbf{{{pct(mg)}}} \\\\")
+        mb, mc, mr, mg = (sum(x) / len(x) for x in (b_all, c_all, r_all, g_all))
+        # The crude mean was printed as "---". That cell is the counterexample to "any full
+        # symptom description beats a class name": crude LOSES to bare at B and C.
+        rows.append(f"\\quad \\textbf{{mean}} & --- & \\textbf{{{pct(mb)}}} & "
+                    f"\\textbf{{{pct(mc)}}} & \\textbf{{{pct(mr)}}} & "
+                    f"\\textbf{{{pct(mg)}}} \\\\")
         rows.append("\\addlinespace")
         means.append((n, mb, mr, mg))
     if not rows:
@@ -105,7 +110,7 @@ def tab_scale_study():
     write("tab_scale_study.tex", wrap(
         "Cross-crop zero-shot accuracy at three held-out scales, by descriptor strategy.",
         "tab:scale", "llrrrr",
-        "Model & Params (M) & bare & crude & rich & grounded \\\\", rows, note))
+        "Model & Params (M) & bare & crude & rich & grounded \\\\", rows, note, wide=True))
 
 
 def tab_abstain():
@@ -130,7 +135,7 @@ def tab_abstain():
         "Config & Classes & Model & Top-1 & Top-5 & AURC $\\downarrow$ & acc@cov90 & acc@cov80 \\\\",
         body,
         "Confidence is the top-1 minus top-2 similarity margin. Selective accuracy rising as "
-        "coverage tightens confirms the confidence signal is correctly ordered."))
+        "coverage tightens confirms the confidence signal is correctly ordered.", wide=True))
 
 
 def tab_seen():
@@ -201,7 +206,7 @@ def tab_supervised():
         "For a fixed, known label set a CNN is the stronger classifier. " + _obs +
         "None of them, however, has "
         "an output unit for an unseen class, so cross-crop accuracy is not low but undefined --- "
-        "the capability the descriptor head supplies."))
+        "the capability the descriptor head supplies.", wide=True))
 
 
 def tab_wiseft():
@@ -251,7 +256,13 @@ def tab_wiseft():
     # seen: that is not catastrophic forgetting and the caption must not say it is.
     _a1 = next((r for r in sweep if r["alpha"] == 1.0), None)
     _chance = j.get("unseen_chance") or (1.0 / max(j.get("unseen_classes") or 1, 1))
-    _foot = "$\\alpha=0$ reproduces the frozen baseline, validating the interpolation. "
+    # "reproduces the frozen baseline" invited the reader to compare against Table 3's
+    # 82.2%, which is a different measurement: this sweep subsamples the seen split to
+    # 200 images per class, so its frozen reference is ~59%. Say which baseline.
+    _foot = ("$\\alpha=0$ reproduces this sweep's own frozen probe "
+             f"({j.get('frozen_probe', 0) * 100:.1f}\\%), validating the interpolation. "
+             "That probe is measured on the 200-image-per-class subsample used here, not on "
+             "the full seen split of Table~\\ref{tab:seen}. ")
     if _a1:
         _mult = _a1["unseen"] / _chance if _chance else 0.0
         if _mult < 2.0:
@@ -318,8 +329,11 @@ def tab_loco():
         f"Leave-one-crop-out on {j['model']} ({j['n_classes']} classes, chance {pct(j['chance'])}).",
         "tab:loco", "lrrl",
         "Crop & $N$ & Zero-shot " + UP + " & 95\\% CI \\\\", body,
-        "Held-out crops fall in the middle of the range and two \\emph{trained} crops are the "
-        "hardest, so the headline held-out set is not a favourable split."))
+        "The two hardest crops are both \\emph{trained} crops, so difficulty does not "
+        "follow the held-out boundary. The held-out crops nevertheless average above the "
+        "trained pool here (19.0\\% against 9.0\\%), so this split is not "
+        "adversarially hard. Measured with the \\texttt{rich} strategy on the "
+        "78-class leave-one-crop-out pool, not the headline label space."))
 
 
 if __name__ == "__main__":

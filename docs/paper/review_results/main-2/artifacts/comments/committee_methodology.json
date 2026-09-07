@@ -1,0 +1,39 @@
+[
+  {
+    "title": "Cross-section numeric consistency should be reconciled",
+    "quote": "First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at 2.2–13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat across that range.",
+    "explanation": "Multiple sections contain numeric claims. Confirm that the same quantities reconcile across main text, tables, and appendix material.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "medium",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "discussion",
+      "method"
+    ],
+    "root_cause_key": "cross-section-numeric-consistency-should-be-reconciled",
+    "review_lane": "committee_methodology",
+    "gate_blocker": false,
+    "quote_verified": false
+  },
+  {
+    "title": "Comparison protocol should make fairness assumptions explicit",
+    "quote": "SigLIP 2: Multilingual vision-language encoders with improved semantic understanding, localization, and dense features.",
+    "explanation": "Comparative evaluation language was detected. Deep review should verify that baseline tuning, data splits, and reporting conventions are described symmetrically.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "medium",
+    "source_kind": "llm",
+    "source_section": "method",
+    "related_sections": [
+      "method",
+      "experiment"
+    ],
+    "root_cause_key": "comparison-protocol-should-make-fairness-assumptions-explicit",
+    "review_lane": "committee_methodology",
+    "gate_blocker": false,
+    "quote_verified": false
+  }
+]

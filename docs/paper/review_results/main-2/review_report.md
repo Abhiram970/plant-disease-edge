@@ -1,0 +1,476 @@
+# Deep Review Report
+
+**Paper**: `C:\Users\PV Abhiram\Downloads\main (2).pdf` | **Language**: EN | **Mode**: deep-review
+**Generated**: 2026-09-08 02:37
+**Artifacts**: `C:\Projects\plant-disease-edge\docs\paper\review_results\main-2`
+
+## Overall Assessment
+
+Deep review found 0 major, 6 moderate, 1 minor issues. The highest-priority concerns are: Cross-section numeric consistency should be reconciled.
+
+- **Major**: 11
+- **Moderate**: 14
+- **Minor**: 4
+
+## Academic Pre-Review Committee
+
+### Editor (Desk Reject Screen)
+
+## Editor Pre-Screen (1-10)
+
+Score: 4.0/10
+Verdict: Desk Reject
+
+### Desk-Reject Triggers (if any)
+- None identified from the deterministic fallback pass.
+
+### Top 3 Reasons (no hedging)
+1. Cross-section numeric consistency should be reconciled
+2. Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...
+3. Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...
+
+### Fast Fixes (within 1-2 days)
+- Clarify abstract to address cross-section numeric consistency should be reconciled.
+- Clarify abstract to address em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is....
+- Clarify discussion to address em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is....
+
+### Reviewer 1 (Theory Contribution)
+
+## Theory Contribution Review
+
+### 3 Fatal Theory Holes
+1. (related_work) Novelty claim should be grounded against the closest prior work — The paper positions itself against prior work, but the current wording should make the closest comparator and the real novelty delta explicit instead of relying on broad superiority language.
+
+### Concrete Moves
+- Tighten the paper's theoretical positioning in related_work to resolve novelty claim should be grounded against the closest prior work.
+
+### Reviewer 3 (Literature Dialogue)
+
+## Literature Dialogue Review
+
+### Closest Prior Work Risks
+- (related_work) Novelty claim should be grounded against the closest prior work — The paper positions itself against prior work, but the current wording should make the closest comparator and the real novelty delta explicit instead of relying on broad superiority language.
+
+### Gap Claim Risks
+- The claimed gap should be defended more explicitly: Novelty claim should be grounded against the closest prior work.
+
+### Fast Fixes
+- Name the closest prior comparator in related_work and explain the real novelty delta.
+
+### Reviewer 2 (Methodology & Transparency)
+
+## Methodology Transparency Review (SRQR-aware)
+
+### MUST-FIX (submission blockers)
+- No methodology blocker was surfaced by the fallback pass.
+
+### SHOULD-FIX (quality improvements)
+- (abstract) "First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at 2.2–13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat across that range." — Multiple sections contain numeric claims. Confirm that the same quantities reconcile across main text, tables, and appendix material.
+- (method) "SigLIP 2: Multilingual vision-language encoders with improved semantic understanding, localization, and dense features." — Comparative evaluation language was detected. Deep review should verify that baseline tuning, data splits, and reporting conventions are described symmetrically.
+
+### SRQR Checklist Deltas
+- Sampling rationale: clarify how the evidence base supports the paper's strongest claims.
+- Data collection details (time/place/duration): add context when results depend on specific settings.
+- Coding process (stages, coders, disagreement resolution): specify if qualitative or hybrid analysis is used.
+- Saturation: state whether the evidence scope is exhaustive or bounded.
+- Triangulation: explain whether multiple evidence sources were reconciled.
+- Reflexivity: acknowledge researcher choices that shape interpretation.
+
+### Reviewer 4 (Logic Chain)
+
+## Logic Chain Review
+
+### Breakpoints
+- (discussion) "In contrast, our descriptors are source- grounded and therefore auditable, compressed to the edge, and evaluated for cross-crop agricultural transfer rather than general retrieval." — A closure claim appears in the discussion/conclusion. Verify that it matches the limitations, experimental scope, and prior-art positioning established earlier in the paper.
+
+### Structural Fix Moves
+- Add one explicit bridge sentence in discussion so the argument chain closes cleanly.
+
+### Committee Consensus
+
+## Committee Consensus
+
+Overall Score: 4.0/10
+Editor Verdict: Desk Reject
+
+### Score Formula
+- base 9.0
+- minus 1.5 * major (0)
+- minus 0.7 * moderate (6)
+- minus 0.2 * minor (1)
+- floor 1.0
+- desk reject cap 4.0
+
+### Top 3 Issues To Fix First
+1. Cross-section numeric consistency should be reconciled
+2. Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...
+3. Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...
+
+## Paper Summary
+
+# Paper Summary: main (2)
+
+## Research Question
+- Cloud vision–language models diagnose plant disease accurately but bill per query and need connectivity, suiting neither smallholder nor in-field use
+
+## Core Thesis
+- Cloud vision–language models diagnose plant disease accurately but bill per query and need connectivity, suiting neither smallholder nor in-field use.
+
+## Headline Claims
+- No headline claim was extracted automatically.
+
+## Section Map
+- abstract (15-84): 626 words
+- discussion (85-1018): 4927 words
+- experiment (1019-1019): 9 words
+- method (1028-1216): 1457 words
+
+## Closure Targets
+- Verification was prioritised by where it matters: of the 47 filled records on held-out crops — the set carrying this paper’s cross-crop claim — 23 are verified.
+
+## Major Issues
+
+### M1: The headline sourcing effect holds only on the 41-class paired subset; on the full held-out set one encoder reverses
+- **Type**: overclaim
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: abstract
+- **Related Sections**: abstract
+- **Root Cause Key**: `the-headline-sourcing-effect-holds-only-on-the-41-class-pair`
+- **Quote Verified**: yes
+- **Quote**: `a mean of +1.96 points with a 95 % confidence interval of`
+- **Explanation**: Recomputing the same arms, the same seven shared seeds and the same long descriptions on the full 51-class held-out set (zeroshot_eval_C_gmseeds.json vs zeroshot_eval_C_ungseeds.json) gives +1.89, +0.36, +1.69 and -0.19 points, a mean of +0.94 with a 95% interval over encoders of [-0.68, +2.55]. MobileCLIP-B reverses sign. The paper's own length-matched control, which also covers all 51 classes, likewise has MobileCLIP-B at -0.38. So two of the three ways of computing this effect show the largest encoder going negative, and only the 41-class pairing produces the clean 'positive on all four' result that the abstract, Section 4.3, Section 5 and Highlight 2 all assert. The pairing has a defensible rationale, but the full-set comparison is never reported.
+
+### M2: A label-cleaned configuration C already exists in the released data and is never mentioned
+- **Type**: selective_reporting
+- **Source**: [Script] via `evaluation_fairness_and_reproducibility`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `a-label-cleaned-configuration-c-already-exists-in-the-releas`
+- **Quote Verified**: yes
+- **Quote**: `We recommend excluding the rating labels and report this`
+- **Explanation**: zeroshot_eval_C_clean.json is a completed run with clean=true, 42 classes, clean_stats {merged_images: 784, dropped_images: 1792, alias_pairs: 5, excluded_labels: 4}. Its grounded accuracies are 27.4 / 31.3 / 29.4 / 34.9% (mean 30.8%) against the 21.6 / 24.0 / 22.8 / 27.3% (mean 23.9%) the paper reports. The Limitations section recommends the exclusion as future work without disclosing that the analysis was already run. No corresponding A_clean or B_clean file exists, so the cleaned scaling trend cannot be checked - which matters given the duplicate-density confound above. The cleaned numbers are more favourable, so disclosing them costs nothing.
+
+### M3: Figure 8 and Table 4 report different WiSE-FT experiments with opposite recommendations
+- **Type**: internal_contradiction
+- **Source**: [Script] via `self_standard_consistency`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `figure-8-and-table-4-report-different-wise-ft-experiments-wi`
+- **Quote Verified**: yes
+- **Quote**: `(Table 4, Fig. 8) turns the balance into one tunable knob,`
+- **Explanation**: Table 4 is generated from wiseft.json (protocol nested-C, 51 unseen classes, 23,445 seen images, 5 alpha points, ft_epochs=3) via make_tex_tables.py:213. Figure 8 is generated from run_all_exp3_lw11_full.json (166 seen / 17 unseen classes, 55,981 seen images, 3 alpha points, ft_epochs=5) via make_figures.py:79. Every value differs: at alpha=0 the table says 59.0% seen / 21.6% unseen, the figure plots 83% / 17%; at alpha=1 the table says 81.5% / 16.4%, the figure plots 90% / 9%. The figure's own subtitle prints '(166 seen / 17 unseen classes)', contradicting the table caption's '51 unseen classes'. The figure annotates 'best seen+unseen (alpha=0.5)' while the table caption states 'alpha = 1.00 maximises the sum of the two columns'. wiseft.json's own note records that the superseded file 'recorded unseen_classes=17 (pilot) against seen_classes=166 (nested C)' - the authors retired this data but make_figures.py was never repointed. Section 4.5 cites the two together as one result.
+
+### M4: Table 4's alpha=0 row does not reproduce the frozen baseline its caption claims to validate
+- **Type**: internal_contradiction
+- **Source**: [Script] via `notation_and_numeric_consistency`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `table-4's-alpha=0-row-does-not-reproduce-the-frozen-baseline`
+- **Quote Verified**: yes
+- **Quote**: `= 0 reproduces the frozen baseline, validating the interpolation.`
+- **Explanation**: Table 3, the abstract and the conclusion all report the frozen MobileCLIP2-S0 linear probe at 82.2% over 166 seen classes (probe_seen_C.json, seen_probe_top1=0.8219, 69,919 images). Table 4's alpha=0 '(frozen)' row reports 59.0% over the same 166 seen classes (wiseft.json, frozen_probe=0.5879, 23,445 images). That is a 23.2-point gap that the paper never mentions, while the caption actively asserts consistency. Three different seen-image counts appear for '166 seen classes' across the paper's own artifacts: 69,919 (Table 3), 23,445 (Table 4) and 55,981 (Figure 8's source file).
+
+### M5: Tables 1, 2 and 5 overflow their columns in the compiled PDF and Table 7 loses a column
+- **Type**: presentation
+- **Source**: [Script] via `pre_submission_readiness`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `tables-1,-2-and-5-overflow-their-columns-in-the-compiled-pdf`
+- **Quote Verified**: yes
+- **Quote**: `Top-5 and selective prediction with source-grounded descriptors.`
+- **Explanation**: On page 4 Table 1's 'grounded' column prints outside the table rules and overlaps Table 2's body and footnote, and Table 2's acc@cov90 / acc@cov80 columns are clipped off the page edge although the caption defines the metric. On page 6 Table 5's 'Unseen' column ('0 (structural)') prints over the Discussion text. On page 7 Table 7's 'INT8 (MB)' column is absent from the render, so the per-tier INT8 sizes that Contribution 4 promises ('real INT8 sizes') and the abstract's 12.9 MB are not actually in the table. Cause: single-column 'table' environments carrying six to eight columns in the cas-dc double-column measure. Pages 4 and 6 are unreadable as typeset.
+
+### M6: Held-out label spaces contain undisclosed synonym duplicates whose density falls exactly as the headline trend rises
+- **Type**: confound
+- **Source**: [Script] via `evaluation_fairness_and_reproducibility`
+- **Confidence**: high
+- **Section**: method
+- **Related Sections**: method
+- **Root Cause Key**: `held-out-label-spaces-contain-undisclosed-synonym-duplicates`
+- **Quote Verified**: yes
+- **Quote**: `at configuration C only 8 of the 51 held-out classes receive`
+- **Explanation**: Configuration A's 16 held-out classes contain three pairs naming the same disease twice: Orange|Canker and Orange|Citrus_Canker; Orange|Greening_Disease and Orange|Huanglongbing; Peach|Leaf_Curl and Peach|Peach_Leaf_Curl. That is 6 of 16 classes (37.5%) sitting in a pair no descriptor can separate. Configuration C adds Cucumber|Angular_Leaf_Spot / Cucumber|Angular_Leaf_Spot_Of_Cucumber and Wheat|Head_Scab / Wheat|Fusarium_Graminearum_Schwabe, giving roughly 10 of 51 (19.6%). The proportion of structurally indistinguishable classes therefore falls monotonically A -> B -> C, which alone would raise top-1 accuracy in exactly the direction the paper's central claim reports. The Limitations section lists five defective labels (three resistance ratings, one insect pest, one misspelt genus) but never the duplicates.
+
+### M7: Figure 8 caption states a conclusion the body text and Table 4 both deny
+- **Type**: internal_contradiction
+- **Source**: [Script] via `self_standard_consistency`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `figure-8-caption-states-a-conclusion-the-body-text-and-table`
+- **Quote Verified**: yes
+- **Quote**: `Full fine-tuning nearly halves unseen accuracy.`
+- **Explanation**: The caption is true of Figure 8's (superseded) data, where unseen falls 17.0% -> 8.8%. It is false of Table 4 and of Section 4.5, which say the opposite: 'even naive fine-tuning does not destroy cross-crop transfer here: unseen accuracy settles at 16.4%, still 8.4 times chance, so on this task the dial trades transfer for seen accuracy rather than erasing it.' 21.6% -> 16.4% is a 24% relative drop, not a halving.
+
+### M8: 'Any full symptom description beats a class-name prompt' is false for crude at two of three scales
+- **Type**: overclaim
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `'any-full-symptom-description-beats-a-class-name-prompt'-is-`
+- **Quote Verified**: yes
+- **Quote**: `Any full symptom description`
+- **Explanation**: Averaged over the four deployable encoders, crude scores 14.1% at A, 18.7% at B and 16.7% at C against bare's 12.7%, 20.3% and 19.1%. Crude - a full symptom sentence - loses to the bare class name at both B and C. The claim is stated without qualification. The crude column is also the only one in Table 1 with no mean row: make_tex_tables.py:94 hardcodes '---' in that cell, so the single summary statistic that would expose the counterexample is the one omitted.
+
+### M9: Section 4.3 attributes the shrinkage of the sourcing effect to description length; the class-set change explains more of it
+- **Type**: formula_or_derivation_error
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `section-4.3-attributes-the-shrinkage-of-the-sourcing-effect-`
+- **Quote Verified**: yes
+- **Quote**: `the sourcing advantage is not independent of`
+- **Explanation**: Holding length constant (long descriptions) and moving from the 41 paired classes to all 51 drops the effect from +1.96 to +0.94. Holding the class set constant at all 51 and moving from long descriptions to the 50-word ceiling moves it from +0.94 to +1.13 - i.e. shortening slightly RAISED the effect. The paper compares +1.96 (41 classes, long) against +1.13 (51 classes, short), which changes two variables at once, and then attributes the whole difference to truncation. The stated mechanism is not supported by the released seed files.
+
+### M10: Table 6's caption and Contribution 5 are contradicted by Table 6's own numbers
+- **Type**: internal_contradiction
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `table-6's-caption-and-contribution-5-are-contradicted-by-tab`
+- **Quote Verified**: yes
+- **Quote**: `Held-out crops fall in the middle of the range and two trained crops`
+- **Explanation**: The three held-out crops rank 1st (Orange 28.9%), 2nd (Coffee 15.8%) and 4th (Peach 12.3%) of six, and average 19.0% against 9.0% for the three trained crops - more than double. Section 4.6 concedes this ('The held-out crops do, however, average above the trained ones on this split') while the caption asserts the opposite, and Contribution 5 claims the analysis 'shows the held-out crops are not cherry-picked'. Separately, loco_s0_rich.json records strategy='rich' and 78 classes: the anti-cherry-picking check runs under the descriptor strategy the paper elsewhere discredits and on a different label space from the headline result, neither of which is stated.
+
+### M11: The supervised sweep is truncated before convergence in the direction that produces its conclusion
+- **Type**: confound
+- **Source**: [Script] via `evaluation_fairness_and_reproducibility`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `the-supervised-sweep-is-truncated-before-convergence-in-the-`
+- **Quote Verified**: yes
+- **Quote**: `All architectures converge, and the smallest models show the largest`
+- **Explanation**: All fourteen runs are four epochs. Twelve of fourteen post their best accuracy at the final epoch and are still climbing - mobilenetv4_conv_small +3.40 points between epochs 3 and 4, densenet121 +1.74, efficientnet_b0 +1.58, resnet50 +1.37, resnet101 +0.91. The caption's 'All architectures converge' is therefore false. Larger models start lower and climb longer (resnet101 77.9% -> 86.7%), so a four-epoch budget systematically disadvantages them, which is the same direction as the conclusions drawn ('capacity is not the lever', Spearman rho = 0.36). Separately, fastvit_t8 and mobilenetv3_small_100 peaked at epoch 3 (83.88%, 81.63%) and are reported at their lower epoch-4 values (82.48%, 80.05%), so the reporting convention is not uniform; on its own peak MobileNetV3-Small is 7.6 points behind the best, not the 9.2 the text states.
+
+## Moderate Issues
+
+### M1: Data-availability DOI is still a placeholder
+- **Type**: presentation
+- **Source**: [Script] via `pre_submission_readiness`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `data-availability-doi-is-still-a-placeholder`
+- **Quote Verified**: yes
+- **Quote**: `https://doi.org/PENDING-ZENODO-DOI`
+- **Explanation**: The journal applies Option C research-data rules, which require the data and code to be deposited, cited and linked. The manuscript's own header comment and README_SUBMISSION.md both flag this as the outstanding author action. Editorial Manager will not clear the submission with the placeholder in place.
+
+### M2: 'Averaged over the four deployable tiers' mislabels a min-max over individual cells
+- **Type**: overclaim
+- **Source**: [Script] via `notation_and_numeric_consistency`
+- **Confidence**: high
+- **Section**: abstract
+- **Related Sections**: abstract
+- **Root Cause Key**: `'averaged-over-the-four-deployable-tiers'-mislabels-a-min-ma`
+- **Quote Verified**: yes
+- **Quote**: `Averaged over the four deployable tiers, they diagnose`
+- **Explanation**: 2.2x is MobileCLIP2-S2 at configuration A (13.65% / 6.25%) and 13.9x is MobileCLIP-B at configuration C (27.27% / 1.96%) - the minimum and maximum over individual encoder x configuration cells for the grounded strategy. Averaged over the four tiers the range is 3.4x to 12.2x. The same phrasing appears in the abstract, Contribution 1 and the Conclusion.
+
+### M3: 'The 11.4 M tier alone spans 2.9-11.3x' matches no strategy in the released data
+- **Type**: numeric_error
+- **Source**: [Script] via `notation_and_numeric_consistency`
+- **Confidence**: high
+- **Section**: abstract
+- **Related Sections**: abstract
+- **Root Cause Key**: `'the-11.4-m-tier-alone-spans-2.9-11.3x'-matches-no-strategy-`
+- **Quote Verified**: yes
+- **Quote**: `the 11.4 M tier alone spans 2.9–`
+- **Explanation**: MobileCLIP2-S0's accuracy-over-chance ratios across configurations A, B and C are: bare 2.21-10.32x, crude 1.90-7.97x, rich 4.17-9.86x, grounded 2.82-11.04x. Neither endpoint of '2.9-11.3x' is reproducible from zeroshot_eval_{A,B,C}.json under any descriptor strategy.
+
+### M4: 'Fine-grained cross-crop top-1 is modest (17-29%)' excludes the paper's own lowest cell
+- **Type**: selective_reporting
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `'fine-grained-cross-crop-top-1-is-modest-(17-29%)'-excludes-`
+- **Quote Verified**: yes
+- **Quote**: `modest (17–29%); we lead with top-5 and the margin-ranked`
+- **Explanation**: Across the four deployable tiers and three configurations the grounded top-1 spans 13.7-28.6%. The 13.7% figure (MobileCLIP2-S2 at configuration A) is printed in both Table 1 and Table 2. The range as stated starts four points above the paper's own worst result, and it appears in the paragraph headed 'Honesty on absolutes'.
+
+### M5: Section 6 says no variance estimates are reported while Section 4.3 reports several
+- **Type**: internal_contradiction
+- **Source**: [LLM] via `self_standard_consistency`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `section-6-says-no-variance-estimates-are-reported-while-sect`
+- **Quote Verified**: yes
+- **Quote**: `out bootstrap intervals we report no variance estimates`
+- **Explanation**: Section 4.3 reports seven generation seeds, per-encoder seed-to-seed standard errors ('between 1.3 and 2.6 standard errors of the seed-to-seed noise') and a 95% confidence interval over encoders ([+1.70, +2.22]). Section 6 states that apart from the leave-one-crop-out bootstrap no variance estimates are reported. One of the two statements has to be withdrawn.
+
+### M6: The 0.15-point reproducibility claim is not supported by anything in the release
+- **Type**: reproducibility
+- **Source**: [Script] via `evaluation_fairness_and_reproducibility`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `the-0.15-point-reproducibility-claim-is-not-supported-by-any`
+- **Quote Verified**: yes
+- **Quote**: `within 0.15 percentage points.`
+- **Explanation**: The only other configuration-C record in the repository, run_2026-09-01_reference.md, differs from the current result JSONs by 0.1-0.6 points per encoder (MobileCLIP2-S0 grounded 21.0% against 21.6%, MobileCLIP-S1 23.5% against 24.0%, MobileCLIP-B 26.9% against 27.3%), and the top-5 and AURC columns differ similarly. That file itself says 'A disagreement is itself worth investigating'. Either identify the two runs the 0.15-point figure refers to and release both, or drop the claim.
+
+### M7: The released audit trail does not reconcile with the Limitations provenance counts
+- **Type**: reproducibility
+- **Source**: [Script] via `evaluation_fairness_and_reproducibility`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `the-released-audit-trail-does-not-reconcile-with-the-limitat`
+- **Quote Verified**: yes
+- **Quote**: `the per-URL audit trail is released`
+- **Explanation**: SOURCE_CHECKLIST.md contains 175 URLs, every one of them marked '[not checked]', with 99 'model-recalled' markers and 35 'page-verified' markers. The Limitations counts (156 filled of 217, 112 carrying a quote, 40 with at least one page-verified field, 16 fully page-verified, 47 held-out records of which 23 verified) are record-indexed, while the released checklist is URL-indexed, so a reader cannot reproduce any of them. Auditability is the paper's stated differentiator, so this is the one artifact that has to reconcile.
+
+### M8: 'Flat with size' is applied to spreads larger than effects the paper treats as meaningful
+- **Type**: self_standard_inconsistency
+- **Source**: [LLM] via `self_standard_consistency`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `'flat-with-size'-is-applied-to-spreads-larger-than-effects-t`
+- **Quote Verified**: yes
+- **Quote**: `accuracy is flat from 11 M to 300 M —`
+- **Explanation**: In Figure 1 two models of near-identical size differ by 8.5 points (MobileCLIP2-B 17.1% against ViT-B-16-SigLIP2 25.6% at ~86-93 M). In Table 1 at configuration C the grounded column spans 21.6-28.4% across tiers. The paper calls this flat while treating +1.96 points as 'real' and a 4.3-point gap as attributable to 'training regime, not architecture'. The defensible claim is that size does not predict accuracy - not that accuracy is flat.
+
+### M9: Figure 1 is measured on the 17-class pilot protocol and neither its caption nor Section 4.1 says so
+- **Type**: presentation
+- **Source**: [Script] via `evaluation_fairness_and_reproducibility`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `figure-1-is-measured-on-the-17-class-pilot-protocol-and-neit`
+- **Quote Verified**: yes
+- **Quote**: `parameters, and the efficiency curve is essentially flat from`
+- **Explanation**: Figure 1's y-axis reads 'cross-crop zero-shot accuracy (17 classes)' and its chance line is 5.9%, i.e. the pilot set, not the nested splits. Section 4.1 joins a nested-split sentence to it with 'and', and the caption mentions only a '27-fold parameter range'. Only Figure 3's caption uses the word 'pilot'. The same paragraph is careful to label Protocol P for the distillation result, so the omission is inconsistent with the paper's own practice.
+
+### M10: Figure 5's caption is contradicted by Table 1 at configuration B
+- **Type**: internal_contradiction
+- **Source**: [Script] via `notation_and_numeric_consistency`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `figure-5's-caption-is-contradicted-by-table-1-at-configurati`
+- **Quote Verified**: yes
+- **Quote**: `hand-curated strategy leads only at the smallest.`
+- **Explanation**: At configuration B the hand-curated bank beats source-grounded text on three of the four deployable encoders: 23.3% against 20.5% (MobileCLIP2-S0), 24.8% against 19.4% (MobileCLIP2-S2) and 28.4% against 25.3% (MobileCLIP-B). It loses only on MobileCLIP-S1. 'Leads only at the smallest' is therefore false at the middle scale.
+
+### M11: INT8 is recommended for deployment without any INT8 accuracy measurement
+- **Type**: unsupported_claim
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `int8-is-recommended-for-deployment-without-any-int8-accuracy`
+- **Quote Verified**: yes
+- **Quote**: `For transformer encoders it is both.`
+- **Explanation**: findings_log.md records: 'Calibration used random tensors - valid for latency; an INT8 accuracy claim needs --calib-dir with real crop images.' The paper reports INT8 latency and size and then issues a deployment rule, but never measures or mentions INT8 accuracy, and never states that calibration used random tensors. For a paper whose contribution is deployability, a quantisation recommendation without an accuracy check is an unsupported recommendation.
+
+### M12: Section 4.2's bake-off conclusion is drawn from a pilot ranking the authors' own log calls noisy, and reverses on the main protocol
+- **Type**: overclaim
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `section-4.2's-bake-off-conclusion-is-drawn-from-a-pilot-rank`
+- **Quote Verified**: yes
+- **Quote**: `and beats the larger 21.5 M model`
+- **Explanation**: The bake-off runs on the 17-class pilot set (Figure 3's caption says so; Section 4.2 does not). findings_log.md run 8 records 'lightweight ~22-29% (noisy ranking)' and also has MobileCLIP2-S2 (35.8 M, 28.7%) above MobileCLIP2-S0 (11.4 M, 26.9%), which the paper does not mention. On the main nested protocol the ordering reverses outright: with grounded descriptors MobileCLIP-S1 (21.5 M) beats MobileCLIP2-S0 (11.4 M) at all three configurations (28.6/25.6/24.0 against 17.6/20.5/21.6). The '86% of the 92.9 M reference' figure is likewise pilot-specific; at configuration C it is 21.6/28.4 = 76%.
+
+### M13: Section 4.5 compares 82.2% and 9.3% across two different label spaces
+- **Type**: confound
+- **Source**: [Script] via `notation_and_numeric_consistency`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `section-4.5-compares-82.2%-and-9.3%-across-two-different-lab`
+- **Quote Verified**: yes
+- **Quote**: `9.3% for the same encoder used zero-shot on its own seen`
+- **Explanation**: 82.2% is probe_seen_C.json on 166 seen classes. 9.3% is run_all_train_seen_lw11.json (seen_zeroshot_acc = 0.0934) on 80 seen classes. make_figures.py:71-73 states the reason in a comment: 'Read from the 80-class run, which is the only config with all three quantities measured (probe_seen_C.json has no seen-zero-shot column).' The sentence presents the pair as the same encoder on the same seen classes. The matched pair inside that file is 67.2% against 9.3%.
+
+### M14: The SCOLD result is recorded as invalid in the project log but asserted as a finding in Related Work
+- **Type**: internal_contradiction
+- **Source**: [Script] via `claims_vs_evidence`
+- **Confidence**: high
+- **Section**: related_work
+- **Related Sections**: related_work
+- **Root Cause Key**: `the-scold-result-is-recorded-as-invalid-in-the-project-log-b`
+- **Quote Verified**: yes
+- **Quote**: `transfer under our descriptor protocol (Section 4.2).`
+- **Explanation**: findings_log.md run 8: 'SCOLD loaded (class LVL) but 5.3% - adapter issue, not valid (RoBERTa from base; preprocess mismatch)'. Section 4.2 does disclaim it ('our wrapper for one domain model is a best-effort load ... we do not rest any claim on it'), but the Related Work sentence and Figure 3's caption ('The biological and leaf-disease foundation models fall at or below chance under a descriptor protocol') both state it flatly. A reader meets the assertion two pages before the disclaimer.
+
+## Minor Issues
+
+### M1: Abstract is 325 words against the journal's 250-word guidance
+- **Type**: presentation
+- **Source**: [Script] via `pre_submission_readiness`
+- **Confidence**: high
+- **Section**: abstract
+- **Related Sections**: abstract
+- **Root Cause Key**: `abstract-is-325-words-against-the-journal's-250-word-guidanc`
+- **Quote Verified**: yes
+- **Quote**: `Cloud vision–language models diagnose plant disease accurately but bill per query and need`
+- **Explanation**: The abstract environment in main.tex runs to 325 words. Elsevier's guide for this journal asks for no more than 250. Trimming is also the natural place to add the 41-class qualifier that the sourcing claim needs.
+
+### M2: Page footers on the figure pages read 'Page 9 of 8' and 'Page 10 of 8'
+- **Type**: presentation
+- **Source**: [Script] via `pre_submission_readiness`
+- **Confidence**: high
+- **Section**: discussion
+- **Related Sections**: discussion
+- **Root Cause Key**: `page-footers-on-the-figure-pages-read-'page-9-of-8'-and-'pag`
+- **Quote Verified**: yes
+- **Quote**: `Page 9 of 8`
+- **Explanation**: The last-page counter is resolved before the float pages carrying Figures 1-10 are emitted, so the three trailing pages number themselves beyond the declared total.
+
+### M3: Table 6's caption exposes an internal checkpoint tag
+- **Type**: presentation
+- **Source**: [Script] via `pre_submission_readiness`
+- **Confidence**: high
+- **Section**: experiment
+- **Related Sections**: experiment
+- **Root Cause Key**: `table-6's-caption-exposes-an-internal-checkpoint-tag`
+- **Quote Verified**: yes
+- **Quote**: `Leave-one-crop-out on MobileCLIP2-S0/dfndr2b (78 classes,`
+- **Explanation**: 'dfndr2b' is the internal pretrained-weights tag, not a model name a reader can act on. It appears only here; every other table names the model plainly.
+
+### M4: Twenty references, none from the target journal, for a special-issue submission
+- **Type**: literature_engagement
+- **Source**: [LLM] via `prior_art_and_novelty_grounding`
+- **Confidence**: high
+- **Section**: related_work
+- **Related Sections**: related_work
+- **Root Cause Key**: `twenty-references,-none-from-the-target-journal,-for-a-speci`
+- **Quote Verified**: yes
+- **Quote**: `Supervised`
+- **Explanation**: The bibliography is complete and clean (20 entries, all cited, none orphaned), but it is thin for a Computers and Electronics in Agriculture special issue, the Related Work section runs to about one column, and there is no citation to the target journal itself. Only two entries (Bouacida et al. 2025; Mohanty et al. 2016) sit in the plant-pathology or agricultural-engineering literature at all. An editor screening for fit will notice.
+
+## Decision Signals
+
+- **Committee Score**: 4.0/10
+- **Editor Verdict**: Desk Reject
+- **Reviewer Recommendation**: Reject
+- **Issue Bundle**: 11 major / 14 moderate / 4 minor
+
+## Revision Roadmap
+
+### Priority 2 --- Strongly Recommended
+
+- [ ] Cross-section numeric consistency should be reconciled ([LLM]; abstract)
+- [ ] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is... ([Script]; abstract)
+- [ ] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is... ([Script]; discussion)
+- [ ] Comparison protocol should make fairness assumptions explicit ([LLM]; method)
+- [ ] Novelty claim should be grounded against the closest prior work ([LLM]; related_work)
+- [ ] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is... ([Script]; unknown)
+
+### Priority 3 --- Optional Improvements
+
+- [ ] Conclusion should close the loop on the paper's strongest claims ([LLM]; discussion)

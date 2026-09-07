@@ -14,5 +14,5 @@ $\alpha$ & Seen $\uparrow$ & Unseen zero-shot $\uparrow$ \\
 1.0 (naive fine-tune) & 81.5\% & 16.4\% \\
 \bottomrule
 \end{tabular}
-\begin{flushleft}\footnotesize $\alpha=0$ reproduces the frozen baseline, validating the interpolation. $\alpha=1$ is naive fine-tuning; here it still retains 8.4$\times$ chance on unseen crops, so the dial trades cross-crop transfer for seen accuracy rather than destroying it. $\alpha=1.00$ maximises the sum of the two columns.\end{flushleft}
+\begin{flushleft}\footnotesize $\alpha=0$ reproduces this sweep's own frozen probe (58.8\%), validating the interpolation. That probe is measured on the 200-image-per-class subsample used here, not on the full seen split of Table~\ref{tab:seen}. $\alpha=1$ is naive fine-tuning; here it still retains 8.4$\times$ chance on unseen crops, so the dial trades cross-crop transfer for seen accuracy rather than destroying it. $\alpha=1.00$ maximises the sum of the two columns.\end{flushleft}
 \end{table}

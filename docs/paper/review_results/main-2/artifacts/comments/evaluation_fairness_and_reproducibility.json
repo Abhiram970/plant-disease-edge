@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Comparison protocol should make fairness assumptions explicit",
+    "quote": "SigLIP 2: Multilingual vision-language encoders with improved semantic understanding, localization, and dense features.",
+    "explanation": "Comparative evaluation language was detected. Deep review should verify that baseline tuning, data splits, and reporting conventions are described symmetrically.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "medium",
+    "source_kind": "llm",
+    "source_section": "method",
+    "related_sections": [
+      "method",
+      "experiment"
+    ],
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false
+  }
+]

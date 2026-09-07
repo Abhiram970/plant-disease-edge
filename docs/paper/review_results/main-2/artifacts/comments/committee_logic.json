@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Conclusion should close the loop on the paper's strongest claims",
+    "quote": "In contrast, our descriptors are source- grounded and therefore auditable, compressed to the edge, and evaluated for cross-crop agricultural transfer rather than general retrieval.",
+    "explanation": "A closure claim appears in the discussion/conclusion. Verify that it matches the limitations, experimental scope, and prior-art positioning established earlier in the paper.",
+    "comment_type": "missing_information",
+    "severity": "minor",
+    "confidence": "medium",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion",
+      "introduction",
+      "results"
+    ],
+    "root_cause_key": "conclusion-should-close-the-loop-on-the-paper-s-strongest-claims",
+    "review_lane": "committee_logic",
+    "gate_blocker": false,
+    "quote_verified": false
+  }
+]

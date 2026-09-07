@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Cross-section numeric consistency should be reconciled",
+    "quote": "First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at 2.2–13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat across that range.",
+    "explanation": "Multiple sections contain numeric claims. Confirm that the same quantities reconcile across main text, tables, and appendix material.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "medium",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "discussion",
+      "method"
+    ],
+    "review_lane": "notation_and_numeric_consistency",
+    "gate_blocker": false
+  }
+]

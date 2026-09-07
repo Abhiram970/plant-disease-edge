@@ -75,10 +75,15 @@ HYBRID = {"seen_trained": _h.get("seen_probe_acc", 0.672),
 HYBRID_N = (_h.get("seen_classes", 80), _h.get("unseen_classes", 17))
 
 # ---- EXP3 WiSE-FT sweep (MobileCLIP2-S0): (alpha, seen, unseen) ----
-# FULL-data run (166 seen classes, 55,981 images) — supersedes the 80-class pilot.
-_w = _load("run_all_exp3_lw11_full.json") or {}
+# READ wiseft.json, NOT run_all_exp3_lw11_full.json. The latter is the retired 17-unseen-class
+# pilot; its own successor records the retirement in wiseft.json's `note` field. Pointing the
+# figure at the pilot while tab_wiseft read the current file shipped a figure and a table that
+# were different experiments with opposite recommendations -- the figure annotated alpha=0.5 as
+# the best point and its caption said fine-tuning "nearly halves unseen accuracy", both of which
+# the current data contradict.
+_w = _load("wiseft.json") or _load("run_all_exp3_lw11_full.json") or {}
 WISEFT = ([(s["alpha"], s["seen"], s["unseen"]) for s in _w["sweep"]] if _w.get("sweep")
-          else [(0.0, 0.826, 0.170), (0.5, 0.877, 0.163), (1.0, 0.903, 0.088)])
+          else [(0.0, 0.590, 0.216), (0.5, 0.603, 0.155), (1.0, 0.815, 0.164)])
 WISEFT_N = (_w.get("seen_classes", 166), _w.get("unseen_classes", 51))
 
 # ---- descriptor ablation: bare/crude/rich/grounded per model, at all three held-out scales ----
