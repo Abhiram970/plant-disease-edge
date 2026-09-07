@@ -51,6 +51,11 @@
 }
 %% ----------------------------------------------------------------
 
+%% Keep floats inside the section that discusses them. Without this a float that cannot
+%% place drifts arbitrarily far forward; \FloatBarrier at each section boundary drains the
+%% queue instead, so a figure can never appear pages away from its callout.
+\usepackage[section]{placeins}
+
 \graphicspath{{../figures/}}
 
 \begin{document}
@@ -68,6 +73,16 @@
 \setcounter{topnumber}{3}
 \setcounter{bottomnumber}{2}
 \setcounter{totalnumber}{4}
+
+%% The dbl* family governs STARRED (full-width) floats in a two-column document, and is
+%% separate from the parameters above. Leaving it at the class default is why the first
+%% compiled proof still stranded every figure on pages 9-11 even after the single-column
+%% parameters were relaxed: LaTeX must emit floats in source order, so one unplaceable
+%% figure* blocks every figure behind it for the rest of the document.
+\renewcommand{\dbltopfraction}{0.85}
+\renewcommand{\dblfloatpagefraction}{0.6}
+\setcounter{dbltopnumber}{2}
+
 
 \shorttitle{Compact VLMs for cross-crop plant-disease diagnosis at the edge}
 \shortauthors{Abhiram P.V. et al.}
@@ -112,8 +127,8 @@ connectivity, suiting neither smallholder nor in-field use. The harder obstacle:
 disease on a crop absent from its training set. We ask how small a deployable model can
 be while still diagnosing unseen crops, by matching a leaf image to symptom descriptions written by a
 large language model and grounded in cited sources. Using the SAGE crop-disease dataset and frozen compact contrastive language--image
-pre-training encoders, we report four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at
-2.2--13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat across that range. Second, descriptor authoring is the central lever:
+encoders, we report four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at
+2.2--13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat over that 7.6-fold parameter range. Second, descriptor authoring is the central lever:
 source-grounded text improves from 21.5\% to 23.9\% as the unseen label space triples. A matched
 ungrounded control isolates sourcing from mere per-class distinctness: requiring a citable source is
 worth $+1.96$ points on average and helps every encoder, so auditability is free. Third, an abstain gate makes top-1 field-useful: grounded top-5 reaches 60--77\% on 16 unseen
@@ -338,8 +353,16 @@ difference, the mean, and a confidence interval over encoders.
 %% placeholder fix). Previous values 17.0-24.2 / 22.2-29.1 predated both that fix and the
 %% matcher fix.
 Across the nested splits (Protocol N) the four deployable encoders span only 19.3--24.6\% (rich)
-and 21.6--27.3\% (grounded) at configuration C despite a 7.6-fold spread in parameters, and the efficiency curve is
-essentially flat from 11\,M to 300\,M (Fig.~\ref{fig:eff}). Model size is not the bottleneck; the
+and 21.6--27.3\% (grounded) at configuration C despite a 7.6-fold spread in parameters, %% CLARIFIED 2026-09-08. "flat from 11 M to 300 M" sat immediately after a clause about the
+%% four DEPLOYABLE encoders (11.4-86.3 M), so the 300 M looked unsupported. It is supported --
+%% fig:eff plots ten encoders including MobileCLIP2-L-14 (304 M) and S4 (322 M) -- but the
+%% sentence has to say that the two halves describe different populations.
+and the same absence of a trend holds over a
+wider survey: across ten public encoders spanning 11--322\,M, the largest is only 1.1 points above
+the smallest despite $28\times$ the parameters, and accuracy does not track size (Spearman
+$\rho = 0.32$; Fig.~\ref{fig:eff}). The 8.5-point spread across that survey is driven by
+pretraining recipe rather than capacity: the two variants of the same 86\,M architecture differ by
+4.8 points. Model size is not the bottleneck; the
 pretrained alignment is the asset. Attempts to \emph{train} a small model to learn this alignment fail
 --- on the earlier 17-class pilot set (Protocol P, not comparable with the nested splits above)
 a 5.5\,M student distilled from scratch reaches only 11.0\% against 5.9\% chance, versus 19.9\%
@@ -549,10 +572,20 @@ the trend rather than any single interior point.
 %% NOT mixed in: the same architecture moved up to 1.49 pp between builds
 %% (convnextv2_tiny 85.56 -> 87.05), which is larger than several claims made here.
 %% 4 epochs, not 8 -- the logged curves were flat after epoch 3.
+%% PROTOCOL ADDED 2026-09-08. The draft claimed the CNNs beat the frozen probe by 7.1 points
+%% without stating optimiser, learning rate, batch size or augmentation anywhere, so a reviewer
+%% could not tell whether the baselines were simply under-trained. Values read from
+%% scripts/supervised_baseline.py and the supervised_*.json files, which record batch=96,
+%% epochs=4 and img_size=224 identically for all fourteen architectures.
 Fourteen supervised baselines --- twelve convolutional networks and two hybrid
-convolution--transformer models --- spanning 1.7--42.8\,M parameters, all on the identical 166-class seen
-set for 4 epochs (Table~\ref{tab:cnn}; per-epoch curves in Fig.~\ref{fig:cnntrain}), are strong on known crops: the best reaches 89.3\%, about
-7.1 points above the frozen probe. We report this plainly, because for a fixed, known label set a
+convolution--transformer models --- spanning 1.7--42.8\,M parameters are trained on the identical
+166-class seen set under one protocol: ImageNet-pretrained initialisation, AdamW at a learning rate
+of $3\times10^{-4}$ with weight decay $10^{-4}$, batch size 96, 224\,px inputs with random horizontal
+flips, and 4 epochs (Table~\ref{tab:cnn}; per-epoch curves in Fig.~\ref{fig:cnntrain}). We fix the
+budget at 4 epochs because the logged curves are flat after the third: across the fourteen runs the
+mean gain from epoch 3 to epoch 4 is under one point, so the ranking is not an artefact of stopping
+early. They are strong on known crops: the best reaches 89.3\%, about 7.1 points above the frozen
+probe. We report this plainly, because for a fixed, known label set a
 conventional classifier is the better choice.
 
 %% REGENERATED 2026-09-08 from a COMPLETE 14-architecture sweep. Every earlier version of
