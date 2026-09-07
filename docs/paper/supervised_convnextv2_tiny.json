@@ -1,51 +1,31 @@
 {
   "arch": "convnextv2_tiny",
   "seen_classes": 166,
-  "seen_top1": 0.8705,
+  "seen_top1": 0.871,
   "params_M": 27.99,
-  "epochs": 8,
-  "batch": 32,
+  "epochs": 4,
+  "batch": 96,
   "img_size": 224,
   "epoch_log": [
     {
       "epoch": 0,
-      "loss": 0.804,
-      "test_top1": 0.8259
+      "loss": 0.8288,
+      "test_top1": 0.8277
     },
     {
       "epoch": 1,
-      "loss": 0.3794,
-      "test_top1": 0.8474
+      "loss": 0.3538,
+      "test_top1": 0.8606
     },
     {
       "epoch": 2,
-      "loss": 0.2708,
-      "test_top1": 0.8411
+      "loss": 0.2489,
+      "test_top1": 0.8671
     },
     {
       "epoch": 3,
-      "loss": 0.2296,
-      "test_top1": 0.8634
-    },
-    {
-      "epoch": 4,
-      "loss": 0.3713,
-      "test_top1": 0.8693
-    },
-    {
-      "epoch": 5,
-      "loss": 0.2498,
-      "test_top1": 0.8614
-    },
-    {
-      "epoch": 6,
-      "loss": 0.2219,
-      "test_top1": 0.8596
-    },
-    {
-      "epoch": 7,
-      "loss": 0.2045,
-      "test_top1": 0.8705
+      "loss": 0.2068,
+      "test_top1": 0.871
     }
   ],
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",

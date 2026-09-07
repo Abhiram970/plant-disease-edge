@@ -483,8 +483,21 @@ every scale), mirroring Section~\ref{sec:flat}; and accuracy \emph{rises} as the
 (by roughly three points from 97 to 166 classes, for every encoder), the opposite of the unseen side,
 because additional crops contribute proportionally more training images than decision difficulty. Each
 head is therefore deployed where its scaling behaviour is favourable. WiSE-FT (Table~\ref{tab:wiseft}, Fig.~\ref{fig:wiseft})
-turns the balance into one tunable knob: $\alpha=0.5$ buys 5.1 points of seen accuracy for only 0.7
-points of unseen, whereas naive fine-tuning nearly halves unseen accuracy.
+%% REGENERATED 2026-09-08 from the re-measured sweep (protocol_version 2, head warm-started from
+%% the frozen-feature fit). The previous sentence -- "alpha=0.5 buys 5.1 points of seen for only
+%% 0.7 of unseen, whereas naive fine-tuning nearly halves unseen" -- came from the legacy
+%% mixed-protocol file and is false on this data in BOTH clauses: alpha=0.5 buys +1.3 seen for
+%% -6.2 unseen, and alpha=1 does not halve unseen (16.4%, 8.4x chance). Read values from
+%% tab_wiseft.tex, never by hand.
+turns the balance into one tunable knob, though the knob is less forgiving than we previously
+reported. Interpolation is not free at the midpoint: $\alpha=0.5$ buys only 1.3 points of seen
+accuracy while costing 6.2 points of unseen. The dial pays off at its upper end, where $\alpha=0.75$
+gains 8.8 points of seen for 3.2 points of unseen, and full fine-tuning ($\alpha=1$) gains 22.5
+points of seen for 5.2 of unseen. Notably, even naive fine-tuning does not destroy cross-crop
+transfer here: unseen accuracy settles at 16.4\%, still 8.4 times chance, so on this task the dial
+trades transfer for seen accuracy rather than erasing it. The seen column carries a few points of
+noise because each $\alpha$ is scored with its own freshly fitted linear head, which is why we read
+the trend rather than any single interior point.
 
 \input{tab_seen}
 
@@ -522,20 +535,29 @@ set for 8 epochs (Table~\ref{tab:cnn}; per-epoch curves in Fig.~\ref{fig:cnntrai
 6.2 points above the frozen probe. We report this plainly, because for a fixed, known label set a
 conventional classifier is the better choice.
 
-%% CORRECTED 2026-09-01 against the 14 supervised_*.json files. This said "the best architecture has
-%% 4.4M parameters": the best is convnextv2_nano at 15.1M (88.64%), and the 4.4M
-%% mobilenetv3_large_100 is second by 0.08 pp. Rewritten to make the real -- and still strong --
-%% point: a 4.4M model ties the field to within a tenth of a point. The 1.8 pp ResNet-101 gap is
-%% 1.9 pp in the JSONs; the 6.3 pp span and the FastViT-SA12 control both check out exactly.
-Capacity is not the lever, and here the evidence is blunt: a 4.4\,M network finishes within 0.1 points
-of the best of the fourteen, while the largest, ResNet-101 at 42.8\,M, is 1.9 points \emph{worse} than
-that best; across a 25$\times$ range the family spans 6.3 points with no monotone trend. That reproduces Section~\ref{sec:flat} and the seen
-probe above in a third, fully supervised setting, making ``size is not the bottleneck'' a property of
-the task rather than an artefact of frozen backbones. The sharpest control is FastViT-SA12 (10.7\,M),
-the same architecture family as our image encoder (11.4\,M) at nearly the same size: 87.4\% trained
-supervised against 82.2\% as a frozen probe, so the 5.2-point difference is training regime, not
-architecture. Yet none of the fourteen has an output unit for an unseen class, so cross-crop accuracy
-is not merely low --- it is structurally undefined at any parameter count.
+%% REGENERATED 2026-09-08 from a COMPLETE 14-architecture sweep. Every earlier version of
+%% this paragraph was written against a partial sweep (3 of 14 in the last build), so all of
+%% its numbers moved. Verified directly against docs/paper/supervised_*.json:
+%%   best      efficientnet_b0   4.2M  89.27%
+%%   largest   resnet101        42.8M  86.73%   (2.5 pp WORSE than the best)
+%%   smallest  mobilenetv3_small 1.7M  80.05%   (span 9.2 pp over a 25x range)
+%%   fastvit_sa12 10.7M 86.54% supervised vs 82.2% as a frozen probe
+%% Spearman rank correlation between parameter count and accuracy is only +0.36.
+%% Do not hand-edit: read these off tab_supervised.tex, which is generated from the JSONs.
+Capacity is not the lever, and the complete sweep states it plainly: the strongest of the fourteen is
+EfficientNet-B0 at 4.2\,M with 89.3\%, which is ten times smaller than the largest model tested and
+beats it by 2.5 points --- ResNet-101, at 42.8\,M, reaches only 86.7\%. Across a 25$\times$ parameter
+range the family spans 9.2 points with no monotone trend, and the rank correlation between size and
+accuracy is weak (Spearman $\rho = 0.36$). That reproduces Section~\ref{sec:flat} and the seen probe
+above in a third, fully supervised setting, making ``size is not the bottleneck'' a property of the
+task rather than an artefact of frozen backbones. We do not claim capacity is irrelevant: the
+smallest network, MobileNetV3-Small at 1.7\,M, is 9.2 points behind the best, so there is a floor.
+The claim is narrower and better supported --- past a few million parameters, additional capacity
+buys little on this task. The sharpest control is FastViT-SA12 (10.7\,M), the same architecture
+family as our image encoder (11.4\,M) at nearly the same size: 86.5\% trained supervised against
+82.2\% as a frozen probe, so the 4.3-point difference is training regime, not architecture. Yet none
+of the fourteen has an output unit for an unseen class, so cross-crop accuracy is not merely low ---
+it is structurally undefined at any parameter count.
 
 %% REWRITTEN 2026-09-02 against the re-run's loco_s0_rich.json. The previous sentence claimed the
 %% held-out crops "fall in the middle of the per-crop range ... not a favourable split". On this
@@ -666,7 +688,7 @@ $\sim$5\,M tier would require weight-inherited distillation and is framed as fut
 A single frozen, compact, descriptor-driven VLM brings cross-crop plant-disease diagnosis to laptops
 and small devices at \$0/image: cross-crop zero-shot at 3.5--12.6$\times$ chance, averaged over the
 four deployable tiers, on 16--51 unseen
-classes, 82.2\% (87.7\% with WiSE-FT) on 166 known classes, grounded top-5 of 59--75\% at 16 unseen classes and 59--74\% at 51, a
+classes, 82.2\% on 166 known classes (89.3\% for the strongest supervised CNN), grounded top-5 of 59--75\% at 16 unseen classes and 59--74\% at 51, a
 margin-ranked abstain gate,
 %% Same conflation as the abstract, corrected: 17.4 ms is the FP32 build, 12.9 MB the INT8 one.
 and 17.4\,ms real-time CPU inference at 45.8\,MB, compressible to 12.9\,MB under INT8 if size

@@ -1,51 +1,31 @@
 {
   "arch": "tf_efficientnetv2_s",
   "seen_classes": 166,
-  "seen_top1": 0.8826,
+  "seen_top1": 0.8867,
   "params_M": 20.39,
-  "epochs": 8,
-  "batch": 32,
+  "epochs": 4,
+  "batch": 96,
   "img_size": 224,
   "epoch_log": [
     {
       "epoch": 0,
-      "loss": 0.7817,
-      "test_top1": 0.8486
+      "loss": 0.7935,
+      "test_top1": 0.8681
     },
     {
       "epoch": 1,
-      "loss": 0.2928,
-      "test_top1": 0.8857
+      "loss": 0.2678,
+      "test_top1": 0.8853
     },
     {
       "epoch": 2,
-      "loss": 0.2068,
-      "test_top1": 0.8892
+      "loss": 0.1706,
+      "test_top1": 0.8867
     },
     {
       "epoch": 3,
-      "loss": 0.166,
-      "test_top1": 0.8866
-    },
-    {
-      "epoch": 4,
-      "loss": 0.1467,
-      "test_top1": 0.8871
-    },
-    {
-      "epoch": 5,
-      "loss": 0.1313,
-      "test_top1": 0.8922
-    },
-    {
-      "epoch": 6,
-      "loss": 0.1189,
-      "test_top1": 0.8894
-    },
-    {
-      "epoch": 7,
-      "loss": 0.2464,
-      "test_top1": 0.8826
+      "loss": 0.1371,
+      "test_top1": 0.8867
     }
   ],
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",

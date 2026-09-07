@@ -1,31 +1,31 @@
 {
-  "arch": "resnet101",
+  "arch": "densenet121",
   "seen_classes": 166,
-  "seen_top1": 0.8673,
-  "params_M": 42.84,
+  "seen_top1": 0.8765,
+  "params_M": 7.12,
   "epochs": 4,
   "batch": 96,
   "img_size": 224,
   "epoch_log": [
     {
       "epoch": 0,
-      "loss": 1.5397,
-      "test_top1": 0.779
+      "loss": 1.0406,
+      "test_top1": 0.818
     },
     {
       "epoch": 1,
-      "loss": 0.4872,
-      "test_top1": 0.8466
+      "loss": 0.4272,
+      "test_top1": 0.8478
     },
     {
       "epoch": 2,
-      "loss": 0.3138,
-      "test_top1": 0.8582
+      "loss": 0.304,
+      "test_top1": 0.8591
     },
     {
       "epoch": 3,
-      "loss": 0.226,
-      "test_top1": 0.8673
+      "loss": 0.2328,
+      "test_top1": 0.8765
     }
   ],
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",

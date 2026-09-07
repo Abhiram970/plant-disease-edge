@@ -1,0 +1,416 @@
+6.9s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+6.9s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+6.9s 3 0.00s - to python to disable frozen modules.
+6.9s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+7.5s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.5s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.5s 7 0.00s - to python to disable frozen modules.
+7.5s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+10.0s 9 [launcher] cloning paper/draft-audit-2026-09-01 ...
+10.8s 10 [launcher] HEAD = 4a89207 runner: Carry checkpoints across sessions so --resume works between runs
+10.8s 11 [launcher] running RUN_FIXUP_cnns_wiseft.py
+10.8s 12 
+10.9s 13 
+10.9s 14 ==============================================================================
+10.9s 15 [bootstrap]  t+0.0 h  (11.0 h left)
+10.9s 16 ==============================================================================
+12.0s 17 [repo] HEAD = 4a89207 runner: Carry checkpoints across sessions so --resume works between runs
+166.5s 18 [data] 84,123 images  217 classes  18 crops
+171.9s 19 [gpu] 15.5 GB free of 15.6 GB VRAM
+171.9s 20 [manifest] building (needed by descriptors, WiSE-FT and the CNNs) ...
+172.8s 21 [manifest] wrote /kaggle/working/manifest.csv
+172.8s 22 [manifest] images by role: train_crop=69,919, heldout_crop=14,204
+172.8s 23 [manifest] kept crops: Apple=10000, Banana=2068, Bean=975, Coffee=1582, Corn=9403, Cotton=1661, Cucumber=2349, Grape=5342, Orange=1361, Peach=1107, Potato=2698, Rice=5031, Rose=4229, Soybean=11840, Strawberry=3647, Sugarcane=6646, Tomato=11083, Wheat=3101
+172.8s 24 [manifest] train_crop=['Apple', 'Corn', 'Grape', 'Potato', 'Rice', 'Rose', 'Soybean', 'Strawberry', 'Sugarcane', 'Tomato']
+172.8s 25 [manifest] heldout_crop=['Banana', 'Bean', 'Coffee', 'Cotton', 'Cucumber', 'Orange', 'Peach', 'Wheat']
+172.8s 26 
+172.8s 27 
+172.8s 28 ==============================================================================
+172.8s 29 [WiSE-FT alpha sweep (both sides under one protocol)]  t+0.0 h  (11.0 h left)
+172.8s 30 ==============================================================================
+2082.1s 31 [wiseft] MobileCLIP2-S0/dfndr2b  exp=C  device=cuda
+2082.1s 32 [sage] 84,123 imgs already on disk for ['Coffee', 'Orange', 'Peach', 'Cotton', 'Wheat', 'Bean', 'Banana', 'Cucumber'] -> skip download.
+2082.1s 33 [wiseft] seen split capped at 200/class: 69,919 -> 23,445 images
+2082.1s 34 [wiseft] seen: 23,445 imgs / 166 classes
+2082.1s 35 [wiseft] unseen: 14,204 imgs / 51 classes (chance 1.96%)
+2082.1s 36 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2082.1s 37 WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2082.1s 38 [wiseft] visual tower trainable params: 11.41 M
+2082.1s 39 [wiseft] warming up the head on frozen features (also the alpha=0 reference) ...
+2082.1s 40 [wiseft] frozen probe = 58.8% (alpha=0 must reproduce this; head warm-started from it)
+2082.1s 41 ft epoch 1/3  loss=1.600
+2082.1s 42 ft epoch 2/3  loss=0.837
+2082.1s 43 ft epoch 3/3  loss=0.575
+2082.1s 44 [wiseft] encoder moved: relative L2 distance = 0.28394
+2082.2s 45 alpha=0.00  seen=59.0%  unseen=21.6%
+2082.2s 46 alpha=0.25  seen=56.0%  unseen=14.8%
+2082.2s 47 alpha=0.50  seen=60.3%  unseen=15.5%
+2082.2s 48 alpha=0.75  seen=67.7%  unseen=18.5%
+2082.2s 49 alpha=1.00  seen=81.5%  unseen=16.4%
+2082.2s 50 [wiseft][WARNING] seen accuracy dips below BOTH endpoints at an intermediate alpha, which means the two weight sets are not linearly connected -- usually the same under-training cause as above.
+2082.2s 51 
+2082.2s 52 [wiseft] saved /kaggle/working/results/wiseft.json
+2082.2s 53 
+2082.2s 54 
+2082.2s 55 [wiseft] THIS RESULT HAS WARNINGS -- do not use the table until fixed:
+2082.2s 56 - seen accuracy dips below BOTH endpoints at an intermediate alpha, which means the two weight sets are not linearly connected -- usually the same under-training cause as above.
+2082.2s 57 
+2082.2s 58 ==============================================================================
+2082.2s 59 [supervised CNNs (14 architectures x 4 epochs)]  t+0.6 h  (10.4 h left)
+2082.2s 60 ==============================================================================
+2082.2s 61 
+2082.2s 62 --- cnn 1/14: mobilenetv3_small_100 --- t+0.6 h | VRAM 15.5/15.6 GB free
+2100.9s 63 FIT fp16
+2100.9s 64 
+2100.9s 65 [probe] mobilenetv3_small_100 @ batch 96: fits (fp16)
+2708.8s 66 [baseline] arch=mobilenetv3_small_100  69,919 seen imgs  166 classes  device=cuda
+2708.8s 67 [baseline] precision=fp16 + channels_last (sm_75)
+2708.8s 68 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+2708.8s 69 epoch 1/4  loss=1.165  test_top1=73.9%
+2708.8s 70 [ckpt] saved epoch 1 (best=73.9%)
+2708.8s 71 epoch 2/4  loss=0.579  test_top1=79.1%
+2708.8s 72 [ckpt] saved epoch 2 (best=79.1%)
+2708.8s 73 epoch 3/4  loss=0.449  test_top1=81.6%
+2708.8s 74 [ckpt] saved epoch 3 (best=81.6%)
+2708.8s 75 epoch 4/4  loss=0.371  test_top1=80.0%
+2708.8s 76 [ckpt] saved epoch 4 (best=81.6%)
+2708.8s 77 
+2708.8s 78 [baseline] seen top-1 = 80.0%  (unseen: structurally chance)
+2708.8s 79 [baseline] saved /kaggle/working/results/supervised_mobilenetv3_small_100.json
+2708.8s 80 
+2708.8s 81 [ok] mobilenetv3_small_100: seen_top1=80.05% (1.69M)
+2708.8s 82 [clear] VRAM now 15.5/15.6 GB free
+2708.8s 83 
+2708.8s 84 --- cnn 2/14: mobilenetv4_conv_small --- t+0.7 h | VRAM 15.5/15.6 GB free
+2727.5s 85 FIT fp16
+2727.5s 86 
+2727.5s 87 [probe] mobilenetv4_conv_small @ batch 96: fits (fp16)
+3303.1s 88 [baseline] arch=mobilenetv4_conv_small  69,919 seen imgs  166 classes  device=cuda
+3303.1s 89 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+3303.1s 90 [baseline] precision=fp16 + channels_last (sm_75)
+3303.1s 91 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+3303.1s 92 epoch 1/4  loss=1.194  test_top1=76.5%
+3303.1s 93 [ckpt] saved epoch 1 (best=76.5%)
+3303.1s 94 epoch 2/4  loss=0.535  test_top1=80.6%
+3303.1s 95 [ckpt] saved epoch 2 (best=80.6%)
+3303.1s 96 epoch 3/4  loss=0.393  test_top1=79.7%
+3303.1s 97 [ckpt] saved epoch 3 (best=80.6%)
+3303.1s 98 epoch 4/4  loss=0.316  test_top1=83.2%
+3303.1s 99 [ckpt] saved epoch 4 (best=83.2%)
+3303.1s 100 
+3303.1s 101 [baseline] seen top-1 = 83.2%  (unseen: structurally chance)
+3303.1s 102 [baseline] saved /kaggle/working/results/supervised_mobilenetv4_conv_small.json
+3303.1s 103 
+3303.1s 104 [ok] mobilenetv4_conv_small: seen_top1=83.15% (2.71M)
+3303.1s 105 [clear] VRAM now 15.5/15.6 GB free
+3303.1s 106 
+3303.1s 107 --- cnn 3/14: fastvit_t8 --- t+0.9 h | VRAM 15.5/15.6 GB free
+3331.9s 108 FIT fp16
+3331.9s 109 
+3331.9s 110 [probe] fastvit_t8 @ batch 96: fits (fp16)
+4255.9s 111 [baseline] arch=fastvit_t8  69,919 seen imgs  166 classes  device=cuda
+4255.9s 112 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+4255.9s 113 [baseline] precision=fp16 + channels_last (sm_75)
+4255.9s 114 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+4255.9s 115 epoch 1/4  loss=1.181  test_top1=78.8%
+4255.9s 116 [ckpt] saved epoch 1 (best=78.8%)
+4255.9s 117 epoch 2/4  loss=0.464  test_top1=79.1%
+4255.9s 118 [ckpt] saved epoch 2 (best=79.1%)
+4255.9s 119 epoch 3/4  loss=0.317  test_top1=83.9%
+4255.9s 120 [ckpt] saved epoch 3 (best=83.9%)
+4255.9s 121 epoch 4/4  loss=0.235  test_top1=82.5%
+4255.9s 122 [ckpt] saved epoch 4 (best=83.9%)
+4255.9s 123 
+4255.9s 124 [baseline] seen top-1 = 82.5%  (unseen: structurally chance)
+4255.9s 125 [baseline] saved /kaggle/working/results/supervised_fastvit_t8.json
+4255.9s 126 
+4255.9s 127 [ok] fastvit_t8: seen_top1=82.48% (3.38M)
+4256.0s 128 [clear] VRAM now 15.5/15.6 GB free
+4256.0s 129 
+4256.0s 130 --- cnn 4/14: efficientnet_b0 --- t+1.2 h | VRAM 15.5/15.6 GB free
+4275.1s 131 FIT fp16
+4275.1s 132 
+4275.1s 133 [probe] efficientnet_b0 @ batch 96: fits (fp16)
+4949.8s 134 [baseline] arch=efficientnet_b0  69,919 seen imgs  166 classes  device=cuda
+4949.8s 135 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+4949.8s 136 [baseline] precision=fp16 + channels_last (sm_75)
+4949.8s 137 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+4949.8s 138 epoch 1/4  loss=0.940  test_top1=84.6%
+4949.8s 139 [ckpt] saved epoch 1 (best=84.6%)
+4949.8s 140 epoch 2/4  loss=0.351  test_top1=87.8%
+4949.8s 141 [ckpt] saved epoch 2 (best=87.8%)
+4949.8s 142 epoch 3/4  loss=0.223  test_top1=87.7%
+4949.8s 143 [ckpt] saved epoch 3 (best=87.8%)
+4949.8s 144 epoch 4/4  loss=0.160  test_top1=89.3%
+4949.8s 145 [ckpt] saved epoch 4 (best=89.3%)
+4949.8s 146 
+4949.8s 147 [baseline] seen top-1 = 89.3%  (unseen: structurally chance)
+4949.8s 148 [baseline] saved /kaggle/working/results/supervised_efficientnet_b0.json
+4949.8s 149 
+4949.8s 150 [ok] efficientnet_b0: seen_top1=89.27% (4.22M)
+4949.9s 151 [clear] VRAM now 15.5/15.6 GB free
+4949.9s 152 
+4949.9s 153 --- cnn 5/14: mobilenetv3_large_100 --- t+1.4 h | VRAM 15.5/15.6 GB free
+4970.0s 154 FIT fp16
+4970.0s 155 
+4970.0s 156 [probe] mobilenetv3_large_100 @ batch 96: fits (fp16)
+5541.1s 157 [baseline] arch=mobilenetv3_large_100  69,919 seen imgs  166 classes  device=cuda
+5541.1s 158 [baseline] precision=fp16 + channels_last (sm_75)
+5541.1s 159 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+5541.1s 160 epoch 1/4  loss=0.947  test_top1=83.2%
+5541.1s 161 [ckpt] saved epoch 1 (best=83.2%)
+5541.1s 162 epoch 2/4  loss=0.363  test_top1=85.9%
+5541.1s 163 [ckpt] saved epoch 2 (best=85.9%)
+5541.1s 164 epoch 3/4  loss=0.232  test_top1=87.6%
+5541.1s 165 [ckpt] saved epoch 3 (best=87.6%)
+5541.1s 166 epoch 4/4  loss=0.172  test_top1=87.9%
+5541.1s 167 [ckpt] saved epoch 4 (best=87.9%)
+5541.1s 168 
+5541.1s 169 [baseline] seen top-1 = 87.9%  (unseen: structurally chance)
+5541.1s 170 [baseline] saved /kaggle/working/results/supervised_mobilenetv3_large_100.json
+5541.1s 171 
+5541.1s 172 [ok] mobilenetv3_large_100: seen_top1=87.87% (4.41M)
+5541.2s 173 [clear] VRAM now 15.5/15.6 GB free
+5541.2s 174 
+5541.2s 175 --- cnn 6/14: densenet121 --- t+1.5 h | VRAM 15.5/15.6 GB free
+5548.7s 176 FIT fp16
+5548.7s 177 
+5548.7s 178 [probe] densenet121 @ batch 96: fits (fp16)
+6623.6s 179 [baseline] arch=densenet121  69,919 seen imgs  166 classes  device=cuda
+6623.6s 180 [baseline] precision=fp16 + channels_last (sm_75)
+6623.6s 181 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+6623.6s 182 epoch 1/4  loss=1.041  test_top1=81.8%
+6623.6s 183 [ckpt] saved epoch 1 (best=81.8%)
+6623.6s 184 epoch 2/4  loss=0.427  test_top1=84.8%
+6623.6s 185 [ckpt] saved epoch 2 (best=84.8%)
+6623.6s 186 epoch 3/4  loss=0.304  test_top1=85.9%
+6623.6s 187 [ckpt] saved epoch 3 (best=85.9%)
+6623.6s 188 epoch 4/4  loss=0.233  test_top1=87.6%
+6623.6s 189 [ckpt] saved epoch 4 (best=87.6%)
+6623.6s 190 
+6623.6s 191 [baseline] seen top-1 = 87.6%  (unseen: structurally chance)
+6623.6s 192 [baseline] saved /kaggle/working/results/supervised_densenet121.json
+6623.6s 193 
+6623.6s 194 [ok] densenet121: seen_top1=87.65% (7.12M)
+6623.6s 195 [clear] VRAM now 15.5/15.6 GB free
+6623.7s 196 
+6623.7s 197 --- cnn 7/14: mobilenetv4_conv_medium --- t+1.8 h | VRAM 15.5/15.6 GB free
+6649.2s 198 FIT fp16
+6649.2s 199 
+6649.2s 200 [probe] mobilenetv4_conv_medium @ batch 96: fits (fp16)
+7231.9s 201 [baseline] arch=mobilenetv4_conv_medium  69,919 seen imgs  166 classes  device=cuda
+7231.9s 202 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+7231.9s 203 [baseline] precision=fp16 + channels_last (sm_75)
+7231.9s 204 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+7231.9s 205 epoch 1/4  loss=1.069  test_top1=80.6%
+7231.9s 206 [ckpt] saved epoch 1 (best=80.6%)
+7231.9s 207 epoch 2/4  loss=0.472  test_top1=83.2%
+7231.9s 208 [ckpt] saved epoch 2 (best=83.2%)
+7231.9s 209 epoch 3/4  loss=0.346  test_top1=83.9%
+7231.9s 210 [ckpt] saved epoch 3 (best=83.9%)
+7231.9s 211 epoch 4/4  loss=0.276  test_top1=84.9%
+7231.9s 212 [ckpt] saved epoch 4 (best=84.9%)
+7231.9s 213 
+7231.9s 214 [baseline] seen top-1 = 84.9%  (unseen: structurally chance)
+7231.9s 215 [baseline] saved /kaggle/working/results/supervised_mobilenetv4_conv_medium.json
+7231.9s 216 
+7231.9s 217 [ok] mobilenetv4_conv_medium: seen_top1=84.90% (8.65M)
+7232.0s 218 [clear] VRAM now 15.5/15.6 GB free
+7232.0s 219 
+7232.0s 220 --- cnn 8/14: fastvit_sa12 --- t+2.0 h | VRAM 15.5/15.6 GB free
+7258.3s 221 FIT fp16
+7258.3s 222 
+7258.3s 223 [probe] fastvit_sa12 @ batch 96: fits (fp16)
+8516.2s 224 [baseline] arch=fastvit_sa12  69,919 seen imgs  166 classes  device=cuda
+8516.2s 225 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+8516.2s 226 [baseline] precision=fp16 + channels_last (sm_75)
+8516.2s 227 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+8516.2s 228 epoch 1/4  loss=0.965  test_top1=82.8%
+8516.2s 229 [ckpt] saved epoch 1 (best=82.8%)
+8516.2s 230 epoch 2/4  loss=0.355  test_top1=85.1%
+8516.2s 231 [ckpt] saved epoch 2 (best=85.1%)
+8516.2s 232 epoch 3/4  loss=0.225  test_top1=85.8%
+8516.2s 233 [ckpt] saved epoch 3 (best=85.8%)
+8516.2s 234 epoch 4/4  loss=0.169  test_top1=86.5%
+8516.2s 235 [ckpt] saved epoch 4 (best=86.5%)
+8516.2s 236 
+8516.2s 237 [baseline] seen top-1 = 86.5%  (unseen: structurally chance)
+8516.2s 238 [baseline] saved /kaggle/working/results/supervised_fastvit_sa12.json
+8516.2s 239 
+8516.2s 240 [ok] fastvit_sa12: seen_top1=86.54% (10.73M)
+8516.2s 241 [clear] VRAM now 15.5/15.6 GB free
+8516.2s 242 
+8516.2s 243 --- cnn 9/14: convnextv2_nano --- t+2.4 h | VRAM 15.5/15.6 GB free
+8534.8s 244 FIT fp16
+8534.8s 245 
+8534.8s 246 [probe] convnextv2_nano @ batch 96: fits (fp16)
+10116.0s 247 [baseline] arch=convnextv2_nano  69,919 seen imgs  166 classes  device=cuda
+10116.0s 248 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+10116.0s 249 [baseline] precision=fp16 + channels_last (sm_75)
+10116.0s 250 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+10116.0s 251 epoch 1/4  loss=0.898  test_top1=83.6%
+10116.0s 252 [ckpt] saved epoch 1 (best=83.6%)
+10116.0s 253 epoch 2/4  loss=0.363  test_top1=84.9%
+10116.0s 254 [ckpt] saved epoch 2 (best=84.9%)
+10116.0s 255 epoch 3/4  loss=0.256  test_top1=86.5%
+10116.0s 256 [ckpt] saved epoch 3 (best=86.5%)
+10116.0s 257 epoch 4/4  loss=0.198  test_top1=87.0%
+10116.0s 258 [ckpt] saved epoch 4 (best=87.0%)
+10116.0s 259 
+10116.0s 260 [baseline] seen top-1 = 87.0%  (unseen: structurally chance)
+10116.0s 261 [baseline] saved /kaggle/working/results/supervised_convnextv2_nano.json
+10116.0s 262 
+10116.0s 263 [ok] convnextv2_nano: seen_top1=86.99% (15.09M)
+10116.1s 264 [clear] VRAM now 15.5/15.6 GB free
+10116.1s 265 
+10116.1s 266 --- cnn 10/14: regnety_040 --- t+2.8 h | VRAM 15.5/15.6 GB free
+10123.7s 267 FIT fp16
+10123.7s 268 
+10123.7s 269 [probe] regnety_040 @ batch 96: fits (fp16)
+11202.7s 270 [baseline] arch=regnety_040  69,919 seen imgs  166 classes  device=cuda
+11202.7s 271 [baseline] precision=fp16 + channels_last (sm_75)
+11202.7s 272 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+11202.7s 273 epoch 1/4  loss=0.994  test_top1=81.7%
+11202.7s 274 [ckpt] saved epoch 1 (best=81.7%)
+11202.7s 275 epoch 2/4  loss=0.447  test_top1=85.5%
+11202.7s 276 [ckpt] saved epoch 2 (best=85.5%)
+11202.7s 277 epoch 3/4  loss=0.333  test_top1=86.7%
+11202.7s 278 [ckpt] saved epoch 3 (best=86.7%)
+11202.7s 279 epoch 4/4  loss=0.269  test_top1=86.9%
+11202.7s 280 [ckpt] saved epoch 4 (best=86.9%)
+11202.7s 281 
+11202.7s 282 [baseline] seen top-1 = 86.9%  (unseen: structurally chance)
+11202.7s 283 [baseline] saved /kaggle/working/results/supervised_regnety_040.json
+11202.7s 284 
+11202.7s 285 [ok] regnety_040: seen_top1=86.91% (19.74M)
+11202.7s 286 [clear] VRAM now 15.5/15.6 GB free
+11202.7s 287 
+11202.7s 288 --- cnn 11/14: resnet50 --- t+3.1 h | VRAM 15.5/15.6 GB free
+11210.0s 289 FIT fp16
+11210.0s 290 
+11210.0s 291 [probe] resnet50 @ batch 96: fits (fp16)
+12049.4s 292 [baseline] arch=resnet50  69,919 seen imgs  166 classes  device=cuda
+12049.4s 293 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+12049.4s 294 [baseline] precision=fp16 + channels_last (sm_75)
+12049.4s 295 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+12049.4s 296 epoch 1/4  loss=1.506  test_top1=80.4%
+12049.4s 297 [ckpt] saved epoch 1 (best=80.4%)
+12049.5s 298 epoch 2/4  loss=0.482  test_top1=85.1%
+12049.5s 299 [ckpt] saved epoch 2 (best=85.1%)
+12049.5s 300 epoch 3/4  loss=0.315  test_top1=86.2%
+12049.5s 301 [ckpt] saved epoch 3 (best=86.2%)
+12049.5s 302 epoch 4/4  loss=0.228  test_top1=87.6%
+12049.5s 303 [ckpt] saved epoch 4 (best=87.6%)
+12049.5s 304 
+12049.5s 305 [baseline] seen top-1 = 87.6%  (unseen: structurally chance)
+12049.5s 306 [baseline] saved /kaggle/working/results/supervised_resnet50.json
+12049.5s 307 
+12049.5s 308 [ok] resnet50: seen_top1=87.58% (23.85M)
+12049.5s 309 [clear] VRAM now 15.5/15.6 GB free
+12049.5s 310 
+12049.5s 311 --- cnn 12/14: tf_efficientnetv2_s --- t+3.3 h | VRAM 15.5/15.6 GB free
+12060.9s 312 FIT fp16
+12060.9s 313 
+12060.9s 314 [probe] tf_efficientnetv2_s @ batch 96: fits (fp16)
+13137.1s 315 [baseline] arch=tf_efficientnetv2_s  69,919 seen imgs  166 classes  device=cuda
+13137.1s 316 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+13137.1s 317 [baseline] precision=fp16 + channels_last (sm_75)
+13137.1s 318 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+13137.1s 319 epoch 1/4  loss=0.794  test_top1=86.8%
+13137.1s 320 [ckpt] saved epoch 1 (best=86.8%)
+13137.1s 321 epoch 2/4  loss=0.268  test_top1=88.5%
+13137.1s 322 [ckpt] saved epoch 2 (best=88.5%)
+13137.1s 323 epoch 3/4  loss=0.171  test_top1=88.7%
+13137.1s 324 [ckpt] saved epoch 3 (best=88.7%)
+13137.1s 325 epoch 4/4  loss=0.137  test_top1=88.7%
+13137.1s 326 [ckpt] saved epoch 4 (best=88.7%)
+13137.1s 327 
+13137.1s 328 [baseline] seen top-1 = 88.7%  (unseen: structurally chance)
+13137.1s 329 [baseline] saved /kaggle/working/results/supervised_tf_efficientnetv2_s.json
+13137.1s 330 
+13137.1s 331 [ok] tf_efficientnetv2_s: seen_top1=88.67% (20.39M)
+13137.1s 332 [clear] VRAM now 15.5/15.6 GB free
+13137.2s 333 
+13137.2s 334 --- cnn 13/14: convnextv2_tiny --- t+3.6 h | VRAM 15.5/15.6 GB free
+13156.1s 335 FIT fp16
+13156.1s 336 
+13156.1s 337 [probe] convnextv2_tiny @ batch 96: fits (fp16)
+15505.0s 338 [baseline] arch=convnextv2_tiny  69,919 seen imgs  166 classes  device=cuda
+15505.0s 339 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+15505.0s 340 [baseline] precision=fp16 + channels_last (sm_75)
+15505.0s 341 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+15505.0s 342 epoch 1/4  loss=0.829  test_top1=82.8%
+15505.0s 343 [ckpt] saved epoch 1 (best=82.8%)
+15505.0s 344 epoch 2/4  loss=0.354  test_top1=86.1%
+15505.0s 345 [ckpt] saved epoch 2 (best=86.1%)
+15505.0s 346 epoch 3/4  loss=0.249  test_top1=86.7%
+15505.0s 347 [ckpt] saved epoch 3 (best=86.7%)
+15505.0s 348 epoch 4/4  loss=0.207  test_top1=87.1%
+15505.0s 349 [ckpt] saved epoch 4 (best=87.1%)
+15505.0s 350 
+15505.0s 351 [baseline] seen top-1 = 87.1%  (unseen: structurally chance)
+15505.0s 352 [baseline] saved /kaggle/working/results/supervised_convnextv2_tiny.json
+15505.0s 353 
+15505.0s 354 [ok] convnextv2_tiny: seen_top1=87.10% (27.99M)
+15505.1s 355 [clear] VRAM now 15.5/15.6 GB free
+15505.1s 356 
+15505.1s 357 --- cnn 14/14: resnet101 --- t+4.3 h | VRAM 15.5/15.6 GB free
+15513.0s 358 FIT fp16
+15513.0s 359 
+15513.0s 360 [probe] resnet101 @ batch 96: fits (fp16)
+16792.2s 361 [baseline] arch=resnet101  69,919 seen imgs  166 classes  device=cuda
+16792.2s 362 [baseline] precision=fp16 + channels_last (sm_75)
+16792.2s 363 [baseline] train 55,981 / test 13,938  x 4 epochs ...
+16792.2s 364 epoch 1/4  loss=1.540  test_top1=77.9%
+16792.2s 365 [ckpt] saved epoch 1 (best=77.9%)
+16792.2s 366 epoch 2/4  loss=0.487  test_top1=84.7%
+16792.2s 367 [ckpt] saved epoch 2 (best=84.7%)
+16792.2s 368 epoch 3/4  loss=0.314  test_top1=85.8%
+16792.2s 369 [ckpt] saved epoch 3 (best=85.8%)
+16792.2s 370 epoch 4/4  loss=0.226  test_top1=86.7%
+16792.2s 371 [ckpt] saved epoch 4 (best=86.7%)
+16792.2s 372 
+16792.2s 373 [baseline] seen top-1 = 86.7%  (unseen: structurally chance)
+16792.2s 374 [baseline] saved /kaggle/working/results/supervised_resnet101.json
+16792.2s 375 
+16792.2s 376 [ok] resnet101: seen_top1=86.73% (42.84M)
+16792.3s 377 [clear] VRAM now 15.5/15.6 GB free
+16792.3s 378 
+16792.3s 379 [cnn] completed 14/14: ['mobilenetv3_small_100', 'mobilenetv4_conv_small', 'fastvit_t8', 'efficientnet_b0', 'mobilenetv3_large_100', 'densenet121', 'mobilenetv4_conv_medium', 'fastvit_sa12', 'convnextv2_nano', 'regnety_040', 'resnet50', 'tf_efficientnetv2_s', 'convnextv2_tiny', 'resnet101']
+16792.3s 380 
+16792.3s 381 ==============================================================================
+16792.3s 382 [regenerating tables and figures from the repaired results]  t+4.7 h  (6.3 h left)
+16792.3s 383 ==============================================================================
+16792.4s 384 /kaggle/working/pde/docs/paper/make_tex_tables.py:179: SyntaxWarning: invalid escape sequence '\,'
+16792.4s 385 f"({_small[1]:.1f}\,M) finishes within {_gap * 100:.1f} points of the best of "
+16792.4s 386 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_scale_study.tex
+16792.4s 387 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_abstain.tex
+16792.4s 388 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_seen.tex
+16792.4s 389 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_supervised.tex
+16792.4s 390 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_wiseft.tex
+16792.4s 391 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_edge.tex
+16792.4s 392 [tex] wrote /kaggle/working/pde/docs/paper/tex/tab_loco.tex
+16792.4s 393 
+16798.1s 394 figures written to /kaggle/working/pde/docs/paper/figures
+16798.1s 395 
+16798.1s 396 
+16798.1s 397 [bundle] /kaggle/working/pde_partfixup.zip  (0.01 MB, 16 files)
+16798.1s 398 [bundle] wall time 4.66 h
+16798.3s 399 
+16798.3s 400 Download:
+16798.3s 401 /kaggle/working/_pde_code/pde_partfixup.zip
+16798.3s 402 
+16798.3s 403 ==============================================================================
+16798.3s 404 [FIX-UP RUN DONE]  t+4.7 h  (6.3 h left)
+16798.3s 405 ==============================================================================
+16798.9s 406 
+16798.9s 407 [launcher] RUN_FIXUP_cnns_wiseft.py exited with code 0
+16798.9s 408 [launcher] bundle: /kaggle/working/pde_partfixup.zip  (0.01 MB)
+16801.3s 409 /usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+16801.3s 410 cells[i][c] = re.sub('\\\\\|', '|', cell)
+16801.5s 411 /usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+16801.5s 412 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+16802.1s 413 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+16802.5s 414 [NbConvertApp] Writing 204651 bytes to __notebook__.ipynb
+16804.8s 415 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+16805.6s 416 [NbConvertApp] Writing 519497 bytes to __results__.html

@@ -168,16 +168,20 @@ def tab_supervised():
             if _n >= 14 else
             f"Supervised CNN baselines on the identical seen set "
             f"({_n} of 14 architectures; the remainder had not completed at build time).")
-    # The parameter-count observation needs a spread of model sizes to mean anything, and it
-    # has to be checked rather than asserted: with three similarly sized nets the "largest is
-    # not the best" clause was simply false. Only emit it when the sweep is complete and the
-    # data actually support both halves.
+    # State the comparison that actually carries the claim. "The smallest finishes within
+    # 9.2 points of the best" is true but argues the WRONG way -- 9.2 points is a wide gap.
+    # What supports "size is not the bottleneck" is that the BEST network is one of the
+    # smallest: efficientnet_b0 at 4.2 M beats resnet101 at 42.8 M by 2.5 points. Both halves
+    # are computed and the sentence is emitted only when the data support it.
     _largest = max(rows, key=lambda r: r[1] or 0)
     _obs = ""
-    if _n >= 14 and _largest is not _best:
-        _obs = (f"Accuracy does not track parameter count: the smallest network here "
-                f"({_small[1]:.1f}\,M) finishes within {_gap * 100:.1f} points of the best of "
-                f"the {_n}, and the largest model is not the best. ")
+    if _n >= 14 and (_best[3] or 0) > (_largest[3] or 0):
+        _ratio = (_largest[1] or 0) / max(_best[1] or 1e-9, 1e-9)
+        _lead = ((_best[3] or 0) - (_largest[3] or 0)) * 100
+        _obs = ("Accuracy does not track parameter count: the strongest network is "
+                + _best[0].replace("_", "-") + " at %.1f\,M, " % _best[1]
+                + "which is %.0f$\\times$ smaller than the largest model here and beats " % _ratio
+                + "it by %.1f points. " % _lead)
     write("tab_supervised.tex", wrap(
         _cap,
         "tab:cnn", "lrrrr",

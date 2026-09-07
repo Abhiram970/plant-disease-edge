@@ -130,9 +130,20 @@ diagnosis, since no output neuron exists for an unseen class:
 
 | Architecture | Params | Classes | Epochs | Batch | Seen top-1 | Unseen |
 |---|---|---|---|---|---|---|
-| tf-efficientnetv2-s | 20.4 M | 166 | 8 | 32 | **88.3%** | 0 (structural) |
-| resnet101 | 42.8 M | 166 | 8 | 32 | **87.1%** | 0 (structural) |
-| convnextv2-tiny | 28.0 M | 166 | 8 | 32 | **87.1%** | 0 (structural) |
+| efficientnet-b0 | 4.2 M | 166 | 4 | 96 | **89.3%** | 0 (structural) |
+| tf-efficientnetv2-s | 20.4 M | 166 | 4 | 96 | **88.7%** | 0 (structural) |
+| mobilenetv3-large-100 | 4.4 M | 166 | 4 | 96 | **87.9%** | 0 (structural) |
+| densenet121 | 7.1 M | 166 | 4 | 96 | **87.6%** | 0 (structural) |
+| resnet50 | 23.9 M | 166 | 4 | 96 | **87.6%** | 0 (structural) |
+| convnextv2-tiny | 28.0 M | 166 | 4 | 96 | **87.1%** | 0 (structural) |
+| convnextv2-nano | 15.1 M | 166 | 4 | 96 | **87.0%** | 0 (structural) |
+| regnety-040 | 19.7 M | 166 | 4 | 96 | **86.9%** | 0 (structural) |
+| resnet101 | 42.8 M | 166 | 4 | 96 | **86.7%** | 0 (structural) |
+| fastvit-sa12 | 10.7 M | 166 | 4 | 96 | **86.5%** | 0 (structural) |
+| mobilenetv4-conv-medium | 8.7 M | 166 | 4 | 96 | **84.9%** | 0 (structural) |
+| mobilenetv4-conv-small | 2.7 M | 166 | 4 | 96 | **83.2%** | 0 (structural) |
+| fastvit-t8 | 3.4 M | 166 | 4 | 96 | **82.5%** | 0 (structural) |
+| mobilenetv3-small-100 | 1.7 M | 166 | 4 | 96 | **80.0%** | 0 (structural) |
 
 ## T5 — WiSE-FT: tuning the seen↔unseen trade-off (full data)
 

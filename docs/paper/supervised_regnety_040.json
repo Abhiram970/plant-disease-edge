@@ -1,31 +1,31 @@
 {
-  "arch": "resnet101",
+  "arch": "regnety_040",
   "seen_classes": 166,
-  "seen_top1": 0.8673,
-  "params_M": 42.84,
+  "seen_top1": 0.8691,
+  "params_M": 19.74,
   "epochs": 4,
   "batch": 96,
   "img_size": 224,
   "epoch_log": [
     {
       "epoch": 0,
-      "loss": 1.5397,
-      "test_top1": 0.779
+      "loss": 0.9943,
+      "test_top1": 0.8168
     },
     {
       "epoch": 1,
-      "loss": 0.4872,
-      "test_top1": 0.8466
+      "loss": 0.4472,
+      "test_top1": 0.8549
     },
     {
       "epoch": 2,
-      "loss": 0.3138,
-      "test_top1": 0.8582
+      "loss": 0.3328,
+      "test_top1": 0.8673
     },
     {
       "epoch": 3,
-      "loss": 0.226,
-      "test_top1": 0.8673
+      "loss": 0.2686,
+      "test_top1": 0.8691
     }
   ],
   "unseen_top1": "structurally 0 (no output neurons for unseen crops; chance at best)",

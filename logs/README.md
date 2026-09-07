@@ -1,7 +1,7 @@
 # Run logs — the reproducibility evidence trail
 
 Raw stdout from every experiment, committed so that any number in `docs/paper/` can be traced
-back to the run that produced it. 24 files, 264 KB total.
+back to the run that produced it. 25 files, 287 KB total.
 
 `*.log` is gitignored everywhere **except this folder** (`!logs/*.log` in `.gitignore`).
 
@@ -25,6 +25,7 @@ editing the table by hand.
 | `eval_expC_clean.log` | label-corrected zero-shot at scale C | `zeroshot_eval_C_clean.json` | 2 KB |
 | `exp1_output.log` | EXP1 encoder bake-off | `run_all_bakeoff.json`, `fig_bakeoff.png` | 11 KB |
 | `exp3_output.log` | EXP3 fine-tune + WiSE-FT | `run_all_exp3_lw11*.json`, `fig_wiseft.png` | 36 KB |
+| `fixup_run_2026-09-07.log` | repair session 2026-09-07: all 14 CNN baselines at fp16, and the WiSE-FT sweep re-measured with a warm-started head | `supervised_*.json`, `wiseft.json`, `tab_supervised`, `tab_wiseft` | 23 KB |
 | `loco_full.log` | leave-one-crop-out with bootstrap CIs | `loco_s0_rich.json`, `tab_loco` | 2 KB |
 | `metrics_expA.log` | abstention and top-5, scale A | `metrics_abstain_A.json`, `fig_riskcoverage.png` | 1 KB |
 | `metrics_expB.log` | abstention and top-5, scale B | `metrics_abstain_B.json`, `fig_riskcoverage.png` | 1 KB |

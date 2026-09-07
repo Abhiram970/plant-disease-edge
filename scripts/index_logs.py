@@ -40,6 +40,10 @@ DESC = [
      "`edge_benchmark.json`, `fig_edge_pareto.png`"),
     (re.compile(r"^loco"), "leave-one-crop-out with bootstrap CIs",
      "`loco_s0_rich.json`, `tab_loco`"),
+    (re.compile(r"^fixup_run_(\d{4}-\d{2}-\d{2})$"),
+     "repair session {g1}: all 14 CNN baselines at fp16, and the WiSE-FT sweep "
+     "re-measured with a warm-started head",
+     "`supervised_*.json`, `wiseft.json`, `tab_supervised`, `tab_wiseft`"),
     (re.compile(r"^morning_run_(\d{4}-\d{2}-\d{2})$"),
      "full session {g1}: paired Section 5.3 comparison, both control arms, "
      "probe, LOCO, abstention; CNN and WiSE-FT failures diagnosed here",
