@@ -19,12 +19,55 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{url}
+
+%% ---------------------------------------------------------------- typesetting
+%% Without these the cas-dc two-column measure is too narrow for this paper's
+%% vocabulary and TeX resolves it by crushing interword space: the compiled abstract
+%% ran words together ("frozencompactcontrastivelanguage-imagepre-trainingencoders")
+%% across 85 lines. The fix is to give the line-breaker somewhere else to put the slack.
+\usepackage[T1]{fontenc}          % proper hyphenation of accented/long words
+\usepackage[english]{babel}       % load English hyphenation patterns at all
+%% Guarded: if microtype is unavailable on the build host the document still
+%% compiles, just without the micro-typographic improvement.
+\IfFileExists{microtype.sty}{\usepackage[protrusion=true,expansion=true]{microtype}}{}
+
+%% Prefer a slightly loose line over a squeezed one, and allow a little extra
+%% stretch on paragraphs TeX cannot otherwise break.
+\tolerance=2000
+\emergencystretch=3em
+
+%% Hyphenation points TeX does not know. Entries here must be single words: a
+%% \hyphenation list cannot contain an explicit hyphen, so compounds such as
+%% "zero-shot" are handled by \hyp-style breaking in the text, not here.
+\hyphenation{%
+  con-tras-tive lan-guage pre-train-ing en-cod-ers en-coder de-scrip-tor de-scrip-tors
+  groun-ded un-groun-ded quan-ti-sa-tion quan-tised de-ploy-ment de-ploy-able
+  gen-er-al-i-sa-tion clas-si-fier clas-si-fiers small-hold-er small-hold-ers
+  ar-chi-tec-ture ar-chi-tec-tures pa-ram-e-ters trans-former trans-form-ers
+  in-ter-po-la-tion in-ter-po-lat-ing ab-sten-tion prov-e-nance au-dit-able
+  re-triev-al re-trieved key-word symp-tom symp-toms di-ag-no-sis di-ag-nos-ing
+  con-vo-lu-tion con-vo-lu-tional su-per-vised base-lines ag-ri-cul-tural
+  re-pro-duci-bil-ity in-ter-pre-ta-tion mono-ton-i-cally
+}
+%% ----------------------------------------------------------------
+
 \graphicspath{{../figures/}}
 
 \begin{document}
 \let\WriteBookmarks\relax
-\def\floatpagepagefraction{1}
-\def\textpagefraction{.001}
+%% FLOAT PLACEMENT. The previous values were floatpagepagefraction{1} and
+%% textpagefraction{.001}, which together tell LaTeX that a float page must be 100%
+%% full and that a text page may be 0.1% text. The effect in the first compiled draft was
+%% that all ten figures were deferred to pages 9-11 while pages 1-8 carried none, so every
+%% figure sat several pages away from the text discussing it. These are the standard
+%% values, which let floats settle near their callouts.
+\renewcommand{\topfraction}{0.85}        % up to 85% of a page may be top floats
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.1}       % a page needs only 10% text to stay a text page
+\renewcommand{\floatpagefraction}{0.7}  % a float page must be 70% full, not 100%
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
 
 \shorttitle{Compact VLMs for cross-crop plant-disease diagnosis at the edge}
 \shortauthors{Abhiram P.V. et al.}
