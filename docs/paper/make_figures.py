@@ -217,6 +217,12 @@ def fig_hybrid():
     fig.tight_layout(); fig.savefig(FIG / "fig_hybrid.png", dpi=DPI); plt.close(fig)
 
 
+def _wise_label(a):
+    """Two-line annotation naming the best alpha. Isolated here so the mathtext
+    backslash is written once, in a raw string, instead of inside a formatted one."""
+    return "best seen+unseen" + chr(10) + r"($\alpha$=" + ("%g" % a) + ")"
+
+
 def fig_wiseft():
     """EXP3: the seen<->unseen tradeoff as WiSE-FT alpha sweeps 0 (frozen) -> 1 (full fine-tune)."""
     alphas = [a for a, _, _ in WISEFT]
@@ -228,8 +234,13 @@ def fig_wiseft():
     for a, s, u in WISEFT:
         ax.text(a, s + 0.015, f"{s:.0%}", ha="center", fontsize=8, color="#2ca02c")
         ax.text(a, u - 0.03, f"{u:.0%}", ha="center", fontsize=8, color="#1f77b4")
-    ax.axvline(0.5, ls=":", color="grey", lw=1)
-    ax.text(0.5, 0.02, "WiSE-FT\nsweet spot", ha="center", fontsize=8, color="grey")
+    # Mark the alpha that actually maximises seen+unseen rather than assuming 0.5. On the
+    # 2026-09-07 sweep alpha=0.5 is a POOR operating point (+1.3 seen for -6.2 unseen), so
+    # a fixed "sweet spot" label there would contradict the curve drawn beside it.
+    _best_a = max(WISEFT, key=lambda r: r[1] + r[2])[0]
+    ax.axvline(_best_a, ls=":", color="grey", lw=1)
+    ax.text(_best_a, 0.02, _wise_label(_best_a),
+            ha="center", fontsize=8, color="grey")
     ax.set_xlabel(r"WiSE-FT $\alpha$  (0 = frozen, 1 = full fine-tune)")
     ax.set_ylabel("accuracy")
     ax.set_ylim(0, 1.0)
