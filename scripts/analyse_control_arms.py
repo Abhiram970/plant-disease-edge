@@ -143,7 +143,9 @@ def main():
     }
     if n_enc >= 2:
         out.update({"ci95": [round(lo, 4), round(hi, 4)],
-                    "equivalence_bound": round(bound, 4),
+                    # NOT a TOST equivalence bound: a TOST margin must be pre-specified, and this is
+                    # simply the larger CI limit. Named for what it is.
+                    "largest_effect_not_excluded": round(bound, 4),
                     "encoders_agree_in_sign": same_sign})
     dst = C.RESULTS_DIR / "control_arm_statistics.json"
     dst.write_text(json.dumps(out, indent=2))

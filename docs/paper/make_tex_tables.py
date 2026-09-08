@@ -114,28 +114,39 @@ def tab_scale_study():
 
 
 def tab_abstain():
+    # Section 5.4 compares grounded against rich on top-5 and AURC, but this table printed only
+    # the grounded rows, so no reader could check the claim. Both strategies now appear.
     body = []
     for e in "ABC":
         j = load(f"metrics_abstain_{e}.json")
         if not j:
             continue
         for m, d in j["models"].items():
-            sd = d.get("grounded")
-            if not isinstance(sd, dict):
+            g, r = d.get("grounded"), d.get("rich")
+            if not isinstance(g, dict):
                 continue
-            body.append(f"{e} & {j['n_classes']} & {short(m)} & {pct(sd.get('top1'))} & "
-                        f"{pct(sd.get('top5'))} & {sd.get('aurc')} & "
-                        f"{pct(sd.get('acc@cov90'))} & {pct(sd.get('acc@cov80'))} \\\\")
+            cells = [e, str(j["n_classes"]), short(m)]
+            for sd in (g, r):
+                if isinstance(sd, dict):
+                    cells += [pct(sd.get("top1")), pct(sd.get("top5")), str(sd.get("aurc")),
+                              pct(sd.get("acc@cov80"))]
+                else:
+                    cells += ["---"] * 4
+            body.append(" & ".join(cells) + " " + (_A+_A))
     if not body:
         return
     write("tab_abstain.tex", wrap(
-        "Top-5 and selective prediction with source-grounded descriptors. "
-        "acc@cov$X$ = accuracy when the $X\\%$ most confident predictions are kept.",
-        "tab:abstain", "llrrrrrr",
-        "Config & Classes & Model & Top-1 & Top-5 & AURC $\\downarrow$ & acc@cov90 & acc@cov80 \\\\",
+        "Top-5 and selective prediction, source-grounded against the hand-curated bank. "
+        "acc@cov80 = accuracy when the 80\% most confident predictions are kept.",
+        "tab:abstain", "lllrrrrrrrr",
+        ("& & & " + _A + "multicolumn{4}{c}{grounded} & " + _A + "multicolumn{4}{c}{rich} "
+         + (_A+_A) + chr(10) + _A + "cmidrule(lr){4-7}" + _A + "cmidrule(lr){8-11}" + chr(10)
+         + "Config & Classes & Model & Top-1 & Top-5 & AURC $" + _A + "downarrow$ & acc@cov80 & "
+         + "Top-1 & Top-5 & AURC $" + _A + "downarrow$ & acc@cov80 " + (_A+_A)),
         body,
         "Confidence is the top-1 minus top-2 similarity margin. Selective accuracy rising as "
-        "coverage tightens confirms the confidence signal is correctly ordered.", wide=True))
+        "coverage tightens confirms the signal is correctly ordered; the gate itself buys about "
+        "two points of top-1 for refusing one image in five.", wide=True))
 
 
 def tab_seen():

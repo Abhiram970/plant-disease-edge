@@ -48,6 +48,7 @@
     1.7014,
     2.2163
   ],
-  "equivalence_bound": 2.2163,
-  "encoders_agree_in_sign": true
+  "encoders_agree_in_sign": true,
+  "largest_effect_not_excluded": 2.2163,
+  "note": "The interval over encoders is reported for completeness, but the encoders share seeds and images; the seed-level interval in the manuscript is the inferential one. 'largest_effect_not_excluded' is the larger CI limit, not a pre-specified equivalence margin."
 }

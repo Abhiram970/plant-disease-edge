@@ -253,16 +253,24 @@ def fig_wiseft():
     fig, ax = plt.subplots(figsize=(6.2, 4))
     ax.plot(alphas, seen, "-o", color="#2ca02c", label="SEEN (trained-crop) accuracy")
     ax.plot(alphas, unseen, "-o", color="#1f77b4", label="UNSEEN (zero-shot) accuracy")
-    for a, s, u in WISEFT:
-        ax.text(a, s + 0.015, f"{s:.0%}", ha="center", fontsize=8, color="#2ca02c")
-        ax.text(a, u - 0.03, f"{u:.0%}", ha="center", fontsize=8, color="#1f77b4")
-    # Mark the alpha that actually maximises seen+unseen rather than assuming 0.5. On the
-    # 2026-09-07 sweep alpha=0.5 is a POOR operating point (+1.3 seen for -6.2 unseen), so
-    # a fixed "sweet spot" label there would contradict the curve drawn beside it.
+    # Label placement: fixed offsets collided with their own markers at the endpoints, and a
+    # y-axis running to 1.0 with no data above 0.82 squashed the unseen curve into an
+    # unreadable band. Offsets now flip at the ends and the axis fits the data.
+    for a, s_, u in WISEFT:
+        ha = "left" if a == 0.0 else ("right" if a == 1.0 else "center")
+        dx = 0.02 if a == 0.0 else (-0.02 if a == 1.0 else 0.0)
+        ax.annotate(f"{s_:.0%}", (a, s_), textcoords="offset points", xytext=(0, 9),
+                    ha=ha, fontsize=8, color="#2ca02c")
+        ax.annotate(f"{u:.0%}", (a, u), textcoords="offset points", xytext=(0, -14),
+                    ha=ha, fontsize=8, color="#1f77b4")
     _best_a = max(WISEFT, key=lambda r: r[1] + r[2])[0]
     ax.axvline(_best_a, ls=":", color="grey", lw=1)
-    ax.text(_best_a, 0.02, _wise_label(_best_a),
-            ha="center", fontsize=8, color="grey")
+    # Put the marker label where the curves are not: low alpha side if the best is at the right.
+    _lx = _best_a - 0.06 if _best_a > 0.5 else _best_a + 0.06
+    ax.annotate(_wise_label(_best_a), (_lx, 0.30), ha="right" if _best_a > 0.5 else "left",
+                fontsize=8, color="grey")
+    _lo = min(min(seen), min(unseen)); _hi = max(max(seen), max(unseen))
+    ax.set_ylim(max(0.0, _lo - 0.10), min(1.0, _hi + 0.10))
     ax.set_xlabel(r"WiSE-FT $\alpha$  (0 = frozen, 1 = full fine-tune)")
     ax.set_ylabel("accuracy")
     ax.set_ylim(0, 1.0)
