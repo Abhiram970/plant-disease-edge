@@ -305,9 +305,9 @@ def tab_edge():
     write("tab_edge.tex", wrap(
         "On-device cost of the deployable image encoder (CPU, batch 1, $224\\times224$).",
         "tab:edge", "lrrrrrrr",
-        "Model & Params (M) & Torch FP32 (ms) " + DN + " & ONNX FP32 (ms) " + DN + " & "
-        "INT8 dyn. (ms) " + DN + " & INT8 static (ms) " + DN + " & "
-        "FP32 (MB) " + DN + " & INT8 (MB) " + DN + " \\\\", body,
+        "Model & Params (M) & Torch FP32 " + DN + " & ONNX FP32 " + DN + " & "
+        "INT8 dyn. " + DN + " & INT8 static " + DN + " & FP32 " + DN + " & "
+        "INT8 " + DN + " \\\\", body,
         f"Latency in ms (median of {j['runs']} runs), ONNX Runtime {j.get('ort_version')}. "
         "INT8 makes the hybrid conv--transformer tiers \\emph{slower} while shrinking them "
         "$\\sim3.5\\times$; only the pure-transformer model gets faster.", wide=True))

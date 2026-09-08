@@ -29,7 +29,14 @@
 \usepackage[english]{babel}       % load English hyphenation patterns at all
 %% Guarded: if microtype is unavailable on the build host the document still
 %% compiles, just without the micro-typographic improvement.
-\IfFileExists{microtype.sty}{\usepackage[protrusion=true,expansion=true]{microtype}}{}
+%% Font expansion is a pdfTeX/LuaTeX feature; XeTeX errors out on it. Protrusion works
+%% everywhere. Enable expansion only when the engine supports it, so the source compiles
+%% under pdflatex (Overleaf's default here), xelatex and lualatex alike.
+\usepackage{iftex}          % provides \ifPDFTeX / \ifXeTeX / \ifLuaTeX
+\IfFileExists{microtype.sty}{%
+  \ifXeTeX\usepackage[protrusion=true,expansion=false]{microtype}%
+  \else\usepackage[protrusion=true,expansion=true]{microtype}%
+  \fi}{}
 
 %% Prefer a slightly loose line over a squeezed one, and allow a little extra
 %% stretch on paragraphs TeX cannot otherwise break.
