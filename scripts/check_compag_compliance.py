@@ -117,6 +117,40 @@ def main():
         hit = any(n.lower() in t_nocomment.lower() for n in needles)
         (ok if hit else fail).append(f"{label} statement present")
 
+    # ---- rules added 2026-09-09 after re-reading the live Guide for Authors ----------------
+
+    # The guide gives the generative-AI section title verbatim ("Title of new section: ..."),
+    # so a paraphrase is a compliance miss. Ours read "Declaration of generative AI in the
+    # writing process", which also mis-scoped it: the guide's wording covers the whole
+    # manuscript preparation process, not just writing.
+    GENAI_TITLE = ("Declaration of generative AI and AI-assisted technologies in the "
+                   "manuscript preparation process")
+    (ok if GENAI_TITLE in " ".join(t_nocomment.split()) else fail).append(
+        "generative-AI section uses the title the guide mandates")
+
+    # "Avoid vertical rules and shading within table cells."
+    _tbad = []
+    for _f in sorted((TEX.parent).glob("tab_*.tex")):
+        _t = _f.read_text(encoding="utf-8")
+        _spec = re.search(r"begin\{tabular\}\{([^}]*)\}", _t)
+        if _spec and "|" in _spec.group(1):
+            _tbad.append(f"{_f.name}: vertical rule")
+        if "rowcolor" in _t or "cellcolor" in _t:
+            _tbad.append(f"{_f.name}: cell shading")
+    (ok if not _tbad else fail).append(
+        "no vertical rules or cell shading in tables" if not _tbad
+        else f"table style violations: {_tbad}")
+
+    # "Cite all tables in the manuscript text", and the same requirement for figures.
+    _miss = []
+    for _kind in ("tab", "fig"):
+        _lab = set(re.findall(r"\\label\{(" + _kind + r":[A-Za-z0-9_]+)\}", t_nocomment))
+        _ref = set(re.findall(r"\\ref\{(" + _kind + r":[A-Za-z0-9_]+)\}", t_nocomment))
+        _miss += sorted(_lab - _ref)
+    (ok if not _miss else fail).append(
+        "every table and figure is cited in the text" if not _miss
+        else f"floats never cited in the text: {_miss}")
+
     # ---- unresolved placeholders
     # PENDING-/TBD/TODO are in this pattern deliberately. The DOI placeholder in the
     # data-availability statement used to slip through a check that only looked for FILL/XXXX, so
