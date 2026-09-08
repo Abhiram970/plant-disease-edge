@@ -148,7 +148,10 @@ def fig_efficiency_curve():
     ax.set_xscale("log")
     ax.set_xlabel("image-encoder parameters (M, log scale)")
     ax.set_ylabel("cross-crop zero-shot accuracy (17 classes)")
-    ax.set_title("Accuracy is nearly flat from 11M to 300M parameters")
+    # Derived from PROBE, not typed: the old title said "300M" where the survey reaches
+    # 321.8 M -- the same drift D5 corrected in the manuscript text.
+    ax.set_title(f"Accuracy does not track parameter count from "
+                 f"{min(p for _, p, _ in PROBE):.0f}M to {max(p for _, p, _ in PROBE):.0f}M")
     ax.legend(fontsize=7, loc="lower right")
     ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_efficiency_curve.png", dpi=DPI); plt.close(fig)
@@ -451,7 +454,13 @@ def fig_edge_pareto():
                linewidths=2, label="S0 deploy tier (fastest & smallest)", zorder=4)
     ax.set_xlabel("ONNX FP32 latency, laptop CPU (ms/image, batch 1)")
     ax.set_ylabel("held-out zero-shot accuracy")
-    ax.set_title("Real-time Pareto: 11M S0 = 15.8 ms/img (~63 img/s) at ~equal accuracy")
+    # Derive the title from EDGE rather than typing it. The hardcoded version claimed
+    # "15.8 ms/img (~63 img/s)" while EDGE[0][3] is 17.35 and Table 5, Section 5.7 and the
+    # Conclusion all say 17.4 -- the figure contradicted its own plotted point. Same bug class
+    # as the SigLIP2 divergence: a number typed into a generator instead of read from data.
+    _s0 = EDGE[0]
+    ax.set_title(f"Real-time Pareto: {_s0[1]:.0f} M {_s0[0]} at {_s0[3]:.1f} ms/img "
+                 f"(~{1000 / _s0[3]:.0f} img/s) at comparable accuracy")
     ax.legend(fontsize=8, loc="lower right"); ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=DPI); plt.close(fig)
 

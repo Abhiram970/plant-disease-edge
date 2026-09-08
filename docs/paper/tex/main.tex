@@ -125,7 +125,9 @@ Writing -- original draft, Writing -- review and editing, Visualization, Project
 %%   grounded mean       A 21.5% -> C 23.9%
 %%   grounded top-5      A 60-77%, C 59-75%
 %%   seen probe at C     82.2%;  best supervised CNN 89.3% (efficientnet_b0, 4.2M)
-%%   control arm         +1.96 pp, 95% CI [+1.70, +2.22], all four encoders agree in sign
+%%   control arm         +1.96 pp paired / +0.94 pp full set; the INFERENTIAL interval is
+%%                       over seeds, [-0.23, +4.14], and contains zero. The encoder
+%%                       interval [+1.70, +2.22] is corroboration only -- see Section 3.4.
 %% Every figure here is read from a JSON, never typed. If a run changes, regenerate the tables
 %% and re-check this block rather than editing the prose.
 \begin{abstract}
@@ -223,18 +225,17 @@ on this split --- a limitation we report rather than a control we pass.
 against; its
 \{value, source\_url, verbatim\_quote\} source-grounded schema and its reported 14--16 point gain from
 symptom knowledge motivate our descriptor design. We are the deployable edge counterpart at \$0/image. The wider agricultural
-foundation-model landscape is surveyed by \citet{chen2024foundation}, whose taxonomy frames the
-gap we target: adaptation and deployment cost rather than raw capability. Domain-adapted
-contrastive models have since appeared --- AgriCLIP~\citep{nawaz2024agriclip} aligns a
-CLIP backbone to agriculture and livestock imagery, and the LeafNet/LeafBench
-corpus~\citep{leafnet2026} underpins the leaf-disease VLM we evaluate
-in Section~\ref{sec:bakeoff} --- but all are cloud-scale. \citet{lu2025vlmready} report that
-zero-shot vision--language models still underperform supervised baselines on plant disease
-by a wide margin, which is consistent with the modest absolute top-1 we report and is the
-reason we lead with shortlisting and abstention rather than raw top-1. On the compression
-side, \citet{tinyvlm2026} push zero-shot inference to microcontroller scale by distillation;
-we instead keep an off-the-shelf encoder frozen, which removes the student-training step
-and its accompanying reproducibility burden.
+foundation-model landscape is surveyed by \citet{chen2024foundation}, whose taxonomy frames
+the gap we target: adaptation and deployment cost rather than raw capability. Domain-adapted
+contrastive models have since appeared --- AgriCLIP~\citep{nawaz2024agriclip} aligns a CLIP
+backbone to agriculture and livestock imagery, and SCOLD~\citep{scold2025} targets leaf
+disease specifically --- but both are cloud-scale, and we evaluate the latter as a candidate
+backbone in Section~\ref{sec:bakeoff}. \citet{lu2025vlmready} report that zero-shot
+vision--language models still underperform supervised baselines on plant disease by a wide
+margin, which is consistent with the modest absolute top-1 we report and is why we lead with
+shortlisting and abstention rather than raw top-1. Our position differs from the compression
+literature in kind: we keep an off-the-shelf encoder frozen rather than distilling a student,
+which removes the student-training step and its accompanying reproducibility burden.
 
 \paragraph{Descriptor-based classification} Descriptor-based CLIP classification
 (DCLIP)~\citep{menon2023} and Customized Prompts via Language models (CuPL)~\citep{pratt2023} classify
@@ -377,9 +378,19 @@ no record, an arm covering 41 of 51 classes is four-fifths its own text and one-
 text, which dilutes both arms toward a common baseline. We therefore evaluate both arms on the
 intersection of classes that every seed of both arms filled genuinely, so that the sourcing
 requirement is the only difference between them. The intersection is smaller than the full held-out
-set and chance rises accordingly; we report both. Encoders serve as the replication unit: each of the
-four deployable tiers is an independent test of the same claim, and we report the per-encoder
-difference, the mean, and a confidence interval over encoders.
+set and chance rises accordingly; we report both. %% REWRITTEN 2026-09-09. This previously named the ENCODER as the replication unit, which
+%% Section 5.3 now contradicts. Leaving it made the seed-level interval read as a post-hoc
+%% switch after the encoder interval failed scrutiny, which is the reverse of what happened:
+%% the seed is the randomised unit by construction, and the encoder agreement is corroboration.
+The generation seed is the replication unit. Each seed draws an independent pair of
+descriptor sets, one per arm, and the same seven seeds are then scored by every encoder on
+the same images; the four encoders are therefore repeated readouts of one randomised
+experiment rather than four independent replications of it. We accordingly form the
+inferential interval over seeds, averaging each seed's difference across encoders first, and
+report the per-encoder differences separately as corroboration: agreement in sign across
+four architecturally distinct backbones is evidence that an effect is not an artefact of one
+encoder, but it is not additional sampling of the randomised quantity and we do not treat it
+as such.
 
 \section{Results}
 
@@ -411,7 +422,7 @@ accuracy to catastrophic forgetting (Fig.~\ref{fig:forget}) --- so we keep the b
 \centering
 \includegraphics[width=\linewidth]{fig_efficiency_curve.png}
 \caption{Zero-shot accuracy against image-encoder size. Cross-crop accuracy for frozen pretrained
-encoders spanning a 27-fold parameter range, with a from-scratch small student for contrast. The
+encoders spanning a 28-fold parameter range, with a from-scratch small student for contrast. The
 pretrained models cluster together regardless of size; the from-scratch student sits near chance.}
 \label{fig:eff}
 \end{figure}
@@ -429,9 +440,11 @@ pretrained models cluster together regardless of size; the from-scratch student 
 
 Fig.~\ref{fig:bakeoff} summarises the comparison. The 11.4\,M encoder recovers 86\% of the 92.9\,M reference at one eighth the parameters, and
 \emph{beats} the larger 21.5\,M model --- on the pilot set; on the nested splits of Table~\ref{tab:scale} the ordering reverses at every configuration, so we read this as recipe noise rather than a ranking. It reinforces that pretraining
-quality, not size, drives transfer. Biological and domain leaf-disease foundation models perform at or
-below chance under a descriptor protocol: taxonomy-style contrastive pretraining does not align to
-symptom-descriptor text. We note openly that our wrapper for one domain model is a best-effort load and
+quality, not size, drives transfer. Biological and domain leaf-disease foundation models transfer far
+less well than general-purpose compact encoders under a descriptor protocol: BioCLIP2 reaches
+9.6\% (1.6$\times$ chance) and our best-effort SCOLD load 4.4\% (0.75$\times$), against
+27.0\% (4.6$\times$) for the 11.4\,M MobileCLIP2-S0. Taxonomy-style contrastive pretraining
+does not align to symptom-descriptor text. We note openly that our wrapper for one domain model is a best-effort load and
 a faithful evaluation would need the authors' inference pipeline; we do not rest any claim on it.
 
 \begin{figure}[htbp]
@@ -897,7 +910,7 @@ margin-ranked abstain gate,
 %% Same conflation as the abstract, corrected: 17.4 ms is the FP32 build, 12.9 MB the INT8 one.
 and 17.4\,ms real-time CPU inference at 45.8\,MB, compressible to 12.9\,MB under INT8 if size
 outweighs latency. Model size is a near-non-factor across the
-11.4--304\,M range probed in Fig.~\ref{fig:eff}, and across the 11.4--86.3\,M deployable family in
+11.4--321.8\,M range probed in Fig.~\ref{fig:eff}, and across the 11.4--86.3\,M deployable family in
 every other experiment. The levers are, in order: the descriptor authoring method --- and
 specifically the finding that source-grounded descriptors keep improving as the unseen label space
 grows --- honest abstention, and the frozen-backbone hybrid.
