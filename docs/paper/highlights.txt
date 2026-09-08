@@ -1,5 +1,5 @@
 A frozen 11.4M CLIP diagnoses crops it never saw, at 2.2-13.9x chance.
-Sourcing gains +1.96 pp on paired classes, +0.94 pp across the full held-out set.
-Grounding buys auditable provenance at negligible accuracy cost on 51 unseen classes.
+Requiring a citable source costs no measurable accuracy over seven seeds.
+Source-grounded descriptors are the only strategy that improves as classes triple.
 One frozen backbone serves known crops (82.2%) and unseen ones; CNNs cannot do both.
 INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.

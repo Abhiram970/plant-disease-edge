@@ -171,7 +171,7 @@ def tab_supervised():
         rows.append((d.get("arch"), d.get("params_M"), d.get("seen_classes"), d.get("seen_top1")))
     if not rows:
         return
-    body = [f"{a.replace('_', '-')} & {p:.1f} & {n} & {pct(t)} & \\textbf{{0 (structural)}} \\\\"
+    body = [f"{a.replace('_', '-')} & {p:.1f} & {n} & {pct(t)} & \\textbf{{n/a (structural)}} \\\\"
             for a, p, n, t in sorted(rows, key=lambda r: -(r[3] or 0))]
     # The caption used to assert "a 4.4 M network finishes within 0.1 points of the best of the
     # fourteen" no matter how many architectures were actually present, so a partial sweep
@@ -303,7 +303,8 @@ def tab_edge():
                     f"{fm(g('onnx_int8_static'))} & {g('onnx_fp32', 'size_mb')} & "
                     f"{g('onnx_int8_static', 'size_mb')} \\\\")
     write("tab_edge.tex", wrap(
-        "On-device cost of the deployable image encoder (CPU, batch 1, $224\\times224$).",
+        "On-device cost of the deployable image encoder (CPU, batch 1, $224\\times224$). "
+        "The four latency columns are milliseconds; the final two are megabytes.",
         "tab:edge", "lrrrrrrr",
         "Model & Params (M) & Torch FP32 " + DN + " & ONNX FP32 " + DN + " & "
         "INT8 dyn. " + DN + " & INT8 static " + DN + " & FP32 " + DN + " & "

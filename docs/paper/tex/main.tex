@@ -130,25 +130,21 @@ Writing -- original draft, Writing -- review and editing, Visualization, Project
 %% and re-check this block rather than editing the prose.
 \begin{abstract}
 Cloud vision--language models diagnose plant disease accurately but bill per query and need
-connectivity, suiting neither smallholder nor field use. The harder obstacle: a classifier cannot name a
-disease on a crop absent from training. We ask how small a deployable model can be while
-still diagnosing unseen crops, matching a leaf image to LLM-written symptom descriptions grounded in
-cited sources. Using the SAGE crop-disease dataset and frozen compact contrastive language--image
-encoders, we report four results. First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at
-2.2--13.9 times chance across nested held-out sets of 16, 34 and 51 classes, accuracy nearly flat over that 7.6-fold parameter range. Second, descriptor authoring is the central lever:
-source-grounded text improves from 21.5\% to 23.9\% as the unseen label space triples. A matched ungrounded control separates sourcing from per-class distinctness: a citable source
-is worth $+1.96$ points on the 41 classes both arms fill and $+0.94$ on the full held-out set,
-so auditability is close to free. Third, an abstain gate makes top-1 field-useful: grounded top-5 reaches 60--77\% on 16 unseen
-classes and 59--75\% on 51.
-%% CORRECTED 2026-09-01 against edge_quant_benchmark.json. This read "runs at 17.4 ms per image in a
-%% 12.9 MB 8-bit-integer footprint", which welds together two DIFFERENT builds: 17.4 ms is the FP32
-%% ONNX encoder (45.8 MB) and 12.9 MB is the INT8-static one, which runs at 62.2 ms. No single
-%% configuration delivers both, and the sentence contradicted this paper's own INT8 finding two
-%% clauses later. Now stated as the genuine trade-off it is.
-Fourth, the encoder runs at 17.4 ms per image on a laptop CPU at 45.8 MB, and 8-bit quantisation
-shrinks it to 12.9 MB at the cost of latency: for hybrid encoders INT8 is a size lever, not a
-speed one. On known crops the same backbone reaches 82.2\% over 166 classes; supervised CNN baselines are
-stronger there yet structurally incapable of cross-crop transfer.
+connectivity, and no classifier can name a disease on a crop absent from training. We ask how small
+a deployable model can be while still diagnosing unseen crops, by matching a leaf image to
+LLM-written symptom descriptions grounded in cited sources. Using the SAGE dataset and frozen compact contrastive language--image encoders, we report four
+results. First, frozen encoders from 11.4 to 86.3 million parameters
+diagnose unseen crops at 2.2--13.9 times chance across nested held-out sets of 16, 34 and 51
+classes, with accuracy nearly flat across that range. Second, descriptor authoring is the central lever:
+source-grounded text improves from 21.5\% to 23.9\% as the label space triples, while a
+keyword-retrieved bank degrades. A matched ungrounded control over seven seeds
+separates sourcing from per-class distinctness: $+1.96$ points on the classes both arms fill and
+$+0.94$ on the full held-out set, with intervals including zero: sourcing costs no measurable
+accuracy, so its auditability is free. Third, top-5 and a margin-ranked abstain gate make the
+modest top-1 field-useful: grounded top-5 reaches 60--77\% on 16 unseen classes and 59--75\% on 51. Fourth, the encoder runs at 17.4 ms per image on a laptop CPU at
+45.8 MB; 8-bit quantisation shrinks it to 12.9 MB but costs latency: for hybrid encoders INT8 is a size
+lever, not a speed one. On known crops the same backbone reaches 82.2\% over 166 classes,
+where supervised CNNs are stronger but cannot transfer at all.
 \end{abstract}
 
 \begin{keywords}
@@ -191,13 +187,11 @@ Only the image encoder ships to the device; text prototypes are precomputed offl
 \paragraph{Contributions}
 \begin{enumerate}
 \item \textbf{Frozen compact VLMs do cross-crop zero-shot.} With source-grounded descriptors they diagnose
-unseen crops at 2.2--13.9$	imes$ chance across the 16-, 34- and 51-class held-out sets, taken
+unseen crops at 2.2--13.9$\times$ chance across the 16-, 34- and 51-class held-out sets, taken
 over the best and worst encoder--configuration cells; averaged over the four deployable tiers
-the range is 3.4--12.2$	imes$, and the 11.4\,M tier alone spans 2.8--11.0$	imes$. Accuracy does
-not track parameter count over a 28-fold range --- model size is not the bottleneck
-(Sections~
-ef{sec:flat}--
-ef{sec:desc}).
+the range is 3.4--12.2$\times$, and the 11.4\,M tier alone spans 2.8--11.0$\times$. On the 17-class pilot survey (Protocol~P) accuracy does
+not track parameter count over a 28-fold range either --- model size is not the bottleneck
+(Sections~\ref{sec:flat}--\ref{sec:desc}).
 \item \textbf{A nested scale study isolating what descriptor authoring actually buys.} Symptom text
 beats a bare class name at every scale (+8.8 points at 16 classes for source-grounded text), and
 source-grounded descriptors keep improving as the unseen label space triples. We further show that
@@ -210,9 +204,15 @@ rather than by grounding, and separate the two with an ungrounded-generation con
 result with practical reach: INT8 helps transformer encoders but \emph{hurts} hybrid
 convolution--transformer encoders, with a graph-level diagnosis and a deployment rule
 (Section~\ref{sec:int8}).
-\item \textbf{Rigorous negatives that save effort:} naive fine-tuning causes catastrophic forgetting,
-a supervised CNN cannot transfer cross-crop, and a leave-one-crop-out analysis shows the held-out crops
-are not cherry-picked.
+%% CORRECTED 2026-09-08. Both halves of this bullet were contradicted by the Results it
+%% summarises. (a) Section 5.5 reports that naive fine-tuning does NOT destroy transfer here
+%% (unseen settles at 16.4%, 8.4x chance). (b) Table 6 shows held-out crops averaging 19.0%
+%% against 9.0% for the trained pool with non-overlapping intervals, i.e. the split is
+%% favourable, which Section 5.6 concedes two paragraphs later.
+\item \textbf{Rigorous negatives that save effort:} a supervised CNN cannot transfer cross-crop at
+all, weight-space interpolation trades unseen accuracy for seen accuracy rather than giving both,
+and a leave-one-crop-out analysis shows the held-out crops are \emph{easier} than the trained pool
+on this split --- a limitation we report rather than a control we pass.
 \end{enumerate}
 
 \section{Related work}
@@ -240,7 +240,9 @@ motivates the frozen-backbone plus weight-ensembling design.
 
 \paragraph{Domain foundation models} We evaluate the biological foundation model
 BioCLIP\,2~\citep{bioclip2} and the leaf-disease model SCOLD~\citep{scold2025} as candidate backbones
-and find they do not transfer under our descriptor protocol (Section~\ref{sec:bakeoff}).
+and find they do not transfer competitively under our descriptor protocol: the better of the
+two reaches 1.6$\times$ chance against 4.6$\times$ for a general-purpose 11.4\,M encoder
+(Section~\ref{sec:bakeoff}).
 
 \paragraph{Vision-only foundation models} Self-supervised encoders such as
 DINOv2~\citep{oquab2024} learn strong visual features but have no text tower, so they cannot match an
@@ -369,9 +371,9 @@ and 21.6--27.3\% (grounded) at configuration C despite a 7.6-fold spread in para
 %% fig:eff plots ten encoders including MobileCLIP2-L-14 (304 M) and S4 (322 M) -- but the
 %% sentence has to say that the two halves describe different populations.
 and the same absence of a trend holds over a
-wider survey: across ten public encoders spanning 11--322\,M, the largest is only 1.1 points above
-the smallest despite $28\times$ the parameters, and accuracy does not track size (Spearman
-$\rho = 0.32$; Fig.~\ref{fig:eff}). The 8.5-point spread across that survey is driven by
+wider survey: across ten public encoders spanning 11.4--321.8\,M on the 17-class pilot set (Protocol~P), the largest is only 1.1 points above
+the smallest despite $28\times$ the parameters, and accuracy does not track size (Spearman $\rho = 0.35$, $p = 0.32$, i.e. not
+distinguishable from no association; Fig.~\ref{fig:eff}). The 8.5-point spread across that survey is driven by
 pretraining recipe rather than capacity: the two variants of the same 86\,M architecture differ by
 4.8 points. Model size is not the bottleneck; the
 pretrained alignment is the asset. Attempts to \emph{train} a small model to learn this alignment fail
@@ -402,7 +404,7 @@ pretrained models cluster together regardless of size; the from-scratch student 
 \label{sec:bakeoff}
 
 Fig.~\ref{fig:bakeoff} summarises the comparison. The 11.4\,M encoder recovers 86\% of the 92.9\,M reference at one eighth the parameters, and
-\emph{beats} the larger 21.5\,M model --- a training-recipe effect that reinforces that pretraining
+\emph{beats} the larger 21.5\,M model --- on the pilot set; on the nested splits of Table~\ref{tab:scale} the ordering reverses at every configuration, so we read this as recipe noise rather than a ranking. It reinforces that pretraining
 quality, not size, drives transfer. Biological and domain leaf-disease foundation models perform at or
 below chance under a descriptor protocol: taxonomy-style contrastive pretraining does not align to
 symptom-descriptor text. We note openly that our wrapper for one domain model is a best-effort load and
@@ -411,7 +413,8 @@ a faithful evaluation would need the authors' inference pipeline; we do not rest
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{fig_bakeoff.png}
-\caption{Encoder bake-off on the pilot held-out set. Rich-descriptor zero-shot accuracy for each candidate backbone against its image-encoder parameter count. The biological and leaf-disease foundation models fall at or below chance under a descriptor protocol.}
+\caption{Encoder bake-off on the pilot held-out set. Rich-descriptor zero-shot accuracy for each candidate backbone against its image-encoder parameter count. Under this descriptor protocol the domain foundation models transfer far less well than the general-purpose compact encoders: BioCLIP2 reaches 9.6\% (1.6$\times$ chance) against 27.0\% for the 11.4\,M MobileCLIP2-S0, and the SCOLD point is a best-effort load we rest no claim on (Section~
+\ref{sec:bakeoff}).}
 \label{fig:bakeoff}
 \end{figure}
 
@@ -455,17 +458,27 @@ registry covers 156 of 217 classes under a uniform schema.
 %% revision history ("this supersedes the null we reported"), which belongs in a changelog
 %% rather than a submission. What remains here is the measurement.
 
-\paragraph{Sourcing itself carries a small, reproducible advantage} The matched ungrounded control
-of Section~\ref{sec:strategies} isolates the effect of requiring a citable source. On the 41 paired
-classes at configuration C (11{,}337 images, chance 2.44\%), averaged over seven shared generation
-seeds, the source-grounded arm leads the ungrounded arm on every deployable encoder:
-$+1.76$, $+2.00$, $+2.15$ and $+1.93$ points for MobileCLIP2-S0, MobileCLIP-S1, MobileCLIP2-S2 and
-MobileCLIP-B, a mean of $+1.96$ points with a 95\,\% confidence interval of $[+1.70, +2.22]$ over
-encoders. The strength of this result is the agreement across encoders rather than the width of that
-interval: within any single encoder the difference is between 1.3 and 2.6 standard errors of the
-seed-to-seed noise, which alone would be suggestive, but four architecturally distinct encoders
-spanning 11--86\,M parameters reproduce the same direction and nearly the same magnitude. The effect
-is real, and it is small.
+\paragraph{Sourcing does not measurably cost accuracy} The matched ungrounded control of
+Section~\ref{sec:strategies} isolates the effect of requiring a citable source. On the 41 paired
+classes at configuration C (11{,}337 images, chance 2.44\%), the source-grounded arm leads on all
+four deployable encoders --- $+1.76$, $+2.00$, $+2.15$ and $+1.93$ points for MobileCLIP2-S0,
+MobileCLIP-S1, MobileCLIP2-S2 and MobileCLIP-B --- for a mean of $+1.96$ points.
+
+The randomised unit here is the generation seed, not the encoder: the four encoders score the same
+seven descriptor sets on the same images, so they are four readouts of one experiment rather than
+four independent replications. Taking seeds as the unit, the per-seed mean differences are
+$+0.69$, $+1.20$, $-1.56$, $+5.66$, $+1.12$, $+3.98$ and $+2.63$ points, giving the same $+1.96$
+mean with a 95\,\% confidence interval of $[-0.23, +4.14]$. That interval contains zero. On the full
+51-class set the corresponding interval is $[-0.52, +2.39]$, which also contains zero.
+
+We therefore do not claim that source-grounding improves accuracy. What the data support is the
+narrower and, for this paper, more useful statement: sourcing does not measurably cost accuracy.
+The point estimate is positive on every encoder and at both class sets, and the interval excludes a
+penalty larger than about half a point, so the auditability the constraint buys is close to free.
+Seven seeds do not resolve an effect of this size against a seed-to-seed standard deviation of
+2.4 points: at 80\,\% power roughly eleven seeds would be needed, so the positive claim is within
+reach of a modestly larger run rather than out of reach in principle. We report the null here and
+name that run as the way to settle it.
 
 %% REWRITTEN 2026-09-08 after an audit. The previous version attributed the +1.96 -> +1.13
 %% shrinkage to description LENGTH, but the published comparison moved two variables at once
@@ -477,9 +490,18 @@ comparison for isolating the sourcing constraint, but it is not the deployment s
 report the same seven seeds on all 51 held-out classes, where each arm falls back to the keyword
 bank for the classes it did not fill. The mean advantage halves to $+0.94$ points and is no longer
 positive everywhere: $+1.89$, $+0.36$, $+1.69$ and $-0.19$ points on MobileCLIP2-S0, MobileCLIP-S1,
-MobileCLIP2-S2 and MobileCLIP-B. The largest encoder reverses. The gap between the two analyses is
-the coverage dilution Section~\ref{sec:strategies} predicts: on the ten classes only one arm filled,
-both arms are reading the same fallback text, which can only move the difference toward zero.
+MobileCLIP2-S2 and MobileCLIP-B. The largest encoder reverses. %% CORRECTED 2026-09-08. The previous sentence claimed both arms read "the same fallback text"
+%% on the dropped classes, so the difference was mechanically pulled toward zero. paired_stats
+%% .dropped shows otherwise: all ten drops are grounded_matched failures and ungrounded filled
+%% 51/51 at every seed, so the arms read DIFFERENT text there and the loss is real.
+The gap between the two analyses is
+not dilution but coverage. All ten excluded classes were dropped because the grounded arm failed to
+produce a record at one or more seeds, while the ungrounded arm filled all 51 at every seed; on
+those classes the grounded arm therefore falls back to the keyword bank while the ungrounded arm
+reads its own generated text. The full-set figure is thus the deployment number and it includes a
+real cost: where grounded generation refuses, its fallback loses to ungrounded generation. That cost
+is the other face of the over-refusal behaviour described in Section~\ref{sec:limits}, and it is a
+property of the grounding constraint rather than an artefact of the comparison.
 
 \paragraph{Description length does not explain the difference} Because the two arms exceed the
 encoder's 77-token context, an obvious hypothesis is that the effect depends on how much of each
@@ -731,9 +753,9 @@ generation requires one retrievable source per class, where hand-curation requir
 and, in the retrieval form used here, cannot even keep prototypes distinct as the label space grows.
 That asymmetry is what we consider the paper's transferable claim beyond agriculture, and the
 ungrounded control in Section~\ref{sec:desc} settles the question it raises: the sourcing constraint
-does not cost accuracy but earns a small amount of it --- $+1.96$ points on the paired classes,
-positive on all four encoders, and $+0.94$ points on the full held-out set, where the largest
-encoder reverses by 0.2 points. The practical reading is not that grounding is an accuracy technique --- two
+does not measurably cost accuracy. The point estimate is positive on every encoder and at both class
+sets --- $+1.96$ points on the paired classes and $+0.94$ on the full held-out set --- but the
+seed-level intervals include zero, so we claim the absence of a penalty rather than a gain. The practical reading is not that grounding is an accuracy technique --- two
 points would be a thin reason to adopt anything --- but that the trade-off practitioners might expect
 to face between auditability and performance does not appear in our measurements. Where accuracy
 \emph{does} move is descriptor authoring as a whole: at the focused scale, replacing a class name
@@ -867,10 +889,18 @@ This research did not receive any specific grant from funding agencies in the pu
 not-for-profit sectors.
 
 \section*{Declaration of generative AI in the writing process}
-During the preparation of this work the authors used a large language model to generate the
-source-grounded symptom descriptions that form the descriptor registry (Section~\ref{sec:data});
-this is a methodological component of the study and is described in full in the Methods. The authors
-reviewed and edited the manuscript text and take full responsibility for the content of the
+%% CORRECTED 2026-09-08: cited Section 3.1 (dataset) rather than 3.2 (descriptor
+%% generation), and did not answer Elsevier's actual question -- whether an LLM assisted
+%% the WRITING, as distinct from being a component of the method.
+Two distinct uses are declared. First, as a methodological component: a large language
+model generates the source-grounded symptom descriptions that form the descriptor
+registry, described in full in Section~\ref{sec:desc-gen}. This is an object of study
+rather than a writing aid, and the generated text is released with the data so that it can
+be inspected. Second, in preparing the manuscript: the authors used a large language model
+to assist with drafting and editing prose and with generating the analysis scripts that
+produce the tables and figures from the released result files. No text was accepted without
+review, every reported number is regenerated from a released JSON rather than transcribed,
+and the authors reviewed and edited all content and take full responsibility for the
 publication.
 
 \bibliographystyle{cas-model2-names}

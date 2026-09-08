@@ -89,19 +89,36 @@ WISEFT_N = (_w.get("seen_classes", 166), _w.get("unseen_classes", 51))
 # ---- descriptor ablation: bare/crude/rich/grounded per model, at all three held-out scales ----
 # Read straight from zeroshot_eval_{A,B,C}.json. NEVER hardcode: the scale study reversed the
 # hand-curated-vs-grounded conclusion, and a stale copy here would silently contradict §5.3.
+def _is_reference(model_key):
+    """True for the reference-ceiling encoder, reported but never averaged.
+
+    make_tex_tables.py has had this filter since the SigLIP2 fix; make_figures.py did not,
+    so the tables averaged four deployable encoders while the figures averaged five,
+    INCLUDING the 93 M reference ceiling. Figure 4 printed 19.7 / 21.8 / 24.8 against the
+    table's 19.1 / 21.5 / 23.9 for the same quantity, under an axis label reading
+    "4 deployable encoders". Same definition as the table generator so they cannot
+    diverge again.
+    """
+    return "SigLIP" in model_key
+
+
 DESC_BY_EXP, DESC_CHANCE = {}, {}
+DESC_ALL_BY_EXP = {}          # every encoder, for panels that show the ceiling
 for _e in "ABC":
     _j = _load(f"zeroshot_eval_{_e}.json")
     if not _j:
         continue
     DESC_CHANCE[_e] = _j["chance"]
-    DESC_BY_EXP[_e] = [
+    _rows = [
         (_short(m), d["bare"]["img_params_M"], d["bare"]["acc"], d["crude"]["acc"],
          d["rich"]["acc"], d["grounded"]["acc"])
         for m, d in _j["models"].items()
     ]
-    DESC_BY_EXP[_e].sort(key=lambda r: r[1])
-DESC_ABLATION = DESC_BY_EXP.get("A", [])
+    _rows.sort(key=lambda r: r[1])
+    DESC_ALL_BY_EXP[_e] = _rows
+    # Means must exclude the reference ceiling, exactly as the tables do.
+    DESC_BY_EXP[_e] = [r for r in _rows if not _is_reference(r[0])]
+DESC_ABLATION = DESC_ALL_BY_EXP.get("A", [])   # panel shows the ceiling too
 # ---- edge benchmark (laptop CPU 16 threads, batch 1, 224px, ORT 1.26, 50 runs) ----
 # SOURCE: docs/paper/edge_quant_benchmark.json (27 Jul 2026). The int8 column is the STATIC QDQ
 # path (per-channel + calibrated + shape-inference pre-pass) — the *best* INT8 recipe. The older
@@ -202,7 +219,7 @@ def fig_bakeoff():
         ax.text(v + 0.005, i, f"{v:.1%}", va="center", fontsize=8)
     ax.axvline(BAKEOFF_CHANCE, ls="--", color="grey", lw=1, label=f"chance ({BAKEOFF_CHANCE:.1%})")
     ax.set_xlabel("rich-descriptor zero-shot accuracy (held-out crops)")
-    ax.set_title("Encoder bake-off (17 cls): SigLIP2 best; lightweight 22-29%; BioCLIP2 poor")
+    ax.set_title("Encoder bake-off, 17-class pilot: SigLIP2 best; compact tiers 22-29%")
     ax.legend(fontsize=8)
     fig.tight_layout(); fig.savefig(FIG / "fig_bakeoff.png", dpi=DPI); plt.close(fig)
 
@@ -320,7 +337,11 @@ def fig_descriptor_scaling():
     ax.set_xlabel("number of unseen classes  (nested held-out pools, A $\\subset$ B $\\subset$ C)")
     ax.set_ylabel("mean held-out zero-shot top-1\n(4 deployable encoders)")
     ax.set_ylim(0, 0.34)
-    ax.set_title("Only source-grounded descriptors scale to more unseen crops")
+    # The old title asserted the paper's RETRACTED headline ("Only source-grounded
+    # descriptors scale"), directly contradicting the LaTeX caption beneath it, which says
+    # the gap against the keyword bank is not a measurement of grounding. State what the
+    # curves show and leave the interpretation to the caption.
+    ax.set_title("Source-grounded text is the only strategy that improves with scale")
     ax.legend(fontsize=8, loc="lower left"); ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=DPI); plt.close(fig)
 
