@@ -1,0 +1,910 @@
+[
+  {
+    "title": "A non-significant result is used to support an equivalence claim",
+    "quote": "sourcing costs no measurable accuracy, so its auditability is free",
+    "explanation": "The control arm gives +1.96 points with a 95% CI of [-0.23, +4.14] over seven seeds, and +0.94 with [-0.52, +2.39] on the full set. Both intervals include zero, and Section 4.3 correctly declines to claim a gain. But 'sourcing costs no measurable accuracy' and 'its auditability is free' are equivalence claims, and failing to reject the null is not evidence of equivalence. With a seed-level SD of 2.4 and n = 7 the design is under-powered by the paper's own calculation (~11 seeds needed). The defensible route is an equivalence test against a pre-specified margin (TOST). As it stands the interval width is what carries the argument and it should be stated that way. Note also that 'the interval excludes a penalty larger than about half a point' is true of the full-set interval (-0.52) but not the paired one (-0.23) that the sentence follows.",
+    "comment_type": "methodology",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "null-result-as-equivalence",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  },
+  {
+    "title": "Abstract presents grounded descriptors as the winning strategy while the hand-curated bank beats them at two of three scales",
+    "quote": "descriptor authoring is the central lever: source-grounded text improves from 21.5% to 23.9% as the label space triples, while a keyword-retrieved bank degrades",
+    "explanation": "Table 1 means: rich 28.9 / 25.0 / 21.5 against grounded 21.5 / 22.7 / 23.9. The hand-curated bank is 7.4 points ahead at configuration A and 2.3 points ahead at B, and loses only at C. The abstract reports the trend of each strategy but never their relative level, so a reader cannot learn that the simpler baseline wins in two of the three settings studied. Section 4.3, the Fig. 4 caption and the Table 1 note all disclose it; the abstract, the contribution list and the conclusion do not. The prototype-collision argument explains why the comparison is confounded, but at configuration A only 2 of 16 classes collide, so collisions cannot account for a 7.4-point gap there.",
+    "comment_type": "claim_accuracy",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "abstract-omits-rich-beats-grounded",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  },
+  {
+    "title": "The headline scaling result is smaller than a confound the paper says it cannot separate",
+    "quote": "source-grounded text improves from 21.5% to 23.9% as the label space triples",
+    "explanation": "The abstract's second headline result is a 2.4-point monotone rise. Section 6 reports that duplicate-label density falls across exactly the same three configurations (37.5%, 23.5%, 19.6%), that de-duplicating configuration C alone moves the grounded mean from 23.9% to 30.8% (6.9 points), and that 'the runs reported here cannot fully separate the two' because the de-duplicated runs at A and B do not exist. A confound worth 6.9 points at one configuration is nearly three times the effect it is supposed to leave intact. The limitation is stated honestly in Section 6, but the abstract, the contribution list and the conclusion all present the scaling result without it.",
+    "comment_type": "claim_accuracy",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "scaling-claim-confounded-by-label-noise",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  },
+  {
+    "title": "Data-availability DOI is an unresolved placeholder",
+    "quote": "PENDING-ZENODO-DOI",
+    "explanation": "The Data availability statement points to a literal placeholder. Every reproducibility argument in the paper - the released registry, the per-URL audit trail, zeroshot_eval_C_clean.json, the seven-seed control records, the table and figure generators - resolves to this one link. Elsevier will not process the submission with an unresolved DOI.",
+    "comment_type": "missing_information",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion"
+    ],
+    "root_cause_key": "placeholder-doi",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Figure 10's accuracies match no table in the paper and invert the encoder ranking",
+    "quote": "The 11.4-million-parameter tier is the deployment sweet spot.",
+    "explanation": "Fig. 10 plots MC2-S0 at 0.270, MC2-S2 at 0.287, MC-B at 0.268 and MC-S1 at 0.224 on an axis labelled 'held-out zero-shot accuracy'. Its x-axis latencies (17.4, 33.7, 49.2, 100.8 ms) come from Table 7, but none of the y-values appear in Table 1 under any configuration or strategy; 0.270 is the pilot-set value. The resulting ranking (S2 > S0 ~ B > S1) contradicts Table 1 config C grounded (B 27.3 > S1 24.0 > S2 22.8 > S0 21.6). A reader taking the deployment recommendation from Fig. 10 is reading a protocol the paper elsewhere calls 'not comparable'.",
+    "comment_type": "claim_accuracy",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "figure-protocol-not-declared",
+    "review_lane": "self_standard_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Figure 6 falsifies the paper's universal monotonicity claim",
+    "quote": "a property that holds for every encoder, every strategy and every scale we measured",
+    "explanation": "Section 4.4 and the Fig. 6 caption both assert that selective accuracy rises monotonically as coverage tightens. In Fig. 6 itself the green 'rich' curve rises to ~0.41 around coverage 0.3 and then collapses below 0.10 as coverage approaches 0. The figure the claim cites is the figure that refutes it. Either the universal quantifier goes, or the low-coverage tail is explained (e.g. small-sample noise below a coverage floor) and the claim is restricted to the range the gate actually operates in.",
+    "comment_type": "claim_accuracy",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "monotonicity-overclaim",
+    "review_lane": "self_standard_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Figure 6 legend contradicts Table 2 and appears to plot a different protocol",
+    "quote": "Table 2 and Fig. 6 show grounded top-5 at 60-77% on 16 classes, holding at 59-75% on 51 classes",
+    "explanation": "Fig. 6 is titled 'Abstain gate (S0, margin confidence)' and its legend reads 'rich (top-1 27%)' and 'grounded (top-1 24%)'. Table 2 has no MobileCLIP2-S0 row with those values: A/16 gives grounded 17.6 / rich 26.1, B/34 gives 20.5 / 23.3, C/51 gives 21.6 / 19.3. The 27% matches the 17-class pilot figure quoted in Section 4.2, and the figure's chance line sits near 0.06 (1/17 = 5.9%). Section 4.4 is entirely about the nested configurations, so the reader is shown pilot-protocol curves as evidence for nested-split claims.",
+    "comment_type": "claim_accuracy",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "figure-protocol-not-declared",
+    "review_lane": "self_standard_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Figures 1 and 3 report different accuracies for the same encoders on the same 17-class pilot set",
+    "quote": "The 11.4 M encoder recovers 86% of the 92.9 M reference at one eighth the parameters, and beats the larger 21.5 M model",
+    "explanation": "Fig. 1 (y-axis 'cross-crop zero-shot accuracy (17 classes)') plots MC2-S0 at ~19.9% and ViT-B-16-SigLIP2 at ~25.5%. Fig. 3 ('Encoder bake-off, 17-class pilot', rich-descriptor) plots MobileCLIP2-S0 at 27.0% and SigLIP2 at 31.5%. MobileCLIP-S1 is ~20.9% in Fig. 1 and 22.4% in Fig. 3. The two figures sit on the same page (p.4) and disagree on every shared model by 1.5-7 points. Section 4.1 quotes the Fig. 1 numbers ('19.9% for the frozen 11.4 M encoder') while Section 4.2, two paragraphs later, quotes the Fig. 3 numbers ('27.0% (4.6x) for the 11.4 M MobileCLIP2-S0') - both attributed to Protocol P. Nothing in the text distinguishes the two measurements.",
+    "comment_type": "claim_accuracy",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "pilot-protocol-two-number-sets",
+    "review_lane": "self_standard_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "No hardware is named for the headline latency result",
+    "quote": "the encoder runs at 17.4 ms per image on a laptop CPU at 45.8 MB",
+    "explanation": "17.4 ms/image is one of the four headline results and appears in the abstract, Section 4.7, Table 7, Fig. 10 and the conclusion. The manuscript never names the processor: only 'a laptop processor', 'laptop CPU', 'CPU, batch 1, 224x224' and 'ONNX Runtime 1.26.0'. A CPU latency number without a CPU model, core count and thread setting cannot be reproduced or compared, and the INT8 depthwise-kernel argument in Section 4.8 is explicitly x86-specific, so the ISA and vector extensions are load-bearing for the conclusion as well.",
+    "comment_type": "missing_information",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "method",
+      "experiment"
+    ],
+    "root_cause_key": "no-hardware-disclosure",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "The 17-class pilot survey underpins two claims but is never tabulated",
+    "quote": "across ten public encoders spanning 11.4",
+    "explanation": "Contribution 1 and Section 4.1 rest on this survey, and the conclusion repeats it ('Model size is a near-non-factor across the 11.4-321.8 M range probed in Fig. 1'). The ten encoders are never listed with names, parameter counts and accuracies, so the Spearman statistic cannot be checked. It also matters which models are in the set: Fig. 3 shows BioCLIP2 (304 M) at 9.6% and SCOLD (238 M) at 4.4%, while Fig. 1's lowest pretrained point sits near 0.17 - so the two large low-scoring models are evidently excluded from the correlation that supports 'size is not the bottleneck'. State the inclusion rule and give the table.",
+    "comment_type": "missing_information",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "pilot-survey-untabulated",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "The WiSE-FT sweep's baseline is 23 points below the probe it is meant to interpolate from",
+    "quote": "0 reproduces this sweep's own frozen probe (58.8%), validating",
+    "explanation": "Table 4's alpha = 0 seen accuracy is 59.0% on 166 classes, while Table 3 reports 82.2% for the same encoder on the same 166 classes. The caption attributes the gap to a 200-image-per-class subsample (23,445 images, ~141/class against ~421/class in Table 3), but a 23-point drop is an order of magnitude larger than the 'few points of refit noise' the text allows for, and it changes how the headline reads: the 22.5 points that full fine-tuning 'gains' only reach 81.5%, still below the frozen probe's 82.2% on the full split. The dial may therefore be recovering the subsample deficit rather than buying seen accuracy over the deployable configuration. Report the sweep at the full split, or make this comparison explicitly.",
+    "comment_type": "methodology",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "wiseft-weak-baseline",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "The descriptor-generating LLM is never identified",
+    "quote": "Records are generated by an LLM under a strict grounding",
+    "explanation": "The descriptor registry is the paper's central contribution, and the ungrounded control depends on 'the same model, the same schema, the same temperature and the same seeds as grounded'. No model name, version, temperature value or prompt text appears anywhere in the manuscript. The over-refusal behaviour in Section 6 and the 77-token overrun are both model-specific findings. Without the generator identity none of the descriptor results can be reproduced or attributed, and 'the same temperature' is unverifiable. Training hardware is likewise unnamed - Section 4.6 attributes the 4-epoch budget to 'session limits', implying a hosted notebook that is never identified.",
+    "comment_type": "missing_information",
+    "severity": "major",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "method",
+    "related_sections": [
+      "method",
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "no-llm-disclosure",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Cross-section numeric consistency should be reconciled",
+    "quote": "First, frozen encoders from 11.4 to 86.3 million parameters diagnose unseen crops at 2.2–13.9 times chance across nested held-out sets of 16, 34 and 51 classes, with accuracy nearly ﬂat across that range.",
+    "explanation": "Multiple sections contain numeric claims. Confirm that the same quantities reconcile across main text, tables, and appendix material.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "cross-section-numeric-consistency-should-be-reconciled",
+    "review_lane": "committee_editor, committee_methodology",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "committee_editor.json"
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "unverified",
+    "source_kind": "script",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false,
+    "source_file": "committee_editor.json"
+  },
+  {
+    "title": "Missing glyph renders as a black box on page 1",
+    "quote": "Corresponding author",
+    "explanation": "The corresponding-author footnote shows a solid black rectangle immediately before 'abhiramp428@gmail.com'. This is a missing envelope glyph from a font not embedded in the build. It sits in the first block an editor looks at.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract"
+    ],
+    "root_cause_key": "missing-glyph-page1",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": true,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Universal claim that no classifier can name a disease on an unseen crop",
+    "quote": "nor can any classifier name a disease on a crop absent from its training set",
+    "explanation": "Read literally this is false, and it is contradicted by the paper's own contribution, which is a classifier that does exactly this. The intended meaning - a fixed-output-layer supervised classifier has no output unit for an unseen class - is stated precisely in Section 4.6 ('structurally undefined at any parameter count'). Use that formulation in the abstract.",
+    "comment_type": "claim_accuracy",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "experiment"
+    ],
+    "root_cause_key": "any-classifier-overclaim",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "unverified",
+    "source_kind": "script",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false,
+    "source_file": "committee_editor.json"
+  },
+  {
+    "title": "Single-seed results carry no variance estimate outside the control arm",
+    "quote": "we report no variance estimates for them",
+    "explanation": "The disclosure is exemplary, but it interacts badly with the effect sizes the paper reports. The control arm establishes a seed-to-seed SD of 2.4 points on this task. Several load-bearing single-seed differences are smaller than that: the +2.4 rise in grounded accuracy from A to C, the 1.1-point pilot spread, the <=1.5-point probe spread across a 7.6-fold parameter range, and the 2.0-2.4 points the abstain gate buys. At minimum, note where a reported difference sits inside the known seed noise.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "single-seed-vs-known-variance",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Stub count is stated as both 61 and 66 within Section 6",
+    "quote": "A bulk re-run converted only 1 of 66 stubs.",
+    "explanation": "Two paragraphs earlier the same section states '156 of 217 disease records are LLM-filled; the remaining 61 are explicit stubs' (217 - 156 = 61). The re-run paragraph says 66. If the re-run predates a later fill, say so; otherwise one of the two numbers is wrong.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion"
+    ],
+    "root_cause_key": "stub-count-61-vs-66",
+    "review_lane": "notation_and_numeric_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Sub-10M claim is contradicted by a model the paper itself cites",
+    "quote": "No off-the-shelf aligned model exists below",
+    "explanation": "Related work cites TinyCLIP [22] as one of the compressed CLIPs that 'provide our frozen backbones'. TinyCLIP ships released checkpoints with image encoders well below 11 M (the ViT-8M/16 variant among them). Either the claim needs a qualifier - below 11 M *and* meeting some availability or quality bar you specify - or TinyCLIP must be evaluated. As written the limitation contradicts the paper's own citation, and TinyCLIP never appears in any results table despite being named as a backbone source.",
+    "comment_type": "claim_accuracy",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "method",
+      "discussion"
+    ],
+    "root_cause_key": "sub10m-tinyclip-contradiction",
+    "review_lane": "self_standard_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "'at the smallest label space it leads on neither' reads as contradicted by Table 2",
+    "quote": "whereas at the smallest label space it leads on neither",
+    "explanation": "At configuration A the grounded strategy has the higher top-5 on three of the four deployable encoders (61.9 vs 59.6, 60.3 vs 55.3, 77.1 vs 69.9; it loses only on MobileCLIP2-S2) and the lower AURC on one. The charitable reading is 'neither of the two sweeps just described', which is true, but a reader checking Table 2 sees the plain reading fail. Rewrite to name the criterion.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "leads-on-neither-ambiguity",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  },
+  {
+    "title": "A competitor is scored with a self-built loader and the number is reported anyway",
+    "quote": "our best-effort SCOLD load 4.4%",
+    "explanation": "The paper states plainly that the SCOLD wrapper is best-effort, that a faithful evaluation would need the authors' pipeline, and that no claim rests on it - that instinct is right. But a below-chance number for a named published competitor is still printed in the body text, plotted in Fig. 3 and summarised in the Fig. 3 caption, and Section 4.2's sentence 'Biological and domain leaf-disease foundation models transfer far less well' does draw a generalisation from a set of two. Either drop the SCOLD point, or obtain the authors' pipeline, or restrict the sentence to BioCLIP2.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "scold-best-effort-load",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Checkpoint identity is given once, in a table caption, and nowhere else",
+    "quote": "dfndr2b",
+    "explanation": "'dfndr2b' is a pretraining-data tag that appears exactly once in the manuscript and is never explained. Everywhere else the encoders are named only as MobileCLIP2-S0, MobileCLIP-S1, MobileCLIP2-S2, MobileCLIP-B and ViT-B-16-SigLIP2, with no pretrained-weight tags. Since Section 4.1 attributes an 8.5-point spread to 'pretraining recipe rather than capacity' and notes that two variants of the same 86 M architecture differ by 4.8 points, the exact checkpoint is load-bearing. Give the open_clip (model, pretrained) pair for every encoder in Tables 1-4 and 7.",
+    "comment_type": "missing_information",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "method",
+      "experiment"
+    ],
+    "root_cause_key": "no-checkpoint-tags",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Comparison protocol should make fairness assumptions explicit",
+    "quote": "We therefore do not claim that source-grounding im- proves accuracy.",
+    "explanation": "Comparative evaluation language was detected. Deep review should verify that baseline tuning, data splits, and reporting conventions are described symmetrically.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "method",
+      "experiment"
+    ],
+    "root_cause_key": "comparison-protocol-should-make-fairness-assumptions-explicit",
+    "review_lane": "committee_methodology",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "committee_methodology.json"
+  },
+  {
+    "title": "Duplicated sentence fragment in Section 4.4 that also reverses the direction of the effect",
+    "quote": "Selective accuracy rising with coverage, confirming the confidence",
+    "explanation": "This has no finite main verb, so it is a fragment. It restates the claim made two sentences earlier in the same paragraph ('Selective accuracy rises monotonically as coverage tightens'). And 'rising with coverage' asserts the opposite direction from 'rises as coverage tightens' - accuracy is supposed to rise as coverage falls. As it stands the paragraph contradicts itself and the Fig. 6 caption.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "section44-duplicate-fragment",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "unverified",
+    "source_kind": "script",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false,
+    "source_file": "committee_editor.json"
+  },
+  {
+    "title": "Figure 1 labels two distinct points MC2-S2",
+    "quote": "Zero-shot accuracy against image-encoder size",
+    "explanation": "Two different markers in Fig. 1 carry the label MC2-S2, at roughly 0.204 and 0.178. One of them is presumably a different variant (MC2-S3 and MC2-B are labelled separately). Since Fig. 1 is the sole evidence for the 'accuracy does not track size' correlation, its point labels need to be unambiguous.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "fig1-duplicate-label",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Figure 2 does not show the degradation its caption describes",
+    "quote": "Unseen-crop accuracy falls as the training objective improves.",
+    "explanation": "Fig. 2 plots held-out zero-shot accuracy per epoch during specialisation. The curve starts at ~0.121, peaks at ~0.176 at epoch 5, and trends upward to ~0.154 by epoch 50. Within the run, unseen accuracy rises rather than falls; the entire deficit against the 19.9% frozen base is already present at the first plotted point. The 4.5-point loss quoted in Section 4.1 is real, but 'falls as the training objective improves' and the figure title 'Specializing on seen crops degrades unseen-crop zero-shot' describe a downward trend the plot does not contain.",
+    "comment_type": "claim_accuracy",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "fig2-caption-mismatch",
+    "review_lane": "self_standard_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Leave-one-crop-out limitation is generalised from three of eight held-out crops",
+    "quote": "a leave-one-crop-out analysis shows the held-out crops are easier than the trained pool on this split",
+    "explanation": "Table 6 covers six crops - Orange, Coffee and Peach held out, Apple, Potato and Corn trained - on a 78-class pool with the rich strategy. Configuration C holds out eight crops (Cotton, Wheat, Bean, Banana and Cucumber are absent from Table 6) and the headline results use the grounded strategy on 51 classes. The finding is the right one to report and the honesty is a strength, but the sample supporting it is 3 of 8 held-out crops, under a different strategy, on a different label space. Since this limitation directly discounts the headline 2.2-13.9x transfer numbers, its scope needs to be either widened or stated narrowly.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "loco-scope-overreach",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  },
+  {
+    "title": "Result claims should identify comparison scope and uncertainty",
+    "quote": "We therefore do not claim that source-grounding im- proves accuracy.",
+    "explanation": "The results section reports comparative performance. Confirm whether the paper states the evaluation scope, variance, and fairness conditions tightly enough for a reviewer.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment",
+      "methods"
+    ],
+    "root_cause_key": "result-claims-should-identify-comparison-scope-and-uncertainty",
+    "review_lane": "committee_methodology, evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "committee_methodology.json"
+  },
+  {
+    "title": "Supervised baselines are stopped at four epochs by session limits, not convergence",
+    "quote": "The budget is fixed at 4 epochs by session limits rather than by convergence",
+    "explanation": "Eleven of fourteen runs are still improving at epoch four, by up to 3.4 points, and the paper says the larger models climb longer (ResNet-101 moves 77.9 -> 86.7 over the four epochs). The 'capacity is not the lever' conclusion, the Spearman 0.36, and the 89.3% EfficientNet-B0 headline all sit on top of an unconverged sweep. The caveat is stated well, but it is stated after the conclusion has been drawn, and 'size is not the bottleneck' is then promoted to 'a property of the task'. Scope the Section 4.6 comparison to the budget throughout, including in the conclusion.",
+    "comment_type": "methodology",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "unconverged-supervised-sweep",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Three figure titles are clipped by their bounding boxes",
+    "quote": "Accuracy against on-device latency",
+    "explanation": "Fig. 10's suptitle loses its leading 'R' ('eal-time Pareto...') and its trailing character; Fig. 6's title ends 'as coverage dro' with 'ps' cut off; Fig. 3's title ends '22-29' with the '%' clipped and the SigLIP2 bar label pushed against the right edge. All three are matplotlib titles wider than the saved canvas. Regenerate with a constrained layout or a wider bbox.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "figure-title-clipping",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Eleven of the fourteen supervised baselines are uncited",
+    "quote": "Our comparison set spans ResNet [6], MobileNetV3 [7] and MobileNetV4 [17]",
+    "explanation": "Table 5 evaluates EfficientNet-B0, EfficientNetV2-S, DenseNet-121, ConvNeXt V2 (tiny and nano), RegNetY-040 and FastViT (SA12 and T8) with no citation anywhere in the paper. EfficientNet-B0 is the strongest baseline and its 89.3% is quoted in the conclusion; FastViT-SA12 is described as 'the sharpest control' and as the architecture family of the deployed encoder. A journal comparison table needs a reference per architecture, and 'among others' is not one.",
+    "comment_type": "missing_information",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "method",
+    "related_sections": [
+      "method",
+      "experiment"
+    ],
+    "root_cause_key": "uncited-baselines",
+    "review_lane": "prior_art_and_novelty_grounding",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "prior_art_and_novelty_grounding.json"
+  },
+  {
+    "title": "Related work is a set of labelled stubs rather than a synthesis",
+    "quote": "WiSE-FT [21] explains our forgetting result and motivates the frozen-backbone",
+    "explanation": "Section 2 runs seven bolded run-in headings, several of them a single sentence. Twenty-three references is thin for a journal article on a crowded topic, and the descriptor-based-classification paragraph - the one the contribution actually competes with - cites two papers and disposes of both in three lines. The gap statement is credible and the positioning against DCLIP/CuPL is the right axis; it needs to be argued at length, with the agricultural zero-shot and edge-deployment literature engaged rather than gestured at.",
+    "comment_type": "missing_information",
+    "severity": "moderate",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "method",
+    "related_sections": [
+      "method"
+    ],
+    "root_cause_key": "related-work-thin",
+    "review_lane": "prior_art_and_novelty_grounding",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "prior_art_and_novelty_grounding.json"
+  },
+  {
+    "title": "Novelty claim should be grounded against the closest prior work",
+    "quote": "",
+    "explanation": "The paper positions itself against prior work, but the current wording should make the closest comparator and the real novelty delta explicit instead of relying on broad superiority language.",
+    "comment_type": "claim_accuracy",
+    "severity": "moderate",
+    "confidence": "unverified",
+    "source_kind": "llm",
+    "source_section": "related_work",
+    "related_sections": [
+      "related_work",
+      "results"
+    ],
+    "root_cause_key": "novelty-claim-should-be-grounded-against-the-closest-prior-work",
+    "review_lane": "committee_editor, committee_literature, committee_theory",
+    "gate_blocker": false,
+    "quote_verified": false,
+    "source_file": "committee_editor.json"
+  },
+  {
+    "title": "Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is...",
+    "quote": "",
+    "explanation": "[G1] Em dash found; replace it with a comma, colon, parenthesis, or sentence boundary unless it is part of a preserved quotation. This is a mechanical pre-submission readiness finding and should be fixed before the final submission package.",
+    "comment_type": "presentation",
+    "severity": "moderate",
+    "confidence": "unverified",
+    "source_kind": "script",
+    "source_section": "unknown",
+    "related_sections": [
+      "unknown"
+    ],
+    "root_cause_key": "presubmission-g1",
+    "review_lane": "committee_editor",
+    "gate_blocker": false,
+    "quote_verified": false,
+    "source_file": "committee_editor.json"
+  },
+  {
+    "title": "Abstract is 261 words and there are seven keywords",
+    "quote": "Cloud vision",
+    "explanation": "Elsevier's Computers and Electronics in Agriculture asks for an abstract of at most 250 words and normally up to six keywords. The abstract runs 261 words and the keyword list has seven entries. Mechanical, but it is checked at submission.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract"
+    ],
+    "root_cause_key": "abstract-length-keywords",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Related work and abstract disagree on how well cloud VLMs do",
+    "quote": "Cloud vision",
+    "explanation": "The abstract's opening premise is that cloud VLMs are accurate but expensive. Section 2 then cites Lu and Chen [10] for the finding that 'zero-shot vision-language models still underperform supervised baselines on plant disease by a wide margin', and uses it to justify leading with top-5 and abstention. Both can be true - an agentic cloud system with retrieval is not a bare zero-shot VLM - but as written the framing sentence and the paper's own cited evidence point in opposite directions, and the distinction is never drawn.",
+    "comment_type": "claim_accuracy",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract",
+      "method"
+    ],
+    "root_cause_key": "cloud-vlm-accuracy-tension",
+    "review_lane": "prior_art_and_novelty_grounding",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "prior_art_and_novelty_grounding.json"
+  },
+  {
+    "title": "The manuscript addresses the special issue from inside the body text",
+    "quote": "the foundation-model-native open problem this Special Issue targets",
+    "explanation": "'this Special Issue' is never named, so the sentence is unanchored for any reader not holding the call for papers, and it dates the article permanently. Make the point on its own terms and move the venue argument to the cover letter.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "abstract",
+    "related_sections": [
+      "abstract"
+    ],
+    "root_cause_key": "special-issue-in-body",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "De-duplicated class count does not follow from the listed defects",
+    "quote": "removing the alias pairs and the non-disease labels leaves 42 classes",
+    "explanation": "Section 6 lists five synonymous pairs (five removable labels) and five non-disease labels (three resistance ratings, one insect pest, one misspelled genus). Removing all ten from 51 leaves 41, not 42. If one label falls in both groups, or one non-disease label sits outside the held-out set, say so.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion"
+    ],
+    "root_cause_key": "dedup-count-41-vs-42",
+    "review_lane": "notation_and_numeric_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Inconsistent spacing before the percent sign",
+    "quote": "accuracy ceiling near 50",
+    "explanation": "The manuscript uses both '23.9%' and '23.9 %'. The spaced form clusters in Sections 4.6 and 6 ('95 % confidence interval', '80 % power', '37.5 %, 23.5 % and 19.6 %', '77.9 % to 86.7 %', '30.8 %') while the tables and the rest of the text use the unspaced form. Pick one.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "experiment",
+      "discussion"
+    ],
+    "root_cause_key": "percent-spacing",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Reference list is internally inconsistent and has incomplete entries",
+    "quote": "Information Processing in Agriculture 12, 54",
+    "explanation": "[3] gives a volume and what appears to be a truncated page range. [14] (Nguyen et al., Expert Systems with Applications) carries a DOI but no volume, issue or pages. [5] and [15] use 'et al.' in the author list while every other entry spells all authors out. [10] and [13] are cited as arXiv preprints; check whether either has since appeared in a venue.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "discussion",
+    "related_sections": [
+      "discussion"
+    ],
+    "root_cause_key": "reference-inconsistencies",
+    "review_lane": "prior_art_and_novelty_grounding",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "prior_art_and_novelty_grounding.json"
+  },
+  {
+    "title": "AURC columns mix three- and four-decimal precision",
+    "quote": "0.6986",
+    "explanation": "Within the same Table 2 columns: 0.6986, 0.5015 and 0.7426 sit alongside 0.643, 0.584, 0.545, 0.697 and 0.5243. Trailing zeros have been stripped by the generator. Fix the format string to four decimals throughout.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "aurc-precision-inconsistent",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Differences quoted in prose do not match differences of the tabulated values",
+    "quote": "0.5 buys only 1.3 points of seen accuracy while costing 6.2 points of unseen",
+    "explanation": "Table 4 gives 21.6% and 15.5%, a 6.1-point cost. The pattern recurs: 'alpha = 0.75 gains 8.8 points of seen' against 67.7 - 59.0 = 8.7; 'beats it by 2.5 points' against 89.3 - 86.7 = 2.6 (Table 5, repeated in its caption); 'the family spans 9.2 points' and 'is 9.2 points behind the best' against 89.3 - 80.0 = 9.3. All are consistent with differencing unrounded values, which is defensible, but a reader recomputing from the tables gets a different number every time. State the convention once, or round the differences to match the tables.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "rounded-vs-unrounded-differences",
+    "review_lane": "notation_and_numeric_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "Figure 3's caption describes a plot the figure is not",
+    "quote": "for each candidate backbone against its image-encoder parameter count",
+    "explanation": "Fig. 3 is a horizontal bar chart of accuracy by model; parameter count appears only as text inside the tick labels. Nothing is plotted 'against' parameter count. Either reword the caption or make it a scatter.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "fig3-caption-mismatch",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Over-interpretation of a 0.19-point change against 2.4-point seed noise",
+    "quote": "shortening the text slightly",
+    "explanation": "The 50-word-ceiling regeneration moves the mean from +0.94 to +1.13 points. Against a seed-level SD of 2.4 that difference is indistinguishable from noise, and no interval is given for the capped run. The negative conclusion the paragraph needs - truncation does not explain the effect - is well supported; the directional 'raises the advantage' is not.",
+    "comment_type": "methodology",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "capped-run-overreading",
+    "review_lane": "evaluation_fairness_and_reproducibility",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "evaluation_fairness_and_reproducibility.json"
+  },
+  {
+    "title": "Page 10 is roughly half empty and two figures are near the legibility floor",
+    "quote": "marker area is proportional to parameter count",
+    "explanation": "Table 6 and Fig. 10 are both placed in the left column of page 10, leaving the entire upper-right column and a large lower block blank. Fig. 10's panel is also small enough that its in-plot annotations ('36M . 39MB int8') are near the legibility floor at print size, as are Fig. 5's x-tick labels. Rebalance the floats and enlarge Figs. 5 and 10. Fig. 10's y-axis also spans only 0.223-0.29 with no zero baseline, which visually magnifies a 6-point spread in a paper whose thesis is that accuracy is flat with size.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "page10-whitespace",
+    "review_lane": "pre_submission_readiness",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "pre_submission_readiness.json"
+  },
+  {
+    "title": "Table 1 and Table 2 disagree on one cell",
+    "quote": "MobileCLIP-B",
+    "explanation": "Config B, MobileCLIP-B, rich top-1 is 28.4% in Table 1 and 28.3% in Table 2. Every other overlapping cell agrees exactly, so this reads as a transcription slip rather than a protocol difference.",
+    "comment_type": "presentation",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "experiment",
+    "related_sections": [
+      "experiment"
+    ],
+    "root_cause_key": "table1-table2-cell-mismatch",
+    "review_lane": "notation_and_numeric_consistency",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "self_standard_consistency.json"
+  },
+  {
+    "title": "$0/image ignores the descriptor-authoring cost the paper spends a section on",
+    "quote": "We are the deployable edge counterpart at $0/im",
+    "explanation": "The marginal inference cost is genuinely zero, and that is the point worth making. But the same paper reports that the registry required LLM generation across 217 classes, a strict grounding prompt, a bulk re-run and manual web verification of 40-plus records, and Section 5 states that 'grounded coverage scales with human-supplied sources'. '$0/image' appears in related work and again in the conclusion without that qualifier. Say 'zero marginal inference cost' and note the one-time authoring cost.",
+    "comment_type": "claim_accuracy",
+    "severity": "minor",
+    "confidence": "high",
+    "source_kind": "llm",
+    "source_section": "method",
+    "related_sections": [
+      "method",
+      "discussion"
+    ],
+    "root_cause_key": "zero-dollar-overclaim",
+    "review_lane": "claims_vs_evidence",
+    "gate_blocker": false,
+    "quote_verified": true,
+    "source_file": "claims_vs_evidence.json"
+  }
+]

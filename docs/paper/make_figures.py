@@ -448,26 +448,52 @@ def fig_cnn_training():
 
 
 def fig_edge_pareto():
-    """Accuracy vs on-device latency; point size = params, label = INT8 size. S0 is the sweet spot."""
-    fig, ax = plt.subplots(figsize=(6.8, 4.5))
-    for name, p, macs, fp32, fp32mb, int8ms, int8mb, acc in EDGE:
-        ax.scatter(fp32, acc, s=40 + p * 3, color="#1f77b4", zorder=3)
-        ax.annotate(f"{name}\n{p:.0f}M · {int8mb:.0f}MB int8", (fp32, acc), fontsize=7,
-                    xytext=(7, -3), textcoords="offset points")
-    ax.scatter([EDGE[0][3]], [EDGE[0][7]], s=240, facecolors="none", edgecolors="#d62728",
-               linewidths=2, label="S0 deploy tier (fastest & smallest)", zorder=4)
-    ax.set_xlabel("ONNX FP32 latency, laptop CPU (ms/image, batch 1)")
-    ax.set_ylabel("held-out zero-shot accuracy")
-    # Derive the title from EDGE rather than typing it. The hardcoded version claimed
-    # "15.8 ms/img (~63 img/s)" while EDGE[0][3] is 17.35 and Table 5, Section 5.7 and the
-    # Conclusion all say 17.4 -- the figure contradicted its own plotted point. Same bug class
-    # as the SigLIP2 divergence: a number typed into a generator instead of read from data.
-    _s0 = EDGE[0]
-    ax.set_title(f"Real-time Pareto: {_s0[1]:.0f} M {_s0[0]} at {_s0[3]:.1f} ms/img "
-                 f"(~{1000 / _s0[3]:.0f} img/s) at comparable accuracy")
-    ax.legend(fontsize=8, loc="lower right"); ax.grid(True, alpha=0.3)
-    fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=DPI); plt.close(fig)
+    """Accuracy against on-device latency for the four deployable tiers.
 
+    The y-values were EDGE[..][7], which are 17-class PILOT accuracies (0.270 / 0.224 / 0.287 /
+    0.268). Plotted against Table 7's deployment latencies that mixed two protocols on one axis
+    pair, and it inverted the ranking: the pilot orders S2 > S0 > B > S1 while configuration C
+    orders B > S1 > S2 > S0. A deployment recommendation was being read off that. Accuracy now
+    comes from zeroshot_eval_C.json, the same source as the headline table.
+    """
+    accs = {}
+    j_ = _load("zeroshot_eval_C.json")
+    if j_:
+        for k, d in j_["models"].items():
+            accs[_short(k)] = d["grounded"]["acc"]
+    if not accs:
+        print("  (edge pareto skipped - no zeroshot_eval_C.json)")
+        return
+    n_cls = j_.get("n_classes", "?")
+
+    fig, ax = plt.subplots(figsize=(6.8, 4.5))
+    pts = []
+    for name, p, macs, fp32, fp32mb, int8ms, int8mb, _pilot in EDGE:
+        acc = accs.get(name)
+        if acc is None:
+            continue
+        pts.append((name, p, fp32, int8mb, acc))
+        ax.scatter(fp32, acc, s=40 + p * 3, color="#1f77b4", zorder=3)
+        ax.annotate(f"{name}" + chr(10) + f"{p:.0f}M, {int8mb:.0f}MB int8", (fp32, acc),
+                    fontsize=7,
+                    xytext=(7, -3), textcoords="offset points")
+    if not pts:
+        plt.close(fig)
+        return
+    _s0 = pts[0]
+    ax.scatter([_s0[2]], [_s0[4]], s=240, facecolors="none", edgecolors="#d62728",
+               linewidths=2, label="S0 deploy tier (fastest and smallest)", zorder=4)
+    ax.set_xlabel("ONNX FP32 latency, laptop CPU (ms/image, batch 1)")
+    ax.set_ylabel(f"cross-crop zero-shot accuracy, {n_cls} unseen classes")
+    # Title derived from the data, never typed: an earlier hardcoded version claimed
+    # "15.8 ms/img" while the plotted point was 17.35.
+    ax.set_title(f"Latency/accuracy trade-off: {_s0[1]:.0f} M {_s0[0]} at {_s0[2]:.1f} ms/img "
+                 f"(~{1000 / _s0[2]:.0f} img/s)")
+    ax.legend(fontsize=8, loc="lower right")
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(FIG / "fig_edge_pareto.png", dpi=DPI)
+    plt.close(fig)
 
 def fig_scaling():
     """Zero-shot accuracy vs #held-out classes across Experiments A/B/C (the scale study)."""
@@ -508,12 +534,17 @@ def fig_scaling():
 
 
 def fig_riskcoverage():
-    """Selective accuracy vs coverage (abstain gate) for S0, from metrics_abstain.json if present."""
-    cands = [HERE / "metrics_abstain.json", Path("C:/kaggle/working/results/metrics_abstain.json"),
-             Path("results/metrics_abstain.json")]
-    path = next((c for c in cands if c.exists()), None)
-    if path is None:
-        print("  (risk-coverage fig skipped — no metrics_abstain.json)")
+    """Selective accuracy vs coverage at configuration C, the paper's headline label space.
+
+    Previously read the UNSUFFIXED metrics_abstain.json, which is the retired 17-class pilot
+    (chance 5.88%, S0 rich top-1 27.0%). Section 5.4 discusses configurations A/B/C, so the
+    figure was drawn from a different protocol than the text citing it, and its legend carried
+    top-1 values that appear in no table. metrics_abstain_C.json carries the same curves for
+    the nested split and is used instead.
+    """
+    path = HERE / "metrics_abstain_C.json"
+    if not path.exists():
+        print("  (risk-coverage fig skipped - no metrics_abstain_C.json)")
         return
     data = json.loads(path.read_text())
     key = next((k for k in data["models"] if "S0" in k), None)
@@ -524,16 +555,22 @@ def fig_riskcoverage():
     for strat, col in colors.items():
         cur = data["models"][key].get(strat, {}).get("risk_coverage_curve")
         if cur:
-            xs = [p[0] for p in cur]; ys = [p[1] for p in cur]
-            ax.plot(xs, ys, "-", color=col, label=f"{strat} (top-1 {data['models'][key][strat]['top1']:.0%})")
-    ax.axhline(data.get("chance", CHANCE), ls="--", color="grey", lw=1, label="chance")
+            xs = [p[0] for p in cur]
+            ys = [p[1] for p in cur]
+            ax.plot(xs, ys, "-", color=col,
+                    label=f"{strat} (top-1 {data['models'][key][strat]['top1']:.0%})")
+    ax.axhline(data.get("chance", CHANCE), ls="--", color="grey", lw=1,
+               label=f"chance ({data.get('chance', CHANCE):.1%})")
     ax.set_xlabel("coverage (fraction of images answered)")
     ax.set_ylabel("selective accuracy")
-    ax.set_title("Abstain gate (S0, margin confidence): accuracy rises as coverage drops")
-    ax.legend(fontsize=8); ax.grid(True, alpha=0.3)
+    ax.set_title(f"Abstain gate (MobileCLIP2-S0, margin confidence), "
+                 f"{data.get('n_classes', '?')} unseen classes")
+    ax.legend(fontsize=8)
+    ax.grid(True, alpha=0.3)
     ax.invert_xaxis()
-    fig.tight_layout(); fig.savefig(FIG / "fig_riskcoverage.png", dpi=DPI); plt.close(fig)
-
+    fig.tight_layout()
+    fig.savefig(FIG / "fig_riskcoverage.png", dpi=DPI)
+    plt.close(fig)
 
 def main():
     fig_efficiency_curve()
