@@ -335,7 +335,11 @@ def fig_descriptor_scaling():
                 ls="--" if s == "bare" else "-",
                 label={"bare": "bare (class name)", "rich": "rich (hand-curated)",
                        "grounded": "grounded (LLM, source-grounded)"}[s])
-        dy = {"bare": -14, "rich": 8, "grounded": -15}[s]
+        # rich (21.5%) and grounded (23.9%) are 2.4 points apart at scale C, so a fixed
+        # +8 / -15 pair collides in the figure carrying the paper's central result. Push
+        # the two apart vertically and give grounded the upper side, since it is the top
+        # curve there.
+        dy = {"bare": -15, "rich": -15, "grounded": 10}[s]
         for x, y in zip(n_cls, ys):
             ax.annotate(f"{y:.1%}", (x, y), fontsize=8, color=STRAT_COLORS[j],
                         xytext=(0, dy), textcoords="offset points", ha="center")
