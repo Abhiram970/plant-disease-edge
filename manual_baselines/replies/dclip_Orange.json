@@ -1,0 +1,74 @@
+{
+  "Canker": [
+    "raised corky brown lesions",
+    "yellow halo around each lesion",
+    "water-soaked, greasy lesion margin",
+    "crater-like sunken lesion centres",
+    "rough, scabby lesion texture",
+    "lesions visible on both leaf surfaces",
+    "round spots scattered over the leaf blade",
+    "raised brown scabs on the fruit peel",
+    "lesions merging into irregular corky patches",
+    "tan to dark brown lesion colour"
+  ],
+  "Citrus_Canker": [
+    "small round raised leaf spots",
+    "light tan to brown corky lesions",
+    "bright yellow halo around spots",
+    "oily, water-soaked lesion edge",
+    "blister-like raised lesion surface",
+    "cracked, crater-shaped lesion centres",
+    "spots on both the upper and lower leaf surface",
+    "many lesions scattered across the leaf",
+    "lesions along leaf edges and tears",
+    "yellowing of heavily spotted leaves"
+  ],
+  "Green_Mold": [
+    "olive-green powdery spore mass on the fruit",
+    "white band of mould around the green area",
+    "soft, water-soaked peel",
+    "whole fruit covered in green powder",
+    "circular spreading patch of mould",
+    "dusty, velvety surface texture",
+    "wrinkled, collapsing fruit",
+    "shrunken, dried-out fruit",
+    "green spores dusting nearby surfaces",
+    "orange peel visible between mouldy patches"
+  ],
+  "Greening_Disease": [
+    "blotchy yellow mottle on the leaf",
+    "asymmetric yellowing across the midrib",
+    "irregular yellow and green patches",
+    "yellowed, corky leaf veins",
+    "small, narrow, upright leaves",
+    "yellow shoots among green foliage",
+    "thickened, leathery leaf texture",
+    "mottling with diffuse patch margins",
+    "pale yellow-green overall leaf colour",
+    "sparse, yellowing canopy"
+  ],
+  "Huanglongbing": [
+    "uneven yellow mottling on the leaf blade",
+    "patches differing on each side of the midrib",
+    "yellow and dark green blotches with fuzzy edges",
+    "raised, yellow, corky veins",
+    "small upright leaves on yellow shoots",
+    "yellowing starting at the leaf base",
+    "stiff, leathery leaves",
+    "mixed green and yellow sectors of canopy",
+    "pale, chlorotic young leaves",
+    "twig dieback with sparse foliage"
+  ],
+  "Whisker_Mold": [
+    "coarse grey-white hair-like mould on the fruit",
+    "tiny black dots on the tips of the whiskers",
+    "soft, watery, collapsing fruit",
+    "loose cobweb-like fungal strands",
+    "mould spreading between touching fruits",
+    "leaking juice from rotting fruit",
+    "water-soaked, wrinkled peel",
+    "greyish fuzzy growth over the peel",
+    "sunken rotten areas on the fruit",
+    "mouldy nest of fruit in a pile"
+  ]
+}

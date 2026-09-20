@@ -1,0 +1,65 @@
+[
+  {
+    "crop": "Cotton",
+    "disease": "Bacterial_Blight",
+    "category": "Bacterial Blight on Cotton leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "water-soaked angular spots on the leaf",
+      "lesions bounded by the leaf veins",
+      "brown to black angular lesion colour",
+      "dark streaks running along the leaf veins",
+      "reddish-brown lesion borders",
+      "lesions merging into large dead patches",
+      "dry, brittle necrotic tissue",
+      "spots scattered across the leaf blade",
+      "yellowing tissue around lesions",
+      "blackened lesions along the leaf margin"
+    ]
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Powdery_Mildew",
+    "category": "Powdery Mildew on Cotton leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "white powdery patches on the leaf surface",
+      "circular spots of white fungal growth",
+      "dusty, talc-like leaf coating",
+      "patches merging to cover the whole leaf",
+      "greyish-white colour on older patches",
+      "powdery growth on both leaf surfaces",
+      "yellow chlorotic areas beneath the mildew",
+      "scattered spots on green leaf tissue",
+      "dull, whitened appearance of the leaf",
+      "brown dry tissue under old patches"
+    ]
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Target_Spot",
+    "category": "Target Spot on Cotton leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "round brown lesions on the leaf",
+      "concentric rings within each lesion",
+      "light tan lesion centres",
+      "dark reddish-purple lesion border",
+      "target-like zoned spot pattern",
+      "spots scattered across the leaf blade",
+      "lesions merging into large brown patches",
+      "centres cracking or dropping out as holes",
+      "yellow tissue around lesions",
+      "heavily spotted lower canopy leaves"
+    ]
+  }
+]

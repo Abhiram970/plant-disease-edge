@@ -233,13 +233,146 @@ def text_for(label: str, strategy: str = "rich", coverage: dict | None = None) -
     return base
 
 
+# --- established descriptor-generation baselines (the comparison Section 6 named as missing) ---
+#
+# Three additions, none of which touches the five strategies above. Section 6 concedes that the
+# paper compares only strategies of its own making: `bare` uses a 3-template ensemble rather than
+# CLIP's standard 80, and the per-class comparators (DCLIP, CuPL) were never implemented. These
+# close both gaps. All three are TEXT-ONLY -- no new images, no training -- so they can be scored
+# against cached image embeddings.
+#
+#   bare80  the `bare` class name, ensembled over the 80 OpenAI ImageNet templates instead of
+#           C.PROMPT_TEMPLATES. This is the baseline the original CLIP zero-shot recipe uses, and
+#           it is the strongest available class-name-only reference.
+#   dclip   Menon and Vondrick (ICLR 2023). An LLM writes short visual descriptors per class; each
+#           is embedded as "<class>, which has <descriptor>" and the class score is the MEAN of the
+#           per-descriptor similarities.
+#   cupl    Pratt et al. (ICCV 2023). An LLM writes full sentences per class from several question
+#           templates; sentence embeddings are averaged into one prototype and no hand-written
+#           template is applied.
+#
+# FIDELITY NOTE, and the reason `dclip` needs its own code path. DCLIP scores a class as
+# mean_i cos(img, d_i). For L2-normalised img and d_i that equals <img, mean_i(d_i)>, i.e. the
+# UNNORMALISED mean of the descriptor embeddings. Re-normalising the mean -- which is what every
+# other strategy here does, and what CuPL does -- rescales each class prototype by a different
+# factor and so changes the ranking between classes. Re-normalising would therefore be a different
+# method wearing DCLIP's name, which is why `dclip` is exempted below.
+
+# The 80 OpenAI ImageNet prompt templates, inlined rather than imported. open_clip has moved this
+# list between modules across versions (`open_clip.zero_shot_metadata`, `open_clip.constants`,
+# top-level), so importing it makes a published number depend on the installed version.
+IMAGENET_80_TEMPLATES = [
+    "a bad photo of a {}.", "a photo of many {}.", "a sculpture of a {}.",
+    "a photo of the hard to see {}.", "a low resolution photo of the {}.", "a rendering of a {}.",
+    "graffiti of a {}.", "a bad photo of the {}.", "a cropped photo of the {}.",
+    "a tattoo of a {}.", "the embroidered {}.", "a photo of a hard to see {}.",
+    "a bright photo of a {}.", "a photo of a clean {}.", "a photo of a dirty {}.",
+    "a dark photo of the {}.", "a drawing of a {}.", "a photo of my {}.",
+    "the plastic {}.", "a photo of the cool {}.", "a close-up photo of a {}.",
+    "a black and white photo of the {}.", "a painting of the {}.", "a painting of a {}.",
+    "a pixelated photo of the {}.", "a sculpture of the {}.", "a bright photo of the {}.",
+    "a cropped photo of a {}.", "a plastic {}.", "a photo of the dirty {}.",
+    "a jpeg corrupted photo of a {}.", "a blurry photo of the {}.", "a photo of the {}.",
+    "a good photo of the {}.", "a rendering of the {}.", "a {} in a video game.",
+    "a photo of one {}.", "a doodle of a {}.", "a close-up photo of the {}.",
+    "a photo of a {}.", "the origami {}.", "the {} in a video game.", "a sketch of a {}.",
+    "a doodle of the {}.", "a origami {}.", "a low resolution photo of a {}.",
+    "the toy {}.", "a rendition of the {}.", "a photo of the clean {}.",
+    "a photo of a large {}.", "a rendition of a {}.", "a photo of a nice {}.",
+    "a photo of a weird {}.", "a blurry photo of a {}.", "a cartoon {}.", "art of a {}.",
+    "a sketch of the {}.", "a embroidered {}.", "a pixelated photo of a {}.",
+    "itap of the {}.", "a jpeg corrupted photo of the {}.", "a good photo of a {}.",
+    "a plushie {}.", "a photo of the nice {}.", "a photo of the small {}.",
+    "a photo of the weird {}.", "the cartoon {}.", "art of the {}.", "a drawing of the {}.",
+    "a photo of the large {}.", "a black and white photo of a {}.", "the plushie {}.",
+    "a dark photo of a {}.", "itap of a {}.", "graffiti of the {}.", "a toy {}.",
+    "itap of my {}.", "a photo of a cool {}.", "a photo of a small {}.", "a tattoo of the {}.",
+]
+
+# Generated registries, written by scripts/build_descriptor_baselines.py. Same on-disk shape as
+# ARM_DIRS (one JSON per crop, per seed) so the integrity gate and the seed plumbing are reused.
+BASELINE_DIRS = {
+    "dclip": "descriptors_dclip",
+    "cupl": "descriptors_cupl",
+}
+
+# Prompt ensemble per strategy. Anything absent uses C.PROMPT_TEMPLATES, so the five original
+# strategies are untouched. "{}" is the identity template: the generated text is embedded as
+# written, which is what CuPL and DCLIP both do.
+STRATEGY_TEMPLATES = {
+    "bare80": IMAGENET_80_TEMPLATES,
+    "dclip": ["{}"],
+    "cupl": ["{}"],
+}
+
+# Strategies whose class prototype must NOT be re-normalised after averaging. See the fidelity
+# note above: for DCLIP this is the difference between the published method and a variant of it.
+NO_RENORM_STRATEGIES = {"dclip"}
+
+
+def _baseline_variants(strategy, crop, disease):
+    """The list of generated texts for one class under `dclip` or `cupl`, or None if absent.
+
+    Returns None (not []) when the class has no record, so callers can fall through to `rich`
+    exactly as the grounded and ungrounded arms do. Falling through keeps coverage handling
+    identical across every arm, which is what makes the comparison fair.
+    """
+    seed = _seed()
+    key = (strategy, crop, seed)
+    if key not in _arm_cache:
+        idx = {}
+        try:
+            p = C.REPO_ROOT / BASELINE_DIRS[strategy] / str(seed) / f"{C.safe_name(crop)}.json"
+            if p.exists():
+                for rec in json.loads(p.read_text(encoding="utf-8")):
+                    if isinstance(rec, dict) and rec.get("status") == "filled":
+                        items = rec.get("descriptors") or rec.get("sentences") or []
+                        items = [str(x).strip() for x in items if str(x).strip()]
+                        if items:
+                            idx[rec.get("disease")] = items
+        except Exception:
+            idx = {}
+        _arm_cache[key] = idx
+    return _arm_cache[key].get(disease)
+
+
+def texts_for(label: str, strategy: str = "rich", coverage: dict | None = None) -> list[str]:
+    """Every text variant for one class. One element for all strategies except dclip/cupl.
+
+    `text_for` stays the single-text entry point and is unchanged, so existing callers
+    (evaluate.py, descriptor_coverage.py) behave exactly as before.
+    """
+    if strategy in BASELINE_DIRS:
+        crop, dis = label.split("|", 1)
+        base = f"{dis} on {crop} leaf".replace("_", " ")
+        items = _baseline_variants(strategy, crop, dis)
+        if items:
+            if coverage is not None:
+                coverage[label] = strategy
+            if strategy == "dclip":
+                # Menon and Vondrick's scoring template.
+                return [f"{base}, which has {d.rstrip('.')}" for d in items]
+            return items          # CuPL sentences are embedded as generated
+        # no record -> fall through to rich, as every other generated arm does
+        return [text_for(label, "rich", coverage)]
+    if strategy == "bare80":
+        return [text_for(label, "bare", coverage)]
+    return [text_for(label, strategy, coverage)]
+
+
 def build_prototypes(model, tokenizer, classes, strategy="rich", device="cpu", coverage=None):
     import torch
     import torch.nn.functional as F
+    templates = STRATEGY_TEMPLATES.get(strategy, C.PROMPT_TEMPLATES)
+    renorm = strategy not in NO_RENORM_STRATEGIES
     protos = []
     with torch.no_grad():
         for c in classes:
-            toks = tokenizer([t.format(text_for(c, strategy, coverage)) for t in C.PROMPT_TEMPLATES]).to(device)
+            # For every pre-existing strategy texts_for yields exactly one string and templates is
+            # C.PROMPT_TEMPLATES, so this reduces to the original single-comprehension form and
+            # reproduces the published prototypes bit for bit.
+            prompts = [t.format(v) for v in texts_for(c, strategy, coverage) for t in templates]
+            toks = tokenizer(prompts).to(device)
             emb = F.normalize(model.encode_text(toks), dim=-1).mean(0)
-            protos.append(F.normalize(emb, dim=-1))
+            protos.append(F.normalize(emb, dim=-1) if renorm else emb)
     return torch.stack(protos).to(device)

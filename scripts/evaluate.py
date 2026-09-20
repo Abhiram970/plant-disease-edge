@@ -44,7 +44,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strategies", nargs="+", default=["bare", "crude", "rich"],
                     help="bare | crude | rich | grounded | grounded_visual | ungrounded | "
-                         "grounded_matched (same model as ungrounded -- the clean sourcing test)")
+                         "grounded_matched (same model as ungrounded -- the clean sourcing test) | "
+                         "bare80 (class name over CLIP's 80 ImageNet templates) | "
+                         "dclip | cupl (the established per-class generation baselines)")
     ap.add_argument("--ungrounded-seeds", nargs="+", type=int, default=None,
                     help="Evaluate SEVERAL seeds of a seeded arm in ONE process. Image "
                          "embeddings are cached per model and reused across strategies, but "
@@ -108,7 +110,9 @@ def main():
             crop, dis = lab.split("|", 1)
             missing = []
             for arm in args.paired_arms:
-                if arm not in _D.ARM_DIRS:
+                # BASELINE_DIRS holds dclip/cupl, which are seeded per-class registries with
+                # the same on-disk shape as ARM_DIRS, so they can be paired the same way.
+                if arm not in _D.ARM_DIRS and arm not in getattr(_D, 'BASELINE_DIRS', {}):
                     continue
                 # a class counts as covered only if EVERY seed of that arm has real text
                 for sd in seeds_for_pairing:
@@ -143,7 +147,7 @@ def main():
         models += [m for m in C.TEACHERS if m not in models]
 
     import descriptors as _D
-    _SEEDED_ARMS = set(_D.ARM_DIRS)
+    _SEEDED_ARMS = set(_D.ARM_DIRS) | set(getattr(_D, 'BASELINE_DIRS', {}))
 
     results, coverage = {}, {}
     for name, pretrained in models:
@@ -202,7 +206,8 @@ def main():
         _seeded = [a for a in args.strategies if a in _SEEDED_ARMS]
         _arm = _seeded[0] if _seeded else "ung"
         _short = {"ungrounded": "ung", "grounded_matched": "gm",
-                  "ungrounded_short": "ungs", "grounded_matched_short": "gms"}.get(_arm, _arm)
+                  "ungrounded_short": "ungs", "grounded_matched_short": "gms",
+                  "dclip": "dclip", "cupl": "cupl"}.get(_arm, _arm)
         suffix += f"_{_short}seeds"
     out = C.RESULTS_DIR / f"zeroshot_eval_{args.exp}{suffix}.json"
     out.write_text(json.dumps({"matcher_normalised": True,

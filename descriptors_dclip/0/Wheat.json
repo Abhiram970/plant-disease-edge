@@ -1,0 +1,212 @@
+[
+  {
+    "crop": "Wheat",
+    "disease": "Bacterial_Leaf_Streak_Black_Chaff",
+    "category": "Bacterial Leaf Streak Black Chaff on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "narrow water-soaked streaks between leaf veins",
+      "translucent, glassy look of young streaks",
+      "tan to brown elongated leaf lesions",
+      "streaks running parallel along the leaf blade",
+      "shiny, dried droplet flakes on the lesions",
+      "yellow margins around leaf streaks",
+      "streaks merging into large dead leaf areas",
+      "dark purple-black streaks on the glumes",
+      "blackened, striped chaff on the head",
+      "dark discolouration of the awns and stem below the head"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Fusarium_Graminearum_Schwabe",
+    "category": "Fusarium Graminearum Schwabe on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "salmon-pink to orange mould on the spikelets",
+      "pink fungal growth along glume edges",
+      "bleached, straw-coloured spikelets",
+      "shrivelled, chalky white kernels",
+      "light, shrunken tombstone-like grains",
+      "pinkish discolouration of kernels",
+      "partly bleached head with green spikelets remaining",
+      "brown to purple discolouration at the head base",
+      "tiny dark specks on bleached glumes",
+      "premature ripening of infected spikelets"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Fusarium_Wilts",
+    "category": "Fusarium Wilts on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "yellowing, drooping wheat leaves",
+      "wilted, rolled leaf blades",
+      "leaves drying from the tip downward",
+      "grey-green to straw-coloured dead leaves",
+      "whole tillers wilting and dying early",
+      "white, empty heads on wilted tillers",
+      "brown discolouration at the stem base",
+      "scattered dead plants among green plants",
+      "stunted, weak tillers",
+      "dry, brittle foliage"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Head_Scab",
+    "category": "Head Scab on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "bleached, white to straw-coloured spikelets",
+      "partly bleached wheat head",
+      "sharp contrast between bleached and green spikelets",
+      "pink to orange mould on the glumes",
+      "brown, water-soaked spikelet bases",
+      "entire bleached head above an infected point",
+      "shrivelled, pale, chalky grains",
+      "empty, light spikelets",
+      "dark specks on bleached glumes",
+      "premature whitened heads in a green field"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Karnal_Bunt",
+    "category": "Karnal Bunt on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "partly blackened wheat kernels",
+      "black powdery mass along the kernel crease",
+      "dark discolouration at the embryo end",
+      "eroded, hollowed kernel surface",
+      "grains partly converted into black spores",
+      "black dust on nearby grains",
+      "patchy black and golden grain colour",
+      "broken, fragile kernel coat",
+      "infected kernels among healthy grains",
+      "sooty, darkened kernel tips"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Loose_Smut",
+    "category": "Loose Smut on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "olive-black powdery spore mass on the head",
+      "spikelets replaced by black powder",
+      "sooty, dusty wheat head",
+      "black smutted head among green heads",
+      "thin grey membrane over the spore mass",
+      "bare rachis stripped of grain",
+      "naked stalk after spores blow away",
+      "whole head affected, not single spikelets",
+      "smutted heads emerging slightly early",
+      "dark, charcoal-like appearance of the ear"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Powdery_Mildew",
+    "category": "Powdery Mildew on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "white to grey cottony patches on the leaf",
+      "fluffy fungal growth on the upper leaf surface",
+      "powdery white pustules along the leaf blade",
+      "patches merging to cover the leaf",
+      "greyish-brown colour on older patches",
+      "tiny black specks within old mildew",
+      "yellowing tissue around patches",
+      "mildew on lower leaves and leaf sheaths",
+      "dull, dusty leaf appearance",
+      "dry, brown leaves under heavy growth"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Resistance_Phenotype",
+    "category": "Resistance Phenotype on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "green leaf with no sporulating pustules",
+      "small brown necrotic flecks",
+      "tiny pale chlorotic spots",
+      "hypersensitive dead spots",
+      "no orange or yellow rust powder",
+      "scattered minute lesions",
+      "healthy green leaf surface",
+      "dry dead flecks without spores",
+      "clean, undamaged leaf blade",
+      "uniform green colour along the leaf"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Resistance_Phenotype__Moderately_Resistant",
+    "category": "Resistance Phenotype  Moderately Resistant on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "small yellow-orange rust pustules",
+      "brown necrotic tissue around pustules",
+      "few, sparse pustules on the leaf",
+      "short, broken stripes of pustules",
+      "dead tissue restricting pustule size",
+      "mostly green leaf surface",
+      "light dusting of rust spores",
+      "chlorotic yellow flecks around lesions",
+      "small scattered lesions along veins",
+      "mix of necrotic flecks and tiny pustules"
+    ]
+  },
+  {
+    "crop": "Wheat",
+    "disease": "Resistance_Phenotype__Moderately_Susceptible",
+    "category": "Resistance Phenotype  Moderately Susceptible on Wheat leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "medium-sized yellow-orange rust pustules",
+      "pustules in stripes along the veins",
+      "yellow chlorosis surrounding pustules",
+      "powdery rust spores on the leaf",
+      "many pustules scattered on the blade",
+      "little necrotic tissue around pustules",
+      "yellow stripes along the leaf blade",
+      "partly yellowing leaf with green areas",
+      "rust-coloured dust on the leaf surface",
+      "moderately dense pustule coverage"
+    ]
+  }
+]

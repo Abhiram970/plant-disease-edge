@@ -1,0 +1,117 @@
+[
+  {
+    "crop": "Peach",
+    "disease": "Bacterial_Leaf_Spot",
+    "category": "Bacterial Leaf Spot on Peach leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Bacterial leaf spot on a peach leaf looks like small angular purple-brown to black spots scattered over the blade.",
+      "Bacterial leaf spot on a peach leaf appears as water-soaked spots surrounded by a yellow halo, concentrated near the tip and midrib.",
+      "Bacterial leaf spot on a peach leaf shows shot holes where the spot centres have dropped out, leaving the leaf tattered.",
+      "A photo of bacterial leaf spot on a peach leaf shows many tiny dark angular lesions bounded by the small veins.",
+      "A photo of bacterial leaf spot on a peach leaf reveals a yellowing leaf peppered with purple-black spots and small holes.",
+      "A photo of bacterial leaf spot on a peach leaf captures ragged leaves whose spots have fallen out as shot holes.",
+      "In a photo, bacterial leaf spot on a peach leaf looks like small dark flecks with yellow rings on the narrow green leaf.",
+      "In a photo, bacterial leaf spot on a peach leaf appears as angular brown-black spots clustered along the midrib and toward the tip.",
+      "In a photo, bacterial leaf spot on a peach leaf shows a yellowed, tattered leaf with holes and dark lesions.",
+      "The appearance of bacterial leaf spot on a peach leaf is small angular purple-brown to black spots with yellow halos.",
+      "The appearance of bacterial leaf spot on a peach leaf includes water-soaked young spots and shot holes from fallen-out lesions.",
+      "The appearance of bacterial leaf spot on a peach leaf is a yellowing, ragged leaf covered with tiny dark angular spots."
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Brown_Rot",
+    "category": "Brown Rot on Peach leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Brown rot on a peach looks like a circular brown rot spreading rapidly across the fruit.",
+      "Brown rot on a peach appears as soft, sunken decaying flesh covered with tan to grey powdery spore tufts.",
+      "Brown rot on a peach shows spore tufts arranged in concentric rings on the brown rotted skin.",
+      "A photo of brown rot on a peach shows a fruit with a large round brown patch dotted with grey-tan powdery tufts.",
+      "A photo of brown rot on a peach reveals a shrivelled, dark, mummified fruit still hanging on the branch.",
+      "A photo of brown rot on a peach captures rot spreading from one fruit to the neighbouring fruits it touches.",
+      "In a photo, brown rot on a peach looks like the fruit has turned brown and fuzzy with grey powder in rings.",
+      "In a photo, brown rot on a peach appears as a smooth brown lesion with a firm advancing edge on otherwise healthy peel.",
+      "In a photo, brown rot on a peach shows a wrinkled, dried fruit shrunk into a dark mummy.",
+      "The appearance of brown rot on a peach is a circular brown rot with tan to grey powdery spore tufts.",
+      "The appearance of brown rot on a peach includes concentric rings of spores on soft, sunken rotted flesh.",
+      "The appearance of brown rot on a peach is a completely browned, shrivelled fruit that dries into a mummy."
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Leaf_Curl",
+    "category": "Leaf Curl on Peach leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Leaf curl on a peach leaf looks like thickened, puckered, curled leaves with red to purple discolouration.",
+      "Leaf curl on a peach leaf appears as crinkled, wavy leaf blades with pinkish-yellow blistered areas.",
+      "Leaf curl on a peach leaf shows swollen, fleshy, distorted leaves clustered at the shoot tips.",
+      "A photo of leaf curl on a peach leaf shows deformed reddish leaves with a bumpy, blistered surface.",
+      "A photo of leaf curl on a peach leaf reveals a whitish-grey powdery bloom on the surface of older curled leaves.",
+      "A photo of leaf curl on a peach leaf captures normal green leaves next to thick, curled red-and-yellow leaves.",
+      "In a photo, leaf curl on a peach leaf looks like the leaves have puffed up, twisted and turned red.",
+      "In a photo, leaf curl on a peach leaf appears as crinkled, distorted foliage with pink, purple and yellow patches.",
+      "In a photo, leaf curl on a peach leaf shows old curled leaves turning yellow to brown and drying.",
+      "The appearance of leaf curl on a peach leaf is thickened, puckered, curled leaves with red to purple colouring.",
+      "The appearance of leaf curl on a peach leaf includes a blistered, crinkled surface and a fleshy leaf texture.",
+      "The appearance of leaf curl on a peach leaf is clusters of distorted leaves at shoot tips with a whitish powdery bloom."
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Leaf_Scab",
+    "category": "Leaf Scab on Peach leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Leaf scab on a peach leaf looks like small round olive-green to brown spots scattered on the leaf.",
+      "Leaf scab on a peach leaf appears as pale yellow-green early spots that darken to olive-brown with a velvety texture.",
+      "Leaf scab on a peach leaf shows shot holes where the round spots have dropped out of the blade.",
+      "A photo of leaf scab on a peach leaf shows the underside dotted with small, sooty olive-green spots.",
+      "A photo of leaf scab on a peach leaf reveals circular spots with soft edges scattered along the midrib and veins.",
+      "A photo of leaf scab on a peach leaf captures spots merging into dark blotches with yellowing tissue around them.",
+      "In a photo, leaf scab on a peach leaf looks like a leaf freckled with tiny dark olive spots.",
+      "In a photo, leaf scab on a peach leaf appears as velvety, round brown spots on a green or yellowing leaf.",
+      "In a photo, leaf scab on a peach leaf shows small holes among the remaining spots, giving a speckled, perforated look.",
+      "The appearance of leaf scab on a peach leaf is small round olive-green to brown spots with a sooty texture.",
+      "The appearance of leaf scab on a peach leaf includes spots concentrated on the underside along the veins.",
+      "The appearance of leaf scab on a peach leaf is a speckled leaf with dark round spots and small shot holes."
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Peach_Leaf_Curl",
+    "category": "Peach Leaf Curl on Peach leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Peach leaf curl looks like severely puckered and folded leaves with a reddish-purple blistered surface.",
+      "Peach leaf curl appears as thick, rubbery leaves with margins rolled inward and bright red and yellow patches.",
+      "Peach leaf curl shows wrinkled, bubbled leaves bunched together on twisted young shoots.",
+      "A photo of peach leaf curl shows distorted leaves with swollen red blisters bulging from the blade.",
+      "A photo of peach leaf curl reveals a grey-white powdery coating on the surface of thickened curled leaves.",
+      "A photo of peach leaf curl captures bunched, deformed foliage at the tips of branches.",
+      "In a photo, peach leaf curl looks like the leaves have crumpled into thick, red, bubbled shapes.",
+      "In a photo, peach leaf curl appears as inward-rolled, folded leaves coloured red, purple and yellow.",
+      "In a photo, peach leaf curl shows old curled leaves browning and drying on the branch.",
+      "The appearance of peach leaf curl is thick, puckered, reddish-purple leaves with a blistered surface.",
+      "The appearance of peach leaf curl includes rubbery, folded leaves with rolled margins and a powdery grey-white bloom.",
+      "The appearance of peach leaf curl is twisted young shoots carrying bunched, crinkled, discoloured leaves."
+    ]
+  }
+]

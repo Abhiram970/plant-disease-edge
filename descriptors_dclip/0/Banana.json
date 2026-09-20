@@ -1,0 +1,129 @@
+[
+  {
+    "crop": "Banana",
+    "disease": "Anthracnose",
+    "category": "Anthracnose on Banana leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "dark brown to black sunken lesions on the banana peel",
+      "circular to irregular spots on yellow ripe fruit",
+      "salmon-pink to orange spore masses on lesion surfaces",
+      "lesions merging into large blackened patches",
+      "shrivelled, wrinkled peel over decayed areas",
+      "dark rot spreading from the finger tip or crown",
+      "moist, slightly shiny lesion texture",
+      "diffuse lesion margins fading into yellow peel",
+      "multiple spots scattered over the fruit surface",
+      "blackened, rotting crown and stalk ends"
+    ]
+  },
+  {
+    "crop": "Banana",
+    "disease": "Bunchy_Top",
+    "category": "Bunchy Top on Banana leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "dark green dot-and-dash streaks along the leaf veins",
+      "green streaking on the midrib and petiole",
+      "narrow, shortened leaf blades",
+      "stiff, upright leaves crowded at the plant top",
+      "rosette-like bunched crown of leaves",
+      "pale yellow chlorotic leaf margins",
+      "upward-curling, wavy leaf edges",
+      "brittle, leathery leaf texture",
+      "ragged, torn leaf margins",
+      "stunted plant with small leaves"
+    ]
+  },
+  {
+    "crop": "Banana",
+    "disease": "Cigar_End_Rot",
+    "category": "Cigar End Rot on Banana leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "blackened tip of the banana finger",
+      "grey ash-like layer on the fruit tip",
+      "powdery grey-white fungal growth at the apex",
+      "dry, wrinkled, shrivelled finger end",
+      "dark brown to black necrotic zone at the flower end",
+      "sharp boundary between rotted tip and healthy peel",
+      "corrugated, sunken peel texture at the tip",
+      "rot extending a few centimetres down the finger",
+      "burnt cigar-end appearance of the fruit",
+      "several fingers affected on the same hand"
+    ]
+  },
+  {
+    "crop": "Banana",
+    "disease": "Cordana_Leaf_Spot",
+    "category": "Cordana Leaf Spot on Banana leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "large oval pale brown lesions",
+      "bright yellow halo around each spot",
+      "concentric zonation within lesions",
+      "thin dark brown lesion border",
+      "grey-tan papery lesion centres",
+      "spindle-shaped spots elongated along the veins",
+      "lesions starting at the leaf margin",
+      "coalescing spots forming large dead patches",
+      "dried, torn tissue within old lesions",
+      "yellow chlorotic tissue between merged lesions"
+    ]
+  },
+  {
+    "crop": "Banana",
+    "disease": "Panama_Disease",
+    "category": "Panama Disease on Banana leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "bright yellowing of older lower leaves",
+      "chlorosis starting at the leaf margins",
+      "yellowing spreading from the edge toward the midrib",
+      "brown, dry, papery leaf edges",
+      "wilted, drooping leaf blades",
+      "leaves buckled at the petiole base",
+      "dead leaves hanging down around the pseudostem",
+      "skirt of collapsed brown leaves",
+      "green upright young leaves above yellow older ones",
+      "longitudinal splitting at the pseudostem base"
+    ]
+  },
+  {
+    "crop": "Banana",
+    "disease": "Yellow_And_Black_Sigatoka",
+    "category": "Yellow And Black Sigatoka on Banana leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "narrow streaks parallel to the leaf veins",
+      "pale yellow early streaks",
+      "dark brown to black mature streaks",
+      "spindle-shaped spots with grey centres",
+      "black lesion borders",
+      "yellow halo around spots",
+      "dense rows of streaks across the leaf blade",
+      "merging lesions forming black necrotic areas",
+      "dried, blackened leaf tips and margins",
+      "heavily affected older leaves",
+      "ragged, dead leaf tissue"
+    ]
+  }
+]

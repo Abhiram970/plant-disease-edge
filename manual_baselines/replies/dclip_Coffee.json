@@ -1,0 +1,62 @@
+{
+  "Berry_Blotch": [
+    "brown to black blotches on coffee cherries",
+    "sunken, dry lesions on the berry skin",
+    "irregular necrotic patches on green berries",
+    "lesions on the sun-exposed side of the cherry",
+    "hardened, shrivelled berry tissue",
+    "purplish-red border around blotches",
+    "dark lesions on red ripening cherries",
+    "skin drying and clinging tightly to the bean",
+    "several blotched berries in one cluster",
+    "premature uneven ripening colour of berries"
+  ],
+  "Cerscospora": [
+    "round brown spots on the leaf",
+    "pale grey to white spot centres",
+    "reddish-brown ring around each spot",
+    "yellow halo surrounding the lesion",
+    "eye-like target appearance of spots",
+    "small to medium circular lesion shape",
+    "spots scattered across the leaf blade",
+    "dry, papery lesion centres",
+    "lesions merging into larger brown patches",
+    "yellowing of heavily spotted leaves"
+  ],
+  "Miner": [
+    "irregular brown blotch mines on the upper leaf surface",
+    "papery, dried, peeling leaf epidermis",
+    "light tan to dark brown blotch colour",
+    "irregular, rounded mine outlines",
+    "yellowish margin around fresh mines",
+    "several mines merging into large dead areas",
+    "blotches often near the leaf edge",
+    "wrinkled, blistered surface over mines",
+    "brown dead patches on otherwise glossy green leaves",
+    "curled, dried leaves with extensive mining"
+  ],
+  "Phoma": [
+    "dark brown to black lesions at leaf tips",
+    "necrotic lesions along the leaf margins",
+    "irregular spreading lesion shape",
+    "blackened, dried leaf edges",
+    "concentric zones in older lesions",
+    "curling and twisting of affected leaves",
+    "blackened young shoot tips",
+    "distorted, deformed young leaves",
+    "yellow tissue at lesion borders",
+    "dead tissue advancing inward from the edge"
+  ],
+  "Rust": [
+    "orange-yellow powdery spots on the leaf underside",
+    "pale yellow spots on the upper leaf surface",
+    "round to irregular spot shape",
+    "bright orange spore dust",
+    "spots merging into large orange patches",
+    "brown dry centres in older spots",
+    "yellow chlorotic ring around spots",
+    "many spots scattered across the leaf",
+    "brown necrotic patches on older leaves",
+    "yellowing of heavily infected leaves"
+  ]
+}

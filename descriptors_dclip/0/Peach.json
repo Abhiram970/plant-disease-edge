@@ -1,0 +1,107 @@
+[
+  {
+    "crop": "Peach",
+    "disease": "Bacterial_Leaf_Spot",
+    "category": "Bacterial Leaf Spot on Peach leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "small angular purple-brown spots on the leaf",
+      "dark brown to black lesion colour",
+      "water-soaked look of young spots",
+      "yellow halo around lesions",
+      "shot holes where spot centres have dropped out",
+      "tattered, ragged leaf appearance",
+      "spots clustered near the leaf tip and midrib",
+      "lesions bounded by small veins",
+      "overall yellowing of spotted leaves",
+      "many tiny spots scattered over the blade"
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Brown_Rot",
+    "category": "Brown Rot on Peach leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "circular brown rot spreading on the peach fruit",
+      "tan to grey powdery spore tufts",
+      "spore tufts arranged in concentric rings",
+      "soft, sunken decaying flesh",
+      "firm, smooth advancing lesion edge",
+      "whole fruit turning brown",
+      "shrivelled, wrinkled rotting fruit",
+      "dark, dried mummified fruit",
+      "rotten fruit still hanging on the tree",
+      "rot spreading between touching fruits"
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Leaf_Curl",
+    "category": "Leaf Curl on Peach leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "thickened, puckered leaf blades",
+      "curled and distorted leaves",
+      "red to purple leaf discolouration",
+      "pinkish-yellow blistered areas",
+      "crinkled, wavy leaf surface",
+      "swollen, fleshy leaf texture",
+      "whitish-grey powdery bloom on older leaves",
+      "clusters of deformed leaves at shoot tips",
+      "yellow to brown dying curled leaves",
+      "normal green leaves beside deformed ones"
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Leaf_Scab",
+    "category": "Leaf Scab on Peach leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "small round olive-green to brown leaf spots",
+      "pale yellow-green early spots",
+      "velvety, sooty texture of spots",
+      "spots mostly on the leaf underside",
+      "circular lesion shape with soft edges",
+      "shot holes where spots have dropped out",
+      "spots scattered along the midrib and veins",
+      "lesions merging into dark blotches",
+      "yellowing tissue around spots",
+      "speckled, freckled leaf appearance"
+    ]
+  },
+  {
+    "crop": "Peach",
+    "disease": "Peach_Leaf_Curl",
+    "category": "Peach Leaf Curl on Peach leaf",
+    "method": "dclip",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "descriptors": [
+      "severely puckered and folded leaves",
+      "reddish-purple blistered leaf surface",
+      "leaves thickened and rubbery",
+      "leaf margins rolled inward",
+      "bright red and yellow patches on the blade",
+      "wrinkled, bubbled leaf texture",
+      "grey-white powdery coating on curled leaves",
+      "twisted, deformed young shoots",
+      "browning and drying of old curled leaves",
+      "bunched distorted foliage at branch tips"
+    ]
+  }
+]
