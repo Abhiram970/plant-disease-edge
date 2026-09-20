@@ -58,7 +58,7 @@ REPO_REF   = "baselines/dclip-cupl-manual"
 # `bare` and `rich` and `grounded` are re-scored alongside the new rows so every comparison
 # in this run shares one image-embedding cache. Comparing a new row against the PUBLISHED
 # table instead would let any environment difference masquerade as a descriptor effect.
-STRATS = ["bare", "bare80", "rich", "grounded", "dclip", "cupl"]
+STRATS = ["bare", "bare80", "rich", "grounded", "grounded_split", "dclip", "cupl"]
 
 import os, sys, json, time, shutil, subprocess
 from pathlib import Path
@@ -192,7 +192,7 @@ sys.path.insert(0, str(S))
 import config as _C            # noqa: E402
 import descriptors as _D       # noqa: E402
 
-RUN_STRATS = ["bare", "bare80", "rich", "grounded"]
+RUN_STRATS = ["bare", "bare80", "rich", "grounded", "grounded_split"]
 for method, field in (("dclip", "descriptors"), ("cupl", "sentences")):
     d = _C.REPO_ROOT / _D.BASELINE_DIRS[method] / str(SEEDS[0])
     filled = 0

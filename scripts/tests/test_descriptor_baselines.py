@@ -76,6 +76,41 @@ def test_generated_baselines_fall_through_to_rich_when_absent(tmp_path=None):
             assert len(got) >= 1 and all(isinstance(x, str) and x for x in got)
 
 
+def test_grounded_split_holds_text_fixed():
+    """grounded_split must be the SAME text as grounded, only re-shaped into an ensemble.
+
+    This is the whole point of the strategy: if the words differ, it no longer isolates
+    prototype construction from text content and the experiment answers nothing.
+    """
+    import re as _re
+    D._grounded_cache.clear()
+    checked = 0
+    for label in ("Orange|Citrus_Canker", "Peach|Brown_Rot", "Coffee|Rust", "Wheat|Head_Scab"):
+        crop, dis = label.split("|", 1)
+        g = D._grounded(crop, dis)
+        if not g:
+            continue
+        checked += 1
+        parts = D.texts_for(label, "grounded_split")
+        base = f"{dis} on {crop} leaf".replace("_", " ")
+        # every prompt carries the class name, as CuPL's sentences do
+        assert all(p.startswith(base + ".") for p in parts), label
+        # and the concatenated sentences are a subset of the original paragraph's words
+        joined = " ".join(p[len(base) + 1:].strip() for p in parts)
+        orig = set(_re.findall(r"[a-z]+", g.lower()))
+        got = set(_re.findall(r"[a-z]+", joined.lower()))
+        assert got <= orig, f"{label}: grounded_split invented words not in grounded: {got - orig}"
+    assert checked >= 2, "no grounded records available to check"
+
+
+def test_grounded_split_falls_back_when_unsplittable():
+    """A record with one sentence, or none, must behave exactly like `grounded`."""
+    assert D._split_sentences("") == []
+    assert D._split_sentences("Too short.") == []          # <=3 words is a fragment
+    two = D._split_sentences("Lesions are raised and corky. A yellow halo rings each spot.")
+    assert len(two) == 2, two
+
+
 def test_dclip_scoring_template_shape():
     """Exercise the dclip branch with a synthetic registry, then clean up."""
     seed = D._seed()

@@ -15,6 +15,7 @@ tensor of L2-normalized text-prototype embeddings.
 from __future__ import annotations
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -303,6 +304,9 @@ STRATEGY_TEMPLATES = {
     "bare80": IMAGENET_80_TEMPLATES,
     "dclip": ["{}"],
     "cupl": ["{}"],
+    # grounded_split embeds its sentences as written, exactly as cupl does, so that the only
+    # difference between the two is which text is being ensembled.
+    "grounded_split": ["{}"],
 }
 
 # Strategies whose class prototype must NOT be re-normalised after averaging. See the fidelity
@@ -336,6 +340,12 @@ def _baseline_variants(strategy, crop, disease):
     return _arm_cache[key].get(disease)
 
 
+def _split_sentences(text: str) -> list[str]:
+    """Split a symptom paragraph into embeddable sentences, dropping fragments."""
+    parts = re.split(r"(?<=[.!?])\s+", (text or "").strip())
+    return [p.strip() for p in parts if len(p.split()) > 3]
+
+
 def texts_for(label: str, strategy: str = "rich", coverage: dict | None = None) -> list[str]:
     """Every text variant for one class. One element for all strategies except dclip/cupl.
 
@@ -357,6 +367,29 @@ def texts_for(label: str, strategy: str = "rich", coverage: dict | None = None) 
         return [text_for(label, "rich", coverage)]
     if strategy == "bare80":
         return [text_for(label, "bare", coverage)]
+    if strategy == "grounded_split":
+        # THE ONE-VARIABLE TEST. Identical text to `grounded`; only the prototype construction
+        # changes. `grounded` embeds one 199-token paragraph into a 77-token window, so 43 of 51
+        # held-out prototypes are truncated and roughly 60% of the authored text never reaches
+        # the encoder. CuPL instead averages ~12 short, untruncated sentences and beats grounded
+        # by about 7 points at configurations B and C. That margin therefore confounds three
+        # things: the text itself, the prompt ensembling, and the truncation.
+        #
+        # Splitting the SAME paragraph into sentences and ensembling them the way CuPL does
+        # holds the text fixed and removes the other two. If this recovers most of the gap, the
+        # deficit was prototype construction, not sourcing. If it does not, sourcing genuinely
+        # costs accuracy. Nothing else in the study can separate those two readings.
+        crop, dis = label.split("|", 1)
+        base = f"{dis} on {crop} leaf".replace("_", " ")
+        g = _grounded(crop, dis)
+        sents = _split_sentences(g) if g else []
+        if sents:
+            if coverage is not None:
+                coverage[label] = "grounded_split"
+            # Each sentence carries the class name, as CuPL's generated sentences naturally do;
+            # without it a bare symptom clause has no class identity to match against.
+            return [f"{base}. {s}" for s in sents]
+        return [text_for(label, "grounded", coverage)]      # 1 sentence or no record -> unchanged
     return [text_for(label, strategy, coverage)]
 
 
