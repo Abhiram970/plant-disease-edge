@@ -1,0 +1,62 @@
+{
+  "Angular_Leaf_Spot": [
+    "angular grey to brown spots on the leaf",
+    "lesions bounded by the leaf veins",
+    "straight-edged, polygonal spot outlines",
+    "small spots scattered across the leaf blade",
+    "yellow chlorotic tissue around lesions",
+    "lesions merging into large irregular dead areas",
+    "dark grey fuzzy growth on the leaf underside",
+    "dry, papery lesion centres",
+    "yellowing and browning of heavily spotted leaves",
+    "checkerboard pattern of spots between veins"
+  ],
+  "Common_Bacterial_Blight_Of_Beans": [
+    "water-soaked spots on the leaf blade",
+    "large irregular brown necrotic patches",
+    "narrow lemon-yellow border around lesions",
+    "lesions spreading from the leaf margin inward",
+    "dry, papery, brittle dead tissue",
+    "torn and ragged leaf edges",
+    "coalescing lesions covering much of the leaflet",
+    "light tan to brown lesion colour",
+    "scorched, burnt appearance of the leaf",
+    "yellowing tissue between dead areas"
+  ],
+  "Halo_Blight": [
+    "small water-soaked spots on the leaf",
+    "wide light green to yellow halo around each spot",
+    "reddish-brown to dark brown lesion centres",
+    "small angular to round lesion shape",
+    "many tiny spots scattered across the leaflet",
+    "bright yellow-green circular halos",
+    "general yellowing of the whole leaf",
+    "dry, brown centres in older spots",
+    "halos merging into large chlorotic areas",
+    "greasy, translucent look of young lesions"
+  ],
+  "Leaf_Mosaic_Virus": [
+    "light and dark green mosaic mottling",
+    "patchwork of yellow-green and dark green areas",
+    "puckered, blistered leaf surface",
+    "downward-cupped or rolled leaf blades",
+    "distorted, misshapen leaflets",
+    "narrow, elongated leaves",
+    "dark green bands along the veins",
+    "wrinkled, crinkled leaf texture",
+    "uneven, lumpy leaf surface",
+    "stunted, small leaves"
+  ],
+  "Rust": [
+    "small reddish-brown powdery pustules",
+    "raised, round rust-coloured spots",
+    "pustules mostly on the leaf underside",
+    "yellow halo around each pustule",
+    "rusty brown dust on the leaf surface",
+    "many pustules scattered over the leaf blade",
+    "dark brown to black pustules on older leaves",
+    "pinpoint spots on the upper leaf surface",
+    "yellowing of heavily infected leaves",
+    "dry, browning tissue around dense pustule clusters"
+  ]
+}

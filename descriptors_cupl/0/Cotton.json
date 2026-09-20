@@ -1,0 +1,71 @@
+[
+  {
+    "crop": "Cotton",
+    "disease": "Bacterial_Blight",
+    "category": "Bacterial Blight on Cotton leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Bacterial blight on a cotton leaf looks like small water-soaked angular spots bounded by the leaf veins.",
+      "Bacterial blight on a cotton leaf appears as brown to black angular lesions that merge into large dead patches on the blade.",
+      "Bacterial blight on a cotton leaf shows dark streaks running along the veins, giving the veins a blackened look.",
+      "A photo of bacterial blight on a cotton leaf shows many angular dark lesions scattered between the veins of the leaf.",
+      "A photo of bacterial blight on a cotton leaf reveals water-soaked spots turning brown, some with a reddish-brown border.",
+      "A photo of bacterial blight on a cotton leaf captures blackened, dried tissue along the leaf margin and yellowing around the lesions.",
+      "In a photo, bacterial blight on a cotton leaf looks like dark angular patches with straight edges following the vein network.",
+      "In a photo, bacterial blight on a cotton leaf appears as brittle brown dead areas formed by merged angular spots.",
+      "In a photo, bacterial blight on a cotton leaf shows black lines along the main veins and scattered small dark lesions.",
+      "The appearance of bacterial blight on a cotton leaf is water-soaked angular lesions that darken to brown and black.",
+      "The appearance of bacterial blight on a cotton leaf includes dark vein streaking and reddish-brown lesion edges.",
+      "The appearance of bacterial blight on a cotton leaf is a yellowing leaf with merged angular lesions and dry, dead margins."
+    ]
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Powdery_Mildew",
+    "category": "Powdery Mildew on Cotton leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Powdery mildew on a cotton leaf looks like white powdery patches scattered over the green leaf surface.",
+      "Powdery mildew on a cotton leaf appears as a dusty, talc-like white coating that spreads to cover much of the leaf.",
+      "Powdery mildew on a cotton leaf shows circular white spots that merge into large greyish-white areas.",
+      "A photo of powdery mildew on a cotton leaf shows round patches of white fungal growth on the upper leaf surface.",
+      "A photo of powdery mildew on a cotton leaf reveals a dull, whitened leaf with yellow chlorotic tissue beneath the patches.",
+      "A photo of powdery mildew on a cotton leaf captures greyish-white powdery growth on both the upper and lower surfaces.",
+      "In a photo, powdery mildew on a cotton leaf looks like the leaf has been dusted with white flour.",
+      "In a photo, powdery mildew on a cotton leaf appears as soft white powdery spots with diffuse edges on green tissue.",
+      "In a photo, powdery mildew on a cotton leaf shows merged white patches with brown, dried tissue under older growth.",
+      "The appearance of powdery mildew on a cotton leaf is white to greyish powdery patches on the leaf surface.",
+      "The appearance of powdery mildew on a cotton leaf includes round spots of dusty fungal growth that join into large areas.",
+      "The appearance of powdery mildew on a cotton leaf is a whitened, dull leaf with yellowing beneath the powdery coating."
+    ]
+  },
+  {
+    "crop": "Cotton",
+    "disease": "Target_Spot",
+    "category": "Target Spot on Cotton leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Target spot on a cotton leaf looks like round brown lesions with concentric rings, like a bullseye target.",
+      "Target spot on a cotton leaf appears as circular spots with light tan centres and a dark reddish-purple border.",
+      "Target spot on a cotton leaf shows zoned lesions that merge into large brown patches with cracked or missing centres.",
+      "A photo of target spot on a cotton leaf shows several round, ringed brown spots scattered across the leaf blade.",
+      "A photo of target spot on a cotton leaf reveals lesions with alternating light and dark concentric zones and yellow tissue around them.",
+      "A photo of target spot on a cotton leaf captures older lesions whose dry centres have split or fallen out, leaving holes.",
+      "In a photo, target spot on a cotton leaf looks like brown circles with visible rings inside and a darker purplish edge.",
+      "In a photo, target spot on a cotton leaf appears as round tan to brown spots of varying size spread over the leaf.",
+      "In a photo, target spot on a cotton leaf shows merging ringed lesions forming large irregular brown dead areas.",
+      "The appearance of target spot on a cotton leaf is round brown lesions with concentric rings and tan centres.",
+      "The appearance of target spot on a cotton leaf includes a reddish-purple lesion margin and a yellow chlorotic surround.",
+      "The appearance of target spot on a cotton leaf is a leaf covered with zoned brown spots, some cracked or holed in the centre."
+    ]
+  }
+]

@@ -1,0 +1,46 @@
+You are describing what things look like in photographs, for use as text prompts in
+an image classifier.
+
+For EACH category below, write 12 complete sentences describing its appearance in a photo, spread
+across these four question forms (3 sentences each):
+
+  1. Describe what a {category} looks like in a photo.
+  2. Describe a photo of a {category}.
+  3. What does a {category} look like in a photo?
+  4. Describe the appearance of a {category} in a photo.
+
+Each sentence must stand alone as a description of the visible plant material: colour, lesion
+shape, texture, margin, distribution.
+
+WHICH PLANT PART TO DESCRIBE. The category strings all end in "leaf" because that is
+how the classifier names them, but the photographs do not all show leaves. Describe THE PART THE
+PHOTOGRAPH ACTUALLY SHOWS for that disease:
+  - foliar diseases (leaf spots, blights, mildews, rusts, mosaics, wilts seen as leaf yellowing)
+    -> describe the leaf
+  - fruit and post-harvest rots (e.g. cigar end rot, green/whisker mould, belly rot, brown rot,
+    berry blotch) -> describe the FRUIT, not the leaf
+  - cereal head and grain diseases (e.g. head scab, karnal bunt, loose smut) -> describe the HEAD
+    or grain
+Verified against the image set: cigar end rot is photographed as a blackened banana finger tip and
+green mould as a whole mouldy citrus fruit, while Panama disease is photographed as yellowing leaf
+blades. Writing "leaf" for a fruit disease would describe something absent from the picture.
+
+ONLY WHAT A CAMERA SEES. No treatment advice, no life cycle, no pathogen taxonomy, and nothing that
+needs the plant to be cut open or examined under magnification (internal vascular streaking, for
+instance, is not visible in a field photograph).
+
+CATEGORIES (5):
+  Berry_Blotch  ->  "Berry Blotch on Coffee leaf"
+  Cerscospora  ->  "Cerscospora on Coffee leaf"
+  Miner  ->  "Miner on Coffee leaf"
+  Phoma  ->  "Phoma on Coffee leaf"
+  Rust  ->  "Rust on Coffee leaf"
+
+Reply with ONLY a JSON object, no prose before or after, mapping each category's DISEASE KEY to
+its array of 12 sentences. Use the disease keys exactly as given:
+
+{
+  "Berry_Blotch": ["...", "..."],
+  "Cerscospora": ["...", "..."],
+  ... one entry for every disease key above
+}

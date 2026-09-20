@@ -1,0 +1,117 @@
+[
+  {
+    "crop": "Bean",
+    "disease": "Angular_Leaf_Spot",
+    "category": "Angular Leaf Spot on Bean leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Angular leaf spot on a bean leaf looks like small grey to brown spots with straight, angular edges bounded by the leaf veins.",
+      "Angular leaf spot on a bean leaf appears as polygonal lesions scattered between the veins, forming a checkerboard-like pattern on the blade.",
+      "Angular leaf spot on a bean leaf shows angular brown spots surrounded by yellowing tissue that merge into large irregular dead areas.",
+      "A photo of angular leaf spot on a bean leaf shows many small, sharply angular grey-brown lesions confined between the veins of the leaflet.",
+      "A photo of angular leaf spot on a bean leaf reveals dry, papery lesion centres with yellow chlorotic tissue around them.",
+      "A photo of angular leaf spot on a bean leaf captures dark grey fuzzy growth on the underside of the leaf beneath the angular spots.",
+      "In a photo, angular leaf spot on a bean leaf looks like a green leaflet dotted with brown, straight-sided spots whose shapes follow the vein network.",
+      "In a photo, angular leaf spot on a bean leaf appears as grey-brown polygonal lesions that join together as the leaf yellows and browns.",
+      "In a photo, angular leaf spot on a bean leaf shows spots with angular margins spread evenly across the blade rather than clustered at the edges.",
+      "The appearance of angular leaf spot on a bean leaf is small angular grey to brown lesions bounded by veins on a green or yellowing leaf.",
+      "The appearance of angular leaf spot on a bean leaf includes straight-edged, dry lesions with a faint yellow border around each one.",
+      "The appearance of angular leaf spot on a bean leaf is a leaflet covered with merging angular spots that give it a patchy brown and yellow look."
+    ]
+  },
+  {
+    "crop": "Bean",
+    "disease": "Common_Bacterial_Blight_Of_Beans",
+    "category": "Common Bacterial Blight Of Beans on Bean leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Common bacterial blight on a bean leaf looks like large irregular brown necrotic patches bordered by a narrow lemon-yellow band.",
+      "Common bacterial blight on a bean leaf appears as water-soaked spots that enlarge into dry, tan to brown dead areas spreading from the leaf margin.",
+      "Common bacterial blight on a bean leaf shows papery, brittle brown tissue with torn and ragged edges, giving the leaf a scorched look.",
+      "A photo of common bacterial blight on a bean leaf shows broad brown lesions of irregular shape, each edged with a thin bright yellow margin.",
+      "A photo of common bacterial blight on a bean leaf reveals dead, dry leaf tissue merging across much of the leaflet with yellow tissue between the lesions.",
+      "A photo of common bacterial blight on a bean leaf captures small water-soaked spots on the blade alongside larger brown, papery blighted areas.",
+      "In a photo, common bacterial blight on a bean leaf looks like the leaf has been burnt, with large brown dead zones and a yellow edge around them.",
+      "In a photo, common bacterial blight on a bean leaf appears as tan to brown lesions starting at the leaf edge and spreading inward.",
+      "In a photo, common bacterial blight on a bean leaf shows brittle, cracked dead tissue that tears easily, leaving ragged holes and margins.",
+      "The appearance of common bacterial blight on a bean leaf is irregular brown necrotic areas with a distinct narrow lemon-yellow border.",
+      "The appearance of common bacterial blight on a bean leaf includes water-soaked spots that dry into papery, light brown patches.",
+      "The appearance of common bacterial blight on a bean leaf is a scorched leaflet with merged brown lesions, yellowing tissue and tattered edges."
+    ]
+  },
+  {
+    "crop": "Bean",
+    "disease": "Halo_Blight",
+    "category": "Halo Blight on Bean leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Halo blight on a bean leaf looks like small water-soaked spots each surrounded by a wide light green to yellow halo.",
+      "Halo blight on a bean leaf appears as tiny reddish-brown to dark brown lesions ringed by broad bright yellow-green circles.",
+      "Halo blight on a bean leaf shows many small spots scattered across the leaflet, with their halos merging into large yellow areas.",
+      "A photo of halo blight on a bean leaf shows small brown spots, each sitting in the centre of a large pale yellow-green halo.",
+      "A photo of halo blight on a bean leaf reveals greasy, translucent water-soaked lesions surrounded by circular chlorotic zones.",
+      "A photo of halo blight on a bean leaf captures a leaf with general yellowing and small dry brown spots scattered over the blade.",
+      "In a photo, halo blight on a bean leaf looks like tiny dark dots each framed by a much larger ring of light yellow tissue.",
+      "In a photo, halo blight on a bean leaf appears as small angular to round lesions with bright halos that stand out against the green leaf.",
+      "In a photo, halo blight on a bean leaf shows yellow halos joining into wide chlorotic patches while the spot centres turn dry and brown.",
+      "The appearance of halo blight on a bean leaf is small water-soaked or brown spots surrounded by conspicuous yellow-green halos.",
+      "The appearance of halo blight on a bean leaf includes reddish-brown lesion centres and wide circular chlorotic rings around them.",
+      "The appearance of halo blight on a bean leaf is a yellowing leaflet covered with many tiny spots, each with its own light halo."
+    ]
+  },
+  {
+    "crop": "Bean",
+    "disease": "Leaf_Mosaic_Virus",
+    "category": "Leaf Mosaic Virus on Bean leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Mosaic virus on a bean leaf looks like a patchwork of light yellow-green and dark green areas mottled across the leaf blade.",
+      "Mosaic virus on a bean leaf appears as puckered, blistered leaves with uneven mottling and dark green bands along the veins.",
+      "Mosaic virus on a bean leaf shows distorted, downward-cupped leaflets with a wrinkled, crinkled texture.",
+      "A photo of mosaic virus on a bean leaf shows irregular light and dark green patches giving the leaf a mottled mosaic pattern.",
+      "A photo of mosaic virus on a bean leaf reveals narrow, misshapen leaflets with a lumpy, blistered surface.",
+      "A photo of mosaic virus on a bean leaf captures leaves rolled or cupped downward with yellowish mottling between darker green areas.",
+      "In a photo, mosaic virus on a bean leaf looks like a leaf painted in uneven shades of green, with raised dark green blisters.",
+      "In a photo, mosaic virus on a bean leaf appears as crinkled, puckered leaflets that are smaller and narrower than normal.",
+      "In a photo, mosaic virus on a bean leaf shows dark green vein banding against paler yellow-green tissue across the whole blade.",
+      "The appearance of mosaic virus on a bean leaf is a light and dark green mosaic mottle with no distinct spots or lesions.",
+      "The appearance of mosaic virus on a bean leaf includes blistering, puckering and downward curling of the leaf blade.",
+      "The appearance of mosaic virus on a bean leaf is small, distorted, wrinkled leaflets with patchy yellow-green and dark green colour."
+    ]
+  },
+  {
+    "crop": "Bean",
+    "disease": "Rust",
+    "category": "Rust on Bean leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Rust on a bean leaf looks like many small, raised reddish-brown powdery pustules scattered across the leaf surface.",
+      "Rust on a bean leaf appears as round rust-coloured spots, each surrounded by a narrow yellow halo.",
+      "Rust on a bean leaf shows dense clusters of pustules, mostly on the underside, that release a rusty brown dust.",
+      "A photo of rust on a bean leaf shows the underside of the leaf covered with small, raised reddish-brown pustules.",
+      "A photo of rust on a bean leaf reveals pinpoint rust-coloured spots with pale yellow rings on the upper leaf surface.",
+      "A photo of rust on a bean leaf captures a yellowing leaflet densely speckled with powdery brown pustules.",
+      "In a photo, rust on a bean leaf looks like tiny rusty-red bumps sprinkled evenly over the green leaf blade.",
+      "In a photo, rust on a bean leaf appears as round, dusty reddish-brown pustules that darken to brown or black on older leaves.",
+      "In a photo, rust on a bean leaf shows yellow and dry brown tissue around heavy clusters of pustules.",
+      "The appearance of rust on a bean leaf is numerous small, round, raised pustules of reddish-brown powder.",
+      "The appearance of rust on a bean leaf includes a yellow halo around each pustule and rust-coloured dust on the leaf surface.",
+      "The appearance of rust on a bean leaf is a leaf speckled with rusty pustules, turning yellow and drying where they are densest."
+    ]
+  }
+]

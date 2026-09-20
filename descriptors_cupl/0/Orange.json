@@ -1,0 +1,140 @@
+[
+  {
+    "crop": "Orange",
+    "disease": "Canker",
+    "category": "Canker on Orange leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Canker on an orange looks like raised, corky brown lesions surrounded by a bright yellow halo.",
+      "Canker on an orange appears as round spots with crater-like sunken centres and a greasy, water-soaked margin.",
+      "Canker on an orange shows rough, scabby brown lesions on the leaves and raised brown scabs on the fruit peel.",
+      "A photo of canker on an orange leaf shows many round, tan to dark brown lesions, each ringed with yellow.",
+      "A photo of canker on an orange reveals raised corky scabs scattered over the green or orange fruit peel.",
+      "A photo of canker on an orange leaf captures lesions merging into irregular corky patches visible on both leaf surfaces.",
+      "In a photo, canker on an orange looks like small brown blisters with rough, cracked surfaces and yellow borders.",
+      "In a photo, canker on an orange appears as raised brown spots with an oily edge spread across the leaf blade.",
+      "In a photo, canker on an orange shows scabby, crater-centred lesions on the fruit surrounded by a faint yellow ring.",
+      "The appearance of canker on an orange is raised, corky tan to brown lesions with yellow halos.",
+      "The appearance of canker on an orange includes crater-like lesion centres and a water-soaked lesion margin.",
+      "The appearance of canker on an orange is leaves and fruit covered with rough, scabby, round brown spots."
+    ]
+  },
+  {
+    "crop": "Orange",
+    "disease": "Citrus_Canker",
+    "category": "Citrus Canker on Orange leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Citrus canker on an orange leaf looks like small round raised spots of light tan to brown corky tissue.",
+      "Citrus canker on an orange leaf appears as blister-like lesions each surrounded by a bright yellow halo.",
+      "Citrus canker on an orange leaf shows spots with an oily, water-soaked edge and a cracked, crater-shaped centre.",
+      "A photo of citrus canker on an orange leaf shows many raised brown lesions scattered across the leaf blade.",
+      "A photo of citrus canker on an orange leaf reveals corky spots visible on both the upper and lower surfaces.",
+      "A photo of citrus canker on an orange leaf captures lesions clustered along the leaf edges and around tears.",
+      "In a photo, citrus canker on an orange leaf looks like brown blisters with yellow rings on the glossy green leaf.",
+      "In a photo, citrus canker on an orange leaf appears as rough, cracked lesions raised above the leaf surface.",
+      "In a photo, citrus canker on an orange leaf shows a yellowing leaf heavily spotted with corky brown lesions.",
+      "The appearance of citrus canker on an orange leaf is small, round, raised corky lesions with yellow halos.",
+      "The appearance of citrus canker on an orange leaf includes a greasy, water-soaked margin around tan to brown spots.",
+      "The appearance of citrus canker on an orange leaf is a leaf dotted with blistered, crater-centred brown lesions."
+    ]
+  },
+  {
+    "crop": "Orange",
+    "disease": "Green_Mold",
+    "category": "Green Mold on Orange leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Green mould on an orange looks like an olive-green powdery spore mass covering the fruit surface.",
+      "Green mould on an orange appears as a circular patch of green powder surrounded by a white band of mould.",
+      "Green mould on an orange shows a soft, water-soaked peel that wrinkles and collapses under the mould.",
+      "A photo of green mould on an orange shows a whole fruit coated in dusty olive-green spores.",
+      "A photo of green mould on an orange reveals a velvety green patch with a white fuzzy border spreading across the peel.",
+      "A photo of green mould on an orange captures a shrunken, dried-out fruit covered in green powdery growth.",
+      "In a photo, green mould on an orange looks like the fruit has been dusted with olive-green powder.",
+      "In a photo, green mould on an orange appears as green powdery patches with orange peel still visible between them.",
+      "In a photo, green mould on an orange shows a soft, wrinkled fruit with green spores dusting nearby surfaces.",
+      "The appearance of green mould on an orange is olive-green powdery spores over a soft, water-soaked peel.",
+      "The appearance of green mould on an orange includes a white ring of mould at the edge of the green sporulating area.",
+      "The appearance of green mould on an orange is a collapsing, shrivelled fruit coated in dusty green growth."
+    ]
+  },
+  {
+    "crop": "Orange",
+    "disease": "Greening_Disease",
+    "category": "Greening Disease on Orange leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Greening disease on an orange leaf looks like blotchy yellow mottling spread unevenly across the leaf blade.",
+      "Greening disease on an orange leaf appears as yellow and green patches that differ on the two sides of the midrib.",
+      "Greening disease on an orange leaf shows yellowed, corky veins on thick, leathery leaves.",
+      "A photo of greening disease on an orange leaf shows irregular yellow blotches with diffuse edges on a green leaf.",
+      "A photo of greening disease on an orange leaf reveals small, narrow, upright leaves on yellowing shoots.",
+      "A photo of greening disease on an orange leaf captures a sparse canopy with yellow shoots among green foliage.",
+      "In a photo, greening disease on an orange leaf looks like an asymmetric patchwork of pale yellow and green.",
+      "In a photo, greening disease on an orange leaf appears as a pale yellow-green leaf with raised yellow veins.",
+      "In a photo, greening disease on an orange leaf shows mottled leaves whose yellow patches cross the veins unevenly.",
+      "The appearance of greening disease on an orange leaf is asymmetric blotchy yellow mottle across the midrib.",
+      "The appearance of greening disease on an orange leaf includes yellow, corky veins and a thickened leaf texture.",
+      "The appearance of greening disease on an orange leaf is small, upright, yellow-mottled leaves on sparse shoots."
+    ]
+  },
+  {
+    "crop": "Orange",
+    "disease": "Huanglongbing",
+    "category": "Huanglongbing on Orange leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Huanglongbing on an orange leaf looks like uneven yellow mottling with patches that do not match on either side of the midrib.",
+      "Huanglongbing on an orange leaf appears as yellow and dark green blotches with fuzzy, diffuse edges.",
+      "Huanglongbing on an orange leaf shows raised yellow veins on a stiff, leathery leaf.",
+      "A photo of Huanglongbing on an orange leaf shows a leaf with blotchy yellow sectors and scattered green islands.",
+      "A photo of Huanglongbing on an orange leaf reveals yellowing starting from the leaf base and spreading unevenly.",
+      "A photo of Huanglongbing on an orange leaf captures small upright leaves on yellow shoots with sparse foliage.",
+      "In a photo, Huanglongbing on an orange leaf looks like a leaf splashed with irregular yellow patches.",
+      "In a photo, Huanglongbing on an orange leaf appears as pale chlorotic young leaves with corky yellowed veins.",
+      "In a photo, Huanglongbing on an orange leaf shows a canopy with mixed green and yellow sectors and twig dieback.",
+      "The appearance of Huanglongbing on an orange leaf is asymmetric yellow blotchy mottle with fuzzy patch edges.",
+      "The appearance of Huanglongbing on an orange leaf includes thick, leathery leaves with raised yellow veins.",
+      "The appearance of Huanglongbing on an orange leaf is small, pale, mottled leaves on yellowing, thinning shoots."
+    ]
+  },
+  {
+    "crop": "Orange",
+    "disease": "Whisker_Mold",
+    "category": "Whisker Mold on Orange leaf",
+    "method": "cupl",
+    "model": "manual-chat",
+    "seed": 0,
+    "status": "filled",
+    "sentences": [
+      "Whisker mould on an orange looks like coarse grey-white hair-like mould growing over a soft rotting fruit.",
+      "Whisker mould on an orange appears as loose, cobweb-like fungal strands tipped with tiny black dots.",
+      "Whisker mould on an orange shows a water-soaked, wrinkled peel with juice leaking from the collapsing fruit.",
+      "A photo of whisker mould on an orange shows fluffy greyish whiskers spreading over the peel and onto touching fruits.",
+      "A photo of whisker mould on an orange reveals sunken rotten areas covered with coarse hair-like growth.",
+      "A photo of whisker mould on an orange captures a mouldy nest of fruit in a pile, joined by grey fungal strands.",
+      "In a photo, whisker mould on an orange looks like the fruit is wrapped in grey-white hair with black specks on top.",
+      "In a photo, whisker mould on an orange appears as a soft, watery rot beneath a loose fuzzy grey coating.",
+      "In a photo, whisker mould on an orange shows fungal strands bridging between neighbouring rotting fruits.",
+      "The appearance of whisker mould on an orange is coarse greyish hair-like mould with tiny black dots at the tips.",
+      "The appearance of whisker mould on an orange includes a leaking, water-soaked, wrinkled peel.",
+      "The appearance of whisker mould on an orange is a soft collapsing fruit covered in cobweb-like grey growth."
+    ]
+  }
+]
