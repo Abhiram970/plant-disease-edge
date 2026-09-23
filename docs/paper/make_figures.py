@@ -150,8 +150,9 @@ def fig_efficiency_curve():
     ax.set_ylabel("cross-crop zero-shot accuracy (17 classes)")
     # Derived from PROBE, not typed: the old title said "300M" where the survey reaches
     # 321.8 M -- the same drift D5 corrected in the manuscript text.
-    ax.set_title(f"Accuracy does not track parameter count from "
-                 f"{min(p for _, p, _ in PROBE):.0f}M to {max(p for _, p, _ in PROBE):.0f}M")
+    ax.set_title(f"No association detectable between accuracy and parameter count, "
+                 f"{min(p for _, p, _ in PROBE):.0f}M to {max(p for _, p, _ in PROBE):.0f}M "
+                 f"(n = {len(PROBE)})")
     ax.legend(fontsize=7, loc="lower right")
     ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_efficiency_curve.png", dpi=DPI); plt.close(fig)
@@ -309,8 +310,8 @@ def fig_descriptor_ablation():
     axes[0].set_ylabel("held-out zero-shot top-1")
     axes[0].set_ylim(0, 0.36)
     axes[0].legend(fontsize=8, ncol=4, loc="upper left")
-    fig.suptitle("Descriptor detail is the lever — but the winning strategy flips with scale",
-                 fontsize=11)
+    fig.suptitle("Which descriptor strategy wins depends on scale: the keyword bank leads at 16 "
+                 "classes, source-grounded text at 51", fontsize=11)
     fig.tight_layout(rect=(0, 0, 1, 0.95))
     fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=DPI); plt.close(fig)
 
@@ -352,11 +353,12 @@ def fig_descriptor_scaling():
     ax.set_xlabel("number of unseen classes  (nested held-out pools, A $\\subset$ B $\\subset$ C)")
     ax.set_ylabel("mean held-out zero-shot top-1\n(4 deployable encoders)")
     ax.set_ylim(0, 0.34)
-    # The old title asserted the paper's RETRACTED headline ("Only source-grounded
-    # descriptors scale"), directly contradicting the LaTeX caption beneath it, which says
-    # the gap against the keyword bank is not a measurement of grounding. State what the
-    # curves show and leave the interpretation to the caption.
-    ax.set_title("Source-grounded text is the only strategy that improves with scale")
+    # TITLE REWRITTEN AGAIN. The previous replacement ("...the only strategy that improves with
+    # scale") re-asserted the very claim Section 7 withdraws after the de-duplicated re-run, and
+    # contradicted the LaTeX caption printed two lines beneath it. State only the contrast that
+    # survives all four label-set x averaging combinations, and leave interpretation to the caption.
+    ax.set_title("The keyword bank decays as the label space widens; grounded text holds",
+                 fontsize=10)
     ax.legend(fontsize=8, loc="lower left"); ax.grid(True, alpha=0.3)
     fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=DPI); plt.close(fig)
 
@@ -552,25 +554,228 @@ def fig_riskcoverage():
         return
     fig, ax = plt.subplots(figsize=(6.2, 4))
     colors = {"rich": "#2ca02c", "grounded": "#1f77b4"}
+    # CLIPPED TO THE OPERATIVE GRID. Drawn over the full 1.0->0.0 sweep, this panel was
+    # dominated by a near-vertical spike to 100% at the last one or two surviving images, and
+    # both curves visibly DIP below their own baselines just before it -- which falsified the
+    # caption's "rises monotonically" on its face. Section 5.4 already scopes the monotonicity
+    # claim to the grid the gate actually operates on (100% down to 50%), so plot that and let
+    # the y-axis follow the data instead of letting a few-image artefact fill the frame.
+    COV_FLOOR = 0.5
+    seen_y = []
     for strat, col in colors.items():
         cur = data["models"][key].get(strat, {}).get("risk_coverage_curve")
         if cur:
-            xs = [p[0] for p in cur]
-            ys = [p[1] for p in cur]
+            pts = [p for p in cur if p[0] >= COV_FLOOR]
+            xs = [p[0] for p in pts]
+            ys = [p[1] for p in pts]
+            seen_y += ys
             ax.plot(xs, ys, "-", color=col,
                     label=f"{strat} (top-1 {data['models'][key][strat]['top1']:.0%})")
-    ax.axhline(data.get("chance", CHANCE), ls="--", color="grey", lw=1,
-               label=f"chance ({data.get('chance', CHANCE):.1%})")
     ax.set_xlabel("coverage (fraction of images answered)")
     ax.set_ylabel("selective accuracy")
-    ax.set_title(f"Abstain gate (MobileCLIP2-S0, margin confidence), "
-                 f"{data.get('n_classes', '?')} unseen classes")
+    # Title kept short: the longer form overran the axes box and rendered clipped
+    # ("...51 unseen classe") in the compiled PDF.
+    ax.set_title(f"Abstain gate: {data.get('n_classes', '?')} unseen classes, margin confidence",
+                 fontsize=10)
+    if seen_y:
+        lo, hi = min(seen_y), max(seen_y)
+        pad = max(0.02, 0.15 * (hi - lo))
+        ax.set_ylim(max(0.0, lo - pad), hi + pad)
+        ax.annotate(f"chance {data.get('chance', CHANCE):.1%}", xy=(0.02, 0.04),
+                    xycoords="axes fraction", fontsize=8, color="grey")
+    ax.set_xlim(1.0, COV_FLOOR)
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
-    ax.invert_xaxis()
     fig.tight_layout()
     fig.savefig(FIG / "fig_riskcoverage.png", dpi=DPI)
     plt.close(fig)
+
+# ================================================================================================
+# FINAL-MANUSCRIPT FIGURES (2026-09-22)
+#
+# These three supersede the earlier fig_descriptor_scaling / fig_descriptor_ablation /
+# fig_edge_pareto and write the same filenames, so main.tex needs no path change. They read
+# paper_numbers.json, the single source the tables also read, so a figure cannot disagree with
+# the table beside it.
+#
+# DESIGN DECISIONS, each fixing something an audit found:
+#   * No in-plot titles. The LaTeX caption carries the message. Claim-bearing plot titles were
+#     the source of ~10 caption-drift findings across five audits: "Descriptor detail is the
+#     lever" survived in Figure 2 for drafts after Table 2 stopped supporting it.
+#   * Value annotations use ink, never the series colour, and are selective. The old scaling
+#     figure printed a coloured number on every point, which collided at scale B.
+#   * One entity -> colour map, shared by every figure, so CuPL is the same blue everywhere.
+#     Palette validated with the dataviz validator (--pairs all, light surface): CVD worst
+#     dE 9.2, normal-vision worst dE 16.3. Aqua is 2.74:1 against the surface, below 3:1, so
+#     every series also carries a distinct marker and the paper's Table 2 is the table view.
+# ================================================================================================
+INK, INK2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
+FINAL_SERIES = [   # (key, legend label, colour, marker, linestyle)
+    ("cupl",     "CuPL (photo-descriptive sentences)", "#2a78d6", "o", "-"),
+    ("grounded", "grounded (source-cited paragraph)",  "#eb6834", "s", "-"),
+    ("dclip",    "DCLIP (visual-feature phrases)",     "#1baf7a", "^", "-"),
+    ("rich",     "rich (keyword bank)",                "#4a3aa7", "D", "-"),
+    ("bare",     "bare (class name)",                  "#8a8984", "",  "--"),
+]
+FINAL_ORDER = ["MobileCLIP2-S0", "MobileCLIP-S1", "MobileCLIP2-S2", "MobileCLIP-B"]
+FINAL_SHORT = {"MobileCLIP2-S0": "S0\n11.4M", "MobileCLIP-S1": "S1\n21.5M",
+               "MobileCLIP2-S2": "S2\n35.8M", "MobileCLIP-B": "B\n86.3M"}
+
+
+def _numbers():
+    p = HERE / "paper_numbers.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def _style(ax):
+    """Recessive grid and axes; ink-coloured text."""
+    ax.grid(True, axis="y", color=GRID, lw=0.8)
+    ax.set_axisbelow(True)
+    for s in ("top", "right"):
+        ax.spines[s].set_visible(False)
+    for s in ("left", "bottom"):
+        ax.spines[s].set_color(INK2)
+    ax.tick_params(colors=INK2, labelcolor=INK)
+
+
+def fig_final_scaling():
+    N = _numbers()
+    if not N:
+        print("  (final scaling skipped - run paper_numbers.py)"); return
+    cfg = [N["configs"][e]["uncleaned"] for e in "ABC"]
+    x = [c["n_classes"] for c in cfg]
+    fig, ax = plt.subplots(figsize=(6.4, 4.1))
+    for key, label, col, mk, ls in FINAL_SERIES:
+        y = [c["means"][key] for c in cfg]
+        ax.plot(x, y, ls=ls, marker=mk or None, ms=7, color=col, lw=2.0 if key != "bare" else 1.4,
+                label=label, zorder=3 if key == "cupl" else 2,
+                mec="white" if mk else None, mew=1.0)
+    ax.plot(x, [c["chance"] for c in cfg], ":", color=INK2, lw=1.1, label="uniform chance")
+    # One selective direct label: the headline value, in ink.
+    cc = cfg[-1]["means"]["cupl"]
+    ax.annotate(f"{cc:.1f}%", (x[-1], cc), xytext=(6, 0), textcoords="offset points",
+                va="center", fontsize=8.5, color=INK)
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"{n}\n({e})" for n, e in zip(x, "ABC")])
+    ax.set_xlim(x[0] - 4, x[-1] + 7)
+    ax.set_ylim(0, 35)
+    ax.set_xlabel("unseen classes (nested configuration)", color=INK)
+    ax.set_ylabel("top-1 accuracy (%), mean of 4 encoders", color=INK)
+    _style(ax)
+    # Legend BELOW the axes. Inside, at lower right, the dotted chance line ran straight through
+    # the legend text.
+    ax.legend(fontsize=7.5, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.27),
+              ncol=3, labelcolor=INK)
+    fig.tight_layout(); fig.savefig(FIG / "fig_descriptor_scaling.png", dpi=DPI); plt.close(fig)
+
+
+def fig_final_perencoder():
+    N = _numbers()
+    if not N:
+        print("  (final per-encoder skipped)"); return
+    fig, axes = plt.subplots(1, 3, figsize=(13.2, 3.9), sharey=True)
+    n = len(FINAL_SERIES); w = 0.8 / n
+    for ax, e in zip(axes, "ABC"):
+        c = N["configs"][e]["uncleaned"]
+        pe = c["per_encoder"]
+        for j, (key, label, col, mk, ls) in enumerate(FINAL_SERIES):
+            xs = [i + (j - (n - 1) / 2) * w for i in range(len(FINAL_ORDER))]
+            ax.bar(xs, [pe[m][key] for m in FINAL_ORDER], width=w, color=col, label=label,
+                   edgecolor="white", linewidth=1.0,                 # surface gap between bars
+                   hatch="//" if key == "bare" else None)
+        ax.axhline(c["chance"], ls=":", color=INK2, lw=1.0)
+        ax.set_xticks(range(len(FINAL_ORDER)))
+        ax.set_xticklabels([FINAL_SHORT[m] for m in FINAL_ORDER], fontsize=8)
+        ax.set_title(f"{e}: {c['n_classes']} unseen classes", fontsize=9.5, color=INK)
+        _style(ax)
+    axes[0].set_ylabel("top-1 accuracy (%)", color=INK)
+    axes[0].set_ylim(0, 40)
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, loc="lower center", ncol=5, fontsize=8, frameon=False,
+               bbox_to_anchor=(0.5, -0.02), labelcolor=INK)
+    fig.tight_layout(rect=(0, 0.08, 1, 1))
+    fig.savefig(FIG / "fig_descriptor_ablation.png", dpi=DPI); plt.close(fig)
+
+
+def fig_final_pareto():
+    N = _numbers()
+    if not N:
+        print("  (final pareto skipped)"); return
+    pe = N["configs"]["C"]["uncleaned"]["per_encoder"]
+    col = next(s[2] for s in FINAL_SERIES if s[0] == "cupl")
+    # EDGE uses short names (MC2-S0); paper_numbers uses the open_clip names (MobileCLIP2-S0).
+    # Without this map every point is silently skipped and the figure renders empty.
+    full = {"MC2-S0": "MobileCLIP2-S0", "MC-S1": "MobileCLIP-S1",
+            "MC2-S2": "MobileCLIP2-S2", "MC-B": "MobileCLIP-B"}
+    # Per-point label placement. The three small encoders sit within 1.1 points of each other,
+    # so one uniform offset overprints their labels; alternate above and below instead.
+    label_at = {"MobileCLIP2-S0": (0, 13, "center", "bottom"),
+                "MobileCLIP-S1": (0, -13, "center", "top"),
+                "MobileCLIP2-S2": (0, 13, "center", "bottom"),
+                "MobileCLIP-B": (0, 14, "center", "bottom")}
+    fig, ax = plt.subplots(figsize=(6.4, 4.1))
+    plotted = 0
+    for short_name, p, macs, fp32, fp32mb, int8ms, int8mb, _pilot in EDGE:
+        name = full.get(short_name, short_name)
+        if name not in pe:
+            raise KeyError(f"edge model {short_name!r} -> {name!r} has no accuracy in paper_numbers")
+        acc = pe[name]["cupl"]
+        plotted += 1
+        ax.scatter(fp32, acc, s=30 + p * 2.6, color=col, edgecolor="white", linewidth=1.2, zorder=3)
+        dx, dy, ha, va = label_at[name]
+        ax.annotate(f"{name}\n{p:.1f}M, {int8mb:.1f}MB INT8", (fp32, acc), xytext=(dx, dy),
+                    textcoords="offset points", fontsize=7.5, color=INK, ha=ha, va=va)
+    assert plotted == 4, f"expected 4 edge points, plotted {plotted}"
+    ax.set_xlabel("FP32 latency on a laptop CPU (ms per image, batch 1)", color=INK)
+    ax.set_ylabel("top-1 accuracy (%), CuPL, 51 classes", color=INK)
+    ax.set_xlim(0, 135)
+    # A y-range fitted tight to the data (29-35) stretched the three small encoders, which sit
+    # within 1.1 points of each other and inside registry noise, across most of the height, and
+    # made the 4.7-point lead of the largest encoder look dominant -- exaggerating exactly the
+    # size effect the paper argues is small. A wider window renders those gaps at their weight.
+    ax.set_ylim(20, 38)
+    _style(ax)
+    fig.tight_layout(); fig.savefig(FIG / "fig_edge_pareto.png", dpi=DPI); plt.close(fig)
+
+
+def fig_final_riskcoverage():
+    """Selective accuracy vs coverage at C, in the SHARED palette.
+
+    The earlier fig_riskcoverage drew grounded in blue and rich in green. Every other figure in
+    the final paper draws CuPL in blue, grounded in orange and rich in violet, so a reader would
+    have read this figure's blue line as CuPL. Colour must follow the entity across the paper.
+    """
+    path = HERE / "metrics_abstain_C.json"
+    if not path.exists():
+        print("  (final risk-coverage skipped)"); return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    key = next((k for k in data["models"] if "S0" in k), None)
+    if not key:
+        return
+    style = {s[0]: s for s in FINAL_SERIES}
+    COV_FLOOR = 0.5          # the operative grid; below half coverage the sample is too small
+    fig, ax = plt.subplots(figsize=(6.4, 4.1))
+    ys_all = []
+    for strat in ("grounded", "rich"):
+        cur = data["models"][key].get(strat, {}).get("risk_coverage_curve")
+        if not cur:
+            continue
+        pts = [p for p in cur if p[0] >= COV_FLOOR]
+        xs, ys = [p[0] for p in pts], [p[1] * 100 for p in pts]
+        ys_all += ys
+        _, label, col, mk, ls = style[strat]
+        top1 = data["models"][key][strat]["top1"] * 100
+        ax.plot(xs, ys, ls=ls, color=col, lw=2.0, label=f"{label}, top-1 {top1:.1f}%",
+                marker=mk, markevery=10, ms=6, mec="white", mew=1.0)
+    lo, hi = min(ys_all), max(ys_all)
+    ax.set_ylim(lo - 1.5, hi + 1.5)
+    ax.set_xlim(1.0, COV_FLOOR)
+    ax.set_xlabel("coverage (fraction of images answered)", color=INK)
+    ax.set_ylabel("selective accuracy (%)", color=INK)
+    _style(ax)
+    ax.legend(fontsize=8, frameon=False, loc="upper left", labelcolor=INK)
+    fig.tight_layout(); fig.savefig(FIG / "fig_riskcoverage.png", dpi=DPI); plt.close(fig)
+
 
 def main():
     fig_efficiency_curve()
@@ -596,6 +801,11 @@ def main():
         fig_descriptors()
     except Exception as e:
         print(f"  (descriptors fig skipped: {e})")
+    # Final-manuscript figures run LAST so they own these three filenames.
+    fig_final_scaling()
+    fig_final_perencoder()
+    fig_final_pareto()
+    fig_final_riskcoverage()
     print(f"figures written to {FIG}")
 
 

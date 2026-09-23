@@ -1,4 +1,4 @@
-"""Generate RUN_FIXUP_cnns_wiseft.py -- the two stages the 2026-09-06 morning run lost.
+"""Generate runners/stage3_cnns_wiseft.py -- the two stages the 2026-09-06 morning run lost.
 
 That run finished everything else cleanly (8 ungrounded + 8 grounded_matched seeds, zero-shot
 A/B/C, the paired Section 5.3 comparison, control arms, coverage, probe, LOCO, abstention) and
@@ -13,9 +13,9 @@ not survive:
             it had learned anything.
 
 Both causes are fixed at the source (scripts/supervised_baseline.py, scripts/wiseft.py,
-and the probe in build_parts.py). This runner re-runs only those two stages.
+and the probe in build/parts.py). This runner re-runs only those two stages.
 
-Like the other generators, this one composes its body from build_parts.py rather than
+Like the other generators, this one composes its body from build/parts.py rather than
 restating it, so a fix there lands here automatically.
 """
 import io
@@ -24,11 +24,14 @@ from pathlib import Path
 
 Q = chr(39) * 3          # a triple quote, written this way so it can appear in source
 HERE = Path(__file__).resolve().parent
-src = io.open(HERE / "build_parts.py", encoding="utf-8").read()
+KAGGLE = HERE.parent
+RUNNERS = KAGGLE / "runners"
+RUNNERS.mkdir(parents=True, exist_ok=True)
+src = io.open(HERE / "parts.py", encoding="utf-8").read()
 
 
 def _block(name):
-    """Return the source of one PARTn as written in build_parts.py.
+    """Return the source of one PARTn as written in build/parts.py.
 
     Regex is the wrong tool here. A PARTn is not one literal -- it is a concatenation
     (`<q>...<q> + COMMON_SETTINGS + <q>...<q>`) whose body also contains lines that look like
@@ -45,7 +48,7 @@ def _block(name):
         if ln.startswith("for name, body in"):
             starts["_END"] = i
     if name not in starts:
-        raise SystemExit(f"[build_fixup] could not find {name} in build_parts.py")
+        raise SystemExit(f"[build/stage3] could not find {name} in build/parts.py")
     order = sorted(starts.items(), key=lambda kv: kv[1])
     idx = [i for i, (n, _) in enumerate(order) if n == name][0]
     lo, hi = order[idx][1], order[idx + 1][1]
@@ -54,9 +57,9 @@ def _block(name):
     return eval(expr, ns)
 
 
-# The preamble defines COMMON_SETTINGS and imports BOOTSTRAP from _pde_common.py. Executing
+# The preamble defines COMMON_SETTINGS and imports BOOTSTRAP from bootstrap.py. Executing
 # it once gives both the values the PARTn expressions need and the values this file needs.
-_PREAMBLE = {"__file__": str(HERE / "build_parts.py")}
+_PREAMBLE = {"__file__": str(HERE / "parts.py")}
 exec(src[:src.index("PART1 = ")], _PREAMBLE)
 
 P2, P3 = _block("PART2"), _block("PART3")
@@ -218,7 +221,7 @@ for _g in ("make_tex_tables.py", "make_figures.py"):
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         print(_r.stdout or f"[{_g}] no output", flush=True)
 
-bundle("fixup", {"cnn_epochs": CNN_EPOCHS, "cnn_max_h": CNN_MAX_H,
+bundle("stage3", {"cnn_epochs": CNN_EPOCHS, "cnn_max_h": CNN_MAX_H,
                  "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR,
                  "wise_alphas": WISE_ALPHAS, "cnn_completed": done,
                  "cnn_not_run": skipped, "cnn_unsupported": unsupported})
@@ -230,7 +233,7 @@ banner("FIX-UP RUN DONE" if (len(done) == len(ARCHS) and not unsupported)
 # truncated session still returns it.
 BODY = HEAD + WISE + "\n" + CNN + TAIL
 
-out = HERE / "RUN_FIXUP_cnns_wiseft.py"
+out = KAGGLE / "runners/stage3_cnns_wiseft.py"
 out.write_text(BODY, encoding="utf-8")
 compile(BODY, str(out), "exec")
 print(f"wrote {out}  ({len(BODY.splitlines())} lines)")

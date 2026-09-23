@@ -51,14 +51,27 @@ def embed_images(model, preprocess, rows, device="cpu"):
 
 
 def zeroshot_accuracy(img_emb, protos, labels, classes, device="cpu"):
+    """Micro top-1 plus per-crop and per-class breakdowns.
+
+    by_class is what class-macro averaging needs. The held-out split is capped but not
+    balanced -- classes range from the 25-image floor to the 600-image cap -- so micro
+    accuracy is carried by the largest classes. Reviewers on imbalanced problems ask for
+    the macro figure, and it cannot be recovered from a stored micro number, so it is
+    computed here and written to the result JSON rather than reconstructed later.
+    """
     pred = (img_emb.to(device) @ protos.T).argmax(1).cpu().tolist()
-    per = defaultdict(lambda: [0, 0]); ok = tot = 0
+    per = defaultdict(lambda: [0, 0])
+    per_class = defaultdict(lambda: [0, 0])
+    ok = tot = 0
     for p, gt in zip(pred, labels):
         hit = classes[p] == gt
         ok += hit; tot += 1
         cr = gt.split("|")[0]
         per[cr][0] += hit; per[cr][1] += 1
-    return ok / tot, {c: a / n for c, (a, n) in per.items()}
+        per_class[gt][0] += hit; per_class[gt][1] += 1
+    by_crop = {c: a / n for c, (a, n) in per.items()}
+    by_class = {c: a / n for c, (a, n) in per_class.items()}
+    return ok / tot, by_crop, by_class
 
 
 def evaluate(name, pretrained, rows, classes, strategy="rich", device="cpu", reuse_img_emb=None):
@@ -67,5 +80,17 @@ def evaluate(name, pretrained, rows, classes, strategy="rich", device="cpu", reu
     model, preprocess, tok, img_params_m = load_model(name, pretrained, device)
     img_emb, labels = reuse_img_emb if reuse_img_emb else embed_images(model, preprocess, rows, device)
     protos = D.build_prototypes(model, tok, classes, strategy, device)
-    acc, by_crop = zeroshot_accuracy(img_emb, protos, labels, classes, device)
-    return {"img_params_M": round(img_params_m, 2), "acc": acc, "by_crop": by_crop}, (img_emb, labels)
+    acc, by_crop, by_class = zeroshot_accuracy(img_emb, protos, labels, classes, device)
+    # Macro figures are stored alongside micro so a later analysis never has to guess the
+    # averaging convention from a single number. crop_macro reproduces the values already
+    # quoted in the methods section; class_macro is the one reviewers ask for.
+    crop_macro = sum(by_crop.values()) / len(by_crop) if by_crop else 0.0
+    class_macro = sum(by_class.values()) / len(by_class) if by_class else 0.0
+    return {
+        "img_params_M": round(img_params_m, 2),
+        "acc": acc,                      # image-weighted (micro) top-1, the headline convention
+        "crop_macro_acc": crop_macro,
+        "class_macro_acc": class_macro,
+        "by_crop": by_crop,
+        "by_class": by_class,
+    }, (img_emb, labels)

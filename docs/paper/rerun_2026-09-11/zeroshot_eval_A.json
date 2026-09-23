@@ -1,0 +1,626 @@
+{
+  "matcher_normalised": true,
+  "seeds": null,
+  "chance": 0.0625,
+  "n_classes": 16,
+  "crops": [
+    "Coffee",
+    "Orange",
+    "Peach"
+  ],
+  "n_images": 4050,
+  "clean": false,
+  "clean_stats": null,
+  "paired_arms": null,
+  "paired_stats": null,
+  "coverage": {
+    "Coffee|Berry_Blotch": "(NO MATCH)",
+    "Coffee|Cerscospora": "(NO MATCH)",
+    "Coffee|Miner": "(NO MATCH)",
+    "Coffee|Phoma": "phoma",
+    "Coffee|Rust": "rust",
+    "Orange|Canker": "canker",
+    "Orange|Citrus_Canker": "citrus canker",
+    "Orange|Green_Mold": "(NO MATCH)",
+    "Orange|Greening_Disease": "greening",
+    "Orange|Huanglongbing": "huanglongbing",
+    "Orange|Whisker_Mold": "(NO MATCH)",
+    "Peach|Bacterial_Leaf_Spot": "spot",
+    "Peach|Brown_Rot": "brown rot",
+    "Peach|Leaf_Curl": "leaf curl",
+    "Peach|Leaf_Scab": "scab",
+    "Peach|Peach_Leaf_Curl": "leaf curl"
+  },
+  "models": {
+    "MobileCLIP2-S0/dfndr2b": {
+      "bare": {
+        "img_params_M": 11.41,
+        "acc": 0.1382716049382716,
+        "crop_macro_acc": 0.1430968124698939,
+        "class_macro_acc": 0.20219811167355506,
+        "by_crop": {
+          "Peach": 0.22312556458897922,
+          "Orange": 0.05951506245407789,
+          "Coffee": 0.14664981036662453
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.6985645933014354,
+          "Orange|Greening_Disease": 0.06766917293233082,
+          "Orange|Whisker_Mold": 0.3170731707317073,
+          "Coffee|Phoma": 0.016483516483516484,
+          "Coffee|Berry_Blotch": 0.4690265486725664,
+          "Coffee|Rust": 0.2683333333333333,
+          "Peach|Peach_Leaf_Curl": 0.4634146341463415,
+          "Coffee|Cerscospora": 0.13793103448275862,
+          "Peach|Leaf_Scab": 0.2,
+          "Peach|Bacterial_Leaf_Spot": 0.09666666666666666,
+          "Orange|Huanglongbing": 0.0,
+          "Orange|Green_Mold": 0.09523809523809523,
+          "Orange|Canker": 0.0,
+          "Peach|Leaf_Curl": 0.04945054945054945,
+          "Orange|Citrus_Canker": 0.3503184713375796,
+          "Coffee|Miner": 0.005
+        }
+      },
+      "crude": {
+        "img_params_M": 11.41,
+        "acc": 0.11851851851851852,
+        "crop_macro_acc": 0.12119721134676249,
+        "class_macro_acc": 0.19832172811112264,
+        "by_crop": {
+          "Peach": 0.16350496838301717,
+          "Orange": 0.07935341660543718,
+          "Coffee": 0.12073324905183312
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.583732057416268,
+          "Orange|Greening_Disease": 0.09022556390977443,
+          "Orange|Whisker_Mold": 0.3170731707317073,
+          "Coffee|Phoma": 0.027472527472527472,
+          "Coffee|Berry_Blotch": 0.4778761061946903,
+          "Coffee|Rust": 0.19333333333333333,
+          "Peach|Peach_Leaf_Curl": 0.5609756097560976,
+          "Coffee|Cerscospora": 0.14942528735632185,
+          "Peach|Leaf_Scab": 0.05333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.018333333333333333,
+          "Orange|Huanglongbing": 0.0,
+          "Orange|Green_Mold": 0.07142857142857142,
+          "Orange|Canker": 0.0,
+          "Peach|Leaf_Curl": 0.11538461538461539,
+          "Orange|Citrus_Canker": 0.5095541401273885,
+          "Coffee|Miner": 0.005
+        }
+      },
+      "rich": {
+        "img_params_M": 11.41,
+        "acc": 0.2607407407407407,
+        "crop_macro_acc": 0.25137796405814833,
+        "class_macro_acc": 0.27546218283715107,
+        "by_crop": {
+          "Peach": 0.13911472448057813,
+          "Orange": 0.32108743570903747,
+          "Coffee": 0.2939317319848293
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.5358851674641149,
+          "Orange|Greening_Disease": 0.015037593984962405,
+          "Orange|Whisker_Mold": 0.2926829268292683,
+          "Coffee|Phoma": 0.3901098901098901,
+          "Coffee|Berry_Blotch": 0.6106194690265486,
+          "Coffee|Rust": 0.5266666666666666,
+          "Peach|Peach_Leaf_Curl": 0.7073170731707317,
+          "Coffee|Cerscospora": 0.05747126436781609,
+          "Peach|Leaf_Scab": 0.0,
+          "Peach|Bacterial_Leaf_Spot": 0.005,
+          "Orange|Huanglongbing": 0.545,
+          "Orange|Green_Mold": 0.07142857142857142,
+          "Orange|Canker": 0.002577319587628866,
+          "Peach|Leaf_Curl": 0.054945054945054944,
+          "Orange|Citrus_Canker": 0.5859872611464968,
+          "Coffee|Miner": 0.006666666666666667
+        }
+      },
+      "grounded": {
+        "img_params_M": 11.41,
+        "acc": 0.1760493827160494,
+        "crop_macro_acc": 0.18409968789353728,
+        "class_macro_acc": 0.2577755854618322,
+        "by_crop": {
+          "Peach": 0.2908762420957543,
+          "Orange": 0.10213078618662748,
+          "Coffee": 0.1592920353982301
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9521531100478469,
+          "Orange|Greening_Disease": 0.5639097744360902,
+          "Orange|Whisker_Mold": 0.3170731707317073,
+          "Coffee|Phoma": 0.4725274725274725,
+          "Coffee|Berry_Blotch": 0.6017699115044248,
+          "Coffee|Rust": 0.14833333333333334,
+          "Peach|Peach_Leaf_Curl": 0.34146341463414637,
+          "Coffee|Cerscospora": 0.05747126436781609,
+          "Peach|Leaf_Scab": 0.0,
+          "Peach|Bacterial_Leaf_Spot": 0.17166666666666666,
+          "Orange|Huanglongbing": 0.04,
+          "Orange|Green_Mold": 0.35714285714285715,
+          "Orange|Canker": 0.010309278350515464,
+          "Peach|Leaf_Curl": 0.03296703296703297,
+          "Orange|Citrus_Canker": 0.050955414012738856,
+          "Coffee|Miner": 0.006666666666666667
+        }
+      }
+    },
+    "MobileCLIP-S1/datacompdr": {
+      "bare": {
+        "img_params_M": 21.54,
+        "acc": 0.12444444444444444,
+        "crop_macro_acc": 0.1357888520940388,
+        "class_macro_acc": 0.18232501110100272,
+        "by_crop": {
+          "Peach": 0.25022583559168926,
+          "Orange": 0.09772226304188097,
+          "Coffee": 0.05941845764854614
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.8133971291866029,
+          "Orange|Greening_Disease": 0.37593984962406013,
+          "Orange|Whisker_Mold": 0.2926829268292683,
+          "Coffee|Phoma": 0.016483516483516484,
+          "Coffee|Berry_Blotch": 0.5663716814159292,
+          "Coffee|Rust": 0.0033333333333333335,
+          "Peach|Peach_Leaf_Curl": 0.0,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.17333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.15333333333333332,
+          "Orange|Huanglongbing": 0.0,
+          "Orange|Green_Mold": 0.023809523809523808,
+          "Orange|Canker": 0.0,
+          "Peach|Leaf_Curl": 0.01098901098901099,
+          "Orange|Citrus_Canker": 0.445859872611465,
+          "Coffee|Miner": 0.041666666666666664
+        }
+      },
+      "crude": {
+        "img_params_M": 21.54,
+        "acc": 0.1748148148148148,
+        "crop_macro_acc": 0.1817597038472538,
+        "class_macro_acc": 0.19640611013148596,
+        "by_crop": {
+          "Peach": 0.18879855465221318,
+          "Orange": 0.29390154298310067,
+          "Coffee": 0.06257901390644753
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.937799043062201,
+          "Orange|Greening_Disease": 0.15789473684210525,
+          "Orange|Whisker_Mold": 0.2926829268292683,
+          "Coffee|Phoma": 0.016483516483516484,
+          "Coffee|Berry_Blotch": 0.5309734513274337,
+          "Coffee|Rust": 0.01,
+          "Peach|Peach_Leaf_Curl": 0.04878048780487805,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.05333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.0,
+          "Orange|Huanglongbing": 0.47,
+          "Orange|Green_Mold": 0.023809523809523808,
+          "Orange|Canker": 0.015463917525773196,
+          "Peach|Leaf_Curl": 0.038461538461538464,
+          "Orange|Citrus_Canker": 0.4968152866242038,
+          "Coffee|Miner": 0.05
+        }
+      },
+      "rich": {
+        "img_params_M": 21.54,
+        "acc": 0.24938271604938272,
+        "crop_macro_acc": 0.2545689098645482,
+        "class_macro_acc": 0.24602868169969144,
+        "by_crop": {
+          "Peach": 0.1933152664859982,
+          "Orange": 0.48126377663482733,
+          "Coffee": 0.08912768647281921
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.8564593301435407,
+          "Orange|Greening_Disease": 0.007518796992481203,
+          "Orange|Whisker_Mold": 0.3170731707317073,
+          "Coffee|Phoma": 0.15934065934065933,
+          "Coffee|Berry_Blotch": 0.5663716814159292,
+          "Coffee|Rust": 0.04833333333333333,
+          "Peach|Peach_Leaf_Curl": 0.2926829268292683,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.02666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.013333333333333334,
+          "Orange|Huanglongbing": 0.9,
+          "Orange|Green_Mold": 0.023809523809523808,
+          "Orange|Canker": 0.010309278350515464,
+          "Peach|Leaf_Curl": 0.07142857142857142,
+          "Orange|Citrus_Canker": 0.6114649681528662,
+          "Coffee|Miner": 0.03166666666666667
+        }
+      },
+      "grounded": {
+        "img_params_M": 21.54,
+        "acc": 0.2859259259259259,
+        "crop_macro_acc": 0.2875641154141782,
+        "class_macro_acc": 0.2989867451283367,
+        "by_crop": {
+          "Peach": 0.18337850045167117,
+          "Orange": 0.5415135929463629,
+          "Coffee": 0.13780025284450062
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9138755980861244,
+          "Orange|Greening_Disease": 0.5639097744360902,
+          "Orange|Whisker_Mold": 0.6829268292682927,
+          "Coffee|Phoma": 0.46703296703296704,
+          "Coffee|Berry_Blotch": 0.5752212389380531,
+          "Coffee|Rust": 0.043333333333333335,
+          "Peach|Peach_Leaf_Curl": 0.0975609756097561,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.02666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.006666666666666667,
+          "Orange|Huanglongbing": 0.985,
+          "Orange|Green_Mold": 0.14285714285714285,
+          "Orange|Canker": 0.02577319587628866,
+          "Peach|Leaf_Curl": 0.01098901098901099,
+          "Orange|Citrus_Canker": 0.17197452229299362,
+          "Coffee|Miner": 0.07
+        }
+      }
+    },
+    "MobileCLIP2-S2/dfndr2b": {
+      "bare": {
+        "img_params_M": 35.82,
+        "acc": 0.10320987654320987,
+        "crop_macro_acc": 0.10899620109624118,
+        "class_macro_acc": 0.21010785712105937,
+        "by_crop": {
+          "Peach": 0.16802168021680217,
+          "Orange": 0.0881704628949302,
+          "Coffee": 0.07079646017699115
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.7272727272727273,
+          "Orange|Greening_Disease": 0.06766917293233082,
+          "Orange|Whisker_Mold": 0.5121951219512195,
+          "Coffee|Phoma": 0.02197802197802198,
+          "Coffee|Berry_Blotch": 0.7079646017699115,
+          "Coffee|Rust": 0.035,
+          "Peach|Peach_Leaf_Curl": 0.5121951219512195,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.14666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.0,
+          "Orange|Huanglongbing": 0.0,
+          "Orange|Green_Mold": 0.047619047619047616,
+          "Orange|Canker": 0.0,
+          "Peach|Leaf_Curl": 0.01098901098901099,
+          "Orange|Citrus_Canker": 0.5605095541401274,
+          "Coffee|Miner": 0.011666666666666667
+        }
+      },
+      "crude": {
+        "img_params_M": 35.82,
+        "acc": 0.10419753086419753,
+        "crop_macro_acc": 0.11119517167423182,
+        "class_macro_acc": 0.22507358011000092,
+        "by_crop": {
+          "Peach": 0.18157181571815717,
+          "Orange": 0.0881704628949302,
+          "Coffee": 0.0638432364096081
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.69377990430622,
+          "Orange|Greening_Disease": 0.022556390977443608,
+          "Orange|Whisker_Mold": 0.5121951219512195,
+          "Coffee|Phoma": 0.027472527472527472,
+          "Coffee|Berry_Blotch": 0.7256637168141593,
+          "Coffee|Rust": 0.013333333333333334,
+          "Peach|Peach_Leaf_Curl": 0.5853658536585366,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.3466666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.0,
+          "Orange|Huanglongbing": 0.0,
+          "Orange|Green_Mold": 0.047619047619047616,
+          "Orange|Canker": 0.010309278350515464,
+          "Peach|Leaf_Curl": 0.03296703296703297,
+          "Orange|Citrus_Canker": 0.5732484076433121,
+          "Coffee|Miner": 0.01
+        }
+      },
+      "rich": {
+        "img_params_M": 35.82,
+        "acc": 0.3328395061728395,
+        "crop_macro_acc": 0.3236830547929317,
+        "class_macro_acc": 0.3052886005131933,
+        "by_crop": {
+          "Peach": 0.16169828364950317,
+          "Orange": 0.5040411462160176,
+          "Coffee": 0.3053097345132743
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.7033492822966507,
+          "Orange|Greening_Disease": 0.0,
+          "Orange|Whisker_Mold": 0.3902439024390244,
+          "Coffee|Phoma": 0.03296703296703297,
+          "Coffee|Berry_Blotch": 0.6902654867256637,
+          "Coffee|Rust": 0.65,
+          "Peach|Peach_Leaf_Curl": 0.6829268292682927,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.02666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.0,
+          "Orange|Huanglongbing": 0.9116666666666666,
+          "Orange|Green_Mold": 0.023809523809523808,
+          "Orange|Canker": 0.020618556701030927,
+          "Peach|Leaf_Curl": 0.01098901098901099,
+          "Orange|Citrus_Canker": 0.7261146496815286,
+          "Coffee|Miner": 0.015
+        }
+      },
+      "grounded": {
+        "img_params_M": 35.82,
+        "acc": 0.1365432098765432,
+        "crop_macro_acc": 0.14060805292824533,
+        "class_macro_acc": 0.24456835596639337,
+        "by_crop": {
+          "Peach": 0.1969286359530262,
+          "Orange": 0.0940484937545922,
+          "Coffee": 0.13084702907711757
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.8899521531100478,
+          "Orange|Greening_Disease": 0.48872180451127817,
+          "Orange|Whisker_Mold": 0.4146341463414634,
+          "Coffee|Phoma": 0.09340659340659341,
+          "Coffee|Berry_Blotch": 0.6902654867256637,
+          "Coffee|Rust": 0.145,
+          "Peach|Peach_Leaf_Curl": 0.6829268292682927,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.013333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.0016666666666666668,
+          "Orange|Huanglongbing": 0.0033333333333333335,
+          "Orange|Green_Mold": 0.3333333333333333,
+          "Orange|Canker": 0.059278350515463915,
+          "Peach|Leaf_Curl": 0.01098901098901099,
+          "Orange|Citrus_Canker": 0.044585987261146494,
+          "Coffee|Miner": 0.041666666666666664
+        }
+      }
+    },
+    "MobileCLIP-B/datacompdr": {
+      "bare": {
+        "img_params_M": 86.35,
+        "acc": 0.14222222222222222,
+        "crop_macro_acc": 0.14994072384301113,
+        "class_macro_acc": 0.21123929148009338,
+        "by_crop": {
+          "Peach": 0.22944896115627822,
+          "Orange": 0.12049963262307127,
+          "Coffee": 0.09987357774968394
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9043062200956937,
+          "Orange|Greening_Disease": 0.5263157894736842,
+          "Orange|Whisker_Mold": 0.21951219512195122,
+          "Coffee|Phoma": 0.4945054945054945,
+          "Coffee|Berry_Blotch": 0.3274336283185841,
+          "Coffee|Rust": 0.005,
+          "Peach|Peach_Leaf_Curl": 0.14634146341463414,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.05333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.085,
+          "Orange|Huanglongbing": 0.0033333333333333335,
+          "Orange|Green_Mold": 0.023809523809523808,
+          "Orange|Canker": 0.0,
+          "Peach|Leaf_Curl": 0.02197802197802198,
+          "Orange|Citrus_Canker": 0.5222929936305732,
+          "Coffee|Miner": 0.04666666666666667
+        }
+      },
+      "crude": {
+        "img_params_M": 86.35,
+        "acc": 0.16666666666666666,
+        "crop_macro_acc": 0.17283392806372988,
+        "class_macro_acc": 0.21862965006255114,
+        "by_crop": {
+          "Peach": 0.21318879855465223,
+          "Orange": 0.1991182953710507,
+          "Coffee": 0.10619469026548672
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9808612440191388,
+          "Orange|Greening_Disease": 0.22556390977443608,
+          "Orange|Whisker_Mold": 0.24390243902439024,
+          "Coffee|Phoma": 0.46153846153846156,
+          "Coffee|Berry_Blotch": 0.3274336283185841,
+          "Coffee|Rust": 0.025,
+          "Peach|Peach_Leaf_Curl": 0.17073170731707318,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.12,
+          "Peach|Bacterial_Leaf_Spot": 0.0016666666666666668,
+          "Orange|Huanglongbing": 0.245,
+          "Orange|Green_Mold": 0.047619047619047616,
+          "Orange|Canker": 0.002577319587628866,
+          "Peach|Leaf_Curl": 0.07692307692307693,
+          "Orange|Citrus_Canker": 0.5159235668789809,
+          "Coffee|Miner": 0.05333333333333334
+        }
+      },
+      "rich": {
+        "img_params_M": 86.35,
+        "acc": 0.31209876543209875,
+        "crop_macro_acc": 0.31560892058671275,
+        "class_macro_acc": 0.2799996373569041,
+        "by_crop": {
+          "Peach": 0.26196928635953026,
+          "Orange": 0.4952240999265246,
+          "Coffee": 0.18963337547408343
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.937799043062201,
+          "Orange|Greening_Disease": 0.022556390977443608,
+          "Orange|Whisker_Mold": 0.24390243902439024,
+          "Coffee|Phoma": 0.5879120879120879,
+          "Coffee|Berry_Blotch": 0.3893805309734513,
+          "Coffee|Rust": 0.07333333333333333,
+          "Peach|Peach_Leaf_Curl": 0.2682926829268293,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.04,
+          "Peach|Bacterial_Leaf_Spot": 0.07666666666666666,
+          "Orange|Huanglongbing": 0.9716666666666667,
+          "Orange|Green_Mold": 0.023809523809523808,
+          "Orange|Canker": 0.005154639175257732,
+          "Peach|Leaf_Curl": 0.18681318681318682,
+          "Orange|Citrus_Canker": 0.47770700636942676,
+          "Coffee|Miner": 0.175
+        }
+      },
+      "grounded": {
+        "img_params_M": 86.35,
+        "acc": 0.2617283950617284,
+        "crop_macro_acc": 0.26226644059211107,
+        "class_macro_acc": 0.2992423253767214,
+        "by_crop": {
+          "Peach": 0.21589882565492322,
+          "Orange": 0.37178545187362233,
+          "Coffee": 0.19911504424778761
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9665071770334929,
+          "Orange|Greening_Disease": 0.3533834586466165,
+          "Orange|Whisker_Mold": 0.6341463414634146,
+          "Coffee|Phoma": 0.6648351648351648,
+          "Coffee|Berry_Blotch": 0.3893805309734513,
+          "Coffee|Rust": 0.058333333333333334,
+          "Peach|Peach_Leaf_Curl": 0.36585365853658536,
+          "Coffee|Cerscospora": 0.0,
+          "Peach|Leaf_Scab": 0.05333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.02666666666666667,
+          "Orange|Huanglongbing": 0.6716666666666666,
+          "Orange|Green_Mold": 0.3333333333333333,
+          "Orange|Canker": 0.023195876288659795,
+          "Peach|Leaf_Curl": 0.01098901098901099,
+          "Orange|Citrus_Canker": 0.044585987261146494,
+          "Coffee|Miner": 0.19166666666666668
+        }
+      }
+    },
+    "ViT-B-16-SigLIP2/webli": {
+      "bare": {
+        "img_params_M": 92.88,
+        "acc": 0.1708641975308642,
+        "crop_macro_acc": 0.17859494967276154,
+        "class_macro_acc": 0.2512966305431187,
+        "by_crop": {
+          "Peach": 0.27461607949412825,
+          "Orange": 0.11388684790595151,
+          "Coffee": 0.1472819216182048
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.8660287081339713,
+          "Orange|Greening_Disease": 0.09774436090225563,
+          "Orange|Whisker_Mold": 0.3170731707317073,
+          "Coffee|Phoma": 0.027472527472527472,
+          "Coffee|Berry_Blotch": 0.5221238938053098,
+          "Coffee|Rust": 0.013333333333333334,
+          "Peach|Peach_Leaf_Curl": 0.2682926829268293,
+          "Coffee|Cerscospora": 0.06896551724137931,
+          "Peach|Leaf_Scab": 0.10666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.05333333333333334,
+          "Orange|Huanglongbing": 0.006666666666666667,
+          "Orange|Green_Mold": 0.30952380952380953,
+          "Orange|Canker": 0.002577319587628866,
+          "Peach|Leaf_Curl": 0.3956043956043956,
+          "Orange|Citrus_Canker": 0.7070063694267515,
+          "Coffee|Miner": 0.25833333333333336
+        }
+      },
+      "crude": {
+        "img_params_M": 92.88,
+        "acc": 0.19604938271604938,
+        "crop_macro_acc": 0.20540640969198223,
+        "class_macro_acc": 0.2623418226929769,
+        "by_crop": {
+          "Peach": 0.3188798554652213,
+          "Orange": 0.13299044819985306,
+          "Coffee": 0.16434892541087232
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9665071770334929,
+          "Orange|Greening_Disease": 0.20300751879699247,
+          "Orange|Whisker_Mold": 0.3170731707317073,
+          "Coffee|Phoma": 0.03296703296703297,
+          "Coffee|Berry_Blotch": 0.5398230088495575,
+          "Coffee|Rust": 0.01,
+          "Peach|Peach_Leaf_Curl": 0.024390243902439025,
+          "Coffee|Cerscospora": 0.06896551724137931,
+          "Peach|Leaf_Scab": 0.05333333333333334,
+          "Peach|Bacterial_Leaf_Spot": 0.035,
+          "Orange|Huanglongbing": 0.075,
+          "Orange|Green_Mold": 0.38095238095238093,
+          "Orange|Canker": 0.005154639175257732,
+          "Peach|Leaf_Curl": 0.6868131868131868,
+          "Orange|Citrus_Canker": 0.4968152866242038,
+          "Coffee|Miner": 0.3016666666666667
+        }
+      },
+      "rich": {
+        "img_params_M": 92.88,
+        "acc": 0.3037037037037037,
+        "crop_macro_acc": 0.3084792072707621,
+        "class_macro_acc": 0.30502528401326995,
+        "by_crop": {
+          "Peach": 0.26196928635953026,
+          "Orange": 0.49595885378398236,
+          "Coffee": 0.1675094816687737
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.9234449760765551,
+          "Orange|Greening_Disease": 0.06015037593984962,
+          "Orange|Whisker_Mold": 0.2926829268292683,
+          "Coffee|Phoma": 0.2087912087912088,
+          "Coffee|Berry_Blotch": 0.6106194690265486,
+          "Coffee|Rust": 0.025,
+          "Peach|Peach_Leaf_Curl": 0.14634146341463414,
+          "Coffee|Cerscospora": 0.022988505747126436,
+          "Peach|Leaf_Scab": 0.14666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.04,
+          "Orange|Huanglongbing": 0.8966666666666666,
+          "Orange|Green_Mold": 0.30952380952380953,
+          "Orange|Canker": 0.005154639175257732,
+          "Peach|Leaf_Curl": 0.3076923076923077,
+          "Orange|Citrus_Canker": 0.6496815286624203,
+          "Coffee|Miner": 0.235
+        }
+      },
+      "grounded": {
+        "img_params_M": 92.88,
+        "acc": 0.26814814814814814,
+        "crop_macro_acc": 0.2648711056778991,
+        "class_macro_acc": 0.30985311223317763,
+        "by_crop": {
+          "Peach": 0.19060523938572718,
+          "Orange": 0.36443791329904485,
+          "Coffee": 0.23957016434892542
+        },
+        "by_class": {
+          "Peach|Brown_Rot": 0.7894736842105263,
+          "Orange|Greening_Disease": 0.2857142857142857,
+          "Orange|Whisker_Mold": 0.7073170731707317,
+          "Coffee|Phoma": 0.4065934065934066,
+          "Coffee|Berry_Blotch": 0.4778761061946903,
+          "Coffee|Rust": 0.095,
+          "Peach|Peach_Leaf_Curl": 0.2926829268292683,
+          "Coffee|Cerscospora": 0.11494252873563218,
+          "Peach|Leaf_Scab": 0.02666666666666667,
+          "Peach|Bacterial_Leaf_Spot": 0.018333333333333333,
+          "Orange|Huanglongbing": 0.5233333333333333,
+          "Orange|Green_Mold": 0.2857142857142857,
+          "Orange|Canker": 0.0979381443298969,
+          "Peach|Leaf_Curl": 0.11538461538461539,
+          "Orange|Citrus_Canker": 0.4140127388535032,
+          "Coffee|Miner": 0.30666666666666664
+        }
+      }
+    }
+  }
+}

@@ -2,17 +2,20 @@
 Generate the three standalone Kaggle runners from the shared bootstrap.
 
 Each PART file must be a single paste-and-go cell, so the bootstrap is INLINED rather than
-imported. Keeping the bootstrap in one place (_pde_common.py) and generating the parts from it
+imported. Keeping the bootstrap in one place (bootstrap.py) and generating the parts from it
 means a fix lands in all three at once -- the three files cannot drift.
 
-    python kaggle/build_parts.py
+    python scripts/kaggle/build/parts.py
 """
 from pathlib import Path
 import sys
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
-from _pde_common import BOOTSTRAP
+KAGGLE = HERE.parent                 # scripts/kaggle -- holds bootstrap.py
+RUNNERS = KAGGLE / "runners"         # generated stage files land here
+RUNNERS.mkdir(parents=True, exist_ok=True)
+sys.path.insert(0, str(KAGGLE))
+from bootstrap import BOOTSTRAP
 
 COMMON_SETTINGS = '''REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
@@ -654,10 +657,10 @@ banner("PART 3 DONE" if not (skipped or unsupported)
        else "PART 3 INCOMPLETE -- re-run to finish")
 '''
 
-for name, body in (("RUN_PART1_descriptors.py", PART1),
-                   ("RUN_PART2_probe_loco_wiseft.py", PART2),
-                   ("RUN_PART3_cnns.py", PART3)):
-    p = HERE / name
+for name, body in (("runners/part1_descriptors.py", PART1),
+                   ("runners/part2_probe_loco_wiseft.py", PART2),
+                   ("runners/part3_cnns.py", PART3)):
+    p = KAGGLE / name
     p.write_text(body, encoding="utf-8")
     compile(body, str(p), "exec")          # fail loudly rather than shipping broken code
     print(f"wrote {p}  ({len(body.splitlines())} lines)")

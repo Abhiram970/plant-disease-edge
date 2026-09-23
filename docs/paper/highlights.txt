@@ -1,5 +1,5 @@
-A frozen 11.4M CLIP diagnoses crops it never saw, at 2.2-13.9x chance.
-Requiring a citable source costs no measurable accuracy over seven seeds.
-Source-grounded descriptors are the only strategy that improves as classes triple.
-One frozen backbone serves known crops (82.2%) and unseen ones; CNNs cannot do both.
+Better class descriptions gain 10.3-16.2 points; a larger encoder gains 4.0-5.1.
+Photo-descriptive text reaches 30.9% on 51 unseen classes, 7.4x the majority prior.
+Requiring a citable source for every description costs no measurable accuracy.
+The smallest encoder runs at 17.4 ms per image on a laptop CPU in 45.8 MB.
 INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders.

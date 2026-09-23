@@ -1,0 +1,499 @@
+{
+ "matcher_normalised": true,
+ "seeds": null,
+ "chance": 0.07692307692307693,
+ "n_classes": 13,
+ "crops": [
+  "Coffee",
+  "Orange",
+  "Peach"
+ ],
+ "n_images": 4050,
+ "clean": true,
+ "clean_stats": {
+  "merged_images": 703,
+  "dropped_images": 0,
+  "alias_pairs": 5,
+  "excluded_labels": 4
+ },
+ "paired_arms": null,
+ "paired_stats": null,
+ "coverage": {
+  "Coffee|Berry_Blotch": "(NO MATCH)",
+  "Coffee|Cerscospora": "(NO MATCH)",
+  "Coffee|Miner": "(NO MATCH)",
+  "Coffee|Phoma": "phoma",
+  "Coffee|Rust": "rust",
+  "Orange|Citrus_Canker": "citrus canker",
+  "Orange|Green_Mold": "(NO MATCH)",
+  "Orange|Huanglongbing": "huanglongbing",
+  "Orange|Whisker_Mold": "(NO MATCH)",
+  "Peach|Bacterial_Leaf_Spot": "spot",
+  "Peach|Brown_Rot": "brown rot",
+  "Peach|Leaf_Scab": "scab",
+  "Peach|Peach_Leaf_Curl": "leaf curl"
+ },
+ "models": {
+  "MobileCLIP2-S0/dfndr2b": {
+   "bare": {
+    "img_params_M": 11.41,
+    "acc": 0.20123456790123456,
+    "by_crop": {
+     "Peach": 0.2962962962962963,
+     "Orange": 0.18221895664952242,
+     "Coffee": 0.15107458912768648
+    }
+   },
+   "bare80": {
+    "img_params_M": 11.41,
+    "acc": 0.19283950617283951,
+    "by_crop": {
+     "Peach": 0.2981029810298103,
+     "Orange": 0.18736223365172666,
+     "Coffee": 0.12389380530973451
+    }
+   },
+   "rich": {
+    "img_params_M": 11.41,
+    "acc": 0.3585185185185185,
+    "by_crop": {
+     "Peach": 0.25925925925925924,
+     "Orange": 0.4952240999265246,
+     "Coffee": 0.31036662452591657
+    }
+   },
+   "grounded": {
+    "img_params_M": 11.41,
+    "acc": 0.23950617283950618,
+    "by_crop": {
+     "Peach": 0.3857271906052394,
+     "Orange": 0.1991182953710507,
+     "Coffee": 0.17193426042983564
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 11.41,
+    "acc": 0.24814814814814815,
+    "by_crop": {
+     "Peach": 0.3224932249322493,
+     "Orange": 0.2814107274063189,
+     "Coffee": 0.1675094816687737
+    }
+   },
+   "dclip": {
+    "img_params_M": 11.41,
+    "acc": 0.21382716049382716,
+    "by_crop": {
+     "Peach": 0.2827461607949413,
+     "Orange": 0.23732549595885377,
+     "Coffee": 0.14538558786346398
+    }
+   },
+   "cupl": {
+    "img_params_M": 11.41,
+    "acc": 0.32641975308641974,
+    "by_crop": {
+     "Peach": 0.3884372177055104,
+     "Orange": 0.16825863335782512,
+     "Coffee": 0.4190897597977244
+    }
+   },
+   "crude": {
+    "img_params_M": 11.41,
+    "acc": 0.21851851851851853,
+    "crop_macro_acc": 0.22482085174528543,
+    "class_macro_acc": 0.2563504292462421,
+    "by_crop": {
+     "Peach": 0.25564588979223124,
+     "Orange": 0.27406318883174136,
+     "Coffee": 0.1447534766118837
+    },
+    "by_class": {
+     "Peach|Brown_Rot": 0.583732057416268,
+     "Orange|Huanglongbing": 0.019099590723055934,
+     "Orange|Whisker_Mold": 0.34146341463414637,
+     "Coffee|Phoma": 0.027472527472527472,
+     "Coffee|Berry_Blotch": 0.48672566371681414,
+     "Coffee|Rust": 0.24833333333333332,
+     "Peach|Peach_Leaf_Curl": 0.6547085201793722,
+     "Coffee|Cerscospora": 0.19540229885057472,
+     "Peach|Leaf_Scab": 0.05333333333333334,
+     "Peach|Bacterial_Leaf_Spot": 0.018333333333333333,
+     "Orange|Green_Mold": 0.07142857142857142,
+     "Orange|Citrus_Canker": 0.6275229357798165,
+     "Coffee|Miner": 0.005
+    }
+   }
+  },
+  "MobileCLIP-S1/datacompdr": {
+   "bare": {
+    "img_params_M": 21.54,
+    "acc": 0.19283950617283951,
+    "by_crop": {
+     "Peach": 0.3089430894308943,
+     "Orange": 0.24834680382072005,
+     "Coffee": 0.0638432364096081
+    }
+   },
+   "bare80": {
+    "img_params_M": 21.54,
+    "acc": 0.16641975308641976,
+    "by_crop": {
+     "Peach": 0.3143631436314363,
+     "Orange": 0.1888317413666422,
+     "Coffee": 0.04361567635903919
+    }
+   },
+   "rich": {
+    "img_params_M": 21.54,
+    "acc": 0.348641975308642,
+    "by_crop": {
+     "Peach": 0.27100271002710025,
+     "Orange": 0.692138133725202,
+     "Coffee": 0.10745891276864729
+    }
+   },
+   "grounded": {
+    "img_params_M": 21.54,
+    "acc": 0.3451851851851852,
+    "by_crop": {
+     "Peach": 0.2222222222222222,
+     "Orange": 0.6767083027185893,
+     "Coffee": 0.14601769911504425
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 21.54,
+    "acc": 0.3037037037037037,
+    "by_crop": {
+     "Peach": 0.3297199638663053,
+     "Orange": 0.5429831006612784,
+     "Coffee": 0.07964601769911504
+    }
+   },
+   "dclip": {
+    "img_params_M": 21.54,
+    "acc": 0.20246913580246914,
+    "by_crop": {
+     "Peach": 0.22944896115627822,
+     "Orange": 0.2931667891256429,
+     "Coffee": 0.10556257901390645
+    }
+   },
+   "cupl": {
+    "img_params_M": 21.54,
+    "acc": 0.3491358024691358,
+    "by_crop": {
+     "Peach": 0.3748870822041554,
+     "Orange": 0.5224099926524615,
+     "Coffee": 0.1820480404551201
+    }
+   },
+   "crude": {
+    "img_params_M": 21.54,
+    "acc": 0.2619753086419753,
+    "crop_macro_acc": 0.26842581101919977,
+    "class_macro_acc": 0.24369801554116569,
+    "by_crop": {
+     "Peach": 0.1960252935862692,
+     "Orange": 0.5422483468038207,
+     "Coffee": 0.06700379266750948
+    },
+    "by_class": {
+     "Peach|Brown_Rot": 0.937799043062201,
+     "Orange|Huanglongbing": 0.47885402455661663,
+     "Orange|Whisker_Mold": 0.2926829268292683,
+     "Coffee|Phoma": 0.016483516483516484,
+     "Coffee|Berry_Blotch": 0.5309734513274337,
+     "Coffee|Rust": 0.021666666666666667,
+     "Peach|Peach_Leaf_Curl": 0.07623318385650224,
+     "Coffee|Cerscospora": 0.0,
+     "Peach|Leaf_Scab": 0.05333333333333334,
+     "Peach|Bacterial_Leaf_Spot": 0.0,
+     "Orange|Green_Mold": 0.023809523809523808,
+     "Orange|Citrus_Canker": 0.6862385321100918,
+     "Coffee|Miner": 0.05
+    }
+   }
+  },
+  "MobileCLIP2-S2/dfndr2b": {
+   "bare": {
+    "img_params_M": 35.82,
+    "acc": 0.19407407407407407,
+    "by_crop": {
+     "Peach": 0.24028906955736223,
+     "Orange": 0.29831006612784716,
+     "Coffee": 0.07206068268015171
+    }
+   },
+   "bare80": {
+    "img_params_M": 35.82,
+    "acc": 0.19135802469135801,
+    "by_crop": {
+     "Peach": 0.2728093947606143,
+     "Orange": 0.2747979426891991,
+     "Coffee": 0.06257901390644753
+    }
+   },
+   "rich": {
+    "img_params_M": 35.82,
+    "acc": 0.46271604938271604,
+    "by_crop": {
+     "Peach": 0.2953929539295393,
+     "Orange": 0.766348273328435,
+     "Coffee": 0.3185840707964602
+    }
+   },
+   "grounded": {
+    "img_params_M": 35.82,
+    "acc": 0.22592592592592592,
+    "by_crop": {
+     "Peach": 0.34236675700090335,
+     "Orange": 0.23144746509919176,
+     "Coffee": 0.13969658659924147
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 35.82,
+    "acc": 0.25234567901234567,
+    "by_crop": {
+     "Peach": 0.3215898825654923,
+     "Orange": 0.3732549595885378,
+     "Coffee": 0.09987357774968394
+    }
+   },
+   "dclip": {
+    "img_params_M": 35.82,
+    "acc": 0.21506172839506174,
+    "by_crop": {
+     "Peach": 0.2809394760614273,
+     "Orange": 0.3218221895664952,
+     "Coffee": 0.07711757269279393
+    }
+   },
+   "cupl": {
+    "img_params_M": 35.82,
+    "acc": 0.26049382716049385,
+    "by_crop": {
+     "Peach": 0.35320686540198737,
+     "Orange": 0.2586333578251286,
+     "Coffee": 0.1972187104930468
+    }
+   },
+   "crude": {
+    "img_params_M": 35.82,
+    "acc": 0.22444444444444445,
+    "crop_macro_acc": 0.23747753852053058,
+    "class_macro_acc": 0.3026669335505513,
+    "by_crop": {
+     "Peach": 0.3008130081300813,
+     "Orange": 0.34019103600293904,
+     "Coffee": 0.07142857142857142
+    },
+    "by_class": {
+     "Peach|Brown_Rot": 0.69377990430622,
+     "Orange|Huanglongbing": 0.013642564802182811,
+     "Orange|Whisker_Mold": 0.5121951219512195,
+     "Coffee|Phoma": 0.027472527472527472,
+     "Coffee|Berry_Blotch": 0.7256637168141593,
+     "Coffee|Rust": 0.03166666666666667,
+     "Peach|Peach_Leaf_Curl": 0.7219730941704036,
+     "Coffee|Cerscospora": 0.0,
+     "Peach|Leaf_Scab": 0.36,
+     "Peach|Bacterial_Leaf_Spot": 0.0,
+     "Orange|Green_Mold": 0.047619047619047616,
+     "Orange|Citrus_Canker": 0.7889908256880734,
+     "Coffee|Miner": 0.011666666666666667
+    }
+   }
+  },
+  "MobileCLIP-B/datacompdr": {
+   "bare": {
+    "img_params_M": 86.35,
+    "acc": 0.22617283950617284,
+    "by_crop": {
+     "Peach": 0.33423667570009036,
+     "Orange": 0.2762674504041146,
+     "Coffee": 0.10745891276864729
+    }
+   },
+   "bare80": {
+    "img_params_M": 86.35,
+    "acc": 0.18765432098765433,
+    "by_crop": {
+     "Peach": 0.3215898825654923,
+     "Orange": 0.221895664952241,
+     "Coffee": 0.06447534766118837
+    }
+   },
+   "rich": {
+    "img_params_M": 86.35,
+    "acc": 0.42790123456790125,
+    "by_crop": {
+     "Peach": 0.36314363143631434,
+     "Orange": 0.7288758265980897,
+     "Coffee": 0.21428571428571427
+    }
+   },
+   "grounded": {
+    "img_params_M": 86.35,
+    "acc": 0.3592592592592593,
+    "by_crop": {
+     "Peach": 0.3405600722673893,
+     "Orange": 0.5378398236590742,
+     "Coffee": 0.21871049304677623
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 86.35,
+    "acc": 0.3520987654320988,
+    "by_crop": {
+     "Peach": 0.34959349593495936,
+     "Orange": 0.59147685525349,
+     "Coffee": 0.14791403286978508
+    }
+   },
+   "dclip": {
+    "img_params_M": 86.35,
+    "acc": 0.2795061728395062,
+    "by_crop": {
+     "Peach": 0.2971996386630533,
+     "Orange": 0.41219691403379866,
+     "Coffee": 0.1529709228824273
+    }
+   },
+   "cupl": {
+    "img_params_M": 86.35,
+    "acc": 0.388641975308642,
+    "by_crop": {
+     "Peach": 0.4010840108401084,
+     "Orange": 0.47685525349008084,
+     "Coffee": 0.30404551201011376
+    }
+   },
+   "crude": {
+    "img_params_M": 86.35,
+    "acc": 0.2733333333333333,
+    "crop_macro_acc": 0.28057840251067034,
+    "class_macro_acc": 0.277497457897948,
+    "by_crop": {
+     "Peach": 0.24932249322493225,
+     "Orange": 0.4805290227773696,
+     "Coffee": 0.11188369152970923
+    },
+    "by_class": {
+     "Peach|Brown_Rot": 0.9808612440191388,
+     "Orange|Huanglongbing": 0.3601637107776262,
+     "Orange|Whisker_Mold": 0.24390243902439024,
+     "Coffee|Phoma": 0.46703296703296704,
+     "Coffee|Berry_Blotch": 0.3274336283185841,
+     "Coffee|Rust": 0.03833333333333333,
+     "Peach|Peach_Leaf_Curl": 0.273542600896861,
+     "Coffee|Cerscospora": 0.0,
+     "Peach|Leaf_Scab": 0.12,
+     "Peach|Bacterial_Leaf_Spot": 0.0016666666666666668,
+     "Orange|Green_Mold": 0.047619047619047616,
+     "Orange|Citrus_Canker": 0.6935779816513762,
+     "Coffee|Miner": 0.05333333333333334
+    }
+   }
+  },
+  "ViT-B-16-SigLIP2/webli": {
+   "bare": {
+    "img_params_M": 92.88,
+    "acc": 0.28888888888888886,
+    "by_crop": {
+     "Peach": 0.34507678410117437,
+     "Orange": 0.38501102130786186,
+     "Coffee": 0.16687737041719342
+    }
+   },
+   "bare80": {
+    "img_params_M": 92.88,
+    "acc": 0.25308641975308643,
+    "by_crop": {
+     "Peach": 0.3568202348690154,
+     "Orange": 0.3695811903012491,
+     "Coffee": 0.08027812895069532
+    }
+   },
+   "rich": {
+    "img_params_M": 92.88,
+    "acc": 0.4274074074074074,
+    "by_crop": {
+     "Peach": 0.3215898825654923,
+     "Orange": 0.807494489346069,
+     "Coffee": 0.17446270543615677
+    }
+   },
+   "grounded": {
+    "img_params_M": 92.88,
+    "acc": 0.35555555555555557,
+    "by_crop": {
+     "Peach": 0.27461607949412825,
+     "Orange": 0.5481263776634827,
+     "Coffee": 0.24652338811630847
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 92.88,
+    "acc": 0.37580246913580245,
+    "by_crop": {
+     "Peach": 0.5194218608852755,
+     "Orange": 0.4533431300514328,
+     "Coffee": 0.20859671302149177
+    }
+   },
+   "dclip": {
+    "img_params_M": 92.88,
+    "acc": 0.41185185185185186,
+    "by_crop": {
+     "Peach": 0.6151761517615176,
+     "Orange": 0.3908890521675239,
+     "Coffee": 0.28761061946902655
+    }
+   },
+   "cupl": {
+    "img_params_M": 92.88,
+    "acc": 0.45037037037037037,
+    "by_crop": {
+     "Peach": 0.5094850948509485,
+     "Orange": 0.4195444526083762,
+     "Coffee": 0.43552465233881166
+    }
+   },
+   "crude": {
+    "img_params_M": 92.88,
+    "acc": 0.32592592592592595,
+    "crop_macro_acc": 0.33570410284715685,
+    "class_macro_acc": 0.34651797045429933,
+    "by_crop": {
+     "Peach": 0.34417344173441733,
+     "Orange": 0.4966936076414401,
+     "Coffee": 0.16624525916561314
+    },
+    "by_class": {
+     "Peach|Brown_Rot": 0.9665071770334929,
+     "Orange|Huanglongbing": 0.2728512960436562,
+     "Orange|Whisker_Mold": 0.3170731707317073,
+     "Coffee|Phoma": 0.03296703296703297,
+     "Coffee|Berry_Blotch": 0.5398230088495575,
+     "Coffee|Rust": 0.01,
+     "Peach|Peach_Leaf_Curl": 0.6905829596412556,
+     "Coffee|Cerscospora": 0.08045977011494253,
+     "Peach|Leaf_Scab": 0.05333333333333334,
+     "Peach|Bacterial_Leaf_Spot": 0.035,
+     "Orange|Green_Mold": 0.38095238095238093,
+     "Orange|Citrus_Canker": 0.8201834862385321,
+     "Coffee|Miner": 0.305
+    }
+   }
+  }
+ },
+ "provenance": {
+  "run": "Kaggle PART 4, branch baselines/dclip-cupl-manual @ cc637fe, 2026-09-21",
+  "crude_from": "docs/paper/rerun_2026-09-11/zeroshot_eval_A_clean.json",
+  "crude_merge_justification": "this run re-scored bare, rich and grounded; every shared cell is bit-identical to the source file, so crude is comparable without re-scoring",
+  "registries": "descriptors_dclip/0 and descriptors_cupl/0: one hand-generated draw each"
+ }
+}

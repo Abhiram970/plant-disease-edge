@@ -1,0 +1,18 @@
+{
+ "part": "audit",
+ "files": [
+  "results/zeroshot_eval_A.json",
+  "results/zeroshot_eval_A_clean.json",
+  "results/zeroshot_eval_B.json",
+  "results/zeroshot_eval_B_clean.json",
+  "results/zeroshot_eval_C.json",
+  "results/zeroshot_eval_C_clean.json",
+  "descriptor_coverage.json"
+ ],
+ "images": 84123,
+ "classes": 217,
+ "crops": 18,
+ "repo_head": "f8dd949 paper: Drop the pilot figures, repoint the rest, and correct the claim-level findings",
+ "sage_revision": "bc9bd2899f19379be29c7a99d37d2e89bf8e430d",
+ "wall_hours": 0.86
+}

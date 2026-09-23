@@ -13,7 +13,20 @@ crops) was shown **not** to help unseen-crop zero-shot — so we do not train ba
 | `descriptors.py` | `bare` / `crude` / `rich` / `grounded` text prototypes; `build_prototypes(...)`; rich symptom bank + loader for source-grounded `descriptors/<crop>.json` |
 | `zeroshot.py` | frozen-model eval core: load model, embed images, nearest-prototype accuracy |
 | `evaluate.py` | **driver** — fetch data → model-family × strategy sweep → `<RESULTS_DIR>/zeroshot_eval.json` |
-| `build_descriptors.py` | Phase A2: generate source-grounded `{value, source_url, verbatim_quote}` descriptors (Claude or stubs) |
+| `build_descriptors.py` | Phase A2: generate source-grounded `{value, source_url, verbatim_quote}` descriptors (LLM or stubs) |
+
+## Subpackages
+| Folder | Job |
+|---|---|
+| `kaggle/` | everything that runs on a Kaggle GPU session. `launch.py` is the one cell you paste; `bootstrap.py` is the shared setup it execs; `build/` generates `runners/`, which are the stages themselves — **generated, never hand-edited**. `cell_audit.py` is a self-contained cell for the de-duplication re-run. See `kaggle/README.md`. |
+| `paper_fixes/` | manuscript patches and the pre-submission gates. `preflight.py` and `check_structure.py` must both pass before submitting; `archive_stale.py --undo` restores anything moved to `../plant-disease-edge-archive/`. |
+
+## Analysis
+| File | Job |
+|---|---|
+| `analyse_control_arms.py` | the grounded-vs-ungrounded control arm: per-seed differences and the seed-level interval |
+| `analyse_clean_scaling.py` | decides the scaling claim from the cleaned and uncleaned runs — answers "does grounded rise?", "does the bank decay?" and "does grounded win at the largest scale?" separately, because they have different answers |
+| `run_missing_experiments.py` | the experiments the audit found missing, in dependency order; `--list` prints the plan and what each unblocks |
 
 ## Run it (Kaggle: GPU + Internet ON, repo cloned)
 ```bash

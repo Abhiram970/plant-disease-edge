@@ -1,33 +1,33 @@
 # Kaggle runbook
 
-Paste **`kaggle/LAUNCH.py`** as one cell, set `PART`, run. It clones the pinned branch and
+Paste **`scripts/kaggle/launch.py`** as one cell, set `PART`, run. It clones the pinned branch and
 executes the chosen stage — there is nothing else to copy, and no risk of pasting a file that
 only prints itself.
 
 ```python
 !git clone -q --depth 1 --branch paper/draft-audit-2026-09-01 \
   https://github.com/Abhiram970/plant-disease-edge.git /tmp/pde
-%run /tmp/pde/kaggle/LAUNCH.py
+%run /tmp/pde/scripts/kaggle/launch.py
 ```
 
 | `PART` | what it runs | approx. | API key |
 |---|---|---|---|
-| **`"fixup"`** | **the two stages the morning run lost: WiSE-FT, then the 14 CNNs** | **6.5 h** | **no** |
-| `"tonight"` | descriptors, zero-shot A/B/C, control arms, probe, abstention | 3.9 h | required |
-| `"morning"` | extra seeds, paired comparison, remaining tables, 14 CNNs | 7.8 h | required |
+| **`"stage3"`** | **the two stages the morning run lost: WiSE-FT, then the 14 CNNs** | **6.5 h** | **no** |
+| `"stage1"` | descriptors, zero-shot A/B/C, control arms, probe, abstention | 3.9 h | required |
+| `"stage2"` | extra seeds, paired comparison, remaining tables, 14 CNNs | 7.8 h | required |
 | `"1"` / `"2"` / `"3"` | the same work split into single-purpose stages | — | part 1 only |
 
-**Run `"fixup"` next.** The 2026-09-06 morning session (10.12 h, exit 0) completed everything
+**Run `"stage3"` next.** The 2026-09-06 morning session (10.12 h, exit 0) completed everything
 except those two stages, and its results carry forward from the attached output rather than being
-recomputed. Attach `pde-sage-data` **and** that session's output, then run with `PART = "fixup"`.
+recomputed. Attach `pde-sage-data` **and** that session's output, then run with `PART = "stage3"`.
 
 Every stage is resumable. A run that reaches its budget stops cleanly, prints what is left, and
 a re-run of the same cell continues from there — finished work is skipped, never redone. When a
 stage completes, publish the notebook Output as a Dataset and attach it to the next run so
 results and descriptor text carry forward.
 
-The stages are generated from one shared bootstrap (`_pde_common.py`) by `build_parts.py`,
-`build_tonight.py` and `build_morning.py`, so a fix lands in every runner at once. Edit the
+The stages are generated from one shared bootstrap (`bootstrap.py`) by `build/parts.py`,
+`build/stage1.py` and `build/stage2.py`, so a fix lands in every runner at once. Edit the
 generators, not the generated `RUN_*.py` files.
 
 ---

@@ -34,7 +34,11 @@ def short(n):
 
 
 def write(fname, lines):
-    (TEX / fname).write_text("\n".join(lines) + "\n", encoding="utf-8")
+    # newline="" prevents Windows CRLF translation. write_text() was silently emitting
+    # CRLF into every generated table; main.tex is LF-only, so the two halves of the
+    # manuscript had different line endings and only main.tex was ever checked.
+    with open(TEX / fname, "w", encoding="utf-8", newline="") as fh:
+        fh.write("\n".join(lines) + "\n")
     print(f"[tex] wrote {TEX / fname}")
 
 
@@ -102,11 +106,21 @@ def tab_scale_study():
         means.append((n, mb, mr, mg))
     if not rows:
         return
+    # CAPTION REWRITTEN. The previous note read "Note the reversal: mean hand-curated accuracy
+    # falls as classes grow while source-grounded accuracy rises", which asserts exactly the
+    # claim Section 7 withdraws after the de-duplicated re-run. A caption is what a skimming
+    # reader takes away, so it must not carry a retracted claim. It also has to say that the
+    # bank is a collision-limited reference (Section 3.4) and that each cell is one registry.
     note = ("\\emph{bare} = class name only; \\emph{rich} = hand-curated symptom paragraph; "
             "\\emph{grounded} = LLM source-grounded symptom text. Held-out crops are never trained "
-            "on. Crop pools are nested (A $\\subset$ B $\\subset$ C), so differences are "
-            "attributable to the size of the unseen label space. Note the reversal: mean "
-            "hand-curated accuracy falls as classes grow while source-grounded accuracy rises.")
+            "on. Crop pools are nested (A $\\subset$ B $\\subset$ C), but each step also adds new "
+            "crops, so the columns are not a controlled measurement of label-space size alone "
+            "(Section~\\ref{sec:data}). The mean row is over the four deployable tiers; the "
+            "92.9\\,M reference encoder is excluded. The keyword bank's mean falls as the label "
+            "space grows while source-grounded text holds; the bank's prototypes collide "
+            "(Section~\\ref{sec:strategies}), so that gap measures per-class distinctness rather "
+            "than grounding. Every cell is a single descriptor registry scored once, against a "
+            "generation-to-generation standard deviation of 2.4 points (Section~\\ref{sec:desc}).")
     write("tab_scale_study.tex", wrap(
         "Cross-crop zero-shot accuracy at three held-out scales, by descriptor strategy.",
         "tab:scale", "llrrrr",
@@ -116,19 +130,31 @@ def tab_scale_study():
 def tab_abstain():
     # Section 5.4 compares grounded against rich on top-5 and AURC, but this table printed only
     # the grounded rows, so no reader could check the claim. Both strategies now appear.
+    #
+    # TOP-1 IS READ FROM zeroshot_eval_*.json, NOT FROM metrics_abstain_*.json, even though both
+    # files carry it. metrics_abstain stores accuracies already rounded to four decimals, so
+    # MobileCLIP-B/rich at configuration B is 0.2835 there against 0.2835393889853888 in
+    # zeroshot_eval_B.json. Formatted to one decimal those differ -- 28.3% vs 28.4% -- and this
+    # table printed 28.3 while tab_scale_study printed 28.4 for the same cell. One quantity, one
+    # source: the full-precision file wins, and any future top-1 column must read from it too.
     body = []
     for e in "ABC":
         j = load(f"metrics_abstain_{e}.json")
         if not j:
             continue
+        zs = (load(f"zeroshot_eval_{e}.json") or {}).get("models", {})
         for m, d in j["models"].items():
             g, r = d.get("grounded"), d.get("rich")
             if not isinstance(g, dict):
                 continue
             cells = [e, str(j["n_classes"]), short(m)]
-            for sd in (g, r):
+            for name, sd in (("grounded", g), ("rich", r)):
                 if isinstance(sd, dict):
-                    cells += [pct(sd.get("top1")), pct(sd.get("top5")), str(sd.get("aurc")),
+                    top1 = zs.get(m, {}).get(name, {}).get("acc", sd.get("top1"))
+                    # AURC is stored at 4 dp; str() dropped trailing zeros (0.584 beside 0.6986)
+                    aurc = sd.get("aurc")
+                    cells += [pct(top1), pct(sd.get("top5")),
+                              "---" if aurc is None else f"{aurc:.4f}",
                               pct(sd.get("acc@cov80"))]
                 else:
                     cells += ["---"] * 4
@@ -137,15 +163,17 @@ def tab_abstain():
         return
     write("tab_abstain.tex", wrap(
         "Top-5 and selective prediction, source-grounded against the hand-curated bank. "
-        "acc@cov80 = accuracy when the 80\% most confident predictions are kept.",
+        "acc@cov80 = accuracy when the 80\% most confident predictions are kept; "
+        "AURC = area under the risk--coverage curve, lower is better.",
         "tab:abstain", "lllrrrrrrrr",
         ("& & & " + _A + "multicolumn{4}{c}{grounded} & " + _A + "multicolumn{4}{c}{rich} "
          + (_A+_A) + chr(10) + _A + "cmidrule(lr){4-7}" + _A + "cmidrule(lr){8-11}" + chr(10)
          + "Config & Classes & Model & Top-1 & Top-5 & AURC $" + _A + "downarrow$ & acc@cov80 & "
          + "Top-1 & Top-5 & AURC $" + _A + "downarrow$ & acc@cov80 " + (_A+_A)),
         body,
-        "Confidence is the top-1 minus top-2 similarity margin. Selective accuracy rising as "
-        "coverage tightens confirms the signal is correctly ordered; the gate itself buys about "
+        "Confidence is the top-1 minus top-2 similarity margin. Selective accuracy rises at every "
+        "step of the reported coverage grid (100\% down to 50\% in tens) in all 30 cells, "
+        "confirming the signal is correctly ordered; the gate itself buys about "
         "two points of top-1 for refusing one image in five.", wide=True))
 
 
@@ -168,9 +196,13 @@ def tab_seen():
     write("tab_seen.tex", wrap(
         "Known-crop accuracy: frozen backbone plus a linear probe, at three seen-set sizes.",
         "tab:seen", "lrrr" + "r" * len(cols), header, body,
+        # MECHANISM REMOVED. The "because" clause was falsified by this table's own columns:
+        # images grow 1.65x from A to C while classes grow 1.71x, so images per class FALL
+        # (436 -> 403 -> 421). Report the trend; do not assert a cause the numbers contradict.
         "The same frozen encoders that perform unseen-crop zero-shot (Table~\\ref{tab:scale}). "
-        "Accuracy rises with the seen label space because additional crops contribute "
-        "proportionally more training images than difficulty.", wide=True))
+        "Accuracy rises with the seen label space; note that images per class do not rise with "
+        "it (436, 403 and 421 at A, B and C), so the trend is not explained by the added crops "
+        "bringing proportionally more training data.", wide=True))
 
 
 def tab_supervised():
@@ -206,10 +238,14 @@ def tab_supervised():
     if _n >= 14 and (_best[3] or 0) > (_largest[3] or 0):
         _ratio = (_largest[1] or 0) / max(_best[1] or 1e-9, 1e-9)
         _lead = ((_best[3] or 0) - (_largest[3] or 0)) * 100
-        _obs = ("Accuracy does not track parameter count: the strongest network is "
+        _obs = ("Accuracy tracks parameter count weakly at best: the strongest network is "
                 + _best[0].replace("_", "-") + " at %.1f\,M, " % _best[1]
                 + "which is %.0f$\\times$ smaller than the largest model here and beats " % _ratio
-                + "it by %.1f points. " % _lead)
+                + "it by %.1f points " % _lead
+                # _lead is unrounded (89.27 - 86.73 = 2.54 -> 2.5), so subtracting the two
+                # rounded cells above gives 2.6 and reads as an arithmetic slip. Show the
+                # operands to two decimals so the difference reconciles on the page.
+                + "(%.2f\\%% against %.2f\\%%). " % ((_best[3] or 0) * 100, (_largest[3] or 0) * 100))
     write("tab_supervised.tex", wrap(
         _cap,
         "tab:cnn", "lrrrr",
@@ -270,10 +306,16 @@ def tab_wiseft():
     # "reproduces the frozen baseline" invited the reader to compare against Table 3's
     # 82.2%, which is a different measurement: this sweep subsamples the seen split to
     # 200 images per class, so its frozen reference is ~59%. Say which baseline.
+    # Differences quoted in the text are computed from the unrounded sweep values, so
+    # subtracting two rounded cells in this table can miss by 0.1 (e.g. 21.6 - 15.5 = 6.1
+    # against the 6.2 in Section 4.5, which is 21.64 - 15.47). Say so once, here, rather
+    # than letting a reader read the gap as an arithmetic error.
     _foot = ("$\\alpha=0$ reproduces this sweep's own frozen probe "
              f"({j.get('frozen_probe', 0) * 100:.1f}\\%), validating the interpolation. "
              "That probe is measured on the 200-image-per-class subsample used here, not on "
-             "the full seen split of Table~\\ref{tab:seen}. ")
+             "the full seen split of Table~\\ref{tab:seen}. Differences quoted in the text are "
+             "computed from the unrounded values, so they may differ by 0.1 from the "
+             "difference of two rounded cells here. ")
     if _a1:
         _mult = _a1["unseen"] / _chance if _chance else 0.0
         if _mult < 2.0:
@@ -321,8 +363,9 @@ def tab_edge():
         "INT8 dyn. " + DN + " & INT8 static " + DN + " & FP32 " + DN + " & "
         "INT8 " + DN + " \\\\", body,
         f"Latency in ms (median of {j['runs']} runs), ONNX Runtime {j.get('ort_version')}. "
-        "INT8 makes the hybrid conv--transformer tiers \\emph{slower} while shrinking them "
-        "$\\sim3.5\\times$; only the pure-transformer model gets faster.", wide=True))
+        "INT8 makes the three hybrid conv--transformer tiers \\emph{slower} while shrinking them "
+        "$\\sim3.5\\times$; the one pure-transformer model here gets faster instead. "
+        "The transformer side of that contrast rests on a single row.", wide=True))
 
 
 def tab_loco():
@@ -337,19 +380,95 @@ def tab_loco():
     body.append("\\midrule")
     body.append(f"\\textbf{{Pooled}} & \\textbf{{{p['n']:,}}} & \\textbf{{{pct(p['acc'])}}} & "
                 f"[{pct(p['ci95'][0])}, {pct(p['ci95'][1])}] \\\\")
+    # RENAMED. "Leave-one-crop-out" has a standing meaning -- hold a crop out, refit, re-score --
+    # and none of it happens here: the descriptor head is training-free, so nothing is left out
+    # and nothing is refit. This is a per-crop breakdown of ONE zero-shot run over a common pool.
     write("tab_loco.tex", wrap(
-        f"Leave-one-crop-out on {j['model']} ({j['n_classes']} classes, chance {pct(j['chance'])}).",
+        f"Per-crop zero-shot accuracy on {j['model']} over a common pool of "
+        f"{j['n_classes']} classes (chance {pct(j['chance'])}).",
         "tab:loco", "lrrl",
         "Crop & $N$ & Zero-shot " + UP + " & 95\\% CI \\\\", body,
-        "The two hardest crops are both \\emph{trained} crops, so difficulty does not "
-        "follow the held-out boundary. The held-out crops nevertheless average above the "
-        "trained pool here (19.0\\% against 9.0\\%), so this split is not "
-        "adversarially hard. Measured with the \\texttt{rich} strategy on the "
-        "78-class leave-one-crop-out pool, not the headline label space."))
+        "No crop is held out and no model is refit here: the descriptor head is training-free, "
+        "so this is one zero-shot run broken down by crop. \\emph{Trained} labels crops that sit "
+        "in the seen pool of the main experiments. The two hardest crops are both \\emph{trained} "
+        "crops, so difficulty does not follow the held-out boundary. The held-out crops here are " "configuration A's three, so this bounds that configuration and not B or C; they "
+        "nevertheless average above the trained pool here (19.0\\% against 9.0\\%), so this split "
+        "is not adversarially hard. This run covers six of the study's 18 crops, so the "
+        "held-versus-trained contrast rests on three crops a side. Measured with the "
+        "\\texttt{rich} strategy, "
+        "whose prototypes collide (Section~\\ref{sec:strategies}), so the held/trained gap is "
+        "itself subject to that confound."))
+
+
+# ------------------------------------------------------------------------------------------------
+# Final-manuscript tables (2026-09-22). Both read paper_numbers.json, which paper_numbers.py
+# computes from the released JSONs, so a table and the prose that quotes it share one number.
+# ------------------------------------------------------------------------------------------------
+AUTH_ROWS = [("bare", "bare"), ("bare80", "bare80"), ("crude", "crude"), ("rich", "rich"),
+             ("grounded", "grounded"), ("dclip", "DCLIP"), ("cupl", "CuPL")]
+
+
+def _numbers():
+    p = HERE / "paper_numbers.json"
+    if not p.exists():
+        raise FileNotFoundError("run docs/paper/paper_numbers.py first")
+    return json.loads(p.read_text(encoding="utf-8"))
+
+
+def tab_authoring():
+    N = _numbers()
+    cols = [(e, t) for t in ("uncleaned", "clean") for e in "ABC"]
+    best = {(e, t): N["configs"][e][t]["best"] for e, t in cols}
+    body = []
+    for key, name in AUTH_ROWS:
+        cells = []
+        for e, t in cols:
+            v = N["configs"][e][t]["means"][key]
+            s = f"{v:.1f}"
+            cells.append(f"\\textbf{{{s}}}" if best[(e, t)] == key else s)
+        body.append(f"{name} & " + " & ".join(cells) + " \\\\")
+    body.append("\\midrule")
+    ag = [f"{N['configs'][e][t]['authoring_gain']:.1f}" for e, t in cols]
+    sg = [f"{N['configs'][e][t]['size_range_under_best']:.1f}" for e, t in cols]
+    body.append("Authoring gain (best $-$ bare) & " + " & ".join(ag) + " \\\\")
+    body.append("Encoder-size gain (86.3 $-$ 11.4\\,M) & " + " & ".join(sg) + " \\\\")
+    n_cls = [str(N["configs"][e][t]["n_classes"]) for e, t in cols]
+    header = ("& \\multicolumn{3}{c}{Full label set} & \\multicolumn{3}{c}{De-duplicated} \\\\\n"
+              "\\cmidrule(lr){2-4}\\cmidrule(lr){5-7}\n"
+              "Strategy & " + " & ".join(f"{e} ({n})" for (e, _), n in zip(cols, n_cls)) + " \\\\")
+    cap = ("Unseen-crop top-1 accuracy (\\%) by descriptor strategy: mean over the four deployable "
+           "encoders, at three nested label spaces (classes in parentheses), on the full and the "
+           "de-duplicated label sets. The best strategy in each column is in bold. The authoring gain "
+           "is the best strategy minus the class-name default; the encoder-size gain is the change "
+           "from the 11.4\\,M to the 86.3\\,M encoder under the best strategy.")
+    write("tab_authoring.tex", wrap(cap, "tab:authoring", "lrrrrrr", header, body, wide=True))
+
+
+def tab_decomp():
+    N = _numbers()
+    cf, cc = N["configs"]["C"]["uncleaned"], N["configs"]["C"]["clean"]
+    body = [
+        f"Construction & grounded $\\rightarrow$ grounded, split into sentences & text & "
+        f"{cf['split_minus_grounded']:+.1f} & {cc['split_minus_grounded']:+.1f} \\\\",
+        f"Text & grounded, split $\\rightarrow$ CuPL & construction & "
+        f"{cf['cupl_minus_split']:+.1f} & {cc['cupl_minus_split']:+.1f} \\\\",
+        "\\midrule",
+        f"Total gap & grounded $\\rightarrow$ CuPL & --- & "
+        f"{cf['cupl_minus_grounded']:+.1f} & {cc['cupl_minus_grounded']:+.1f} \\\\",
+    ]
+    header = ("Factor & Comparison & Held fixed & Full & De-dup. \\\\")
+    cap = ("Decomposition of the accuracy gap between source-grounded text and CuPL at configuration C "
+           "(51 and 42 classes), in points of mean top-1 over the four deployable encoders. Each row "
+           "changes one factor and holds the other fixed; construction and text sum to the total gap "
+           "before rounding, so the rounded entries may differ from it by 0.1. "
+           "The citation requirement is tested separately by a seeded control "
+           "(Section~\\ref{sec:decomp}): removing it changes accuracy by an amount whose 95\\% interval "
+           "includes zero.")
+    write("tab_decomp.tex", wrap(cap, "tab:decomp", "lllrr", header, body, wide=True))
 
 
 if __name__ == "__main__":
-    for fn in (tab_scale_study, tab_abstain, tab_seen, tab_supervised,
+    for fn in (tab_authoring, tab_decomp, tab_scale_study, tab_abstain, tab_seen, tab_supervised,
                tab_wiseft, tab_edge, tab_loco):
         try:
             fn()

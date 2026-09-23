@@ -1,5 +1,32 @@
 # Phase-0 de-risk — findings log (evidence trail)
 
+> ## ⚠ READ THIS FIRST — status as of 2026-09-12
+>
+> This file is a **dated evidence trail of Phase-0 runs, not a statement of current claims.**
+> Rows are kept as written so the decision history stays auditable. Several of them have since
+> been superseded, and reading them as live conclusions is how withdrawn claims keep
+> re-entering drafts and audits. The manuscript (`docs/paper/tex/main.tex`) is the only
+> authority on what is claimed; the result JSONs are the only authority on numbers.
+>
+> **SUPERSEDED — do not cite from this file:**
+>
+> | Claim in this log | Current status |
+> |---|---|
+> | Run 12: grounded `21.7 → 23.5 → 24.7 %` "(improves)" | **WITHDRAWN.** The de-duplicated re-run (`rerun_2026-09-11/`) falsified monotone improvement: it holds only under uncleaned labels *and* micro-averaging, 1 of 4 combinations. Published means are 21.5 / 22.7 / 23.9. What survives is that the bank decays and grounded does not. See §4.4. |
+> | "source-grounded descriptors **keep improving** as the unseen label space grows" | **WITHDRAWN** in §4.4 in bold. The claim is now robustness to a widening label space, not improvement. |
+> | "descriptor **authoring is the lever**" / "size is not the bottleneck" | **NARROWED 2026-09-12.** Table 2's own mean row: authoring buys +8.8 / +2.4 / +4.8 points at A / B / C, while 11.4→86.3 M buys +8.6 / +4.8 / +5.7. Encoder choice wins at B and C. The levers are comparable in size and differ in *price* — authoring is paid once, offline. |
+> | "accuracy flat 11M→300M ⇒ size is not the bottleneck" | **NOT SUPPORTED as stated.** Spearman ρ=0.35, p=0.32 at n=10 resolves only \|ρ\|≳0.65, so it bounds the association rather than showing flatness; Table 2 gives a *positive* coefficient in all twelve cells. |
+> | Run 13 seen probe "82.4 / 81.1 / 82.5 / 82.6" | Stale. Table 4 reports 82.2 / 81.1 / 82.2 / 82.1 from `probe_seen_C.json`. |
+> | Run 14 WiSE-FT "82.6/17.0 → 87.7/16.3 → 90.3/8.8" | Stale, different protocol. Table 5 reports 59.0/21.6 → … → 81.5/16.4 on a 200-image-per-class subsample. |
+> | Run 15 supervised "88.4 / 84.3 / 84.1" | Superseded by the full 14-architecture sweep (Table 6); best is efficientnet-b0 at 89.3%. |
+> | Run 16 "in progress", "8 epochs each" | Complete, but at **4** epochs, bounded by the Kaggle session limit. Eleven of fourteen runs were still improving at epoch 4. |
+> | Edge table "MobileCLIP-B 86.4M" | 86.3 M image tower throughout the manuscript. |
+>
+> Still valid from this log: the frozen-backbone decision and its negatives (runs 2–6, 9, 10),
+> the collision defect behind the retracted `rich` column (run 12's note), and the whole
+> INT8/quantisation section including the float-conv mechanism.
+
+
 Held-out eval = Coffee/Orange/Peach, 17 classes, 1,618 imgs, chance **5.9%**. Crude keyword
 descriptors unless noted. Student backbone for distill runs = `edgenext_small` (~5.5M).
 

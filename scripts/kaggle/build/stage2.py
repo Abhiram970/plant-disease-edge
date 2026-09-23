@@ -1,8 +1,8 @@
 """
-Generate RUN_MORNING_everything_else.py -- the second-session runner.
+Generate runners/stage2_seeds_cnns.py -- the second-session runner.
 
-Run AFTER build_parts.py:
-    python kaggle/build_parts.py && python kaggle/build_morning.py
+Run AFTER build/parts.py:
+    python scripts/kaggle/build/parts.py && python scripts/kaggle/build/stage2.py
 
 Tonight's run is sized for a 4 h quota and defers whatever is not Section 5.3. This runner
 picks up everything that was left, in the order that matters if the session is cut short:
@@ -22,9 +22,13 @@ from pathlib import Path
 import sys
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
-from _pde_common import BOOTSTRAP
-import build_parts as BP
+KAGGLE = HERE.parent                 # scripts/kaggle -- holds bootstrap.py
+RUNNERS = KAGGLE / "runners"         # generated stage files land here
+RUNNERS.mkdir(parents=True, exist_ok=True)
+sys.path.insert(0, str(KAGGLE))
+sys.path.insert(0, str(HERE))  # sibling: parts.py
+from bootstrap import BOOTSTRAP
+import parts as BP
 
 HEADER = '''"""
 =====================================================================================
@@ -123,7 +127,7 @@ for _sub in ("tex", "figures"):
         shutil.copytree(_src, _dst)
         print(f"[bundle] staged docs/paper/{_sub}", flush=True)
 
-bundle("morning", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
+bundle("stage2", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
                    "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
                    "short_arm_words": SHORT_WORDS,
                    "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR,
@@ -159,7 +163,7 @@ def main():
            + p3
            + TAIL)
 
-    out = HERE / "RUN_MORNING_everything_else.py"
+    out = KAGGLE / "runners/stage2_seeds_cnns.py"
     out.write_text(src, encoding="utf-8")
     compile(src, str(out), "exec")
     print(f"wrote {out}  ({len(src.splitlines())} lines)")

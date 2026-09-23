@@ -4,12 +4,12 @@
 =====================================================================================
 Nothing else to copy. Change PART below and run the cell.
 
-    PART = "tonight"   -> descriptors (4 seeds) + zero-shot A/B/C + control arms
+    PART = "stage1"    -> descriptors (4 seeds) + zero-shot A/B/C + control arms
                           + probe + abstention metrics             (~3.9 h, NEEDS API KEY)
-    PART = "morning"   -> seeds 4-7, control arms at 8 seeds, short arms, clean eval,
+    PART = "stage2"    -> seeds 4-7, control arms at 8 seeds, short arms, clean eval,
                           LOCO, WiSE-FT, and the 14 CNNs           (~7.8 h, NEEDS API KEY)
 
-    PART = "fixup"     -> ONLY the two stages the 2026-09-06 morning run lost: the 14 CNN
+    PART = "stage3"    -> ONLY the two stages the 2026-09-06 run lost: the 14 CNN
                           baselines and the WiSE-FT sweep. Everything else is carried
                           forward from the attached output, not recomputed.
                                                                    (~6.5 h, NO API KEY)
@@ -25,9 +25,9 @@ SETUP (all parts)
 SETUP (tonight / part 1 only)
   Add-ons -> Secrets -> LAVA_API_KEY   (or ANTHROPIC_API_KEY)
 
-FOR "fixup" AND PART 3
+FOR "stage3" AND PART 3
   Also Add Data -> the output of the previous notebook, so its results carry forward.
-  "fixup" needs no API key: it generates no descriptors.
+  "stage3" needs no API key: it generates no descriptors.
 
 WHY A LAUNCHER. The previous attempt pasted a helper cell that PRINTS the runner
 (`print(open(...).read())`) instead of executing it, so the whole file was echoed to the log
@@ -36,7 +36,7 @@ it executes the file rather than displaying it.
 =====================================================================================
 """
 
-PART = "fixup"       # "fixup" | "tonight" | "morning" | "1" | "2" | "3"
+PART = "audit"       # "audit" | "stage1" | "stage2" | "stage3" | "1" | "2" | "3"
 
 REPO_URL = "https://github.com/Abhiram970/plant-disease-edge.git"
 REPO_REF = "paper/draft-audit-2026-09-01"
@@ -45,12 +45,17 @@ import subprocess, sys, shutil, os
 from pathlib import Path
 
 SRC = {
-    "tonight": "RUN_TONIGHT_parts1and2.py",
-    "morning": "RUN_MORNING_everything_else.py",
-    "1":       "RUN_PART1_descriptors.py",
-    "2":       "RUN_PART2_probe_loco_wiseft.py",
-    "3":       "RUN_PART3_cnns.py",
-    "fixup":   "RUN_FIXUP_cnns_wiseft.py",
+    "stage1":  "runners/stage1_descriptors_zeroshot.py",
+    "stage2":  "runners/stage2_seeds_cnns.py",
+    "1":       "runners/part1_descriptors.py",
+    "2":       "runners/part2_probe_loco_wiseft.py",
+    "3":       "runners/part3_cnns.py",
+    "stage3":  "runners/stage3_cnns_wiseft.py",
+    # 2026-09-10 audit. Cleaned evaluation at A and B (no other stage runs --clean
+    # anywhere but exp C) plus the class-macro re-measurement. Pure evaluation, no
+    # API key. Needs a clone that carries the by_class change in scripts/zeroshot.py --
+    # the stage checks and refuses to start otherwise.
+    "audit":   "runners/audit_dedup_macro.py",
 }
 if PART not in SRC:
     sys.exit(f"[launcher] PART must be one of {list(SRC)}, got {PART!r}")
@@ -65,7 +70,24 @@ rc = subprocess.run(["git", "clone", "--depth", "1", "--branch", REPO_REF, REPO_
 if rc.returncode != 0:
     sys.exit(f"[launcher] clone failed:\n{rc.stderr}")
 
-runner = CODE / "kaggle" / SRC[PART]
+# The tree moved under scripts/kaggle/ on 2026-09-11. A clone of a branch older than
+# that still has the flat kaggle/ layout, so resolve against both rather than failing
+# with a bare "runner not found".
+_roots = [CODE / "scripts" / "kaggle", CODE / "kaggle"]
+runner = next((r / SRC[PART] for r in _roots if (r / SRC[PART]).exists()), None)
+if runner is None:
+    _legacy = {"runners/stage1_descriptors_zeroshot.py": "RUN_TONIGHT_parts1and2.py",
+               "runners/stage2_seeds_cnns.py": "RUN_MORNING_everything_else.py",
+               "runners/part1_descriptors.py": "RUN_PART1_descriptors.py",
+               "runners/part2_probe_loco_wiseft.py": "RUN_PART2_probe_loco_wiseft.py",
+               "runners/part3_cnns.py": "RUN_PART3_cnns.py",
+               "runners/stage3_cnns_wiseft.py": "RUN_FIXUP_cnns_wiseft.py",
+               "runners/audit_dedup_macro.py": "RUN_AUDIT_FIXES.py"}
+    _old = CODE / "kaggle" / _legacy.get(SRC[PART], "")
+    runner = _old if _old.name and _old.exists() else None
+if runner is None:
+    sys.exit(f"[launcher] {SRC[PART]} not found in the clone under either layout")
+print(f"[launcher] runner: {runner.relative_to(CODE)}", flush=True)
 if not runner.exists():
     sys.exit(f"[launcher] {runner} not found in the clone")
 

@@ -24,6 +24,24 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
 
+def _strip_comments(text: str) -> str:
+    """Blank out LaTeX % comments, keeping escaped \\% and preserving line count."""
+    out = []
+    for line in text.split("\n"):
+        i, esc = 0, False
+        while i < len(line):
+            if line[i] == "\\":
+                esc = not esc
+            elif line[i] == "%" and not esc:
+                line = line[:i]
+                break
+            else:
+                esc = False
+            i += 1
+        out.append(line)
+    return "\n".join(out)
+
+
 TEXDIR = C.REPO_ROOT / "docs" / "paper" / "tex"
 FIGDIR = C.REPO_ROOT / "docs" / "paper" / "figures"
 OUT = C.REPO_ROOT / "docs" / "paper" / "submission"
@@ -36,9 +54,15 @@ def main():
 
     tex = (TEXDIR / "main.tex").read_text(encoding="utf-8")
 
+    # Scan for figures with comments STRIPPED. A %% comment that quotes a macro -- the
+    # note above \maketitle explains the cas-common \includegraphics{thumbnails/...}
+    # call -- was picked up as a real figure, shifting every later figure's number by one
+    # and reporting a missing source for a file the manuscript never uses.
+    scan = _strip_comments(tex)
+
     # Figures, in order of first \includegraphics appearance.
     used = []
-    for m in re.finditer(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", tex):
+    for m in re.finditer(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", scan):
         name = m.group(1)
         if name not in used:
             used.append(name)
@@ -60,8 +84,18 @@ def main():
     (OUT / "main.tex").write_text(tex, encoding="utf-8")
 
     shutil.copy(TEXDIR / "refs.bib", OUT / "refs.bib")
-    for t in sorted(TEXDIR.glob("tab_*.tex")):
-        shutil.copy(t, OUT / t.name)
+    # Ship only the tables the manuscript \input's. Globbing tab_*.tex also shipped six tables
+    # left over from the pre-salvage draft, among them a WiSE-FT table for a section that was cut.
+    tables = []
+    for m in re.finditer(r"\\input\{(tab_[^}]+?)(?:\.tex)?\}", scan):
+        if m.group(1) not in tables:
+            tables.append(m.group(1))
+    for name in tables:
+        src = TEXDIR / f"{name}.tex"
+        if not src.exists():
+            missing.append(f"{name}.tex")
+            continue
+        shutil.copy(src, OUT / src.name)
 
     # Highlights ship as a separate editable file with "highlights" in the name, per the guide.
     hl_src = C.REPO_ROOT / "docs" / "paper" / "highlights.txt"
@@ -82,8 +116,8 @@ Two BibTeX-dependent passes are needed or citations render as `?`.
 
 ## Contents
 - `main.tex` — manuscript (cas-dc, double column, same layout as the authors' ASR submission)
-- `refs.bib` — {len(re.findall(r'^@', (TEXDIR / 'refs.bib').read_text(encoding='utf-8'), re.M))} entries, all verified against the published record
-- `tab_*.tex` — {len(list(TEXDIR.glob('tab_*.tex')))} tables, generated from the result files; do not hand-edit
+- `refs.bib` — {len(re.findall(r'^@', (TEXDIR / 'refs.bib').read_text(encoding='utf-8'), re.M))} entries (BibTeX prints only the cited ones)
+- `tab_*.tex` — {len(tables)} tables ({', '.join(tables)}), generated from the result files; do not hand-edit
 - `figures/Figure_1..{len(mapping)}.png` — 300 dpi, renamed in order of appearance
 - `highlights.txt` — upload separately in Editorial Manager, as the guide requires
 
@@ -91,8 +125,10 @@ Two BibTeX-dependent passes are needed or citations render as `?`.
 1. **Data availability** — the journal applies Option C, which *requires* the data to be deposited,
    cited and linked. Replace `PENDING-ZENODO-DOI` in `main.tex` with a real DOI (mint one by linking
    the GitHub repo to Zenodo), or make the repository public and use that URL.
-2. **Graphical abstract** — encouraged, not required. 531 x 1328 px minimum, submitted separately.
-3. **Corresponding author** needs a full postal address and phone number in Editorial Manager.
+2. **References** — check every entry against the published record before upload. Two entries
+   still end in `and others` and four selective-prediction entries are marked VERIFY in `refs.bib`.
+3. **Graphical abstract** — encouraged, not required. 531 x 1328 px minimum, submitted separately.
+4. **Corresponding author** needs a full postal address and phone number in Editorial Manager.
 
 ## Regenerating
 Tables and figures are generated, never typed:

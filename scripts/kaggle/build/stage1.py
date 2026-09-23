@@ -1,8 +1,8 @@
 """
-Generate RUN_TONIGHT_parts1and2.py by concatenating the PART1 and PART2 bodies.
+Generate runners/stage1_descriptors_zeroshot.py by concatenating the PART1 and PART2 bodies.
 
-Run AFTER build_parts.py:
-    python kaggle/build_parts.py && python kaggle/build_tonight.py
+Run AFTER build/parts.py:
+    python scripts/kaggle/build/parts.py && python scripts/kaggle/build/stage1.py
 
 The combined runner is assembled from the SAME PART1/PART2 source strings, split on the
 `#__P1_TAIL__` / `#__P2_TAIL__` markers, so it cannot drift from the individual parts: fix a
@@ -17,15 +17,19 @@ from pathlib import Path
 import sys
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
-from _pde_common import BOOTSTRAP
-import build_parts as BP
+KAGGLE = HERE.parent                 # scripts/kaggle -- holds bootstrap.py
+RUNNERS = KAGGLE / "runners"         # generated stage files land here
+RUNNERS.mkdir(parents=True, exist_ok=True)
+sys.path.insert(0, str(KAGGLE))
+sys.path.insert(0, str(HERE))  # sibling: parts.py
+from bootstrap import BOOTSTRAP
+import parts as BP
 
 HEADER = '''"""
 =====================================================================================
  PDE TONIGHT  --  PART 1 + PART 2 in one session
 =====================================================================================
-Run this tonight. Run RUN_PART3_cnns.py in the morning.
+Run this tonight. Run runners/part3_cnns.py in the morning.
 
   descriptors (4 seeds x 2 arms) + short arms + integrity gate      ~1.2 h
   zero-shot A/B/C                                                   ~0.7 h
@@ -47,7 +51,7 @@ SETUP
   3. Add-ons -> Secrets: LAVA_API_KEY (or ANTHROPIC_API_KEY). REQUIRED for the control arms.
   4. Paste this whole file into ONE cell, then use "Save Version -> Save & Run All" so the
      run survives you closing the browser.
-  5. In the morning: download pde_tonight.zip, then run RUN_PART3_cnns.py.
+  5. In the morning: download pde_tonight.zip, then run runners/part3_cnns.py.
 
 ORDER MATTERS. Descriptors run first because everything downstream needs them, and they are
 the only stage whose duration depends on an external API. The budget guard sits between the
@@ -99,13 +103,13 @@ RUN_WISEFT       = False
 '''
 
 TAIL = '''
-bundle("tonight", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
+bundle("stage1", {"llm_model": LLM_MODEL, "max_tokens": MAX_TOKENS,
                    "seeds_requested": UNGROUNDED_SEEDS, "usable_arms": USABLE,
                    "short_arm_words": SHORT_WORDS,
                    "wise_epochs": WISE_EPOCHS, "wise_lr": WISE_LR})
 banner("TONIGHT DONE")
 print("", flush=True)
-print("MORNING: run kaggle/RUN_PART3_cnns.py in a NEW notebook, and attach THIS", flush=True)
+print("MORNING: run kaggle/runners/part3_cnns.py in a NEW notebook, and attach THIS", flush=True)
 print("         notebook's output as a dataset so these results carry forward.", flush=True)
 '''
 
@@ -133,7 +137,7 @@ def main():
     src = HEADER + BP.COMMON_SETTINGS + "\n" + BOOTSTRAP + p1 + \
         '\nbanner("HALFWAY: descriptors + zero-shot + control arms COMPLETE")\n' + p2 + TAIL
 
-    out = HERE / "RUN_TONIGHT_parts1and2.py"
+    out = KAGGLE / "runners/stage1_descriptors_zeroshot.py"
     out.write_text(src, encoding="utf-8")
     compile(src, str(out), "exec")          # fail loudly rather than shipping broken code
     print(f"wrote {out}  ({len(src.splitlines())} lines)")

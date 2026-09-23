@@ -14,13 +14,13 @@ Only the image encoder ships to the device; text prototypes are precomputed offl
 
 ## Running the study
 
-Paste **`kaggle/LAUNCH.py`** into a Kaggle notebook as one cell, set `PART`, and run. It clones
+Paste **`scripts/kaggle/launch.py`** into a Kaggle notebook as one cell, set `PART`, and run. It clones
 this branch and executes the chosen stage; nothing else needs copying.
 
 | `PART` | stage | approx. | needs API key |
 |---|---|---|---|
-| `"tonight"` | descriptors, zero-shot A/B/C, control arms, probe, abstention | 3.9 h | yes |
-| `"morning"` | extra seeds, paired comparison, remaining tables, 14 CNNs | 7.8 h | yes |
+| `"stage1"` | descriptors, zero-shot A/B/C, control arms, probe, abstention | 3.9 h | yes |
+| `"stage2"` | extra seeds, paired comparison, remaining tables, 14 CNNs | 7.8 h | yes |
 | `"1"`/`"2"`/`"3"` | the same work as three single-purpose stages | — | 1 only |
 
 Attach the `pde-sage-data` dataset, enable Internet, add `LAVA_API_KEY` (or
@@ -32,14 +32,14 @@ Every stage is resumable. A run that hits its budget stops cleanly, lists what r
 re-run of the same cell continues from there. Timings above are measured, not estimated:
 9.2 min per descriptor seed, 87 ms per image embedded.
 
-Full instructions, secrets and failure modes: **[`kaggle/RUNBOOK.md`](kaggle/RUNBOOK.md)**.
+Full instructions, secrets and failure modes: **[`scripts/kaggle/README.md`](scripts/kaggle/README.md)**.
 
 The runners are generated from one shared bootstrap so they cannot drift:
 
 ```bash
-python kaggle/build_parts.py      # the three single-purpose stages
-python kaggle/build_tonight.py    # parts 1+2 combined
-python kaggle/build_morning.py    # everything else, CNNs last
+python scripts/kaggle/build/parts.py      # the three single-purpose stages
+python scripts/kaggle/build/stage1.py    # parts 1+2 combined
+python scripts/kaggle/build/stage2.py    # everything else, CNNs last
 ```
 
 To skip the 114 GB fetch, build the images locally and upload the 1.7 GB result:
@@ -98,10 +98,10 @@ The manuscript states this as a null with an explicit bound rather than as a win
 ## Layout
 
 ```
-kaggle/LAUNCH.py        paste this; clones and runs the chosen stage
-kaggle/RUN_*.py         the stages themselves (generated, do not hand-edit)
-kaggle/build_*.py       generators for the above, from one shared bootstrap
-kaggle/RUNBOOK.md       how to run it, and what went wrong before
+scripts/kaggle/launch.py        paste this; clones and runs the chosen stage
+scripts/kaggle/runners/*.py         the stages themselves (generated, do not hand-edit)
+scripts/kaggle/build/*.py       generators for the above, from one shared bootstrap
+scripts/kaggle/README.md       how to run it, and what went wrong before
 scripts/                config, data, descriptors, evaluation, checkers
 descriptors/            the source-grounded symptom registry (committed)
 docs/paper/tex/         main.tex + generated tab_*.tex  <- the submission
