@@ -32,7 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "docs" / "paper"
-TEX = PAPER / "manuscript" / "submitted"
+TEX = PAPER / "manuscript" / "revision"
 
 REFERENCE_ENCODER = "ViT-B-16-SigLIP2"      # the ceiling; excluded from every quoted mean
 TOL = 0.051                                 # a printed 1-decimal percent may differ by <=0.05

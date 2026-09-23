@@ -16,7 +16,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-TEX = ROOT / "docs" / "paper" / "manuscript" / "submitted"
+TEX = ROOT / "docs" / "paper" / "manuscript" / "revision"
 
 INPUT_RE = re.compile(r"\\input\{([^}]+)\}")
 

@@ -42,7 +42,7 @@ def _strip_comments(text: str) -> str:
     return "\n".join(out)
 
 
-TEXDIR = C.REPO_ROOT / "docs" / "paper" / "manuscript" / "submitted"
+TEXDIR = C.REPO_ROOT / "docs" / "paper" / "manuscript" / "revision"
 FIGDIR = C.REPO_ROOT / "docs" / "paper" / "figures"
 OUT = C.REPO_ROOT / "docs" / "paper" / "submission"
 

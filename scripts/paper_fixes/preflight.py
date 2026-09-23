@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PAPER = ROOT / "docs" / "paper"
-TEX = PAPER / "manuscript" / "submitted"
+TEX = PAPER / "manuscript" / "revision"
 MAIN = TEX / "main.tex"
 
 RESULTS: list[tuple[bool, str, str]] = []
@@ -108,10 +108,15 @@ def main() -> int:
     # --- 6. The 19.9 vs 27.0 fence ----------------------------------------------
     # Both numbers are correct but are different descriptor strategies on the same
     # 17-class pilot. Every appearance must sit next to its strategy name.
-    pilot_cap = (TEX / "tab_pilot.tex").read_text(encoding="utf-8")
-    check("crude" in pilot_cap and "keyword-bank descriptors)" not in pilot_cap,
-          "pilot table names its descriptor strategy",
-          "tab_pilot caption must say crude, not keyword-bank")
+    # Conditional for the same reason as the bake-off check below: the 2026-09-22 salvage cut the
+    # pilot table, so the revision has no tab_pilot.tex. The rule still holds wherever the table
+    # exists; a table that no longer exists is not a failure.
+    pilot = TEX / "tab_pilot.tex"
+    if pilot.exists():
+        pilot_cap = pilot.read_text(encoding="utf-8")
+        check("crude" in pilot_cap and "keyword-bank descriptors)" not in pilot_cap,
+              "pilot table names its descriptor strategy",
+              "tab_pilot caption must say crude, not keyword-bank")
     # Conditional since the 2026-09-22 salvage, which cut the Protocol-P bake-off. The rule still
     # holds wherever a bake-off section exists; it no longer demands that one exist.
     if r"\subsection{Encoder bake-off}" in src:

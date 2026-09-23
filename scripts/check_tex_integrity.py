@@ -16,7 +16,7 @@ import re
 import sys
 from pathlib import Path
 
-TEX = Path(__file__).resolve().parent.parent / "docs" / "paper" / "manuscript" / "submitted"
+TEX = Path(__file__).resolve().parent.parent / "docs" / "paper" / "manuscript" / "revision"
 
 # (name, compiled regex over BYTES, why it matters)
 CHECKS = [

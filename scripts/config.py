@@ -123,6 +123,14 @@ RANDOM_SEED = 42
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_ROOT = Path(os.environ.get("PDE_DATA_ROOT", REPO_ROOT / "data"))
 
+# --- Manuscript layout -------------------------------------------------------
+# revision/ is the manuscript being prepared and the one every checker should read.
+# submitted/ is the 2026-09-22 Elsevier submission, frozen: never write to it, and do not
+# validate it, because it has already been sent.
+PAPER_DIR = REPO_ROOT / "docs" / "paper"
+MANUSCRIPT_DIR = PAPER_DIR / "manuscript" / "revision"
+SUBMITTED_DIR = PAPER_DIR / "manuscript" / "submitted"
+
 # Image root. Override with PDE_DATASET_DIR to reuse an existing folder-of-classes build
 # (e.g. an existing build at C:\kaggle\working\exp_data) WITHOUT moving the files.
 DATASET_DIR = Path(os.environ.get("PDE_DATASET_DIR", DATA_ROOT / "dataset_cleaned"))  # <Crop>___<Disease>/<f>.jpg

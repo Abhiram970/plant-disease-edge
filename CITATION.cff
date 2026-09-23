@@ -37,4 +37,4 @@ license:
   - MIT
   - CC-BY-4.0
 # Replace with the minted DOI using: python scripts/paper_fixes/set_doi.py <doi>
-doi: PENDING-ZENODO-DOI
+doi: 10.5281/zenodo.22925004

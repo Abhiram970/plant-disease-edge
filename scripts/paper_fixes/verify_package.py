@@ -3,7 +3,7 @@
 
 The package is what actually gets uploaded, and it is a COPY with figures renamed and
 \\includegraphics keys rewritten. A mistake in that rewrite would not show up in any
-check run against docs/paper/manuscript/submitted/, so it is checked here, on the copy, in isolation.
+check run against docs/paper/manuscript/revision/, so it is checked here, on the copy, in isolation.
 
     python scripts/paper_fixes/verify_package.py
 """
@@ -85,7 +85,7 @@ def main() -> int:
     problems += bool(missing_cite)
 
     # the package must carry the CURRENT manuscript, not a stale copy
-    live = (REPO / "docs" / "paper" / "manuscript" / "submitted" / "main.tex").read_text(encoding="utf-8")
+    live = (REPO / "docs" / "paper" / "manuscript" / "revision" / "main.tex").read_text(encoding="utf-8")
     for marker, label in (("de-duplicated re-run", "2026-09-11 scaling revision"),
                           ("Ryzen~7 7840HS", "CPU disclosure"),
                           ("Claude Sonnet 4.6", "generator disclosure")):
