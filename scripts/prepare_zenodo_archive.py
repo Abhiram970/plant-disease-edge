@@ -40,9 +40,12 @@ PROMISES: list[tuple[str, list[str]]] = [
      ["descriptors", "descriptors_cupl", "descriptors_dclip"]),
     ("the DCLIP+ and CuPL+ prompts and raw replies",
      ["manual_baselines"]),
+    # docs/paper/*.json is what the generators actually read. The deposit used to ship results/
+    # alone, whose zero-shot files predated the descriptor bake-off and carried four strategies
+    # instead of eight -- a reader could not have reproduced CuPL+, DCLIP+, bare80 or
+    # grounded_split from it. Both trees are shipped and they now agree.
     ("every result file",
-     ["results", "docs/paper/paper_numbers.json", "docs/paper/revision_numbers.json",
-      "docs/paper/revision_results"]),
+     ["results", "docs/paper/*.json", "docs/paper/revision_results"]),
     ("the per-architecture results of the 14 supervised baselines",
      ["results/supervised"]),
     ("the weight-space interpolation sweep",
@@ -126,6 +129,11 @@ boundary. Cite the article and this deposit: `CITATION.cff` gives both.
 
 
 def iter_files(rel: str):
+    if "*" in rel:                       # a glob, e.g. docs/paper/*.json
+        for f in sorted(REPO.glob(rel)):
+            if f.is_file():
+                yield f
+        return
     p = REPO / rel
     if p.is_file():
         yield p

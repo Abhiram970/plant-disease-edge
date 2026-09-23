@@ -22,9 +22,12 @@ which is why an in-repo search finds nothing:
 | 8 | 2026-09-12 | re-audit | `docs/paper/review_2026-09-12-post/main/` | all prior resolved |
 | 9 | 2026-09-22 | deep review | `docs/paper/review_2026-09-22/main/` (not committed) | 29 issues (6 major) |
 
-Fix rounds: `patch_audit_2026-09-10.py`, `patch_rerun_2026-09-11.py`,
-`patch_audit_2026-09-12.py` and, for pass 9, `apply_revision_text.py` +
-`apply_revision_results.py`, all in `scripts/paper_fixes/`.
+Fix rounds. Pass 9's are live in `scripts/paper_fixes/`: `apply_revision_text.py` and
+`apply_revision_results.py`. The earlier rounds — `patch_audit_2026-09-10.py`,
+`patch_rerun_2026-09-11.py` and `patch_audit_2026-09-12.py` — were written against the layout
+that existed before the manuscripts moved under `docs/paper/manuscript/`, so they are records
+rather than tools and now live outside the repository at
+`../plant-disease-edge-archive/fix-rounds/`, with a README explaining each.
 
 ## The items that recur, and why
 

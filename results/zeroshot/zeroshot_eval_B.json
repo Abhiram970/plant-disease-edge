@@ -1,307 +1,553 @@
 {
-  "matcher_normalised": true,
-  "seeds": null,
-  "chance": 0.029411764705882353,
-  "n_classes": 34,
-  "crops": [
-    "Bean",
-    "Coffee",
-    "Cotton",
-    "Orange",
-    "Peach",
-    "Wheat"
-  ],
-  "n_images": 9787,
-  "clean": false,
-  "clean_stats": null,
-  "paired_arms": null,
-  "paired_stats": null,
-  "coverage": {
-    "Bean|Angular_Leaf_Spot": "spot",
-    "Bean|Common_Bacterial_Blight_Of_Beans": "blight",
-    "Bean|Halo_Blight": "blight",
-    "Bean|Leaf_Mosaic_Virus": "mosaic",
-    "Bean|Rust": "rust",
-    "Coffee|Berry_Blotch": "(NO MATCH)",
-    "Coffee|Cerscospora": "(NO MATCH)",
-    "Coffee|Miner": "(NO MATCH)",
-    "Coffee|Phoma": "phoma",
-    "Coffee|Rust": "rust",
-    "Cotton|Bacterial_Blight": "blight",
-    "Cotton|Powdery_Mildew": "powdery mildew",
-    "Cotton|Target_Spot": "spot",
-    "Orange|Canker": "canker",
-    "Orange|Citrus_Canker": "citrus canker",
-    "Orange|Green_Mold": "(NO MATCH)",
-    "Orange|Greening_Disease": "greening",
-    "Orange|Huanglongbing": "huanglongbing",
-    "Orange|Whisker_Mold": "(NO MATCH)",
-    "Peach|Bacterial_Leaf_Spot": "spot",
-    "Peach|Brown_Rot": "brown rot",
-    "Peach|Leaf_Curl": "leaf curl",
-    "Peach|Leaf_Scab": "scab",
-    "Peach|Peach_Leaf_Curl": "leaf curl",
-    "Wheat|Bacterial_Leaf_Streak_Black_Chaff": "(NO MATCH)",
-    "Wheat|Fusarium_Graminearum_Schwabe": "(NO MATCH)",
-    "Wheat|Fusarium_Wilts": "(NO MATCH)",
-    "Wheat|Head_Scab": "scab",
-    "Wheat|Karnal_Bunt": "(NO MATCH)",
-    "Wheat|Loose_Smut": "(NO MATCH)",
-    "Wheat|Powdery_Mildew": "powdery mildew",
-    "Wheat|Resistance_Phenotype": "(NO MATCH)",
-    "Wheat|Resistance_Phenotype__Moderately_Resistant": "(NO MATCH)",
-    "Wheat|Resistance_Phenotype__Moderately_Susceptible": "(NO MATCH)"
-  },
-  "models": {
-    "MobileCLIP2-S0/dfndr2b": {
-      "bare": {
-        "img_params_M": 11.41,
-        "acc": 0.21794216818228263,
-        "by_crop": {
-          "Peach": 0.21770551038843722,
-          "Wheat": 0.23282811996130282,
-          "Orange": 0.048493754592211606,
-          "Cotton": 0.473208910295003,
-          "Coffee": 0.12326169405815424,
-          "Bean": 0.12615384615384614
-        }
-      },
-      "crude": {
-        "img_params_M": 11.41,
-        "acc": 0.17502809849800757,
-        "by_crop": {
-          "Peach": 0.15537488708220415,
-          "Wheat": 0.1967107384714608,
-          "Orange": 0.06906686260102865,
-          "Cotton": 0.3835039133052378,
-          "Coffee": 0.10429835651074588,
-          "Bean": 0.035897435897435895
-        }
-      },
-      "rich": {
-        "img_params_M": 11.41,
-        "acc": 0.23337079799734342,
-        "by_crop": {
-          "Peach": 0.13640469738030714,
-          "Wheat": 0.20316027088036118,
-          "Orange": 0.3115356355620867,
-          "Cotton": 0.374473208910295,
-          "Coffee": 0.24336283185840707,
-          "Bean": 0.07384615384615385
-        }
-      },
-      "grounded": {
-        "img_params_M": 11.41,
-        "acc": 0.2050679472770001,
-        "by_crop": {
-          "Peach": 0.2827461607949413,
-          "Wheat": 0.12608835859400194,
-          "Orange": 0.0881704628949302,
-          "Cotton": 0.5334136062612884,
-          "Coffee": 0.14664981036662453,
-          "Bean": 0.06666666666666667
-        }
-      }
-    },
-    "MobileCLIP-S1/datacompdr": {
-      "bare": {
-        "img_params_M": 21.54,
-        "acc": 0.17492592214161642,
-        "by_crop": {
-          "Peach": 0.22854561878952123,
-          "Wheat": 0.06578523057078361,
-          "Orange": 0.08596620132255695,
-          "Cotton": 0.5388320288982541,
-          "Coffee": 0.04740834386852086,
-          "Bean": 0.1723076923076923
-        }
-      },
-      "crude": {
-        "img_params_M": 21.54,
-        "acc": 0.18606314498824972,
-        "by_crop": {
-          "Peach": 0.18699186991869918,
-          "Wheat": 0.0599806514027733,
-          "Orange": 0.2828802351212344,
-          "Cotton": 0.5111378687537628,
-          "Coffee": 0.05625790139064475,
-          "Bean": 0.1076923076923077
-        }
-      },
-      "rich": {
-        "img_params_M": 21.54,
-        "acc": 0.23572085419433944,
-        "by_crop": {
-          "Peach": 0.19060523938572718,
-          "Wheat": 0.06643018381167365,
-          "Orange": 0.47318148420279205,
-          "Cotton": 0.5605057194461168,
-          "Coffee": 0.08154235145385588,
-          "Bean": 0.19076923076923077
-        }
-      },
-      "grounded": {
-        "img_params_M": 21.54,
-        "acc": 0.25625830182895676,
-        "by_crop": {
-          "Peach": 0.18066847335140018,
-          "Wheat": 0.06868752015478878,
-          "Orange": 0.5319617927994122,
-          "Cotton": 0.5653220951234196,
-          "Coffee": 0.12389380530973451,
-          "Bean": 0.24205128205128204
-        }
-      }
-    },
-    "MobileCLIP2-S2/dfndr2b": {
-      "bare": {
-        "img_params_M": 35.82,
-        "acc": 0.19035455195667722,
-        "by_crop": {
-          "Peach": 0.16711833785004518,
-          "Wheat": 0.16414059980651402,
-          "Orange": 0.08302718589272594,
-          "Cotton": 0.473208910295003,
-          "Coffee": 0.06763590391908976,
-          "Bean": 0.1671794871794872
-        }
-      },
-      "crude": {
-        "img_params_M": 35.82,
-        "acc": 0.16143864309798714,
-        "by_crop": {
-          "Peach": 0.17795844625112917,
-          "Wheat": 0.13737504030957756,
-          "Orange": 0.08229243203526819,
-          "Cotton": 0.4105960264900662,
-          "Coffee": 0.06257901390644753,
-          "Bean": 0.06564102564102564
-        }
-      },
-      "rich": {
-        "img_params_M": 35.82,
-        "acc": 0.2481863696740574,
-        "by_crop": {
-          "Peach": 0.15989159891598917,
-          "Wheat": 0.15124153498871332,
-          "Orange": 0.4981631153563556,
-          "Cotton": 0.41721854304635764,
-          "Coffee": 0.1877370417193426,
-          "Bean": 0.11794871794871795
-        }
-      },
-      "grounded": {
-        "img_params_M": 35.82,
-        "acc": 0.19382854807397568,
-        "by_crop": {
-          "Peach": 0.1969286359530262,
-          "Wheat": 0.11028700419219607,
-          "Orange": 0.08596620132255695,
-          "Cotton": 0.534617700180614,
-          "Coffee": 0.11883691529709228,
-          "Bean": 0.1476923076923077
-        }
-      }
-    },
-    "MobileCLIP-B/datacompdr": {
-      "bare": {
-        "img_params_M": 86.35,
-        "acc": 0.230714212731174,
-        "by_crop": {
-          "Peach": 0.22312556458897922,
-          "Wheat": 0.22508868107062238,
-          "Orange": 0.11609110947832477,
-          "Cotton": 0.5376279349789284,
-          "Coffee": 0.09481668773704172,
-          "Bean": 0.11487179487179487
-        }
-      },
-      "crude": {
-        "img_params_M": 86.35,
-        "acc": 0.22560539491161746,
-        "by_crop": {
-          "Peach": 0.2050587172538392,
-          "Wheat": 0.20316027088036118,
-          "Orange": 0.19397501836884642,
-          "Cotton": 0.5009030704394943,
-          "Coffee": 0.1011378002528445,
-          "Bean": 0.09743589743589744
-        }
-      },
-      "rich": {
-        "img_params_M": 86.35,
-        "acc": 0.2835393889853888,
-        "by_crop": {
-          "Peach": 0.25925925925925924,
-          "Wheat": 0.20606256046436633,
-          "Orange": 0.4908155767817781,
-          "Cotton": 0.4599638771824202,
-          "Coffee": 0.1845764854614412,
-          "Bean": 0.1282051282051282
-        }
-      },
-      "grounded": {
-        "img_params_M": 86.35,
-        "acc": 0.25298865842444057,
-        "by_crop": {
-          "Peach": 0.2140921409214092,
-          "Wheat": 0.1470493389229281,
-          "Orange": 0.3585598824393828,
-          "Cotton": 0.5388320288982541,
-          "Coffee": 0.19279393173198484,
-          "Bean": 0.09743589743589744
-        }
-      }
-    },
-    "ViT-B-16-SigLIP2/webli": {
-      "bare": {
-        "img_params_M": 92.88,
-        "acc": 0.2711760498620619,
-        "by_crop": {
-          "Peach": 0.2728093947606143,
-          "Wheat": 0.3111899387294421,
-          "Orange": 0.10213078618662748,
-          "Cotton": 0.4906682721252258,
-          "Coffee": 0.12010113780025285,
-          "Bean": 0.24923076923076923
-        }
-      },
-      "crude": {
-        "img_params_M": 92.88,
-        "acc": 0.2621845304996424,
-        "by_crop": {
-          "Peach": 0.31616982836495033,
-          "Wheat": 0.2744276039987101,
-          "Orange": 0.12049963262307127,
-          "Cotton": 0.4858518964479229,
-          "Coffee": 0.14791403286978508,
-          "Bean": 0.1641025641025641
-        }
-      },
-      "rich": {
-        "img_params_M": 92.88,
-        "acc": 0.29855931337488506,
-        "by_crop": {
-          "Peach": 0.25925925925925924,
-          "Wheat": 0.27765237020316025,
-          "Orange": 0.4842027920646583,
-          "Cotton": 0.4226369656833233,
-          "Coffee": 0.15233881163084703,
-          "Bean": 0.1764102564102564
-        }
-      },
-      "grounded": {
-        "img_params_M": 92.88,
-        "acc": 0.2730152242771023,
-        "by_crop": {
-          "Peach": 0.18879855465221318,
-          "Wheat": 0.3140922283134473,
-          "Orange": 0.3468038207200588,
-          "Cotton": 0.29319686935580974,
-          "Coffee": 0.20480404551201012,
-          "Bean": 0.21128205128205127
-        }
-      }
+ "matcher_normalised": true,
+ "seeds": null,
+ "chance": 0.029411764705882353,
+ "n_classes": 34,
+ "crops": [
+  "Bean",
+  "Coffee",
+  "Cotton",
+  "Orange",
+  "Peach",
+  "Wheat"
+ ],
+ "n_images": 9787,
+ "clean": false,
+ "clean_stats": null,
+ "paired_arms": null,
+ "paired_stats": null,
+ "coverage": {
+  "Bean|Angular_Leaf_Spot": "spot",
+  "Bean|Common_Bacterial_Blight_Of_Beans": "blight",
+  "Bean|Halo_Blight": "blight",
+  "Bean|Leaf_Mosaic_Virus": "mosaic",
+  "Bean|Rust": "rust",
+  "Coffee|Berry_Blotch": "(NO MATCH)",
+  "Coffee|Cerscospora": "(NO MATCH)",
+  "Coffee|Miner": "(NO MATCH)",
+  "Coffee|Phoma": "phoma",
+  "Coffee|Rust": "rust",
+  "Cotton|Bacterial_Blight": "blight",
+  "Cotton|Powdery_Mildew": "powdery mildew",
+  "Cotton|Target_Spot": "spot",
+  "Orange|Canker": "canker",
+  "Orange|Citrus_Canker": "citrus canker",
+  "Orange|Green_Mold": "(NO MATCH)",
+  "Orange|Greening_Disease": "greening",
+  "Orange|Huanglongbing": "huanglongbing",
+  "Orange|Whisker_Mold": "(NO MATCH)",
+  "Peach|Bacterial_Leaf_Spot": "spot",
+  "Peach|Brown_Rot": "brown rot",
+  "Peach|Leaf_Curl": "leaf curl",
+  "Peach|Leaf_Scab": "scab",
+  "Peach|Peach_Leaf_Curl": "leaf curl",
+  "Wheat|Bacterial_Leaf_Streak_Black_Chaff": "(NO MATCH)",
+  "Wheat|Fusarium_Graminearum_Schwabe": "(NO MATCH)",
+  "Wheat|Fusarium_Wilts": "(NO MATCH)",
+  "Wheat|Head_Scab": "scab",
+  "Wheat|Karnal_Bunt": "(NO MATCH)",
+  "Wheat|Loose_Smut": "(NO MATCH)",
+  "Wheat|Powdery_Mildew": "powdery mildew",
+  "Wheat|Resistance_Phenotype": "(NO MATCH)",
+  "Wheat|Resistance_Phenotype__Moderately_Resistant": "(NO MATCH)",
+  "Wheat|Resistance_Phenotype__Moderately_Susceptible": "(NO MATCH)"
+ },
+ "models": {
+  "MobileCLIP2-S0/dfndr2b": {
+   "bare": {
+    "img_params_M": 11.41,
+    "acc": 0.21794216818228263,
+    "by_crop": {
+     "Peach": 0.21770551038843722,
+     "Wheat": 0.23282811996130282,
+     "Orange": 0.048493754592211606,
+     "Cotton": 0.473208910295003,
+     "Coffee": 0.12326169405815424,
+     "Bean": 0.12615384615384614
     }
+   },
+   "bare80": {
+    "img_params_M": 11.41,
+    "acc": 0.18289567794012465,
+    "by_crop": {
+     "Peach": 0.2186088527551942,
+     "Wheat": 0.15511125443405352,
+     "Orange": 0.0683321087435709,
+     "Cotton": 0.3937387116195063,
+     "Coffee": 0.09671302149178256,
+     "Bean": 0.1712820512820513
+    }
+   },
+   "rich": {
+    "img_params_M": 11.41,
+    "acc": 0.23337079799734342,
+    "by_crop": {
+     "Peach": 0.13640469738030714,
+     "Wheat": 0.20316027088036118,
+     "Orange": 0.3115356355620867,
+     "Cotton": 0.374473208910295,
+     "Coffee": 0.24336283185840707,
+     "Bean": 0.07384615384615385
+    }
+   },
+   "grounded": {
+    "img_params_M": 11.41,
+    "acc": 0.2050679472770001,
+    "by_crop": {
+     "Peach": 0.2827461607949413,
+     "Wheat": 0.12608835859400194,
+     "Orange": 0.0881704628949302,
+     "Cotton": 0.5334136062612884,
+     "Coffee": 0.14664981036662453,
+     "Bean": 0.06666666666666667
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 11.41,
+    "acc": 0.222131398794319,
+    "by_crop": {
+     "Peach": 0.23938572719060525,
+     "Wheat": 0.18284424379232506,
+     "Orange": 0.10727406318883174,
+     "Cotton": 0.5123419626730885,
+     "Coffee": 0.14917825537294563,
+     "Bean": 0.1117948717948718
+    }
+   },
+   "dclip": {
+    "img_params_M": 11.41,
+    "acc": 0.24828854603044856,
+    "by_crop": {
+     "Peach": 0.2140921409214092,
+     "Wheat": 0.3015156401160916,
+     "Orange": 0.08302718589272594,
+     "Cotton": 0.49247441300421435,
+     "Coffee": 0.11820480404551201,
+     "Bean": 0.14358974358974358
+    }
+   },
+   "cupl": {
+    "img_params_M": 11.41,
+    "acc": 0.3065290691733933,
+    "by_crop": {
+     "Peach": 0.2601626016260163,
+     "Wheat": 0.38084488874556593,
+     "Orange": 0.0440852314474651,
+     "Cotton": 0.4720048163756773,
+     "Coffee": 0.33691529709228824,
+     "Bean": 0.15794871794871795
+    }
+   },
+   "crude": {
+    "img_params_M": 11.41,
+    "acc": 0.17502809849800757,
+    "by_crop": {
+     "Peach": 0.15537488708220415,
+     "Wheat": 0.1967107384714608,
+     "Orange": 0.06906686260102865,
+     "Cotton": 0.3835039133052378,
+     "Coffee": 0.10429835651074588,
+     "Bean": 0.035897435897435895
+    }
+   }
+  },
+  "MobileCLIP-S1/datacompdr": {
+   "bare": {
+    "img_params_M": 21.54,
+    "acc": 0.17492592214161642,
+    "by_crop": {
+     "Peach": 0.22854561878952123,
+     "Wheat": 0.06578523057078361,
+     "Orange": 0.08596620132255695,
+     "Cotton": 0.5388320288982541,
+     "Coffee": 0.04740834386852086,
+     "Bean": 0.1723076923076923
+    }
+   },
+   "bare80": {
+    "img_params_M": 21.54,
+    "acc": 0.18841320118524574,
+    "by_crop": {
+     "Peach": 0.2953929539295393,
+     "Wheat": 0.06159303450499839,
+     "Orange": 0.07421013960323292,
+     "Cotton": 0.534617700180614,
+     "Coffee": 0.04108723135271808,
+     "Bean": 0.27897435897435896
+    }
+   },
+   "rich": {
+    "img_params_M": 21.54,
+    "acc": 0.23572085419433944,
+    "by_crop": {
+     "Peach": 0.19060523938572718,
+     "Wheat": 0.06643018381167365,
+     "Orange": 0.47318148420279205,
+     "Cotton": 0.5605057194461168,
+     "Coffee": 0.08154235145385588,
+     "Bean": 0.19076923076923077
+    }
+   },
+   "grounded": {
+    "img_params_M": 21.54,
+    "acc": 0.25625830182895676,
+    "by_crop": {
+     "Peach": 0.18066847335140018,
+     "Wheat": 0.06868752015478878,
+     "Orange": 0.5319617927994122,
+     "Cotton": 0.5653220951234196,
+     "Coffee": 0.12389380530973451,
+     "Bean": 0.24205128205128204
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 21.54,
+    "acc": 0.2553387146214366,
+    "by_crop": {
+     "Peach": 0.24570912375790424,
+     "Wheat": 0.14833924540470816,
+     "Orange": 0.334313005143277,
+     "Cotton": 0.5611077664057796,
+     "Coffee": 0.07395701643489254,
+     "Bean": 0.26974358974358975
+    }
+   },
+   "dclip": {
+    "img_params_M": 21.54,
+    "acc": 0.21446817206498417,
+    "by_crop": {
+     "Peach": 0.2014453477868112,
+     "Wheat": 0.10770719122863592,
+     "Orange": 0.1351947097722263,
+     "Cotton": 0.600842865743528,
+     "Coffee": 0.07648546144121365,
+     "Bean": 0.24512820512820513
+    }
+   },
+   "cupl": {
+    "img_params_M": 21.54,
+    "acc": 0.3043833656891795,
+    "by_crop": {
+     "Peach": 0.21680216802168023,
+     "Wheat": 0.27765237020316025,
+     "Orange": 0.29537105069801617,
+     "Cotton": 0.6225165562913907,
+     "Coffee": 0.09734513274336283,
+     "Bean": 0.2953846153846154
+    }
+   },
+   "crude": {
+    "img_params_M": 21.54,
+    "acc": 0.18606314498824972,
+    "by_crop": {
+     "Peach": 0.18699186991869918,
+     "Wheat": 0.0599806514027733,
+     "Orange": 0.2828802351212344,
+     "Cotton": 0.5111378687537628,
+     "Coffee": 0.05625790139064475,
+     "Bean": 0.1076923076923077
+    }
+   }
+  },
+  "MobileCLIP2-S2/dfndr2b": {
+   "bare": {
+    "img_params_M": 35.82,
+    "acc": 0.19035455195667722,
+    "by_crop": {
+     "Peach": 0.16711833785004518,
+     "Wheat": 0.16414059980651402,
+     "Orange": 0.08302718589272594,
+     "Cotton": 0.473208910295003,
+     "Coffee": 0.06763590391908976,
+     "Bean": 0.1671794871794872
+    }
+   },
+   "bare80": {
+    "img_params_M": 35.82,
+    "acc": 0.16521916828445898,
+    "by_crop": {
+     "Peach": 0.18699186991869918,
+     "Wheat": 0.1038374717832957,
+     "Orange": 0.0852314474650992,
+     "Cotton": 0.4214328717639976,
+     "Coffee": 0.058786346396965866,
+     "Bean": 0.1835897435897436
+    }
+   },
+   "rich": {
+    "img_params_M": 35.82,
+    "acc": 0.2481863696740574,
+    "by_crop": {
+     "Peach": 0.15989159891598917,
+     "Wheat": 0.15124153498871332,
+     "Orange": 0.4981631153563556,
+     "Cotton": 0.41721854304635764,
+     "Coffee": 0.1877370417193426,
+     "Bean": 0.11794871794871795
+    }
+   },
+   "grounded": {
+    "img_params_M": 35.82,
+    "acc": 0.19382854807397568,
+    "by_crop": {
+     "Peach": 0.1969286359530262,
+     "Wheat": 0.11028700419219607,
+     "Orange": 0.08596620132255695,
+     "Cotton": 0.534617700180614,
+     "Coffee": 0.11883691529709228,
+     "Bean": 0.1476923076923077
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 35.82,
+    "acc": 0.20660059262286706,
+    "by_crop": {
+     "Peach": 0.2005420054200542,
+     "Wheat": 0.11738148984198646,
+     "Orange": 0.12490815576781777,
+     "Cotton": 0.5340156532209512,
+     "Coffee": 0.08786346396965866,
+     "Bean": 0.24615384615384617
+    }
+   },
+   "dclip": {
+    "img_params_M": 35.82,
+    "acc": 0.21600081741085114,
+    "by_crop": {
+     "Peach": 0.1942186088527552,
+     "Wheat": 0.1838116736536601,
+     "Orange": 0.10213078618662748,
+     "Cotton": 0.5201685731487056,
+     "Coffee": 0.06890012642225031,
+     "Bean": 0.22256410256410256
+    }
+   },
+   "cupl": {
+    "img_params_M": 35.82,
+    "acc": 0.2698477572289772,
+    "by_crop": {
+     "Peach": 0.21318879855465223,
+     "Wheat": 0.30990003224766205,
+     "Orange": 0.055841293166789124,
+     "Cotton": 0.5623118603251054,
+     "Coffee": 0.1390644753476612,
+     "Bean": 0.2194871794871795
+    }
+   },
+   "crude": {
+    "img_params_M": 35.82,
+    "acc": 0.16143864309798714,
+    "by_crop": {
+     "Peach": 0.17795844625112917,
+     "Wheat": 0.13737504030957756,
+     "Orange": 0.08229243203526819,
+     "Cotton": 0.4105960264900662,
+     "Coffee": 0.06257901390644753,
+     "Bean": 0.06564102564102564
+    }
+   }
+  },
+  "MobileCLIP-B/datacompdr": {
+   "bare": {
+    "img_params_M": 86.35,
+    "acc": 0.230714212731174,
+    "by_crop": {
+     "Peach": 0.22312556458897922,
+     "Wheat": 0.22508868107062238,
+     "Orange": 0.11609110947832477,
+     "Cotton": 0.5376279349789284,
+     "Coffee": 0.09481668773704172,
+     "Bean": 0.11487179487179487
+    }
+   },
+   "bare80": {
+    "img_params_M": 86.35,
+    "acc": 0.2109941759476857,
+    "by_crop": {
+     "Peach": 0.22583559168925021,
+     "Wheat": 0.17413737504030957,
+     "Orange": 0.11315209404849376,
+     "Cotton": 0.4966887417218543,
+     "Coffee": 0.05309734513274336,
+     "Bean": 0.21743589743589745
+    }
+   },
+   "rich": {
+    "img_params_M": 86.35,
+    "acc": 0.2835393889853888,
+    "by_crop": {
+     "Peach": 0.25925925925925924,
+     "Wheat": 0.20606256046436633,
+     "Orange": 0.4908155767817781,
+     "Cotton": 0.4599638771824202,
+     "Coffee": 0.1845764854614412,
+     "Bean": 0.1282051282051282
+    }
+   },
+   "grounded": {
+    "img_params_M": 86.35,
+    "acc": 0.25298865842444057,
+    "by_crop": {
+     "Peach": 0.2140921409214092,
+     "Wheat": 0.1470493389229281,
+     "Orange": 0.3585598824393828,
+     "Cotton": 0.5388320288982541,
+     "Coffee": 0.19279393173198484,
+     "Bean": 0.09743589743589744
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 86.35,
+    "acc": 0.25574742004700113,
+    "by_crop": {
+     "Peach": 0.21138211382113822,
+     "Wheat": 0.20702999032570138,
+     "Orange": 0.30492285084496695,
+     "Cotton": 0.5171583383503914,
+     "Coffee": 0.13653603034134007,
+     "Bean": 0.14051282051282052
+    }
+   },
+   "dclip": {
+    "img_params_M": 86.35,
+    "acc": 0.25094513129661794,
+    "by_crop": {
+     "Peach": 0.23486901535682023,
+     "Wheat": 0.21670428893905191,
+     "Orange": 0.16899338721528287,
+     "Cotton": 0.5671282360024081,
+     "Coffee": 0.13463969658659924,
+     "Bean": 0.14256410256410257
+    }
+   },
+   "cupl": {
+    "img_params_M": 86.35,
+    "acc": 0.3463778481659344,
+    "by_crop": {
+     "Peach": 0.23757904245709124,
+     "Wheat": 0.3685907771686553,
+     "Orange": 0.24687729610580456,
+     "Cotton": 0.6532209512341962,
+     "Coffee": 0.27876106194690264,
+     "Bean": 0.12512820512820513
+    }
+   },
+   "crude": {
+    "img_params_M": 86.35,
+    "acc": 0.22560539491161746,
+    "by_crop": {
+     "Peach": 0.2050587172538392,
+     "Wheat": 0.20316027088036118,
+     "Orange": 0.19397501836884642,
+     "Cotton": 0.5009030704394943,
+     "Coffee": 0.1011378002528445,
+     "Bean": 0.09743589743589744
+    }
+   }
+  },
+  "ViT-B-16-SigLIP2/webli": {
+   "bare": {
+    "img_params_M": 92.88,
+    "acc": 0.2711760498620619,
+    "by_crop": {
+     "Peach": 0.2728093947606143,
+     "Wheat": 0.3111899387294421,
+     "Orange": 0.10213078618662748,
+     "Cotton": 0.4906682721252258,
+     "Coffee": 0.12010113780025285,
+     "Bean": 0.24923076923076923
+    }
+   },
+   "bare80": {
+    "img_params_M": 92.88,
+    "acc": 0.25166036579135587,
+    "by_crop": {
+     "Peach": 0.2881662149954833,
+     "Wheat": 0.2454047081586585,
+     "Orange": 0.10506980161645849,
+     "Cotton": 0.5249849488260084,
+     "Coffee": 0.06637168141592921,
+     "Bean": 0.26974358974358975
+    }
+   },
+   "rich": {
+    "img_params_M": 92.88,
+    "acc": 0.29855931337488506,
+    "by_crop": {
+     "Peach": 0.25925925925925924,
+     "Wheat": 0.27765237020316025,
+     "Orange": 0.4842027920646583,
+     "Cotton": 0.4226369656833233,
+     "Coffee": 0.15233881163084703,
+     "Bean": 0.1764102564102564
+    }
+   },
+   "grounded": {
+    "img_params_M": 92.88,
+    "acc": 0.2730152242771023,
+    "by_crop": {
+     "Peach": 0.18879855465221318,
+     "Wheat": 0.3140922283134473,
+     "Orange": 0.3468038207200588,
+     "Cotton": 0.29319686935580974,
+     "Coffee": 0.20480404551201012,
+     "Bean": 0.21128205128205127
+    }
+   },
+   "grounded_split": {
+    "img_params_M": 92.88,
+    "acc": 0.28926126494329213,
+    "by_crop": {
+     "Peach": 0.4444444444444444,
+     "Wheat": 0.2015478877781361,
+     "Orange": 0.14401175606171931,
+     "Cotton": 0.5237808549066827,
+     "Coffee": 0.1731984829329962,
+     "Bean": 0.38358974358974357
+    }
+   },
+   "dclip": {
+    "img_params_M": 92.88,
+    "acc": 0.3410646776335956,
+    "by_crop": {
+     "Peach": 0.5076784101174345,
+     "Wheat": 0.30441792970009673,
+     "Orange": 0.1520940484937546,
+     "Cotton": 0.5484647802528597,
+     "Coffee": 0.23767383059418457,
+     "Bean": 0.3466666666666667
+    }
+   },
+   "cupl": {
+    "img_params_M": 92.88,
+    "acc": 0.3518953714110555,
+    "by_crop": {
+     "Peach": 0.35772357723577236,
+     "Wheat": 0.29345372460496616,
+     "Orange": 0.18001469507714915,
+     "Cotton": 0.5791691751956652,
+     "Coffee": 0.3805309734513274,
+     "Bean": 0.3374358974358974
+    }
+   },
+   "crude": {
+    "img_params_M": 92.88,
+    "acc": 0.2621845304996424,
+    "by_crop": {
+     "Peach": 0.31616982836495033,
+     "Wheat": 0.2744276039987101,
+     "Orange": 0.12049963262307127,
+     "Cotton": 0.4858518964479229,
+     "Coffee": 0.14791403286978508,
+     "Bean": 0.1641025641025641
+    }
+   }
   }
+ },
+ "provenance": {
+  "run": "Kaggle PART 4, branch baselines/dclip-cupl-manual @ cc637fe, 2026-09-21",
+  "crude_from": "git:HEAD:docs/paper/zeroshot_eval_B.json",
+  "crude_merge_justification": "this run re-scored bare, rich and grounded; every shared cell is bit-identical to the source file, so crude is comparable without re-scoring",
+  "registries": "descriptors_dclip/0 and descriptors_cupl/0: one hand-generated draw each"
+ }
 }
