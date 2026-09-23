@@ -468,7 +468,7 @@ pathogen, affected organs and symptoms, expressed in the register of a pathology
 sentences describe photographs. CLIP's text tower was trained on image captions, and that register
 is the closer of the two. We offer this as a plausible contributor, not a demonstrated cause. The
 CuPL+ registry differs from the grounded one in the model and the interface that generated it, in
-sentence form, and in the three constraints of Section~\ref{sec:desc-gen}. DCLIP+ is the better
+sentence form, and in the three constraints of Section~\ref{sec:desc-gen}. DCLIP+ is the relevant
 control, because it received the same camera-only constraint and the same organ rule. It cuts
 against register alone: it draws level with source-grounded text at configurations B and C, yet it
 trails CuPL+ by 5.7--8.0 points, a gap as large as the one register is being asked to explain. Two experiments can tease these effects apart, and we performed one. Removing the pathogen and
@@ -567,8 +567,8 @@ follows: deploy the smallest encoder that meets the latency budget, and invest i
 \paragraph{Write for the camera} At 34 and 51 classes, descriptions written as accounts of a
 photograph worked best, and the decomposition of Section~\ref{sec:decomp} locates the advantage in
 the text itself, rather than in how the text is embedded or in whether it cites
-sources. Source-grounded text, written in the style of a pathology reference and carrying pathogen
-and taxonomy fields, lags by about seven points. What this licenses is narrower than a rule for
+sources. Source-grounded text, written in the register of a pathology reference and carrying
+pathogen and taxonomy fields, lags by about seven points. What this licenses is narrower than a rule for
 authoring. The winning registry was also written under constraints the source-grounded one did not
 receive, and DCLIP+ shares its
 camera-only constraint without sharing its lead, so which property of the text carries the advantage is only partly isolated. One candidate is now
