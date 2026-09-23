@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: If you use this code, the descriptor registries or the released results, please cite both the article and this deposit.
+title: "Compact Vision-Language Models for Cross-Crop Plant-Disease Diagnosis at the Edge: A CPU-Only Study - code, descriptor registries and results"
+abstract: >-
+  Code, descriptor registries and result files for a study of what lets a small, frozen
+  vision-language model diagnose crops it was never trained on. Seven ways of authoring the
+  class descriptions are compared across nested held-out sets of 16, 34 and 51 unseen classes on
+  four compact contrastive encoders, alongside a CPU latency and INT8 benchmark. The deposit
+  reproduces every number and figure in the article from the released result files; the images
+  themselves are the SAGE crop-disease dataset at revision bc9bd2899f and are not redistributed
+  here.
+type: dataset
+authors:
+  - family-names: Abhiram
+    given-names: Pinni Venkata
+    orcid: "https://orcid.org/0009-0007-8783-7362"
+    affiliation: Independent Researcher, Hyderabad, Telangana, India
+    email: abhiramp428@gmail.com
+  - family-names: Shrivastava
+    given-names: Gaurav
+    affiliation: Independent Researcher, Pune, Maharashtra, India
+  - family-names: Ananthasayanam
+    given-names: Rahul
+    affiliation: Independent Researcher, Chennai, Tamil Nadu, India
+keywords:
+  - vision-language models
+  - plant disease
+  - cross-crop zero-shot
+  - descriptor authoring
+  - edge deployment
+  - foundation models
+repository-code: "https://github.com/Abhiram970/plant-disease-edge"
+# Replace with the minted DOI using: python scripts/paper_fixes/set_doi.py <doi>
+doi: PENDING-ZENODO-DOI

@@ -1,0 +1,41 @@
+{
+  "title": "Compact Vision-Language Models for Cross-Crop Plant-Disease Diagnosis at the Edge: A CPU-Only Study - code, descriptor registries and results",
+  "upload_type": "dataset",
+  "description": "<p>Code, descriptor registries and result files for a study of what lets a small, frozen vision-language model diagnose crops it was never trained on. Seven ways of authoring the class descriptions are compared across nested held-out sets of 16, 34 and 51 unseen classes on four compact contrastive encoders, alongside a CPU latency and INT8 benchmark.</p><p>The deposit contains the descriptor registries for every authoring strategy, the DCLIP+ and CuPL+ prompts with their raw replies, every result file the manuscript reads, the per-architecture results of the 14 supervised baselines, the weight-space interpolation sweep, the table and figure generators, the full experimental code, and the manuscript. It reproduces every number and figure in the article from the released result files.</p><p>The images are <em>not</em> redistributed here: they are the SAGE crop-disease dataset at revision bc9bd2899f, released separately under the MIT licence. <code>scripts/config.py</code> pins that revision.</p><p><code>MANIFEST.sha256</code> lists every file with its SHA-256 digest.</p>",
+  "creators": [
+    {
+      "name": "Abhiram, Pinni Venkata",
+      "orcid": "0009-0007-8783-7362",
+      "affiliation": "Independent Researcher, Hyderabad, Telangana, India"
+    },
+    {
+      "name": "Shrivastava, Gaurav",
+      "affiliation": "Independent Researcher, Pune, Maharashtra, India"
+    },
+    {
+      "name": "Ananthasayanam, Rahul",
+      "affiliation": "Independent Researcher, Chennai, Tamil Nadu, India"
+    }
+  ],
+  "keywords": [
+    "vision-language models",
+    "plant disease",
+    "cross-crop zero-shot",
+    "descriptor authoring",
+    "edge deployment",
+    "foundation models"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Abhiram970/plant-disease-edge",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://huggingface.co/datasets/tirtho149/SAGE/tree/bc9bd2899f19379be29c7a99d37d2e89bf8e430d",
+      "relation": "isDerivedFrom",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Zenodo assigns the DOI on publication; the placeholder in the manuscript and CITATION.cff is then stamped with scripts/paper_fixes/set_doi.py. A licence must be chosen before publishing: this repository does not yet carry a LICENSE file."
+}
