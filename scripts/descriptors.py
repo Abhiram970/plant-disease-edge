@@ -307,6 +307,10 @@ STRATEGY_TEMPLATES = {
     # grounded_split embeds its sentences as written, exactly as cupl does, so that the only
     # difference between the two is which text is being ensembled.
     "grounded_split": ["{}"],
+    # Same construction again, over the visual_symptoms field alone. Pairing it with
+    # grounded_split holds construction fixed and removes only the taxonomy/pathogen prose,
+    # which is the direct test of the register reading of the grounded-to-CuPL gap.
+    "grounded_visual_split": ["{}"],
 }
 
 # Strategies whose class prototype must NOT be re-normalised after averaging. See the fidelity
@@ -390,6 +394,21 @@ def texts_for(label: str, strategy: str = "rich", coverage: dict | None = None) 
             # without it a bare symptom clause has no class identity to match against.
             return [f"{base}. {s}" for s in sents]
         return [text_for(label, "grounded", coverage)]      # 1 sentence or no record -> unchanged
+    if strategy == "grounded_visual_split":
+        # THE TAXONOMY TEST, added 2026-09-23 for the deep-review revision. grounded_split keeps
+        # the whole source-grounded paragraph (pathogen, taxonomy, affected organs, symptoms);
+        # this keeps ONLY the visual_symptoms field and ensembles it the same way. The pair
+        # differs in nothing but the non-visual prose, so it measures what dropping taxonomy from
+        # the prototype is worth -- the claim the Discussion used to make without an experiment.
+        crop, dis = label.split("|", 1)
+        base = f"{dis} on {crop} leaf".replace("_", " ")
+        gv = _grounded_visual(crop, dis)
+        sents = _split_sentences(gv) if gv else []
+        if sents:
+            if coverage is not None:
+                coverage[label] = "grounded_visual_split"
+            return [f"{base}. {s}" for s in sents]
+        return [text_for(label, "grounded_visual", coverage)]
     return [text_for(label, strategy, coverage)]
 
 

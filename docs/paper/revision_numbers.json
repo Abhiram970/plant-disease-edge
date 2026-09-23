@@ -1,0 +1,1632 @@
+{
+  "generated": "2026-09-22T19:13:45",
+  "device": "cuda",
+  "matcher_normalised": true,
+  "strategies": [
+    "bare",
+    "bare80",
+    "crude",
+    "rich",
+    "grounded",
+    "grounded_split",
+    "grounded_visual",
+    "grounded_visual_split",
+    "dclip",
+    "cupl"
+  ],
+  "non_foliar_classes": [
+    "Banana|Cigar_End_Rot",
+    "Coffee|Berry_Blotch",
+    "Cucumber|Belly_Rot",
+    "Cucumber|Pythium_Fruit_Rot",
+    "Orange|Green_Mold",
+    "Orange|Whisker_Mold",
+    "Peach|Brown_Rot",
+    "Peach|Leaf_Scab",
+    "Wheat|Head_Scab",
+    "Wheat|Karnal_Bunt",
+    "Wheat|Loose_Smut"
+  ],
+  "majority_prior": {
+    "uncleaned": {
+      "A": 14.814814814814815,
+      "B": 6.130581383467866,
+      "C": 4.224162207828781
+    },
+    "clean": {
+      "A": 18.098765432098766,
+      "B": 9.1682301438399,
+      "C": 5.905575249758298
+    }
+  },
+  "configs": {
+    "A": {
+      "uncleaned": {
+        "n_classes": 16,
+        "n_images": 4050,
+        "chance": 6.25,
+        "majority_prior": 14.814814814814815,
+        "n_deployable": 4,
+        "means": {
+          "bare": 12.703703716397285,
+          "bare80": 12.419752962887287,
+          "crude": 14.104938507080078,
+          "rich": 28.876543417572975,
+          "grounded": 21.50617316365242,
+          "grounded_split": 18.49999986588955,
+          "grounded_visual": 26.006172597408295,
+          "grounded_visual_split": 22.864197939634323,
+          "dclip": 14.555555209517479,
+          "cupl": 22.549382224678993
+        },
+        "macro_means": {
+          "bare": 20.146756784392764,
+          "bare80": 18.67673518238727,
+          "crude": 20.960776710379015,
+          "rich": 27.669477560173497,
+          "grounded": 27.514325298332093,
+          "grounded_split": 25.48430990119655,
+          "grounded_visual": 25.394025813283392,
+          "grounded_visual_split": 25.676138709692413,
+          "dclip": 24.095736025340166,
+          "cupl": 28.942161649249567
+        },
+        "means_foliar": {
+          "bare": 7.429972197860479,
+          "bare80": 7.002801354974508,
+          "crude": 8.942577149719,
+          "rich": 26.08543485403061,
+          "grounded": 16.18347354233265,
+          "grounded_split": 13.004202023148537,
+          "grounded_visual": 21.47759161889553,
+          "grounded_visual_split": 17.96218529343605,
+          "dclip": 8.29131668433547,
+          "cupl": 16.8067229911685
+        },
+        "taxonomy_test": {
+          "grounded_split": 18.49999986588955,
+          "grounded_visual_split": 22.864197939634323,
+          "delta_taxonomy_removed": 4.364198073744774,
+          "cupl_minus_grounded_visual_split": -0.3148157149553299
+        },
+        "organ_rule_bound": {
+          "gap_all_images": 1.0432090610265732,
+          "gap_foliar_only": 0.6232494488358498,
+          "n_foliar_images": 3570
+        }
+      },
+      "clean": {
+        "n_classes": 13,
+        "n_images": 4050,
+        "chance": 7.6923076923076925,
+        "majority_prior": 18.098765432098766,
+        "n_deployable": 4,
+        "means": {
+          "bare": 20.358024537563324,
+          "bare80": 18.45679022371769,
+          "crude": 24.4567908346653,
+          "rich": 39.944443851709366,
+          "grounded": 29.246913269162178,
+          "grounded_split": 28.907407075166702,
+          "grounded_visual": 35.33950634300709,
+          "grounded_visual_split": 34.388890117406845,
+          "dclip": 22.771605104207993,
+          "cupl": 33.1172838807106
+        },
+        "macro_means": {
+          "bare": 24.182254300316494,
+          "bare80": 21.356239785744744,
+          "crude": 27.005320905897676,
+          "rich": 34.627858563736915,
+          "grounded": 33.91809111802272,
+          "grounded_split": 32.26277809296126,
+          "grounded_visual": 33.22122108207247,
+          "grounded_visual_split": 33.07844294839368,
+          "dclip": 28.545244796248106,
+          "cupl": 38.79048678395503
+        },
+        "means_foliar": {
+          "bare": 16.085434705018997,
+          "bare80": 13.830532692372799,
+          "crude": 20.66526636481285,
+          "rich": 38.613446056842804,
+          "grounded": 24.957983940839767,
+          "grounded_split": 24.7899167239666,
+          "grounded_visual": 32.04481862485409,
+          "grounded_visual_split": 31.022409722208977,
+          "dclip": 17.59103685617447,
+          "cupl": 28.67647148668766
+        },
+        "taxonomy_test": {
+          "grounded_split": 28.907407075166702,
+          "grounded_visual_split": 34.388890117406845,
+          "delta_taxonomy_removed": 5.481483042240143,
+          "cupl_minus_grounded_visual_split": -1.2716062366962433
+        },
+        "organ_rule_bound": {
+          "gap_all_images": 3.8703706115484238,
+          "gap_foliar_only": 3.7184875458478928,
+          "n_foliar_images": 3570
+        }
+      }
+    },
+    "B": {
+      "uncleaned": {
+        "n_classes": 34,
+        "n_images": 9787,
+        "chance": 2.9411764705882355,
+        "majority_prior": 6.130581383467866,
+        "n_deployable": 4,
+        "means": {
+          "bare": 20.34842148423195,
+          "bare80": 18.688055500388145,
+          "crude": 18.703382089734077,
+          "rich": 25.020435079932213,
+          "grounded": 22.703586891293526,
+          "grounded_split": 23.495453223586082,
+          "grounded_visual": 24.185143411159515,
+          "grounded_visual_split": 21.531112864613533,
+          "dclip": 23.242565989494324,
+          "cupl": 30.67845106124878
+        },
+        "macro_means": {
+          "bare": 22.22173539284738,
+          "bare80": 21.057818706519075,
+          "crude": 21.008965813170306,
+          "rich": 24.490856042418855,
+          "grounded": 23.270977713844452,
+          "grounded_split": 25.093478687164385,
+          "grounded_visual": 22.3628121207654,
+          "grounded_visual_split": 22.35891881376751,
+          "dclip": 26.698540074222553,
+          "cupl": 31.254789457494226
+        },
+        "means_foliar": {
+          "bare": 20.102909579873085,
+          "bare80": 17.97669716179371,
+          "crude": 18.322687596082687,
+          "rich": 25.8132241666317,
+          "grounded": 20.664773881435394,
+          "grounded_split": 20.49030065536499,
+          "grounded_visual": 22.73184284567833,
+          "grounded_visual_split": 19.576531648635864,
+          "dclip": 21.3951975107193,
+          "cupl": 27.691033855080605
+        },
+        "taxonomy_test": {
+          "grounded_split": 23.495453223586082,
+          "grounded_visual_split": 21.531112864613533,
+          "delta_taxonomy_removed": -1.9643403589725494,
+          "cupl_minus_grounded_visual_split": 9.147338196635246
+        },
+        "organ_rule_bound": {
+          "gap_all_images": 7.974864169955254,
+          "gap_foliar_only": 7.02625997364521,
+          "n_foliar_images": 8454
+        }
+      },
+      "clean": {
+        "n_classes": 26,
+        "n_images": 7995,
+        "chance": 3.8461538461538463,
+        "majority_prior": 9.1682301438399,
+        "n_deployable": 4,
+        "means": {
+          "bare": 26.43214538693428,
+          "bare80": 26.2570358812809,
+          "crude": 25.994371622800827,
+          "rich": 33.93370881676674,
+          "grounded": 32.761100679636,
+          "grounded_split": 34.59662422537804,
+          "grounded_visual": 32.929955795407295,
+          "grounded_visual_split": 33.2989364862442,
+          "dclip": 31.535334140062332,
+          "cupl": 38.50218877196312
+        },
+        "macro_means": {
+          "bare": 29.010499095963038,
+          "bare80": 28.058786098408532,
+          "crude": 28.32175584884904,
+          "rich": 32.71264487514082,
+          "grounded": 32.29990427943858,
+          "grounded_split": 34.866067567074474,
+          "grounded_visual": 31.70547881781645,
+          "grounded_visual_split": 32.720225822308336,
+          "dclip": 34.20905423026274,
+          "cupl": 41.40060591026926
+        },
+        "means_foliar": {
+          "bare": 26.3840701431036,
+          "bare80": 25.874942913651466,
+          "crude": 26.493437588214874,
+          "rich": 36.264896392822266,
+          "grounded": 31.13591820001602,
+          "grounded_split": 31.867551803588867,
+          "grounded_visual": 30.736159160733223,
+          "grounded_visual_split": 31.305627152323723,
+          "dclip": 29.254035651683807,
+          "cupl": 34.892140328884125
+        },
+        "taxonomy_test": {
+          "grounded_split": 34.59662422537804,
+          "grounded_visual_split": 33.2989364862442,
+          "delta_taxonomy_removed": -1.2976877391338348,
+          "cupl_minus_grounded_visual_split": 5.203252285718918
+        },
+        "organ_rule_bound": {
+          "gap_all_images": 5.741088092327118,
+          "gap_foliar_only": 3.756222128868103,
+          "n_foliar_images": 6629
+        }
+      }
+    },
+    "C": {
+      "uncleaned": {
+        "n_classes": 51,
+        "n_images": 14204,
+        "chance": 1.9607843137254901,
+        "majority_prior": 4.224162207828781,
+        "n_deployable": 4,
+        "means": {
+          "bare": 19.11785453557968,
+          "bare80": 19.033370912075043,
+          "crude": 16.694241389632225,
+          "rich": 21.523866429924965,
+          "grounded": 23.940439149737358,
+          "grounded_split": 24.211489781737328,
+          "grounded_visual": 22.5112646818161,
+          "grounded_visual_split": 22.067727148532867,
+          "dclip": 25.15488602221012,
+          "cupl": 30.943748354911804
+        },
+        "macro_means": {
+          "bare": 21.272711120990202,
+          "bare80": 20.94585912725046,
+          "crude": 19.12431338310309,
+          "rich": 21.68329713567276,
+          "grounded": 25.490412762203704,
+          "grounded_split": 26.519303155199932,
+          "grounded_visual": 22.47143910416758,
+          "grounded_visual_split": 22.85747167804099,
+          "dclip": 27.429466279787533,
+          "cupl": 31.70708095388433
+        },
+        "means_foliar": {
+          "bare": 18.000640347599983,
+          "bare80": 17.648471519351006,
+          "crude": 15.461421385407448,
+          "rich": 21.306226775050163,
+          "grounded": 21.620377898216248,
+          "grounded_split": 21.332239359617233,
+          "grounded_visual": 21.082119271159172,
+          "grounded_visual_split": 20.593884959816933,
+          "dclip": 23.12910184264183,
+          "cupl": 27.95741930603981
+        },
+        "taxonomy_test": {
+          "grounded_split": 24.211489781737328,
+          "grounded_visual_split": 22.067727148532867,
+          "delta_taxonomy_removed": -2.14376263320446,
+          "cupl_minus_grounded_visual_split": 8.876021206378937
+        },
+        "organ_rule_bound": {
+          "gap_all_images": 7.003309205174446,
+          "gap_foliar_only": 6.337041407823563,
+          "n_foliar_images": 12494
+        }
+      },
+      "clean": {
+        "n_classes": 42,
+        "n_images": 12412,
+        "chance": 2.380952380952381,
+        "majority_prior": 5.905575249758298,
+        "n_deployable": 4,
+        "means": {
+          "bare": 23.74919392168522,
+          "bare80": 24.33532029390335,
+          "crude": 21.710844337940216,
+          "rich": 27.447228878736496,
+          "grounded": 30.76055496931076,
+          "grounded_split": 31.618594378232956,
+          "grounded_visual": 29.956895485520363,
+          "grounded_visual_split": 30.339590460062027,
+          "dclip": 31.306397169828415,
+          "cupl": 37.47381642460823
+        },
+        "macro_means": {
+          "bare": 26.162716957562495,
+          "bare80": 25.847291921700815,
+          "crude": 23.976651057971914,
+          "rich": 27.0031486602457,
+          "grounded": 31.931537154234466,
+          "grounded_split": 33.39137187656196,
+          "grounded_visual": 29.826168038315032,
+          "grounded_visual_split": 30.243805486932104,
+          "dclip": 32.95051888219771,
+          "cupl": 39.05600514451496
+        },
+        "means_foliar": {
+          "bare": 22.532570734620094,
+          "bare80": 22.940294072031975,
+          "crude": 20.747023820877075,
+          "rich": 27.781423553824425,
+          "grounded": 28.482051193714142,
+          "grounded_split": 28.725747019052505,
+          "grounded_visual": 28.039178997278214,
+          "grounded_visual_split": 28.606242686510086,
+          "dclip": 28.927265852689743,
+          "cupl": 34.159714728593826
+        },
+        "taxonomy_test": {
+          "grounded_split": 31.618594378232956,
+          "grounded_visual_split": 30.339590460062027,
+          "delta_taxonomy_removed": -1.279003918170929,
+          "cupl_minus_grounded_visual_split": 7.134225964546204
+        },
+        "organ_rule_bound": {
+          "gap_all_images": 6.71326145529747,
+          "gap_foliar_only": 5.6776635348796844,
+          "n_foliar_images": 10669
+        }
+      }
+    }
+  },
+  "per_model": {
+    "MobileCLIP2-S0/dfndr2b": {
+      "A/uncleaned": {
+        "bare": {
+          "micro": 13.827160000801086,
+          "macro": 20.219811167355505,
+          "micro_foliar": 9.215686470270157
+        },
+        "bare80": {
+          "micro": 13.555555045604706,
+          "macro": 18.89283114481191,
+          "micro_foliar": 8.991596847772598
+        },
+        "crude": {
+          "micro": 11.851851642131805,
+          "macro": 19.832172811112265,
+          "micro_foliar": 7.95518234372139
+        },
+        "rich": {
+          "micro": 26.0740727186203,
+          "macro": 27.546218283715106,
+          "micro_foliar": 24.089635908603668
+        },
+        "grounded": {
+          "micro": 17.60493814945221,
+          "macro": 25.777558546183222,
+          "micro_foliar": 11.708683520555496
+        },
+        "grounded_split": {
+          "micro": 16.913580894470215,
+          "macro": 25.061923394368968,
+          "micro_foliar": 11.008403450250626
+        },
+        "grounded_visual": {
+          "micro": 18.81481409072876,
+          "macro": 21.313182728634324,
+          "micro_foliar": 13.52941244840622
+        },
+        "grounded_visual_split": {
+          "micro": 21.580247581005096,
+          "macro": 23.44846901642678,
+          "micro_foliar": 16.582633554935455
+        },
+        "dclip": {
+          "micro": 14.419752359390259,
+          "macro": 23.10831085360017,
+          "micro_foliar": 8.263305574655533
+        },
+        "cupl": {
+          "micro": 24.96296316385269,
+          "macro": 28.80548692963622,
+          "micro_foliar": 19.831933081150055
+        }
+      },
+      "A/clean": {
+        "bare": {
+          "micro": 20.12345641851425,
+          "macro": 24.771517880855264,
+          "micro_foliar": 16.302521526813507
+        },
+        "bare80": {
+          "micro": 19.283950328826904,
+          "macro": 21.76496598241609,
+          "micro_foliar": 15.490196645259857
+        },
+        "crude": {
+          "micro": 21.851852536201477,
+          "macro": 25.635042924624205,
+          "micro_foliar": 19.243697822093964
+        },
+        "rich": {
+          "micro": 35.85185110569,
+          "macro": 33.48507045713278,
+          "micro_foliar": 35.12605130672455
+        },
+        "grounded": {
+          "micro": 23.950617015361786,
+          "macro": 31.43459517681013,
+          "micro_foliar": 18.907563388347626
+        },
+        "grounded_split": {
+          "micro": 24.81481432914734,
+          "macro": 30.1778213093267,
+          "micro_foliar": 19.97198909521103
+        },
+        "grounded_visual": {
+          "micro": 24.41975325345993,
+          "macro": 28.13591308650166,
+          "micro_foliar": 19.85994428396225
+        },
+        "grounded_visual_split": {
+          "micro": 28.395062685012817,
+          "macro": 30.54553744803784,
+          "micro_foliar": 24.313725531101227
+        },
+        "dclip": {
+          "micro": 21.382716298103333,
+          "macro": 27.5076331427471,
+          "micro_foliar": 16.162465512752533
+        },
+        "cupl": {
+          "micro": 32.641974091529846,
+          "macro": 37.5109877192451,
+          "micro_foliar": 28.487396240234375
+        }
+      },
+      "B/uncleaned": {
+        "bare": {
+          "micro": 21.794216334819794,
+          "macro": 20.40199166255444,
+          "micro_foliar": 21.256209909915924
+        },
+        "bare80": {
+          "micro": 18.289567530155182,
+          "macro": 19.207014980465793,
+          "micro_foliar": 16.844096779823303
+        },
+        "crude": {
+          "micro": 17.502810060977936,
+          "macro": 18.14344086572439,
+          "micro_foliar": 17.25810319185257
+        },
+        "rich": {
+          "micro": 23.33707958459854,
+          "macro": 21.930645581249827,
+          "micro_foliar": 24.047787487506866
+        },
+        "grounded": {
+          "micro": 20.50679475069046,
+          "macro": 21.126937339086176,
+          "micro_foliar": 16.962385177612305
+        },
+        "grounded_split": {
+          "micro": 22.21314013004303,
+          "macro": 22.56460761872894,
+          "micro_foliar": 18.370002508163452
+        },
+        "grounded_visual": {
+          "micro": 21.08920067548752,
+          "macro": 19.317144852227333,
+          "micro_foliar": 18.831323087215424
+        },
+        "grounded_visual_split": {
+          "micro": 21.078982949256897,
+          "macro": 20.356529220905184,
+          "micro_foliar": 17.920510470867157
+        },
+        "dclip": {
+          "micro": 24.828854203224182,
+          "macro": 24.67286261971435,
+          "micro_foliar": 22.805772721767426
+        },
+        "cupl": {
+          "micro": 30.652907490730286,
+          "macro": 29.089946932873517,
+          "micro_foliar": 27.691033482551575
+        }
+      },
+      "B/clean": {
+        "bare": {
+          "micro": 25.290808081626892,
+          "macro": 25.973237824549752,
+          "micro_foliar": 24.438075721263885
+        },
+        "bare80": {
+          "micro": 25.741088390350342,
+          "macro": 25.866283730734942,
+          "micro_foliar": 23.789410293102264
+        },
+        "crude": {
+          "micro": 22.07629829645157,
+          "macro": 23.349711943548147,
+          "micro_foliar": 22.401568293571472
+        },
+        "rich": {
+          "micro": 29.00562882423401,
+          "macro": 28.157419412258903,
+          "micro_foliar": 30.441996455192566
+        },
+        "grounded": {
+          "micro": 28.79299521446228,
+          "macro": 28.602423632724893,
+          "micro_foliar": 25.554382801055908
+        },
+        "grounded_split": {
+          "micro": 30.94434142112732,
+          "macro": 30.9278695051808,
+          "micro_foliar": 26.881882548332214
+        },
+        "grounded_visual": {
+          "micro": 24.81551021337509,
+          "macro": 26.008226161951963,
+          "micro_foliar": 21.089152991771698
+        },
+        "grounded_visual_split": {
+          "micro": 29.33083176612854,
+          "macro": 29.352065146267783,
+          "micro_foliar": 24.73977953195572
+        },
+        "dclip": {
+          "micro": 29.080674052238464,
+          "macro": 30.602869753784525,
+          "micro_foliar": 26.263388991355896
+        },
+        "cupl": {
+          "micro": 34.67167019844055,
+          "macro": 37.733064393809755,
+          "micro_foliar": 30.93980848789215
+        }
+      },
+      "C/uncleaned": {
+        "bare": {
+          "micro": 20.240777730941772,
+          "macro": 20.296342643604895,
+          "micro_foliar": 19.01712864637375
+        },
+        "bare80": {
+          "micro": 19.459307193756104,
+          "macro": 19.78599210986126,
+          "micro_foliar": 17.704498767852783
+        },
+        "crude": {
+          "micro": 15.629400312900543,
+          "macro": 17.388241577970177,
+          "micro_foliar": 14.518968760967255
+        },
+        "rich": {
+          "micro": 19.33962255716324,
+          "macro": 19.23141593474275,
+          "micro_foliar": 19.31326985359192
+        },
+        "grounded": {
+          "micro": 21.641790866851807,
+          "macro": 22.775337274337016,
+          "micro_foliar": 18.488875031471252
+        },
+        "grounded_split": {
+          "micro": 23.549704253673553,
+          "macro": 24.717809003194446,
+          "micro_foliar": 20.04161924123764
+        },
+        "grounded_visual": {
+          "micro": 19.860602915287018,
+          "macro": 19.161839806624165,
+          "micro_foliar": 18.14470887184143
+        },
+        "grounded_visual_split": {
+          "micro": 22.733032703399658,
+          "macro": 20.686145194318804,
+          "micro_foliar": 20.777973532676697
+        },
+        "dclip": {
+          "micro": 27.020558714866638,
+          "macro": 26.078812354210854,
+          "micro_foliar": 25.012004375457764
+        },
+        "cupl": {
+          "micro": 30.209800601005554,
+          "macro": 30.479304099380816,
+          "micro_foliar": 27.06899344921112
+        }
+      },
+      "C/clean": {
+        "bare": {
+          "micro": 24.017080664634705,
+          "macro": 24.96274362597431,
+          "micro_foliar": 22.626300156116486
+        },
+        "bare80": {
+          "micro": 24.991942942142487,
+          "macro": 24.877918226426335,
+          "micro_foliar": 22.813759744167328
+        },
+        "crude": {
+          "micro": 19.4650337100029,
+          "macro": 21.38055746917549,
+          "micro_foliar": 18.59593242406845
+        },
+        "rich": {
+          "micro": 23.68675470352173,
+          "macro": 23.400313175325763,
+          "micro_foliar": 23.966632783412933
+        },
+        "grounded": {
+          "micro": 27.39284634590149,
+          "macro": 28.215052073145767,
+          "micro_foliar": 24.37904179096222
+        },
+        "grounded_split": {
+          "micro": 29.72123622894287,
+          "macro": 30.78061356465134,
+          "micro_foliar": 26.03805363178253
+        },
+        "grounded_visual": {
+          "micro": 24.95165914297104,
+          "macro": 25.129580026195146,
+          "micro_foliar": 22.738775610923767
+        },
+        "grounded_visual_split": {
+          "micro": 29.173380136489868,
+          "macro": 26.990211636123426,
+          "micro_foliar": 26.506701111793518
+        },
+        "dclip": {
+          "micro": 31.042540073394775,
+          "macro": 30.75334811046147,
+          "micro_foliar": 28.681224584579468
+        },
+        "cupl": {
+          "micro": 35.127297043800354,
+          "macro": 36.94343056498129,
+          "micro_foliar": 31.76492750644684
+        }
+      }
+    },
+    "MobileCLIP-S1/datacompdr": {
+      "A/uncleaned": {
+        "bare": {
+          "micro": 12.444444745779037,
+          "macro": 18.232501110100273,
+          "micro_foliar": 6.834734231233597
+        },
+        "bare80": {
+          "micro": 13.012345135211945,
+          "macro": 17.208540475741373,
+          "micro_foliar": 7.450980693101883
+        },
+        "crude": {
+          "micro": 17.48148202896118,
+          "macro": 19.640611013148597,
+          "micro_foliar": 12.184873968362808
+        },
+        "rich": {
+          "micro": 24.938271939754486,
+          "macro": 24.602868169969145,
+          "micro_foliar": 21.036414802074432
+        },
+        "grounded": {
+          "micro": 28.592592477798462,
+          "macro": 29.89867451283367,
+          "micro_foliar": 24.257703125476837
+        },
+        "grounded_split": {
+          "micro": 21.802468597888947,
+          "macro": 25.0148724322706,
+          "micro_foliar": 16.974790394306183
+        },
+        "grounded_visual": {
+          "micro": 27.407407760620117,
+          "macro": 25.742766102837383,
+          "micro_foliar": 23.025210201740265
+        },
+        "grounded_visual_split": {
+          "micro": 25.18518567085266,
+          "macro": 26.440906934788387,
+          "micro_foliar": 20.420168340206146
+        },
+        "dclip": {
+          "micro": 14.148147404193878,
+          "macro": 23.637065717790552,
+          "micro_foliar": 7.591036707162857
+        },
+        "cupl": {
+          "micro": 23.43209832906723,
+          "macro": 28.9683048635666,
+          "micro_foliar": 17.955182492733
+        }
+      },
+      "A/clean": {
+        "bare": {
+          "micro": 19.283950328826904,
+          "macro": 21.721480951170243,
+          "micro_foliar": 14.593838155269623
+        },
+        "bare80": {
+          "micro": 16.641975939273834,
+          "macro": 18.997823829434047,
+          "micro_foliar": 11.568627506494522
+        },
+        "crude": {
+          "micro": 26.197531819343567,
+          "macro": 24.36980155411657,
+          "micro_foliar": 22.07282930612564
+        },
+        "rich": {
+          "micro": 34.8641961812973,
+          "macro": 30.85869573299269,
+          "micro_foliar": 32.268908619880676
+        },
+        "grounded": {
+          "micro": 34.518519043922424,
+          "macro": 34.55096847385661,
+          "micro_foliar": 30.95238208770752
+        },
+        "grounded_split": {
+          "micro": 30.37036955356598,
+          "macro": 31.348452859991944,
+          "micro_foliar": 26.66666805744171
+        },
+        "grounded_visual": {
+          "micro": 34.567901492118835,
+          "macro": 31.390607705249508,
+          "micro_foliar": 31.148460507392883
+        },
+        "grounded_visual_split": {
+          "micro": 32.7160507440567,
+          "macro": 31.016755132121222,
+          "micro_foliar": 28.963586688041687
+        },
+        "dclip": {
+          "micro": 20.2469140291214,
+          "macro": 26.21173815334104,
+          "micro_foliar": 14.481793344020844
+        },
+        "cupl": {
+          "micro": 34.91358160972595,
+          "macro": 38.813400710491315,
+          "micro_foliar": 30.78431487083435
+        }
+      },
+      "B/uncleaned": {
+        "bare": {
+          "micro": 17.492592334747314,
+          "macro": 21.090800501735632,
+          "micro_foliar": 17.080672085285187
+        },
+        "bare80": {
+          "micro": 18.841320276260376,
+          "macro": 20.86252072439312,
+          "micro_foliar": 18.63023489713669
+        },
+        "crude": {
+          "micro": 18.606314063072205,
+          "macro": 20.573827496272294,
+          "micro_foliar": 18.15708577632904
+        },
+        "rich": {
+          "micro": 23.572085797786713,
+          "macro": 23.79229151134125,
+          "micro_foliar": 24.03595894575119
+        },
+        "grounded": {
+          "micro": 25.62583088874817,
+          "macro": 24.23475308411467,
+          "micro_foliar": 25.538206100463867
+        },
+        "grounded_split": {
+          "micro": 25.533872842788696,
+          "macro": 26.516599831439247,
+          "micro_foliar": 23.278921842575073
+        },
+        "grounded_visual": {
+          "micro": 24.042096734046936,
+          "macro": 22.31737886782481,
+          "micro_foliar": 22.85308688879013
+        },
+        "grounded_visual_split": {
+          "micro": 23.490343987941742,
+          "macro": 24.35364401963544,
+          "micro_foliar": 22.69931435585022
+        },
+        "dclip": {
+          "micro": 21.446816623210907,
+          "macro": 27.297140993368483,
+          "micro_foliar": 20.002365112304688
+        },
+        "cupl": {
+          "micro": 30.438336730003357,
+          "macro": 32.7988749616953,
+          "micro_foliar": 29.01585102081299
+        }
+      },
+      "B/clean": {
+        "bare": {
+          "micro": 26.42901837825775,
+          "macro": 29.97508459779487,
+          "micro_foliar": 26.700860261917114
+        },
+        "bare80": {
+          "micro": 27.141964435577393,
+          "macro": 29.467630983189643,
+          "micro_foliar": 27.57580280303955
+        },
+        "crude": {
+          "micro": 29.41838502883911,
+          "macro": 29.900453843335278,
+          "micro_foliar": 30.12520670890808
+        },
+        "rich": {
+          "micro": 36.035022139549255,
+          "macro": 34.015940633904926,
+          "micro_foliar": 38.51259648799896
+        },
+        "grounded": {
+          "micro": 37.323325872421265,
+          "macro": 34.77057611087595,
+          "micro_foliar": 37.47171461582184
+        },
+        "grounded_split": {
+          "micro": 36.4477813243866,
+          "macro": 36.53318659380024,
+          "micro_foliar": 34.86196994781494
+        },
+        "grounded_visual": {
+          "micro": 37.33583390712738,
+          "macro": 34.320717539243006,
+          "micro_foliar": 34.69603359699249
+        },
+        "grounded_visual_split": {
+          "micro": 35.084426403045654,
+          "macro": 35.00809424477424,
+          "micro_foliar": 34.24347639083862
+        },
+        "dclip": {
+          "micro": 31.919950246810913,
+          "macro": 35.819712695271754,
+          "micro_foliar": 29.76316213607788
+        },
+        "cupl": {
+          "micro": 39.537209272384644,
+          "macro": 44.008962276559764,
+          "micro_foliar": 37.260523438453674
+        }
+      },
+      "C/uncleaned": {
+        "bare": {
+          "micro": 16.20670258998871,
+          "macro": 20.5204931261259,
+          "micro_foliar": 14.6470308303833
+        },
+        "bare80": {
+          "micro": 17.896367609500885,
+          "macro": 20.415588282839312,
+          "micro_foliar": 16.61597639322281
+        },
+        "crude": {
+          "micro": 16.44607186317444,
+          "macro": 18.918197672225617,
+          "micro_foliar": 15.007203817367554
+        },
+        "rich": {
+          "micro": 20.656153559684753,
+          "macro": 22.060851789773434,
+          "micro_foliar": 19.585400819778442
+        },
+        "grounded": {
+          "micro": 24.02140200138092,
+          "macro": 24.93088771399287,
+          "micro_foliar": 22.73891419172287
+        },
+        "grounded_split": {
+          "micro": 23.88763725757599,
+          "macro": 26.383044271619816,
+          "micro_foliar": 21.010084450244904
+        },
+        "grounded_visual": {
+          "micro": 23.86651635169983,
+          "macro": 23.576203940456388,
+          "micro_foliar": 22.314710915088654
+        },
+        "grounded_visual_split": {
+          "micro": 23.401857912540436,
+          "macro": 24.9079128892802,
+          "micro_foliar": 21.88250422477722
+        },
+        "dclip": {
+          "micro": 22.23317325115204,
+          "macro": 26.662884598676975,
+          "micro_foliar": 20.14566957950592
+        },
+        "cupl": {
+          "micro": 29.540973901748657,
+          "macro": 31.034572560871045,
+          "micro_foliar": 27.501201629638672
+        }
+      },
+      "C/clean": {
+        "bare": {
+          "micro": 21.833708882331848,
+          "macro": 26.233991272686573,
+          "micro_foliar": 20.264317095279694
+        },
+        "bare80": {
+          "micro": 23.090557754039764,
+          "macro": 25.787634953546828,
+          "micro_foliar": 21.829599142074585
+        },
+        "crude": {
+          "micro": 23.155011236667633,
+          "macro": 24.736198329622912,
+          "micro_foliar": 21.923328936100006
+        },
+        "rich": {
+          "micro": 28.472447395324707,
+          "macro": 28.610716180339956,
+          "micro_foliar": 28.034493327140808
+        },
+        "grounded": {
+          "micro": 31.316468119621277,
+          "macro": 31.445101233935183,
+          "micro_foliar": 29.67475950717926
+        },
+        "grounded_split": {
+          "micro": 30.655816197395325,
+          "macro": 32.948959889803504,
+          "micro_foliar": 27.818915247917175
+        },
+        "grounded_visual": {
+          "micro": 32.76667594909668,
+          "macro": 32.059999348691726,
+          "micro_foliar": 29.759114980697632
+        },
+        "grounded_visual_split": {
+          "micro": 30.881404876708984,
+          "macro": 32.14636782622623,
+          "micro_foliar": 28.8968026638031
+        },
+        "dclip": {
+          "micro": 29.213663935661316,
+          "macro": 32.29317755483026,
+          "micro_foliar": 26.347362995147705
+        },
+        "cupl": {
+          "micro": 36.529165506362915,
+          "macro": 38.844653524568265,
+          "micro_foliar": 33.81760120391846
+        }
+      }
+    },
+    "MobileCLIP2-S2/dfndr2b": {
+      "A/uncleaned": {
+        "bare": {
+          "micro": 10.320987552404404,
+          "macro": 21.010785712105935,
+          "micro_foliar": 4.257703199982643
+        },
+        "bare80": {
+          "micro": 10.592592507600784,
+          "macro": 20.16612675783579,
+          "micro_foliar": 4.229691997170448
+        },
+        "crude": {
+          "micro": 10.419753193855286,
+          "macro": 22.507358011000093,
+          "micro_foliar": 4.089635983109474
+        },
+        "rich": {
+          "micro": 33.28395187854767,
+          "macro": 30.528860051319327,
+          "micro_foliar": 30.924370884895325
+        },
+        "grounded": {
+          "micro": 13.654321432113647,
+          "macro": 24.456835596639337,
+          "micro_foliar": 7.1988798677921295
+        },
+        "grounded_split": {
+          "micro": 13.481481373310089,
+          "macro": 24.473282909305784,
+          "micro_foliar": 6.862745434045792
+        },
+        "grounded_visual": {
+          "micro": 27.629628777503967,
+          "macro": 25.94402310371018,
+          "micro_foliar": 22.8291317820549
+        },
+        "grounded_visual_split": {
+          "micro": 19.97530907392502,
+          "macro": 25.929101694748873,
+          "micro_foliar": 14.313726127147675
+        },
+        "dclip": {
+          "micro": 11.753086745738983,
+          "macro": 22.763246145663846,
+          "micro_foliar": 5.070028081536293
+        },
+        "cupl": {
+          "micro": 15.209876000881195,
+          "macro": 25.416504873408286,
+          "micro_foliar": 8.375350385904312
+        }
+      },
+      "A/clean": {
+        "bare": {
+          "micro": 19.40740793943405,
+          "macro": 25.94739400858263,
+          "micro_foliar": 14.565826952457428
+        },
+        "bare80": {
+          "micro": 19.13580298423767,
+          "macro": 24.558269307504986,
+          "micro_foliar": 13.921569287776947
+        },
+        "crude": {
+          "micro": 22.44444489479065,
+          "macro": 30.266693355055132,
+          "micro_foliar": 17.70308166742325
+        },
+        "rich": {
+          "micro": 46.27160429954529,
+          "macro": 38.17969544372086,
+          "micro_foliar": 45.6582635641098
+        },
+        "grounded": {
+          "micro": 22.592592239379883,
+          "macro": 30.850363855790608,
+          "micro_foliar": 17.338936030864716
+        },
+        "grounded_split": {
+          "micro": 25.234568119049072,
+          "macro": 30.99667356956839,
+          "micro_foliar": 20.168067514896393
+        },
+        "grounded_visual": {
+          "micro": 41.62963032722473,
+          "macro": 36.41869212923932,
+          "micro_foliar": 38.711485266685486
+        },
+        "grounded_visual_split": {
+          "micro": 40.41975438594818,
+          "macro": 36.85236422977189,
+          "micro_foliar": 37.50700354576111
+        },
+        "dclip": {
+          "micro": 21.50617241859436,
+          "macro": 28.074290156056538,
+          "micro_foliar": 16.134454309940338
+        },
+        "cupl": {
+          "micro": 26.049381494522095,
+          "macro": 35.48637427672474,
+          "micro_foliar": 20.61624675989151
+        }
+      },
+      "B/uncleaned": {
+        "bare": {
+          "micro": 19.035455584526062,
+          "macro": 22.885567778463443,
+          "micro_foliar": 18.31085830926895
+        },
+        "bare80": {
+          "micro": 16.521917283535004,
+          "macro": 21.28482804677015,
+          "micro_foliar": 14.963330328464508
+        },
+        "crude": {
+          "micro": 16.143864393234253,
+          "macro": 21.773441539247234,
+          "micro_foliar": 14.939673244953156
+        },
+        "rich": {
+          "micro": 24.81863647699356,
+          "macro": 25.176868109650126,
+          "micro_foliar": 25.46723484992981
+        },
+        "grounded": {
+          "micro": 19.38285529613495,
+          "macro": 21.921225136739082,
+          "micro_foliar": 16.430091857910156
+        },
+        "grounded_split": {
+          "micro": 20.66005915403366,
+          "macro": 24.79913274733363,
+          "micro_foliar": 17.96782612800598
+        },
+        "grounded_visual": {
+          "micro": 23.83774369955063,
+          "macro": 23.245651512974995,
+          "micro_foliar": 21.717530488967896
+        },
+        "grounded_visual_split": {
+          "micro": 19.055891036987305,
+          "macro": 21.995480200701525,
+          "micro_foliar": 16.22900366783142
+        },
+        "dclip": {
+          "micro": 21.600081026554108,
+          "macro": 25.581517147333983,
+          "micro_foliar": 19.03241127729416
+        },
+        "cupl": {
+          "micro": 26.984775066375732,
+          "macro": 29.4720391909905,
+          "micro_foliar": 23.172463476657867
+        }
+      },
+      "B/clean": {
+        "bare": {
+          "micro": 26.19136869907379,
+          "macro": 29.899876608966267,
+          "micro_foliar": 24.966058135032654
+        },
+        "bare80": {
+          "micro": 25.515946745872498,
+          "macro": 28.7530522601972,
+          "micro_foliar": 24.060943722724915
+        },
+        "crude": {
+          "micro": 23.9524707198143,
+          "macro": 29.32484472060274,
+          "micro_foliar": 23.246341943740845
+        },
+        "rich": {
+          "micro": 34.38399136066437,
+          "macro": 32.610853173771744,
+          "micro_foliar": 36.58168613910675
+        },
+        "grounded": {
+          "micro": 28.70544195175171,
+          "macro": 29.8318488008825,
+          "micro_foliar": 26.338815689086914
+        },
+        "grounded_split": {
+          "micro": 32.332709431648254,
+          "macro": 34.77189405126649,
+          "micro_foliar": 30.019611120224
+        },
+        "grounded_visual": {
+          "micro": 34.79674756526947,
+          "macro": 33.05551556720956,
+          "micro_foliar": 32.19188451766968
+        },
+        "grounded_visual_split": {
+          "micro": 35.84740459918976,
+          "macro": 34.14664200899195,
+          "micro_foliar": 33.157339692115784
+        },
+        "dclip": {
+          "micro": 30.894309282302856,
+          "macro": 33.671028106779964,
+          "micro_foliar": 27.892592549324036
+        },
+        "cupl": {
+          "micro": 35.14696657657623,
+          "macro": 39.39227864127092,
+          "micro_foliar": 30.683359503746033
+        }
+      },
+      "C/uncleaned": {
+        "bare": {
+          "micro": 18.05829405784607,
+          "macro": 21.0029270309723,
+          "micro_foliar": 16.85609072446823
+        },
+        "bare80": {
+          "micro": 16.8192058801651,
+          "macro": 20.00206857696867,
+          "micro_foliar": 15.151272714138031
+        },
+        "crude": {
+          "micro": 15.411151945590973,
+          "macro": 19.13060395581519,
+          "micro_foliar": 14.102768898010254
+        },
+        "rich": {
+          "micro": 21.53618633747101,
+          "macro": 21.713612938507545,
+          "micro_foliar": 21.64238840341568
+        },
+        "grounded": {
+          "micro": 22.82455712556839,
+          "macro": 25.5401226016931,
+          "micro_foliar": 20.001600682735443
+        },
+        "grounded_split": {
+          "micro": 22.268375754356384,
+          "macro": 26.147868419315135,
+          "micro_foliar": 20.241716504096985
+        },
+        "grounded_visual": {
+          "micro": 21.571388840675354,
+          "macro": 21.856118202520324,
+          "micro_foliar": 19.793501496315002
+        },
+        "grounded_visual_split": {
+          "micro": 19.90988403558731,
+          "macro": 21.554627825198658,
+          "micro_foliar": 18.280774354934692
+        },
+        "dclip": {
+          "micro": 24.288932979106903,
+          "macro": 27.239697878564503,
+          "micro_foliar": 22.194653749465942
+        },
+        "cupl": {
+          "micro": 29.076316952705383,
+          "macro": 31.11797576836365,
+          "micro_foliar": 25.73235034942627
+        }
+      },
+      "C/clean": {
+        "bare": {
+          "micro": 23.53367656469345,
+          "macro": 25.918522465217332,
+          "micro_foliar": 21.913956105709076
+        },
+        "bare80": {
+          "micro": 22.89719581604004,
+          "macro": 24.943982190385128,
+          "micro_foliar": 21.117255091667175
+        },
+        "crude": {
+          "micro": 21.036094427108765,
+          "macro": 24.057493917902452,
+          "micro_foliar": 19.93626356124878
+        },
+        "rich": {
+          "micro": 27.989041805267334,
+          "macro": 26.46780782044977,
+          "micro_foliar": 28.78432869911194
+        },
+        "grounded": {
+          "micro": 29.43119704723358,
+          "macro": 31.70205149917453,
+          "micro_foliar": 26.890993118286133
+        },
+        "grounded_split": {
+          "micro": 30.0837904214859,
+          "macro": 33.17228355057527,
+          "micro_foliar": 28.16571295261383
+        },
+        "grounded_visual": {
+          "micro": 30.470511317253113,
+          "macro": 29.172631125203377,
+          "micro_foliar": 28.493767976760864
+        },
+        "grounded_visual_split": {
+          "micro": 31.066709756851196,
+          "macro": 29.547355691579025,
+          "micro_foliar": 29.393571615219116
+        },
+        "dclip": {
+          "micro": 31.155332922935486,
+          "macro": 33.36133418264501,
+          "micro_foliar": 28.81244719028473
+        },
+        "cupl": {
+          "micro": 35.91685593128204,
+          "macro": 38.33396740287795,
+          "micro_foliar": 32.308557629585266
+        }
+      }
+    },
+    "MobileCLIP-B/datacompdr": {
+      "A/uncleaned": {
+        "bare": {
+          "micro": 14.222222566604614,
+          "macro": 21.12392914800934,
+          "micro_foliar": 9.41176488995552
+        },
+        "bare80": {
+          "micro": 12.518519163131714,
+          "macro": 18.43944235116,
+          "micro_foliar": 7.338935881853104
+        },
+        "crude": {
+          "micro": 16.66666716337204,
+          "macro": 21.862965006255113,
+          "micro_foliar": 11.540616303682327
+        },
+        "rich": {
+          "micro": 31.209877133369446,
+          "macro": 27.999963735690407,
+          "micro_foliar": 28.29131782054901
+        },
+        "grounded": {
+          "micro": 26.17284059524536,
+          "macro": 29.92423253767214,
+          "micro_foliar": 21.568627655506134
+        },
+        "grounded_split": {
+          "micro": 21.802468597888947,
+          "macro": 27.387160868840844,
+          "micro_foliar": 17.170868813991547
+        },
+        "grounded_visual": {
+          "micro": 30.172839760780334,
+          "macro": 28.576131317951674,
+          "micro_foliar": 26.526612043380737
+        },
+        "grounded_visual_split": {
+          "micro": 24.716049432754517,
+          "macro": 26.88607719280561,
+          "micro_foliar": 20.532213151454926
+        },
+        "dclip": {
+          "micro": 17.901234328746796,
+          "macro": 26.874321384306104,
+          "micro_foliar": 12.240896373987198
+        },
+        "cupl": {
+          "micro": 26.592591404914856,
+          "macro": 32.57834993038716,
+          "micro_foliar": 21.064426004886627
+        }
+      },
+      "A/clean": {
+        "bare": {
+          "micro": 22.61728346347809,
+          "macro": 24.288624360657842,
+          "micro_foliar": 18.87955218553543
+        },
+        "bare80": {
+          "micro": 18.76543164253235,
+          "macro": 20.103900023623854,
+          "micro_foliar": 14.34173732995987
+        },
+        "crude": {
+          "micro": 27.3333340883255,
+          "macro": 27.7497457897948,
+          "micro_foliar": 23.64145666360855
+        },
+        "rich": {
+          "micro": 42.79012382030487,
+          "macro": 35.98797262110133,
+          "micro_foliar": 41.40056073665619
+        },
+        "grounded": {
+          "micro": 35.92592477798462,
+          "macro": 38.836436965633546,
+          "micro_foliar": 32.63305425643921
+        },
+        "grounded_split": {
+          "micro": 35.20987629890442,
+          "macro": 36.52816463295801,
+          "micro_foliar": 32.35294222831726
+        },
+        "grounded_visual": {
+          "micro": 40.74074029922485,
+          "macro": 36.93967140729939,
+          "micro_foliar": 38.45938444137573
+        },
+        "grounded_visual_split": {
+          "micro": 36.02469265460968,
+          "macro": 33.89911498364377,
+          "micro_foliar": 33.305323123931885
+        },
+        "dclip": {
+          "micro": 27.95061767101288,
+          "macro": 32.38731773284775,
+          "micro_foliar": 23.58543425798416
+        },
+        "cupl": {
+          "micro": 38.864198327064514,
+          "macro": 43.35118442935897,
+          "micro_foliar": 34.817928075790405
+        }
+      },
+      "B/uncleaned": {
+        "bare": {
+          "micro": 23.071421682834625,
+          "macro": 24.508581628635994,
+          "micro_foliar": 23.763898015022278
+        },
+        "bare80": {
+          "micro": 21.09941691160202,
+          "macro": 22.876911074447236,
+          "micro_foliar": 21.469126641750336
+        },
+        "crude": {
+          "micro": 22.560539841651917,
+          "macro": 23.54515335143731,
+          "micro_foliar": 22.935888171195984
+        },
+        "rich": {
+          "micro": 28.353938460350037,
+          "macro": 27.06361896743421,
+          "micro_foliar": 29.701915383338928
+        },
+        "grounded": {
+          "micro": 25.298866629600525,
+          "macro": 25.800995295437886,
+          "micro_foliar": 23.72841238975525
+        },
+        "grounded_split": {
+          "micro": 25.574740767478943,
+          "macro": 26.493574551155724,
+          "micro_foliar": 22.344452142715454
+        },
+        "grounded_visual": {
+          "micro": 27.77153253555298,
+          "macro": 24.571073250034463,
+          "micro_foliar": 27.525430917739868
+        },
+        "grounded_visual_split": {
+          "micro": 22.49923348426819,
+          "macro": 22.73002181382789,
+          "micro_foliar": 21.45729809999466
+        },
+        "dclip": {
+          "micro": 25.094512104988098,
+          "macro": 29.242639536473394,
+          "micro_foliar": 23.740240931510925
+        },
+        "cupl": {
+          "micro": 34.63778495788574,
+          "macro": 33.658296744417584,
+          "micro_foliar": 30.884787440299988
+        }
+      },
+      "B/clean": {
+        "bare": {
+          "micro": 27.817386388778687,
+          "macro": 30.19379735254126,
+          "micro_foliar": 29.431286454200745
+        },
+        "bare80": {
+          "micro": 26.629143953323364,
+          "macro": 28.14817741951234,
+          "micro_foliar": 28.073614835739136
+        },
+        "crude": {
+          "micro": 28.530332446098328,
+          "macro": 30.71201288791,
+          "micro_foliar": 30.2006334066391
+        },
+        "rich": {
+          "micro": 36.310192942619324,
+          "macro": 36.066366280627705,
+          "micro_foliar": 39.523306488990784
+        },
+        "grounded": {
+          "micro": 36.22263967990875,
+          "macro": 35.994768573270974,
+          "micro_foliar": 35.178759694099426
+        },
+        "grounded_split": {
+          "micro": 38.661664724349976,
+          "macro": 37.231320118050355,
+          "micro_foliar": 35.706743597984314
+        },
+        "grounded_visual": {
+          "micro": 34.77173149585724,
+          "macro": 33.43745600286126,
+          "micro_foliar": 34.96756553649902
+        },
+        "grounded_visual_split": {
+          "micro": 32.933083176612854,
+          "macro": 32.37410188919939,
+          "micro_foliar": 33.081912994384766
+        },
+        "dclip": {
+          "micro": 34.246402978897095,
+          "macro": 36.74260636521472,
+          "micro_foliar": 33.09699892997742
+        },
+        "cupl": {
+          "micro": 44.65290904045105,
+          "macro": 44.468118329436614,
+          "micro_foliar": 40.68486988544464
+        }
+      },
+      "C/uncleaned": {
+        "bare": {
+          "micro": 21.965643763542175,
+          "macro": 23.271081683257705,
+          "micro_foliar": 21.482311189174652
+        },
+        "bare80": {
+          "micro": 21.958602964878082,
+          "macro": 23.579787539332596,
+          "micro_foliar": 21.1221382021904
+        },
+        "crude": {
+          "micro": 19.290341436862946,
+          "macro": 21.060210326401375,
+          "micro_foliar": 18.21674406528473
+        },
+        "rich": {
+          "micro": 24.56350326538086,
+          "macro": 23.727307879667315,
+          "micro_foliar": 24.683848023414612
+        },
+        "grounded": {
+          "micro": 27.274006605148315,
+          "macro": 28.715303458791833,
+          "micro_foliar": 25.252121686935425
+        },
+        "grounded_split": {
+          "micro": 27.140241861343384,
+          "macro": 28.82849092667033,
+          "micro_foliar": 24.035537242889404
+        },
+        "grounded_visual": {
+          "micro": 24.746550619602203,
+          "macro": 25.291594467069448,
+          "micro_foliar": 24.0755558013916
+        },
+        "grounded_visual_split": {
+          "micro": 22.226133942604065,
+          "macro": 24.281200803366296,
+          "micro_foliar": 21.43428772687912
+        },
+        "dclip": {
+          "micro": 27.076879143714905,
+          "macro": 29.7364702876978,
+          "micro_foliar": 25.164079666137695
+        },
+        "cupl": {
+          "micro": 34.94790196418762,
+          "macro": 34.196471386921814,
+          "micro_foliar": 31.52713179588318
+        }
+      },
+      "C/clean": {
+        "bare": {
+          "micro": 25.61230957508087,
+          "macro": 27.535610466371757,
+          "micro_foliar": 25.325709581375122
+        },
+        "bare80": {
+          "micro": 26.361584663391113,
+          "macro": 27.779632316444967,
+          "micro_foliar": 26.00056231021881
+        },
+        "crude": {
+          "micro": 23.187237977981567,
+          "macro": 25.732354515186803,
+          "micro_foliar": 22.532570362091064
+        },
+        "rich": {
+          "micro": 29.640671610832214,
+          "macro": 29.533757464867303,
+          "micro_foliar": 30.34023940563202
+        },
+        "grounded": {
+          "micro": 34.901708364486694,
+          "macro": 36.36394381068238,
+          "micro_foliar": 32.983410358428955
+        },
+        "grounded_split": {
+          "micro": 36.01353466510773,
+          "macro": 36.66363050121772,
+          "micro_foliar": 32.880306243896484
+        },
+        "grounded_visual": {
+          "micro": 31.63873553276062,
+          "macro": 32.94246165316987,
+          "micro_foliar": 31.16505742073059
+        },
+        "grounded_visual_split": {
+          "micro": 30.23686707019806,
+          "macro": 32.29128679379973,
+          "micro_foliar": 29.62789535522461
+        },
+        "dclip": {
+          "micro": 33.81405174732208,
+          "macro": 35.3942156808541,
+          "micro_foliar": 31.86802864074707
+        },
+        "cupl": {
+          "micro": 42.32194721698761,
+          "macro": 42.101969085632334,
+          "micro_foliar": 38.747772574424744
+        }
+      }
+    }
+  }
+}
