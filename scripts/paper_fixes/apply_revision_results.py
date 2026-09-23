@@ -93,20 +93,21 @@ def main() -> int:
         r"""A registry that is
 both source-grounded and photo-descriptive, and one with the taxonomy fields stripped from the
 existing grounded text, are the two experiments that would separate these factors.""",
-        (f"We ran the second of those experiments. Stripping the pathogen and taxonomy fields from "
-         f"the same source-grounded text and ensembling what remains exactly as before holds "
-         f"sourcing, provenance and construction fixed and removes only the non-visual prose. It "
-         f"does not recover the deficit. Accuracy moves by {tA:+.1f}, {tB:+.1f} and {tC:+.1f} "
-         f"points at A, B and C on the full label set, and {tAc:+.1f}, {tBc:+.1f} and {tCc:+.1f} "
-         f"on the de-duplicated set: at the two larger label spaces dropping the taxonomy costs "
-         f"accuracy rather than buying any. The gain at 16 classes is an artefact of image "
-         f"weighting, worth {tA:+.1f} points there but only {mA:+.1f} under class-balanced "
-         f"averaging, which at B and C reads {mB:+.1f} and {mC:+.1f}. CuPL+ still leads the "
-         f"stripped registry by {resC:.1f} points at 51 classes ({resCc:.1f} de-duplicated). "
-         f"Whatever the register contributes is therefore not carried by the presence of the "
-         f"schema's non-visual fields; if it survives at all, it is in how the visual symptoms "
-         f"themselves are worded. A registry that is both source-grounded and photo-descriptive "
-         f"remains the experiment that would separate register from provenance.")))
+        (f"Two experiments can tease these effects apart, and we performed one. Removing the "
+         f"pathogen and taxonomy fields from the source-grounded text, and ensembling the rest "
+         f"exactly as before, keeps sourcing, provenance and construction the same and removes "
+         f"only the non-visual prose. It does not restore the score. Accuracy changes by "
+         f"{tA:+.1f}, {tB:+.1f} and {tC:+.1f} points at configurations A, B and C on the full "
+         f"label set, and by {tAc:+.1f}, {tBc:+.1f} and {tCc:+.1f} on the de-duplicated set. At "
+         f"the two larger label spaces, removing the taxonomy reduces accuracy. The 16-class "
+         f"result is an anomaly of image weighting: the gain is worth {tA:+.1f} points there, but "
+         f"only {mA:+.1f} once the classes are balanced, which at B and C reads {mB:+.1f} and "
+         f"{mC:+.1f}. CuPL+ still leads the stripped registry by {resC:.1f} points at 51 classes, "
+         f"and by {resCc:.1f} on the de-duplicated set. Whatever the register contributes is "
+         f"therefore not carried by the schema's non-visual fields. If it survives at all, it "
+         f"lies in the way the visual symptoms themselves are worded. The other experiment, a "
+         f"registry that is both source-grounded and photo-descriptive, would delineate register "
+         f"from provenance.")))
 
     # ---- 2. the organ-rule bound (Section 6) ---------------------------------------------------
     o, oc = cfg("C")["organ_rule_bound"], cfg("C", "clean")["organ_rule_bound"]

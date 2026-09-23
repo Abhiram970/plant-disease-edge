@@ -268,20 +268,23 @@ every configuration on both label sets. The size gain is also the costlier of th
 descriptions are authored once, offline, and cost nothing per image.""",
     r"""\paragraph{Authoring outweighs the encoder upgrade} Replacing a bare class name with the best
 descriptions gains 16.2, 10.3 and 11.8 points at configurations A, B and C. Moving from the
-11.4\,M to the 86.3\,M encoder under those same descriptions gains 5.1, 4.0 and 4.7, so authoring
-exceeds the encoder upgrade by 2.5--3.1 times on the full label set. Three qualifications bound that
-statement. First, the best strategy is chosen per configuration after the fact, and the encoder term
-is an endpoint difference rather than the spread across the four encoders;
-Table~\ref{tab:authoring} reports both. Second, on the de-duplicated set the ratio falls to
-1.2--2.8, and at configuration B the two gains differ by 2.1 points, inside the 2.4-point registry
-spread of Section~\ref{sec:eval}, so there they are not distinguishable. Third, accuracy is not
-monotone in encoder size: the 35.8\,M encoder is the weakest of the four at configuration A under
-six of the seven strategies, and the two endpoints differ in pretraining data as well as in size, so
-the second lever is better read as the choice of encoder than as its parameter count. At 51 classes,
-the largest label space, the authoring gain exceeds the encoder term on both label sets and under
-either measure. The encoder term is also the costlier of the two: it takes 5.8 times the latency and
-7.5 times the footprint (Section~\ref{sec:edge}), whereas better descriptions are authored once,
-offline, and cost nothing per image.""",
+11.4\,M to the 86.3\,M encoder under those same descriptions gains 5.1, 4.0 and 4.7. On the full
+label set, authoring therefore outweighs the encoder upgrade by 2.5--3.1 times.
+
+There are three qualifications. First, we pick the best strategy per configuration after the fact,
+and the encoder term is an endpoint difference rather than the spread across the four encoders.
+Table~\ref{tab:authoring} reports both. Second, on the de-duplicated label set the ratio falls to
+1.2--2.8, and at configuration B the two gains differ by only 2.1 points. That is inside the
+2.4-point registry spread of Section~\ref{sec:eval}, so at B they are not distinguishable. Third,
+accuracy is not monotone in encoder size. The 35.8\,M encoder is the weakest of the four at
+configuration A under six of the seven strategies, and the two endpoints differ in pretraining data
+as well as in size. The second lever is therefore better read as the choice of encoder than as its
+parameter count.
+
+At 51 classes, the largest label space, the authoring gain exceeds the encoder term on both label
+sets and under either measure. The encoder term is also the costlier of the two. It takes 5.8 times
+the latency and 7.5 times the footprint (Section~\ref{sec:edge}), while better descriptions are
+authored once, offline, and cost nothing per image.""",
 )
 
 edit(
@@ -314,27 +317,60 @@ second register is closer to them. We name this as the likely explanation rather
 one: the CuPL registry also differs from the grounded one in the model and interface that generated
 it, and a registry that is both source-grounded and photo-descriptive, which would separate register
 from provenance, is the natural next experiment.""",
-    r"""\paragraph{Text} What remains, 6.7 points at configuration C on the full label set and 5.9 on the
-de-duplicated set, lies in the text. The source-grounded registry follows the SAGE schema of pathogen,
-affected organs and symptoms, written in the register of a pathology reference; CuPL+'s sentences are
-written as descriptions of a photograph. CLIP's text tower was trained on image captions, and the
-second register is closer to them. We offer this as a plausible contributor, not a demonstrated
-cause. The CuPL+ registry differs from the grounded one in the model and interface that generated
-it, in sentence form, and in the three constraints of Section~\ref{sec:desc-gen}. DCLIP+ is the
-relevant control and it cuts against register alone: it received the same camera-only constraint and
-the same organ rule, yet it only draws level with source-grounded text at B and C and trails CuPL+
-by 5.7--8.0 points, a gap as large as the one register is being asked to explain. A registry that is
+    r"""\paragraph{Text} What remains lies in the text: 6.7 points at configuration C on the full label
+set, and 5.9 on the de-duplicated set. The source-grounded registry follows the SAGE schema of
+pathogen, affected organs and symptoms, expressed in the register of a pathology reference. CuPL+'s
+sentences describe photographs. CLIP's text tower was trained on image captions, and that register
+is the closer of the two. We offer this as a plausible contributor, not a demonstrated cause. The
+CuPL+ registry differs from the grounded one in the model and the interface that generated it, in
+sentence form, and in the three constraints of Section~\ref{sec:desc-gen}. DCLIP+ is the better
+control, because it received the same camera-only constraint and the same organ rule. It cuts
+against register alone: it draws level with source-grounded text at configurations B and C, yet it
+trails CuPL+ by 5.7--8.0 points, a gap as large as the one register is being asked to explain. A registry that is
 both source-grounded and photo-descriptive, and one with the taxonomy fields stripped from the
 existing grounded text, are the two experiments that would separate these factors.""",
 )
 
 edit(
     "results: citation control, describe the SD exactly",
-    r"""accuracy. The seed-to-seed standard deviation, 2.4 points, is the registry-to-registry spread used
+    r"""\paragraph{Citation} A matched control generated the same registry twice, with and without the
+requirement to cite a retrievable source, using the same model, schema and seven sampling seeds. On
+the 41 classes both versions filled at every seed, the version with sources leads by $+1.96$ points
+(95\% interval $-0.23$ to $+4.15$ over seeds); on all 51 classes, by $+0.94$ ($-0.52$ to $+2.39$).
+Both intervals include zero, and the paired figure is the optimistic of the two because its classes
+are those on which grounded generation succeeded. Requiring a source therefore costs no measurable
+accuracy. The seed-to-seed standard deviation, 2.4 points, is the registry-to-registry spread used
 throughout this article. We do not claim equivalence, which would need a margin fixed in advance.""",
-    r"""accuracy. The seed-to-seed standard deviation of that paired difference, 2.4 points, is the
-registry-to-registry scale used throughout this article; it is an empirical scale, not a bound. We
-do not claim equivalence, which would need a margin fixed in advance.""",
+    r"""\paragraph{Citation} A matched control produced both versions of the registry, with and without
+the requirement to cite a retrievable source, using the same model, the same schema and seven
+sampling seeds. On the 41 classes that both versions filled at every seed, the version with sources
+led by $+1.96$ points, with a 95\% interval over seeds of $-0.23$ to $+4.15$. On all 51 classes it
+led by $+0.94$ points, with an interval of $-0.52$ to $+2.39$. Both intervals include zero. The
+paired figure is the more favourable of the two, because its classes are the ones on which grounded
+generation succeeded. Requiring a source therefore costs no measurable accuracy. The seed-to-seed
+standard deviation of that paired difference is 2.4 points. That is the registry-to-registry scale
+we use throughout this article. It is an empirical scale, not a bound. We do not claim equivalence,
+which would need a margin fixed in advance.""",
+)
+
+edit(
+    "results: construction paragraph, in the author's voice",
+    r"""\paragraph{Construction} The source-grounded paragraph averages 199 tokens against the text
+encoder's 77-token window, so 43 of the 51 held-out prototypes are truncated and most of each
+description never reaches the encoder. CuPL embeds twelve short sentences, none truncated. To test
+whether this explains the gap, we split each source-grounded paragraph into its sentences and
+embedded them as a CuPL-style ensemble, changing no words. Truncated prompts fall from 43 to 10. At
+configuration C accuracy moves by $+0.3$ points, recovering 4\% of the gap to CuPL; on the
+de-duplicated set, $+0.9$ points and 13\%. How the prototype is built explains almost none of the
+difference.""",
+    r"""\paragraph{Construction} The source-grounded paragraphs average 199 tokens, against a 77-token
+window in the text encoder. Of the 51 held-out prototypes, 43 are therefore truncated, and most of
+each description never reaches the encoder. CuPL+ embeds twelve short sentences, and none of them
+is truncated. To test whether this explains the gap, we split each source-grounded paragraph into
+its sentences and embedded them as a CuPL-style ensemble, changing no words. Truncated prompts fall
+from 43 to 10. At configuration C accuracy moves by $+0.3$ points, which recovers 4\% of the gap to
+CuPL+. On the de-duplicated set it moves by $+0.9$ points, or 13\% of the gap. How the prototype is
+built therefore explains almost none of the difference.""",
 )
 
 edit(
@@ -386,13 +422,15 @@ under INT8.""",
 # ---- discussion ---------------------------------------------------------------------------------------
 edit(
     "discussion: quote both label sets",
-    r"""whether cross-crop diagnosis works. Across a 7.6-fold range of encoder size, the best descriptions
+    r"""For a frozen compact encoder, the text prototypes decide
+whether cross-crop diagnosis works. Across a 7.6-fold range of encoder size, the best descriptions
 buy 2.5--3.1 times more accuracy than the largest encoder does, and they are paid for once, offline,
 whereas encoder size is paid for on every image in latency and memory.""",
-    r"""whether cross-crop diagnosis works. Across the four encoders tested, the best descriptions buy
-2.5--3.1 times more accuracy on the full label set, and 1.2--2.8 on the de-duplicated one, than the
-step from the smallest encoder to the largest does, and they are paid for once, offline, whereas the
-encoder is paid for on every image in latency and memory.""",
+    r"""For a frozen compact encoder, the success of cross-crop
+diagnosis depends on the text prototypes. Among the four encoders assessed, the best descriptions
+buy 2.5--3.1 times more accuracy on the full label set, and 1.2--2.8 on the de-duplicated one, than
+the step from the smallest encoder to the largest does. Descriptions are paid for once, offline,
+while the encoder is paid for on every image, in latency and in memory.""",
 )
 
 edit(
@@ -569,12 +607,7 @@ The dotted line is uniform chance.}"""),
     ("decomposition opening",
      r"""Source-grounded text differs from CuPL in three respects that could each explain the gap: it is""",
      r"""Source-grounded text differs from CuPL+ in three respects that could each explain the gap: it is"""),
-    ("construction paragraph",
-     r"""description never reaches the encoder. CuPL embeds twelve short sentences, none truncated. To test""",
-     r"""description never reaches the encoder. CuPL+ embeds twelve short sentences, none truncated. To test"""),
-    ("construction result",
-     r"""configuration C accuracy moves by $+0.3$ points, recovering 4\% of the gap to CuPL; on the""",
-     r"""configuration C accuracy moves by $+0.3$ points, recovering 4\% of the gap to CuPL+; on the"""),
+    # The Construction paragraph is rewritten whole below, which covers its CuPL+ renames too.
     ("figure 4 caption",
      r"""\caption{Unseen-crop top-1 under CuPL descriptions at 51 classes against single-image FP32 latency on""",
      r"""\caption{Unseen-crop top-1 under CuPL+ descriptions at 51 classes against single-image FP32 latency on"""),
