@@ -5,7 +5,7 @@ WHY: the manuscript is tex/main.tex and its tables are generated. Maintaining ta
 both by hand is how the paper drifted from the data three times. main.tex \\input{}s these files, so
 there is exactly one source of truth -- the JSONs -- for every number in either format.
 
-    python docs/paper/make_tex_tables.py      # writes docs/paper/tex/tab_*.tex
+    python docs/paper/make_tex_tables.py      # writes docs/paper/manuscript/submitted/tab_*.tex
 """
 from __future__ import annotations
 import json
@@ -16,7 +16,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = Path(__file__).resolve().parent
-TEX = HERE / "tex"
+TEX = HERE / "manuscript" / "submitted"
 TEX.mkdir(parents=True, exist_ok=True)
 
 

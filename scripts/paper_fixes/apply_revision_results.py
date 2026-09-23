@@ -1,12 +1,12 @@
 r"""
-Phase 2 of the 2026-09-22 deep review: fold the re-scored numbers into docs/paper/revision/main.tex.
+Phase 2 of the 2026-09-22 deep review: fold the re-scored numbers into docs/paper/manuscript/revision/main.tex.
 
 Run AFTER:
     python scripts/paper_fixes/apply_revision_text.py     (writes revision/main.tex)
     scripts/kaggle/runners/rescore_descriptors.py on Kaggle    (writes revision_numbers.json)
     python docs/paper/make_tex_tables_revision.py                (writes tab_abstain_cupl.tex)
 
-Every number inserted here is read from docs/paper/revision_numbers.json; none is typed.
+Every number inserted here is read from docs/paper/manuscript/revision_numbers.json; none is typed.
 
 The prose states a direction as well as a magnitude, so each directional claim is guarded by an
 assertion against the measured values. If a future re-run reverses one, this script ABORTS rather
@@ -24,7 +24,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent.parent
 PAPER = REPO / "docs" / "paper"
-REVISION = PAPER / "revision"
+REVISION = PAPER / "manuscript" / "revision"
 NUMBERS = PAPER / "revision_numbers.json"
 ABSTAIN = PAPER / "revision_results"
 
@@ -325,7 +325,7 @@ embedding or the taxonomy the cited schema carries.""",
     with open(tex_path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(text)
     print(f"[phase2] wrote {tex_path}")
-    print("[phase2] next: cd docs/paper/revision && latexmk -pdf main.tex")
+    print("[phase2] next: cd docs/paper/manuscript/revision && latexmk -pdf main.tex")
     return 0
 
 

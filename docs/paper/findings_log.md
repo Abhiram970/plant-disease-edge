@@ -5,7 +5,7 @@
 > This file is a **dated evidence trail of Phase-0 runs, not a statement of current claims.**
 > Rows are kept as written so the decision history stays auditable. Several of them have since
 > been superseded, and reading them as live conclusions is how withdrawn claims keep
-> re-entering drafts and audits. The manuscript (`docs/paper/tex/main.tex`) is the only
+> re-entering drafts and audits. The manuscript (`docs/paper/manuscript/submitted/main.tex`) is the only
 > authority on what is claimed; the result JSONs are the only authority on numbers.
 >
 > **SUPERSEDED — do not cite from this file:**

@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PAPER = ROOT / "docs" / "paper"
-TEX = PAPER / "tex"
+TEX = PAPER / "manuscript" / "submitted"
 MAIN = TEX / "main.tex"
 
 RESULTS: list[tuple[bool, str, str]] = []

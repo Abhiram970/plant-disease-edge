@@ -28,12 +28,12 @@ OUTPUT
   /kaggle/working/pde_descriptor_rescore.zip        <- download this, unzip into docs/paper/
 
 THEN, LOCALLY
-  copy revision_numbers.json          -> docs/paper/revision_numbers.json
-  copy metrics_abstain_*.json     -> docs/paper/revision_results/
+  copy revision_numbers.json          -> docs/paper/manuscript/revision_numbers.json
+  copy metrics_abstain_*.json     -> docs/paper/manuscript/revision_results/
   python docs/paper/make_tex_tables_revision.py
   python docs/paper/make_figures_revision.py
   python scripts/paper_fixes/apply_revision_results.py
-  cd docs/paper/revision && latexmk -pdf main.tex
+  cd docs/paper/manuscript/revision && latexmk -pdf main.tex
 =====================================================================================
 """
 

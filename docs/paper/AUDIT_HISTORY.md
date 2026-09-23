@@ -125,7 +125,7 @@ the LOCO rename; abstract baselines; the withdrawn scaling claim. Pass 8 re-veri
 Pass 9 audited the salvaged manuscript, so most of its findings are new rather than recurrences:
 sentences written for the old "grounded wins" framing had survived the reversal of the result.
 
-Closed by **editing** (`apply_revision_text.py`, 43 guarded replacements into `docs/paper/revision/`):
+Closed by **editing** (`apply_revision_text.py`, 43 guarded replacements into `docs/paper/manuscript/revision/`):
 the under-disclosed DCLIP+/CuPL+ prompts, the inverted "conservative direction", register asserted
 as a demonstrated cause, the unconditional authoring-beats-size claim, the edge claim on an x86
 laptop, and eleven smaller items.

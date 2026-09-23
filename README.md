@@ -104,7 +104,7 @@ scripts/kaggle/build/*.py       generators for the above, from one shared bootst
 scripts/kaggle/README.md       how to run it, and what went wrong before
 scripts/                config, data, descriptors, evaluation, checkers
 descriptors/            the source-grounded symptom registry (committed)
-docs/paper/tex/         main.tex + generated tab_*.tex  <- the submission
+docs/paper/manuscript/submitted/         main.tex + generated tab_*.tex  <- the submission
 docs/paper/*.json       result files; every table and figure is generated from these
 results/, logs/         per-run outputs and per-epoch training logs
 ```

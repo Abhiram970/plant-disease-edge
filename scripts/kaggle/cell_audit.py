@@ -39,7 +39,7 @@ TIER_ARGS = ["--tiers", "lw11", "lw21", "lw35", "--heavy", "--teachers"]
 PER_EVAL_H = 1.2
 
 # Published grounded means, unweighted over the four deployable tiers, from
-# docs/paper/tex/tab_scale_study.tex. The UNCLEANED re-run must reproduce these; if it
+# docs/paper/manuscript/submitted/tab_scale_study.tex. The UNCLEANED re-run must reproduce these; if it
 # does not, something other than the by_class patch changed and nothing should be
 # promoted into the manuscript until you know what.
 PUBLISHED_GROUNDED = {"A": 21.5, "B": 22.7, "C": 23.9}

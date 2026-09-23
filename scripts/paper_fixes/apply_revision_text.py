@@ -1,8 +1,8 @@
 r"""
 Phase 1 of the 2026-09-22 deep review (docs/paper/review_2026-09-22/main/review_report.md).
 
-Creates docs/paper/revision/ as a NEW manuscript folder and applies the text-only fixes there.
-docs/paper/tex/ and docs/paper/build/ are never touched, so the submitted 2026-09-22 build
+Creates docs/paper/manuscript/revision/ as a NEW manuscript folder and applies the text-only fixes there.
+docs/paper/manuscript/submitted/ and docs/paper/build/ are never touched, so the submitted 2026-09-22 build
 stays exactly as it is.
 
 Every edit is a GUARDED exact-string replacement: the old text must appear exactly once or the
@@ -31,8 +31,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 PAPER = REPO / "docs" / "paper"
-SRC = PAPER / "tex"
-DST = PAPER / "revision"
+SRC = PAPER / "manuscript" / "submitted"
+DST = PAPER / "manuscript" / "revision"
 
 # --------------------------------------------------------------------------------------------
 # (label, old, new). Order is irrelevant; each old string must occur exactly once in main.tex.
@@ -449,8 +449,12 @@ of known crops, reaching 89.3\% on 166 seen classes against 82.2\% for the froze
 cannot represent an unseen crop at all. In one short fine-tuning run on the seen crops, on the
 smallest encoder at configuration C and under the source-grounded registry, unseen accuracy fell
 from 21.6\% to 16.4\%, while seen accuracy rose within that run's own protocol, which uses fewer
-seen images than the probe above and is not comparable with it. A single run does not settle the
-question; we keep the encoder frozen because transfer is what the system exists to provide.""",
+seen images than the probe above and is not comparable with it. Interpolating between the frozen
+and fine-tuned weights did not recover the loss either: across the interpolation coefficient from
+0 to 1 the unseen accuracy stayed below the frozen encoder's 21.6\%, and the sweep was not
+monotone, which we read as per-coefficient refitting of the probe head rather than as a property
+of weight-space ensembling. A single run does not settle any of this; we keep the encoder frozen
+because transfer is what the system exists to provide.""",
 )
 
 # ---- limitations ------------------------------------------------------------------------------------
@@ -574,9 +578,13 @@ The dotted line is uniform chance.}"""),
     ("figure 4 caption",
      r"""\caption{Unseen-crop top-1 under CuPL descriptions at 51 classes against single-image FP32 latency on""",
      r"""\caption{Unseen-crop top-1 under CuPL+ descriptions at 51 classes against single-image FP32 latency on"""),
-    ("data availability",
+    # The 14 supervised baselines and the WiSE-FT sweep lost their tables in the salvage, so the
+    # data-availability statement is the only place a reader is told the runs exist at all.
+    ("data availability: name the supervised runs",
      r"""DCLIP and CuPL prompts and raw replies, every result file, the table and figure generators, and the""",
-     r"""DCLIP+ and CuPL+ prompts and raw replies, every result file, the table and figure generators, and the"""),
+     r"""DCLIP+ and CuPL+ prompts and raw replies, every result file, the per-architecture results of the
+14 supervised baselines, the weight-space interpolation sweep, the table and figure generators,
+and the"""),
     ("AI declaration: rename the arms and point to the named models",
      r"""(Section~\ref{sec:desc-gen}) and the DCLIP and CuPL registries through a chat interface. The generated""",
      r"""and the DCLIP+ and CuPL+ registries through a chat interface; Section~\ref{sec:desc-gen} names
@@ -623,7 +631,7 @@ NEW_BIB = r"""
 def _prune_bib(bib: str, tex: str) -> str:
     """Keep only the entries the manuscript cites.
 
-    docs/paper/tex/refs.bib still carries the CNN-baseline and WiSE-FT references the
+    docs/paper/manuscript/submitted/refs.bib still carries the CNN-baseline and WiSE-FT references the
     pre-salvage draft used. BibTeX ignores them, but the submission package should not ship a
     bibliography a third of which the paper never mentions, and scripts/check_tex_refs.py
     reports them as a failure. Every cited key must be present or this aborts: dropping a key
@@ -689,7 +697,7 @@ def main() -> int:
         print("[patch] --check only, nothing written")
         return 0
 
-    # ---- build docs/paper/revision -------------------------------------------------------------
+    # ---- build docs/paper/manuscript/revision -------------------------------------------------------------
     DST.mkdir(parents=True, exist_ok=True)
     (DST / "figures").mkdir(exist_ok=True)
 
@@ -702,9 +710,9 @@ def main() -> int:
 
     # the revision keeps its own figures next to the manuscript so the 2026-09-22 figures are frozen.
     text = text.replace(r"\graphicspath{{../figures/}}", r"\graphicspath{{figures/}}", 1)
-    header = ("%% REVISION 2 (2026-09-23): the 2026-09-22 deep review applied.\n"
-              "%% Generated by scripts/paper_fixes/apply_revision_text.py from ../tex/main.tex.\n"
-              "%% Do not hand-edit BOTH files: ../tex/main.tex is the frozen submitted version.\n")
+    header = ("%% REVISION (2026-09-23): the 2026-09-22 deep review applied.\n"
+              "%% Generated by scripts/paper_fixes/apply_revision_text.py from ../submitted/main.tex.\n"
+              "%% Do not hand-edit BOTH files: ../submitted/main.tex is the frozen submitted version.\n")
     text = header + text
 
     out_tex = DST / "main.tex"
@@ -743,7 +751,7 @@ def main() -> int:
     print("\n[patch] next:")
     print("  python docs/paper/make_tex_tables_revision.py")
     print("  python docs/paper/make_figures_revision.py")
-    print("  cd docs/paper/revision && latexmk -pdf main.tex")
+    print("  cd docs/paper/manuscript/revision && latexmk -pdf main.tex")
     print("\n[patch] still needs an author, not a script:")
     print("  * mint the Zenodo DOI (PENDING-ZENODO-DOI is still in the manuscript)")
     print("  * name the chat model/version in Section 3.4 (% AUTHORS: marker)")

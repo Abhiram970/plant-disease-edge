@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
 
-TEX = C.REPO_ROOT / "docs" / "paper" / "tex"
+TEX = C.REPO_ROOT / "docs" / "paper" / "manuscript" / "submitted"
 
 
 def expand(path: Path, depth: int = 0) -> str:

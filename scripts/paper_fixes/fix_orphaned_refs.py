@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-TEX = ROOT / "docs" / "paper" / "tex"
+TEX = ROOT / "docs" / "paper" / "manuscript" / "submitted"
 
 BS = chr(92)          # a literal backslash, built without writing one in a string
 CR, TAB, LF, FF = chr(13), chr(9), chr(10), chr(12)

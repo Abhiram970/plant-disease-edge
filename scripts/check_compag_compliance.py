@@ -1,5 +1,5 @@
 """
-Check docs/paper/tex/main.tex against the Computers and Electronics in Agriculture guide for authors.
+Check docs/paper/manuscript/submitted/main.tex against the Computers and Electronics in Agriculture guide for authors.
 
 Encodes the mechanical rules from the journal's Guide for Authors (retrieved 19 Aug 2026) so they are
 checked every time rather than remembered:
@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config as C
 C_REPO = C.REPO_ROOT
 
-TEX = C.REPO_ROOT / "docs" / "paper" / "tex" / "main.tex"
+TEX = C.REPO_ROOT / "docs" / "paper" / "manuscript" / "submitted" / "main.tex"
 FIGS = C.REPO_ROOT / "docs" / "paper" / "figures"
 
 ABSTRACT_MAX = 250

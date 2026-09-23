@@ -70,3 +70,6 @@ _archive/
 # ---- Audit workspaces: review evidence, not source. The ledger is docs/paper/AUDIT_HISTORY.md ----
 docs/paper/review_*/
 docs/paper/review_results/
+
+# Zenodo deposit build output -- regenerate with scripts/prepare_zenodo_archive.py
+dist/

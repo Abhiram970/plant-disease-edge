@@ -1,5 +1,5 @@
 """
-Revision figures (docs/paper/revision/figures/), for the manuscript built by
+Revision figures (docs/paper/manuscript/revision/figures/), for the manuscript built by
 scripts/paper_fixes/apply_revision_text.py.
 
 Reuses make_figures.py and only redirects its output directory, so docs/paper/figures/ -- the
@@ -31,7 +31,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 import make_figures as MF  # noqa: E402
 
-REVISION_FIG = HERE / "revision" / "figures"
+REVISION_FIG = HERE / "manuscript" / "revision" / "figures"
 REVISION_RESULTS = HERE / "revision_results"
 REVISION_FIG.mkdir(parents=True, exist_ok=True)
 

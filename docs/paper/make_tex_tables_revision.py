@@ -1,9 +1,9 @@
 """
-Revision tables (docs/paper/revision/tab_*.tex), for the manuscript built by
+Revision tables (docs/paper/manuscript/revision/tab_*.tex), for the manuscript built by
 scripts/paper_fixes/apply_revision_text.py.
 
 It reuses make_tex_tables.py rather than copying it: the unchanged tables are produced by the
-same code that produced the 2026-09-22 ones, only written to a different directory. docs/paper/tex
+same code that produced the 2026-09-22 ones, only written to a different directory. docs/paper/manuscript/submitted
 is never written to, so the submitted build stays frozen.
 
 What differs from the 2026-09-22 tables:
@@ -29,7 +29,7 @@ sys.path.insert(0, str(HERE))
 
 import make_tex_tables as M  # noqa: E402
 
-REVISION = HERE / "revision"
+REVISION = HERE / "manuscript" / "revision"
 REVISION_RESULTS = HERE / "revision_results"
 REVISION.mkdir(parents=True, exist_ok=True)
 

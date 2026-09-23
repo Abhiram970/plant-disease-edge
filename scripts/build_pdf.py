@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile docs/paper/tex/main.tex to a PDF, and report what the log actually says.
+"""Compile docs/paper/manuscript/submitted/main.tex to a PDF, and report what the log actually says.
 
 Runs pdflatex -> bibtex -> pdflatex -> pdflatex into docs/paper/build/, then surfaces
 the three things that matter and that a silent "Output written" hides: unresolved
@@ -27,7 +27,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-TEX = REPO / "docs" / "paper" / "tex"
+TEX = REPO / "docs" / "paper" / "manuscript" / "submitted"
 BUILD = REPO / "docs" / "paper" / "build"
 PDF = BUILD / "main.pdf"
 

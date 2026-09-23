@@ -37,8 +37,8 @@ USAGE (Windows, local GPU)
     python scripts/rescore_descriptors.py --reference               # add the SigLIP2 ceiling rows
 
 Writes:
-    docs/paper/revision_numbers.json                 (read by make_tex_tables_revision / make_figures_revision)
-    docs/paper/revision_results/metrics_abstain_*.json  (same shape as scripts/metrics.py writes)
+    docs/paper/manuscript/revision_numbers.json                 (read by make_tex_tables_revision / make_figures_revision)
+    docs/paper/manuscript/revision_results/metrics_abstain_*.json  (same shape as scripts/metrics.py writes)
 """
 from __future__ import annotations
 

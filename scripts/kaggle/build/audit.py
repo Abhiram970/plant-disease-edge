@@ -83,7 +83,7 @@ STRATS   = ["bare", "crude", "rich", "grounded"]
 TIER_ARGS = ["--tiers", "lw11", "lw21", "lw35", "--heavy", "--teachers"]
 
 # Published grounded means (unweighted over the four deployable tiers), from
-# docs/paper/tex/tab_scale_study.tex. The uncleaned re-run must reproduce these.
+# docs/paper/manuscript/submitted/tab_scale_study.tex. The uncleaned re-run must reproduce these.
 PUBLISHED_GROUNDED = {"A": 21.5, "B": 22.7, "C": 23.9}
 TOLERANCE_PP = 0.1
 
