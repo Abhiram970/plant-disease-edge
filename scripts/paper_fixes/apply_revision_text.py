@@ -1,9 +1,9 @@
 r"""
 Phase 1 of the 2026-09-22 deep review (docs/paper/review_2026-09-22/main/review_report.md).
 
-Creates docs/paper/manuscript/revision/ as a NEW manuscript folder and applies the text-only fixes there.
-docs/paper/manuscript/submitted/ and docs/paper/build/ are never touched, so the submitted 2026-09-22 build
-stays exactly as it is.
+Creates docs/paper/manuscript/revision/ as a NEW manuscript folder and applies the text-only fixes
+there. docs/paper/manuscript/submitted/ is never touched, so the manuscript submitted on
+2026-09-22 stays exactly as it was.
 
 Every edit is a GUARDED exact-string replacement: the old text must appear exactly once or the
 script stops without writing anything. Numbers introduced here are either already in the

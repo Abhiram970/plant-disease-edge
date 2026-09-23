@@ -65,6 +65,23 @@ EXCLUDE_DIRS = {"__pycache__", ".git", ".ipynb_checkpoints", "onnx"}
 EXCLUDE_SUFFIX = {".pyc", ".pt", ".pth", ".onnx", ".aux", ".fls", ".fdb_latexmk",
                   ".synctex.gz", ".blg", ".out", ".abs", ".bbl"}
 
+README_HEADER = """# {title}
+
+**Version {version}** · deposited {date} · DOI: {doi}
+
+{authors}
+
+{keywords}
+
+Licences: code MIT (`LICENSE`); data CC BY 4.0 (`LICENSE-DATA.md`); the manuscript is covered by
+neither, see below. Cite the article and this deposit — `CITATION.cff` gives both.
+
+## What is in this archive
+
+{contents}
+
+"""
+
 README = """# Plant-disease edge VLM — data and code release
 
 This archive accompanies *Compact Vision--Language Models for Cross-Crop Plant-Disease Diagnosis
@@ -162,7 +179,27 @@ def main() -> int:
         h = hashlib.sha256(f.read_bytes()).hexdigest()
         lines.append(f"{h}  {f.stat().st_size:>10}  {f.relative_to(REPO).as_posix()}")
     (DIST / "MANIFEST.sha256").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-    (DIST / "README.md").write_text(README, encoding="utf-8", newline="\n")
+
+    # The deposit's front matter is built from .zenodo.json, so the README a reader opens and the
+    # metadata Zenodo shows cannot drift apart.
+    meta = json.loads((REPO / ".zenodo.json").read_text(encoding="utf-8"))
+    authors = "\n".join(
+        f"- **{c['name']}**"
+        + (f" ([{c['orcid']}](https://orcid.org/{c['orcid']}))" if c.get("orcid") else "")
+        + (f" — {c['affiliation']}" if c.get("affiliation") else "")
+        for c in meta["creators"])
+    contents = "\n".join(
+        f"| {promise} | {len([f for rel in paths for f in iter_files(rel)])} |"
+        for promise, paths in PROMISES)
+    header = README_HEADER.format(
+        title=meta["title"], version=args.version, date=date.today().isoformat(),
+        doi=("not yet minted — see the article's data-availability statement"
+             if pending else "see CITATION.cff"),
+        authors=authors,
+        keywords="Keywords: " + ", ".join(meta.get("keywords", [])),
+        contents="| what the article promises | files |\n|---|---|\n" + contents)
+    (DIST / "README.md").write_text(header + README.split("\n", 1)[1].lstrip("\n"),
+                                    encoding="utf-8", newline="\n")
 
     zip_path = DIST / f"plant-disease-edge-{args.version}.zip"
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
