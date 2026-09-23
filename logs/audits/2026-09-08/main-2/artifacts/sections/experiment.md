@@ -1,1 +1,0 @@
-experiment. The levers are, in order: the descriptor authoring

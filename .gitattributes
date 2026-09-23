@@ -9,6 +9,10 @@ Makefile text eol=lf
 # Keep JSON/markdown normalized too (avoids noisy diffs between machines).
 *.json text eol=lf
 *.md text eol=lf
+# LaTeX too: preflight.py rejects CR bytes in any .tex, and a CRLF checkout on
+# Windows would fail that check on a clean clone.
+*.tex text eol=lf
+*.bib text eol=lf
 *.csv text eol=lf
 
 # Never touch binaries.

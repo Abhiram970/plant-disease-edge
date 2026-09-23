@@ -38,9 +38,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# run logs: ignored anywhere EXCEPT the curated evidence trail in logs/
 *.log
-!logs/*.log
 
 # results/ is a TRACKED archive of every experiment output, so collaborators and reviewers can read
 # the numbers without re-running anything. Only the exported model graphs are excluded (~1.7 GB, and
@@ -49,6 +47,26 @@ results/onnx/
 results/**/*.onnx
 docs/paper/submission/
 
-# build artifact -- regenerate with scripts/build_submission.py
+# build artifacts -- regenerate with scripts/build_pdf.py / build_submission.py
+docs/paper/build/
 docs/paper/compag_submission.zip
 docs/paper/compag_submission/
+
+# ---- Archive lives OUTSIDE the repo (../plant-disease-edge-archive) ----
+# Listed only so a stray copy inside the tree is never committed.
+plant-disease-edge-archive/
+_archive/
+
+# ---- LaTeX intermediates (the .tex sources and the built PDF are tracked; the rest is noise) ----
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.abs
+*.synctex.gz
+
+# ---- Audit workspaces: review evidence, not source. The ledger is docs/paper/AUDIT_HISTORY.md ----
+docs/paper/review_*/
+docs/paper/review_results/
