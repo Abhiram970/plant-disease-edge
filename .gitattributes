@@ -14,6 +14,10 @@ Makefile text eol=lf
 *.tex text eol=lf
 *.bib text eol=lf
 *.csv text eol=lf
+# highlights.txt and the released prompt files are generated with newline="
+"; without
+# this they come back CRLF on a Windows checkout and every regeneration looks like a diff.
+*.txt text eol=lf
 
 # Never touch binaries.
 *.png binary
