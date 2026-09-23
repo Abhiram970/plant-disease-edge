@@ -56,6 +56,8 @@ PROMISES: list[tuple[str, list[str]]] = [
     ("the manuscript this release accompanies",
      ["docs/paper/manuscript/revision/main.tex", "docs/paper/manuscript/revision/main.pdf",
       "docs/paper/manuscript/revision/refs.bib"]),
+    ("the licences and citation metadata",
+     ["LICENSE", "LICENSE-DATA.md", "CITATION.cff"]),
 ]
 
 # Never ship these, whatever directory they live in.
@@ -92,6 +94,13 @@ cd docs/paper/manuscript/revision && latexmk -pdf main.tex
 Re-measuring from the images, rather than re-deriving from the result files, needs a GPU and the
 SAGE subset; `scripts/rescore_descriptors.py` documents the protocol and refuses to run against
 anything but the 288-pixel build the published numbers were measured on.
+
+## Licences
+
+The code is MIT (`LICENSE`). The descriptor registries, the prompts and raw replies, and the
+result files are CC BY 4.0 (`LICENSE-DATA.md`). Rights in the manuscript itself are governed by
+the agreement with the publisher and by neither licence; `LICENSE-DATA.md` sets out the
+boundary. Cite the article and this deposit: `CITATION.cff` gives both.
 
 ## Integrity
 

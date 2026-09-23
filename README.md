@@ -128,6 +128,32 @@ python scripts/check_manuscript_numbers.py   # prose vs the result JSONs
 python scripts/descriptor_coverage.py        # collision table, never hand-counted
 ```
 
+## Licensing
+
+Two licences, because this repository holds two kinds of thing:
+
+| What | Licence |
+|---|---|
+| Code — `scripts/`, the generators in `docs/paper/` | MIT (`LICENSE`) |
+| Data — descriptor registries, prompts and raw replies, result files | CC BY 4.0 (`LICENSE-DATA.md`) |
+| The manuscript — `docs/paper/manuscript/**` | **Neither.** Governed by the publishing agreement |
+| The images | Not redistributed. SAGE at revision `bc9bd2899f`, MIT, fetched by `scripts/sage_data.py` |
+
+The manuscript row matters: signing a publishing agreement can transfer or exclusively licence
+rights in the article, so do not treat the repository licences as covering the `.tex` sources,
+the figures or the built PDFs. `LICENSE-DATA.md` states the boundary in full.
+
+## Depositing
+
+```bash
+python scripts/prepare_zenodo_archive.py --check   # verify the data-availability promises
+python scripts/prepare_zenodo_archive.py           # dist/zenodo/ zip + MANIFEST.sha256
+python scripts/paper_fixes/set_doi.py <minted-doi> # stamp the manuscript and CITATION.cff
+```
+
+The archive builder treats the data-availability statement as a test: every promise it makes is a
+named group of paths, and an empty group aborts the build.
+
 ## Submission blockers
 
 - **`PENDING-ZENODO-DOI`** — COMPAG Option C requires the data deposited and linked.

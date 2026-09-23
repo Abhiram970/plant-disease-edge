@@ -30,5 +30,11 @@ keywords:
   - edge deployment
   - foundation models
 repository-code: "https://github.com/Abhiram970/plant-disease-edge"
+# Code is MIT (LICENSE); the registries, prompts and result files are CC BY 4.0
+# (LICENSE-DATA.md). The manuscript itself is covered by neither -- see the publishing
+# agreement.
+license:
+  - MIT
+  - CC-BY-4.0
 # Replace with the minted DOI using: python scripts/paper_fixes/set_doi.py <doi>
 doi: PENDING-ZENODO-DOI

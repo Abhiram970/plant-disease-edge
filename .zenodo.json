@@ -37,5 +37,6 @@
       "scheme": "url"
     }
   ],
-  "notes": "Zenodo assigns the DOI on publication; the placeholder in the manuscript and CITATION.cff is then stamped with scripts/paper_fixes/set_doi.py. A licence must be chosen before publishing: this repository does not yet carry a LICENSE file."
+  "notes": "Zenodo assigns the DOI on publication; the placeholder in the manuscript and CITATION.cff is then stamped with scripts/paper_fixes/set_doi.py. The deposit carries two licences: the code is MIT (LICENSE) and the data is CC BY 4.0 (LICENSE-DATA.md). Rights in the manuscript itself are governed by the publishing agreement, not by either licence.",
+  "license": "cc-by-4.0"
 }
