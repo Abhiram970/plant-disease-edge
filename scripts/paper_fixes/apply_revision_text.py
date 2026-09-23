@@ -444,10 +444,11 @@ shape, texture, margin and distribution as a camera would record them, and leave
 prototype.""",
     r"""\paragraph{Write for the camera} At 34 and 51 classes, descriptions written as accounts of a
 photograph worked best, and the decomposition of Section~\ref{sec:decomp} locates the advantage in
-the text rather than in how it is embedded or in whether it cites sources. Source-grounded text
-written in the register of a pathology reference, with its pathogen and taxonomy fields, lags by
-about seven points. What this licenses is narrower than a rule for authoring: the winning registry
-was also written under constraints the source-grounded one did not receive, and DCLIP+ shares its
+the text itself, rather than in how the text is embedded or in whether it cites
+sources. Source-grounded text, written in the style of a pathology reference and carrying pathogen
+and taxonomy fields, lags by about seven points. What this licenses is narrower than a rule for
+authoring. The winning registry was also written under constraints the source-grounded one did not
+receive, and DCLIP+ shares its
 camera-only constraint without sharing its lead, so which property of the text carries the advantage
 is not yet isolated.""",
 )
@@ -483,16 +484,16 @@ accuracy, from 21.6\% to 16.4\% on the smallest encoder at configuration C, so s
 away the transfer this system exists to provide; we keep the encoder frozen.""",
     r"""\paragraph{What does not work} Neither alternative to a frozen compact encoder with good
 descriptions helped here. A supervised convolutional network is the stronger choice for a fixed set
-of known crops, reaching 89.3\% on 166 seen classes against 82.2\% for the frozen probe, but it
-cannot represent an unseen crop at all. In one short fine-tuning run on the seen crops, on the
-smallest encoder at configuration C and under the source-grounded registry, unseen accuracy fell
-from 21.6\% to 16.4\%, while seen accuracy rose within that run's own protocol, which uses fewer
-seen images than the probe above and is not comparable with it. Interpolating between the frozen
-and fine-tuned weights did not recover the loss either: across the interpolation coefficient from
-0 to 1 the unseen accuracy stayed below the frozen encoder's 21.6\%, and the sweep was not
-monotone, which we read as per-coefficient refitting of the probe head rather than as a property
-of weight-space ensembling. A single run does not settle any of this; we keep the encoder frozen
-because transfer is what the system exists to provide.""",
+of known crops. It reaches 89.3\% on 166 seen classes, against 82.2\% for the frozen probe, and it
+cannot represent an unseen crop at all. We also fine-tuned the encoder on the seen crops, on the
+smallest encoder at configuration C and under the source-grounded registry. Unseen accuracy fell
+from 21.6\% to 16.4\%. Seen accuracy rose within that run's own protocol, which uses fewer seen
+images than the probe above and is not comparable with it. Interpolating between the frozen and
+fine-tuned weights did not recover the loss. Across the interpolation coefficient from 0 to 1,
+unseen accuracy stayed below the frozen encoder's 21.6\%, and the sweep was not monotone. We read
+that as per-coefficient refitting of the probe head, rather than as a property of weight-space
+ensembling. A single run does not settle any of this. We keep the encoder frozen because transfer
+is what the system exists to provide.""",
 )
 
 # ---- limitations ------------------------------------------------------------------------------------
@@ -576,10 +577,11 @@ photo-descriptive text lies in the text rather than in citation or embedding. Th
 deployment is the descriptions, not the parameters.""",
     r"""A frozen compact vision--language model can shortlist plant diseases on crops it was never trained
 on, at 17.4\,ms per image on a laptop CPU, and how its descriptions are written decides how well.
-Across seven authoring strategies, three label spaces and four encoders, the best descriptions buy
-more accuracy than the step to the largest encoder, at no per-image cost. At 34 and 51 classes,
-photo-descriptive per-class sentences work best, reaching 30.9\% on 51 unseen classes, 7.4 times the
-majority-class prior. Requiring descriptions to cite sources costs nothing measurable, and the
+We compared seven authoring strategies across three label spaces and four encoders. The best
+descriptions buy more accuracy than the step to the largest encoder does, and they cost nothing per
+image. At 34 and 51 classes, photo-descriptive per-class sentences work best. They reach 30.9\% on
+51 unseen classes, which is 7.4 times the majority-class prior. Requiring descriptions to cite
+sources costs nothing measurable. The
 remaining gap between cited and photo-descriptive text lies in the text rather than in citation or
 embedding. The lever for CPU-only deployment is the descriptions, not the parameters.""",
 )
