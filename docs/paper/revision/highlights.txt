@@ -1,0 +1,5 @@
+Descriptions gain 10.3-16.2 points; the 11.4M-to-86.3M encoder step gains 4.0-5.1.
+Photo-descriptive text reaches 30.9% on 51 unseen classes, 7.4x the majority prior.
+Citing a source costs no accuracy; dropping taxonomy recovers none of the deficit.
+The smallest encoder runs at 17.4 ms per image on a laptop CPU in 45.8 MB.
+INT8 is a size lever, not a speed lever, for hybrid conv-transformer encoders on x86.
